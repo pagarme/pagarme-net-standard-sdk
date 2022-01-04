@@ -148,7 +148,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// </summary>
         private void UpdateUserAgent()
         {
-            internalUserAgent = "PagarmeCoreApi - DotNet 6.1.0-alpha.0";
+            internalUserAgent = "PagarmeCoreApi - DotNet 6.2.0";
         }
     }
 }

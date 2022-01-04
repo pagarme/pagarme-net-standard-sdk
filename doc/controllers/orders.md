@@ -11,15 +11,15 @@ IOrdersController ordersController = client.OrdersController;
 ## Methods
 
 * [Get Orders](/doc/controllers/orders.md#get-orders)
-* [Update Order Item](/doc/controllers/orders.md#update-order-item)
-* [Delete All Order Items](/doc/controllers/orders.md#delete-all-order-items)
-* [Delete Order Item](/doc/controllers/orders.md#delete-order-item)
+* [Get Order Item](/doc/controllers/orders.md#get-order-item)
+* [Get Order](/doc/controllers/orders.md#get-order)
 * [Close Order](/doc/controllers/orders.md#close-order)
 * [Create Order](/doc/controllers/orders.md#create-order)
-* [Create Order Item](/doc/controllers/orders.md#create-order-item)
-* [Get Order Item](/doc/controllers/orders.md#get-order-item)
+* [Update Order Item](/doc/controllers/orders.md#update-order-item)
+* [Delete All Order Items](/doc/controllers/orders.md#delete-all-order-items)
 * [Update Order Metadata](/doc/controllers/orders.md#update-order-metadata)
-* [Get Order](/doc/controllers/orders.md#get-order)
+* [Delete Order Item](/doc/controllers/orders.md#delete-order-item)
+* [Create Order Item](/doc/controllers/orders.md#create-order-item)
 
 
 # Get Orders
@@ -64,14 +64,12 @@ catch (ApiException e){};
 ```
 
 
-# Update Order Item
+# Get Order Item
 
 ```csharp
-UpdateOrderItemAsync(
+GetOrderItemAsync(
     string orderId,
-    string itemId,
-    Models.UpdateOrderItemRequest request,
-    string idempotencyKey = null)
+    string itemId)
 ```
 
 ## Parameters
@@ -80,8 +78,6 @@ UpdateOrderItemAsync(
 |  --- | --- | --- | --- |
 | `orderId` | `string` | Template, Required | Order Id |
 | `itemId` | `string` | Template, Required | Item Id |
-| `request` | [`Models.UpdateOrderItemRequest`](/doc/models/update-order-item-request.md) | Body, Required | Item Model |
-| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
@@ -92,34 +88,29 @@ UpdateOrderItemAsync(
 ```csharp
 string orderId = "orderId2";
 string itemId = "itemId8";
-var request = new UpdateOrderItemRequest();
-request.Amount = 242;
-request.Description = "description6";
-request.Quantity = 100;
-request.Category = "category4";
 
 try
 {
-    GetOrderItemResponse result = await ordersController.UpdateOrderItemAsync(orderId, itemId, request, null);
+    GetOrderItemResponse result = await ordersController.GetOrderItemAsync(orderId, itemId);
 }
 catch (ApiException e){};
 ```
 
 
-# Delete All Order Items
+# Get Order
+
+Gets an order
 
 ```csharp
-DeleteAllOrderItemsAsync(
-    string orderId,
-    string idempotencyKey = null)
+GetOrderAsync(
+    string orderId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order Id |
-| `idempotencyKey` | `string` | Header, Optional | - |
+| `orderId` | `string` | Template, Required | Order id |
 
 ## Response Type
 
@@ -128,46 +119,11 @@ DeleteAllOrderItemsAsync(
 ## Example Usage
 
 ```csharp
-string orderId = "orderId2";
+string orderId = "order_id6";
 
 try
 {
-    GetOrderResponse result = await ordersController.DeleteAllOrderItemsAsync(orderId, null);
-}
-catch (ApiException e){};
-```
-
-
-# Delete Order Item
-
-```csharp
-DeleteOrderItemAsync(
-    string orderId,
-    string itemId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order Id |
-| `itemId` | `string` | Template, Required | Item Id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetOrderItemResponse>`](/doc/models/get-order-item-response.md)
-
-## Example Usage
-
-```csharp
-string orderId = "orderId2";
-string itemId = "itemId8";
-
-try
-{
-    GetOrderItemResponse result = await ordersController.DeleteOrderItemAsync(orderId, itemId, null);
+    GetOrderResponse result = await ordersController.GetOrderAsync(orderId);
 }
 catch (ApiException e){};
 ```
@@ -308,12 +264,13 @@ catch (ApiException e){};
 ```
 
 
-# Create Order Item
+# Update Order Item
 
 ```csharp
-CreateOrderItemAsync(
+UpdateOrderItemAsync(
     string orderId,
-    Models.CreateOrderItemRequest request,
+    string itemId,
+    Models.UpdateOrderItemRequest request,
     string idempotencyKey = null)
 ```
 
@@ -322,7 +279,8 @@ CreateOrderItemAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orderId` | `string` | Template, Required | Order Id |
-| `request` | [`Models.CreateOrderItemRequest`](/doc/models/create-order-item-request.md) | Body, Required | Order Item Model |
+| `itemId` | `string` | Template, Required | Item Id |
+| `request` | [`Models.UpdateOrderItemRequest`](/doc/models/update-order-item-request.md) | Body, Required | Item Model |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -333,7 +291,8 @@ CreateOrderItemAsync(
 
 ```csharp
 string orderId = "orderId2";
-var request = new CreateOrderItemRequest();
+string itemId = "itemId8";
+var request = new UpdateOrderItemRequest();
 request.Amount = 242;
 request.Description = "description6";
 request.Quantity = 100;
@@ -341,18 +300,18 @@ request.Category = "category4";
 
 try
 {
-    GetOrderItemResponse result = await ordersController.CreateOrderItemAsync(orderId, request, null);
+    GetOrderItemResponse result = await ordersController.UpdateOrderItemAsync(orderId, itemId, request, null);
 }
 catch (ApiException e){};
 ```
 
 
-# Get Order Item
+# Delete All Order Items
 
 ```csharp
-GetOrderItemAsync(
+DeleteAllOrderItemsAsync(
     string orderId,
-    string itemId)
+    string idempotencyKey = null)
 ```
 
 ## Parameters
@@ -360,21 +319,20 @@ GetOrderItemAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orderId` | `string` | Template, Required | Order Id |
-| `itemId` | `string` | Template, Required | Item Id |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetOrderItemResponse>`](/doc/models/get-order-item-response.md)
+[`Task<Models.GetOrderResponse>`](/doc/models/get-order-response.md)
 
 ## Example Usage
 
 ```csharp
 string orderId = "orderId2";
-string itemId = "itemId8";
 
 try
 {
-    GetOrderItemResponse result = await ordersController.GetOrderItemAsync(orderId, itemId);
+    GetOrderResponse result = await ordersController.DeleteAllOrderItemsAsync(orderId, null);
 }
 catch (ApiException e){};
 ```
@@ -419,33 +377,75 @@ catch (ApiException e){};
 ```
 
 
-# Get Order
-
-Gets an order
+# Delete Order Item
 
 ```csharp
-GetOrderAsync(
-    string orderId)
+DeleteOrderItemAsync(
+    string orderId,
+    string itemId,
+    string idempotencyKey = null)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order id |
+| `orderId` | `string` | Template, Required | Order Id |
+| `itemId` | `string` | Template, Required | Item Id |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetOrderResponse>`](/doc/models/get-order-response.md)
+[`Task<Models.GetOrderItemResponse>`](/doc/models/get-order-item-response.md)
 
 ## Example Usage
 
 ```csharp
-string orderId = "order_id6";
+string orderId = "orderId2";
+string itemId = "itemId8";
 
 try
 {
-    GetOrderResponse result = await ordersController.GetOrderAsync(orderId);
+    GetOrderItemResponse result = await ordersController.DeleteOrderItemAsync(orderId, itemId, null);
+}
+catch (ApiException e){};
+```
+
+
+# Create Order Item
+
+```csharp
+CreateOrderItemAsync(
+    string orderId,
+    Models.CreateOrderItemRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orderId` | `string` | Template, Required | Order Id |
+| `request` | [`Models.CreateOrderItemRequest`](/doc/models/create-order-item-request.md) | Body, Required | Order Item Model |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetOrderItemResponse>`](/doc/models/get-order-item-response.md)
+
+## Example Usage
+
+```csharp
+string orderId = "orderId2";
+var request = new CreateOrderItemRequest();
+request.Amount = 242;
+request.Description = "description6";
+request.Quantity = 100;
+request.Category = "category4";
+
+try
+{
+    GetOrderItemResponse result = await ordersController.CreateOrderItemAsync(orderId, request, null);
 }
 catch (ApiException e){};
 ```

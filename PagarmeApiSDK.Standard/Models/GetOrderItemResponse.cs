@@ -37,21 +37,18 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="quantity">quantity.</param>
         /// <param name="category">category.</param>
         /// <param name="code">code.</param>
-        /// <param name="getSellerResponse">GetSellerResponse.</param>
         public GetOrderItemResponse(
             string id,
             int amount,
             string description,
             int quantity,
             string category,
-            string code,
-            Models.GetSellerResponse getSellerResponse = null)
+            string code)
         {
             this.Id = id;
             this.Amount = amount;
             this.Description = description;
             this.Quantity = quantity;
-            this.GetSellerResponse = getSellerResponse;
             this.Category = category;
             this.Code = code;
         }
@@ -79,12 +76,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
-
-        /// <summary>
-        /// Seller data
-        /// </summary>
-        [JsonProperty("GetSellerResponse", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetSellerResponse GetSellerResponse { get; set; }
 
         /// <summary>
         /// Category
@@ -126,7 +117,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Amount.Equals(other.Amount) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 this.Quantity.Equals(other.Quantity) &&
-                ((this.GetSellerResponse == null && other.GetSellerResponse == null) || (this.GetSellerResponse?.Equals(other.GetSellerResponse) == true)) &&
                 ((this.Category == null && other.Category == null) || (this.Category?.Equals(other.Category) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true));
         }
@@ -142,7 +132,6 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {this.Amount}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
             toStringOutput.Add($"this.Quantity = {this.Quantity}");
-            toStringOutput.Add($"this.GetSellerResponse = {(this.GetSellerResponse == null ? "null" : this.GetSellerResponse.ToString())}");
             toStringOutput.Add($"this.Category = {(this.Category == null ? "null" : this.Category == string.Empty ? "" : this.Category)}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
         }
