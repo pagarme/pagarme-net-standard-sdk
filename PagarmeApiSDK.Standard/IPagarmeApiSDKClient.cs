@@ -12,6 +12,11 @@ namespace PagarmeApiSDK.Standard
     public interface IPagarmeApiSDKClient : IConfiguration
     {
         /// <summary>
+        /// Gets instance for IOrdersController.
+        /// </summary>
+        IOrdersController OrdersController { get; }
+
+        /// <summary>
         /// Gets instance for IPlansController.
         /// </summary>
         IPlansController PlansController { get; }
@@ -25,11 +30,6 @@ namespace PagarmeApiSDK.Standard
         /// Gets instance for IInvoicesController.
         /// </summary>
         IInvoicesController InvoicesController { get; }
-
-        /// <summary>
-        /// Gets instance for IOrdersController.
-        /// </summary>
-        IOrdersController OrdersController { get; }
 
         /// <summary>
         /// Gets instance for ICustomersController.
@@ -47,9 +47,9 @@ namespace PagarmeApiSDK.Standard
         IChargesController ChargesController { get; }
 
         /// <summary>
-        /// Gets instance for ITransfersController.
+        /// Gets instance for ISellersController.
         /// </summary>
-        ITransfersController TransfersController { get; }
+        ISellersController SellersController { get; }
 
         /// <summary>
         /// Gets instance for ITokensController.
@@ -57,9 +57,9 @@ namespace PagarmeApiSDK.Standard
         ITokensController TokensController { get; }
 
         /// <summary>
-        /// Gets instance for ISellersController.
+        /// Gets instance for ITransfersController.
         /// </summary>
-        ISellersController SellersController { get; }
+        ITransfersController TransfersController { get; }
 
         /// <summary>
         /// Gets instance for ITransactionsController.

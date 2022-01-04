@@ -45,32 +45,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// UpdateSellerMetadata EndPoint.
-        /// </summary>
-        /// <param name="sellerId">Required parameter: Seller Id.</param>
-        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        Models.GetSellerResponse UpdateSellerMetadata(
-                string sellerId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// UpdateSellerMetadata EndPoint.
-        /// </summary>
-        /// <param name="sellerId">Required parameter: Seller Id.</param>
-        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        Task<Models.GetSellerResponse> UpdateSellerMetadataAsync(
-                string sellerId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// UpdateSeller EndPoint.
         /// </summary>
         /// <param name="id">Required parameter: Example: .</param>
@@ -97,43 +71,29 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// DeleteSeller EndPoint.
+        /// UpdateSellerMetadata EndPoint.
         /// </summary>
         /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        Models.GetSellerResponse DeleteSeller(
+        Models.GetSellerResponse UpdateSellerMetadata(
                 string sellerId,
+                Models.UpdateMetadataRequest request,
                 string idempotencyKey = null);
 
         /// <summary>
-        /// DeleteSeller EndPoint.
+        /// UpdateSellerMetadata EndPoint.
         /// </summary>
         /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        Task<Models.GetSellerResponse> DeleteSellerAsync(
+        Task<Models.GetSellerResponse> UpdateSellerMetadataAsync(
                 string sellerId,
+                Models.UpdateMetadataRequest request,
                 string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// GetSellerById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Seller Id.</param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        Models.GetSellerResponse GetSellerById(
-                string id);
-
-        /// <summary>
-        /// GetSellerById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Seller Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        Task<Models.GetSellerResponse> GetSellerByIdAsync(
-                string id,
                 CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -184,6 +144,46 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string type = null,
                 DateTime? createdSince = null,
                 DateTime? createdUntil = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// GetSellerById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Seller Id.</param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        Models.GetSellerResponse GetSellerById(
+                string id);
+
+        /// <summary>
+        /// GetSellerById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Seller Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        Task<Models.GetSellerResponse> GetSellerByIdAsync(
+                string id,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// DeleteSeller EndPoint.
+        /// </summary>
+        /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        Models.GetSellerResponse DeleteSeller(
+                string sellerId,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// DeleteSeller EndPoint.
+        /// </summary>
+        /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        Task<Models.GetSellerResponse> DeleteSellerAsync(
+                string sellerId,
+                string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
     }
 }

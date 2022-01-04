@@ -35,16 +35,16 @@ namespace PagarmeApiSDK.Standard
         private readonly IHttpClient httpClient;
         private readonly BasicAuthManager basicAuthManager;
 
+        private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IInvoicesController> invoices;
-        private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<ICustomersController> customers;
         private readonly Lazy<IRecipientsController> recipients;
         private readonly Lazy<IChargesController> charges;
-        private readonly Lazy<ITransfersController> transfers;
-        private readonly Lazy<ITokensController> tokens;
         private readonly Lazy<ISellersController> sellers;
+        private readonly Lazy<ITokensController> tokens;
+        private readonly Lazy<ITransfersController> transfers;
         private readonly Lazy<ITransactionsController> transactions;
 
         private PagarmeApiSDKClient(
@@ -60,26 +60,26 @@ namespace PagarmeApiSDK.Standard
             this.authManagers = (authManagers == null) ? new Dictionary<string, IAuthManager>() : new Dictionary<string, IAuthManager>(authManagers);
             this.HttpClientConfiguration = httpClientConfiguration;
 
+            this.orders = new Lazy<IOrdersController>(
+                () => new OrdersController(this, this.httpClient, this.authManagers));
             this.plans = new Lazy<IPlansController>(
                 () => new PlansController(this, this.httpClient, this.authManagers));
             this.subscriptions = new Lazy<ISubscriptionsController>(
                 () => new SubscriptionsController(this, this.httpClient, this.authManagers));
             this.invoices = new Lazy<IInvoicesController>(
                 () => new InvoicesController(this, this.httpClient, this.authManagers));
-            this.orders = new Lazy<IOrdersController>(
-                () => new OrdersController(this, this.httpClient, this.authManagers));
             this.customers = new Lazy<ICustomersController>(
                 () => new CustomersController(this, this.httpClient, this.authManagers));
             this.recipients = new Lazy<IRecipientsController>(
                 () => new RecipientsController(this, this.httpClient, this.authManagers));
             this.charges = new Lazy<IChargesController>(
                 () => new ChargesController(this, this.httpClient, this.authManagers));
-            this.transfers = new Lazy<ITransfersController>(
-                () => new TransfersController(this, this.httpClient, this.authManagers));
-            this.tokens = new Lazy<ITokensController>(
-                () => new TokensController(this, this.httpClient, this.authManagers));
             this.sellers = new Lazy<ISellersController>(
                 () => new SellersController(this, this.httpClient, this.authManagers));
+            this.tokens = new Lazy<ITokensController>(
+                () => new TokensController(this, this.httpClient, this.authManagers));
+            this.transfers = new Lazy<ITransfersController>(
+                () => new TransfersController(this, this.httpClient, this.authManagers));
             this.transactions = new Lazy<ITransactionsController>(
                 () => new TransactionsController(this, this.httpClient, this.authManagers));
 
@@ -97,6 +97,11 @@ namespace PagarmeApiSDK.Standard
         }
 
         /// <summary>
+        /// Gets OrdersController controller.
+        /// </summary>
+        public IOrdersController OrdersController => this.orders.Value;
+
+        /// <summary>
         /// Gets PlansController controller.
         /// </summary>
         public IPlansController PlansController => this.plans.Value;
@@ -110,11 +115,6 @@ namespace PagarmeApiSDK.Standard
         /// Gets InvoicesController controller.
         /// </summary>
         public IInvoicesController InvoicesController => this.invoices.Value;
-
-        /// <summary>
-        /// Gets OrdersController controller.
-        /// </summary>
-        public IOrdersController OrdersController => this.orders.Value;
 
         /// <summary>
         /// Gets CustomersController controller.
@@ -132,9 +132,9 @@ namespace PagarmeApiSDK.Standard
         public IChargesController ChargesController => this.charges.Value;
 
         /// <summary>
-        /// Gets TransfersController controller.
+        /// Gets SellersController controller.
         /// </summary>
-        public ITransfersController TransfersController => this.transfers.Value;
+        public ISellersController SellersController => this.sellers.Value;
 
         /// <summary>
         /// Gets TokensController controller.
@@ -142,9 +142,9 @@ namespace PagarmeApiSDK.Standard
         public ITokensController TokensController => this.tokens.Value;
 
         /// <summary>
-        /// Gets SellersController controller.
+        /// Gets TransfersController controller.
         /// </summary>
-        public ISellersController SellersController => this.sellers.Value;
+        public ITransfersController TransfersController => this.transfers.Value;
 
         /// <summary>
         /// Gets TransactionsController controller.

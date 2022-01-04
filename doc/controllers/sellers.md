@@ -11,11 +11,11 @@ ISellersController sellersController = client.SellersController;
 ## Methods
 
 * [Create Seller](/doc/controllers/sellers.md#create-seller)
-* [Update Seller Metadata](/doc/controllers/sellers.md#update-seller-metadata)
 * [Update Seller](/doc/controllers/sellers.md#update-seller)
-* [Delete Seller](/doc/controllers/sellers.md#delete-seller)
-* [Get Seller by Id](/doc/controllers/sellers.md#get-seller-by-id)
+* [Update Seller Metadata](/doc/controllers/sellers.md#update-seller-metadata)
 * [Get Sellers](/doc/controllers/sellers.md#get-sellers)
+* [Get Seller by Id](/doc/controllers/sellers.md#get-seller-by-id)
+* [Delete Seller](/doc/controllers/sellers.md#delete-seller)
 
 
 # Create Seller
@@ -48,43 +48,6 @@ request.Metadata.Add("key0", "metadata3");
 try
 {
     GetSellerResponse result = await sellersController.CreateSellerAsync(request, null);
-}
-catch (ApiException e){};
-```
-
-
-# Update Seller Metadata
-
-```csharp
-UpdateSellerMetadataAsync(
-    string sellerId,
-    Models.UpdateMetadataRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `sellerId` | `string` | Template, Required | Seller Id |
-| `request` | [`Models.UpdateMetadataRequest`](/doc/models/update-metadata-request.md) | Body, Required | Request for updating the charge metadata |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSellerResponse>`](/doc/models/get-seller-response.md)
-
-## Example Usage
-
-```csharp
-string sellerId = "seller_id8";
-var request = new UpdateMetadataRequest();
-request.Metadata = new Dictionary<string, string>();
-request.Metadata.Add("key0", "metadata3");
-
-try
-{
-    GetSellerResponse result = await sellersController.UpdateSellerMetadataAsync(sellerId, request, null);
 }
 catch (ApiException e){};
 ```
@@ -146,11 +109,12 @@ catch (ApiException e){};
 ```
 
 
-# Delete Seller
+# Update Seller Metadata
 
 ```csharp
-DeleteSellerAsync(
+UpdateSellerMetadataAsync(
     string sellerId,
+    Models.UpdateMetadataRequest request,
     string idempotencyKey = null)
 ```
 
@@ -159,6 +123,7 @@ DeleteSellerAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `sellerId` | `string` | Template, Required | Seller Id |
+| `request` | [`Models.UpdateMetadataRequest`](/doc/models/update-metadata-request.md) | Body, Required | Request for updating the charge metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -168,41 +133,14 @@ DeleteSellerAsync(
 ## Example Usage
 
 ```csharp
-string sellerId = "sellerId4";
+string sellerId = "seller_id8";
+var request = new UpdateMetadataRequest();
+request.Metadata = new Dictionary<string, string>();
+request.Metadata.Add("key0", "metadata3");
 
 try
 {
-    GetSellerResponse result = await sellersController.DeleteSellerAsync(sellerId, null);
-}
-catch (ApiException e){};
-```
-
-
-# Get Seller by Id
-
-```csharp
-GetSellerByIdAsync(
-    string id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `string` | Template, Required | Seller Id |
-
-## Response Type
-
-[`Task<Models.GetSellerResponse>`](/doc/models/get-seller-response.md)
-
-## Example Usage
-
-```csharp
-string id = "id0";
-
-try
-{
-    GetSellerResponse result = await sellersController.GetSellerByIdAsync(id);
+    GetSellerResponse result = await sellersController.UpdateSellerMetadataAsync(sellerId, request, null);
 }
 catch (ApiException e){};
 ```
@@ -247,6 +185,68 @@ GetSellersAsync(
 try
 {
     ListSellerResponse result = await sellersController.GetSellersAsync(null, null, null, null, null, null, null, null, null);
+}
+catch (ApiException e){};
+```
+
+
+# Get Seller by Id
+
+```csharp
+GetSellerByIdAsync(
+    string id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `string` | Template, Required | Seller Id |
+
+## Response Type
+
+[`Task<Models.GetSellerResponse>`](/doc/models/get-seller-response.md)
+
+## Example Usage
+
+```csharp
+string id = "id0";
+
+try
+{
+    GetSellerResponse result = await sellersController.GetSellerByIdAsync(id);
+}
+catch (ApiException e){};
+```
+
+
+# Delete Seller
+
+```csharp
+DeleteSellerAsync(
+    string sellerId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `sellerId` | `string` | Template, Required | Seller Id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSellerResponse>`](/doc/models/get-seller-response.md)
+
+## Example Usage
+
+```csharp
+string sellerId = "sellerId4";
+
+try
+{
+    GetSellerResponse result = await sellersController.DeleteSellerAsync(sellerId, null);
 }
 catch (ApiException e){};
 ```

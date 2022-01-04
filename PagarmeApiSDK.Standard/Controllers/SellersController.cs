@@ -98,77 +98,6 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
-        /// UpdateSellerMetadata EndPoint.
-        /// </summary>
-        /// <param name="sellerId">Required parameter: Seller Id.</param>
-        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        public Models.GetSellerResponse UpdateSellerMetadata(
-                string sellerId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetSellerResponse> t = this.UpdateSellerMetadataAsync(sellerId, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// UpdateSellerMetadata EndPoint.
-        /// </summary>
-        /// <param name="sellerId">Required parameter: Seller Id.</param>
-        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        public async Task<Models.GetSellerResponse> UpdateSellerMetadataAsync(
-                string sellerId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/sellers/{seller_id}/metadata");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "seller_id", sellerId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetSellerResponse>(response.Body);
-        }
-
-        /// <summary>
         /// UpdateSeller EndPoint.
         /// </summary>
         /// <param name="id">Required parameter: Example: .</param>
@@ -240,29 +169,33 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
-        /// DeleteSeller EndPoint.
+        /// UpdateSellerMetadata EndPoint.
         /// </summary>
         /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        public Models.GetSellerResponse DeleteSeller(
+        public Models.GetSellerResponse UpdateSellerMetadata(
                 string sellerId,
+                Models.UpdateMetadataRequest request,
                 string idempotencyKey = null)
         {
-            Task<Models.GetSellerResponse> t = this.DeleteSellerAsync(sellerId, idempotencyKey);
+            Task<Models.GetSellerResponse> t = this.UpdateSellerMetadataAsync(sellerId, request, idempotencyKey);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// DeleteSeller EndPoint.
+        /// UpdateSellerMetadata EndPoint.
         /// </summary>
         /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="request">Required parameter: Request for updating the charge metadata.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        public async Task<Models.GetSellerResponse> DeleteSellerAsync(
+        public async Task<Models.GetSellerResponse> UpdateSellerMetadataAsync(
                 string sellerId,
+                Models.UpdateMetadataRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
         {
@@ -271,12 +204,12 @@ namespace PagarmeApiSDK.Standard.Controllers
 
             // prepare query string for API call.
             StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/sellers/{sellerId}");
+            queryBuilder.Append("/sellers/{seller_id}/metadata");
 
             // process optional template parameters.
             ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
-                { "sellerId", sellerId },
+                { "seller_id", sellerId },
             });
 
             // append request with appropriate headers and parameters
@@ -284,69 +217,15 @@ namespace PagarmeApiSDK.Standard.Controllers
             {
                 { "user-agent", this.UserAgent },
                 { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
                 { "idempotency-key", idempotencyKey },
             };
 
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Delete(queryBuilder.ToString(), headers, null);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetSellerResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// GetSellerById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Seller Id.</param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        public Models.GetSellerResponse GetSellerById(
-                string id)
-        {
-            Task<Models.GetSellerResponse> t = this.GetSellerByIdAsync(id);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// GetSellerById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Seller Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
-        public async Task<Models.GetSellerResponse> GetSellerByIdAsync(
-                string id,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/sellers/{id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "id", id },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
 
             // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
 
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
@@ -456,6 +335,127 @@ namespace PagarmeApiSDK.Standard.Controllers
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.ListSellerResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// GetSellerById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Seller Id.</param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        public Models.GetSellerResponse GetSellerById(
+                string id)
+        {
+            Task<Models.GetSellerResponse> t = this.GetSellerByIdAsync(id);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// GetSellerById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Seller Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        public async Task<Models.GetSellerResponse> GetSellerByIdAsync(
+                string id,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/sellers/{id}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "id", id },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetSellerResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// DeleteSeller EndPoint.
+        /// </summary>
+        /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        public Models.GetSellerResponse DeleteSeller(
+                string sellerId,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetSellerResponse> t = this.DeleteSellerAsync(sellerId, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// DeleteSeller EndPoint.
+        /// </summary>
+        /// <param name="sellerId">Required parameter: Seller Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSellerResponse response from the API call.</returns>
+        public async Task<Models.GetSellerResponse> DeleteSellerAsync(
+                string sellerId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/sellers/{sellerId}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "sellerId", sellerId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Delete(queryBuilder.ToString(), headers, null);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetSellerResponse>(response.Body);
         }
     }
 }
