@@ -35,23 +35,17 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="description">description.</param>
         /// <param name="quantity">quantity.</param>
         /// <param name="category">category.</param>
-        /// <param name="seller">seller.</param>
-        /// <param name="sellerId">seller_id.</param>
         /// <param name="code">code.</param>
         public CreateOrderItemRequest(
             int amount,
             string description,
             int quantity,
             string category,
-            Models.CreateSellerRequest seller = null,
-            string sellerId = null,
             string code = null)
         {
             this.Amount = amount;
             this.Description = description;
             this.Quantity = quantity;
-            this.Seller = seller;
-            this.SellerId = sellerId;
             this.Category = category;
             this.Code = code;
         }
@@ -73,18 +67,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
-
-        /// <summary>
-        /// Item seller
-        /// </summary>
-        [JsonProperty("seller", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.CreateSellerRequest Seller { get; set; }
-
-        /// <summary>
-        /// seller identificator
-        /// </summary>
-        [JsonProperty("seller_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string SellerId { get; set; }
 
         /// <summary>
         /// Category
@@ -125,8 +107,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Amount.Equals(other.Amount) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 this.Quantity.Equals(other.Quantity) &&
-                ((this.Seller == null && other.Seller == null) || (this.Seller?.Equals(other.Seller) == true)) &&
-                ((this.SellerId == null && other.SellerId == null) || (this.SellerId?.Equals(other.SellerId) == true)) &&
                 ((this.Category == null && other.Category == null) || (this.Category?.Equals(other.Category) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true));
         }
@@ -141,8 +121,6 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {this.Amount}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
             toStringOutput.Add($"this.Quantity = {this.Quantity}");
-            toStringOutput.Add($"this.Seller = {(this.Seller == null ? "null" : this.Seller.ToString())}");
-            toStringOutput.Add($"this.SellerId = {(this.SellerId == null ? "null" : this.SellerId == string.Empty ? "" : this.SellerId)}");
             toStringOutput.Add($"this.Category = {(this.Category == null ? "null" : this.Category == string.Empty ? "" : this.Category)}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
         }
