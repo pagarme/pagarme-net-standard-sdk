@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="setup">setup.</param>
         /// <param name="gatewayAffiliationId">gateway_affiliation_id.</param>
         /// <param name="increments">increments.</param>
+        /// <param name="split">split.</param>
         /// <param name="currentCycle">current_cycle.</param>
         /// <param name="customer">customer.</param>
         /// <param name="nextBillingAt">next_billing_at.</param>
@@ -78,6 +79,7 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetSetupResponse setup,
             string gatewayAffiliationId,
             List<Models.GetIncrementResponse> increments,
+            Models.GetSubscriptionSplitResponse split,
             Models.GetPeriodResponse currentCycle = null,
             Models.GetCustomerResponse customer = null,
             DateTime? nextBillingAt = null,
@@ -114,6 +116,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Discounts = discounts;
             this.Increments = increments;
             this.BoletoDueDays = boletoDueDays;
+            this.Split = split;
         }
 
         /// <summary>
@@ -283,6 +286,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("boleto_due_days", NullValueHandling = NullValueHandling.Ignore)]
         public int? BoletoDueDays { get; set; }
 
+        /// <summary>
+        /// Subscription's split response
+        /// </summary>
+        [JsonProperty("split")]
+        public Models.GetSubscriptionSplitResponse Split { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -333,7 +342,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.CanceledAt == null && other.CanceledAt == null) || (this.CanceledAt?.Equals(other.CanceledAt) == true)) &&
                 ((this.Discounts == null && other.Discounts == null) || (this.Discounts?.Equals(other.Discounts) == true)) &&
                 ((this.Increments == null && other.Increments == null) || (this.Increments?.Equals(other.Increments) == true)) &&
-                ((this.BoletoDueDays == null && other.BoletoDueDays == null) || (this.BoletoDueDays?.Equals(other.BoletoDueDays) == true));
+                ((this.BoletoDueDays == null && other.BoletoDueDays == null) || (this.BoletoDueDays?.Equals(other.BoletoDueDays) == true)) &&
+                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true));
         }
         
 
@@ -370,6 +380,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Discounts = {(this.Discounts == null ? "null" : $"[{string.Join(", ", this.Discounts)} ]")}");
             toStringOutput.Add($"this.Increments = {(this.Increments == null ? "null" : $"[{string.Join(", ", this.Increments)} ]")}");
             toStringOutput.Add($"this.BoletoDueDays = {(this.BoletoDueDays == null ? "null" : this.BoletoDueDays.ToString())}");
+            toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : this.Split.ToString())}");
         }
     }
 }
