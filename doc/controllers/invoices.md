@@ -10,13 +10,116 @@ IInvoicesController invoicesController = client.InvoicesController;
 
 ## Methods
 
-* [Create Invoice](/doc/controllers/invoices.md#create-invoice)
-* [Get Invoices](/doc/controllers/invoices.md#get-invoices)
-* [Cancel Invoice](/doc/controllers/invoices.md#cancel-invoice)
 * [Update Invoice Metadata](/doc/controllers/invoices.md#update-invoice-metadata)
 * [Get Partial Invoice](/doc/controllers/invoices.md#get-partial-invoice)
-* [Update Invoice Status](/doc/controllers/invoices.md#update-invoice-status)
+* [Cancel Invoice](/doc/controllers/invoices.md#cancel-invoice)
+* [Create Invoice](/doc/controllers/invoices.md#create-invoice)
+* [Get Invoices](/doc/controllers/invoices.md#get-invoices)
 * [Get Invoice](/doc/controllers/invoices.md#get-invoice)
+* [Update Invoice Status](/doc/controllers/invoices.md#update-invoice-status)
+
+
+# Update Invoice Metadata
+
+Updates the metadata from an invoice
+
+```csharp
+UpdateInvoiceMetadataAsync(
+    string invoiceId,
+    Models.UpdateMetadataRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoiceId` | `string` | Template, Required | The invoice id |
+| `request` | [`Models.UpdateMetadataRequest`](/doc/models/update-metadata-request.md) | Body, Required | Request for updating the invoice metadata |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetInvoiceResponse>`](/doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string invoiceId = "invoice_id0";
+var request = new UpdateMetadataRequest();
+request.Metadata = new Dictionary<string, string>();
+request.Metadata.Add("key0", "metadata3");
+
+try
+{
+    GetInvoiceResponse result = await invoicesController.UpdateInvoiceMetadataAsync(invoiceId, request, null);
+}
+catch (ApiException e){};
+```
+
+
+# Get Partial Invoice
+
+```csharp
+GetPartialInvoiceAsync(
+    string subscriptionId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+
+## Response Type
+
+[`Task<Models.GetInvoiceResponse>`](/doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+
+try
+{
+    GetInvoiceResponse result = await invoicesController.GetPartialInvoiceAsync(subscriptionId);
+}
+catch (ApiException e){};
+```
+
+
+# Cancel Invoice
+
+Cancels an invoice
+
+```csharp
+CancelInvoiceAsync(
+    string invoiceId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoiceId` | `string` | Template, Required | Invoice id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetInvoiceResponse>`](/doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string invoiceId = "invoice_id0";
+
+try
+{
+    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId, null);
+}
+catch (ApiException e){};
+```
 
 
 # Create Invoice
@@ -108,22 +211,20 @@ catch (ApiException e){};
 ```
 
 
-# Cancel Invoice
+# Get Invoice
 
-Cancels an invoice
+Gets an invoice
 
 ```csharp
-CancelInvoiceAsync(
-    string invoiceId,
-    string idempotencyKey = null)
+GetInvoiceAsync(
+    string invoiceId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | Invoice id |
-| `idempotencyKey` | `string` | Header, Optional | - |
+| `invoiceId` | `string` | Template, Required | Invoice Id |
 
 ## Response Type
 
@@ -136,76 +237,7 @@ string invoiceId = "invoice_id0";
 
 try
 {
-    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId, null);
-}
-catch (ApiException e){};
-```
-
-
-# Update Invoice Metadata
-
-Updates the metadata from an invoice
-
-```csharp
-UpdateInvoiceMetadataAsync(
-    string invoiceId,
-    Models.UpdateMetadataRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | The invoice id |
-| `request` | [`Models.UpdateMetadataRequest`](/doc/models/update-metadata-request.md) | Body, Required | Request for updating the invoice metadata |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](/doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string invoiceId = "invoice_id0";
-var request = new UpdateMetadataRequest();
-request.Metadata = new Dictionary<string, string>();
-request.Metadata.Add("key0", "metadata3");
-
-try
-{
-    GetInvoiceResponse result = await invoicesController.UpdateInvoiceMetadataAsync(invoiceId, request, null);
-}
-catch (ApiException e){};
-```
-
-
-# Get Partial Invoice
-
-```csharp
-GetPartialInvoiceAsync(
-    string subscriptionId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](/doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-
-try
-{
-    GetInvoiceResponse result = await invoicesController.GetPartialInvoiceAsync(subscriptionId);
+    GetInvoiceResponse result = await invoicesController.GetInvoiceAsync(invoiceId);
 }
 catch (ApiException e){};
 ```
@@ -244,38 +276,6 @@ request.Status = "status8";
 try
 {
     GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(invoiceId, request, null);
-}
-catch (ApiException e){};
-```
-
-
-# Get Invoice
-
-Gets an invoice
-
-```csharp
-GetInvoiceAsync(
-    string invoiceId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | Invoice Id |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](/doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string invoiceId = "invoice_id0";
-
-try
-{
-    GetInvoiceResponse result = await invoicesController.GetInvoiceAsync(invoiceId);
 }
 catch (ApiException e){};
 ```
