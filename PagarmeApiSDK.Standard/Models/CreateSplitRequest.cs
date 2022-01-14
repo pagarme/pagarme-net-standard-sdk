@@ -35,16 +35,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="amount">amount.</param>
         /// <param name="recipientId">recipient_id.</param>
         /// <param name="options">options.</param>
+        /// <param name="splitRuleId">split_rule_id.</param>
         public CreateSplitRequest(
             string type,
             int amount,
             string recipientId,
-            Models.CreateSplitOptionsRequest options = null)
+            Models.CreateSplitOptionsRequest options = null,
+            string splitRuleId = null)
         {
             this.Type = type;
             this.Amount = amount;
             this.RecipientId = recipientId;
             this.Options = options;
+            this.SplitRuleId = splitRuleId;
         }
 
         /// <summary>
@@ -70,6 +73,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateSplitOptionsRequest Options { get; set; }
+
+        /// <summary>
+        /// Rule code used in cancellation.
+        /// </summary>
+        [JsonProperty("split_rule_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string SplitRuleId { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -98,7 +107,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 this.Amount.Equals(other.Amount) &&
                 ((this.RecipientId == null && other.RecipientId == null) || (this.RecipientId?.Equals(other.RecipientId) == true)) &&
-                ((this.Options == null && other.Options == null) || (this.Options?.Equals(other.Options) == true));
+                ((this.Options == null && other.Options == null) || (this.Options?.Equals(other.Options) == true)) &&
+                ((this.SplitRuleId == null && other.SplitRuleId == null) || (this.SplitRuleId?.Equals(other.SplitRuleId) == true));
         }
         
 
@@ -112,6 +122,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {this.Amount}");
             toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId == string.Empty ? "" : this.RecipientId)}");
             toStringOutput.Add($"this.Options = {(this.Options == null ? "null" : this.Options.ToString())}");
+            toStringOutput.Add($"this.SplitRuleId = {(this.SplitRuleId == null ? "null" : this.SplitRuleId == string.Empty ? "" : this.SplitRuleId)}");
         }
     }
 }
