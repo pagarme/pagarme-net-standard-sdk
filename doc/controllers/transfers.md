@@ -10,9 +10,32 @@ ITransfersController transfersController = client.TransfersController;
 
 ## Methods
 
-* [Get Transfer by Id](/doc/controllers/transfers.md#get-transfer-by-id)
-* [Create Transfer](/doc/controllers/transfers.md#create-transfer)
-* [Get Transfers](/doc/controllers/transfers.md#get-transfers)
+* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
+* [Get Transfer by Id](../../doc/controllers/transfers.md#get-transfer-by-id)
+* [Create Transfer](../../doc/controllers/transfers.md#create-transfer)
+
+
+# Get Transfers
+
+Gets all transfers
+
+```csharp
+GetTransfersAsync()
+```
+
+## Response Type
+
+[`Task<Models.ListTransfers>`](../../doc/models/list-transfers.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListTransfers result = await transfersController.GetTransfersAsync();
+}
+catch (ApiException e){};
+```
 
 
 # Get Transfer by Id
@@ -30,7 +53,7 @@ GetTransferByIdAsync(
 
 ## Response Type
 
-[`Task<Models.GetTransfer>`](/doc/models/get-transfer.md)
+[`Task<Models.GetTransfer>`](../../doc/models/get-transfer.md)
 
 ## Example Usage
 
@@ -56,11 +79,11 @@ CreateTransferAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `request` | [`Models.CreateTransfer`](/doc/models/create-transfer.md) | Body, Required | - |
+| `request` | [`Models.CreateTransfer`](../../doc/models/create-transfer.md) | Body, Required | - |
 
 ## Response Type
 
-[`Task<Models.GetTransfer>`](/doc/models/get-transfer.md)
+[`Task<Models.GetTransfer>`](../../doc/models/get-transfer.md)
 
 ## Example Usage
 
@@ -73,29 +96,6 @@ request.TargetId = "target_id6";
 try
 {
     GetTransfer result = await transfersController.CreateTransferAsync(request);
-}
-catch (ApiException e){};
-```
-
-
-# Get Transfers
-
-Gets all transfers
-
-```csharp
-GetTransfersAsync()
-```
-
-## Response Type
-
-[`Task<Models.ListTransfers>`](/doc/models/list-transfers.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListTransfers result = await transfersController.GetTransfersAsync();
 }
 catch (ApiException e){};
 ```

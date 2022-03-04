@@ -11,8 +11,8 @@ Response object for listing order objects
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetOrderResponse>`](/doc/models/get-order-response.md) | Required | The order object |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `Data` | [`List<Models.GetOrderResponse>`](../../doc/models/get-order-response.md) | Required | The order object |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

@@ -10,27 +10,27 @@ IRecipientsController recipientsController = client.RecipientsController;
 
 ## Methods
 
-* [Update Recipient](/doc/controllers/recipients.md#update-recipient)
-* [Create Anticipation](/doc/controllers/recipients.md#create-anticipation)
-* [Get Anticipation Limits](/doc/controllers/recipients.md#get-anticipation-limits)
-* [Get Recipients](/doc/controllers/recipients.md#get-recipients)
-* [Get Withdraw by Id](/doc/controllers/recipients.md#get-withdraw-by-id)
-* [Update Recipient Default Bank Account](/doc/controllers/recipients.md#update-recipient-default-bank-account)
-* [Update Recipient Metadata](/doc/controllers/recipients.md#update-recipient-metadata)
-* [Get Transfers](/doc/controllers/recipients.md#get-transfers)
-* [Get Transfer](/doc/controllers/recipients.md#get-transfer)
-* [Create Withdraw](/doc/controllers/recipients.md#create-withdraw)
-* [Update Automatic Anticipation Settings](/doc/controllers/recipients.md#update-automatic-anticipation-settings)
-* [Get Anticipation](/doc/controllers/recipients.md#get-anticipation)
-* [Update Recipient Transfer Settings](/doc/controllers/recipients.md#update-recipient-transfer-settings)
-* [Get Anticipations](/doc/controllers/recipients.md#get-anticipations)
-* [Get Recipient](/doc/controllers/recipients.md#get-recipient)
-* [Get Balance](/doc/controllers/recipients.md#get-balance)
-* [Get Withdrawals](/doc/controllers/recipients.md#get-withdrawals)
-* [Create Transfer](/doc/controllers/recipients.md#create-transfer)
-* [Create Recipient](/doc/controllers/recipients.md#create-recipient)
-* [Get Recipient by Code](/doc/controllers/recipients.md#get-recipient-by-code)
-* [Get Default Recipient](/doc/controllers/recipients.md#get-default-recipient)
+* [Update Recipient](../../doc/controllers/recipients.md#update-recipient)
+* [Create Anticipation](../../doc/controllers/recipients.md#create-anticipation)
+* [Get Anticipation Limits](../../doc/controllers/recipients.md#get-anticipation-limits)
+* [Get Recipients](../../doc/controllers/recipients.md#get-recipients)
+* [Update Recipient Metadata](../../doc/controllers/recipients.md#update-recipient-metadata)
+* [Get Transfer](../../doc/controllers/recipients.md#get-transfer)
+* [Get Anticipation](../../doc/controllers/recipients.md#get-anticipation)
+* [Update Recipient Transfer Settings](../../doc/controllers/recipients.md#update-recipient-transfer-settings)
+* [Get Anticipations](../../doc/controllers/recipients.md#get-anticipations)
+* [Update Recipient Default Bank Account](../../doc/controllers/recipients.md#update-recipient-default-bank-account)
+* [Create Withdraw](../../doc/controllers/recipients.md#create-withdraw)
+* [Get Balance](../../doc/controllers/recipients.md#get-balance)
+* [Create Transfer](../../doc/controllers/recipients.md#create-transfer)
+* [Create Recipient](../../doc/controllers/recipients.md#create-recipient)
+* [Update Automatic Anticipation Settings](../../doc/controllers/recipients.md#update-automatic-anticipation-settings)
+* [Get Recipient](../../doc/controllers/recipients.md#get-recipient)
+* [Get Withdrawals](../../doc/controllers/recipients.md#get-withdrawals)
+* [Get Withdraw by Id](../../doc/controllers/recipients.md#get-withdraw-by-id)
+* [Get Transfers](../../doc/controllers/recipients.md#get-transfers)
+* [Get Recipient by Code](../../doc/controllers/recipients.md#get-recipient-by-code)
+* [Get Default Recipient](../../doc/controllers/recipients.md#get-default-recipient)
 
 
 # Update Recipient
@@ -49,12 +49,12 @@ UpdateRecipientAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateRecipientRequest`](/doc/models/update-recipient-request.md) | Body, Required | Recipient data |
+| `request` | [`Models.UpdateRecipientRequest`](../../doc/models/update-recipient-request.md) | Body, Required | Recipient data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 
@@ -93,12 +93,12 @@ CreateAnticipationAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.CreateAnticipationRequest`](/doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
+| `request` | [`Models.CreateAnticipationRequest`](../../doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetAnticipationResponse>`](/doc/models/get-anticipation-response.md)
+[`Task<Models.GetAnticipationResponse>`](../../doc/models/get-anticipation-response.md)
 
 ## Example Usage
 
@@ -138,7 +138,7 @@ GetAnticipationLimitsAsync(
 
 ## Response Type
 
-[`Task<Models.GetAnticipationLimitResponse>`](/doc/models/get-anticipation-limit-response.md)
+[`Task<Models.GetAnticipationLimitResponse>`](../../doc/models/get-anticipation-limit-response.md)
 
 ## Example Usage
 
@@ -174,7 +174,7 @@ GetRecipientsAsync(
 
 ## Response Type
 
-[`Task<Models.ListRecipientResponse>`](/doc/models/list-recipient-response.md)
+[`Task<Models.ListRecipientResponse>`](../../doc/models/list-recipient-response.md)
 
 ## Example Usage
 
@@ -182,91 +182,6 @@ GetRecipientsAsync(
 try
 {
     ListRecipientResponse result = await recipientsController.GetRecipientsAsync(null, null);
-}
-catch (ApiException e){};
-```
-
-
-# Get Withdraw by Id
-
-```csharp
-GetWithdrawByIdAsync(
-    string recipientId,
-    string withdrawalId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | - |
-| `withdrawalId` | `string` | Template, Required | - |
-
-## Response Type
-
-[`Task<Models.GetWithdrawResponse>`](/doc/models/get-withdraw-response.md)
-
-## Example Usage
-
-```csharp
-string recipientId = "recipient_id0";
-string withdrawalId = "withdrawal_id2";
-
-try
-{
-    GetWithdrawResponse result = await recipientsController.GetWithdrawByIdAsync(recipientId, withdrawalId);
-}
-catch (ApiException e){};
-```
-
-
-# Update Recipient Default Bank Account
-
-Updates the default bank account from a recipient
-
-```csharp
-UpdateRecipientDefaultBankAccountAsync(
-    string recipientId,
-    Models.UpdateRecipientBankAccountRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateRecipientBankAccountRequest`](/doc/models/update-recipient-bank-account-request.md) | Body, Required | Bank account data |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
-
-## Example Usage
-
-```csharp
-string recipientId = "recipient_id0";
-var request = new UpdateRecipientBankAccountRequest();
-request.BankAccount = new CreateBankAccountRequest();
-request.BankAccount.HolderName = "holder_name6";
-request.BankAccount.HolderType = "holder_type2";
-request.BankAccount.HolderDocument = "holder_document4";
-request.BankAccount.Bank = "bank8";
-request.BankAccount.BranchNumber = "branch_number6";
-request.BankAccount.BranchCheckDigit = "branch_check_digit6";
-request.BankAccount.AccountNumber = "account_number0";
-request.BankAccount.AccountCheckDigit = "account_check_digit6";
-request.BankAccount.Type = "type0";
-request.BankAccount.Metadata = new Dictionary<string, string>();
-request.BankAccount.Metadata.Add("key0", "metadata9");
-request.BankAccount.Metadata.Add("key1", "metadata8");
-request.BankAccount.PixKey = "pix_key4";
-request.PaymentMode = "bank_transfer";
-
-try
-{
-    GetRecipientResponse result = await recipientsController.UpdateRecipientDefaultBankAccountAsync(recipientId, request, null);
 }
 catch (ApiException e){};
 ```
@@ -288,12 +203,12 @@ UpdateRecipientMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateMetadataRequest`](/doc/models/update-metadata-request.md) | Body, Required | Metadata |
+| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 
@@ -306,48 +221,6 @@ request.Metadata.Add("key0", "metadata3");
 try
 {
     GetRecipientResponse result = await recipientsController.UpdateRecipientMetadataAsync(recipientId, request, null);
-}
-catch (ApiException e){};
-```
-
-
-# Get Transfers
-
-Gets a paginated list of transfers for the recipient
-
-```csharp
-GetTransfersAsync(
-    string recipientId,
-    int? page = null,
-    int? size = null,
-    string status = null,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | Recipient id |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `status` | `string` | Query, Optional | Filter for transfer status |
-| `createdSince` | `DateTime?` | Query, Optional | Filter for start range of transfer creation date |
-| `createdUntil` | `DateTime?` | Query, Optional | Filter for end range of transfer creation date |
-
-## Response Type
-
-[`Task<Models.ListTransferResponse>`](/doc/models/list-transfer-response.md)
-
-## Example Usage
-
-```csharp
-string recipientId = "recipient_id0";
-
-try
-{
-    ListTransferResponse result = await recipientsController.GetTransfersAsync(recipientId, null, null, null, null, null);
 }
 catch (ApiException e){};
 ```
@@ -372,7 +245,7 @@ GetTransferAsync(
 
 ## Response Type
 
-[`Task<Models.GetTransferResponse>`](/doc/models/get-transfer-response.md)
+[`Task<Models.GetTransferResponse>`](../../doc/models/get-transfer-response.md)
 
 ## Example Usage
 
@@ -383,77 +256,6 @@ string transferId = "transfer_id6";
 try
 {
     GetTransferResponse result = await recipientsController.GetTransferAsync(recipientId, transferId);
-}
-catch (ApiException e){};
-```
-
-
-# Create Withdraw
-
-```csharp
-CreateWithdrawAsync(
-    string recipientId,
-    Models.CreateWithdrawRequest request)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | - |
-| `request` | [`Models.CreateWithdrawRequest`](/doc/models/create-withdraw-request.md) | Body, Required | - |
-
-## Response Type
-
-[`Task<Models.GetWithdrawResponse>`](/doc/models/get-withdraw-response.md)
-
-## Example Usage
-
-```csharp
-string recipientId = "recipient_id0";
-var request = new CreateWithdrawRequest();
-request.Amount = 242;
-
-try
-{
-    GetWithdrawResponse result = await recipientsController.CreateWithdrawAsync(recipientId, request);
-}
-catch (ApiException e){};
-```
-
-
-# Update Automatic Anticipation Settings
-
-Updates recipient metadata
-
-```csharp
-UpdateAutomaticAnticipationSettingsAsync(
-    string recipientId,
-    Models.UpdateAutomaticAnticipationSettingsRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateAutomaticAnticipationSettingsRequest`](/doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
-
-## Example Usage
-
-```csharp
-string recipientId = "recipient_id0";
-var request = new UpdateAutomaticAnticipationSettingsRequest();
-
-try
-{
-    GetRecipientResponse result = await recipientsController.UpdateAutomaticAnticipationSettingsAsync(recipientId, request, null);
 }
 catch (ApiException e){};
 ```
@@ -478,7 +280,7 @@ GetAnticipationAsync(
 
 ## Response Type
 
-[`Task<Models.GetAnticipationResponse>`](/doc/models/get-anticipation-response.md)
+[`Task<Models.GetAnticipationResponse>`](../../doc/models/get-anticipation-response.md)
 
 ## Example Usage
 
@@ -508,12 +310,12 @@ UpdateRecipientTransferSettingsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient Identificator |
-| `request` | [`Models.UpdateTransferSettingsRequest`](/doc/models/update-transfer-settings-request.md) | Body, Required | - |
+| `request` | [`Models.UpdateTransferSettingsRequest`](../../doc/models/update-transfer-settings-request.md) | Body, Required | - |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 
@@ -565,7 +367,7 @@ GetAnticipationsAsync(
 
 ## Response Type
 
-[`Task<Models.ListAnticipationResponse>`](/doc/models/list-anticipation-response.md)
+[`Task<Models.ListAnticipationResponse>`](../../doc/models/list-anticipation-response.md)
 
 ## Example Usage
 
@@ -580,33 +382,87 @@ catch (ApiException e){};
 ```
 
 
-# Get Recipient
+# Update Recipient Default Bank Account
 
-Retrieves recipient information
+Updates the default bank account from a recipient
 
 ```csharp
-GetRecipientAsync(
-    string recipientId)
+UpdateRecipientDefaultBankAccountAsync(
+    string recipientId,
+    Models.UpdateRecipientBankAccountRequest request,
+    string idempotencyKey = null)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | Recipiend id |
+| `recipientId` | `string` | Template, Required | Recipient id |
+| `request` | [`Models.UpdateRecipientBankAccountRequest`](../../doc/models/update-recipient-bank-account-request.md) | Body, Required | Bank account data |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 
 ```csharp
 string recipientId = "recipient_id0";
+var request = new UpdateRecipientBankAccountRequest();
+request.BankAccount = new CreateBankAccountRequest();
+request.BankAccount.HolderName = "holder_name6";
+request.BankAccount.HolderType = "holder_type2";
+request.BankAccount.HolderDocument = "holder_document4";
+request.BankAccount.Bank = "bank8";
+request.BankAccount.BranchNumber = "branch_number6";
+request.BankAccount.BranchCheckDigit = "branch_check_digit6";
+request.BankAccount.AccountNumber = "account_number0";
+request.BankAccount.AccountCheckDigit = "account_check_digit6";
+request.BankAccount.Type = "type0";
+request.BankAccount.Metadata = new Dictionary<string, string>();
+request.BankAccount.Metadata.Add("key0", "metadata9");
+request.BankAccount.Metadata.Add("key1", "metadata8");
+request.BankAccount.PixKey = "pix_key4";
+request.PaymentMode = "bank_transfer";
 
 try
 {
-    GetRecipientResponse result = await recipientsController.GetRecipientAsync(recipientId);
+    GetRecipientResponse result = await recipientsController.UpdateRecipientDefaultBankAccountAsync(recipientId, request, null);
+}
+catch (ApiException e){};
+```
+
+
+# Create Withdraw
+
+```csharp
+CreateWithdrawAsync(
+    string recipientId,
+    Models.CreateWithdrawRequest request)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipientId` | `string` | Template, Required | - |
+| `request` | [`Models.CreateWithdrawRequest`](../../doc/models/create-withdraw-request.md) | Body, Required | - |
+
+## Response Type
+
+[`Task<Models.GetWithdrawResponse>`](../../doc/models/get-withdraw-response.md)
+
+## Example Usage
+
+```csharp
+string recipientId = "recipient_id0";
+var request = new CreateWithdrawRequest();
+request.Amount = 242;
+
+try
+{
+    GetWithdrawResponse result = await recipientsController.CreateWithdrawAsync(recipientId, request);
 }
 catch (ApiException e){};
 ```
@@ -629,7 +485,7 @@ GetBalanceAsync(
 
 ## Response Type
 
-[`Task<Models.GetBalanceResponse>`](/doc/models/get-balance-response.md)
+[`Task<Models.GetBalanceResponse>`](../../doc/models/get-balance-response.md)
 
 ## Example Usage
 
@@ -639,48 +495,6 @@ string recipientId = "recipient_id0";
 try
 {
     GetBalanceResponse result = await recipientsController.GetBalanceAsync(recipientId);
-}
-catch (ApiException e){};
-```
-
-
-# Get Withdrawals
-
-Gets a paginated list of transfers for the recipient
-
-```csharp
-GetWithdrawalsAsync(
-    string recipientId,
-    int? page = null,
-    int? size = null,
-    string status = null,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipientId` | `string` | Template, Required | - |
-| `page` | `int?` | Query, Optional | - |
-| `size` | `int?` | Query, Optional | - |
-| `status` | `string` | Query, Optional | - |
-| `createdSince` | `DateTime?` | Query, Optional | - |
-| `createdUntil` | `DateTime?` | Query, Optional | - |
-
-## Response Type
-
-[`Task<Models.ListWithdrawals>`](/doc/models/list-withdrawals.md)
-
-## Example Usage
-
-```csharp
-string recipientId = "recipient_id0";
-
-try
-{
-    ListWithdrawals result = await recipientsController.GetWithdrawalsAsync(recipientId, null, null, null, null, null);
 }
 catch (ApiException e){};
 ```
@@ -702,12 +516,12 @@ CreateTransferAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient Id |
-| `request` | [`Models.CreateTransferRequest`](/doc/models/create-transfer-request.md) | Body, Required | Transfer data |
+| `request` | [`Models.CreateTransferRequest`](../../doc/models/create-transfer-request.md) | Body, Required | Transfer data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetTransferResponse>`](/doc/models/get-transfer-response.md)
+[`Task<Models.GetTransferResponse>`](../../doc/models/get-transfer-response.md)
 
 ## Example Usage
 
@@ -740,12 +554,12 @@ CreateRecipientAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `request` | [`Models.CreateRecipientRequest`](/doc/models/create-recipient-request.md) | Body, Required | Recipient data |
+| `request` | [`Models.CreateRecipientRequest`](../../doc/models/create-recipient-request.md) | Body, Required | Recipient data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 
@@ -782,6 +596,192 @@ catch (ApiException e){};
 ```
 
 
+# Update Automatic Anticipation Settings
+
+Updates recipient metadata
+
+```csharp
+UpdateAutomaticAnticipationSettingsAsync(
+    string recipientId,
+    Models.UpdateAutomaticAnticipationSettingsRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipientId` | `string` | Template, Required | Recipient id |
+| `request` | [`Models.UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```csharp
+string recipientId = "recipient_id0";
+var request = new UpdateAutomaticAnticipationSettingsRequest();
+
+try
+{
+    GetRecipientResponse result = await recipientsController.UpdateAutomaticAnticipationSettingsAsync(recipientId, request, null);
+}
+catch (ApiException e){};
+```
+
+
+# Get Recipient
+
+Retrieves recipient information
+
+```csharp
+GetRecipientAsync(
+    string recipientId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipientId` | `string` | Template, Required | Recipiend id |
+
+## Response Type
+
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```csharp
+string recipientId = "recipient_id0";
+
+try
+{
+    GetRecipientResponse result = await recipientsController.GetRecipientAsync(recipientId);
+}
+catch (ApiException e){};
+```
+
+
+# Get Withdrawals
+
+Gets a paginated list of transfers for the recipient
+
+```csharp
+GetWithdrawalsAsync(
+    string recipientId,
+    int? page = null,
+    int? size = null,
+    string status = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipientId` | `string` | Template, Required | - |
+| `page` | `int?` | Query, Optional | - |
+| `size` | `int?` | Query, Optional | - |
+| `status` | `string` | Query, Optional | - |
+| `createdSince` | `DateTime?` | Query, Optional | - |
+| `createdUntil` | `DateTime?` | Query, Optional | - |
+
+## Response Type
+
+[`Task<Models.ListWithdrawals>`](../../doc/models/list-withdrawals.md)
+
+## Example Usage
+
+```csharp
+string recipientId = "recipient_id0";
+
+try
+{
+    ListWithdrawals result = await recipientsController.GetWithdrawalsAsync(recipientId, null, null, null, null, null);
+}
+catch (ApiException e){};
+```
+
+
+# Get Withdraw by Id
+
+```csharp
+GetWithdrawByIdAsync(
+    string recipientId,
+    string withdrawalId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipientId` | `string` | Template, Required | - |
+| `withdrawalId` | `string` | Template, Required | - |
+
+## Response Type
+
+[`Task<Models.GetWithdrawResponse>`](../../doc/models/get-withdraw-response.md)
+
+## Example Usage
+
+```csharp
+string recipientId = "recipient_id0";
+string withdrawalId = "withdrawal_id2";
+
+try
+{
+    GetWithdrawResponse result = await recipientsController.GetWithdrawByIdAsync(recipientId, withdrawalId);
+}
+catch (ApiException e){};
+```
+
+
+# Get Transfers
+
+Gets a paginated list of transfers for the recipient
+
+```csharp
+GetTransfersAsync(
+    string recipientId,
+    int? page = null,
+    int? size = null,
+    string status = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipientId` | `string` | Template, Required | Recipient id |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `status` | `string` | Query, Optional | Filter for transfer status |
+| `createdSince` | `DateTime?` | Query, Optional | Filter for start range of transfer creation date |
+| `createdUntil` | `DateTime?` | Query, Optional | Filter for end range of transfer creation date |
+
+## Response Type
+
+[`Task<Models.ListTransferResponse>`](../../doc/models/list-transfer-response.md)
+
+## Example Usage
+
+```csharp
+string recipientId = "recipient_id0";
+
+try
+{
+    ListTransferResponse result = await recipientsController.GetTransfersAsync(recipientId, null, null, null, null, null);
+}
+catch (ApiException e){};
+```
+
+
 # Get Recipient by Code
 
 Retrieves recipient information
@@ -799,7 +799,7 @@ GetRecipientByCodeAsync(
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 
@@ -822,7 +822,7 @@ GetDefaultRecipientAsync()
 
 ## Response Type
 
-[`Task<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md)
+[`Task<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md)
 
 ## Example Usage
 

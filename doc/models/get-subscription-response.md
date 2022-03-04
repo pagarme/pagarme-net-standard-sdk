@@ -15,28 +15,28 @@
 | `Interval` | `string` | Required | - |
 | `IntervalCount` | `int` | Required | - |
 | `BillingType` | `string` | Required | - |
-| `CurrentCycle` | [`Models.GetPeriodResponse`](/doc/models/get-period-response.md) | Optional | - |
+| `CurrentCycle` | [`Models.GetPeriodResponse`](../../doc/models/get-period-response.md) | Optional | - |
 | `PaymentMethod` | `string` | Required | - |
 | `Currency` | `string` | Required | - |
 | `Installments` | `int` | Required | - |
 | `Status` | `string` | Required | - |
 | `CreatedAt` | `DateTime` | Required | - |
 | `UpdatedAt` | `DateTime` | Required | - |
-| `Customer` | [`Models.GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
-| `Card` | [`Models.GetCardResponse`](/doc/models/get-card-response.md) | Required | - |
-| `Items` | [`List<Models.GetSubscriptionItemResponse>`](/doc/models/get-subscription-item-response.md) | Required | - |
+| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
+| `Card` | [`Models.GetCardResponse`](../../doc/models/get-card-response.md) | Required | - |
+| `Items` | [`List<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md) | Required | - |
 | `StatementDescriptor` | `string` | Required | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
-| `Setup` | [`Models.GetSetupResponse`](/doc/models/get-setup-response.md) | Required | - |
+| `Setup` | [`Models.GetSetupResponse`](../../doc/models/get-setup-response.md) | Required | - |
 | `GatewayAffiliationId` | `string` | Required | Affiliation Code |
 | `NextBillingAt` | `DateTime?` | Optional | - |
 | `BillingDay` | `int?` | Optional | - |
 | `MinimumPrice` | `int?` | Optional | - |
 | `CanceledAt` | `DateTime?` | Optional | - |
-| `Discounts` | [`List<Models.GetDiscountResponse>`](/doc/models/get-discount-response.md) | Optional | Subscription discounts |
-| `Increments` | [`List<Models.GetIncrementResponse>`](/doc/models/get-increment-response.md) | Required | Subscription increments |
+| `Discounts` | [`List<Models.GetDiscountResponse>`](../../doc/models/get-discount-response.md) | Optional | Subscription discounts |
+| `Increments` | [`List<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md) | Required | Subscription increments |
 | `BoletoDueDays` | `int?` | Optional | Days until boleto expires |
-| `Split` | [`Models.GetSubscriptionSplitResponse`](/doc/models/get-subscription-split-response.md) | Required | Subscription's split response |
+| `Split` | [`Models.GetSubscriptionSplitResponse`](../../doc/models/get-subscription-split-response.md) | Required | Subscription's split response |
 
 ## Example (as JSON)
 

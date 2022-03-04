@@ -9,7 +9,7 @@ Response object for getting a credit card transaction
 
 ## Inherits From
 
-[`GetTransactionResponse`](/doc/models/get-transaction-response.md)
+[`GetTransactionResponse`](../../doc/models/get-transaction-response.md)
 
 ## Fields
 
@@ -22,7 +22,7 @@ Response object for getting a credit card transaction
 | `AcquirerNsu` | `string` | Required | Acquirer NSU |
 | `AcquirerAuthCode` | `string` | Required | Acquirer authorization code |
 | `OperationType` | `string` | Required | Operation type |
-| `Card` | [`Models.GetCardResponse`](/doc/models/get-card-response.md) | Required | Card data |
+| `Card` | [`Models.GetCardResponse`](../../doc/models/get-card-response.md) | Required | Card data |
 | `AcquirerMessage` | `string` | Required | Acquirer message |
 | `AcquirerReturnCode` | `string` | Required | Acquirer Return Code |
 | `Installments` | `int?` | Optional | Number of installments |

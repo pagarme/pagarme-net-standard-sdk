@@ -13,7 +13,7 @@ The settings for creating a credit card payment
 |  --- | --- | --- | --- |
 | `Installments` | `int?` | Optional | Number of installments<br>**Default**: `1` |
 | `StatementDescriptor` | `string` | Optional | The text that will be shown on the credit card's statement |
-| `Card` | [`Models.CreateCardRequest`](/doc/models/create-card-request.md) | Optional | Credit card data |
+| `Card` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Optional | Credit card data |
 | `CardId` | `string` | Optional | The credit card id |
 | `CardToken` | `string` | Optional | - |
 | `Recurrence` | `bool?` | Optional | Indicates a recurrence |
@@ -21,8 +21,8 @@ The settings for creating a credit card payment
 | `ExtendedLimitEnabled` | `bool?` | Optional | Indicates whether the extended label (private label) is enabled |
 | `ExtendedLimitCode` | `string` | Optional | Extended Limit Code |
 | `MerchantCategoryCode` | `long?` | Optional | Customer business segment code |
-| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](/doc/models/create-payment-authentication-request.md) | Optional | The payment authentication request |
-| `Contactless` | [`Models.CreateCardPaymentContactlessRequest`](/doc/models/create-card-payment-contactless-request.md) | Optional | The Credit card payment contactless request |
+| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Optional | The payment authentication request |
+| `Contactless` | [`Models.CreateCardPaymentContactlessRequest`](../../doc/models/create-card-payment-contactless-request.md) | Optional | The Credit card payment contactless request |
 | `AutoRecovery` | `bool?` | Optional | Indicates whether a particular payment will enter the offline retry flow |
 | `OperationType` | `string` | Optional | AuthOnly, AuthAndCapture, PreAuth |
 

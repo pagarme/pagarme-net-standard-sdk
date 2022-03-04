@@ -12,7 +12,7 @@ Request for creating a pricing scheme
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `SchemeType` | `string` | Required | Scheme type |
-| `PriceBrackets` | [`List<Models.CreatePriceBracketRequest>`](/doc/models/create-price-bracket-request.md) | Required | Price brackets |
+| `PriceBrackets` | [`List<Models.CreatePriceBracketRequest>`](../../doc/models/create-price-bracket-request.md) | Required | Price brackets |
 | `Price` | `int?` | Optional | Price |
 | `MinimumPrice` | `int?` | Optional | Minimum price |
 | `Percentage` | `double?` | Optional | percentual value used in pricing_scheme Percent |

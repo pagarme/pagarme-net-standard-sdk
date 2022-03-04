@@ -11,8 +11,8 @@ Request for creating a subcription
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Customer` | [`Models.CreateCustomerRequest`](/doc/models/create-customer-request.md) | Required | Customer |
-| `Card` | [`Models.CreateCardRequest`](/doc/models/create-card-request.md) | Required | Card |
+| `Customer` | [`Models.CreateCustomerRequest`](../../doc/models/create-customer-request.md) | Required | Customer |
+| `Card` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Required | Card |
 | `Code` | `string` | Required | Subscription code |
 | `PaymentMethod` | `string` | Required | Payment method |
 | `BillingType` | `string` | Required | Billing type |
@@ -21,12 +21,12 @@ Request for creating a subcription
 | `Currency` | `string` | Required | Currency |
 | `Interval` | `string` | Required | Interval |
 | `IntervalCount` | `int` | Required | Interval count |
-| `PricingScheme` | [`Models.CreatePricingSchemeRequest`](/doc/models/create-pricing-scheme-request.md) | Required | Subscription pricing scheme |
-| `Items` | [`List<Models.CreateSubscriptionItemRequest>`](/doc/models/create-subscription-item-request.md) | Required | Subscription items |
-| `Shipping` | [`Models.CreateShippingRequest`](/doc/models/create-shipping-request.md) | Required | Shipping |
-| `Discounts` | [`List<Models.CreateDiscountRequest>`](/doc/models/create-discount-request.md) | Required | Discounts |
+| `PricingScheme` | [`Models.CreatePricingSchemeRequest`](../../doc/models/create-pricing-scheme-request.md) | Required | Subscription pricing scheme |
+| `Items` | [`List<Models.CreateSubscriptionItemRequest>`](../../doc/models/create-subscription-item-request.md) | Required | Subscription items |
+| `Shipping` | [`Models.CreateShippingRequest`](../../doc/models/create-shipping-request.md) | Required | Shipping |
+| `Discounts` | [`List<Models.CreateDiscountRequest>`](../../doc/models/create-discount-request.md) | Required | Discounts |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
-| `Setup` | [`Models.CreateSetupRequest`](/doc/models/create-setup-request.md) | Required | Setup data |
+| `Setup` | [`Models.CreateSetupRequest`](../../doc/models/create-setup-request.md) | Required | Setup data |
 | `PlanId` | `string` | Optional | Plan id |
 | `CustomerId` | `string` | Optional | Customer id |
 | `CardId` | `string` | Optional | Card id |
@@ -39,10 +39,10 @@ Request for creating a subcription
 | `GatewayAffiliationId` | `string` | Optional | Gateway Affiliation code |
 | `Quantity` | `int?` | Optional | Quantity |
 | `BoletoDueDays` | `int?` | Optional | Days until boleto expires |
-| `Increments` | [`List<Models.CreateIncrementRequest>`](/doc/models/create-increment-request.md) | Required | Increments |
-| `Period` | [`Models.CreatePeriodRequest`](/doc/models/create-period-request.md) | Optional | - |
-| `Submerchant` | [`Models.CreateSubMerchantRequest`](/doc/models/create-sub-merchant-request.md) | Optional | SubMerchant |
-| `Split` | [`Models.CreateSubscriptionSplitRequest`](/doc/models/create-subscription-split-request.md) | Optional | Subscription's split |
+| `Increments` | [`List<Models.CreateIncrementRequest>`](../../doc/models/create-increment-request.md) | Required | Increments |
+| `Period` | [`Models.CreatePeriodRequest`](../../doc/models/create-period-request.md) | Optional | - |
+| `Submerchant` | [`Models.CreateSubMerchantRequest`](../../doc/models/create-sub-merchant-request.md) | Optional | SubMerchant |
+| `Split` | [`Models.CreateSubscriptionSplitRequest`](../../doc/models/create-subscription-split-request.md) | Optional | Subscription's split |
 
 ## Example (as JSON)
 

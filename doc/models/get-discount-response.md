@@ -19,8 +19,8 @@ Response object for getting a discount
 | `Cycles` | `int?` | Optional | - |
 | `DeletedAt` | `DateTime?` | Optional | - |
 | `Description` | `string` | Optional | - |
-| `Subscription` | [`Models.GetSubscriptionResponse`](/doc/models/get-subscription-response.md) | Optional | - |
-| `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](/doc/models/get-subscription-item-response.md) | Optional | The subscription item |
+| `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
+| `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The subscription item |
 
 ## Example (as JSON)
 

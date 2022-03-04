@@ -15,7 +15,7 @@ Response object for getting the shipping data
 | `Description` | `string` | Required | - |
 | `RecipientName` | `string` | Required | - |
 | `RecipientPhone` | `string` | Required | - |
-| `Address` | [`Models.GetAddressResponse`](/doc/models/get-address-response.md) | Required | - |
+| `Address` | [`Models.GetAddressResponse`](../../doc/models/get-address-response.md) | Required | - |
 | `MaxDeliveryDate` | `DateTime?` | Optional | Data máxima de entrega |
 | `EstimatedDeliveryDate` | `DateTime?` | Optional | Prazo estimado de entrega |
 | `Type` | `string` | Required | Shipping Type |

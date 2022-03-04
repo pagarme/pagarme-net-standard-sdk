@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetWithdrawResponse>`](/doc/models/get-withdraw-response.md) | Required | The Increments response |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `Data` | [`List<Models.GetWithdrawResponse>`](../../doc/models/get-withdraw-response.md) | Required | The Increments response |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

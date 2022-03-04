@@ -12,7 +12,7 @@ Request for creating a plan item
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Name` | `string` | Required | Item name |
-| `PricingScheme` | [`Models.CreatePricingSchemeRequest`](/doc/models/create-pricing-scheme-request.md) | Required | Item's pricing scheme |
+| `PricingScheme` | [`Models.CreatePricingSchemeRequest`](../../doc/models/create-pricing-scheme-request.md) | Required | Item's pricing scheme |
 | `Id` | `string` | Required | Item's id |
 | `Description` | `string` | Required | Item's description |
 | `Cycles` | `int?` | Optional | Number of cycles where the item will be charged |

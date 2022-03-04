@@ -22,7 +22,7 @@
 | `CreatedAt` | `DateTime` | Required | Creation date |
 | `UpdatedAt` | `DateTime` | Required | Last update date |
 | `DeletedAt` | `DateTime` | Required | Deletion date |
-| `Recipient` | [`Models.GetRecipientResponse`](/doc/models/get-recipient-response.md) | Optional | Recipient |
+| `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `PixKey` | `string` | Required | Pix Key |
 

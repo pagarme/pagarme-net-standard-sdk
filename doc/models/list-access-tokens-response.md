@@ -11,8 +11,8 @@ Response object for listing access tokens
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetAccessTokenResponse>`](/doc/models/get-access-token-response.md) | Required | The access token objects |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `Data` | [`List<Models.GetAccessTokenResponse>`](../../doc/models/get-access-token-response.md) | Required | The access token objects |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

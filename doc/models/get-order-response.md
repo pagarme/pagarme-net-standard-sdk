@@ -14,20 +14,20 @@ Response object for getting an Order
 | `Id` | `string` | Required | - |
 | `Code` | `string` | Required | - |
 | `Currency` | `string` | Required | - |
-| `Items` | [`List<Models.GetOrderItemResponse>`](/doc/models/get-order-item-response.md) | Required | - |
-| `Customer` | [`Models.GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
+| `Items` | [`List<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md) | Required | - |
+| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Status` | `string` | Required | - |
 | `CreatedAt` | `DateTime` | Required | - |
 | `UpdatedAt` | `DateTime` | Required | - |
-| `Charges` | [`List<Models.GetChargeResponse>`](/doc/models/get-charge-response.md) | Required | - |
+| `Charges` | [`List<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md) | Required | - |
 | `InvoiceUrl` | `string` | Required | - |
-| `Shipping` | [`Models.GetShippingResponse`](/doc/models/get-shipping-response.md) | Required | - |
+| `Shipping` | [`Models.GetShippingResponse`](../../doc/models/get-shipping-response.md) | Required | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
-| `Checkouts` | [`List<Models.GetCheckoutPaymentResponse>`](/doc/models/get-checkout-payment-response.md) | Optional | Checkout Payment Settings Response |
+| `Checkouts` | [`List<Models.GetCheckoutPaymentResponse>`](../../doc/models/get-checkout-payment-response.md) | Optional | Checkout Payment Settings Response |
 | `Ip` | `string` | Optional | Ip address |
 | `SessionId` | `string` | Optional | Session id |
-| `Location` | [`Models.GetLocationResponse`](/doc/models/get-location-response.md) | Optional | Location |
-| `Device` | [`Models.GetDeviceResponse`](/doc/models/get-device-response.md) | Optional | Device's informations |
+| `Location` | [`Models.GetLocationResponse`](../../doc/models/get-location-response.md) | Optional | Location |
+| `Device` | [`Models.GetDeviceResponse`](../../doc/models/get-device-response.md) | Optional | Device's informations |
 | `Closed` | `bool` | Required | Indicates whether the order is closed |
 
 ## Example (as JSON)

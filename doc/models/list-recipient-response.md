@@ -11,8 +11,8 @@ Response for the listing recipient method
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetRecipientResponse>`](/doc/models/get-recipient-response.md) | Required | Recipients |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging |
+| `Data` | [`List<Models.GetRecipientResponse>`](../../doc/models/get-recipient-response.md) | Required | Recipients |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging |
 
 ## Example (as JSON)
 

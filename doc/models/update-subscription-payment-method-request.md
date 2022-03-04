@@ -13,7 +13,7 @@ Request for updating a subscription's payment method
 |  --- | --- | --- | --- |
 | `PaymentMethod` | `string` | Required | The new payment method |
 | `CardId` | `string` | Required | Card id |
-| `Card` | [`Models.CreateCardRequest`](/doc/models/create-card-request.md) | Required | Card data |
+| `Card` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Required | Card data |
 | `CardToken` | `string` | Optional | The Card Token |
 
 ## Example (as JSON)

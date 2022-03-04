@@ -10,8 +10,8 @@ ITokensController tokensController = client.TokensController;
 
 ## Methods
 
-* [Create Token](/doc/controllers/tokens.md#create-token)
-* [Get Token](/doc/controllers/tokens.md#get-token)
+* [Create Token](../../doc/controllers/tokens.md#create-token)
+* [Get Token](../../doc/controllers/tokens.md#get-token)
 
 
 # Create Token
@@ -30,12 +30,12 @@ CreateTokenAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `publicKey` | `string` | Template, Required | Public key |
-| `request` | [`Models.CreateTokenRequest`](/doc/models/create-token-request.md) | Body, Required | Request for creating a token |
+| `request` | [`Models.CreateTokenRequest`](../../doc/models/create-token-request.md) | Body, Required | Request for creating a token |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetTokenResponse>`](/doc/models/get-token-response.md)
+[`Task<Models.GetTokenResponse>`](../../doc/models/get-token-response.md)
 
 ## Example Usage
 
@@ -81,7 +81,7 @@ GetTokenAsync(
 
 ## Response Type
 
-[`Task<Models.GetTokenResponse>`](/doc/models/get-token-response.md)
+[`Task<Models.GetTokenResponse>`](../../doc/models/get-token-response.md)
 
 ## Example Usage
 

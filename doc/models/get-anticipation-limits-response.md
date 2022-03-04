@@ -11,8 +11,8 @@ Anticipation limits
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Max` | [`Models.GetAnticipationLimitResponse`](/doc/models/get-anticipation-limit-response.md) | Required | Max limit |
-| `Min` | [`Models.GetAnticipationLimitResponse`](/doc/models/get-anticipation-limit-response.md) | Required | Min limit |
+| `Max` | [`Models.GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md) | Required | Max limit |
+| `Min` | [`Models.GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md) | Required | Min limit |
 
 ## Example (as JSON)
 

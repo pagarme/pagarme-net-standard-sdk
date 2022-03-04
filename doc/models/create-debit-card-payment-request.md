@@ -12,12 +12,12 @@ The settings for creating a debit card payment
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `StatementDescriptor` | `string` | Optional | The text that will be shown on the debit card's statement |
-| `Card` | [`Models.CreateCardRequest`](/doc/models/create-card-request.md) | Optional | Debit card data |
+| `Card` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Optional | Debit card data |
 | `CardId` | `string` | Optional | The debit card id |
 | `CardToken` | `string` | Optional | The debit card token |
 | `Recurrence` | `bool?` | Optional | Indicates a recurrence |
-| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](/doc/models/create-payment-authentication-request.md) | Optional | The payment authentication request |
-| `Token` | [`Models.CreateCardPaymentContactlessRequest`](/doc/models/create-card-payment-contactless-request.md) | Optional | The Debit card payment token request |
+| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Optional | The payment authentication request |
+| `Token` | [`Models.CreateCardPaymentContactlessRequest`](../../doc/models/create-card-payment-contactless-request.md) | Optional | The Debit card payment token request |
 
 ## Example (as JSON)
 

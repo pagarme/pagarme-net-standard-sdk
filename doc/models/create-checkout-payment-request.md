@@ -16,17 +16,17 @@ Checkout payment request
 | `SuccessUrl` | `string` | Required | Success url |
 | `DefaultPaymentMethod` | `string` | Optional | Default payment method |
 | `GatewayAffiliationId` | `string` | Optional | Gateway Affiliation Id |
-| `CreditCard` | [`Models.CreateCheckoutCreditCardPaymentRequest`](/doc/models/create-checkout-credit-card-payment-request.md) | Optional | Credit Card payment request |
-| `DebitCard` | [`Models.CreateCheckoutDebitCardPaymentRequest`](/doc/models/create-checkout-debit-card-payment-request.md) | Optional | Debit Card payment request |
-| `Boleto` | [`Models.CreateCheckoutBoletoPaymentRequest`](/doc/models/create-checkout-boleto-payment-request.md) | Optional | Boleto payment request |
+| `CreditCard` | [`Models.CreateCheckoutCreditCardPaymentRequest`](../../doc/models/create-checkout-credit-card-payment-request.md) | Optional | Credit Card payment request |
+| `DebitCard` | [`Models.CreateCheckoutDebitCardPaymentRequest`](../../doc/models/create-checkout-debit-card-payment-request.md) | Optional | Debit Card payment request |
+| `Boleto` | [`Models.CreateCheckoutBoletoPaymentRequest`](../../doc/models/create-checkout-boleto-payment-request.md) | Optional | Boleto payment request |
 | `CustomerEditable` | `bool?` | Optional | Customer is editable? |
 | `ExpiresIn` | `int?` | Optional | Time in minutes for expiration |
 | `SkipCheckoutSuccessPage` | `bool` | Required | Skip postpay success screen? |
 | `BillingAddressEditable` | `bool` | Required | Billing Address is editable? |
-| `BillingAddress` | [`Models.CreateAddressRequest`](/doc/models/create-address-request.md) | Required | Billing Address |
-| `BankTransfer` | [`Models.CreateCheckoutBankTransferRequest`](/doc/models/create-checkout-bank-transfer-request.md) | Optional | Bank Transfer payment request |
+| `BillingAddress` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Billing Address |
+| `BankTransfer` | [`Models.CreateCheckoutBankTransferRequest`](../../doc/models/create-checkout-bank-transfer-request.md) | Optional | Bank Transfer payment request |
 | `AcceptedBrands` | `List<string>` | Required | Accepted Brands |
-| `Pix` | [`Models.CreateCheckoutPixPaymentRequest`](/doc/models/create-checkout-pix-payment-request.md) | Optional | Pix payment request |
+| `Pix` | [`Models.CreateCheckoutPixPaymentRequest`](../../doc/models/create-checkout-pix-payment-request.md) | Optional | Pix payment request |
 
 ## Example (as JSON)
 

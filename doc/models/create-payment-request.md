@@ -12,22 +12,22 @@ Payment data
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `PaymentMethod` | `string` | Required | Payment method |
-| `CreditCard` | [`Models.CreateCreditCardPaymentRequest`](/doc/models/create-credit-card-payment-request.md) | Optional | Settings for credit card payment |
-| `DebitCard` | [`Models.CreateDebitCardPaymentRequest`](/doc/models/create-debit-card-payment-request.md) | Optional | Settings for debit card payment |
-| `Boleto` | [`Models.CreateBoletoPaymentRequest`](/doc/models/create-boleto-payment-request.md) | Optional | Settings for boleto payment |
+| `CreditCard` | [`Models.CreateCreditCardPaymentRequest`](../../doc/models/create-credit-card-payment-request.md) | Optional | Settings for credit card payment |
+| `DebitCard` | [`Models.CreateDebitCardPaymentRequest`](../../doc/models/create-debit-card-payment-request.md) | Optional | Settings for debit card payment |
+| `Boleto` | [`Models.CreateBoletoPaymentRequest`](../../doc/models/create-boleto-payment-request.md) | Optional | Settings for boleto payment |
 | `Currency` | `string` | Optional | Currency. Must be informed using 3 characters |
-| `Voucher` | [`Models.CreateVoucherPaymentRequest`](/doc/models/create-voucher-payment-request.md) | Optional | Settings for voucher payment |
-| `Split` | [`List<Models.CreateSplitRequest>`](/doc/models/create-split-request.md) | Optional | Splits |
-| `BankTransfer` | [`Models.CreateBankTransferPaymentRequest`](/doc/models/create-bank-transfer-payment-request.md) | Optional | Settings for bank transfer payment |
+| `Voucher` | [`Models.CreateVoucherPaymentRequest`](../../doc/models/create-voucher-payment-request.md) | Optional | Settings for voucher payment |
+| `Split` | [`List<Models.CreateSplitRequest>`](../../doc/models/create-split-request.md) | Optional | Splits |
+| `BankTransfer` | [`Models.CreateBankTransferPaymentRequest`](../../doc/models/create-bank-transfer-payment-request.md) | Optional | Settings for bank transfer payment |
 | `GatewayAffiliationId` | `string` | Optional | Gateway affiliation code |
 | `Amount` | `int?` | Optional | The amount of the payment, in cents |
-| `Checkout` | [`Models.CreateCheckoutPaymentRequest`](/doc/models/create-checkout-payment-request.md) | Optional | Settings for checkout payment |
+| `Checkout` | [`Models.CreateCheckoutPaymentRequest`](../../doc/models/create-checkout-payment-request.md) | Optional | Settings for checkout payment |
 | `CustomerId` | `string` | Optional | Customer Id |
-| `Customer` | [`Models.CreateCustomerRequest`](/doc/models/create-customer-request.md) | Optional | Customer |
+| `Customer` | [`Models.CreateCustomerRequest`](../../doc/models/create-customer-request.md) | Optional | Customer |
 | `Metadata` | `Dictionary<string, string>` | Optional | Metadata |
-| `Cash` | [`Models.CreateCashPaymentRequest`](/doc/models/create-cash-payment-request.md) | Optional | Settings for cash payment |
-| `PrivateLabel` | [`Models.CreatePrivateLabelPaymentRequest`](/doc/models/create-private-label-payment-request.md) | Required | Settings for private label payment |
-| `Pix` | [`Models.CreatePixPaymentRequest`](/doc/models/create-pix-payment-request.md) | Optional | Settings for pix payment |
+| `Cash` | [`Models.CreateCashPaymentRequest`](../../doc/models/create-cash-payment-request.md) | Optional | Settings for cash payment |
+| `PrivateLabel` | [`Models.CreatePrivateLabelPaymentRequest`](../../doc/models/create-private-label-payment-request.md) | Required | Settings for private label payment |
+| `Pix` | [`Models.CreatePixPaymentRequest`](../../doc/models/create-pix-payment-request.md) | Optional | Settings for pix payment |
 
 ## Example (as JSON)
 

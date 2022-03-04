@@ -19,8 +19,8 @@ Response object for getting a increment
 | `Cycles` | `int?` | Optional | - |
 | `DeletedAt` | `DateTime?` | Optional | - |
 | `Description` | `string` | Optional | - |
-| `Subscription` | [`Models.GetSubscriptionResponse`](/doc/models/get-subscription-response.md) | Optional | - |
-| `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](/doc/models/get-subscription-item-response.md) | Optional | The Subscription Item |
+| `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
+| `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The Subscription Item |
 
 ## Example (as JSON)
 

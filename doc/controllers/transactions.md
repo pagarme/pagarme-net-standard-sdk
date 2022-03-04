@@ -24,7 +24,7 @@ GetTransactionAsync(
 
 ## Response Type
 
-[`Task<Models.GetTransactionResponse>`](/doc/models/get-transaction-response.md)
+[`Task<Models.GetTransactionResponse>`](../../doc/models/get-transaction-response.md)
 
 ## Example Usage
 

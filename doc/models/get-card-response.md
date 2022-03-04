@@ -20,8 +20,8 @@ Response object for getting a credit card
 | `Status` | `string` | Required | - |
 | `CreatedAt` | `DateTime` | Required | - |
 | `UpdatedAt` | `DateTime` | Required | - |
-| `BillingAddress` | [`Models.GetBillingAddressResponse`](/doc/models/get-billing-address-response.md) | Required | - |
-| `Customer` | [`Models.GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
+| `BillingAddress` | [`Models.GetBillingAddressResponse`](../../doc/models/get-billing-address-response.md) | Required | - |
+| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
 | `Type` | `string` | Required | Card type |
 | `HolderDocument` | `string` | Required | Document number for the card's holder |

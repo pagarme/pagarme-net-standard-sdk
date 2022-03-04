@@ -16,9 +16,9 @@ Request for creating a recipient
 | `Description` | `string` | Required | Recipient description |
 | `Document` | `string` | Required | Recipient document number |
 | `Type` | `string` | Required | Recipient type |
-| `DefaultBankAccount` | [`Models.CreateBankAccountRequest`](/doc/models/create-bank-account-request.md) | Required | Bank account |
+| `DefaultBankAccount` | [`Models.CreateBankAccountRequest`](../../doc/models/create-bank-account-request.md) | Required | Bank account |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
-| `TransferSettings` | [`Models.CreateTransferSettingsRequest`](/doc/models/create-transfer-settings-request.md) | Optional | Receiver Transfer Information |
+| `TransferSettings` | [`Models.CreateTransferSettingsRequest`](../../doc/models/create-transfer-settings-request.md) | Optional | Receiver Transfer Information |
 | `Code` | `string` | Required | Recipient code |
 | `PaymentMode` | `string` | Required | Payment mode<br>**Default**: `"bank_transfer"` |
 

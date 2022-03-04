@@ -11,8 +11,8 @@ Response object for listing charges
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetChargeResponse>`](/doc/models/get-charge-response.md) | Required | The charge objects |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `Data` | [`List<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md) | Required | The charge objects |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

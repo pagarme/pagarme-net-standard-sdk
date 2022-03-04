@@ -20,9 +20,9 @@ Response object for getting a customer
 | `Document` | `string` | Required | - |
 | `Type` | `string` | Required | - |
 | `FbAccessToken` | `string` | Required | - |
-| `Address` | [`Models.GetAddressResponse`](/doc/models/get-address-response.md) | Required | - |
+| `Address` | [`Models.GetAddressResponse`](../../doc/models/get-address-response.md) | Required | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
-| `Phones` | [`Models.GetPhonesResponse`](/doc/models/get-phones-response.md) | Required | - |
+| `Phones` | [`Models.GetPhonesResponse`](../../doc/models/get-phones-response.md) | Required | - |
 | `FbId` | `long?` | Optional | - |
 | `Code` | `string` | Required | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
 | `DocumentType` | `string` | Required | - |

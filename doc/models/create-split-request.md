@@ -14,7 +14,7 @@ Split
 | `Type` | `string` | Required | Split type |
 | `Amount` | `int` | Required | Amount |
 | `RecipientId` | `string` | Required | Recipient id |
-| `Options` | [`Models.CreateSplitOptionsRequest`](/doc/models/create-split-options-request.md) | Optional | The split options request |
+| `Options` | [`Models.CreateSplitOptionsRequest`](../../doc/models/create-split-options-request.md) | Optional | The split options request |
 | `SplitRuleId` | `string` | Optional | Rule code used in cancellation. |
 
 ## Example (as JSON)

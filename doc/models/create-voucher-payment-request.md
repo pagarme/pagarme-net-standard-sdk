@@ -14,7 +14,7 @@ The settings for creating a voucher payment
 | `StatementDescriptor` | `string` | Optional | The text that will be shown on the voucher's statement |
 | `CardId` | `string` | Optional | Card id |
 | `CardToken` | `string` | Optional | Card token |
-| `Card` | [`Models.CreateCardRequest`](/doc/models/create-card-request.md) | Optional | Card info |
+| `Card` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Optional | Card info |
 
 ## Example (as JSON)
 

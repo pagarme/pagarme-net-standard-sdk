@@ -14,7 +14,7 @@ Request for creating a plan
 | `Name` | `string` | Required | Plan's name |
 | `Description` | `string` | Required | Description |
 | `StatementDescriptor` | `string` | Required | Text that will be printed on the credit card's statement |
-| `Items` | [`List<Models.CreatePlanItemRequest>`](/doc/models/create-plan-item-request.md) | Required | Plan items |
+| `Items` | [`List<Models.CreatePlanItemRequest>`](../../doc/models/create-plan-item-request.md) | Required | Plan items |
 | `Shippable` | `bool` | Required | Indicates if the plan is shippable |
 | `PaymentMethods` | `List<string>` | Required | Allowed payment methods for the plan |
 | `Installments` | `List<int>` | Required | Number of installments |
@@ -23,7 +23,7 @@ Request for creating a plan
 | `IntervalCount` | `int` | Required | Interval counts between two charges. For instance, if the interval is 'month' and count is 2, the customer will be charged once every two months. |
 | `BillingDays` | `List<int>` | Required | Allowed billings days for the subscription, in case the plan type is 'exact_day' |
 | `BillingType` | `string` | Required | Billing type |
-| `PricingScheme` | [`Models.CreatePricingSchemeRequest`](/doc/models/create-pricing-scheme-request.md) | Required | Plan's pricing scheme |
+| `PricingScheme` | [`Models.CreatePricingSchemeRequest`](../../doc/models/create-pricing-scheme-request.md) | Required | Plan's pricing scheme |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `MinimumPrice` | `int?` | Optional | Minimum price that will be charged |
 | `Cycles` | `int?` | Optional | Number of cycles |

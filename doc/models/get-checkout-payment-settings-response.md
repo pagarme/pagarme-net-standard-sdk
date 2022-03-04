@@ -15,7 +15,7 @@ Checkout Payment Settings Response
 | `PaymentUrl` | `string` | Required | Payment Url |
 | `AcceptedPaymentMethods` | `List<string>` | Required | Accepted Payment Methods |
 | `Status` | `string` | Required | Status |
-| `Customer` | [`Models.GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | Customer |
+| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | Customer |
 | `Amount` | `int?` | Optional | Payment amount |
 | `DefaultPaymentMethod` | `string` | Optional | Default Payment Method |
 | `GatewayAffiliationId` | `string` | Optional | Gateway Affiliation Id |

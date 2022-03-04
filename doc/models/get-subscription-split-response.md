@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `bool` | Required | Defines if the split is enabled |
-| `Rules` | [`List<Models.GetSplitResponse>`](/doc/models/get-split-response.md) | Required | Split |
+| `Rules` | [`List<Models.GetSplitResponse>`](../../doc/models/get-split-response.md) | Required | Split |
 
 ## Example (as JSON)
 

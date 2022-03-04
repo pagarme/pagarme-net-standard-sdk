@@ -14,10 +14,10 @@
 | `Status` | `string` | Required | - |
 | `CreatedAt` | `DateTime` | Required | - |
 | `UpdatedAt` | `DateTime` | Required | - |
-| `PricingScheme` | [`Models.GetPricingSchemeResponse`](/doc/models/get-pricing-scheme-response.md) | Required | - |
-| `Discounts` | [`List<Models.GetDiscountResponse>`](/doc/models/get-discount-response.md) | Required | - |
-| `Increments` | [`List<Models.GetIncrementResponse>`](/doc/models/get-increment-response.md) | Required | - |
-| `Subscription` | [`Models.GetSubscriptionResponse`](/doc/models/get-subscription-response.md) | Required | - |
+| `PricingScheme` | [`Models.GetPricingSchemeResponse`](../../doc/models/get-pricing-scheme-response.md) | Required | - |
+| `Discounts` | [`List<Models.GetDiscountResponse>`](../../doc/models/get-discount-response.md) | Required | - |
+| `Increments` | [`List<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md) | Required | - |
+| `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Required | - |
 | `Name` | `string` | Required | Item name |
 | `Quantity` | `int?` | Optional | - |
 | `Cycles` | `int?` | Optional | - |
