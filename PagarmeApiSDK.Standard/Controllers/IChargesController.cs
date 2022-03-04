@@ -75,6 +75,80 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Updates the card from a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Models.GetChargeResponse UpdateChargeCard(
+                string chargeId,
+                Models.UpdateChargeCardRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates the card from a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Task<Models.GetChargeResponse> UpdateChargeCardAsync(
+                string chargeId,
+                Models.UpdateChargeCardRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// GetChargesSummary EndPoint.
+        /// </summary>
+        /// <param name="status">Required parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
+        Models.GetChargesSummaryResponse GetChargesSummary(
+                string status,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null);
+
+        /// <summary>
+        /// GetChargesSummary EndPoint.
+        /// </summary>
+        /// <param name="status">Required parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
+        Task<Models.GetChargesSummaryResponse> GetChargesSummaryAsync(
+                string status,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a new charge.
+        /// </summary>
+        /// <param name="request">Required parameter: Request for creating a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Models.GetChargeResponse CreateCharge(
+                Models.CreateChargeRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates a new charge.
+        /// </summary>
+        /// <param name="request">Required parameter: Request for creating a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Task<Models.GetChargeResponse> CreateChargeAsync(
+                Models.CreateChargeRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// GetChargeTransactions EndPoint.
         /// </summary>
         /// <param name="chargeId">Required parameter: Charge Id.</param>
@@ -101,28 +175,72 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates the due date from a charge.
+        /// Captures a charge.
         /// </summary>
-        /// <param name="chargeId">Required parameter: Charge Id.</param>
-        /// <param name="request">Required parameter: Request for updating the due date.</param>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse UpdateChargeDueDate(
+        Models.GetChargeResponse CaptureCharge(
                 string chargeId,
-                Models.UpdateChargeDueDateRequest request,
+                Models.CreateCaptureChargeRequest request = null,
                 string idempotencyKey = null);
 
         /// <summary>
-        /// Updates the due date from a charge.
+        /// Captures a charge.
         /// </summary>
-        /// <param name="chargeId">Required parameter: Charge Id.</param>
-        /// <param name="request">Required parameter: Request for updating the due date.</param>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> UpdateChargeDueDateAsync(
+        Task<Models.GetChargeResponse> CaptureChargeAsync(
                 string chargeId,
-                Models.UpdateChargeDueDateRequest request,
+                Models.CreateCaptureChargeRequest request = null,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a charge from its id.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Models.GetChargeResponse GetCharge(
+                string chargeId);
+
+        /// <summary>
+        /// Get a charge from its id.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Task<Models.GetChargeResponse> GetChargeAsync(
+                string chargeId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Cancel a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Models.GetChargeResponse CancelCharge(
+                string chargeId,
+                Models.CreateCancelChargeRequest request = null,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Cancel a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Task<Models.GetChargeResponse> CancelChargeAsync(
+                string chargeId,
+                Models.CreateCancelChargeRequest request = null,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
@@ -177,172 +295,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Captures a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse CaptureCharge(
-                string chargeId,
-                Models.CreateCaptureChargeRequest request = null,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Captures a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> CaptureChargeAsync(
-                string chargeId,
-                Models.CreateCaptureChargeRequest request = null,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Updates the card from a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse UpdateChargeCard(
-                string chargeId,
-                Models.UpdateChargeCardRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Updates the card from a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> UpdateChargeCardAsync(
-                string chargeId,
-                Models.UpdateChargeCardRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get a charge from its id.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse GetCharge(
-                string chargeId);
-
-        /// <summary>
-        /// Get a charge from its id.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> GetChargeAsync(
-                string chargeId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// GetChargesSummary EndPoint.
-        /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Optional parameter: Example: .</param>
-        /// <param name="createdUntil">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
-        Models.GetChargesSummaryResponse GetChargesSummary(
-                string status,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null);
-
-        /// <summary>
-        /// GetChargesSummary EndPoint.
-        /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Optional parameter: Example: .</param>
-        /// <param name="createdUntil">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
-        Task<Models.GetChargesSummaryResponse> GetChargesSummaryAsync(
-                string status,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retries a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse RetryCharge(
-                string chargeId,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Retries a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> RetryChargeAsync(
-                string chargeId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Cancel a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse CancelCharge(
-                string chargeId,
-                Models.CreateCancelChargeRequest request = null,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Cancel a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> CancelChargeAsync(
-                string chargeId,
-                Models.CreateCancelChargeRequest request = null,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Creates a new charge.
-        /// </summary>
-        /// <param name="request">Required parameter: Request for creating a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Models.GetChargeResponse CreateCharge(
-                Models.CreateChargeRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Creates a new charge.
-        /// </summary>
-        /// <param name="request">Required parameter: Request for creating a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        Task<Models.GetChargeResponse> CreateChargeAsync(
-                Models.CreateChargeRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// ConfirmPayment EndPoint.
         /// </summary>
         /// <param name="chargeId">Required parameter: Example: .</param>
@@ -365,6 +317,54 @@ namespace PagarmeApiSDK.Standard.Controllers
         Task<Models.GetChargeResponse> ConfirmPaymentAsync(
                 string chargeId,
                 Models.CreateConfirmPaymentRequest request = null,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates the due date from a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge Id.</param>
+        /// <param name="request">Required parameter: Request for updating the due date.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Models.GetChargeResponse UpdateChargeDueDate(
+                string chargeId,
+                Models.UpdateChargeDueDateRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates the due date from a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge Id.</param>
+        /// <param name="request">Required parameter: Request for updating the due date.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Task<Models.GetChargeResponse> UpdateChargeDueDateAsync(
+                string chargeId,
+                Models.UpdateChargeDueDateRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retries a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Models.GetChargeResponse RetryCharge(
+                string chargeId,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Retries a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        Task<Models.GetChargeResponse> RetryChargeAsync(
+                string chargeId,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
     }

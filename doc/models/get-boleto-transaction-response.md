@@ -9,7 +9,7 @@ Response object for getting a boleto transaction
 
 ## Inherits From
 
-[`GetTransactionResponse`](/doc/models/get-transaction-response.md)
+[`GetTransactionResponse`](../../doc/models/get-transaction-response.md)
 
 ## Fields
 
@@ -21,7 +21,7 @@ Response object for getting a boleto transaction
 | `Bank` | `string` | Required | - |
 | `DocumentNumber` | `string` | Required | - |
 | `Instructions` | `string` | Required | - |
-| `BillingAddress` | [`Models.GetBillingAddressResponse`](/doc/models/get-billing-address-response.md) | Required | - |
+| `BillingAddress` | [`Models.GetBillingAddressResponse`](../../doc/models/get-billing-address-response.md) | Required | - |
 | `DueAt` | `DateTime?` | Optional | - |
 | `QrCode` | `string` | Required | - |
 | `Line` | `string` | Required | - |

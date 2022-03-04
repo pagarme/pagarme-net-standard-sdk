@@ -12,7 +12,7 @@ Checkout credit card payment request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `StatementDescriptor` | `string` | Optional | Card invoice text descriptor |
-| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](/doc/models/create-payment-authentication-request.md) | Required | Creates payment authentication |
+| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Required | Creates payment authentication |
 
 ## Example (as JSON)
 

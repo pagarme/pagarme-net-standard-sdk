@@ -49,9 +49,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="qrCodeUrl">qr_code_url.</param>
         /// <param name="expiresAt">expires_at.</param>
         /// <param name="additionalInformation">additional_information.</param>
+        /// <param name="payer">payer.</param>
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="endToEndId">end_to_end_id.</param>
         public GetPixTransactionResponse(
             string gatewayId,
             int amount,
@@ -70,9 +72,11 @@ namespace PagarmeApiSDK.Standard.Models
             string qrCodeUrl,
             DateTime expiresAt,
             List<Models.PixAdditionalInformation> additionalInformation,
+            Models.GetPixPayerResponse payer,
             string transactionType = "pix",
             DateTime? nextAttempt = null,
-            Dictionary<string, string> metadata = null)
+            Dictionary<string, string> metadata = null,
+            string endToEndId = null)
             : base(
                 gatewayId,
                 amount,
@@ -95,6 +99,8 @@ namespace PagarmeApiSDK.Standard.Models
             this.QrCodeUrl = qrCodeUrl;
             this.ExpiresAt = expiresAt;
             this.AdditionalInformation = additionalInformation;
+            this.EndToEndId = endToEndId;
+            this.Payer = payer;
         }
 
         /// <summary>
@@ -121,6 +127,18 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("additional_information")]
         public List<Models.PixAdditionalInformation> AdditionalInformation { get; set; }
+
+        /// <summary>
+        /// Gets or sets EndToEndId.
+        /// </summary>
+        [JsonProperty("end_to_end_id", NullValueHandling = NullValueHandling.Include)]
+        public string EndToEndId { get; set; }
+
+        /// <summary>
+        /// Gets or sets Payer.
+        /// </summary>
+        [JsonProperty("payer")]
+        public Models.GetPixPayerResponse Payer { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -150,6 +168,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.QrCodeUrl == null && other.QrCodeUrl == null) || (this.QrCodeUrl?.Equals(other.QrCodeUrl) == true)) &&
                 this.ExpiresAt.Equals(other.ExpiresAt) &&
                 ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true)) &&
+                ((this.EndToEndId == null && other.EndToEndId == null) || (this.EndToEndId?.Equals(other.EndToEndId) == true)) &&
+                ((this.Payer == null && other.Payer == null) || (this.Payer?.Equals(other.Payer) == true)) &&
                 base.Equals(obj);
         }
         
@@ -164,6 +184,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.QrCodeUrl = {(this.QrCodeUrl == null ? "null" : this.QrCodeUrl == string.Empty ? "" : this.QrCodeUrl)}");
             toStringOutput.Add($"this.ExpiresAt = {this.ExpiresAt}");
             toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
+            toStringOutput.Add($"this.EndToEndId = {(this.EndToEndId == null ? "null" : this.EndToEndId == string.Empty ? "" : this.EndToEndId)}");
+            toStringOutput.Add($"this.Payer = {(this.Payer == null ? "null" : this.Payer.ToString())}");
 
             base.ToString(toStringOutput);
         }

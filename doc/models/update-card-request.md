@@ -15,7 +15,7 @@ Request for updating a card
 | `ExpMonth` | `int` | Required | Expiration month |
 | `ExpYear` | `int` | Required | Expiration year |
 | `BillingAddressId` | `string` | Required | Id of the address to be used as billing address |
-| `BillingAddress` | [`Models.CreateAddressRequest`](/doc/models/create-address-request.md) | Required | Billing address |
+| `BillingAddress` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Billing address |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `Label` | `string` | Required | - |
 

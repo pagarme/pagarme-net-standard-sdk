@@ -13,7 +13,7 @@ Checkout pix payment request
 |  --- | --- | --- | --- |
 | `ExpiresAt` | `DateTime?` | Optional | Expires at |
 | `ExpiresIn` | `int?` | Optional | Expires in |
-| `AdditionalInformation` | [`List<Models.PixAdditionalInformation>`](/doc/models/pix-additional-information.md) | Optional | Additional information |
+| `AdditionalInformation` | [`List<Models.PixAdditionalInformation>`](../../doc/models/pix-additional-information.md) | Optional | Additional information |
 
 ## Example (as JSON)
 

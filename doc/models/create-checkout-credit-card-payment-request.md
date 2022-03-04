@@ -12,8 +12,8 @@ Checkout card payment request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `StatementDescriptor` | `string` | Optional | Card invoice text descriptor |
-| `Installments` | [`List<Models.CreateCheckoutCardInstallmentOptionRequest>`](/doc/models/create-checkout-card-installment-option-request.md) | Optional | Payment installment options |
-| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](/doc/models/create-payment-authentication-request.md) | Optional | Creates payment authentication |
+| `Installments` | [`List<Models.CreateCheckoutCardInstallmentOptionRequest>`](../../doc/models/create-checkout-card-installment-option-request.md) | Optional | Payment installment options |
+| `Authentication` | [`Models.CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Optional | Creates payment authentication |
 | `Capture` | `bool?` | Optional | Authorize and capture? |
 
 ## Example (as JSON)

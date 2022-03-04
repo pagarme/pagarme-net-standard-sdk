@@ -23,7 +23,7 @@ Response object for getting an Address
 | `Status` | `string` | Required | - |
 | `CreatedAt` | `DateTime` | Required | - |
 | `UpdatedAt` | `DateTime` | Required | - |
-| `Customer` | [`Models.GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
+| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
 | `Line1` | `string` | Required | Line 1 for address |
 | `Line2` | `string` | Required | Line 2 for address |

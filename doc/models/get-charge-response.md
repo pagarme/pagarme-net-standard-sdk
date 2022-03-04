@@ -21,10 +21,10 @@ Response object for getting a charge
 | `DueAt` | `DateTime` | Required | - |
 | `CreatedAt` | `DateTime` | Required | - |
 | `UpdatedAt` | `DateTime` | Required | - |
-| `LastTransaction` | [`Models.GetTransactionResponse`](/doc/models/get-transaction-response.md) | Optional | - |
-| `Invoice` | [`Models.GetInvoiceResponse`](/doc/models/get-invoice-response.md) | Optional | - |
-| `Order` | [`Models.GetOrderResponse`](/doc/models/get-order-response.md) | Optional | - |
-| `Customer` | [`Models.GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
+| `LastTransaction` | [`Models.GetTransactionResponse`](../../doc/models/get-transaction-response.md) | Optional | - |
+| `Invoice` | [`Models.GetInvoiceResponse`](../../doc/models/get-invoice-response.md) | Optional | - |
+| `Order` | [`Models.GetOrderResponse`](../../doc/models/get-order-response.md) | Optional | - |
+| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
 | `PaidAt` | `DateTime?` | Optional | - |
 | `CanceledAt` | `DateTime?` | Optional | - |

@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `StatementDescriptor` | `string` | Required | Descrição na fatura |
-| `Authentication` | [`Models.GetPaymentAuthenticationResponse`](/doc/models/get-payment-authentication-response.md) | Required | Payment Authentication response object data |
+| `Authentication` | [`Models.GetPaymentAuthenticationResponse`](../../doc/models/get-payment-authentication-response.md) | Required | Payment Authentication response object data |
 
 ## Example (as JSON)
 

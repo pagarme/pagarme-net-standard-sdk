@@ -19,14 +19,14 @@ Generic response object for getting a transaction.
 | `UpdatedAt` | `DateTime` | Required | Last update date |
 | `AttemptCount` | `int` | Required | Number of attempts tried |
 | `MaxAttempts` | `int` | Required | Max attempts |
-| `Splits` | [`List<Models.GetSplitResponse>`](/doc/models/get-split-response.md) | Required | Splits |
+| `Splits` | [`List<Models.GetSplitResponse>`](../../doc/models/get-split-response.md) | Required | Splits |
 | `NextAttempt` | `DateTime?` | Optional | Date and time of the next attempt |
 | `TransactionType` | `string` | Optional | - |
 | `Id` | `string` | Required | Código da transação |
-| `GatewayResponse` | [`Models.GetGatewayResponseResponse`](/doc/models/get-gateway-response-response.md) | Required | The Gateway Response |
-| `AntifraudResponse` | [`Models.GetAntifraudResponse`](/doc/models/get-antifraud-response.md) | Required | - |
+| `GatewayResponse` | [`Models.GetGatewayResponseResponse`](../../doc/models/get-gateway-response-response.md) | Required | The Gateway Response |
+| `AntifraudResponse` | [`Models.GetAntifraudResponse`](../../doc/models/get-antifraud-response.md) | Required | - |
 | `Metadata` | `Dictionary<string, string>` | Optional | - |
-| `Split` | [`List<Models.GetSplitResponse>`](/doc/models/get-split-response.md) | Required | - |
+| `Split` | [`List<Models.GetSplitResponse>`](../../doc/models/get-split-response.md) | Required | - |
 
 ## Example (as JSON)
 

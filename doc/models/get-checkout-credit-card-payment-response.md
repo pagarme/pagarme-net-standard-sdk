@@ -10,8 +10,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `StatementDescriptor` | `string` | Required | Descrição na fatura |
-| `Installments` | [`List<Models.GetCheckoutCardInstallmentOptionsResponse>`](/doc/models/get-checkout-card-installment-options-response.md) | Required | Parcelas |
-| `Authentication` | [`Models.GetPaymentAuthenticationResponse`](/doc/models/get-payment-authentication-response.md) | Required | Payment Authentication response |
+| `Installments` | [`List<Models.GetCheckoutCardInstallmentOptionsResponse>`](../../doc/models/get-checkout-card-installment-options-response.md) | Required | Parcelas |
+| `Authentication` | [`Models.GetPaymentAuthenticationResponse`](../../doc/models/get-payment-authentication-response.md) | Required | Payment Authentication response |
 
 ## Example (as JSON)
 

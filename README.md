@@ -53,7 +53,7 @@ Once the `TestConsoleProject` is created, a file named `Program.cs` will be visi
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -79,35 +79,35 @@ Here is the list of errors that the API might throw.
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request | [`ErrorException`](/doc/models/error-exception.md) |
-| 401 | Invalid API key | [`ErrorException`](/doc/models/error-exception.md) |
-| 404 | An informed resource was not found | [`ErrorException`](/doc/models/error-exception.md) |
-| 412 | Business validation error | [`ErrorException`](/doc/models/error-exception.md) |
-| 422 | Contract validation error | [`ErrorException`](/doc/models/error-exception.md) |
-| 500 | Internal server error | [`ErrorException`](/doc/models/error-exception.md) |
+| 400 | Invalid request | [`ErrorException`](doc/models/error-exception.md) |
+| 401 | Invalid API key | [`ErrorException`](doc/models/error-exception.md) |
+| 404 | An informed resource was not found | [`ErrorException`](doc/models/error-exception.md) |
+| 412 | Business validation error | [`ErrorException`](doc/models/error-exception.md) |
+| 422 | Contract validation error | [`ErrorException`](doc/models/error-exception.md) |
+| 500 | Internal server error | [`ErrorException`](doc/models/error-exception.md) |
 
 ## List of APIs
 
-* [Subscriptions](/doc/controllers/subscriptions.md)
-* [Orders](/doc/controllers/orders.md)
-* [Plans](/doc/controllers/plans.md)
-* [Invoices](/doc/controllers/invoices.md)
-* [Customers](/doc/controllers/customers.md)
-* [Charges](/doc/controllers/charges.md)
-* [Recipients](/doc/controllers/recipients.md)
-* [Tokens](/doc/controllers/tokens.md)
-* [Transactions](/doc/controllers/transactions.md)
-* [Transfers](/doc/controllers/transfers.md)
+* [Subscriptions](doc/controllers/subscriptions.md)
+* [Orders](doc/controllers/orders.md)
+* [Plans](doc/controllers/plans.md)
+* [Invoices](doc/controllers/invoices.md)
+* [Customers](doc/controllers/customers.md)
+* [Charges](doc/controllers/charges.md)
+* [Recipients](doc/controllers/recipients.md)
+* [Tokens](doc/controllers/tokens.md)
+* [Transactions](doc/controllers/transactions.md)
+* [Transfers](doc/controllers/transfers.md)
 
 ## Classes Documentation
 
-* [Utility Classes](/doc/utility-classes.md)
-* [HttpRequest](/doc/http-request.md)
-* [HttpResponse](/doc/http-response.md)
-* [HttpStringResponse](/doc/http-string-response.md)
-* [HttpContext](/doc/http-context.md)
-* [HttpClientConfiguration](/doc/http-client-configuration.md)
-* [HttpClientConfiguration Builder](/doc/http-client-configuration-builder.md)
-* [IAuthManager](/doc/i-auth-manager.md)
-* [ApiException](/doc/api-exception.md)
+* [Utility Classes](doc/utility-classes.md)
+* [HttpRequest](doc/http-request.md)
+* [HttpResponse](doc/http-response.md)
+* [HttpStringResponse](doc/http-string-response.md)
+* [HttpContext](doc/http-context.md)
+* [HttpClientConfiguration](doc/http-client-configuration.md)
+* [HttpClientConfiguration Builder](doc/http-client-configuration-builder.md)
+* [IAuthManager](doc/i-auth-manager.md)
+* [ApiException](doc/api-exception.md)
 

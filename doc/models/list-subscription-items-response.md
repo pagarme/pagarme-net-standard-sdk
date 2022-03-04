@@ -11,8 +11,8 @@ Response model for listing subscription items
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetSubscriptionItemResponse>`](/doc/models/get-subscription-item-response.md) | Required | The subscription items |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `Data` | [`List<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md) | Required | The subscription items |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

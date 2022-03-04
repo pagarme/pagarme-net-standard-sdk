@@ -11,8 +11,8 @@ Response object for listing addresses
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetAddressResponse>`](/doc/models/get-address-response.md) | Required | The address objects |
-| `Paging` | [`Models.PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `Data` | [`List<Models.GetAddressResponse>`](../../doc/models/get-address-response.md) | Required | The address objects |
+| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

@@ -9,7 +9,7 @@ Response for voucher transactions
 
 ## Inherits From
 
-[`GetTransactionResponse`](/doc/models/get-transaction-response.md)
+[`GetTransactionResponse`](../../doc/models/get-transaction-response.md)
 
 ## Fields
 
@@ -24,7 +24,7 @@ Response for voucher transactions
 | `AcquirerMessage` | `string` | Required | acquirer_message |
 | `AcquirerReturnCode` | `string` | Required | Acquirer return code |
 | `OperationType` | `string` | Required | Operation type |
-| `Card` | [`Models.GetCardResponse`](/doc/models/get-card-response.md) | Required | Card data |
+| `Card` | [`Models.GetCardResponse`](../../doc/models/get-card-response.md) | Required | Card data |
 
 ## Example (as JSON)
 

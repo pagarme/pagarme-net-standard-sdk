@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `HomePhone` | [`Models.CreatePhoneRequest`](/doc/models/create-phone-request.md) | Optional | - |
-| `MobilePhone` | [`Models.CreatePhoneRequest`](/doc/models/create-phone-request.md) | Optional | - |
+| `HomePhone` | [`Models.CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Optional | - |
+| `MobilePhone` | [`Models.CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Optional | - |
 
 ## Example (as JSON)
 
