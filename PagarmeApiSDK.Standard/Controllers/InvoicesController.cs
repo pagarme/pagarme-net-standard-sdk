@@ -37,6 +37,198 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
+        /// Updates the metadata from an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: The invoice id.</param>
+        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public Models.GetInvoiceResponse UpdateInvoiceMetadata(
+                string invoiceId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetInvoiceResponse> t = this.UpdateInvoiceMetadataAsync(invoiceId, request, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Updates the metadata from an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: The invoice id.</param>
+        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public async Task<Models.GetInvoiceResponse> UpdateInvoiceMetadataAsync(
+                string invoiceId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/invoices/{invoice_id}/metadata");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "invoice_id", invoiceId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetInvoiceResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// GetPartialInvoice EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public Models.GetInvoiceResponse GetPartialInvoice(
+                string subscriptionId)
+        {
+            Task<Models.GetInvoiceResponse> t = this.GetPartialInvoiceAsync(subscriptionId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// GetPartialInvoice EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public async Task<Models.GetInvoiceResponse> GetPartialInvoiceAsync(
+                string subscriptionId,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/subscriptions/{subscription_id}/partial-invoice");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "subscription_id", subscriptionId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetInvoiceResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Cancels an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: Invoice id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public Models.GetInvoiceResponse CancelInvoice(
+                string invoiceId,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetInvoiceResponse> t = this.CancelInvoiceAsync(invoiceId, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Cancels an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: Invoice id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public async Task<Models.GetInvoiceResponse> CancelInvoiceAsync(
+                string invoiceId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/invoices/{invoice_id}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "invoice_id", invoiceId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Delete(queryBuilder.ToString(), headers, null);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetInvoiceResponse>(response.Body);
+        }
+
+        /// <summary>
         /// Create an Invoice.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
@@ -221,30 +413,26 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
-        /// Cancels an invoice.
+        /// Gets an invoice.
         /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
         /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse CancelInvoice(
-                string invoiceId,
-                string idempotencyKey = null)
+        public Models.GetInvoiceResponse GetInvoice(
+                string invoiceId)
         {
-            Task<Models.GetInvoiceResponse> t = this.CancelInvoiceAsync(invoiceId, idempotencyKey);
+            Task<Models.GetInvoiceResponse> t = this.GetInvoiceAsync(invoiceId);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Cancels an invoice.
+        /// Gets an invoice.
         /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> CancelInvoiceAsync(
+        public async Task<Models.GetInvoiceResponse> GetInvoiceAsync(
                 string invoiceId,
-                string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
         {
             // the base uri for api requests.
@@ -258,136 +446,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
             {
                 { "invoice_id", invoiceId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Delete(queryBuilder.ToString(), headers, null);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetInvoiceResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Updates the metadata from an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: The invoice id.</param>
-        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse UpdateInvoiceMetadata(
-                string invoiceId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetInvoiceResponse> t = this.UpdateInvoiceMetadataAsync(invoiceId, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Updates the metadata from an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: The invoice id.</param>
-        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> UpdateInvoiceMetadataAsync(
-                string invoiceId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/invoices/{invoice_id}/metadata");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "invoice_id", invoiceId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetInvoiceResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// GetPartialInvoice EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse GetPartialInvoice(
-                string subscriptionId)
-        {
-            Task<Models.GetInvoiceResponse> t = this.GetPartialInvoiceAsync(subscriptionId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// GetPartialInvoice EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> GetPartialInvoiceAsync(
-                string subscriptionId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/subscriptions/{subscription_id}/partial-invoice");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "subscription_id", subscriptionId },
             });
 
             // append request with appropriate headers and parameters
@@ -470,64 +528,6 @@ namespace PagarmeApiSDK.Standard.Controllers
 
             // prepare the API call request to fetch the response.
             HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetInvoiceResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Gets an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse GetInvoice(
-                string invoiceId)
-        {
-            Task<Models.GetInvoiceResponse> t = this.GetInvoiceAsync(invoiceId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Gets an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> GetInvoiceAsync(
-                string invoiceId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/invoices/{invoice_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "invoice_id", invoiceId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
 
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 

@@ -315,6 +315,140 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
+        /// GetWithdrawById EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public Models.GetWithdrawResponse GetWithdrawById(
+                string recipientId,
+                string withdrawalId)
+        {
+            Task<Models.GetWithdrawResponse> t = this.GetWithdrawByIdAsync(recipientId, withdrawalId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// GetWithdrawById EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public async Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
+                string recipientId,
+                string withdrawalId,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/recipients/{recipient_id}/withdrawals/{withdrawal_id}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "recipient_id", recipientId },
+                { "withdrawal_id", withdrawalId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Updates the default bank account from a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Bank account data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse UpdateRecipientDefaultBankAccount(
+                string recipientId,
+                Models.UpdateRecipientBankAccountRequest request,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetRecipientResponse> t = this.UpdateRecipientDefaultBankAccountAsync(recipientId, request, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Updates the default bank account from a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Bank account data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> UpdateRecipientDefaultBankAccountAsync(
+                string recipientId,
+                Models.UpdateRecipientBankAccountRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/recipients/{recipient_id}/default-bank-account");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "recipient_id", recipientId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(response.Body);
+        }
+
+        /// <summary>
         /// Updates recipient metadata.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -386,6 +520,94 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
+        /// Gets a paginated list of transfers for the recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="status">Optional parameter: Filter for transfer status.</param>
+        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
+        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
+        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
+        public Models.ListTransferResponse GetTransfers(
+                string recipientId,
+                int? page = null,
+                int? size = null,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null)
+        {
+            Task<Models.ListTransferResponse> t = this.GetTransfersAsync(recipientId, page, size, status, createdSince, createdUntil);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Gets a paginated list of transfers for the recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="status">Optional parameter: Filter for transfer status.</param>
+        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
+        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
+        public async Task<Models.ListTransferResponse> GetTransfersAsync(
+                string recipientId,
+                int? page = null,
+                int? size = null,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/recipients/{recipient_id}/transfers");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "recipient_id", recipientId },
+            });
+
+            // prepare specfied query parameters.
+            var queryParams = new Dictionary<string, object>()
+            {
+                { "page", page },
+                { "size", size },
+                { "status", status },
+                { "created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
+                { "created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
+            };
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers, queryParameters: queryParams);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.ListTransferResponse>(response.Body);
+        }
+
+        /// <summary>
         /// Gets a transfer.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -446,6 +668,143 @@ namespace PagarmeApiSDK.Standard.Controllers
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetTransferResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// CreateWithdraw EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public Models.GetWithdrawResponse CreateWithdraw(
+                string recipientId,
+                Models.CreateWithdrawRequest request)
+        {
+            Task<Models.GetWithdrawResponse> t = this.CreateWithdrawAsync(recipientId, request);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// CreateWithdraw EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public async Task<Models.GetWithdrawResponse> CreateWithdrawAsync(
+                string recipientId,
+                Models.CreateWithdrawRequest request,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/recipients/{recipient_id}/withdrawals");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "recipient_id", recipientId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetRecipientResponse> t = this.UpdateAutomaticAnticipationSettingsAsync(recipientId, request, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/recipients/{recipient_id}/automatic-anticipation-settings");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "recipient_id", recipientId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(response.Body);
         }
 
         /// <summary>
@@ -686,34 +1045,26 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
-        /// Updates the default bank account from a recipient.
+        /// Retrieves recipient information.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Bank account data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="recipientId">Required parameter: Recipiend id.</param>
         /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse UpdateRecipientDefaultBankAccount(
-                string recipientId,
-                Models.UpdateRecipientBankAccountRequest request,
-                string idempotencyKey = null)
+        public Models.GetRecipientResponse GetRecipient(
+                string recipientId)
         {
-            Task<Models.GetRecipientResponse> t = this.UpdateRecipientDefaultBankAccountAsync(recipientId, request, idempotencyKey);
+            Task<Models.GetRecipientResponse> t = this.GetRecipientAsync(recipientId);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Updates the default bank account from a recipient.
+        /// Retrieves recipient information.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Bank account data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="recipientId">Required parameter: Recipiend id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> UpdateRecipientDefaultBankAccountAsync(
+        public async Task<Models.GetRecipientResponse> GetRecipientAsync(
                 string recipientId,
-                Models.UpdateRecipientBankAccountRequest request,
-                string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
         {
             // the base uri for api requests.
@@ -721,7 +1072,7 @@ namespace PagarmeApiSDK.Standard.Controllers
 
             // prepare query string for API call.
             StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}/default-bank-account");
+            queryBuilder.Append("/recipients/{recipient_id}");
 
             // process optional template parameters.
             ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
@@ -734,15 +1085,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             {
                 { "user-agent", this.UserAgent },
                 { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
             };
 
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
             // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
 
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
@@ -754,72 +1100,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// CreateWithdraw EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public Models.GetWithdrawResponse CreateWithdraw(
-                string recipientId,
-                Models.CreateWithdrawRequest request)
-        {
-            Task<Models.GetWithdrawResponse> t = this.CreateWithdrawAsync(recipientId, request);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// CreateWithdraw EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public async Task<Models.GetWithdrawResponse> CreateWithdrawAsync(
-                string recipientId,
-                Models.CreateWithdrawRequest request,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}/withdrawals");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "recipient_id", recipientId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(response.Body);
         }
 
         /// <summary>
@@ -878,6 +1158,94 @@ namespace PagarmeApiSDK.Standard.Controllers
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetBalanceResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Gets a paginated list of transfers for the recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="page">Optional parameter: Example: .</param>
+        /// <param name="size">Optional parameter: Example: .</param>
+        /// <param name="status">Optional parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.ListWithdrawals response from the API call.</returns>
+        public Models.ListWithdrawals GetWithdrawals(
+                string recipientId,
+                int? page = null,
+                int? size = null,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null)
+        {
+            Task<Models.ListWithdrawals> t = this.GetWithdrawalsAsync(recipientId, page, size, status, createdSince, createdUntil);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Gets a paginated list of transfers for the recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="page">Optional parameter: Example: .</param>
+        /// <param name="size">Optional parameter: Example: .</param>
+        /// <param name="status">Optional parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListWithdrawals response from the API call.</returns>
+        public async Task<Models.ListWithdrawals> GetWithdrawalsAsync(
+                string recipientId,
+                int? page = null,
+                int? size = null,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/recipients/{recipient_id}/withdrawals");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "recipient_id", recipientId },
+            });
+
+            // prepare specfied query parameters.
+            var queryParams = new Dictionary<string, object>()
+            {
+                { "page", page },
+                { "size", size },
+                { "status", status },
+                { "created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
+                { "created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
+            };
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers, queryParameters: queryParams);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.ListWithdrawals>(response.Body);
         }
 
         /// <summary>
@@ -1010,374 +1378,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetRecipientResponse> t = this.UpdateAutomaticAnticipationSettingsAsync(recipientId, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}/automatic-anticipation-settings");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "recipient_id", recipientId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipiend id.</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse GetRecipient(
-                string recipientId)
-        {
-            Task<Models.GetRecipientResponse> t = this.GetRecipientAsync(recipientId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipiend id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> GetRecipientAsync(
-                string recipientId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "recipient_id", recipientId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Gets a paginated list of transfers for the recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="page">Optional parameter: Example: .</param>
-        /// <param name="size">Optional parameter: Example: .</param>
-        /// <param name="status">Optional parameter: Example: .</param>
-        /// <param name="createdSince">Optional parameter: Example: .</param>
-        /// <param name="createdUntil">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.ListWithdrawals response from the API call.</returns>
-        public Models.ListWithdrawals GetWithdrawals(
-                string recipientId,
-                int? page = null,
-                int? size = null,
-                string status = null,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null)
-        {
-            Task<Models.ListWithdrawals> t = this.GetWithdrawalsAsync(recipientId, page, size, status, createdSince, createdUntil);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Gets a paginated list of transfers for the recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="page">Optional parameter: Example: .</param>
-        /// <param name="size">Optional parameter: Example: .</param>
-        /// <param name="status">Optional parameter: Example: .</param>
-        /// <param name="createdSince">Optional parameter: Example: .</param>
-        /// <param name="createdUntil">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListWithdrawals response from the API call.</returns>
-        public async Task<Models.ListWithdrawals> GetWithdrawalsAsync(
-                string recipientId,
-                int? page = null,
-                int? size = null,
-                string status = null,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}/withdrawals");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "recipient_id", recipientId },
-            });
-
-            // prepare specfied query parameters.
-            var queryParams = new Dictionary<string, object>()
-            {
-                { "page", page },
-                { "size", size },
-                { "status", status },
-                { "created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
-                { "created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
-            };
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers, queryParameters: queryParams);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.ListWithdrawals>(response.Body);
-        }
-
-        /// <summary>
-        /// GetWithdrawById EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public Models.GetWithdrawResponse GetWithdrawById(
-                string recipientId,
-                string withdrawalId)
-        {
-            Task<Models.GetWithdrawResponse> t = this.GetWithdrawByIdAsync(recipientId, withdrawalId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// GetWithdrawById EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public async Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
-                string recipientId,
-                string withdrawalId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}/withdrawals/{withdrawal_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "recipient_id", recipientId },
-                { "withdrawal_id", withdrawalId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Gets a paginated list of transfers for the recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="status">Optional parameter: Filter for transfer status.</param>
-        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
-        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
-        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
-        public Models.ListTransferResponse GetTransfers(
-                string recipientId,
-                int? page = null,
-                int? size = null,
-                string status = null,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null)
-        {
-            Task<Models.ListTransferResponse> t = this.GetTransfersAsync(recipientId, page, size, status, createdSince, createdUntil);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Gets a paginated list of transfers for the recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="status">Optional parameter: Filter for transfer status.</param>
-        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
-        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
-        public async Task<Models.ListTransferResponse> GetTransfersAsync(
-                string recipientId,
-                int? page = null,
-                int? size = null,
-                string status = null,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/recipients/{recipient_id}/transfers");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "recipient_id", recipientId },
-            });
-
-            // prepare specfied query parameters.
-            var queryParams = new Dictionary<string, object>()
-            {
-                { "page", page },
-                { "size", size },
-                { "status", status },
-                { "created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
-                { "created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null },
-            };
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers, queryParameters: queryParams);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.ListTransferResponse>(response.Body);
         }
 
         /// <summary>
