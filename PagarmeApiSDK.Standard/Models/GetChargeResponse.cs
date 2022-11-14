@@ -50,6 +50,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="customer">customer.</param>
         /// <param name="paidAt">paid_at.</param>
         /// <param name="canceledAt">canceled_at.</param>
+        /// <param name="interestAndFinePaid">interest_and_fine_paid.</param>
+        /// <param name="recurrencyCycle">recurrency_cycle.</param>
         public GetChargeResponse(
             string id,
             string code,
@@ -69,7 +71,9 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetOrderResponse order = null,
             Models.GetCustomerResponse customer = null,
             DateTime? paidAt = null,
-            DateTime? canceledAt = null)
+            DateTime? canceledAt = null,
+            int? interestAndFinePaid = null,
+            string recurrencyCycle = null)
         {
             this.Id = id;
             this.Code = code;
@@ -90,6 +94,8 @@ namespace PagarmeApiSDK.Standard.Models
             this.CanceledAt = canceledAt;
             this.CanceledAmount = canceledAmount;
             this.PaidAmount = paidAmount;
+            this.InterestAndFinePaid = interestAndFinePaid;
+            this.RecurrencyCycle = recurrencyCycle;
         }
 
         /// <summary>
@@ -211,6 +217,18 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("paid_amount")]
         public int PaidAmount { get; set; }
 
+        /// <summary>
+        /// interest and fine paid
+        /// </summary>
+        [JsonProperty("interest_and_fine_paid", NullValueHandling = NullValueHandling.Ignore)]
+        public int? InterestAndFinePaid { get; set; }
+
+        /// <summary>
+        /// Defines whether the card has been used one or more times.
+        /// </summary>
+        [JsonProperty("recurrency_cycle", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrencyCycle { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -253,7 +271,9 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.PaidAt == null && other.PaidAt == null) || (this.PaidAt?.Equals(other.PaidAt) == true)) &&
                 ((this.CanceledAt == null && other.CanceledAt == null) || (this.CanceledAt?.Equals(other.CanceledAt) == true)) &&
                 this.CanceledAmount.Equals(other.CanceledAmount) &&
-                this.PaidAmount.Equals(other.PaidAmount);
+                this.PaidAmount.Equals(other.PaidAmount) &&
+                ((this.InterestAndFinePaid == null && other.InterestAndFinePaid == null) || (this.InterestAndFinePaid?.Equals(other.InterestAndFinePaid) == true)) &&
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
         }
         
 
@@ -282,6 +302,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.CanceledAt = {(this.CanceledAt == null ? "null" : this.CanceledAt.ToString())}");
             toStringOutput.Add($"this.CanceledAmount = {this.CanceledAmount}");
             toStringOutput.Add($"this.PaidAmount = {this.PaidAmount}");
+            toStringOutput.Add($"this.InterestAndFinePaid = {(this.InterestAndFinePaid == null ? "null" : this.InterestAndFinePaid.ToString())}");
+            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle == string.Empty ? "" : this.RecurrencyCycle)}");
         }
     }
 }

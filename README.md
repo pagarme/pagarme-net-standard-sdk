@@ -13,7 +13,9 @@ The generated code uses the Newtonsoft Json.NET NuGet Package. If the automatic 
 
 Invoke the build process using Ctrl + Shift + B shortcut key or using the Build menu as shown below.
 
-The build process generates a portable class library, which can be used like a normal class library. The generated library is compatible with Windows Forms, Windows RT, Windows Phone 8, Silverlight 5, Xamarin iOS, Xamarin Android and Mono. More information on how to use can be found at the MSDN Portable Class Libraries documentation.
+The build process generates a portable class library, which can be used like a normal class library. More information on how to use can be found at the MSDN Portable Class Libraries documentation.
+
+The supported version is **.NET Standard 2.0**. For checking compatibility of your .NET implementation with the generated library, [click here](https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions).
 
 ## Installation
 
@@ -37,11 +39,11 @@ The new console project is the entry point for the eventual execution. This requ
 
 ### 3. Add reference of the library project
 
-In order to use the Tester library in the new project, first we must add a project reference to the `TestConsoleProject`. First, right click on the `References` node in the solution explorer and click `Add Reference...`
+In order to use the `PagarmeApiSDK.Standard` library in the new project, first we must add a project reference to the `TestConsoleProject`. First, right click on the `References` node in the solution explorer and click `Add Reference...`
 
 ![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=PagarmeApiSDK-CSharp&workspaceName=PagarmeApiSDK&projectName=PagarmeApiSDK.Standard&rootNamespace=PagarmeApiSDK.Standard&step=addReference)
 
-Next, a window will be displayed where we must set the `checkbox` on `Tester.Tests` and click `OK`. By doing this, we have added a reference of the `Tester.Tests` project into the new `TestConsoleProject`.
+Next, a window will be displayed where we must set the `checkbox` on `PagarmeApiSDK.Standard` and click `OK`. By doing this, we have added a reference of the `PagarmeApiSDK.Standard` project into the new `TestConsoleProject`.
 
 ![Creating a project reference](https://apidocs.io/illustration/cs?workspaceFolder=PagarmeApiSDK-CSharp&workspaceName=PagarmeApiSDK&projectName=PagarmeApiSDK.Standard&rootNamespace=PagarmeApiSDK.Standard&step=createReference)
 

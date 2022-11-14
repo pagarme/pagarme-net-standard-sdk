@@ -30,6 +30,8 @@ Response object for getting a charge
 | `CanceledAt` | `DateTime?` | Optional | - |
 | `CanceledAmount` | `int` | Required | Canceled Amount |
 | `PaidAmount` | `int` | Required | Paid amount |
+| `InterestAndFinePaid` | `int?` | Optional | interest and fine paid |
+| `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
 
 ## Example (as JSON)
 
@@ -57,7 +59,9 @@ Response object for getting a charge
   "paid_at": null,
   "canceled_at": null,
   "canceled_amount": 64,
-  "paid_amount": 210
+  "paid_amount": 210,
+  "interest_and_fine_paid": null,
+  "recurrency_cycle": null
 }
 ```
 

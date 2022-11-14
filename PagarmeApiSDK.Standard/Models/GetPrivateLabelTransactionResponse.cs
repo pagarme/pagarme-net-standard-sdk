@@ -58,6 +58,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="installments">installments.</param>
         public GetPrivateLabelTransactionResponse(
             string gatewayId,
@@ -86,6 +89,9 @@ namespace PagarmeApiSDK.Standard.Models
             string transactionType = "private_label",
             DateTime? nextAttempt = null,
             Dictionary<string, string> metadata = null,
+            Models.GetInterestResponse interest = null,
+            Models.GetFineResponse fine = null,
+            int? maxDaysToPayPastDue = null,
             int? installments = null)
             : base(
                 gatewayId,
@@ -103,7 +109,10 @@ namespace PagarmeApiSDK.Standard.Models
                 split,
                 transactionType,
                 nextAttempt,
-                metadata)
+                metadata,
+                interest,
+                fine,
+                maxDaysToPayPastDue)
         {
             this.StatementDescriptor = statementDescriptor;
             this.AcquirerName = acquirerName;

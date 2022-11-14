@@ -51,6 +51,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="paidAt">paid_at.</param>
         /// <param name="paidAmount">paid_amount.</param>
         public GetBankTransferTransactionResponse(
@@ -73,6 +76,9 @@ namespace PagarmeApiSDK.Standard.Models
             string transactionType = "bank_transfer",
             DateTime? nextAttempt = null,
             Dictionary<string, string> metadata = null,
+            Models.GetInterestResponse interest = null,
+            Models.GetFineResponse fine = null,
+            int? maxDaysToPayPastDue = null,
             DateTime? paidAt = null,
             int? paidAmount = null)
             : base(
@@ -91,7 +97,10 @@ namespace PagarmeApiSDK.Standard.Models
                 split,
                 transactionType,
                 nextAttempt,
-                metadata)
+                metadata,
+                interest,
+                fine,
+                maxDaysToPayPastDue)
         {
             this.Url = url;
             this.BankTid = bankTid;

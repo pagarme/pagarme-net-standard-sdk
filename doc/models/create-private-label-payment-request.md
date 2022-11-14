@@ -20,6 +20,7 @@ The settings for creating a private label payment
 | `Capture` | `bool?` | Optional | Indicates if the operation should be only authorization or auth and capture.<br>**Default**: `true` |
 | `ExtendedLimitEnabled` | `bool?` | Optional | Indicates whether the extended label (private label) is enabled |
 | `ExtendedLimitCode` | `string` | Optional | Extended Limit Code |
+| `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
 
 ## Example (as JSON)
 
@@ -33,7 +34,8 @@ The settings for creating a private label payment
   "recurrence": null,
   "capture": null,
   "extended_limit_enabled": null,
-  "extended_limit_code": null
+  "extended_limit_code": null,
+  "recurrency_cycle": null
 }
 ```
 

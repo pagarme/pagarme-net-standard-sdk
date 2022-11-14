@@ -20,6 +20,9 @@ Contains the settings for creating a boleto payment
 | `NossoNumero` | `string` | Optional | Customer identification number with the bank |
 | `DocumentNumber` | `string` | Required | Boleto identification |
 | `StatementDescriptor` | `string` | Required | Soft Descriptor |
+| `Interest` | [`Models.CreateInterestRequest`](../../doc/models/create-interest-request.md) | Optional | - |
+| `Fine` | [`Models.CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
+| `MaxDaysToPayPastDue` | `int?` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,7 +51,10 @@ Contains the settings for creating a boleto payment
   "billing_address_id": "billing_address_id6",
   "nosso_numero": null,
   "document_number": "document_number6",
-  "statement_descriptor": "statement_descriptor0"
+  "statement_descriptor": "statement_descriptor0",
+  "interest": null,
+  "fine": null,
+  "max_days_to_pay_past_due": null
 }
 ```
 

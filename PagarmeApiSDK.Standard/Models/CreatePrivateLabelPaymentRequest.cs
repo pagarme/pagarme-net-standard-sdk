@@ -40,6 +40,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="capture">capture.</param>
         /// <param name="extendedLimitEnabled">extended_limit_enabled.</param>
         /// <param name="extendedLimitCode">extended_limit_code.</param>
+        /// <param name="recurrencyCycle">recurrency_cycle.</param>
         public CreatePrivateLabelPaymentRequest(
             int? installments = 1,
             string statementDescriptor = null,
@@ -49,7 +50,8 @@ namespace PagarmeApiSDK.Standard.Models
             bool? recurrence = null,
             bool? capture = true,
             bool? extendedLimitEnabled = null,
-            string extendedLimitCode = null)
+            string extendedLimitCode = null,
+            string recurrencyCycle = null)
         {
             this.Installments = installments;
             this.StatementDescriptor = statementDescriptor;
@@ -60,6 +62,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Capture = capture;
             this.ExtendedLimitEnabled = extendedLimitEnabled;
             this.ExtendedLimitCode = extendedLimitCode;
+            this.RecurrencyCycle = recurrencyCycle;
         }
 
         /// <summary>
@@ -116,6 +119,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("extended_limit_code", NullValueHandling = NullValueHandling.Ignore)]
         public string ExtendedLimitCode { get; set; }
 
+        /// <summary>
+        /// Defines whether the card has been used one or more times.
+        /// </summary>
+        [JsonProperty("recurrency_cycle", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrencyCycle { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -148,7 +157,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Recurrence == null && other.Recurrence == null) || (this.Recurrence?.Equals(other.Recurrence) == true)) &&
                 ((this.Capture == null && other.Capture == null) || (this.Capture?.Equals(other.Capture) == true)) &&
                 ((this.ExtendedLimitEnabled == null && other.ExtendedLimitEnabled == null) || (this.ExtendedLimitEnabled?.Equals(other.ExtendedLimitEnabled) == true)) &&
-                ((this.ExtendedLimitCode == null && other.ExtendedLimitCode == null) || (this.ExtendedLimitCode?.Equals(other.ExtendedLimitCode) == true));
+                ((this.ExtendedLimitCode == null && other.ExtendedLimitCode == null) || (this.ExtendedLimitCode?.Equals(other.ExtendedLimitCode) == true)) &&
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
         }
         
 
@@ -167,6 +177,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Capture = {(this.Capture == null ? "null" : this.Capture.ToString())}");
             toStringOutput.Add($"this.ExtendedLimitEnabled = {(this.ExtendedLimitEnabled == null ? "null" : this.ExtendedLimitEnabled.ToString())}");
             toStringOutput.Add($"this.ExtendedLimitCode = {(this.ExtendedLimitCode == null ? "null" : this.ExtendedLimitCode == string.Empty ? "" : this.ExtendedLimitCode)}");
+            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle == string.Empty ? "" : this.RecurrencyCycle)}");
         }
     }
 }

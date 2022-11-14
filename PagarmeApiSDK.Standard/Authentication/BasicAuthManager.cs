@@ -26,21 +26,21 @@ namespace PagarmeApiSDK.Standard.Authentication
         }
 
         /// <summary>
-        /// Gets basicAuthUserName.
+        /// Gets string value for basicAuthUserName.
         /// </summary>
         public string BasicAuthUserName { get; }
 
         /// <summary>
-        /// Gets basicAuthPassword.
+        /// Gets string value for basicAuthPassword.
         /// </summary>
         public string BasicAuthPassword { get; }
 
         /// <summary>
         /// Check if credentials match.
         /// </summary>
-        /// <param name="basicAuthUserName"> BasicAuthUserName.</param>
-        /// <param name="basicAuthPassword"> BasicAuthPassword.</param>
-        /// <returns> The boolean value.</returns>
+        /// <param name="basicAuthUserName"> The string value for credentials.</param>
+        /// <param name="basicAuthPassword"> The string value for credentials.</param>
+        /// <returns> True if credentials matched.</returns>
         public bool Equals(string basicAuthUserName, string basicAuthPassword)
         {
             return basicAuthUserName.Equals(this.BasicAuthUserName)
