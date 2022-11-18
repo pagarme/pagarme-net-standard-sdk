@@ -62,6 +62,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="dueAt">due_at.</param>
         /// <param name="paidAt">paid_at.</param>
         /// <param name="creditAt">credit_at.</param>
@@ -96,6 +99,9 @@ namespace PagarmeApiSDK.Standard.Models
             string transactionType = "boleto",
             DateTime? nextAttempt = null,
             Dictionary<string, string> metadata = null,
+            Models.GetInterestResponse interest = null,
+            Models.GetFineResponse fine = null,
+            int? maxDaysToPayPastDue = null,
             DateTime? dueAt = null,
             DateTime? paidAt = null,
             DateTime? creditAt = null)
@@ -115,7 +121,10 @@ namespace PagarmeApiSDK.Standard.Models
                 split,
                 transactionType,
                 nextAttempt,
-                metadata)
+                metadata,
+                interest,
+                fine,
+                maxDaysToPayPastDue)
         {
             this.Url = url;
             this.Barcode = barcode;

@@ -35,16 +35,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="cardId">card_id.</param>
         /// <param name="cardToken">card_token.</param>
         /// <param name="card">Card.</param>
+        /// <param name="recurrencyCycle">recurrency_cycle.</param>
         public CreateVoucherPaymentRequest(
             string statementDescriptor = null,
             string cardId = null,
             string cardToken = null,
-            Models.CreateCardRequest card = null)
+            Models.CreateCardRequest card = null,
+            string recurrencyCycle = null)
         {
             this.StatementDescriptor = statementDescriptor;
             this.CardId = cardId;
             this.CardToken = cardToken;
             this.Card = card;
+            this.RecurrencyCycle = recurrencyCycle;
         }
 
         /// <summary>
@@ -70,6 +73,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("Card", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateCardRequest Card { get; set; }
+
+        /// <summary>
+        /// Defines whether the card has been used one or more times.
+        /// </summary>
+        [JsonProperty("recurrency_cycle", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrencyCycle { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -98,7 +107,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
                 ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
                 ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true));
+                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
         }
         
 
@@ -112,6 +122,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId == string.Empty ? "" : this.CardId)}");
             toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken == string.Empty ? "" : this.CardToken)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle == string.Empty ? "" : this.RecurrencyCycle)}");
         }
     }
 }

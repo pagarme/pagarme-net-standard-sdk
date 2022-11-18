@@ -62,6 +62,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public GetDebitCardTransactionResponse(
             string gatewayId,
             int amount,
@@ -92,7 +95,10 @@ namespace PagarmeApiSDK.Standard.Models
             string threedAuthenticationUrl,
             string transactionType = "debit_card",
             DateTime? nextAttempt = null,
-            Dictionary<string, string> metadata = null)
+            Dictionary<string, string> metadata = null,
+            Models.GetInterestResponse interest = null,
+            Models.GetFineResponse fine = null,
+            int? maxDaysToPayPastDue = null)
             : base(
                 gatewayId,
                 amount,
@@ -109,7 +115,10 @@ namespace PagarmeApiSDK.Standard.Models
                 split,
                 transactionType,
                 nextAttempt,
-                metadata)
+                metadata,
+                interest,
+                fine,
+                maxDaysToPayPastDue)
         {
             this.StatementDescriptor = statementDescriptor;
             this.AcquirerName = acquirerName;

@@ -40,6 +40,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="statementDescriptor">statement_descriptor.</param>
         /// <param name="dueAt">due_at.</param>
         /// <param name="nossoNumero">nosso_numero.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public CreateBoletoPaymentRequest(
             int retries,
             string bank,
@@ -49,7 +52,10 @@ namespace PagarmeApiSDK.Standard.Models
             string documentNumber,
             string statementDescriptor,
             DateTime? dueAt = null,
-            string nossoNumero = null)
+            string nossoNumero = null,
+            Models.CreateInterestRequest interest = null,
+            Models.CreateFineRequest fine = null,
+            int? maxDaysToPayPastDue = null)
         {
             this.Retries = retries;
             this.Bank = bank;
@@ -60,6 +66,9 @@ namespace PagarmeApiSDK.Standard.Models
             this.NossoNumero = nossoNumero;
             this.DocumentNumber = documentNumber;
             this.StatementDescriptor = statementDescriptor;
+            this.Interest = interest;
+            this.Fine = fine;
+            this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
         }
 
         /// <summary>
@@ -117,6 +126,24 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("statement_descriptor")]
         public string StatementDescriptor { get; set; }
 
+        /// <summary>
+        /// Gets or sets Interest.
+        /// </summary>
+        [JsonProperty("interest", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreateInterestRequest Interest { get; set; }
+
+        /// <summary>
+        /// Gets or sets Fine.
+        /// </summary>
+        [JsonProperty("fine", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreateFineRequest Fine { get; set; }
+
+        /// <summary>
+        /// Gets or sets MaxDaysToPayPastDue.
+        /// </summary>
+        [JsonProperty("max_days_to_pay_past_due", NullValueHandling = NullValueHandling.Ignore)]
+        public int? MaxDaysToPayPastDue { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -149,7 +176,10 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.BillingAddressId == null && other.BillingAddressId == null) || (this.BillingAddressId?.Equals(other.BillingAddressId) == true)) &&
                 ((this.NossoNumero == null && other.NossoNumero == null) || (this.NossoNumero?.Equals(other.NossoNumero) == true)) &&
                 ((this.DocumentNumber == null && other.DocumentNumber == null) || (this.DocumentNumber?.Equals(other.DocumentNumber) == true)) &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true));
+                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
+                ((this.Interest == null && other.Interest == null) || (this.Interest?.Equals(other.Interest) == true)) &&
+                ((this.Fine == null && other.Fine == null) || (this.Fine?.Equals(other.Fine) == true)) &&
+                ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
         }
         
 
@@ -168,6 +198,9 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.NossoNumero = {(this.NossoNumero == null ? "null" : this.NossoNumero == string.Empty ? "" : this.NossoNumero)}");
             toStringOutput.Add($"this.DocumentNumber = {(this.DocumentNumber == null ? "null" : this.DocumentNumber == string.Empty ? "" : this.DocumentNumber)}");
             toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor == string.Empty ? "" : this.StatementDescriptor)}");
+            toStringOutput.Add($"this.Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
+            toStringOutput.Add($"this.Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
+            toStringOutput.Add($"this.MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
         }
     }
 }

@@ -20,15 +20,15 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetTransactionResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
-    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
-    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
-    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
+    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
     [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
-    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
+    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse
     {
         /// <summary>
@@ -58,6 +58,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public GetTransactionResponse(
             string gatewayId,
             int amount,
@@ -74,7 +77,10 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.GetSplitResponse> split,
             string transactionType = "transaction",
             DateTime? nextAttempt = null,
-            Dictionary<string, string> metadata = null)
+            Dictionary<string, string> metadata = null,
+            Models.GetInterestResponse interest = null,
+            Models.GetFineResponse fine = null,
+            int? maxDaysToPayPastDue = null)
         {
             this.GatewayId = gatewayId;
             this.Amount = amount;
@@ -92,6 +98,9 @@ namespace PagarmeApiSDK.Standard.Models
             this.AntifraudResponse = antifraudResponse;
             this.Metadata = metadata;
             this.Split = split;
+            this.Interest = interest;
+            this.Fine = fine;
+            this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
         }
 
         /// <summary>
@@ -193,6 +202,24 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("split")]
         public List<Models.GetSplitResponse> Split { get; set; }
 
+        /// <summary>
+        /// Gets or sets Interest.
+        /// </summary>
+        [JsonProperty("interest", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.GetInterestResponse Interest { get; set; }
+
+        /// <summary>
+        /// Gets or sets Fine.
+        /// </summary>
+        [JsonProperty("fine", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.GetFineResponse Fine { get; set; }
+
+        /// <summary>
+        /// Gets or sets MaxDaysToPayPastDue.
+        /// </summary>
+        [JsonProperty("max_days_to_pay_past_due", NullValueHandling = NullValueHandling.Ignore)]
+        public int? MaxDaysToPayPastDue { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -232,7 +259,10 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.GatewayResponse == null && other.GatewayResponse == null) || (this.GatewayResponse?.Equals(other.GatewayResponse) == true)) &&
                 ((this.AntifraudResponse == null && other.AntifraudResponse == null) || (this.AntifraudResponse?.Equals(other.AntifraudResponse) == true)) &&
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true));
+                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
+                ((this.Interest == null && other.Interest == null) || (this.Interest?.Equals(other.Interest) == true)) &&
+                ((this.Fine == null && other.Fine == null) || (this.Fine?.Equals(other.Fine) == true)) &&
+                ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
         }
         
 
@@ -258,6 +288,9 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.AntifraudResponse = {(this.AntifraudResponse == null ? "null" : this.AntifraudResponse.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : $"[{string.Join(", ", this.Split)} ]")}");
+            toStringOutput.Add($"this.Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
+            toStringOutput.Add($"this.Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
+            toStringOutput.Add($"this.MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
         }
     }
 }

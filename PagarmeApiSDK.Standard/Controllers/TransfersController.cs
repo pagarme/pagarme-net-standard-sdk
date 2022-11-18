@@ -17,6 +17,7 @@ namespace PagarmeApiSDK.Standard.Controllers
     using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Http.Request;
+    using PagarmeApiSDK.Standard.Http.Request.Configuration;
     using PagarmeApiSDK.Standard.Http.Response;
     using PagarmeApiSDK.Standard.Utilities;
 
@@ -34,53 +35,6 @@ namespace PagarmeApiSDK.Standard.Controllers
         internal TransfersController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers)
             : base(config, httpClient, authManagers)
         {
-        }
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public Models.ListTransfers GetTransfers()
-        {
-            Task<Models.ListTransfers> t = this.GetTransfersAsync();
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/transfers");
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.ListTransfers>(response.Body);
         }
 
         /// <summary>
@@ -132,7 +86,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -188,13 +142,60 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetTransfer>(response.Body);
+        }
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public Models.ListTransfers GetTransfers()
+        {
+            Task<Models.ListTransfers> t = this.GetTransfersAsync();
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/transfers");
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.ListTransfers>(response.Body);
         }
     }
 }

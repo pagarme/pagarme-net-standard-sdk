@@ -8,18 +8,21 @@ namespace PagarmeApiSDK.Standard.Authentication
     public interface IBasicAuthCredentials
     {
         /// <summary>
-        /// Gets basicAuthUserName.
+        /// Gets string value for basicAuthUserName.
         /// </summary>
         string BasicAuthUserName { get; }
 
         /// <summary>
-        /// Gets basicAuthPassword.
+        /// Gets string value for basicAuthPassword.
         /// </summary>
         string BasicAuthPassword { get; }
 
         /// <summary>
         ///  Returns true if credentials matched.
         /// </summary>
+        /// <param name="basicAuthUserName"> The string value for credentials.</param>
+        /// <param name="basicAuthPassword"> The string value for credentials.</param>
+        /// <returns>True if credentials matched.</returns>
         bool Equals(string basicAuthUserName, string basicAuthPassword);
     }
 }

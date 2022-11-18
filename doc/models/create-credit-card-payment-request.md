@@ -25,6 +25,7 @@ The settings for creating a credit card payment
 | `Contactless` | [`Models.CreateCardPaymentContactlessRequest`](../../doc/models/create-card-payment-contactless-request.md) | Optional | The Credit card payment contactless request |
 | `AutoRecovery` | `bool?` | Optional | Indicates whether a particular payment will enter the offline retry flow |
 | `OperationType` | `string` | Optional | AuthOnly, AuthAndCapture, PreAuth |
+| `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
 
 ## Example (as JSON)
 
@@ -43,7 +44,8 @@ The settings for creating a credit card payment
   "authentication": null,
   "contactless": null,
   "auto_recovery": null,
-  "operation_type": null
+  "operation_type": null,
+  "recurrency_cycle": null
 }
 ```
 

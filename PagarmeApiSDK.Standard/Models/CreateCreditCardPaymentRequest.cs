@@ -45,6 +45,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="contactless">contactless.</param>
         /// <param name="autoRecovery">auto_recovery.</param>
         /// <param name="operationType">operation_type.</param>
+        /// <param name="recurrencyCycle">recurrency_cycle.</param>
         public CreateCreditCardPaymentRequest(
             int? installments = 1,
             string statementDescriptor = null,
@@ -59,7 +60,8 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreatePaymentAuthenticationRequest authentication = null,
             Models.CreateCardPaymentContactlessRequest contactless = null,
             bool? autoRecovery = null,
-            string operationType = null)
+            string operationType = null,
+            string recurrencyCycle = null)
         {
             this.Installments = installments;
             this.StatementDescriptor = statementDescriptor;
@@ -75,6 +77,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Contactless = contactless;
             this.AutoRecovery = autoRecovery;
             this.OperationType = operationType;
+            this.RecurrencyCycle = recurrencyCycle;
         }
 
         /// <summary>
@@ -161,6 +164,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("operation_type", NullValueHandling = NullValueHandling.Ignore)]
         public string OperationType { get; set; }
 
+        /// <summary>
+        /// Defines whether the card has been used one or more times.
+        /// </summary>
+        [JsonProperty("recurrency_cycle", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrencyCycle { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -198,7 +207,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true)) &&
                 ((this.Contactless == null && other.Contactless == null) || (this.Contactless?.Equals(other.Contactless) == true)) &&
                 ((this.AutoRecovery == null && other.AutoRecovery == null) || (this.AutoRecovery?.Equals(other.AutoRecovery) == true)) &&
-                ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true));
+                ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true)) &&
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
         }
         
 
@@ -222,6 +232,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Contactless = {(this.Contactless == null ? "null" : this.Contactless.ToString())}");
             toStringOutput.Add($"this.AutoRecovery = {(this.AutoRecovery == null ? "null" : this.AutoRecovery.ToString())}");
             toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType == string.Empty ? "" : this.OperationType)}");
+            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle == string.Empty ? "" : this.RecurrencyCycle)}");
         }
     }
 }

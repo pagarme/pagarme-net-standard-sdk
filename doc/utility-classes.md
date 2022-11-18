@@ -54,6 +54,24 @@ Extends from JsonConverter, allows the use of a custom converter.
 | `ListDateTimeConverter(Type converter)` | Initializes a new instance of the <see cref="ListDateTimeConverter"/> class. |
 | `ListDateTimeConverter(Type converter, string format)` | Initializes a new instance of the <see cref="ListDateTimeConverter"/> class. |
 
+## MapDateTimeConverter Class
+
+Extends from JsonConverter, allows the use of a custom converter.
+
+### Properties
+
+| Name | Description | Type |
+|  --- | --- | --- |
+| `Converter` | Gets or sets the JsonConverter. | `JsonConverter` |
+
+### Constructors
+
+| Name | Description |
+|  --- | --- |
+| `MapDateTimeConverter()` | Initializes a new instance of the <see cref="MapDateTimeConverter"/> class. |
+| `MapDateTimeConverter(Type converter)` | Initializes a new instance of the <see cref="MapDateTimeConverter"/> class. |
+| `MapDateTimeConverter(Type converter, string format)` | Initializes a new instance of the <see cref="MapDateTimeConverter"/> class. |
+
 ## UnixDateTimeConverter Class
 
 Extends from DateTimeConverterBase, uses unix DateTime format.

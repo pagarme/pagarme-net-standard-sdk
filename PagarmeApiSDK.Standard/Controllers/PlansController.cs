@@ -17,6 +17,7 @@ namespace PagarmeApiSDK.Standard.Controllers
     using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Http.Request;
+    using PagarmeApiSDK.Standard.Http.Request.Configuration;
     using PagarmeApiSDK.Standard.Http.Response;
     using PagarmeApiSDK.Standard.Utilities;
 
@@ -85,7 +86,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -95,33 +96,29 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
-        /// Updates a plan.
+        /// Deletes a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public Models.GetPlanResponse UpdatePlan(
+        public Models.GetPlanResponse DeletePlan(
                 string planId,
-                Models.UpdatePlanRequest request,
                 string idempotencyKey = null)
         {
-            Task<Models.GetPlanResponse> t = this.UpdatePlanAsync(planId, request, idempotencyKey);
+            Task<Models.GetPlanResponse> t = this.DeletePlanAsync(planId, idempotencyKey);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Updates a plan.
+        /// Deletes a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public async Task<Models.GetPlanResponse> UpdatePlanAsync(
+        public async Task<Models.GetPlanResponse> DeletePlanAsync(
                 string planId,
-                Models.UpdatePlanRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
         {
@@ -143,20 +140,16 @@ namespace PagarmeApiSDK.Standard.Controllers
             {
                 { "user-agent", this.UserAgent },
                 { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
                 { "idempotency-key", idempotencyKey },
             };
 
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
             // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PutBody(queryBuilder.ToString(), headers, bodyText);
+            HttpRequest httpRequest = this.GetClientInstance().Delete(queryBuilder.ToString(), headers, null);
 
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -227,7 +220,278 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetPlanResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Updates a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <param name="body">Required parameter: Request for updating the plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public Models.GetPlanItemResponse UpdatePlanItem(
+                string planId,
+                string planItemId,
+                Models.UpdatePlanItemRequest body,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetPlanItemResponse> t = this.UpdatePlanItemAsync(planId, planItemId, body, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Updates a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <param name="body">Required parameter: Request for updating the plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public async Task<Models.GetPlanItemResponse> UpdatePlanItemAsync(
+                string planId,
+                string planItemId,
+                Models.UpdatePlanItemRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/plans/{plan_id}/items/{plan_item_id}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "plan_id", planId },
+                { "plan_item_id", planItemId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(body);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PutBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetPlanItemResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Adds a new item to a plan.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for creating a plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public Models.GetPlanItemResponse CreatePlanItem(
+                string planId,
+                Models.CreatePlanItemRequest request,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetPlanItemResponse> t = this.CreatePlanItemAsync(planId, request, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Adds a new item to a plan.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for creating a plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public async Task<Models.GetPlanItemResponse> CreatePlanItemAsync(
+                string planId,
+                Models.CreatePlanItemRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/plans/{plan_id}/items");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "plan_id", planId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetPlanItemResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Gets a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public Models.GetPlanItemResponse GetPlanItem(
+                string planId,
+                string planItemId)
+        {
+            Task<Models.GetPlanItemResponse> t = this.GetPlanItemAsync(planId, planItemId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Gets a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public async Task<Models.GetPlanItemResponse> GetPlanItemAsync(
+                string planId,
+                string planItemId,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/plans/{plan_id}/items/{plan_item_id}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "plan_id", planId },
+                { "plan_item_id", planItemId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetPlanItemResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Creates a new plan.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating a plan.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
+        public Models.GetPlanResponse CreatePlan(
+                Models.CreatePlanRequest body,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetPlanResponse> t = this.CreatePlanAsync(body, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Creates a new plan.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating a plan.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
+        public async Task<Models.GetPlanResponse> CreatePlanAsync(
+                Models.CreatePlanRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/plans");
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(body);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -295,7 +559,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -383,7 +647,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -393,92 +657,33 @@ namespace PagarmeApiSDK.Standard.Controllers
         }
 
         /// <summary>
-        /// Gets a plan item.
+        /// Updates a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public Models.GetPlanItemResponse GetPlanItem(
-                string planId,
-                string planItemId)
-        {
-            Task<Models.GetPlanItemResponse> t = this.GetPlanItemAsync(planId, planItemId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Gets a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public async Task<Models.GetPlanItemResponse> GetPlanItemAsync(
-                string planId,
-                string planItemId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/plans/{plan_id}/items/{plan_item_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "plan_id", planId },
-                { "plan_item_id", planItemId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetPlanItemResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Deletes a plan.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public Models.GetPlanResponse DeletePlan(
+        public Models.GetPlanResponse UpdatePlan(
                 string planId,
+                Models.UpdatePlanRequest request,
                 string idempotencyKey = null)
         {
-            Task<Models.GetPlanResponse> t = this.DeletePlanAsync(planId, idempotencyKey);
+            Task<Models.GetPlanResponse> t = this.UpdatePlanAsync(planId, request, idempotencyKey);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Deletes a plan.
+        /// Updates a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public async Task<Models.GetPlanResponse> DeletePlanAsync(
+        public async Task<Models.GetPlanResponse> UpdatePlanAsync(
                 string planId,
+                Models.UpdatePlanRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
         {
@@ -500,149 +705,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             {
                 { "user-agent", this.UserAgent },
                 { "accept", "application/json" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Delete(queryBuilder.ToString(), headers, null);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetPlanResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Updates a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <param name="body">Required parameter: Request for updating the plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public Models.GetPlanItemResponse UpdatePlanItem(
-                string planId,
-                string planItemId,
-                Models.UpdatePlanItemRequest body,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetPlanItemResponse> t = this.UpdatePlanItemAsync(planId, planItemId, body, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Updates a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <param name="body">Required parameter: Request for updating the plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public async Task<Models.GetPlanItemResponse> UpdatePlanItemAsync(
-                string planId,
-                string planItemId,
-                Models.UpdatePlanItemRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/plans/{plan_id}/items/{plan_item_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "plan_id", planId },
-                { "plan_item_id", planItemId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(body);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PutBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetPlanItemResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Adds a new item to a plan.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for creating a plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public Models.GetPlanItemResponse CreatePlanItem(
-                string planId,
-                Models.CreatePlanItemRequest request,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetPlanItemResponse> t = this.CreatePlanItemAsync(planId, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Adds a new item to a plan.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for creating a plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public async Task<Models.GetPlanItemResponse> CreatePlanItemAsync(
-                string planId,
-                Models.CreatePlanItemRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/plans/{plan_id}/items");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "plan_id", planId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" },
                 { "idempotency-key", idempotencyKey },
             };
@@ -651,73 +713,12 @@ namespace PagarmeApiSDK.Standard.Controllers
             var bodyText = ApiHelper.JsonSerialize(request);
 
             // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
+            HttpRequest httpRequest = this.GetClientInstance().PutBody(queryBuilder.ToString(), headers, bodyText);
 
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetPlanItemResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Creates a new plan.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating a plan.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public Models.GetPlanResponse CreatePlan(
-                Models.CreatePlanRequest body,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetPlanResponse> t = this.CreatePlanAsync(body, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Creates a new plan.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating a plan.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public async Task<Models.GetPlanResponse> CreatePlanAsync(
-                Models.CreatePlanRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/plans");
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(body);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.

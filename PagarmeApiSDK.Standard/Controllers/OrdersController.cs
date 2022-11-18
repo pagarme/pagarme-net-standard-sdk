@@ -17,6 +17,7 @@ namespace PagarmeApiSDK.Standard.Controllers
     using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Http.Request;
+    using PagarmeApiSDK.Standard.Http.Request.Configuration;
     using PagarmeApiSDK.Standard.Http.Response;
     using PagarmeApiSDK.Standard.Utilities;
 
@@ -115,266 +116,13 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.ListOrderResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// GetOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public Models.GetOrderItemResponse GetOrderItem(
-                string orderId,
-                string itemId)
-        {
-            Task<Models.GetOrderItemResponse> t = this.GetOrderItemAsync(orderId, itemId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// GetOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public async Task<Models.GetOrderItemResponse> GetOrderItemAsync(
-                string orderId,
-                string itemId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/orders/{orderId}/items/{itemId}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "orderId", orderId },
-                { "itemId", itemId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Gets an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order id.</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse GetOrder(
-                string orderId)
-        {
-            Task<Models.GetOrderResponse> t = this.GetOrderAsync(orderId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Gets an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> GetOrderAsync(
-                string orderId,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/orders/{order_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "order_id", orderId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// CloseOrder EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Update Order Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse CloseOrder(
-                string id,
-                Models.UpdateOrderStatusRequest request,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetOrderResponse> t = this.CloseOrderAsync(id, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// CloseOrder EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Update Order Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> CloseOrderAsync(
-                string id,
-                Models.UpdateOrderStatusRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/orders/{id}/closed");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "id", id },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Creates a new Order.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating an order.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse CreateOrder(
-                Models.CreateOrderRequest body,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetOrderResponse> t = this.CreateOrderAsync(body, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Creates a new Order.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating an order.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> CreateOrderAsync(
-                Models.CreateOrderRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/orders");
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(body);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
         }
 
         /// <summary>
@@ -444,7 +192,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -507,78 +255,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
-        }
-
-        /// <summary>
-        /// Updates the metadata from an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: The order id.</param>
-        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse UpdateOrderMetadata(
-                string orderId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null)
-        {
-            Task<Models.GetOrderResponse> t = this.UpdateOrderMetadataAsync(orderId, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        /// <summary>
-        /// Updates the metadata from an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: The order id.</param>
-        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> UpdateOrderMetadataAsync(
-                string orderId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/Orders/{order_id}/metadata");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "order_id", orderId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
@@ -646,13 +323,145 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// CloseOrder EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Update Order Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse CloseOrder(
+                string id,
+                Models.UpdateOrderStatusRequest request,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetOrderResponse> t = this.CloseOrderAsync(id, request, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// CloseOrder EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Update Order Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> CloseOrderAsync(
+                string id,
+                Models.UpdateOrderStatusRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/orders/{id}/closed");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "id", id },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Creates a new Order.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating an order.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse CreateOrder(
+                Models.CreateOrderRequest body,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetOrderResponse> t = this.CreateOrderAsync(body, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Creates a new Order.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating an order.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> CreateOrderAsync(
+                Models.CreateOrderRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/orders");
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(body);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
         }
 
         /// <summary>
@@ -717,13 +526,205 @@ namespace PagarmeApiSDK.Standard.Controllers
             httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
             HttpContext context = new HttpContext(httpRequest, response);
 
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
             return ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// GetOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public Models.GetOrderItemResponse GetOrderItem(
+                string orderId,
+                string itemId)
+        {
+            Task<Models.GetOrderItemResponse> t = this.GetOrderItemAsync(orderId, itemId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// GetOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public async Task<Models.GetOrderItemResponse> GetOrderItemAsync(
+                string orderId,
+                string itemId,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/orders/{orderId}/items/{itemId}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "orderId", orderId },
+                { "itemId", itemId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Updates the metadata from an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: The order id.</param>
+        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse UpdateOrderMetadata(
+                string orderId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null)
+        {
+            Task<Models.GetOrderResponse> t = this.UpdateOrderMetadataAsync(orderId, request, idempotencyKey);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Updates the metadata from an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: The order id.</param>
+        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> UpdateOrderMetadataAsync(
+                string orderId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/Orders/{order_id}/metadata");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "order_id", orderId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+                { "content-type", "application/json; charset=utf-8" },
+                { "idempotency-key", idempotencyKey },
+            };
+
+            // append body params.
+            var bodyText = ApiHelper.JsonSerialize(request);
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PatchBody(queryBuilder.ToString(), headers, bodyText);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
+        }
+
+        /// <summary>
+        /// Gets an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order id.</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse GetOrder(
+                string orderId)
+        {
+            Task<Models.GetOrderResponse> t = this.GetOrderAsync(orderId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Gets an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> GetOrderAsync(
+                string orderId,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri();
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/orders/{order_id}");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "order_id", orderId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "accept", "application/json" },
+            };
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
+
+            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+
+            return ApiHelper.JsonDeserialize<Models.GetOrderResponse>(response.Body);
         }
     }
 }
