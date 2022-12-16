@@ -63,6 +63,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="period">period.</param>
         /// <param name="submerchant">submerchant.</param>
         /// <param name="split">split.</param>
+        /// <param name="boleto">boleto.</param>
         public CreateSubscriptionRequest(
             Models.CreateCustomerRequest customer,
             Models.CreateCardRequest card,
@@ -95,7 +96,8 @@ namespace PagarmeApiSDK.Standard.Models
             int? boletoDueDays = null,
             Models.CreatePeriodRequest period = null,
             Models.CreateSubMerchantRequest submerchant = null,
-            Models.CreateSubscriptionSplitRequest split = null)
+            Models.CreateSubscriptionSplitRequest split = null,
+            Models.CreateSubscriptionBoletoRequest boleto = null)
         {
             this.Customer = customer;
             this.Card = card;
@@ -129,6 +131,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Period = period;
             this.Submerchant = submerchant;
             this.Split = split;
+            this.Boleto = boleto;
         }
 
         /// <summary>
@@ -324,6 +327,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("split", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateSubscriptionSplitRequest Split { get; set; }
 
+        /// <summary>
+        /// Information about fines and interest on the "boleto" used from payment
+        /// </summary>
+        [JsonProperty("boleto", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreateSubscriptionBoletoRequest Boleto { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -379,7 +388,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Increments == null && other.Increments == null) || (this.Increments?.Equals(other.Increments) == true)) &&
                 ((this.Period == null && other.Period == null) || (this.Period?.Equals(other.Period) == true)) &&
                 ((this.Submerchant == null && other.Submerchant == null) || (this.Submerchant?.Equals(other.Submerchant) == true)) &&
-                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true));
+                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
+                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true));
         }
         
 
@@ -421,6 +431,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Period = {(this.Period == null ? "null" : this.Period.ToString())}");
             toStringOutput.Add($"this.Submerchant = {(this.Submerchant == null ? "null" : this.Submerchant.ToString())}");
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : this.Split.ToString())}");
+            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
         }
     }
 }
