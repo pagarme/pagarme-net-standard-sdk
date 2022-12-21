@@ -35,16 +35,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="cardId">card_id.</param>
         /// <param name="card">card.</param>
         /// <param name="cardToken">card_token.</param>
+        /// <param name="boleto">boleto.</param>
         public UpdateSubscriptionPaymentMethodRequest(
             string paymentMethod,
             string cardId,
             Models.CreateCardRequest card,
-            string cardToken = null)
+            string cardToken = null,
+            Models.CreateSubscriptionBoletoRequest boleto = null)
         {
             this.PaymentMethod = paymentMethod;
             this.CardId = cardId;
             this.Card = card;
             this.CardToken = cardToken;
+            this.Boleto = boleto;
         }
 
         /// <summary>
@@ -70,6 +73,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("card_token", NullValueHandling = NullValueHandling.Ignore)]
         public string CardToken { get; set; }
+
+        /// <summary>
+        /// Information about fines and interest on the "boleto" used from payment
+        /// </summary>
+        [JsonProperty("boleto", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreateSubscriptionBoletoRequest Boleto { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -98,7 +107,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.PaymentMethod == null && other.PaymentMethod == null) || (this.PaymentMethod?.Equals(other.PaymentMethod) == true)) &&
                 ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true));
+                ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
+                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true));
         }
         
 
@@ -112,6 +122,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId == string.Empty ? "" : this.CardId)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
             toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken == string.Empty ? "" : this.CardToken)}");
+            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
         }
     }
 }
