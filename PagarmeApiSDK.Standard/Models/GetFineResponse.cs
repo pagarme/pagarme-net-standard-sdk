@@ -35,9 +35,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="type">type.</param>
         /// <param name="amount">amount.</param>
         public GetFineResponse(
-            int days,
-            string type,
-            int amount)
+            int? days = null,
+            string type = null,
+            int? amount = null)
         {
             this.Days = days;
             this.Type = type;
@@ -47,20 +47,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Days
         /// </summary>
-        [JsonProperty("days")]
-        public int Days { get; set; }
+        [JsonProperty("days", NullValueHandling = NullValueHandling.Include)]
+        public int? Days { get; set; }
 
         /// <summary>
         /// Type
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Amount
         /// </summary>
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
+        public int? Amount { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -86,9 +86,9 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetFineResponse other &&
-                this.Days.Equals(other.Days) &&
+                ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                this.Amount.Equals(other.Amount);
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true));
         }
         
 
@@ -98,9 +98,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Days = {this.Days}");
+            toStringOutput.Add($"this.Days = {(this.Days == null ? "null" : this.Days.ToString())}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
         }
     }
 }

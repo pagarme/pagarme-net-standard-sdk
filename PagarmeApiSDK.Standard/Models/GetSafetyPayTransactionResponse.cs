@@ -21,12 +21,19 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSafetyPayTransactionResponse : GetTransactionResponse
     {
+        private DateTime? paidAt;
+        private int? paidAmount;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "paid_at", false },
+            { "paid_amount", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSafetyPayTransactionResponse"/> class.
         /// </summary>
         public GetSafetyPayTransactionResponse()
         {
-            this.TransactionType = "safetypay";
         }
 
         /// <summary>
@@ -41,42 +48,42 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="attemptCount">attempt_count.</param>
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
+        /// <param name="nextAttempt">next_attempt.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
-        /// <param name="split">split.</param>
-        /// <param name="url">url.</param>
-        /// <param name="bankTid">bank_tid.</param>
-        /// <param name="transactionType">transaction_type.</param>
-        /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="split">split.</param>
         /// <param name="interest">interest.</param>
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
+        /// <param name="url">url.</param>
+        /// <param name="bankTid">bank_tid.</param>
         /// <param name="paidAt">paid_at.</param>
         /// <param name="paidAmount">paid_amount.</param>
         public GetSafetyPayTransactionResponse(
-            string gatewayId,
-            int amount,
-            string status,
-            bool success,
-            DateTime createdAt,
-            DateTime updatedAt,
-            int attemptCount,
-            int maxAttempts,
-            List<Models.GetSplitResponse> splits,
-            string id,
-            Models.GetGatewayResponseResponse gatewayResponse,
-            Models.GetAntifraudResponse antifraudResponse,
-            List<Models.GetSplitResponse> split,
-            string url,
-            string bankTid,
-            string transactionType = "safetypay",
+            string gatewayId = null,
+            int? amount = null,
+            string status = null,
+            bool? success = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            int? attemptCount = null,
+            int? maxAttempts = null,
+            List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
+            string transactionType = null,
+            string id = null,
+            Models.GetGatewayResponseResponse gatewayResponse = null,
+            Models.GetAntifraudResponse antifraudResponse = null,
             Dictionary<string, string> metadata = null,
+            List<Models.GetSplitResponse> split = null,
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null,
+            string url = null,
+            string bankTid = null,
             DateTime? paidAt = null,
             int? paidAmount = null)
             : base(
@@ -89,47 +96,79 @@ namespace PagarmeApiSDK.Standard.Models
                 attemptCount,
                 maxAttempts,
                 splits,
+                nextAttempt,
+                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
-                split,
-                transactionType,
-                nextAttempt,
                 metadata,
+                split,
                 interest,
                 fine,
                 maxDaysToPayPastDue)
         {
             this.Url = url;
             this.BankTid = bankTid;
-            this.PaidAt = paidAt;
-            this.PaidAmount = paidAmount;
+            if (paidAt != null)
+            {
+                this.PaidAt = paidAt;
+            }
+
+            if (paidAmount != null)
+            {
+                this.PaidAmount = paidAmount;
+            }
+
         }
 
         /// <summary>
         /// Payment url
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Include)]
         public string Url { get; set; }
 
         /// <summary>
         /// Transaction identifier on bank
         /// </summary>
-        [JsonProperty("bank_tid")]
+        [JsonProperty("bank_tid", NullValueHandling = NullValueHandling.Include)]
         public string BankTid { get; set; }
 
         /// <summary>
         /// Payment date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("paid_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? PaidAt { get; set; }
+        [JsonProperty("paid_at")]
+        public DateTime? PaidAt
+        {
+            get
+            {
+                return this.paidAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["paid_at"] = true;
+                this.paidAt = value;
+            }
+        }
 
         /// <summary>
         /// Paid amount
         /// </summary>
-        [JsonProperty("paid_amount", NullValueHandling = NullValueHandling.Ignore)]
-        public int? PaidAmount { get; set; }
+        [JsonProperty("paid_amount")]
+        public int? PaidAmount
+        {
+            get
+            {
+                return this.paidAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["paid_amount"] = true;
+                this.paidAmount = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -139,6 +178,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetSafetyPayTransactionResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaidAt()
+        {
+            this.shouldSerialize["paid_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaidAmount()
+        {
+            this.shouldSerialize["paid_amount"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaidAt()
+        {
+            return this.shouldSerialize["paid_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaidAmount()
+        {
+            return this.shouldSerialize["paid_amount"];
         }
 
         /// <inheritdoc/>

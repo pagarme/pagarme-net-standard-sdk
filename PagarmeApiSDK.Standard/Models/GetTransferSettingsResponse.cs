@@ -35,9 +35,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transferInterval">transfer_interval.</param>
         /// <param name="transferDay">transfer_day.</param>
         public GetTransferSettingsResponse(
-            bool transferEnabled,
-            string transferInterval,
-            int transferDay)
+            bool? transferEnabled = null,
+            string transferInterval = null,
+            int? transferDay = null)
         {
             this.TransferEnabled = transferEnabled;
             this.TransferInterval = transferInterval;
@@ -47,20 +47,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets TransferEnabled.
         /// </summary>
-        [JsonProperty("transfer_enabled")]
-        public bool TransferEnabled { get; set; }
+        [JsonProperty("transfer_enabled", NullValueHandling = NullValueHandling.Include)]
+        public bool? TransferEnabled { get; set; }
 
         /// <summary>
         /// Gets or sets TransferInterval.
         /// </summary>
-        [JsonProperty("transfer_interval")]
+        [JsonProperty("transfer_interval", NullValueHandling = NullValueHandling.Include)]
         public string TransferInterval { get; set; }
 
         /// <summary>
         /// Gets or sets TransferDay.
         /// </summary>
-        [JsonProperty("transfer_day")]
-        public int TransferDay { get; set; }
+        [JsonProperty("transfer_day", NullValueHandling = NullValueHandling.Include)]
+        public int? TransferDay { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -86,9 +86,9 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetTransferSettingsResponse other &&
-                this.TransferEnabled.Equals(other.TransferEnabled) &&
+                ((this.TransferEnabled == null && other.TransferEnabled == null) || (this.TransferEnabled?.Equals(other.TransferEnabled) == true)) &&
                 ((this.TransferInterval == null && other.TransferInterval == null) || (this.TransferInterval?.Equals(other.TransferInterval) == true)) &&
-                this.TransferDay.Equals(other.TransferDay);
+                ((this.TransferDay == null && other.TransferDay == null) || (this.TransferDay?.Equals(other.TransferDay) == true));
         }
         
 
@@ -98,9 +98,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.TransferEnabled = {this.TransferEnabled}");
+            toStringOutput.Add($"this.TransferEnabled = {(this.TransferEnabled == null ? "null" : this.TransferEnabled.ToString())}");
             toStringOutput.Add($"this.TransferInterval = {(this.TransferInterval == null ? "null" : this.TransferInterval == string.Empty ? "" : this.TransferInterval)}");
-            toStringOutput.Add($"this.TransferDay = {this.TransferDay}");
+            toStringOutput.Add($"this.TransferDay = {(this.TransferDay == null ? "null" : this.TransferDay.ToString())}");
         }
     }
 }

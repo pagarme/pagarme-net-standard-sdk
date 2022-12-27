@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetAddressResponse
     {
+        private Models.GetCustomerResponse customer;
+        private DateTime? deletedAt;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "customer", false },
+            { "deleted_at", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAddressResponse"/> class.
         /// </summary>
@@ -43,28 +51,28 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="status">status.</param>
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
+        /// <param name="customer">customer.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="line1">line_1.</param>
         /// <param name="line2">line_2.</param>
-        /// <param name="customer">customer.</param>
         /// <param name="deletedAt">deleted_at.</param>
         public GetAddressResponse(
-            string id,
-            string street,
-            string number,
-            string complement,
-            string zipCode,
-            string neighborhood,
-            string city,
-            string state,
-            string country,
-            string status,
-            DateTime createdAt,
-            DateTime updatedAt,
-            Dictionary<string, string> metadata,
-            string line1,
-            string line2,
+            string id = null,
+            string street = null,
+            string number = null,
+            string complement = null,
+            string zipCode = null,
+            string neighborhood = null,
+            string city = null,
+            string state = null,
+            string country = null,
+            string status = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
             Models.GetCustomerResponse customer = null,
+            Dictionary<string, string> metadata = null,
+            string line1 = null,
+            string line2 = null,
             DateTime? deletedAt = null)
         {
             this.Id = id;
@@ -79,117 +87,149 @@ namespace PagarmeApiSDK.Standard.Models
             this.Status = status;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
-            this.Customer = customer;
+            if (customer != null)
+            {
+                this.Customer = customer;
+            }
+
             this.Metadata = metadata;
             this.Line1 = line1;
             this.Line2 = line2;
-            this.DeletedAt = deletedAt;
+            if (deletedAt != null)
+            {
+                this.DeletedAt = deletedAt;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets Street.
         /// </summary>
-        [JsonProperty("street")]
+        [JsonProperty("street", NullValueHandling = NullValueHandling.Include)]
         public string Street { get; set; }
 
         /// <summary>
         /// Gets or sets Number.
         /// </summary>
-        [JsonProperty("number")]
+        [JsonProperty("number", NullValueHandling = NullValueHandling.Include)]
         public string Number { get; set; }
 
         /// <summary>
         /// Gets or sets Complement.
         /// </summary>
-        [JsonProperty("complement")]
+        [JsonProperty("complement", NullValueHandling = NullValueHandling.Include)]
         public string Complement { get; set; }
 
         /// <summary>
         /// Gets or sets ZipCode.
         /// </summary>
-        [JsonProperty("zip_code")]
+        [JsonProperty("zip_code", NullValueHandling = NullValueHandling.Include)]
         public string ZipCode { get; set; }
 
         /// <summary>
         /// Gets or sets Neighborhood.
         /// </summary>
-        [JsonProperty("neighborhood")]
+        [JsonProperty("neighborhood", NullValueHandling = NullValueHandling.Include)]
         public string Neighborhood { get; set; }
 
         /// <summary>
         /// Gets or sets City.
         /// </summary>
-        [JsonProperty("city")]
+        [JsonProperty("city", NullValueHandling = NullValueHandling.Include)]
         public string City { get; set; }
 
         /// <summary>
         /// Gets or sets State.
         /// </summary>
-        [JsonProperty("state")]
+        [JsonProperty("state", NullValueHandling = NullValueHandling.Include)]
         public string State { get; set; }
 
         /// <summary>
         /// Gets or sets Country.
         /// </summary>
-        [JsonProperty("country")]
+        [JsonProperty("country", NullValueHandling = NullValueHandling.Include)]
         public string Country { get; set; }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets UpdatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets Customer.
         /// </summary>
-        [JsonProperty("customer", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCustomerResponse Customer { get; set; }
+        [JsonProperty("customer")]
+        public Models.GetCustomerResponse Customer
+        {
+            get
+            {
+                return this.customer;
+            }
+
+            set
+            {
+                this.shouldSerialize["customer"] = true;
+                this.customer = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Metadata.
         /// </summary>
-        [JsonProperty("metadata")]
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
         /// Line 1 for address
         /// </summary>
-        [JsonProperty("line_1")]
+        [JsonProperty("line_1", NullValueHandling = NullValueHandling.Include)]
         public string Line1 { get; set; }
 
         /// <summary>
         /// Line 2 for address
         /// </summary>
-        [JsonProperty("line_2")]
+        [JsonProperty("line_2", NullValueHandling = NullValueHandling.Include)]
         public string Line2 { get; set; }
 
         /// <summary>
         /// Gets or sets DeletedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("deleted_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? DeletedAt { get; set; }
+        [JsonProperty("deleted_at")]
+        public DateTime? DeletedAt
+        {
+            get
+            {
+                return this.deletedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["deleted_at"] = true;
+                this.deletedAt = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -199,6 +239,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetAddressResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCustomer()
+        {
+            this.shouldSerialize["customer"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDeletedAt()
+        {
+            this.shouldSerialize["deleted_at"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCustomer()
+        {
+            return this.shouldSerialize["customer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDeletedAt()
+        {
+            return this.shouldSerialize["deleted_at"];
         }
 
         /// <inheritdoc/>
@@ -225,8 +299,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.State == null && other.State == null) || (this.State?.Equals(other.State) == true)) &&
                 ((this.Country == null && other.Country == null) || (this.Country?.Equals(other.Country) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
                 ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
                 ((this.Line1 == null && other.Line1 == null) || (this.Line1?.Equals(other.Line1) == true)) &&
@@ -251,8 +325,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.State = {(this.State == null ? "null" : this.State == string.Empty ? "" : this.State)}");
             toStringOutput.Add($"this.Country = {(this.Country == null ? "null" : this.Country == string.Empty ? "" : this.Country)}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
             toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
             toStringOutput.Add($"this.Line1 = {(this.Line1 == null ? "null" : this.Line1 == string.Empty ? "" : this.Line1)}");

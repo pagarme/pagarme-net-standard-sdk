@@ -14,14 +14,14 @@ Response object for getting an invoice
 | `Id` | `string` | Required | - |
 | `Code` | `string` | Required | - |
 | `Url` | `string` | Required | - |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Status` | `string` | Required | - |
 | `PaymentMethod` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
 | `Items` | [`List<Models.GetInvoiceItemResponse>`](../../doc/models/get-invoice-item-response.md) | Required | - |
 | `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Charge` | [`Models.GetChargeResponse`](../../doc/models/get-charge-response.md) | Required | - |
-| `Installments` | `int` | Required | - |
+| `Installments` | `int?` | Required | - |
 | `BillingAddress` | [`Models.GetBillingAddressResponse`](../../doc/models/get-billing-address-response.md) | Required | - |
 | `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Required | - |
 | `Cycle` | [`Models.GetPeriodResponse`](../../doc/models/get-period-response.md) | Optional | - |

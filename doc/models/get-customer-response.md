@@ -14,9 +14,9 @@ Response object for getting a customer
 | `Id` | `string` | Required | - |
 | `Name` | `string` | Required | - |
 | `Email` | `string` | Required | - |
-| `Delinquent` | `bool` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `Delinquent` | `bool?` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `Document` | `string` | Required | - |
 | `Type` | `string` | Required | - |
 | `FbAccessToken` | `string` | Required | - |

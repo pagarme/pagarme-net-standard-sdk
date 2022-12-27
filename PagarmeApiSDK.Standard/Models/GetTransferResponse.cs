@@ -39,13 +39,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="bankAccount">bank_account.</param>
         /// <param name="metadata">metadata.</param>
         public GetTransferResponse(
-            string id,
-            int amount,
-            string status,
-            DateTime createdAt,
-            DateTime updatedAt,
-            Models.GetBankAccountResponse bankAccount,
-            Dictionary<string, string> metadata)
+            string id = null,
+            int? amount = null,
+            string status = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            Models.GetBankAccountResponse bankAccount = null,
+            Dictionary<string, string> metadata = null)
         {
             this.Id = id;
             this.Amount = amount;
@@ -59,45 +59,45 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Transfer amount
         /// </summary>
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
+        public int? Amount { get; set; }
 
         /// <summary>
         /// Transfer status
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Transfer creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Transfer last update date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Bank account
         /// </summary>
-        [JsonProperty("bank_account")]
+        [JsonProperty("bank_account", NullValueHandling = NullValueHandling.Include)]
         public Models.GetBankAccountResponse BankAccount { get; set; }
 
         /// <summary>
         /// Metadata
         /// </summary>
-        [JsonProperty("metadata")]
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <inheritdoc/>
@@ -125,10 +125,10 @@ namespace PagarmeApiSDK.Standard.Models
 
             return obj is GetTransferResponse other &&
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                this.Amount.Equals(other.Amount) &&
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
                 ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true)) &&
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true));
         }
@@ -141,10 +141,10 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
             toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
         }

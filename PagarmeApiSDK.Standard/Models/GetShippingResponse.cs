@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetShippingResponse
     {
+        private DateTime? maxDeliveryDate;
+        private DateTime? estimatedDeliveryDate;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "max_delivery_date", false },
+            { "estimated_delivery_date", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetShippingResponse"/> class.
         /// </summary>
@@ -36,77 +44,109 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="recipientName">recipient_name.</param>
         /// <param name="recipientPhone">recipient_phone.</param>
         /// <param name="address">address.</param>
-        /// <param name="type">type.</param>
         /// <param name="maxDeliveryDate">max_delivery_date.</param>
         /// <param name="estimatedDeliveryDate">estimated_delivery_date.</param>
+        /// <param name="type">type.</param>
         public GetShippingResponse(
-            int amount,
-            string description,
-            string recipientName,
-            string recipientPhone,
-            Models.GetAddressResponse address,
-            string type,
+            int? amount = null,
+            string description = null,
+            string recipientName = null,
+            string recipientPhone = null,
+            Models.GetAddressResponse address = null,
             DateTime? maxDeliveryDate = null,
-            DateTime? estimatedDeliveryDate = null)
+            DateTime? estimatedDeliveryDate = null,
+            string type = null)
         {
             this.Amount = amount;
             this.Description = description;
             this.RecipientName = recipientName;
             this.RecipientPhone = recipientPhone;
             this.Address = address;
-            this.MaxDeliveryDate = maxDeliveryDate;
-            this.EstimatedDeliveryDate = estimatedDeliveryDate;
+            if (maxDeliveryDate != null)
+            {
+                this.MaxDeliveryDate = maxDeliveryDate;
+            }
+
+            if (estimatedDeliveryDate != null)
+            {
+                this.EstimatedDeliveryDate = estimatedDeliveryDate;
+            }
+
             this.Type = type;
         }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
+        public int? Amount { get; set; }
 
         /// <summary>
         /// Gets or sets Description.
         /// </summary>
-        [JsonProperty("description")]
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets RecipientName.
         /// </summary>
-        [JsonProperty("recipient_name")]
+        [JsonProperty("recipient_name", NullValueHandling = NullValueHandling.Include)]
         public string RecipientName { get; set; }
 
         /// <summary>
         /// Gets or sets RecipientPhone.
         /// </summary>
-        [JsonProperty("recipient_phone")]
+        [JsonProperty("recipient_phone", NullValueHandling = NullValueHandling.Include)]
         public string RecipientPhone { get; set; }
 
         /// <summary>
         /// Gets or sets Address.
         /// </summary>
-        [JsonProperty("address")]
+        [JsonProperty("address", NullValueHandling = NullValueHandling.Include)]
         public Models.GetAddressResponse Address { get; set; }
 
         /// <summary>
         /// Data máxima de entrega
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("max_delivery_date", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? MaxDeliveryDate { get; set; }
+        [JsonProperty("max_delivery_date")]
+        public DateTime? MaxDeliveryDate
+        {
+            get
+            {
+                return this.maxDeliveryDate;
+            }
+
+            set
+            {
+                this.shouldSerialize["max_delivery_date"] = true;
+                this.maxDeliveryDate = value;
+            }
+        }
 
         /// <summary>
         /// Prazo estimado de entrega
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("estimated_delivery_date", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? EstimatedDeliveryDate { get; set; }
+        [JsonProperty("estimated_delivery_date")]
+        public DateTime? EstimatedDeliveryDate
+        {
+            get
+            {
+                return this.estimatedDeliveryDate;
+            }
+
+            set
+            {
+                this.shouldSerialize["estimated_delivery_date"] = true;
+                this.estimatedDeliveryDate = value;
+            }
+        }
 
         /// <summary>
         /// Shipping Type
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <inheritdoc/>
@@ -117,6 +157,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetShippingResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMaxDeliveryDate()
+        {
+            this.shouldSerialize["max_delivery_date"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEstimatedDeliveryDate()
+        {
+            this.shouldSerialize["estimated_delivery_date"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMaxDeliveryDate()
+        {
+            return this.shouldSerialize["max_delivery_date"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEstimatedDeliveryDate()
+        {
+            return this.shouldSerialize["estimated_delivery_date"];
         }
 
         /// <inheritdoc/>
@@ -133,7 +207,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetShippingResponse other &&
-                this.Amount.Equals(other.Amount) &&
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 ((this.RecipientName == null && other.RecipientName == null) || (this.RecipientName?.Equals(other.RecipientName) == true)) &&
                 ((this.RecipientPhone == null && other.RecipientPhone == null) || (this.RecipientPhone?.Equals(other.RecipientPhone) == true)) &&
@@ -150,7 +224,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Amount = {this.Amount}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
             toStringOutput.Add($"this.RecipientName = {(this.RecipientName == null ? "null" : this.RecipientName == string.Empty ? "" : this.RecipientName)}");
             toStringOutput.Add($"this.RecipientPhone = {(this.RecipientPhone == null ? "null" : this.RecipientPhone == string.Empty ? "" : this.RecipientPhone)}");

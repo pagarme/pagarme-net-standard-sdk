@@ -11,7 +11,7 @@ Object used for returning lists of objects with pagination
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Total` | `int` | Required | Total number of pages |
+| `Total` | `int?` | Required | Total number of pages |
 | `Previous` | `string` | Required | Previous page |
 | `Next` | `string` | Required | Next page |
 

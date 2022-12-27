@@ -9,10 +9,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `bool` | Required | - |
+| `Enabled` | `bool?` | Required | - |
 | `Type` | `string` | Required | - |
-| `VolumePercentage` | `int` | Required | - |
-| `Delay` | `int` | Required | - |
+| `VolumePercentage` | `int?` | Required | - |
+| `Delay` | `int?` | Required | - |
 | `Days` | `List<int>` | Required | - |
 
 ## Example (as JSON)

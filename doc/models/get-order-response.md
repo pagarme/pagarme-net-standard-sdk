@@ -17,8 +17,8 @@ Response object for getting an Order
 | `Items` | [`List<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md) | Required | - |
 | `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `Charges` | [`List<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md) | Required | - |
 | `InvoiceUrl` | `string` | Required | - |
 | `Shipping` | [`Models.GetShippingResponse`](../../doc/models/get-shipping-response.md) | Required | - |
@@ -28,7 +28,7 @@ Response object for getting an Order
 | `SessionId` | `string` | Optional | Session id |
 | `Location` | [`Models.GetLocationResponse`](../../doc/models/get-location-response.md) | Optional | Location |
 | `Device` | [`Models.GetDeviceResponse`](../../doc/models/get-device-response.md) | Optional | Device's informations |
-| `Closed` | `bool` | Required | Indicates whether the order is closed |
+| `Closed` | `bool?` | Required | Indicates whether the order is closed |
 
 ## Example (as JSON)
 

@@ -21,9 +21,13 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSubscriptionBoletoResponse
     {
+        private Models.GetInterestResponse interest;
+        private Models.GetFineResponse fine;
         private int? maxDaysToPayPastDue;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "interest", false },
+            { "fine", false },
             { "max_days_to_pay_past_due", false },
         };
 
@@ -45,8 +49,16 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null)
         {
-            this.Interest = interest;
-            this.Fine = fine;
+            if (interest != null)
+            {
+                this.Interest = interest;
+            }
+
+            if (fine != null)
+            {
+                this.Fine = fine;
+            }
+
             if (maxDaysToPayPastDue != null)
             {
                 this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
@@ -57,14 +69,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Interest
         /// </summary>
-        [JsonProperty("interest", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetInterestResponse Interest { get; set; }
+        [JsonProperty("interest")]
+        public Models.GetInterestResponse Interest
+        {
+            get
+            {
+                return this.interest;
+            }
+
+            set
+            {
+                this.shouldSerialize["interest"] = true;
+                this.interest = value;
+            }
+        }
 
         /// <summary>
         /// Fine
         /// </summary>
-        [JsonProperty("fine", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetFineResponse Fine { get; set; }
+        [JsonProperty("fine")]
+        public Models.GetFineResponse Fine
+        {
+            get
+            {
+                return this.fine;
+            }
+
+            set
+            {
+                this.shouldSerialize["fine"] = true;
+                this.fine = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MaxDaysToPayPastDue.
@@ -97,9 +133,43 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetInterest()
+        {
+            this.shouldSerialize["interest"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFine()
+        {
+            this.shouldSerialize["fine"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetMaxDaysToPayPastDue()
         {
             this.shouldSerialize["max_days_to_pay_past_due"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInterest()
+        {
+            return this.shouldSerialize["interest"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFine()
+        {
+            return this.shouldSerialize["fine"];
         }
 
         /// <summary>

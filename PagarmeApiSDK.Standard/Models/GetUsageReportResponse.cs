@@ -35,9 +35,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="usageReportUrl">usage_report_url.</param>
         /// <param name="groupedReportUrl">grouped_report_url.</param>
         public GetUsageReportResponse(
-            string url,
-            string usageReportUrl,
-            string groupedReportUrl)
+            string url = null,
+            string usageReportUrl = null,
+            string groupedReportUrl = null)
         {
             this.Url = url;
             this.UsageReportUrl = usageReportUrl;
@@ -47,19 +47,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Url.
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Include)]
         public string Url { get; set; }
 
         /// <summary>
         /// Gets or sets UsageReportUrl.
         /// </summary>
-        [JsonProperty("usage_report_url")]
+        [JsonProperty("usage_report_url", NullValueHandling = NullValueHandling.Include)]
         public string UsageReportUrl { get; set; }
 
         /// <summary>
         /// Gets or sets GroupedReportUrl.
         /// </summary>
-        [JsonProperty("grouped_report_url")]
+        [JsonProperty("grouped_report_url", NullValueHandling = NullValueHandling.Include)]
         public string GroupedReportUrl { get; set; }
 
         /// <inheritdoc/>

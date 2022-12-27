@@ -19,24 +19,29 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetTransactionResponse.
     /// </summary>
-    [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
-    [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
-    [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
-    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
-    [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
-    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
-    [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
-    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
-    [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
-    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse
     {
+        private DateTime? nextAttempt;
+        private string transactionType;
+        private Dictionary<string, string> metadata;
+        private Models.GetInterestResponse interest;
+        private Models.GetFineResponse fine;
+        private int? maxDaysToPayPastDue;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "next_attempt", false },
+            { "transaction_type", false },
+            { "metadata", false },
+            { "interest", false },
+            { "fine", false },
+            { "max_days_to_pay_past_due", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTransactionResponse"/> class.
         /// </summary>
         public GetTransactionResponse()
         {
-            this.TransactionType = "transaction";
         }
 
         /// <summary>
@@ -51,33 +56,33 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="attemptCount">attempt_count.</param>
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
+        /// <param name="nextAttempt">next_attempt.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
-        /// <param name="split">split.</param>
-        /// <param name="transactionType">transaction_type.</param>
-        /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="split">split.</param>
         /// <param name="interest">interest.</param>
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public GetTransactionResponse(
-            string gatewayId,
-            int amount,
-            string status,
-            bool success,
-            DateTime createdAt,
-            DateTime updatedAt,
-            int attemptCount,
-            int maxAttempts,
-            List<Models.GetSplitResponse> splits,
-            string id,
-            Models.GetGatewayResponseResponse gatewayResponse,
-            Models.GetAntifraudResponse antifraudResponse,
-            List<Models.GetSplitResponse> split,
-            string transactionType = "transaction",
+            string gatewayId = null,
+            int? amount = null,
+            string status = null,
+            bool? success = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            int? attemptCount = null,
+            int? maxAttempts = null,
+            List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
+            string transactionType = null,
+            string id = null,
+            Models.GetGatewayResponseResponse gatewayResponse = null,
+            Models.GetAntifraudResponse antifraudResponse = null,
             Dictionary<string, string> metadata = null,
+            List<Models.GetSplitResponse> split = null,
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null)
@@ -91,134 +96,230 @@ namespace PagarmeApiSDK.Standard.Models
             this.AttemptCount = attemptCount;
             this.MaxAttempts = maxAttempts;
             this.Splits = splits;
-            this.NextAttempt = nextAttempt;
-            this.TransactionType = transactionType;
+            if (nextAttempt != null)
+            {
+                this.NextAttempt = nextAttempt;
+            }
+
+            if (transactionType != null)
+            {
+                this.TransactionType = transactionType;
+            }
+
             this.Id = id;
             this.GatewayResponse = gatewayResponse;
             this.AntifraudResponse = antifraudResponse;
-            this.Metadata = metadata;
+            if (metadata != null)
+            {
+                this.Metadata = metadata;
+            }
+
             this.Split = split;
-            this.Interest = interest;
-            this.Fine = fine;
-            this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
+            if (interest != null)
+            {
+                this.Interest = interest;
+            }
+
+            if (fine != null)
+            {
+                this.Fine = fine;
+            }
+
+            if (maxDaysToPayPastDue != null)
+            {
+                this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
+            }
+
         }
 
         /// <summary>
         /// Gateway transaction id
         /// </summary>
-        [JsonProperty("gateway_id")]
+        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Include)]
         public string GatewayId { get; set; }
 
         /// <summary>
         /// Amount in cents
         /// </summary>
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
+        public int? Amount { get; set; }
 
         /// <summary>
         /// Transaction status
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Indicates if the transaction ocurred successfuly
         /// </summary>
-        [JsonProperty("success")]
-        public bool Success { get; set; }
+        [JsonProperty("success", NullValueHandling = NullValueHandling.Include)]
+        public bool? Success { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Last update date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Number of attempts tried
         /// </summary>
-        [JsonProperty("attempt_count")]
-        public int AttemptCount { get; set; }
+        [JsonProperty("attempt_count", NullValueHandling = NullValueHandling.Include)]
+        public int? AttemptCount { get; set; }
 
         /// <summary>
         /// Max attempts
         /// </summary>
-        [JsonProperty("max_attempts")]
-        public int MaxAttempts { get; set; }
+        [JsonProperty("max_attempts", NullValueHandling = NullValueHandling.Include)]
+        public int? MaxAttempts { get; set; }
 
         /// <summary>
         /// Splits
         /// </summary>
-        [JsonProperty("splits")]
+        [JsonProperty("splits", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetSplitResponse> Splits { get; set; }
 
         /// <summary>
         /// Date and time of the next attempt
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("next_attempt", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? NextAttempt { get; set; }
+        [JsonProperty("next_attempt")]
+        public DateTime? NextAttempt
+        {
+            get
+            {
+                return this.nextAttempt;
+            }
+
+            set
+            {
+                this.shouldSerialize["next_attempt"] = true;
+                this.nextAttempt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets TransactionType.
         /// </summary>
-        [JsonProperty("transaction_type", NullValueHandling = NullValueHandling.Ignore)]
-        public string TransactionType { get; set; }
+        [JsonProperty("transaction_type")]
+        public string TransactionType
+        {
+            get
+            {
+                return this.transactionType;
+            }
+
+            set
+            {
+                this.shouldSerialize["transaction_type"] = true;
+                this.transactionType = value;
+            }
+        }
 
         /// <summary>
         /// Código da transação
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// The Gateway Response
         /// </summary>
-        [JsonProperty("gateway_response")]
+        [JsonProperty("gateway_response", NullValueHandling = NullValueHandling.Include)]
         public Models.GetGatewayResponseResponse GatewayResponse { get; set; }
 
         /// <summary>
         /// Gets or sets AntifraudResponse.
         /// </summary>
-        [JsonProperty("antifraud_response")]
+        [JsonProperty("antifraud_response", NullValueHandling = NullValueHandling.Include)]
         public Models.GetAntifraudResponse AntifraudResponse { get; set; }
 
         /// <summary>
         /// Gets or sets Metadata.
         /// </summary>
-        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> Metadata { get; set; }
+        [JsonProperty("metadata")]
+        public Dictionary<string, string> Metadata
+        {
+            get
+            {
+                return this.metadata;
+            }
+
+            set
+            {
+                this.shouldSerialize["metadata"] = true;
+                this.metadata = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Split.
         /// </summary>
-        [JsonProperty("split")]
+        [JsonProperty("split", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetSplitResponse> Split { get; set; }
 
         /// <summary>
         /// Gets or sets Interest.
         /// </summary>
-        [JsonProperty("interest", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetInterestResponse Interest { get; set; }
+        [JsonProperty("interest")]
+        public Models.GetInterestResponse Interest
+        {
+            get
+            {
+                return this.interest;
+            }
+
+            set
+            {
+                this.shouldSerialize["interest"] = true;
+                this.interest = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Fine.
         /// </summary>
-        [JsonProperty("fine", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetFineResponse Fine { get; set; }
+        [JsonProperty("fine")]
+        public Models.GetFineResponse Fine
+        {
+            get
+            {
+                return this.fine;
+            }
+
+            set
+            {
+                this.shouldSerialize["fine"] = true;
+                this.fine = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MaxDaysToPayPastDue.
         /// </summary>
-        [JsonProperty("max_days_to_pay_past_due", NullValueHandling = NullValueHandling.Ignore)]
-        public int? MaxDaysToPayPastDue { get; set; }
+        [JsonProperty("max_days_to_pay_past_due")]
+        public int? MaxDaysToPayPastDue
+        {
+            get
+            {
+                return this.maxDaysToPayPastDue;
+            }
+
+            set
+            {
+                this.shouldSerialize["max_days_to_pay_past_due"] = true;
+                this.maxDaysToPayPastDue = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -228,6 +329,108 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetTransactionResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetNextAttempt()
+        {
+            this.shouldSerialize["next_attempt"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTransactionType()
+        {
+            this.shouldSerialize["transaction_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMetadata()
+        {
+            this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInterest()
+        {
+            this.shouldSerialize["interest"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFine()
+        {
+            this.shouldSerialize["fine"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMaxDaysToPayPastDue()
+        {
+            this.shouldSerialize["max_days_to_pay_past_due"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeNextAttempt()
+        {
+            return this.shouldSerialize["next_attempt"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTransactionType()
+        {
+            return this.shouldSerialize["transaction_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMetadata()
+        {
+            return this.shouldSerialize["metadata"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInterest()
+        {
+            return this.shouldSerialize["interest"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFine()
+        {
+            return this.shouldSerialize["fine"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMaxDaysToPayPastDue()
+        {
+            return this.shouldSerialize["max_days_to_pay_past_due"];
         }
 
         /// <inheritdoc/>
@@ -245,13 +448,13 @@ namespace PagarmeApiSDK.Standard.Models
 
             return obj is GetTransactionResponse other &&
                 ((this.GatewayId == null && other.GatewayId == null) || (this.GatewayId?.Equals(other.GatewayId) == true)) &&
-                this.Amount.Equals(other.Amount) &&
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.Success.Equals(other.Success) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
-                this.AttemptCount.Equals(other.AttemptCount) &&
-                this.MaxAttempts.Equals(other.MaxAttempts) &&
+                ((this.Success == null && other.Success == null) || (this.Success?.Equals(other.Success) == true)) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
+                ((this.AttemptCount == null && other.AttemptCount == null) || (this.AttemptCount?.Equals(other.AttemptCount) == true)) &&
+                ((this.MaxAttempts == null && other.MaxAttempts == null) || (this.MaxAttempts?.Equals(other.MaxAttempts) == true)) &&
                 ((this.Splits == null && other.Splits == null) || (this.Splits?.Equals(other.Splits) == true)) &&
                 ((this.NextAttempt == null && other.NextAttempt == null) || (this.NextAttempt?.Equals(other.NextAttempt) == true)) &&
                 ((this.TransactionType == null && other.TransactionType == null) || (this.TransactionType?.Equals(other.TransactionType) == true)) &&
@@ -273,13 +476,13 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId == string.Empty ? "" : this.GatewayId)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.Success = {this.Success}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
-            toStringOutput.Add($"this.AttemptCount = {this.AttemptCount}");
-            toStringOutput.Add($"this.MaxAttempts = {this.MaxAttempts}");
+            toStringOutput.Add($"this.Success = {(this.Success == null ? "null" : this.Success.ToString())}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"this.AttemptCount = {(this.AttemptCount == null ? "null" : this.AttemptCount.ToString())}");
+            toStringOutput.Add($"this.MaxAttempts = {(this.MaxAttempts == null ? "null" : this.MaxAttempts.ToString())}");
             toStringOutput.Add($"this.Splits = {(this.Splits == null ? "null" : $"[{string.Join(", ", this.Splits)} ]")}");
             toStringOutput.Add($"this.NextAttempt = {(this.NextAttempt == null ? "null" : this.NextAttempt.ToString())}");
             toStringOutput.Add($"this.TransactionType = {(this.TransactionType == null ? "null" : this.TransactionType == string.Empty ? "" : this.TransactionType)}");

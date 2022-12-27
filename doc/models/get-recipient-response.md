@@ -18,9 +18,9 @@ Recipient response
 | `Description` | `string` | Required | Description |
 | `Type` | `string` | Required | Type |
 | `Status` | `string` | Required | Status |
-| `CreatedAt` | `DateTime` | Required | Creation date |
-| `UpdatedAt` | `DateTime` | Required | Last update date |
-| `DeletedAt` | `DateTime` | Required | Deletion date |
+| `CreatedAt` | `DateTime?` | Required | Creation date |
+| `UpdatedAt` | `DateTime?` | Required | Last update date |
+| `DeletedAt` | `DateTime?` | Required | Deletion date |
 | `DefaultBankAccount` | [`Models.GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Required | Default bank account |
 | `GatewayRecipients` | [`List<Models.GetGatewayRecipientResponse>`](../../doc/models/get-gateway-recipient-response.md) | Required | Info about the recipient on the gateway |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |

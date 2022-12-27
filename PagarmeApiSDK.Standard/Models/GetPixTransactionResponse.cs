@@ -26,7 +26,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetPixTransactionResponse()
         {
-            this.TransactionType = "pix";
         }
 
         /// <summary>
@@ -41,48 +40,48 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="attemptCount">attempt_count.</param>
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
+        /// <param name="nextAttempt">next_attempt.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
+        /// <param name="metadata">metadata.</param>
         /// <param name="split">split.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="qrCode">qr_code.</param>
         /// <param name="qrCodeUrl">qr_code_url.</param>
         /// <param name="expiresAt">expires_at.</param>
         /// <param name="additionalInformation">additional_information.</param>
-        /// <param name="payer">payer.</param>
-        /// <param name="transactionType">transaction_type.</param>
-        /// <param name="nextAttempt">next_attempt.</param>
-        /// <param name="metadata">metadata.</param>
-        /// <param name="interest">interest.</param>
-        /// <param name="fine">fine.</param>
-        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="endToEndId">end_to_end_id.</param>
+        /// <param name="payer">payer.</param>
         public GetPixTransactionResponse(
-            string gatewayId,
-            int amount,
-            string status,
-            bool success,
-            DateTime createdAt,
-            DateTime updatedAt,
-            int attemptCount,
-            int maxAttempts,
-            List<Models.GetSplitResponse> splits,
-            string id,
-            Models.GetGatewayResponseResponse gatewayResponse,
-            Models.GetAntifraudResponse antifraudResponse,
-            List<Models.GetSplitResponse> split,
-            string qrCode,
-            string qrCodeUrl,
-            DateTime expiresAt,
-            List<Models.PixAdditionalInformation> additionalInformation,
-            Models.GetPixPayerResponse payer,
-            string transactionType = "pix",
+            string gatewayId = null,
+            int? amount = null,
+            string status = null,
+            bool? success = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            int? attemptCount = null,
+            int? maxAttempts = null,
+            List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
+            string transactionType = null,
+            string id = null,
+            Models.GetGatewayResponseResponse gatewayResponse = null,
+            Models.GetAntifraudResponse antifraudResponse = null,
             Dictionary<string, string> metadata = null,
+            List<Models.GetSplitResponse> split = null,
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null,
-            string endToEndId = null)
+            string qrCode = null,
+            string qrCodeUrl = null,
+            DateTime? expiresAt = null,
+            List<Models.PixAdditionalInformation> additionalInformation = null,
+            string endToEndId = null,
+            Models.GetPixPayerResponse payer = null)
             : base(
                 gatewayId,
                 amount,
@@ -93,13 +92,13 @@ namespace PagarmeApiSDK.Standard.Models
                 attemptCount,
                 maxAttempts,
                 splits,
+                nextAttempt,
+                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
-                split,
-                transactionType,
-                nextAttempt,
                 metadata,
+                split,
                 interest,
                 fine,
                 maxDaysToPayPastDue)
@@ -115,26 +114,26 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets QrCode.
         /// </summary>
-        [JsonProperty("qr_code")]
+        [JsonProperty("qr_code", NullValueHandling = NullValueHandling.Include)]
         public string QrCode { get; set; }
 
         /// <summary>
         /// Gets or sets QrCodeUrl.
         /// </summary>
-        [JsonProperty("qr_code_url")]
+        [JsonProperty("qr_code_url", NullValueHandling = NullValueHandling.Include)]
         public string QrCodeUrl { get; set; }
 
         /// <summary>
         /// Gets or sets ExpiresAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("expires_at")]
-        public DateTime ExpiresAt { get; set; }
+        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? ExpiresAt { get; set; }
 
         /// <summary>
         /// Gets or sets AdditionalInformation.
         /// </summary>
-        [JsonProperty("additional_information")]
+        [JsonProperty("additional_information", NullValueHandling = NullValueHandling.Include)]
         public List<Models.PixAdditionalInformation> AdditionalInformation { get; set; }
 
         /// <summary>
@@ -146,7 +145,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Payer.
         /// </summary>
-        [JsonProperty("payer")]
+        [JsonProperty("payer", NullValueHandling = NullValueHandling.Include)]
         public Models.GetPixPayerResponse Payer { get; set; }
 
         /// <inheritdoc/>
@@ -175,7 +174,7 @@ namespace PagarmeApiSDK.Standard.Models
             return obj is GetPixTransactionResponse other &&
                 ((this.QrCode == null && other.QrCode == null) || (this.QrCode?.Equals(other.QrCode) == true)) &&
                 ((this.QrCodeUrl == null && other.QrCodeUrl == null) || (this.QrCodeUrl?.Equals(other.QrCodeUrl) == true)) &&
-                this.ExpiresAt.Equals(other.ExpiresAt) &&
+                ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
                 ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true)) &&
                 ((this.EndToEndId == null && other.EndToEndId == null) || (this.EndToEndId?.Equals(other.EndToEndId) == true)) &&
                 ((this.Payer == null && other.Payer == null) || (this.Payer?.Equals(other.Payer) == true)) &&
@@ -191,7 +190,7 @@ namespace PagarmeApiSDK.Standard.Models
         {
             toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode == string.Empty ? "" : this.QrCode)}");
             toStringOutput.Add($"this.QrCodeUrl = {(this.QrCodeUrl == null ? "null" : this.QrCodeUrl == string.Empty ? "" : this.QrCodeUrl)}");
-            toStringOutput.Add($"this.ExpiresAt = {this.ExpiresAt}");
+            toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
             toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
             toStringOutput.Add($"this.EndToEndId = {(this.EndToEndId == null ? "null" : this.EndToEndId == string.Empty ? "" : this.EndToEndId)}");
             toStringOutput.Add($"this.Payer = {(this.Payer == null ? "null" : this.Payer.ToString())}");

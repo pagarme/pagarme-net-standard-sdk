@@ -12,10 +12,10 @@ Response object for getting a usage
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | Id |
-| `Quantity` | `int` | Required | Quantity |
+| `Quantity` | `int?` | Required | Quantity |
 | `Description` | `string` | Required | Description |
-| `UsedAt` | `DateTime` | Required | Used at |
-| `CreatedAt` | `DateTime` | Required | Creation date |
+| `UsedAt` | `DateTime?` | Required | Used at |
+| `CreatedAt` | `DateTime?` | Required | Creation date |
 | `Status` | `string` | Required | Status |
 | `DeletedAt` | `DateTime?` | Optional | - |
 | `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Required | Subscription item |

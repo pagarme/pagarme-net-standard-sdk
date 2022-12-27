@@ -19,18 +19,18 @@ Resposta das configurações de pagamento do checkout
 | `GatewayAffiliationId` | `string` | Required | Código da afiliação onde o pagamento será processado no gateway |
 | `AcceptedPaymentMethods` | `List<string>` | Required | Meios de pagamento aceitos no checkout |
 | `Status` | `string` | Required | Status do checkout |
-| `SkipCheckoutSuccessPage` | `bool` | Required | Pular tela de sucesso pós-pagamento? |
-| `CreatedAt` | `DateTime` | Required | Data de criação |
-| `UpdatedAt` | `DateTime` | Required | Data de atualização |
+| `SkipCheckoutSuccessPage` | `bool?` | Required | Pular tela de sucesso pós-pagamento? |
+| `CreatedAt` | `DateTime?` | Required | Data de criação |
+| `UpdatedAt` | `DateTime?` | Required | Data de atualização |
 | `CanceledAt` | `DateTime?` | Optional | Data de cancelamento |
-| `CustomerEditable` | `bool` | Required | Torna o objeto customer editável |
+| `CustomerEditable` | `bool?` | Required | Torna o objeto customer editável |
 | `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | Dados do comprador |
 | `Billingaddress` | [`Models.GetAddressResponse`](../../doc/models/get-address-response.md) | Required | Dados do endereço de cobrança |
 | `CreditCard` | [`Models.GetCheckoutCreditCardPaymentResponse`](../../doc/models/get-checkout-credit-card-payment-response.md) | Required | Configurações de cartão de crédito |
 | `Boleto` | [`Models.GetCheckoutBoletoPaymentResponse`](../../doc/models/get-checkout-boleto-payment-response.md) | Required | Configurações de boleto |
-| `BillingAddressEditable` | `bool` | Required | Indica se o billing address poderá ser editado |
+| `BillingAddressEditable` | `bool?` | Required | Indica se o billing address poderá ser editado |
 | `Shipping` | [`Models.GetShippingResponse`](../../doc/models/get-shipping-response.md) | Required | Configurações  de entrega |
-| `Shippable` | `bool` | Required | Indica se possui entrega |
+| `Shippable` | `bool?` | Required | Indica se possui entrega |
 | `ClosedAt` | `DateTime?` | Optional | Data de fechamento |
 | `ExpiresAt` | `DateTime?` | Optional | Data de expiração |
 | `Currency` | `string` | Required | Moeda |

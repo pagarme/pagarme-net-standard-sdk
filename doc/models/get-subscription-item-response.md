@@ -12,8 +12,8 @@
 | `Id` | `string` | Required | - |
 | `Description` | `string` | Required | - |
 | `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `PricingScheme` | [`Models.GetPricingSchemeResponse`](../../doc/models/get-pricing-scheme-response.md) | Required | - |
 | `Discounts` | [`List<Models.GetDiscountResponse>`](../../doc/models/get-discount-response.md) | Required | - |
 | `Increments` | [`List<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md) | Required | - |

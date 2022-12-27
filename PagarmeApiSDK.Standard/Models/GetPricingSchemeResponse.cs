@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPricingSchemeResponse
     {
+        private int? minimumPrice;
+        private double? percentage;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "minimum_price", false },
+            { "percentage", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPricingSchemeResponse"/> class.
         /// </summary>
@@ -37,48 +45,80 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="minimumPrice">minimum_price.</param>
         /// <param name="percentage">percentage.</param>
         public GetPricingSchemeResponse(
-            int price,
-            string schemeType,
-            List<Models.GetPriceBracketResponse> priceBrackets,
+            int? price = null,
+            string schemeType = null,
+            List<Models.GetPriceBracketResponse> priceBrackets = null,
             int? minimumPrice = null,
             double? percentage = null)
         {
             this.Price = price;
             this.SchemeType = schemeType;
             this.PriceBrackets = priceBrackets;
-            this.MinimumPrice = minimumPrice;
-            this.Percentage = percentage;
+            if (minimumPrice != null)
+            {
+                this.MinimumPrice = minimumPrice;
+            }
+
+            if (percentage != null)
+            {
+                this.Percentage = percentage;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Price.
         /// </summary>
-        [JsonProperty("price")]
-        public int Price { get; set; }
+        [JsonProperty("price", NullValueHandling = NullValueHandling.Include)]
+        public int? Price { get; set; }
 
         /// <summary>
         /// Gets or sets SchemeType.
         /// </summary>
-        [JsonProperty("scheme_type")]
+        [JsonProperty("scheme_type", NullValueHandling = NullValueHandling.Include)]
         public string SchemeType { get; set; }
 
         /// <summary>
         /// Gets or sets PriceBrackets.
         /// </summary>
-        [JsonProperty("price_brackets")]
+        [JsonProperty("price_brackets", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetPriceBracketResponse> PriceBrackets { get; set; }
 
         /// <summary>
         /// Gets or sets MinimumPrice.
         /// </summary>
-        [JsonProperty("minimum_price", NullValueHandling = NullValueHandling.Ignore)]
-        public int? MinimumPrice { get; set; }
+        [JsonProperty("minimum_price")]
+        public int? MinimumPrice
+        {
+            get
+            {
+                return this.minimumPrice;
+            }
+
+            set
+            {
+                this.shouldSerialize["minimum_price"] = true;
+                this.minimumPrice = value;
+            }
+        }
 
         /// <summary>
         /// percentual value used in pricing_scheme Percent
         /// </summary>
-        [JsonProperty("percentage", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Percentage { get; set; }
+        [JsonProperty("percentage")]
+        public double? Percentage
+        {
+            get
+            {
+                return this.percentage;
+            }
+
+            set
+            {
+                this.shouldSerialize["percentage"] = true;
+                this.percentage = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -88,6 +128,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPricingSchemeResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMinimumPrice()
+        {
+            this.shouldSerialize["minimum_price"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPercentage()
+        {
+            this.shouldSerialize["percentage"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMinimumPrice()
+        {
+            return this.shouldSerialize["minimum_price"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePercentage()
+        {
+            return this.shouldSerialize["percentage"];
         }
 
         /// <inheritdoc/>
@@ -104,7 +178,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetPricingSchemeResponse other &&
-                this.Price.Equals(other.Price) &&
+                ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
                 ((this.SchemeType == null && other.SchemeType == null) || (this.SchemeType?.Equals(other.SchemeType) == true)) &&
                 ((this.PriceBrackets == null && other.PriceBrackets == null) || (this.PriceBrackets?.Equals(other.PriceBrackets) == true)) &&
                 ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true)) &&
@@ -118,7 +192,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Price = {this.Price}");
+            toStringOutput.Add($"this.Price = {(this.Price == null ? "null" : this.Price.ToString())}");
             toStringOutput.Add($"this.SchemeType = {(this.SchemeType == null ? "null" : this.SchemeType == string.Empty ? "" : this.SchemeType)}");
             toStringOutput.Add($"this.PriceBrackets = {(this.PriceBrackets == null ? "null" : $"[{string.Join(", ", this.PriceBrackets)} ]")}");
             toStringOutput.Add($"this.MinimumPrice = {(this.MinimumPrice == null ? "null" : this.MinimumPrice.ToString())}");

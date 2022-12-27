@@ -38,12 +38,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="category">category.</param>
         /// <param name="code">code.</param>
         public GetOrderItemResponse(
-            string id,
-            int amount,
-            string description,
-            int quantity,
-            string category,
-            string code)
+            string id = null,
+            int? amount = null,
+            string description = null,
+            int? quantity = null,
+            string category = null,
+            string code = null)
         {
             this.Id = id;
             this.Amount = amount;
@@ -56,37 +56,37 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount")]
-        public int Amount { get; set; }
+        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
+        public int? Amount { get; set; }
 
         /// <summary>
         /// Gets or sets Description.
         /// </summary>
-        [JsonProperty("description")]
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets Quantity.
         /// </summary>
-        [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        [JsonProperty("quantity", NullValueHandling = NullValueHandling.Include)]
+        public int? Quantity { get; set; }
 
         /// <summary>
         /// Category
         /// </summary>
-        [JsonProperty("category")]
+        [JsonProperty("category", NullValueHandling = NullValueHandling.Include)]
         public string Category { get; set; }
 
         /// <summary>
         /// Code
         /// </summary>
-        [JsonProperty("code")]
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
         public string Code { get; set; }
 
         /// <inheritdoc/>
@@ -114,9 +114,9 @@ namespace PagarmeApiSDK.Standard.Models
 
             return obj is GetOrderItemResponse other &&
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                this.Amount.Equals(other.Amount) &&
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
-                this.Quantity.Equals(other.Quantity) &&
+                ((this.Quantity == null && other.Quantity == null) || (this.Quantity?.Equals(other.Quantity) == true)) &&
                 ((this.Category == null && other.Category == null) || (this.Category?.Equals(other.Category) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true));
         }
@@ -129,9 +129,9 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
-            toStringOutput.Add($"this.Quantity = {this.Quantity}");
+            toStringOutput.Add($"this.Quantity = {(this.Quantity == null ? "null" : this.Quantity.ToString())}");
             toStringOutput.Add($"this.Category = {(this.Category == null ? "null" : this.Category == string.Empty ? "" : this.Category)}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
         }

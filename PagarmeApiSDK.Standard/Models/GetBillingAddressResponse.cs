@@ -42,16 +42,16 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="line1">line_1.</param>
         /// <param name="line2">line_2.</param>
         public GetBillingAddressResponse(
-            string street,
-            string number,
-            string zipCode,
-            string neighborhood,
-            string city,
-            string state,
-            string country,
-            string complement,
-            string line1,
-            string line2)
+            string street = null,
+            string number = null,
+            string zipCode = null,
+            string neighborhood = null,
+            string city = null,
+            string state = null,
+            string country = null,
+            string complement = null,
+            string line1 = null,
+            string line2 = null)
         {
             this.Street = street;
             this.Number = number;
@@ -68,61 +68,61 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Street.
         /// </summary>
-        [JsonProperty("street")]
+        [JsonProperty("street", NullValueHandling = NullValueHandling.Include)]
         public string Street { get; set; }
 
         /// <summary>
         /// Gets or sets Number.
         /// </summary>
-        [JsonProperty("number")]
+        [JsonProperty("number", NullValueHandling = NullValueHandling.Include)]
         public string Number { get; set; }
 
         /// <summary>
         /// Gets or sets ZipCode.
         /// </summary>
-        [JsonProperty("zip_code")]
+        [JsonProperty("zip_code", NullValueHandling = NullValueHandling.Include)]
         public string ZipCode { get; set; }
 
         /// <summary>
         /// Gets or sets Neighborhood.
         /// </summary>
-        [JsonProperty("neighborhood")]
+        [JsonProperty("neighborhood", NullValueHandling = NullValueHandling.Include)]
         public string Neighborhood { get; set; }
 
         /// <summary>
         /// Gets or sets City.
         /// </summary>
-        [JsonProperty("city")]
+        [JsonProperty("city", NullValueHandling = NullValueHandling.Include)]
         public string City { get; set; }
 
         /// <summary>
         /// Gets or sets State.
         /// </summary>
-        [JsonProperty("state")]
+        [JsonProperty("state", NullValueHandling = NullValueHandling.Include)]
         public string State { get; set; }
 
         /// <summary>
         /// Gets or sets Country.
         /// </summary>
-        [JsonProperty("country")]
+        [JsonProperty("country", NullValueHandling = NullValueHandling.Include)]
         public string Country { get; set; }
 
         /// <summary>
         /// Gets or sets Complement.
         /// </summary>
-        [JsonProperty("complement")]
+        [JsonProperty("complement", NullValueHandling = NullValueHandling.Include)]
         public string Complement { get; set; }
 
         /// <summary>
         /// Line 1 for address
         /// </summary>
-        [JsonProperty("line_1")]
+        [JsonProperty("line_1", NullValueHandling = NullValueHandling.Include)]
         public string Line1 { get; set; }
 
         /// <summary>
         /// Line 2 for address
         /// </summary>
-        [JsonProperty("line_2")]
+        [JsonProperty("line_2", NullValueHandling = NullValueHandling.Include)]
         public string Line2 { get; set; }
 
         /// <inheritdoc/>

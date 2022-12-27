@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="max">max.</param>
         /// <param name="min">min.</param>
         public GetAnticipationLimitsResponse(
-            Models.GetAnticipationLimitResponse max,
-            Models.GetAnticipationLimitResponse min)
+            Models.GetAnticipationLimitResponse max = null,
+            Models.GetAnticipationLimitResponse min = null)
         {
             this.Max = max;
             this.Min = min;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Max limit
         /// </summary>
-        [JsonProperty("max")]
+        [JsonProperty("max", NullValueHandling = NullValueHandling.Include)]
         public Models.GetAnticipationLimitResponse Max { get; set; }
 
         /// <summary>
         /// Min limit
         /// </summary>
-        [JsonProperty("min")]
+        [JsonProperty("min", NullValueHandling = NullValueHandling.Include)]
         public Models.GetAnticipationLimitResponse Min { get; set; }
 
         /// <inheritdoc/>

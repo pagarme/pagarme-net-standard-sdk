@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetDeviceResponse
     {
+        private string platform;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "platform", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetDeviceResponse"/> class.
         /// </summary>
@@ -35,14 +41,30 @@ namespace PagarmeApiSDK.Standard.Models
         public GetDeviceResponse(
             string platform = null)
         {
-            this.Platform = platform;
+            if (platform != null)
+            {
+                this.Platform = platform;
+            }
+
         }
 
         /// <summary>
         /// Device's platform name
         /// </summary>
-        [JsonProperty("platform", NullValueHandling = NullValueHandling.Ignore)]
-        public string Platform { get; set; }
+        [JsonProperty("platform")]
+        public string Platform
+        {
+            get
+            {
+                return this.platform;
+            }
+
+            set
+            {
+                this.shouldSerialize["platform"] = true;
+                this.platform = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -52,6 +74,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetDeviceResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPlatform()
+        {
+            this.shouldSerialize["platform"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePlatform()
+        {
+            return this.shouldSerialize["platform"];
         }
 
         /// <inheritdoc/>

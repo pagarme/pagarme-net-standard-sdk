@@ -36,19 +36,19 @@ namespace PagarmeApiSDK.Standard.Exceptions
         /// <summary>
         /// Gets or sets Message.
         /// </summary>
-        [JsonProperty("message")]
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Include)]
         public new string Message { get; set; }
 
         /// <summary>
         /// Gets or sets Errors.
         /// </summary>
-        [JsonProperty("errors")]
+        [JsonProperty("errors", NullValueHandling = NullValueHandling.Include)]
         public object Errors { get; set; }
 
         /// <summary>
         /// Gets or sets Request.
         /// </summary>
-        [JsonProperty("request")]
+        [JsonProperty("request", NullValueHandling = NullValueHandling.Include)]
         public object Request { get; set; }
     }
 }

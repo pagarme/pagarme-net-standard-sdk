@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="name">name.</param>
         /// <param name="date">date.</param>
         public GetTransactionReportFileResponse(
-            string name,
-            DateTime date)
+            string name = null,
+            DateTime? date = null)
         {
             this.Name = name;
             this.Date = date;
@@ -44,15 +44,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Name.
         /// </summary>
-        [JsonProperty("name")]
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Include)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets Date.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        [JsonProperty("date", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? Date { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -79,7 +79,7 @@ namespace PagarmeApiSDK.Standard.Models
 
             return obj is GetTransactionReportFileResponse other &&
                 ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                this.Date.Equals(other.Date);
+                ((this.Date == null && other.Date == null) || (this.Date?.Equals(other.Date) == true));
         }
         
 
@@ -90,7 +90,7 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name == string.Empty ? "" : this.Name)}");
-            toStringOutput.Add($"this.Date = {this.Date}");
+            toStringOutput.Add($"this.Date = {(this.Date == null ? "null" : this.Date.ToString())}");
         }
     }
 }

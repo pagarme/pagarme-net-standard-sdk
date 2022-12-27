@@ -21,12 +21,21 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetBoletoTransactionResponse : GetTransactionResponse
     {
+        private DateTime? dueAt;
+        private DateTime? paidAt;
+        private DateTime? creditAt;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "due_at", false },
+            { "paid_at", false },
+            { "credit_at", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetBoletoTransactionResponse"/> class.
         /// </summary>
         public GetBoletoTransactionResponse()
         {
-            this.TransactionType = "boleto";
         }
 
         /// <summary>
@@ -41,10 +50,16 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="attemptCount">attempt_count.</param>
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
+        /// <param name="nextAttempt">next_attempt.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
+        /// <param name="metadata">metadata.</param>
         /// <param name="split">split.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="url">url.</param>
         /// <param name="barcode">barcode.</param>
         /// <param name="nossoNumero">nosso_numero.</param>
@@ -52,59 +67,53 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="documentNumber">document_number.</param>
         /// <param name="instructions">instructions.</param>
         /// <param name="billingAddress">billing_address.</param>
+        /// <param name="dueAt">due_at.</param>
         /// <param name="qrCode">qr_code.</param>
         /// <param name="line">line.</param>
         /// <param name="pdfPassword">pdf_password.</param>
         /// <param name="pdf">pdf.</param>
+        /// <param name="paidAt">paid_at.</param>
         /// <param name="paidAmount">paid_amount.</param>
         /// <param name="type">type.</param>
-        /// <param name="statementDescriptor">statement_descriptor.</param>
-        /// <param name="transactionType">transaction_type.</param>
-        /// <param name="nextAttempt">next_attempt.</param>
-        /// <param name="metadata">metadata.</param>
-        /// <param name="interest">interest.</param>
-        /// <param name="fine">fine.</param>
-        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
-        /// <param name="dueAt">due_at.</param>
-        /// <param name="paidAt">paid_at.</param>
         /// <param name="creditAt">credit_at.</param>
+        /// <param name="statementDescriptor">statement_descriptor.</param>
         public GetBoletoTransactionResponse(
-            string gatewayId,
-            int amount,
-            string status,
-            bool success,
-            DateTime createdAt,
-            DateTime updatedAt,
-            int attemptCount,
-            int maxAttempts,
-            List<Models.GetSplitResponse> splits,
-            string id,
-            Models.GetGatewayResponseResponse gatewayResponse,
-            Models.GetAntifraudResponse antifraudResponse,
-            List<Models.GetSplitResponse> split,
-            string url,
-            string barcode,
-            string nossoNumero,
-            string bank,
-            string documentNumber,
-            string instructions,
-            Models.GetBillingAddressResponse billingAddress,
-            string qrCode,
-            string line,
-            string pdfPassword,
-            string pdf,
-            string paidAmount,
-            string type,
-            string statementDescriptor,
-            string transactionType = "boleto",
+            string gatewayId = null,
+            int? amount = null,
+            string status = null,
+            bool? success = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            int? attemptCount = null,
+            int? maxAttempts = null,
+            List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
+            string transactionType = null,
+            string id = null,
+            Models.GetGatewayResponseResponse gatewayResponse = null,
+            Models.GetAntifraudResponse antifraudResponse = null,
             Dictionary<string, string> metadata = null,
+            List<Models.GetSplitResponse> split = null,
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null,
+            string url = null,
+            string barcode = null,
+            string nossoNumero = null,
+            string bank = null,
+            string documentNumber = null,
+            string instructions = null,
+            Models.GetBillingAddressResponse billingAddress = null,
             DateTime? dueAt = null,
+            string qrCode = null,
+            string line = null,
+            string pdfPassword = null,
+            string pdf = null,
             DateTime? paidAt = null,
-            DateTime? creditAt = null)
+            string paidAmount = null,
+            string type = null,
+            DateTime? creditAt = null,
+            string statementDescriptor = null)
             : base(
                 gatewayId,
                 amount,
@@ -115,13 +124,13 @@ namespace PagarmeApiSDK.Standard.Models
                 attemptCount,
                 maxAttempts,
                 splits,
+                nextAttempt,
+                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
-                split,
-                transactionType,
-                nextAttempt,
                 metadata,
+                split,
                 interest,
                 fine,
                 maxDaysToPayPastDue)
@@ -133,121 +142,169 @@ namespace PagarmeApiSDK.Standard.Models
             this.DocumentNumber = documentNumber;
             this.Instructions = instructions;
             this.BillingAddress = billingAddress;
-            this.DueAt = dueAt;
+            if (dueAt != null)
+            {
+                this.DueAt = dueAt;
+            }
+
             this.QrCode = qrCode;
             this.Line = line;
             this.PdfPassword = pdfPassword;
             this.Pdf = pdf;
-            this.PaidAt = paidAt;
+            if (paidAt != null)
+            {
+                this.PaidAt = paidAt;
+            }
+
             this.PaidAmount = paidAmount;
             this.Type = type;
-            this.CreditAt = creditAt;
+            if (creditAt != null)
+            {
+                this.CreditAt = creditAt;
+            }
+
             this.StatementDescriptor = statementDescriptor;
         }
 
         /// <summary>
         /// Gets or sets Url.
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Include)]
         public string Url { get; set; }
 
         /// <summary>
         /// Gets or sets Barcode.
         /// </summary>
-        [JsonProperty("barcode")]
+        [JsonProperty("barcode", NullValueHandling = NullValueHandling.Include)]
         public string Barcode { get; set; }
 
         /// <summary>
         /// Gets or sets NossoNumero.
         /// </summary>
-        [JsonProperty("nosso_numero")]
+        [JsonProperty("nosso_numero", NullValueHandling = NullValueHandling.Include)]
         public string NossoNumero { get; set; }
 
         /// <summary>
         /// Gets or sets Bank.
         /// </summary>
-        [JsonProperty("bank")]
+        [JsonProperty("bank", NullValueHandling = NullValueHandling.Include)]
         public string Bank { get; set; }
 
         /// <summary>
         /// Gets or sets DocumentNumber.
         /// </summary>
-        [JsonProperty("document_number")]
+        [JsonProperty("document_number", NullValueHandling = NullValueHandling.Include)]
         public string DocumentNumber { get; set; }
 
         /// <summary>
         /// Gets or sets Instructions.
         /// </summary>
-        [JsonProperty("instructions")]
+        [JsonProperty("instructions", NullValueHandling = NullValueHandling.Include)]
         public string Instructions { get; set; }
 
         /// <summary>
         /// Gets or sets BillingAddress.
         /// </summary>
-        [JsonProperty("billing_address")]
+        [JsonProperty("billing_address", NullValueHandling = NullValueHandling.Include)]
         public Models.GetBillingAddressResponse BillingAddress { get; set; }
 
         /// <summary>
         /// Gets or sets DueAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("due_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? DueAt { get; set; }
+        [JsonProperty("due_at")]
+        public DateTime? DueAt
+        {
+            get
+            {
+                return this.dueAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["due_at"] = true;
+                this.dueAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets QrCode.
         /// </summary>
-        [JsonProperty("qr_code")]
+        [JsonProperty("qr_code", NullValueHandling = NullValueHandling.Include)]
         public string QrCode { get; set; }
 
         /// <summary>
         /// Gets or sets Line.
         /// </summary>
-        [JsonProperty("line")]
+        [JsonProperty("line", NullValueHandling = NullValueHandling.Include)]
         public string Line { get; set; }
 
         /// <summary>
         /// Gets or sets PdfPassword.
         /// </summary>
-        [JsonProperty("pdf_password")]
+        [JsonProperty("pdf_password", NullValueHandling = NullValueHandling.Include)]
         public string PdfPassword { get; set; }
 
         /// <summary>
         /// Gets or sets Pdf.
         /// </summary>
-        [JsonProperty("pdf")]
+        [JsonProperty("pdf", NullValueHandling = NullValueHandling.Include)]
         public string Pdf { get; set; }
 
         /// <summary>
         /// Gets or sets PaidAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("paid_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? PaidAt { get; set; }
+        [JsonProperty("paid_at")]
+        public DateTime? PaidAt
+        {
+            get
+            {
+                return this.paidAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["paid_at"] = true;
+                this.paidAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PaidAmount.
         /// </summary>
-        [JsonProperty("paid_amount")]
+        [JsonProperty("paid_amount", NullValueHandling = NullValueHandling.Include)]
         public string PaidAmount { get; set; }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets CreditAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("credit_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? CreditAt { get; set; }
+        [JsonProperty("credit_at")]
+        public DateTime? CreditAt
+        {
+            get
+            {
+                return this.creditAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["credit_at"] = true;
+                this.creditAt = value;
+            }
+        }
 
         /// <summary>
         /// Soft Descriptor
         /// </summary>
-        [JsonProperty("statement_descriptor")]
+        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
         public string StatementDescriptor { get; set; }
 
         /// <inheritdoc/>
@@ -258,6 +315,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetBoletoTransactionResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDueAt()
+        {
+            this.shouldSerialize["due_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaidAt()
+        {
+            this.shouldSerialize["paid_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreditAt()
+        {
+            this.shouldSerialize["credit_at"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDueAt()
+        {
+            return this.shouldSerialize["due_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaidAt()
+        {
+            return this.shouldSerialize["paid_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreditAt()
+        {
+            return this.shouldSerialize["credit_at"];
         }
 
         /// <inheritdoc/>

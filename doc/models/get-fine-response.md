@@ -11,9 +11,9 @@ Fine Response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Days` | `int` | Required | Days |
+| `Days` | `int?` | Required | Days |
 | `Type` | `string` | Required | Type |
-| `Amount` | `int` | Required | Amount |
+| `Amount` | `int?` | Required | Amount |
 
 ## Example (as JSON)
 

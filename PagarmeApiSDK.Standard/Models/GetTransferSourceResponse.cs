@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="sourceId">source_id.</param>
         /// <param name="type">type.</param>
         public GetTransferSourceResponse(
-            string sourceId,
-            string type)
+            string sourceId = null,
+            string type = null)
         {
             this.SourceId = sourceId;
             this.Type = type;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets SourceId.
         /// </summary>
-        [JsonProperty("source_id")]
+        [JsonProperty("source_id", NullValueHandling = NullValueHandling.Include)]
         public string SourceId { get; set; }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <inheritdoc/>

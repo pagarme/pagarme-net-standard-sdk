@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="type">type.</param>
         /// <param name="threedSecure">threed_secure.</param>
         public GetPaymentAuthenticationResponse(
-            string type,
-            Models.GetThreeDSecureResponse threedSecure)
+            string type = null,
+            Models.GetThreeDSecureResponse threedSecure = null)
         {
             this.Type = type;
             this.ThreedSecure = threedSecure;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// 3D-S payment authentication response
         /// </summary>
-        [JsonProperty("threed_secure")]
+        [JsonProperty("threed_secure", NullValueHandling = NullValueHandling.Include)]
         public Models.GetThreeDSecureResponse ThreedSecure { get; set; }
 
         /// <inheritdoc/>

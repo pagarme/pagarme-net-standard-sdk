@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="data">data.</param>
         /// <param name="paging">paging.</param>
         public ListChargeTransactionsResponse(
-            List<Models.GetTransactionResponse> data,
-            Models.PagingResponse paging)
+            List<Models.GetTransactionResponse> data = null,
+            Models.PagingResponse paging = null)
         {
             this.Data = data;
             this.Paging = paging;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// The charge transactions objects
         /// </summary>
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetTransactionResponse> Data { get; set; }
 
         /// <summary>
         /// Paging object
         /// </summary>
-        [JsonProperty("paging")]
+        [JsonProperty("paging", NullValueHandling = NullValueHandling.Include)]
         public Models.PagingResponse Paging { get; set; }
 
         /// <inheritdoc/>

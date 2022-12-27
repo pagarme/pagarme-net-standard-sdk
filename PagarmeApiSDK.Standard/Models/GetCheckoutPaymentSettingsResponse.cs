@@ -21,6 +21,18 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutPaymentSettingsResponse
     {
+        private Models.GetCustomerResponse customer;
+        private int? amount;
+        private string defaultPaymentMethod;
+        private string gatewayAffiliationId;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "customer", false },
+            { "amount", false },
+            { "default_payment_method", false },
+            { "gateway_affiliation_id", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutPaymentSettingsResponse"/> class.
         /// </summary>
@@ -40,10 +52,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="defaultPaymentMethod">default_payment_method.</param>
         /// <param name="gatewayAffiliationId">gateway_affiliation_id.</param>
         public GetCheckoutPaymentSettingsResponse(
-            string successUrl,
-            string paymentUrl,
-            List<string> acceptedPaymentMethods,
-            string status,
+            string successUrl = null,
+            string paymentUrl = null,
+            List<string> acceptedPaymentMethods = null,
+            string status = null,
             Models.GetCustomerResponse customer = null,
             int? amount = null,
             string defaultPaymentMethod = null,
@@ -53,59 +65,123 @@ namespace PagarmeApiSDK.Standard.Models
             this.PaymentUrl = paymentUrl;
             this.AcceptedPaymentMethods = acceptedPaymentMethods;
             this.Status = status;
-            this.Customer = customer;
-            this.Amount = amount;
-            this.DefaultPaymentMethod = defaultPaymentMethod;
-            this.GatewayAffiliationId = gatewayAffiliationId;
+            if (customer != null)
+            {
+                this.Customer = customer;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (defaultPaymentMethod != null)
+            {
+                this.DefaultPaymentMethod = defaultPaymentMethod;
+            }
+
+            if (gatewayAffiliationId != null)
+            {
+                this.GatewayAffiliationId = gatewayAffiliationId;
+            }
+
         }
 
         /// <summary>
         /// Success Url
         /// </summary>
-        [JsonProperty("success_url")]
+        [JsonProperty("success_url", NullValueHandling = NullValueHandling.Include)]
         public string SuccessUrl { get; set; }
 
         /// <summary>
         /// Payment Url
         /// </summary>
-        [JsonProperty("payment_url")]
+        [JsonProperty("payment_url", NullValueHandling = NullValueHandling.Include)]
         public string PaymentUrl { get; set; }
 
         /// <summary>
         /// Accepted Payment Methods
         /// </summary>
-        [JsonProperty("accepted_payment_methods")]
+        [JsonProperty("accepted_payment_methods", NullValueHandling = NullValueHandling.Include)]
         public List<string> AcceptedPaymentMethods { get; set; }
 
         /// <summary>
         /// Status
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Customer
         /// </summary>
-        [JsonProperty("customer", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCustomerResponse Customer { get; set; }
+        [JsonProperty("customer")]
+        public Models.GetCustomerResponse Customer
+        {
+            get
+            {
+                return this.customer;
+            }
+
+            set
+            {
+                this.shouldSerialize["customer"] = true;
+                this.customer = value;
+            }
+        }
 
         /// <summary>
         /// Payment amount
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Default Payment Method
         /// </summary>
-        [JsonProperty("default_payment_method", NullValueHandling = NullValueHandling.Ignore)]
-        public string DefaultPaymentMethod { get; set; }
+        [JsonProperty("default_payment_method")]
+        public string DefaultPaymentMethod
+        {
+            get
+            {
+                return this.defaultPaymentMethod;
+            }
+
+            set
+            {
+                this.shouldSerialize["default_payment_method"] = true;
+                this.defaultPaymentMethod = value;
+            }
+        }
 
         /// <summary>
         /// Gateway Affiliation Id
         /// </summary>
-        [JsonProperty("gateway_affiliation_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string GatewayAffiliationId { get; set; }
+        [JsonProperty("gateway_affiliation_id")]
+        public string GatewayAffiliationId
+        {
+            get
+            {
+                return this.gatewayAffiliationId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_affiliation_id"] = true;
+                this.gatewayAffiliationId = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -115,6 +191,74 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutPaymentSettingsResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCustomer()
+        {
+            this.shouldSerialize["customer"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDefaultPaymentMethod()
+        {
+            this.shouldSerialize["default_payment_method"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGatewayAffiliationId()
+        {
+            this.shouldSerialize["gateway_affiliation_id"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCustomer()
+        {
+            return this.shouldSerialize["customer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDefaultPaymentMethod()
+        {
+            return this.shouldSerialize["default_payment_method"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayAffiliationId()
+        {
+            return this.shouldSerialize["gateway_affiliation_id"];
         }
 
         /// <inheritdoc/>

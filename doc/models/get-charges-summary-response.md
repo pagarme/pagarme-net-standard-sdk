@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Total` | `int` | Required | - |
+| `Total` | `int?` | Required | - |
 
 ## Example (as JSON)
 

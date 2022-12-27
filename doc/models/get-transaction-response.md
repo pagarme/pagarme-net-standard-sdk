@@ -12,13 +12,13 @@ Generic response object for getting a transaction.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `GatewayId` | `string` | Required | Gateway transaction id |
-| `Amount` | `int` | Required | Amount in cents |
+| `Amount` | `int?` | Required | Amount in cents |
 | `Status` | `string` | Required | Transaction status |
-| `Success` | `bool` | Required | Indicates if the transaction ocurred successfuly |
-| `CreatedAt` | `DateTime` | Required | Creation date |
-| `UpdatedAt` | `DateTime` | Required | Last update date |
-| `AttemptCount` | `int` | Required | Number of attempts tried |
-| `MaxAttempts` | `int` | Required | Max attempts |
+| `Success` | `bool?` | Required | Indicates if the transaction ocurred successfuly |
+| `CreatedAt` | `DateTime?` | Required | Creation date |
+| `UpdatedAt` | `DateTime?` | Required | Last update date |
+| `AttemptCount` | `int?` | Required | Number of attempts tried |
+| `MaxAttempts` | `int?` | Required | Max attempts |
 | `Splits` | [`List<Models.GetSplitResponse>`](../../doc/models/get-split-response.md) | Required | Splits |
 | `NextAttempt` | `DateTime?` | Optional | Date and time of the next attempt |
 | `TransactionType` | `string` | Optional | - |
@@ -62,6 +62,7 @@ Generic response object for getting a transaction.
     }
   ],
   "next_attempt": null,
+  "transaction_type": null,
   "id": "id0",
   "gateway_response": {
     "code": "code6",
@@ -113,8 +114,7 @@ Generic response object for getting a transaction.
   ],
   "interest": null,
   "fine": null,
-  "max_days_to_pay_past_due": null,
-  "transaction_type": "transaction"
+  "max_days_to_pay_past_due": null
 }
 ```
 

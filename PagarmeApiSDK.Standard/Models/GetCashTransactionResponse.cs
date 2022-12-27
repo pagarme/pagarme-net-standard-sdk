@@ -26,7 +26,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetCashTransactionResponse()
         {
-            this.TransactionType = "cash";
         }
 
         /// <summary>
@@ -41,38 +40,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="attemptCount">attempt_count.</param>
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
+        /// <param name="nextAttempt">next_attempt.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
-        /// <param name="split">split.</param>
-        /// <param name="description">description.</param>
-        /// <param name="transactionType">transaction_type.</param>
-        /// <param name="nextAttempt">next_attempt.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="split">split.</param>
         /// <param name="interest">interest.</param>
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
+        /// <param name="description">description.</param>
         public GetCashTransactionResponse(
-            string gatewayId,
-            int amount,
-            string status,
-            bool success,
-            DateTime createdAt,
-            DateTime updatedAt,
-            int attemptCount,
-            int maxAttempts,
-            List<Models.GetSplitResponse> splits,
-            string id,
-            Models.GetGatewayResponseResponse gatewayResponse,
-            Models.GetAntifraudResponse antifraudResponse,
-            List<Models.GetSplitResponse> split,
-            string description,
-            string transactionType = "cash",
+            string gatewayId = null,
+            int? amount = null,
+            string status = null,
+            bool? success = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            int? attemptCount = null,
+            int? maxAttempts = null,
+            List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
+            string transactionType = null,
+            string id = null,
+            Models.GetGatewayResponseResponse gatewayResponse = null,
+            Models.GetAntifraudResponse antifraudResponse = null,
             Dictionary<string, string> metadata = null,
+            List<Models.GetSplitResponse> split = null,
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
-            int? maxDaysToPayPastDue = null)
+            int? maxDaysToPayPastDue = null,
+            string description = null)
             : base(
                 gatewayId,
                 amount,
@@ -83,13 +82,13 @@ namespace PagarmeApiSDK.Standard.Models
                 attemptCount,
                 maxAttempts,
                 splits,
+                nextAttempt,
+                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
-                split,
-                transactionType,
-                nextAttempt,
                 metadata,
+                split,
                 interest,
                 fine,
                 maxDaysToPayPastDue)
@@ -100,7 +99,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Description
         /// </summary>
-        [JsonProperty("description")]
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
         public string Description { get; set; }
 
         /// <inheritdoc/>

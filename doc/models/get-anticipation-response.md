@@ -12,13 +12,13 @@ Anticipation
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | Id |
-| `RequestedAmount` | `int` | Required | Requested amount |
-| `ApprovedAmount` | `int` | Required | Approved amount |
+| `RequestedAmount` | `int?` | Required | Requested amount |
+| `ApprovedAmount` | `int?` | Required | Approved amount |
 | `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `Pgid` | `string` | Required | Anticipation id on the gateway |
-| `CreatedAt` | `DateTime` | Required | Creation date |
-| `UpdatedAt` | `DateTime` | Required | Last update date |
-| `PaymentDate` | `DateTime` | Required | Payment date |
+| `CreatedAt` | `DateTime?` | Required | Creation date |
+| `UpdatedAt` | `DateTime?` | Required | Last update date |
+| `PaymentDate` | `DateTime?` | Required | Payment date |
 | `Status` | `string` | Required | Status |
 | `Timeframe` | `string` | Required | Timeframe |
 

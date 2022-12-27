@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="code">code.</param>
         /// <param name="errors">errors.</param>
         public GetGatewayResponseResponse(
-            string code,
-            List<Models.GetGatewayErrorResponse> errors)
+            string code = null,
+            List<Models.GetGatewayErrorResponse> errors = null)
         {
             this.Code = code;
             this.Errors = errors;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// The error code
         /// </summary>
-        [JsonProperty("code")]
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
         public string Code { get; set; }
 
         /// <summary>
         /// The gateway response errors list
         /// </summary>
-        [JsonProperty("errors")]
+        [JsonProperty("errors", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetGatewayErrorResponse> Errors { get; set; }
 
         /// <inheritdoc/>

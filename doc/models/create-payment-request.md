@@ -26,7 +26,7 @@ Payment data
 | `Customer` | [`Models.CreateCustomerRequest`](../../doc/models/create-customer-request.md) | Optional | Customer |
 | `Metadata` | `Dictionary<string, string>` | Optional | Metadata |
 | `Cash` | [`Models.CreateCashPaymentRequest`](../../doc/models/create-cash-payment-request.md) | Optional | Settings for cash payment |
-| `PrivateLabel` | [`Models.CreatePrivateLabelPaymentRequest`](../../doc/models/create-private-label-payment-request.md) | Required | Settings for private label payment |
+| `PrivateLabel` | [`Models.CreatePrivateLabelPaymentRequest`](../../doc/models/create-private-label-payment-request.md) | Optional | Settings for private label payment |
 | `Pix` | [`Models.CreatePixPaymentRequest`](../../doc/models/create-pix-payment-request.md) | Optional | Settings for pix payment |
 
 ## Example (as JSON)
@@ -48,18 +48,7 @@ Payment data
   "customer": null,
   "metadata": null,
   "cash": null,
-  "private_label": {
-    "installments": null,
-    "statement_descriptor": null,
-    "card": null,
-    "card_id": null,
-    "card_token": null,
-    "recurrence": null,
-    "capture": null,
-    "extended_limit_enabled": null,
-    "extended_limit_code": null,
-    "recurrency_cycle": null
-  },
+  "private_label": null,
   "pix": null
 }
 ```

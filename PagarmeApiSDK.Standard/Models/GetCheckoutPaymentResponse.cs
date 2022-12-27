@@ -21,6 +21,26 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutPaymentResponse
     {
+        private int? amount;
+        private DateTime? canceledAt;
+        private Models.GetCustomerResponse customer;
+        private DateTime? closedAt;
+        private DateTime? expiresAt;
+        private Models.GetCheckoutDebitCardPaymentResponse debitCard;
+        private Models.GetCheckoutBankTransferPaymentResponse bankTransfer;
+        private Models.GetCheckoutPixPaymentResponse pix;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "amount", false },
+            { "canceled_at", false },
+            { "customer", false },
+            { "closed_at", false },
+            { "expires_at", false },
+            { "debit_card", false },
+            { "bank_transfer", false },
+            { "pix", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutPaymentResponse"/> class.
         /// </summary>
@@ -32,6 +52,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Initializes a new instance of the <see cref="GetCheckoutPaymentResponse"/> class.
         /// </summary>
         /// <param name="id">id.</param>
+        /// <param name="amount">amount.</param>
         /// <param name="defaultPaymentMethod">default_payment_method.</param>
         /// <param name="successUrl">success_url.</param>
         /// <param name="paymentUrl">payment_url.</param>
@@ -41,54 +62,57 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="skipCheckoutSuccessPage">skip_checkout_success_page.</param>
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
+        /// <param name="canceledAt">canceled_at.</param>
         /// <param name="customerEditable">customer_editable.</param>
+        /// <param name="customer">customer.</param>
         /// <param name="billingaddress">billingaddress.</param>
         /// <param name="creditCard">credit_card.</param>
         /// <param name="boleto">boleto.</param>
         /// <param name="billingAddressEditable">billing_address_editable.</param>
         /// <param name="shipping">shipping.</param>
         /// <param name="shippable">shippable.</param>
-        /// <param name="currency">currency.</param>
-        /// <param name="acceptedBrands">accepted_brands.</param>
-        /// <param name="amount">amount.</param>
-        /// <param name="canceledAt">canceled_at.</param>
-        /// <param name="customer">customer.</param>
         /// <param name="closedAt">closed_at.</param>
         /// <param name="expiresAt">expires_at.</param>
+        /// <param name="currency">currency.</param>
         /// <param name="debitCard">debit_card.</param>
         /// <param name="bankTransfer">bank_transfer.</param>
+        /// <param name="acceptedBrands">accepted_brands.</param>
         /// <param name="pix">pix.</param>
         public GetCheckoutPaymentResponse(
-            string id,
-            string defaultPaymentMethod,
-            string successUrl,
-            string paymentUrl,
-            string gatewayAffiliationId,
-            List<string> acceptedPaymentMethods,
-            string status,
-            bool skipCheckoutSuccessPage,
-            DateTime createdAt,
-            DateTime updatedAt,
-            bool customerEditable,
-            Models.GetAddressResponse billingaddress,
-            Models.GetCheckoutCreditCardPaymentResponse creditCard,
-            Models.GetCheckoutBoletoPaymentResponse boleto,
-            bool billingAddressEditable,
-            Models.GetShippingResponse shipping,
-            bool shippable,
-            string currency,
-            List<string> acceptedBrands,
+            string id = null,
             int? amount = null,
+            string defaultPaymentMethod = null,
+            string successUrl = null,
+            string paymentUrl = null,
+            string gatewayAffiliationId = null,
+            List<string> acceptedPaymentMethods = null,
+            string status = null,
+            bool? skipCheckoutSuccessPage = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
             DateTime? canceledAt = null,
+            bool? customerEditable = null,
             Models.GetCustomerResponse customer = null,
+            Models.GetAddressResponse billingaddress = null,
+            Models.GetCheckoutCreditCardPaymentResponse creditCard = null,
+            Models.GetCheckoutBoletoPaymentResponse boleto = null,
+            bool? billingAddressEditable = null,
+            Models.GetShippingResponse shipping = null,
+            bool? shippable = null,
             DateTime? closedAt = null,
             DateTime? expiresAt = null,
+            string currency = null,
             Models.GetCheckoutDebitCardPaymentResponse debitCard = null,
             Models.GetCheckoutBankTransferPaymentResponse bankTransfer = null,
+            List<string> acceptedBrands = null,
             Models.GetCheckoutPixPaymentResponse pix = null)
         {
             this.Id = id;
-            this.Amount = amount;
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
             this.DefaultPaymentMethod = defaultPaymentMethod;
             this.SuccessUrl = successUrl;
             this.PaymentUrl = paymentUrl;
@@ -98,190 +122,314 @@ namespace PagarmeApiSDK.Standard.Models
             this.SkipCheckoutSuccessPage = skipCheckoutSuccessPage;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
-            this.CanceledAt = canceledAt;
+            if (canceledAt != null)
+            {
+                this.CanceledAt = canceledAt;
+            }
+
             this.CustomerEditable = customerEditable;
-            this.Customer = customer;
+            if (customer != null)
+            {
+                this.Customer = customer;
+            }
+
             this.Billingaddress = billingaddress;
             this.CreditCard = creditCard;
             this.Boleto = boleto;
             this.BillingAddressEditable = billingAddressEditable;
             this.Shipping = shipping;
             this.Shippable = shippable;
-            this.ClosedAt = closedAt;
-            this.ExpiresAt = expiresAt;
+            if (closedAt != null)
+            {
+                this.ClosedAt = closedAt;
+            }
+
+            if (expiresAt != null)
+            {
+                this.ExpiresAt = expiresAt;
+            }
+
             this.Currency = currency;
-            this.DebitCard = debitCard;
-            this.BankTransfer = bankTransfer;
+            if (debitCard != null)
+            {
+                this.DebitCard = debitCard;
+            }
+
+            if (bankTransfer != null)
+            {
+                this.BankTransfer = bankTransfer;
+            }
+
             this.AcceptedBrands = acceptedBrands;
-            this.Pix = pix;
+            if (pix != null)
+            {
+                this.Pix = pix;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Valor em centavos
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Meio de pagamento padrão no checkout
         /// </summary>
-        [JsonProperty("default_payment_method")]
+        [JsonProperty("default_payment_method", NullValueHandling = NullValueHandling.Include)]
         public string DefaultPaymentMethod { get; set; }
 
         /// <summary>
         /// Url de redirecionamento de sucesso após o checkou
         /// </summary>
-        [JsonProperty("success_url")]
+        [JsonProperty("success_url", NullValueHandling = NullValueHandling.Include)]
         public string SuccessUrl { get; set; }
 
         /// <summary>
         /// Url para pagamento usando o checkout
         /// </summary>
-        [JsonProperty("payment_url")]
+        [JsonProperty("payment_url", NullValueHandling = NullValueHandling.Include)]
         public string PaymentUrl { get; set; }
 
         /// <summary>
         /// Código da afiliação onde o pagamento será processado no gateway
         /// </summary>
-        [JsonProperty("gateway_affiliation_id")]
+        [JsonProperty("gateway_affiliation_id", NullValueHandling = NullValueHandling.Include)]
         public string GatewayAffiliationId { get; set; }
 
         /// <summary>
         /// Meios de pagamento aceitos no checkout
         /// </summary>
-        [JsonProperty("accepted_payment_methods")]
+        [JsonProperty("accepted_payment_methods", NullValueHandling = NullValueHandling.Include)]
         public List<string> AcceptedPaymentMethods { get; set; }
 
         /// <summary>
         /// Status do checkout
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Pular tela de sucesso pós-pagamento?
         /// </summary>
-        [JsonProperty("skip_checkout_success_page")]
-        public bool SkipCheckoutSuccessPage { get; set; }
+        [JsonProperty("skip_checkout_success_page", NullValueHandling = NullValueHandling.Include)]
+        public bool? SkipCheckoutSuccessPage { get; set; }
 
         /// <summary>
         /// Data de criação
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Data de atualização
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Data de cancelamento
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("canceled_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? CanceledAt { get; set; }
+        [JsonProperty("canceled_at")]
+        public DateTime? CanceledAt
+        {
+            get
+            {
+                return this.canceledAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["canceled_at"] = true;
+                this.canceledAt = value;
+            }
+        }
 
         /// <summary>
         /// Torna o objeto customer editável
         /// </summary>
-        [JsonProperty("customer_editable")]
-        public bool CustomerEditable { get; set; }
+        [JsonProperty("customer_editable", NullValueHandling = NullValueHandling.Include)]
+        public bool? CustomerEditable { get; set; }
 
         /// <summary>
         /// Dados do comprador
         /// </summary>
-        [JsonProperty("customer", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCustomerResponse Customer { get; set; }
+        [JsonProperty("customer")]
+        public Models.GetCustomerResponse Customer
+        {
+            get
+            {
+                return this.customer;
+            }
+
+            set
+            {
+                this.shouldSerialize["customer"] = true;
+                this.customer = value;
+            }
+        }
 
         /// <summary>
         /// Dados do endereço de cobrança
         /// </summary>
-        [JsonProperty("billingaddress")]
+        [JsonProperty("billingaddress", NullValueHandling = NullValueHandling.Include)]
         public Models.GetAddressResponse Billingaddress { get; set; }
 
         /// <summary>
         /// Configurações de cartão de crédito
         /// </summary>
-        [JsonProperty("credit_card")]
+        [JsonProperty("credit_card", NullValueHandling = NullValueHandling.Include)]
         public Models.GetCheckoutCreditCardPaymentResponse CreditCard { get; set; }
 
         /// <summary>
         /// Configurações de boleto
         /// </summary>
-        [JsonProperty("boleto")]
+        [JsonProperty("boleto", NullValueHandling = NullValueHandling.Include)]
         public Models.GetCheckoutBoletoPaymentResponse Boleto { get; set; }
 
         /// <summary>
         /// Indica se o billing address poderá ser editado
         /// </summary>
-        [JsonProperty("billing_address_editable")]
-        public bool BillingAddressEditable { get; set; }
+        [JsonProperty("billing_address_editable", NullValueHandling = NullValueHandling.Include)]
+        public bool? BillingAddressEditable { get; set; }
 
         /// <summary>
         /// Configurações  de entrega
         /// </summary>
-        [JsonProperty("shipping")]
+        [JsonProperty("shipping", NullValueHandling = NullValueHandling.Include)]
         public Models.GetShippingResponse Shipping { get; set; }
 
         /// <summary>
         /// Indica se possui entrega
         /// </summary>
-        [JsonProperty("shippable")]
-        public bool Shippable { get; set; }
+        [JsonProperty("shippable", NullValueHandling = NullValueHandling.Include)]
+        public bool? Shippable { get; set; }
 
         /// <summary>
         /// Data de fechamento
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("closed_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? ClosedAt { get; set; }
+        [JsonProperty("closed_at")]
+        public DateTime? ClosedAt
+        {
+            get
+            {
+                return this.closedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["closed_at"] = true;
+                this.closedAt = value;
+            }
+        }
 
         /// <summary>
         /// Data de expiração
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? ExpiresAt { get; set; }
+        [JsonProperty("expires_at")]
+        public DateTime? ExpiresAt
+        {
+            get
+            {
+                return this.expiresAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["expires_at"] = true;
+                this.expiresAt = value;
+            }
+        }
 
         /// <summary>
         /// Moeda
         /// </summary>
-        [JsonProperty("currency")]
+        [JsonProperty("currency", NullValueHandling = NullValueHandling.Include)]
         public string Currency { get; set; }
 
         /// <summary>
         /// Configurações de cartão de débito
         /// </summary>
-        [JsonProperty("debit_card", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCheckoutDebitCardPaymentResponse DebitCard { get; set; }
+        [JsonProperty("debit_card")]
+        public Models.GetCheckoutDebitCardPaymentResponse DebitCard
+        {
+            get
+            {
+                return this.debitCard;
+            }
+
+            set
+            {
+                this.shouldSerialize["debit_card"] = true;
+                this.debitCard = value;
+            }
+        }
 
         /// <summary>
         /// Bank transfer payment response
         /// </summary>
-        [JsonProperty("bank_transfer", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCheckoutBankTransferPaymentResponse BankTransfer { get; set; }
+        [JsonProperty("bank_transfer")]
+        public Models.GetCheckoutBankTransferPaymentResponse BankTransfer
+        {
+            get
+            {
+                return this.bankTransfer;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank_transfer"] = true;
+                this.bankTransfer = value;
+            }
+        }
 
         /// <summary>
         /// Accepted Brands
         /// </summary>
-        [JsonProperty("accepted_brands")]
+        [JsonProperty("accepted_brands", NullValueHandling = NullValueHandling.Include)]
         public List<string> AcceptedBrands { get; set; }
 
         /// <summary>
         /// Pix payment response
         /// </summary>
-        [JsonProperty("pix", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCheckoutPixPaymentResponse Pix { get; set; }
+        [JsonProperty("pix")]
+        public Models.GetCheckoutPixPaymentResponse Pix
+        {
+            get
+            {
+                return this.pix;
+            }
+
+            set
+            {
+                this.shouldSerialize["pix"] = true;
+                this.pix = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -291,6 +439,142 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutPaymentResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCanceledAt()
+        {
+            this.shouldSerialize["canceled_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCustomer()
+        {
+            this.shouldSerialize["customer"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetClosedAt()
+        {
+            this.shouldSerialize["closed_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetExpiresAt()
+        {
+            this.shouldSerialize["expires_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDebitCard()
+        {
+            this.shouldSerialize["debit_card"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBankTransfer()
+        {
+            this.shouldSerialize["bank_transfer"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPix()
+        {
+            this.shouldSerialize["pix"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCanceledAt()
+        {
+            return this.shouldSerialize["canceled_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCustomer()
+        {
+            return this.shouldSerialize["customer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeClosedAt()
+        {
+            return this.shouldSerialize["closed_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeExpiresAt()
+        {
+            return this.shouldSerialize["expires_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDebitCard()
+        {
+            return this.shouldSerialize["debit_card"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBankTransfer()
+        {
+            return this.shouldSerialize["bank_transfer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePix()
+        {
+            return this.shouldSerialize["pix"];
         }
 
         /// <inheritdoc/>
@@ -315,18 +599,18 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.GatewayAffiliationId == null && other.GatewayAffiliationId == null) || (this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true)) &&
                 ((this.AcceptedPaymentMethods == null && other.AcceptedPaymentMethods == null) || (this.AcceptedPaymentMethods?.Equals(other.AcceptedPaymentMethods) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.SkipCheckoutSuccessPage.Equals(other.SkipCheckoutSuccessPage) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
+                ((this.SkipCheckoutSuccessPage == null && other.SkipCheckoutSuccessPage == null) || (this.SkipCheckoutSuccessPage?.Equals(other.SkipCheckoutSuccessPage) == true)) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
                 ((this.CanceledAt == null && other.CanceledAt == null) || (this.CanceledAt?.Equals(other.CanceledAt) == true)) &&
-                this.CustomerEditable.Equals(other.CustomerEditable) &&
+                ((this.CustomerEditable == null && other.CustomerEditable == null) || (this.CustomerEditable?.Equals(other.CustomerEditable) == true)) &&
                 ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
                 ((this.Billingaddress == null && other.Billingaddress == null) || (this.Billingaddress?.Equals(other.Billingaddress) == true)) &&
                 ((this.CreditCard == null && other.CreditCard == null) || (this.CreditCard?.Equals(other.CreditCard) == true)) &&
                 ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                this.BillingAddressEditable.Equals(other.BillingAddressEditable) &&
+                ((this.BillingAddressEditable == null && other.BillingAddressEditable == null) || (this.BillingAddressEditable?.Equals(other.BillingAddressEditable) == true)) &&
                 ((this.Shipping == null && other.Shipping == null) || (this.Shipping?.Equals(other.Shipping) == true)) &&
-                this.Shippable.Equals(other.Shippable) &&
+                ((this.Shippable == null && other.Shippable == null) || (this.Shippable?.Equals(other.Shippable) == true)) &&
                 ((this.ClosedAt == null && other.ClosedAt == null) || (this.ClosedAt?.Equals(other.ClosedAt) == true)) &&
                 ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
                 ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
@@ -351,18 +635,18 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.GatewayAffiliationId = {(this.GatewayAffiliationId == null ? "null" : this.GatewayAffiliationId == string.Empty ? "" : this.GatewayAffiliationId)}");
             toStringOutput.Add($"this.AcceptedPaymentMethods = {(this.AcceptedPaymentMethods == null ? "null" : $"[{string.Join(", ", this.AcceptedPaymentMethods)} ]")}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.SkipCheckoutSuccessPage = {this.SkipCheckoutSuccessPage}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
+            toStringOutput.Add($"this.SkipCheckoutSuccessPage = {(this.SkipCheckoutSuccessPage == null ? "null" : this.SkipCheckoutSuccessPage.ToString())}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
             toStringOutput.Add($"this.CanceledAt = {(this.CanceledAt == null ? "null" : this.CanceledAt.ToString())}");
-            toStringOutput.Add($"this.CustomerEditable = {this.CustomerEditable}");
+            toStringOutput.Add($"this.CustomerEditable = {(this.CustomerEditable == null ? "null" : this.CustomerEditable.ToString())}");
             toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
             toStringOutput.Add($"this.Billingaddress = {(this.Billingaddress == null ? "null" : this.Billingaddress.ToString())}");
             toStringOutput.Add($"this.CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
             toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
-            toStringOutput.Add($"this.BillingAddressEditable = {this.BillingAddressEditable}");
+            toStringOutput.Add($"this.BillingAddressEditable = {(this.BillingAddressEditable == null ? "null" : this.BillingAddressEditable.ToString())}");
             toStringOutput.Add($"this.Shipping = {(this.Shipping == null ? "null" : this.Shipping.ToString())}");
-            toStringOutput.Add($"this.Shippable = {this.Shippable}");
+            toStringOutput.Add($"this.Shippable = {(this.Shippable == null ? "null" : this.Shippable.ToString())}");
             toStringOutput.Add($"this.ClosedAt = {(this.ClosedAt == null ? "null" : this.ClosedAt.ToString())}");
             toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
             toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency == string.Empty ? "" : this.Currency)}");

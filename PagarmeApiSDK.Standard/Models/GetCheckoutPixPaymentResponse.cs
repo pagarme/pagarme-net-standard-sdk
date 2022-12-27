@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="expiresAt">expires_at.</param>
         /// <param name="additionalInformation">additional_information.</param>
         public GetCheckoutPixPaymentResponse(
-            DateTime expiresAt,
-            List<Models.PixAdditionalInformation> additionalInformation)
+            DateTime? expiresAt = null,
+            List<Models.PixAdditionalInformation> additionalInformation = null)
         {
             this.ExpiresAt = expiresAt;
             this.AdditionalInformation = additionalInformation;
@@ -45,13 +45,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// Expires at
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("expires_at")]
-        public DateTime ExpiresAt { get; set; }
+        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? ExpiresAt { get; set; }
 
         /// <summary>
         /// Additional information
         /// </summary>
-        [JsonProperty("additional_information")]
+        [JsonProperty("additional_information", NullValueHandling = NullValueHandling.Include)]
         public List<Models.PixAdditionalInformation> AdditionalInformation { get; set; }
 
         /// <inheritdoc/>
@@ -78,7 +78,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetCheckoutPixPaymentResponse other &&
-                this.ExpiresAt.Equals(other.ExpiresAt) &&
+                ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
                 ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true));
         }
         
@@ -89,7 +89,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.ExpiresAt = {this.ExpiresAt}");
+            toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
             toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
         }
     }

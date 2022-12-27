@@ -12,7 +12,7 @@ Split response
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Type` | `string` | Required | Type |
-| `Amount` | `int` | Required | Amount |
+| `Amount` | `int?` | Required | Amount |
 | `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `GatewayId` | `string` | Required | The split rule gateway id |
 | `Options` | [`Models.GetSplitOptionsResponse`](../../doc/models/get-split-options-response.md) | Optional | - |

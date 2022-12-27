@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Number` | `string` | Required | Número de parcelas |
-| `Total` | `int` | Required | Valor total da compra |
+| `Total` | `int?` | Required | Valor total da compra |
 
 ## Example (as JSON)
 

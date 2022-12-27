@@ -42,16 +42,16 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="updatedAt">updated_at.</param>
         /// <param name="cycle">cycle.</param>
         public GetPeriodResponse(
-            DateTime startAt,
-            DateTime endAt,
-            string id,
-            DateTime billingAt,
-            Models.GetSubscriptionResponse subscription,
-            string status,
-            int duration,
-            string createdAt,
-            string updatedAt,
-            int cycle)
+            DateTime? startAt = null,
+            DateTime? endAt = null,
+            string id = null,
+            DateTime? billingAt = null,
+            Models.GetSubscriptionResponse subscription = null,
+            string status = null,
+            int? duration = null,
+            string createdAt = null,
+            string updatedAt = null,
+            int? cycle = null)
         {
             this.StartAt = startAt;
             this.EndAt = endAt;
@@ -69,64 +69,64 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets StartAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("start_at")]
-        public DateTime StartAt { get; set; }
+        [JsonProperty("start_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? StartAt { get; set; }
 
         /// <summary>
         /// Gets or sets EndAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("end_at")]
-        public DateTime EndAt { get; set; }
+        [JsonProperty("end_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? EndAt { get; set; }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets BillingAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("billing_at")]
-        public DateTime BillingAt { get; set; }
+        [JsonProperty("billing_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? BillingAt { get; set; }
 
         /// <summary>
         /// Gets or sets Subscription.
         /// </summary>
-        [JsonProperty("subscription")]
+        [JsonProperty("subscription", NullValueHandling = NullValueHandling.Include)]
         public Models.GetSubscriptionResponse Subscription { get; set; }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Gets or sets Duration.
         /// </summary>
-        [JsonProperty("duration")]
-        public int Duration { get; set; }
+        [JsonProperty("duration", NullValueHandling = NullValueHandling.Include)]
+        public int? Duration { get; set; }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
-        [JsonProperty("created_at")]
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
         public string CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets UpdatedAt.
         /// </summary>
-        [JsonProperty("updated_at")]
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
         public string UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets Cycle.
         /// </summary>
-        [JsonProperty("cycle")]
-        public int Cycle { get; set; }
+        [JsonProperty("cycle", NullValueHandling = NullValueHandling.Include)]
+        public int? Cycle { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -152,16 +152,16 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetPeriodResponse other &&
-                this.StartAt.Equals(other.StartAt) &&
-                this.EndAt.Equals(other.EndAt) &&
+                ((this.StartAt == null && other.StartAt == null) || (this.StartAt?.Equals(other.StartAt) == true)) &&
+                ((this.EndAt == null && other.EndAt == null) || (this.EndAt?.Equals(other.EndAt) == true)) &&
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                this.BillingAt.Equals(other.BillingAt) &&
+                ((this.BillingAt == null && other.BillingAt == null) || (this.BillingAt?.Equals(other.BillingAt) == true)) &&
                 ((this.Subscription == null && other.Subscription == null) || (this.Subscription?.Equals(other.Subscription) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.Duration.Equals(other.Duration) &&
+                ((this.Duration == null && other.Duration == null) || (this.Duration?.Equals(other.Duration) == true)) &&
                 ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
                 ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                this.Cycle.Equals(other.Cycle);
+                ((this.Cycle == null && other.Cycle == null) || (this.Cycle?.Equals(other.Cycle) == true));
         }
         
 
@@ -171,16 +171,16 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StartAt = {this.StartAt}");
-            toStringOutput.Add($"this.EndAt = {this.EndAt}");
+            toStringOutput.Add($"this.StartAt = {(this.StartAt == null ? "null" : this.StartAt.ToString())}");
+            toStringOutput.Add($"this.EndAt = {(this.EndAt == null ? "null" : this.EndAt.ToString())}");
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.BillingAt = {this.BillingAt}");
+            toStringOutput.Add($"this.BillingAt = {(this.BillingAt == null ? "null" : this.BillingAt.ToString())}");
             toStringOutput.Add($"this.Subscription = {(this.Subscription == null ? "null" : this.Subscription.ToString())}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.Duration = {this.Duration}");
+            toStringOutput.Add($"this.Duration = {(this.Duration == null ? "null" : this.Duration.ToString())}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt == string.Empty ? "" : this.CreatedAt)}");
             toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt == string.Empty ? "" : this.UpdatedAt)}");
-            toStringOutput.Add($"this.Cycle = {this.Cycle}");
+            toStringOutput.Add($"this.Cycle = {(this.Cycle == null ? "null" : this.Cycle.ToString())}");
         }
     }
 }

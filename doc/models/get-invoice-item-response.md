@@ -11,7 +11,7 @@ Response object for getting an invoice item
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Description` | `string` | Required | - |
 | `PricingScheme` | [`Models.GetPricingSchemeResponse`](../../doc/models/get-pricing-scheme-response.md) | Required | - |
 | `PriceBracket` | [`Models.GetPriceBracketResponse`](../../doc/models/get-price-bracket-response.md) | Required | - |

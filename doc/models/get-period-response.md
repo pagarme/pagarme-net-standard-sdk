@@ -11,16 +11,16 @@ Response object for getting a period
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `StartAt` | `DateTime` | Required | - |
-| `EndAt` | `DateTime` | Required | - |
+| `StartAt` | `DateTime?` | Required | - |
+| `EndAt` | `DateTime?` | Required | - |
 | `Id` | `string` | Required | - |
-| `BillingAt` | `DateTime` | Required | - |
+| `BillingAt` | `DateTime?` | Required | - |
 | `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Required | - |
 | `Status` | `string` | Required | - |
-| `Duration` | `int` | Required | - |
+| `Duration` | `int?` | Required | - |
 | `CreatedAt` | `string` | Required | - |
 | `UpdatedAt` | `string` | Required | - |
-| `Cycle` | `int` | Required | - |
+| `Cycle` | `int?` | Required | - |
 
 ## Example (as JSON)
 

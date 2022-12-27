@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetAccessTokenResponse
     {
+        private Models.GetCustomerResponse customer;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "customer", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAccessTokenResponse"/> class.
         /// </summary>
@@ -37,49 +43,65 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="createdAt">created_at.</param>
         /// <param name="customer">customer.</param>
         public GetAccessTokenResponse(
-            string id,
-            string code,
-            string status,
-            DateTime createdAt,
+            string id = null,
+            string code = null,
+            string status = null,
+            DateTime? createdAt = null,
             Models.GetCustomerResponse customer = null)
         {
             this.Id = id;
             this.Code = code;
             this.Status = status;
             this.CreatedAt = createdAt;
-            this.Customer = customer;
+            if (customer != null)
+            {
+                this.Customer = customer;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets Code.
         /// </summary>
-        [JsonProperty("code")]
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
         public string Code { get; set; }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets Customer.
         /// </summary>
-        [JsonProperty("customer", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetCustomerResponse Customer { get; set; }
+        [JsonProperty("customer")]
+        public Models.GetCustomerResponse Customer
+        {
+            get
+            {
+                return this.customer;
+            }
+
+            set
+            {
+                this.shouldSerialize["customer"] = true;
+                this.customer = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -89,6 +111,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetAccessTokenResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCustomer()
+        {
+            this.shouldSerialize["customer"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCustomer()
+        {
+            return this.shouldSerialize["customer"];
         }
 
         /// <inheritdoc/>
@@ -108,7 +147,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
                 ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true));
         }
         
@@ -122,7 +161,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
         }
     }

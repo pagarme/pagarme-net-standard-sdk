@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPriceBracketResponse
     {
+        private int? endQuantity;
+        private int? overagePrice;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "end_quantity", false },
+            { "overage_price", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPriceBracketResponse"/> class.
         /// </summary>
@@ -36,40 +44,72 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="endQuantity">end_quantity.</param>
         /// <param name="overagePrice">overage_price.</param>
         public GetPriceBracketResponse(
-            int startQuantity,
-            int price,
+            int? startQuantity = null,
+            int? price = null,
             int? endQuantity = null,
             int? overagePrice = null)
         {
             this.StartQuantity = startQuantity;
             this.Price = price;
-            this.EndQuantity = endQuantity;
-            this.OveragePrice = overagePrice;
+            if (endQuantity != null)
+            {
+                this.EndQuantity = endQuantity;
+            }
+
+            if (overagePrice != null)
+            {
+                this.OveragePrice = overagePrice;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets StartQuantity.
         /// </summary>
-        [JsonProperty("start_quantity")]
-        public int StartQuantity { get; set; }
+        [JsonProperty("start_quantity", NullValueHandling = NullValueHandling.Include)]
+        public int? StartQuantity { get; set; }
 
         /// <summary>
         /// Gets or sets Price.
         /// </summary>
-        [JsonProperty("price")]
-        public int Price { get; set; }
+        [JsonProperty("price", NullValueHandling = NullValueHandling.Include)]
+        public int? Price { get; set; }
 
         /// <summary>
         /// Gets or sets EndQuantity.
         /// </summary>
-        [JsonProperty("end_quantity", NullValueHandling = NullValueHandling.Ignore)]
-        public int? EndQuantity { get; set; }
+        [JsonProperty("end_quantity")]
+        public int? EndQuantity
+        {
+            get
+            {
+                return this.endQuantity;
+            }
+
+            set
+            {
+                this.shouldSerialize["end_quantity"] = true;
+                this.endQuantity = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets OveragePrice.
         /// </summary>
-        [JsonProperty("overage_price", NullValueHandling = NullValueHandling.Ignore)]
-        public int? OveragePrice { get; set; }
+        [JsonProperty("overage_price")]
+        public int? OveragePrice
+        {
+            get
+            {
+                return this.overagePrice;
+            }
+
+            set
+            {
+                this.shouldSerialize["overage_price"] = true;
+                this.overagePrice = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -79,6 +119,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPriceBracketResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEndQuantity()
+        {
+            this.shouldSerialize["end_quantity"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetOveragePrice()
+        {
+            this.shouldSerialize["overage_price"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEndQuantity()
+        {
+            return this.shouldSerialize["end_quantity"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeOveragePrice()
+        {
+            return this.shouldSerialize["overage_price"];
         }
 
         /// <inheritdoc/>
@@ -95,8 +169,8 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetPriceBracketResponse other &&
-                this.StartQuantity.Equals(other.StartQuantity) &&
-                this.Price.Equals(other.Price) &&
+                ((this.StartQuantity == null && other.StartQuantity == null) || (this.StartQuantity?.Equals(other.StartQuantity) == true)) &&
+                ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
                 ((this.EndQuantity == null && other.EndQuantity == null) || (this.EndQuantity?.Equals(other.EndQuantity) == true)) &&
                 ((this.OveragePrice == null && other.OveragePrice == null) || (this.OveragePrice?.Equals(other.OveragePrice) == true));
         }
@@ -108,8 +182,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StartQuantity = {this.StartQuantity}");
-            toStringOutput.Add($"this.Price = {this.Price}");
+            toStringOutput.Add($"this.StartQuantity = {(this.StartQuantity == null ? "null" : this.StartQuantity.ToString())}");
+            toStringOutput.Add($"this.Price = {(this.Price == null ? "null" : this.Price.ToString())}");
             toStringOutput.Add($"this.EndQuantity = {(this.EndQuantity == null ? "null" : this.EndQuantity.ToString())}");
             toStringOutput.Add($"this.OveragePrice = {(this.OveragePrice == null ? "null" : this.OveragePrice.ToString())}");
         }

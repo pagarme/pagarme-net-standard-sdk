@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetBalanceResponse
     {
+        private Models.GetRecipientResponse recipient;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "recipient", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetBalanceResponse"/> class.
         /// </summary>
@@ -33,19 +39,23 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         /// <param name="currency">currency.</param>
         /// <param name="availableAmount">available_amount.</param>
+        /// <param name="recipient">recipient.</param>
         /// <param name="transferredAmount">transferred_amount.</param>
         /// <param name="waitingFundsAmount">waiting_funds_amount.</param>
-        /// <param name="recipient">recipient.</param>
         public GetBalanceResponse(
-            string currency,
-            long availableAmount,
-            long transferredAmount,
-            long waitingFundsAmount,
-            Models.GetRecipientResponse recipient = null)
+            string currency = null,
+            long? availableAmount = null,
+            Models.GetRecipientResponse recipient = null,
+            long? transferredAmount = null,
+            long? waitingFundsAmount = null)
         {
             this.Currency = currency;
             this.AvailableAmount = availableAmount;
-            this.Recipient = recipient;
+            if (recipient != null)
+            {
+                this.Recipient = recipient;
+            }
+
             this.TransferredAmount = transferredAmount;
             this.WaitingFundsAmount = waitingFundsAmount;
         }
@@ -53,32 +63,44 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Currency
         /// </summary>
-        [JsonProperty("currency")]
+        [JsonProperty("currency", NullValueHandling = NullValueHandling.Include)]
         public string Currency { get; set; }
 
         /// <summary>
         /// Amount available for transferring
         /// </summary>
-        [JsonProperty("available_amount")]
-        public long AvailableAmount { get; set; }
+        [JsonProperty("available_amount", NullValueHandling = NullValueHandling.Include)]
+        public long? AvailableAmount { get; set; }
 
         /// <summary>
         /// Recipient
         /// </summary>
-        [JsonProperty("recipient", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetRecipientResponse Recipient { get; set; }
+        [JsonProperty("recipient")]
+        public Models.GetRecipientResponse Recipient
+        {
+            get
+            {
+                return this.recipient;
+            }
+
+            set
+            {
+                this.shouldSerialize["recipient"] = true;
+                this.recipient = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets TransferredAmount.
         /// </summary>
-        [JsonProperty("transferred_amount")]
-        public long TransferredAmount { get; set; }
+        [JsonProperty("transferred_amount", NullValueHandling = NullValueHandling.Include)]
+        public long? TransferredAmount { get; set; }
 
         /// <summary>
         /// Gets or sets WaitingFundsAmount.
         /// </summary>
-        [JsonProperty("waiting_funds_amount")]
-        public long WaitingFundsAmount { get; set; }
+        [JsonProperty("waiting_funds_amount", NullValueHandling = NullValueHandling.Include)]
+        public long? WaitingFundsAmount { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -88,6 +110,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetBalanceResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRecipient()
+        {
+            this.shouldSerialize["recipient"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRecipient()
+        {
+            return this.shouldSerialize["recipient"];
         }
 
         /// <inheritdoc/>
@@ -105,10 +144,10 @@ namespace PagarmeApiSDK.Standard.Models
 
             return obj is GetBalanceResponse other &&
                 ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
-                this.AvailableAmount.Equals(other.AvailableAmount) &&
+                ((this.AvailableAmount == null && other.AvailableAmount == null) || (this.AvailableAmount?.Equals(other.AvailableAmount) == true)) &&
                 ((this.Recipient == null && other.Recipient == null) || (this.Recipient?.Equals(other.Recipient) == true)) &&
-                this.TransferredAmount.Equals(other.TransferredAmount) &&
-                this.WaitingFundsAmount.Equals(other.WaitingFundsAmount);
+                ((this.TransferredAmount == null && other.TransferredAmount == null) || (this.TransferredAmount?.Equals(other.TransferredAmount) == true)) &&
+                ((this.WaitingFundsAmount == null && other.WaitingFundsAmount == null) || (this.WaitingFundsAmount?.Equals(other.WaitingFundsAmount) == true));
         }
         
 
@@ -119,10 +158,10 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency == string.Empty ? "" : this.Currency)}");
-            toStringOutput.Add($"this.AvailableAmount = {this.AvailableAmount}");
+            toStringOutput.Add($"this.AvailableAmount = {(this.AvailableAmount == null ? "null" : this.AvailableAmount.ToString())}");
             toStringOutput.Add($"this.Recipient = {(this.Recipient == null ? "null" : this.Recipient.ToString())}");
-            toStringOutput.Add($"this.TransferredAmount = {this.TransferredAmount}");
-            toStringOutput.Add($"this.WaitingFundsAmount = {this.WaitingFundsAmount}");
+            toStringOutput.Add($"this.TransferredAmount = {(this.TransferredAmount == null ? "null" : this.TransferredAmount.ToString())}");
+            toStringOutput.Add($"this.WaitingFundsAmount = {(this.WaitingFundsAmount == null ? "null" : this.WaitingFundsAmount.ToString())}");
         }
     }
 }

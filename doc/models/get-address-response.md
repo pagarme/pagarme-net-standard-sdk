@@ -21,8 +21,8 @@ Response object for getting an Address
 | `State` | `string` | Required | - |
 | `Country` | `string` | Required | - |
 | `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
 | `Line1` | `string` | Required | Line 1 for address |

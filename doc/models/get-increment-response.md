@@ -12,10 +12,10 @@ Response object for getting a increment
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | - |
-| `MValue` | `double` | Required | - |
+| `MValue` | `double?` | Required | - |
 | `IncrementType` | `string` | Required | - |
 | `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
 | `Cycles` | `int?` | Optional | - |
 | `DeletedAt` | `DateTime?` | Optional | - |
 | `Description` | `string` | Optional | - |

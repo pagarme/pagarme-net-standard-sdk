@@ -37,11 +37,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transactionId">transaction_Id.</param>
         /// <param name="successUrl">success_url.</param>
         public GetThreeDSecureResponse(
-            string mpi,
-            string eci,
-            string cavv,
-            string transactionId,
-            string successUrl)
+            string mpi = null,
+            string eci = null,
+            string cavv = null,
+            string transactionId = null,
+            string successUrl = null)
         {
             this.Mpi = mpi;
             this.Eci = eci;
@@ -53,31 +53,31 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// MPI Vendor
         /// </summary>
-        [JsonProperty("mpi")]
+        [JsonProperty("mpi", NullValueHandling = NullValueHandling.Include)]
         public string Mpi { get; set; }
 
         /// <summary>
         /// Electronic Commerce Indicator (ECI) (Opcional)
         /// </summary>
-        [JsonProperty("eci")]
+        [JsonProperty("eci", NullValueHandling = NullValueHandling.Include)]
         public string Eci { get; set; }
 
         /// <summary>
         /// Online payment cryptogram, definido pelo 3-D Secure.
         /// </summary>
-        [JsonProperty("cavv")]
+        [JsonProperty("cavv", NullValueHandling = NullValueHandling.Include)]
         public string Cavv { get; set; }
 
         /// <summary>
         /// Identificador da transação (XID)
         /// </summary>
-        [JsonProperty("transaction_Id")]
+        [JsonProperty("transaction_Id", NullValueHandling = NullValueHandling.Include)]
         public string TransactionId { get; set; }
 
         /// <summary>
         /// Url de redirecionamento de sucessso
         /// </summary>
-        [JsonProperty("success_url")]
+        [JsonProperty("success_url", NullValueHandling = NullValueHandling.Include)]
         public string SuccessUrl { get; set; }
 
         /// <inheritdoc/>

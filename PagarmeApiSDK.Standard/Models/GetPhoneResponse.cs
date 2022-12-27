@@ -21,6 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPhoneResponse
     {
+        private string countryCode;
+        private string number;
+        private string areaCode;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "country_code", false },
+            { "number", false },
+            { "area_code", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPhoneResponse"/> class.
         /// </summary>
@@ -39,28 +49,76 @@ namespace PagarmeApiSDK.Standard.Models
             string number = null,
             string areaCode = null)
         {
-            this.CountryCode = countryCode;
-            this.Number = number;
-            this.AreaCode = areaCode;
+            if (countryCode != null)
+            {
+                this.CountryCode = countryCode;
+            }
+
+            if (number != null)
+            {
+                this.Number = number;
+            }
+
+            if (areaCode != null)
+            {
+                this.AreaCode = areaCode;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets CountryCode.
         /// </summary>
-        [JsonProperty("country_code", NullValueHandling = NullValueHandling.Ignore)]
-        public string CountryCode { get; set; }
+        [JsonProperty("country_code")]
+        public string CountryCode
+        {
+            get
+            {
+                return this.countryCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["country_code"] = true;
+                this.countryCode = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Number.
         /// </summary>
-        [JsonProperty("number", NullValueHandling = NullValueHandling.Ignore)]
-        public string Number { get; set; }
+        [JsonProperty("number")]
+        public string Number
+        {
+            get
+            {
+                return this.number;
+            }
+
+            set
+            {
+                this.shouldSerialize["number"] = true;
+                this.number = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets AreaCode.
         /// </summary>
-        [JsonProperty("area_code", NullValueHandling = NullValueHandling.Ignore)]
-        public string AreaCode { get; set; }
+        [JsonProperty("area_code")]
+        public string AreaCode
+        {
+            get
+            {
+                return this.areaCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["area_code"] = true;
+                this.areaCode = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +128,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPhoneResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCountryCode()
+        {
+            this.shouldSerialize["country_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetNumber()
+        {
+            this.shouldSerialize["number"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAreaCode()
+        {
+            this.shouldSerialize["area_code"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCountryCode()
+        {
+            return this.shouldSerialize["country_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeNumber()
+        {
+            return this.shouldSerialize["number"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAreaCode()
+        {
+            return this.shouldSerialize["area_code"];
         }
 
         /// <inheritdoc/>

@@ -13,7 +13,7 @@ Response object for getting the setup from a subscription
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | - |
 | `Description` | `string` | Required | - |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Status` | `string` | Required | - |
 
 ## Example (as JSON)

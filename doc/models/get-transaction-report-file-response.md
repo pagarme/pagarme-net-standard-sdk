@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Name` | `string` | Required | - |
-| `Date` | `DateTime` | Required | - |
+| `Date` | `DateTime?` | Required | - |
 
 ## Example (as JSON)
 
