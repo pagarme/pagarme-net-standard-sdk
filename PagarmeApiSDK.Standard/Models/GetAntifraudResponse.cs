@@ -37,11 +37,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="providerName">provider_name.</param>
         /// <param name="score">score.</param>
         public GetAntifraudResponse(
-            string status,
-            string returnCode,
-            string returnMessage,
-            string providerName,
-            string score)
+            string status = null,
+            string returnCode = null,
+            string returnMessage = null,
+            string providerName = null,
+            string score = null)
         {
             this.Status = status;
             this.ReturnCode = returnCode;
@@ -53,31 +53,31 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Gets or sets ReturnCode.
         /// </summary>
-        [JsonProperty("return_code")]
+        [JsonProperty("return_code", NullValueHandling = NullValueHandling.Include)]
         public string ReturnCode { get; set; }
 
         /// <summary>
         /// Gets or sets ReturnMessage.
         /// </summary>
-        [JsonProperty("return_message")]
+        [JsonProperty("return_message", NullValueHandling = NullValueHandling.Include)]
         public string ReturnMessage { get; set; }
 
         /// <summary>
         /// Gets or sets ProviderName.
         /// </summary>
-        [JsonProperty("provider_name")]
+        [JsonProperty("provider_name", NullValueHandling = NullValueHandling.Include)]
         public string ProviderName { get; set; }
 
         /// <summary>
         /// Gets or sets Score.
         /// </summary>
-        [JsonProperty("score")]
+        [JsonProperty("score", NullValueHandling = NullValueHandling.Include)]
         public string Score { get; set; }
 
         /// <inheritdoc/>

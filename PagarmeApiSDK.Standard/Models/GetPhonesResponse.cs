@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="homePhone">home_phone.</param>
         /// <param name="mobilePhone">mobile_phone.</param>
         public GetPhonesResponse(
-            Models.GetPhoneResponse homePhone,
-            Models.GetPhoneResponse mobilePhone)
+            Models.GetPhoneResponse homePhone = null,
+            Models.GetPhoneResponse mobilePhone = null)
         {
             this.HomePhone = homePhone;
             this.MobilePhone = mobilePhone;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets HomePhone.
         /// </summary>
-        [JsonProperty("home_phone")]
+        [JsonProperty("home_phone", NullValueHandling = NullValueHandling.Include)]
         public Models.GetPhoneResponse HomePhone { get; set; }
 
         /// <summary>
         /// Gets or sets MobilePhone.
         /// </summary>
-        [JsonProperty("mobile_phone")]
+        [JsonProperty("mobile_phone", NullValueHandling = NullValueHandling.Include)]
         public Models.GetPhoneResponse MobilePhone { get; set; }
 
         /// <inheritdoc/>

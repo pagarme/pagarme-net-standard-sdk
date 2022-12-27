@@ -11,8 +11,8 @@ Response object for getting a price bracket
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `StartQuantity` | `int` | Required | - |
-| `Price` | `int` | Required | - |
+| `StartQuantity` | `int?` | Required | - |
+| `Price` | `int?` | Required | - |
 | `EndQuantity` | `int?` | Optional | - |
 | `OveragePrice` | `int?` | Optional | - |
 

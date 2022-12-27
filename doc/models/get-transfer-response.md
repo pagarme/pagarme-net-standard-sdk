@@ -12,10 +12,10 @@ Transfer response
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | Id |
-| `Amount` | `int` | Required | Transfer amount |
+| `Amount` | `int?` | Required | Transfer amount |
 | `Status` | `string` | Required | Transfer status |
-| `CreatedAt` | `DateTime` | Required | Transfer creation date |
-| `UpdatedAt` | `DateTime` | Required | Transfer last update date |
+| `CreatedAt` | `DateTime?` | Required | Transfer creation date |
+| `UpdatedAt` | `DateTime?` | Required | Transfer last update date |
 | `BankAccount` | [`Models.GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Required | Bank account |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 

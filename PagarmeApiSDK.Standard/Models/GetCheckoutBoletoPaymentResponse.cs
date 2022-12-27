@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="dueAt">due_at.</param>
         /// <param name="instructions">instructions.</param>
         public GetCheckoutBoletoPaymentResponse(
-            DateTime dueAt,
-            string instructions)
+            DateTime? dueAt = null,
+            string instructions = null)
         {
             this.DueAt = dueAt;
             this.Instructions = instructions;
@@ -45,13 +45,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// Data de vencimento do boleto
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("due_at")]
-        public DateTime DueAt { get; set; }
+        [JsonProperty("due_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? DueAt { get; set; }
 
         /// <summary>
         /// Instruções do boleto
         /// </summary>
-        [JsonProperty("instructions")]
+        [JsonProperty("instructions", NullValueHandling = NullValueHandling.Include)]
         public string Instructions { get; set; }
 
         /// <inheritdoc/>
@@ -78,7 +78,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetCheckoutBoletoPaymentResponse other &&
-                this.DueAt.Equals(other.DueAt) &&
+                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true)) &&
                 ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true));
         }
         
@@ -89,7 +89,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.DueAt = {this.DueAt}");
+            toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
             toStringOutput.Add($"this.Instructions = {(this.Instructions == null ? "null" : this.Instructions == string.Empty ? "" : this.Instructions)}");
         }
     }

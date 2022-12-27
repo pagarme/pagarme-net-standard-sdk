@@ -33,7 +33,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         /// <param name="total">total.</param>
         public GetChargesSummaryResponse(
-            int total)
+            int? total = null)
         {
             this.Total = total;
         }
@@ -41,8 +41,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Total.
         /// </summary>
-        [JsonProperty("total")]
-        public int Total { get; set; }
+        [JsonProperty("total", NullValueHandling = NullValueHandling.Include)]
+        public int? Total { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -68,7 +68,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetChargesSummaryResponse other &&
-                this.Total.Equals(other.Total);
+                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true));
         }
         
 
@@ -78,7 +78,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Total = {this.Total}");
+            toStringOutput.Add($"this.Total = {(this.Total == null ? "null" : this.Total.ToString())}");
         }
     }
 }

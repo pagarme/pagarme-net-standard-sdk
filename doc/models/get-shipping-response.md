@@ -11,7 +11,7 @@ Response object for getting the shipping data
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Description` | `string` | Required | - |
 | `RecipientName` | `string` | Required | - |
 | `RecipientPhone` | `string` | Required | - |

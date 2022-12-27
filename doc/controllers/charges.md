@@ -547,7 +547,6 @@ request.Customer.Phones = new CreatePhonesRequest();
 request.Customer.Code = "code4";
 request.Payment = new CreatePaymentRequest();
 request.Payment.PaymentMethod = "payment_method2";
-request.Payment.PrivateLabel = new CreatePrivateLabelPaymentRequest();
 request.Metadata = new Dictionary<string, string>();
 request.Metadata.Add("key0", "metadata3");
 request.Antifraud = new CreateAntifraudRequest();

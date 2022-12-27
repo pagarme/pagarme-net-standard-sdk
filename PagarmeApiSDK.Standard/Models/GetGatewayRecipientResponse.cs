@@ -37,11 +37,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
         public GetGatewayRecipientResponse(
-            string gateway,
-            string status,
-            string pgid,
-            string createdAt,
-            string updatedAt)
+            string gateway = null,
+            string status = null,
+            string pgid = null,
+            string createdAt = null,
+            string updatedAt = null)
         {
             this.Gateway = gateway;
             this.Status = status;
@@ -53,31 +53,31 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gateway name
         /// </summary>
-        [JsonProperty("gateway")]
+        [JsonProperty("gateway", NullValueHandling = NullValueHandling.Include)]
         public string Gateway { get; set; }
 
         /// <summary>
         /// Status of the recipient on the gateway
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Recipient id on the gateway
         /// </summary>
-        [JsonProperty("pgid")]
+        [JsonProperty("pgid", NullValueHandling = NullValueHandling.Include)]
         public string Pgid { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
-        [JsonProperty("created_at")]
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
         public string CreatedAt { get; set; }
 
         /// <summary>
         /// Last update date
         /// </summary>
-        [JsonProperty("updated_at")]
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
         public string UpdatedAt { get; set; }
 
         /// <inheritdoc/>

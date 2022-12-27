@@ -33,7 +33,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         /// <param name="message">message.</param>
         public GetGatewayErrorResponse(
-            string message)
+            string message = null)
         {
             this.Message = message;
         }
@@ -41,7 +41,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// The message error
         /// </summary>
-        [JsonProperty("message")]
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Include)]
         public string Message { get; set; }
 
         /// <inheritdoc/>

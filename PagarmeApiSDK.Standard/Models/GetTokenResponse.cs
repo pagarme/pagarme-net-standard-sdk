@@ -37,11 +37,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="expiresAt">expires_at.</param>
         /// <param name="card">card.</param>
         public GetTokenResponse(
-            string id,
-            string type,
-            DateTime createdAt,
-            string expiresAt,
-            Models.GetCardTokenResponse card)
+            string id = null,
+            string type = null,
+            DateTime? createdAt = null,
+            string expiresAt = null,
+            Models.GetCardTokenResponse card = null)
         {
             this.Id = id;
             this.Type = type;
@@ -53,32 +53,32 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets ExpiresAt.
         /// </summary>
-        [JsonProperty("expires_at")]
+        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Include)]
         public string ExpiresAt { get; set; }
 
         /// <summary>
         /// Gets or sets Card.
         /// </summary>
-        [JsonProperty("card")]
+        [JsonProperty("card", NullValueHandling = NullValueHandling.Include)]
         public Models.GetCardTokenResponse Card { get; set; }
 
         /// <inheritdoc/>
@@ -107,7 +107,7 @@ namespace PagarmeApiSDK.Standard.Models
             return obj is GetTokenResponse other &&
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
                 ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true));
         }
@@ -121,7 +121,7 @@ namespace PagarmeApiSDK.Standard.Models
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt == string.Empty ? "" : this.ExpiresAt)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
         }

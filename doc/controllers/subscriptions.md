@@ -942,7 +942,6 @@ body.Setup.Amount = 150;
 body.Setup.Description = "description0";
 body.Setup.Payment = new CreatePaymentRequest();
 body.Setup.Payment.PaymentMethod = "payment_method4";
-body.Setup.Payment.PrivateLabel = new CreatePrivateLabelPaymentRequest();
 body.Increments = new List<CreateIncrementRequest>();
 
 var bodyIncrements0 = new CreateIncrementRequest();

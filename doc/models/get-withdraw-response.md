@@ -11,10 +11,10 @@
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | - |
 | `GatewayId` | `string` | Required | - |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `Metadata` | `List<string>` | Optional | - |
 | `Fee` | `int?` | Optional | - |
 | `FundingDate` | `DateTime?` | Optional | - |

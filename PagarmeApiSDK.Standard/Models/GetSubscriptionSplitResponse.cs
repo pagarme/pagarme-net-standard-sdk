@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="enabled">enabled.</param>
         /// <param name="rules">rules.</param>
         public GetSubscriptionSplitResponse(
-            bool enabled,
-            List<Models.GetSplitResponse> rules)
+            bool? enabled = null,
+            List<Models.GetSplitResponse> rules = null)
         {
             this.Enabled = enabled;
             this.Rules = rules;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Defines if the split is enabled
         /// </summary>
-        [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
+        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Include)]
+        public bool? Enabled { get; set; }
 
         /// <summary>
         /// Split
         /// </summary>
-        [JsonProperty("rules")]
+        [JsonProperty("rules", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetSplitResponse> Rules { get; set; }
 
         /// <inheritdoc/>
@@ -77,7 +77,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetSubscriptionSplitResponse other &&
-                this.Enabled.Equals(other.Enabled) &&
+                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
                 ((this.Rules == null && other.Rules == null) || (this.Rules?.Equals(other.Rules) == true));
         }
         
@@ -88,7 +88,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Enabled = {this.Enabled}");
+            toStringOutput.Add($"this.Enabled = {(this.Enabled == null ? "null" : this.Enabled.ToString())}");
             toStringOutput.Add($"this.Rules = {(this.Rules == null ? "null" : $"[{string.Join(", ", this.Rules)} ]")}");
         }
     }

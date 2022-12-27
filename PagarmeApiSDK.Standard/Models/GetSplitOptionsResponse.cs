@@ -35,9 +35,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="chargeProcessingFee">charge_processing_fee.</param>
         /// <param name="chargeRemainderFee">charge_remainder_fee.</param>
         public GetSplitOptionsResponse(
-            bool liable,
-            bool chargeProcessingFee,
-            string chargeRemainderFee)
+            bool? liable = null,
+            bool? chargeProcessingFee = null,
+            string chargeRemainderFee = null)
         {
             this.Liable = liable;
             this.ChargeProcessingFee = chargeProcessingFee;
@@ -47,19 +47,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Liable.
         /// </summary>
-        [JsonProperty("liable")]
-        public bool Liable { get; set; }
+        [JsonProperty("liable", NullValueHandling = NullValueHandling.Include)]
+        public bool? Liable { get; set; }
 
         /// <summary>
         /// Gets or sets ChargeProcessingFee.
         /// </summary>
-        [JsonProperty("charge_processing_fee")]
-        public bool ChargeProcessingFee { get; set; }
+        [JsonProperty("charge_processing_fee", NullValueHandling = NullValueHandling.Include)]
+        public bool? ChargeProcessingFee { get; set; }
 
         /// <summary>
         /// Gets or sets ChargeRemainderFee.
         /// </summary>
-        [JsonProperty("charge_remainder_fee")]
+        [JsonProperty("charge_remainder_fee", NullValueHandling = NullValueHandling.Include)]
         public string ChargeRemainderFee { get; set; }
 
         /// <inheritdoc/>
@@ -86,8 +86,8 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetSplitOptionsResponse other &&
-                this.Liable.Equals(other.Liable) &&
-                this.ChargeProcessingFee.Equals(other.ChargeProcessingFee) &&
+                ((this.Liable == null && other.Liable == null) || (this.Liable?.Equals(other.Liable) == true)) &&
+                ((this.ChargeProcessingFee == null && other.ChargeProcessingFee == null) || (this.ChargeProcessingFee?.Equals(other.ChargeProcessingFee) == true)) &&
                 ((this.ChargeRemainderFee == null && other.ChargeRemainderFee == null) || (this.ChargeRemainderFee?.Equals(other.ChargeRemainderFee) == true));
         }
         
@@ -98,8 +98,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Liable = {this.Liable}");
-            toStringOutput.Add($"this.ChargeProcessingFee = {this.ChargeProcessingFee}");
+            toStringOutput.Add($"this.Liable = {(this.Liable == null ? "null" : this.Liable.ToString())}");
+            toStringOutput.Add($"this.ChargeProcessingFee = {(this.ChargeProcessingFee == null ? "null" : this.ChargeProcessingFee.ToString())}");
             toStringOutput.Add($"this.ChargeRemainderFee = {(this.ChargeRemainderFee == null ? "null" : this.ChargeRemainderFee == string.Empty ? "" : this.ChargeRemainderFee)}");
         }
     }

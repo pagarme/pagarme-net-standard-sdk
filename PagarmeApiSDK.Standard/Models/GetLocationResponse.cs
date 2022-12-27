@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="latitude">latitude.</param>
         /// <param name="longitude">longitude.</param>
         public GetLocationResponse(
-            string latitude,
-            string longitude)
+            string latitude = null,
+            string longitude = null)
         {
             this.Latitude = latitude;
             this.Longitude = longitude;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Latitude
         /// </summary>
-        [JsonProperty("latitude")]
+        [JsonProperty("latitude", NullValueHandling = NullValueHandling.Include)]
         public string Latitude { get; set; }
 
         /// <summary>
         /// Longitude
         /// </summary>
-        [JsonProperty("longitude")]
+        [JsonProperty("longitude", NullValueHandling = NullValueHandling.Include)]
         public string Longitude { get; set; }
 
         /// <inheritdoc/>

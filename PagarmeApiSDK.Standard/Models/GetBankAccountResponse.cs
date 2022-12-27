@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetBankAccountResponse
     {
+        private Models.GetRecipientResponse recipient;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "recipient", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetBankAccountResponse"/> class.
         /// </summary>
@@ -44,26 +50,26 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
         /// <param name="deletedAt">deleted_at.</param>
+        /// <param name="recipient">recipient.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="pixKey">pix_key.</param>
-        /// <param name="recipient">recipient.</param>
         public GetBankAccountResponse(
-            string id,
-            string holderName,
-            string holderType,
-            string bank,
-            string branchNumber,
-            string branchCheckDigit,
-            string accountNumber,
-            string accountCheckDigit,
-            string type,
-            string status,
-            DateTime createdAt,
-            DateTime updatedAt,
-            DateTime deletedAt,
-            Dictionary<string, string> metadata,
-            string pixKey,
-            Models.GetRecipientResponse recipient = null)
+            string id = null,
+            string holderName = null,
+            string holderType = null,
+            string bank = null,
+            string branchNumber = null,
+            string branchCheckDigit = null,
+            string accountNumber = null,
+            string accountCheckDigit = null,
+            string type = null,
+            string status = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            DateTime? deletedAt = null,
+            Models.GetRecipientResponse recipient = null,
+            Dictionary<string, string> metadata = null,
+            string pixKey = null)
         {
             this.Id = id;
             this.HolderName = holderName;
@@ -78,7 +84,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.DeletedAt = deletedAt;
-            this.Recipient = recipient;
+            if (recipient != null)
+            {
+                this.Recipient = recipient;
+            }
+
             this.Metadata = metadata;
             this.PixKey = pixKey;
         }
@@ -86,100 +96,112 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Holder name
         /// </summary>
-        [JsonProperty("holder_name")]
+        [JsonProperty("holder_name", NullValueHandling = NullValueHandling.Include)]
         public string HolderName { get; set; }
 
         /// <summary>
         /// Holder type
         /// </summary>
-        [JsonProperty("holder_type")]
+        [JsonProperty("holder_type", NullValueHandling = NullValueHandling.Include)]
         public string HolderType { get; set; }
 
         /// <summary>
         /// Bank
         /// </summary>
-        [JsonProperty("bank")]
+        [JsonProperty("bank", NullValueHandling = NullValueHandling.Include)]
         public string Bank { get; set; }
 
         /// <summary>
         /// Branch number
         /// </summary>
-        [JsonProperty("branch_number")]
+        [JsonProperty("branch_number", NullValueHandling = NullValueHandling.Include)]
         public string BranchNumber { get; set; }
 
         /// <summary>
         /// Branch check digit
         /// </summary>
-        [JsonProperty("branch_check_digit")]
+        [JsonProperty("branch_check_digit", NullValueHandling = NullValueHandling.Include)]
         public string BranchCheckDigit { get; set; }
 
         /// <summary>
         /// Account number
         /// </summary>
-        [JsonProperty("account_number")]
+        [JsonProperty("account_number", NullValueHandling = NullValueHandling.Include)]
         public string AccountNumber { get; set; }
 
         /// <summary>
         /// Account check digit
         /// </summary>
-        [JsonProperty("account_check_digit")]
+        [JsonProperty("account_check_digit", NullValueHandling = NullValueHandling.Include)]
         public string AccountCheckDigit { get; set; }
 
         /// <summary>
         /// Bank account type
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Bank account status
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Last update date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Deletion date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("deleted_at")]
-        public DateTime DeletedAt { get; set; }
+        [JsonProperty("deleted_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? DeletedAt { get; set; }
 
         /// <summary>
         /// Recipient
         /// </summary>
-        [JsonProperty("recipient", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetRecipientResponse Recipient { get; set; }
+        [JsonProperty("recipient")]
+        public Models.GetRecipientResponse Recipient
+        {
+            get
+            {
+                return this.recipient;
+            }
+
+            set
+            {
+                this.shouldSerialize["recipient"] = true;
+                this.recipient = value;
+            }
+        }
 
         /// <summary>
         /// Metadata
         /// </summary>
-        [JsonProperty("metadata")]
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
         /// Pix Key
         /// </summary>
-        [JsonProperty("pix_key")]
+        [JsonProperty("pix_key", NullValueHandling = NullValueHandling.Include)]
         public string PixKey { get; set; }
 
         /// <inheritdoc/>
@@ -190,6 +212,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetBankAccountResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRecipient()
+        {
+            this.shouldSerialize["recipient"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRecipient()
+        {
+            return this.shouldSerialize["recipient"];
         }
 
         /// <inheritdoc/>
@@ -216,9 +255,9 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AccountCheckDigit == null && other.AccountCheckDigit == null) || (this.AccountCheckDigit?.Equals(other.AccountCheckDigit) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
-                this.DeletedAt.Equals(other.DeletedAt) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
+                ((this.DeletedAt == null && other.DeletedAt == null) || (this.DeletedAt?.Equals(other.DeletedAt) == true)) &&
                 ((this.Recipient == null && other.Recipient == null) || (this.Recipient?.Equals(other.Recipient) == true)) &&
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
                 ((this.PixKey == null && other.PixKey == null) || (this.PixKey?.Equals(other.PixKey) == true));
@@ -241,9 +280,9 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.AccountCheckDigit = {(this.AccountCheckDigit == null ? "null" : this.AccountCheckDigit == string.Empty ? "" : this.AccountCheckDigit)}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
-            toStringOutput.Add($"this.DeletedAt = {this.DeletedAt}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"this.DeletedAt = {(this.DeletedAt == null ? "null" : this.DeletedAt.ToString())}");
             toStringOutput.Add($"this.Recipient = {(this.Recipient == null ? "null" : this.Recipient.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
             toStringOutput.Add($"this.PixKey = {(this.PixKey == null ? "null" : this.PixKey == string.Empty ? "" : this.PixKey)}");

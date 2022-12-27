@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="data">data.</param>
         /// <param name="paging">paging.</param>
         public ListAnticipationResponse(
-            List<Models.GetAnticipationResponse> data,
-            Models.PagingResponse paging)
+            List<Models.GetAnticipationResponse> data = null,
+            Models.PagingResponse paging = null)
         {
             this.Data = data;
             this.Paging = paging;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Anticipations
         /// </summary>
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetAnticipationResponse> Data { get; set; }
 
         /// <summary>
         /// Paging
         /// </summary>
-        [JsonProperty("paging")]
+        [JsonProperty("paging", NullValueHandling = NullValueHandling.Include)]
         public Models.PagingResponse Paging { get; set; }
 
         /// <inheritdoc/>

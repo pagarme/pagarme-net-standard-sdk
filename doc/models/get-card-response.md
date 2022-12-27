@@ -15,11 +15,11 @@ Response object for getting a credit card
 | `LastFourDigits` | `string` | Required | - |
 | `Brand` | `string` | Required | - |
 | `HolderName` | `string` | Required | - |
-| `ExpMonth` | `int` | Required | - |
-| `ExpYear` | `int` | Required | - |
+| `ExpMonth` | `int?` | Required | - |
+| `ExpYear` | `int?` | Required | - |
 | `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `BillingAddress` | [`Models.GetBillingAddressResponse`](../../doc/models/get-billing-address-response.md) | Required | - |
 | `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |

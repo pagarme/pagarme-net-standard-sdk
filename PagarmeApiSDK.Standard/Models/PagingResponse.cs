@@ -35,9 +35,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="previous">previous.</param>
         /// <param name="next">next.</param>
         public PagingResponse(
-            int total,
-            string previous,
-            string next)
+            int? total = null,
+            string previous = null,
+            string next = null)
         {
             this.Total = total;
             this.Previous = previous;
@@ -47,19 +47,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Total number of pages
         /// </summary>
-        [JsonProperty("total")]
-        public int Total { get; set; }
+        [JsonProperty("total", NullValueHandling = NullValueHandling.Include)]
+        public int? Total { get; set; }
 
         /// <summary>
         /// Previous page
         /// </summary>
-        [JsonProperty("previous")]
+        [JsonProperty("previous", NullValueHandling = NullValueHandling.Include)]
         public string Previous { get; set; }
 
         /// <summary>
         /// Next page
         /// </summary>
-        [JsonProperty("next")]
+        [JsonProperty("next", NullValueHandling = NullValueHandling.Include)]
         public string Next { get; set; }
 
         /// <inheritdoc/>
@@ -86,7 +86,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is PagingResponse other &&
-                this.Total.Equals(other.Total) &&
+                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true)) &&
                 ((this.Previous == null && other.Previous == null) || (this.Previous?.Equals(other.Previous) == true)) &&
                 ((this.Next == null && other.Next == null) || (this.Next?.Equals(other.Next) == true));
         }
@@ -98,7 +98,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Total = {this.Total}");
+            toStringOutput.Add($"this.Total = {(this.Total == null ? "null" : this.Total.ToString())}");
             toStringOutput.Add($"this.Previous = {(this.Previous == null ? "null" : this.Previous == string.Empty ? "" : this.Previous)}");
             toStringOutput.Add($"this.Next = {(this.Next == null ? "null" : this.Next == string.Empty ? "" : this.Next)}");
         }

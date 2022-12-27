@@ -11,8 +11,8 @@ Anticipation limit
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Amount` | `int` | Required | Amount |
-| `AnticipationFee` | `int` | Required | Anticipation fee |
+| `Amount` | `int?` | Required | Amount |
+| `AnticipationFee` | `int?` | Required | Anticipation fee |
 
 ## Example (as JSON)
 

@@ -34,8 +34,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="data">data.</param>
         /// <param name="paging">paging.</param>
         public ListTransferResponse(
-            List<Models.GetTransferResponse> data,
-            Models.PagingResponse paging)
+            List<Models.GetTransferResponse> data = null,
+            Models.PagingResponse paging = null)
         {
             this.Data = data;
             this.Paging = paging;
@@ -44,13 +44,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Transfers
         /// </summary>
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetTransferResponse> Data { get; set; }
 
         /// <summary>
         /// Paging
         /// </summary>
-        [JsonProperty("paging")]
+        [JsonProperty("paging", NullValueHandling = NullValueHandling.Include)]
         public Models.PagingResponse Paging { get; set; }
 
         /// <inheritdoc/>

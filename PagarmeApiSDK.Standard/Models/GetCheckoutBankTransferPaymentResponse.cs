@@ -33,7 +33,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         /// <param name="bank">bank.</param>
         public GetCheckoutBankTransferPaymentResponse(
-            List<string> bank)
+            List<string> bank = null)
         {
             this.Bank = bank;
         }
@@ -41,7 +41,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// bank list response
         /// </summary>
-        [JsonProperty("bank")]
+        [JsonProperty("bank", NullValueHandling = NullValueHandling.Include)]
         public List<string> Bank { get; set; }
 
         /// <inheritdoc/>

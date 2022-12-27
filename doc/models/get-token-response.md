@@ -13,7 +13,7 @@ Token data
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | - |
 | `Type` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
 | `ExpiresAt` | `string` | Required | - |
 | `Card` | [`Models.GetCardTokenResponse`](../../doc/models/get-card-token-response.md) | Required | - |
 

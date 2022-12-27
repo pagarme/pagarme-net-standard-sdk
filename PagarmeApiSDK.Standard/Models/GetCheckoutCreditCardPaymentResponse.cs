@@ -35,9 +35,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="installments">installments.</param>
         /// <param name="authentication">authentication.</param>
         public GetCheckoutCreditCardPaymentResponse(
-            string statementDescriptor,
-            List<Models.GetCheckoutCardInstallmentOptionsResponse> installments,
-            Models.GetPaymentAuthenticationResponse authentication)
+            string statementDescriptor = null,
+            List<Models.GetCheckoutCardInstallmentOptionsResponse> installments = null,
+            Models.GetPaymentAuthenticationResponse authentication = null)
         {
             this.StatementDescriptor = statementDescriptor;
             this.Installments = installments;
@@ -47,19 +47,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Descrição na fatura
         /// </summary>
-        [JsonProperty("statementDescriptor")]
+        [JsonProperty("statementDescriptor", NullValueHandling = NullValueHandling.Include)]
         public string StatementDescriptor { get; set; }
 
         /// <summary>
         /// Parcelas
         /// </summary>
-        [JsonProperty("installments")]
+        [JsonProperty("installments", NullValueHandling = NullValueHandling.Include)]
         public List<Models.GetCheckoutCardInstallmentOptionsResponse> Installments { get; set; }
 
         /// <summary>
         /// Payment Authentication response
         /// </summary>
-        [JsonProperty("authentication")]
+        [JsonProperty("authentication", NullValueHandling = NullValueHandling.Include)]
         public Models.GetPaymentAuthenticationResponse Authentication { get; set; }
 
         /// <inheritdoc/>

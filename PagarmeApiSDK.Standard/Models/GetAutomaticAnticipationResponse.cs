@@ -37,11 +37,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="delay">delay.</param>
         /// <param name="days">days.</param>
         public GetAutomaticAnticipationResponse(
-            bool enabled,
-            string type,
-            int volumePercentage,
-            int delay,
-            List<int> days)
+            bool? enabled = null,
+            string type = null,
+            int? volumePercentage = null,
+            int? delay = null,
+            List<int> days = null)
         {
             this.Enabled = enabled;
             this.Type = type;
@@ -53,31 +53,31 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Enabled.
         /// </summary>
-        [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
+        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Include)]
+        public bool? Enabled { get; set; }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets VolumePercentage.
         /// </summary>
-        [JsonProperty("volume_percentage")]
-        public int VolumePercentage { get; set; }
+        [JsonProperty("volume_percentage", NullValueHandling = NullValueHandling.Include)]
+        public int? VolumePercentage { get; set; }
 
         /// <summary>
         /// Gets or sets Delay.
         /// </summary>
-        [JsonProperty("delay")]
-        public int Delay { get; set; }
+        [JsonProperty("delay", NullValueHandling = NullValueHandling.Include)]
+        public int? Delay { get; set; }
 
         /// <summary>
         /// Gets or sets Days.
         /// </summary>
-        [JsonProperty("days")]
+        [JsonProperty("days", NullValueHandling = NullValueHandling.Include)]
         public List<int> Days { get; set; }
 
         /// <inheritdoc/>
@@ -104,10 +104,10 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             return obj is GetAutomaticAnticipationResponse other &&
-                this.Enabled.Equals(other.Enabled) &&
+                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                this.VolumePercentage.Equals(other.VolumePercentage) &&
-                this.Delay.Equals(other.Delay) &&
+                ((this.VolumePercentage == null && other.VolumePercentage == null) || (this.VolumePercentage?.Equals(other.VolumePercentage) == true)) &&
+                ((this.Delay == null && other.Delay == null) || (this.Delay?.Equals(other.Delay) == true)) &&
                 ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true));
         }
         
@@ -118,10 +118,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Enabled = {this.Enabled}");
+            toStringOutput.Add($"this.Enabled = {(this.Enabled == null ? "null" : this.Enabled.ToString())}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
-            toStringOutput.Add($"this.VolumePercentage = {this.VolumePercentage}");
-            toStringOutput.Add($"this.Delay = {this.Delay}");
+            toStringOutput.Add($"this.VolumePercentage = {(this.VolumePercentage == null ? "null" : this.VolumePercentage.ToString())}");
+            toStringOutput.Add($"this.Delay = {(this.Delay == null ? "null" : this.Delay.ToString())}");
             toStringOutput.Add($"this.Days = {(this.Days == null ? "null" : $"[{string.Join(", ", this.Days)} ]")}");
         }
     }

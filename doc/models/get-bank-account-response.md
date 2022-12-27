@@ -19,9 +19,9 @@
 | `AccountCheckDigit` | `string` | Required | Account check digit |
 | `Type` | `string` | Required | Bank account type |
 | `Status` | `string` | Required | Bank account status |
-| `CreatedAt` | `DateTime` | Required | Creation date |
-| `UpdatedAt` | `DateTime` | Required | Last update date |
-| `DeletedAt` | `DateTime` | Required | Deletion date |
+| `CreatedAt` | `DateTime?` | Required | Creation date |
+| `UpdatedAt` | `DateTime?` | Required | Last update date |
+| `DeletedAt` | `DateTime?` | Required | Deletion date |
 | `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `PixKey` | `string` | Required | Pix Key |

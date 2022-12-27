@@ -285,12 +285,10 @@ body.Payments = new List<CreatePaymentRequest>();
 
 var bodyPayments0 = new CreatePaymentRequest();
 bodyPayments0.PaymentMethod = "payment_method0";
-bodyPayments0.PrivateLabel = new CreatePrivateLabelPaymentRequest();
 body.Payments.Add(bodyPayments0);
 
 var bodyPayments1 = new CreatePaymentRequest();
 bodyPayments1.PaymentMethod = "payment_method9";
-bodyPayments1.PrivateLabel = new CreatePrivateLabelPaymentRequest();
 body.Payments.Add(bodyPayments1);
 
 body.Code = "code4";

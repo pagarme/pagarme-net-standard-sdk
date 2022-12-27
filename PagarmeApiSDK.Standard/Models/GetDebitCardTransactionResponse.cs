@@ -26,7 +26,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetDebitCardTransactionResponse()
         {
-            this.TransactionType = "debit_card";
         }
 
         /// <summary>
@@ -41,10 +40,16 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="attemptCount">attempt_count.</param>
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
+        /// <param name="nextAttempt">next_attempt.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
+        /// <param name="metadata">metadata.</param>
         /// <param name="split">split.</param>
+        /// <param name="interest">interest.</param>
+        /// <param name="fine">fine.</param>
+        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="statementDescriptor">statement_descriptor.</param>
         /// <param name="acquirerName">acquirer_name.</param>
         /// <param name="acquirerAffiliationCode">acquirer_affiliation_code.</param>
@@ -59,46 +64,40 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="eci">eci.</param>
         /// <param name="authenticationType">authentication_type.</param>
         /// <param name="threedAuthenticationUrl">threed_authentication_url.</param>
-        /// <param name="transactionType">transaction_type.</param>
-        /// <param name="nextAttempt">next_attempt.</param>
-        /// <param name="metadata">metadata.</param>
-        /// <param name="interest">interest.</param>
-        /// <param name="fine">fine.</param>
-        /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public GetDebitCardTransactionResponse(
-            string gatewayId,
-            int amount,
-            string status,
-            bool success,
-            DateTime createdAt,
-            DateTime updatedAt,
-            int attemptCount,
-            int maxAttempts,
-            List<Models.GetSplitResponse> splits,
-            string id,
-            Models.GetGatewayResponseResponse gatewayResponse,
-            Models.GetAntifraudResponse antifraudResponse,
-            List<Models.GetSplitResponse> split,
-            string statementDescriptor,
-            string acquirerName,
-            string acquirerAffiliationCode,
-            string acquirerTid,
-            string acquirerNsu,
-            string acquirerAuthCode,
-            string operationType,
-            Models.GetCardResponse card,
-            string acquirerMessage,
-            string acquirerReturnCode,
-            string mpi,
-            string eci,
-            string authenticationType,
-            string threedAuthenticationUrl,
-            string transactionType = "debit_card",
+            string gatewayId = null,
+            int? amount = null,
+            string status = null,
+            bool? success = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            int? attemptCount = null,
+            int? maxAttempts = null,
+            List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
+            string transactionType = null,
+            string id = null,
+            Models.GetGatewayResponseResponse gatewayResponse = null,
+            Models.GetAntifraudResponse antifraudResponse = null,
             Dictionary<string, string> metadata = null,
+            List<Models.GetSplitResponse> split = null,
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
-            int? maxDaysToPayPastDue = null)
+            int? maxDaysToPayPastDue = null,
+            string statementDescriptor = null,
+            string acquirerName = null,
+            string acquirerAffiliationCode = null,
+            string acquirerTid = null,
+            string acquirerNsu = null,
+            string acquirerAuthCode = null,
+            string operationType = null,
+            Models.GetCardResponse card = null,
+            string acquirerMessage = null,
+            string acquirerReturnCode = null,
+            string mpi = null,
+            string eci = null,
+            string authenticationType = null,
+            string threedAuthenticationUrl = null)
             : base(
                 gatewayId,
                 amount,
@@ -109,13 +108,13 @@ namespace PagarmeApiSDK.Standard.Models
                 attemptCount,
                 maxAttempts,
                 splits,
+                nextAttempt,
+                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
-                split,
-                transactionType,
-                nextAttempt,
                 metadata,
+                split,
                 interest,
                 fine,
                 maxDaysToPayPastDue)
@@ -139,85 +138,85 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Text that will appear on the debit card's statement
         /// </summary>
-        [JsonProperty("statement_descriptor")]
+        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
         public string StatementDescriptor { get; set; }
 
         /// <summary>
         /// Acquirer name
         /// </summary>
-        [JsonProperty("acquirer_name")]
+        [JsonProperty("acquirer_name", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerName { get; set; }
 
         /// <summary>
         /// Aquirer affiliation code
         /// </summary>
-        [JsonProperty("acquirer_affiliation_code")]
+        [JsonProperty("acquirer_affiliation_code", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerAffiliationCode { get; set; }
 
         /// <summary>
         /// Acquirer TID
         /// </summary>
-        [JsonProperty("acquirer_tid")]
+        [JsonProperty("acquirer_tid", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerTid { get; set; }
 
         /// <summary>
         /// Acquirer NSU
         /// </summary>
-        [JsonProperty("acquirer_nsu")]
+        [JsonProperty("acquirer_nsu", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerNsu { get; set; }
 
         /// <summary>
         /// Acquirer authorization code
         /// </summary>
-        [JsonProperty("acquirer_auth_code")]
+        [JsonProperty("acquirer_auth_code", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerAuthCode { get; set; }
 
         /// <summary>
         /// Operation type
         /// </summary>
-        [JsonProperty("operation_type")]
+        [JsonProperty("operation_type", NullValueHandling = NullValueHandling.Include)]
         public string OperationType { get; set; }
 
         /// <summary>
         /// Card data
         /// </summary>
-        [JsonProperty("card")]
+        [JsonProperty("card", NullValueHandling = NullValueHandling.Include)]
         public Models.GetCardResponse Card { get; set; }
 
         /// <summary>
         /// Acquirer message
         /// </summary>
-        [JsonProperty("acquirer_message")]
+        [JsonProperty("acquirer_message", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerMessage { get; set; }
 
         /// <summary>
         /// Acquirer Return Code
         /// </summary>
-        [JsonProperty("acquirer_return_code")]
+        [JsonProperty("acquirer_return_code", NullValueHandling = NullValueHandling.Include)]
         public string AcquirerReturnCode { get; set; }
 
         /// <summary>
         /// Merchant Plugin
         /// </summary>
-        [JsonProperty("mpi")]
+        [JsonProperty("mpi", NullValueHandling = NullValueHandling.Include)]
         public string Mpi { get; set; }
 
         /// <summary>
         /// Electronic Commerce Indicator (ECI)
         /// </summary>
-        [JsonProperty("eci")]
+        [JsonProperty("eci", NullValueHandling = NullValueHandling.Include)]
         public string Eci { get; set; }
 
         /// <summary>
         /// Authentication type
         /// </summary>
-        [JsonProperty("authentication_type")]
+        [JsonProperty("authentication_type", NullValueHandling = NullValueHandling.Include)]
         public string AuthenticationType { get; set; }
 
         /// <summary>
         /// 3D-S Authentication Url
         /// </summary>
-        [JsonProperty("threed_authentication_url")]
+        [JsonProperty("threed_authentication_url", NullValueHandling = NullValueHandling.Include)]
         public string ThreedAuthenticationUrl { get; set; }
 
         /// <inheritdoc/>

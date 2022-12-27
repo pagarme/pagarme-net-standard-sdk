@@ -17,17 +17,17 @@ Response object for getting a plan
 | `Url` | `string` | Required | - |
 | `StatementDescriptor` | `string` | Required | - |
 | `Interval` | `string` | Required | - |
-| `IntervalCount` | `int` | Required | - |
+| `IntervalCount` | `int?` | Required | - |
 | `BillingType` | `string` | Required | - |
 | `PaymentMethods` | `List<string>` | Required | - |
 | `Installments` | `List<int>` | Required | - |
 | `Status` | `string` | Required | - |
 | `Currency` | `string` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `Items` | [`List<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md) | Required | - |
 | `BillingDays` | `List<int>` | Required | - |
-| `Shippable` | `bool` | Required | - |
+| `Shippable` | `bool?` | Required | - |
 | `Metadata` | `Dictionary<string, string>` | Required | - |
 | `TrialPeriodDays` | `int?` | Optional | - |
 | `MinimumPrice` | `int?` | Optional | - |

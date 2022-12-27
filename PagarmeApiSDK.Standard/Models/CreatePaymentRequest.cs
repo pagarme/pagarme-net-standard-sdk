@@ -32,7 +32,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// Initializes a new instance of the <see cref="CreatePaymentRequest"/> class.
         /// </summary>
         /// <param name="paymentMethod">payment_method.</param>
-        /// <param name="privateLabel">private_label.</param>
         /// <param name="creditCard">credit_card.</param>
         /// <param name="debitCard">debit_card.</param>
         /// <param name="boleto">boleto.</param>
@@ -47,10 +46,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="customer">customer.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="cash">cash.</param>
+        /// <param name="privateLabel">private_label.</param>
         /// <param name="pix">pix.</param>
         public CreatePaymentRequest(
             string paymentMethod,
-            Models.CreatePrivateLabelPaymentRequest privateLabel,
             Models.CreateCreditCardPaymentRequest creditCard = null,
             Models.CreateDebitCardPaymentRequest debitCard = null,
             Models.CreateBoletoPaymentRequest boleto = null,
@@ -65,6 +64,7 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreateCustomerRequest customer = null,
             Dictionary<string, string> metadata = null,
             Models.CreateCashPaymentRequest cash = null,
+            Models.CreatePrivateLabelPaymentRequest privateLabel = null,
             Models.CreatePixPaymentRequest pix = null)
         {
             this.PaymentMethod = paymentMethod;
@@ -179,7 +179,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Settings for private label payment
         /// </summary>
-        [JsonProperty("private_label")]
+        [JsonProperty("private_label", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreatePrivateLabelPaymentRequest PrivateLabel { get; set; }
 
         /// <summary>

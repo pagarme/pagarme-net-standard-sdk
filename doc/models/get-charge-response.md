@@ -14,13 +14,13 @@ Response object for getting a charge
 | `Id` | `string` | Required | - |
 | `Code` | `string` | Required | - |
 | `GatewayId` | `string` | Required | - |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Status` | `string` | Required | - |
 | `Currency` | `string` | Required | - |
 | `PaymentMethod` | `string` | Required | - |
-| `DueAt` | `DateTime` | Required | - |
-| `CreatedAt` | `DateTime` | Required | - |
-| `UpdatedAt` | `DateTime` | Required | - |
+| `DueAt` | `DateTime?` | Required | - |
+| `CreatedAt` | `DateTime?` | Required | - |
+| `UpdatedAt` | `DateTime?` | Required | - |
 | `LastTransaction` | [`Models.GetTransactionResponse`](../../doc/models/get-transaction-response.md) | Optional | - |
 | `Invoice` | [`Models.GetInvoiceResponse`](../../doc/models/get-invoice-response.md) | Optional | - |
 | `Order` | [`Models.GetOrderResponse`](../../doc/models/get-order-response.md) | Optional | - |
@@ -28,8 +28,8 @@ Response object for getting a charge
 | `Metadata` | `Dictionary<string, string>` | Required | - |
 | `PaidAt` | `DateTime?` | Optional | - |
 | `CanceledAt` | `DateTime?` | Optional | - |
-| `CanceledAmount` | `int` | Required | Canceled Amount |
-| `PaidAmount` | `int` | Required | Paid amount |
+| `CanceledAmount` | `int?` | Required | Canceled Amount |
+| `PaidAmount` | `int?` | Required | Paid amount |
 | `InterestAndFinePaid` | `int?` | Optional | interest and fine paid |
 | `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
 

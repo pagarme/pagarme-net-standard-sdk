@@ -40,14 +40,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="type">type.</param>
         /// <param name="label">label.</param>
         public GetCardTokenResponse(
-            string lastFourDigits,
-            string holderName,
-            string holderDocument,
-            string expMonth,
-            string expYear,
-            string brand,
-            string type,
-            string label)
+            string lastFourDigits = null,
+            string holderName = null,
+            string holderDocument = null,
+            string expMonth = null,
+            string expYear = null,
+            string brand = null,
+            string type = null,
+            string label = null)
         {
             this.LastFourDigits = lastFourDigits;
             this.HolderName = holderName;
@@ -62,49 +62,49 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets LastFourDigits.
         /// </summary>
-        [JsonProperty("last_four_digits")]
+        [JsonProperty("last_four_digits", NullValueHandling = NullValueHandling.Include)]
         public string LastFourDigits { get; set; }
 
         /// <summary>
         /// Gets or sets HolderName.
         /// </summary>
-        [JsonProperty("holder_name")]
+        [JsonProperty("holder_name", NullValueHandling = NullValueHandling.Include)]
         public string HolderName { get; set; }
 
         /// <summary>
         /// Gets or sets HolderDocument.
         /// </summary>
-        [JsonProperty("holder_document")]
+        [JsonProperty("holder_document", NullValueHandling = NullValueHandling.Include)]
         public string HolderDocument { get; set; }
 
         /// <summary>
         /// Gets or sets ExpMonth.
         /// </summary>
-        [JsonProperty("exp_month")]
+        [JsonProperty("exp_month", NullValueHandling = NullValueHandling.Include)]
         public string ExpMonth { get; set; }
 
         /// <summary>
         /// Gets or sets ExpYear.
         /// </summary>
-        [JsonProperty("exp_year")]
+        [JsonProperty("exp_year", NullValueHandling = NullValueHandling.Include)]
         public string ExpYear { get; set; }
 
         /// <summary>
         /// Gets or sets Brand.
         /// </summary>
-        [JsonProperty("brand")]
+        [JsonProperty("brand", NullValueHandling = NullValueHandling.Include)]
         public string Brand { get; set; }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets Label.
         /// </summary>
-        [JsonProperty("label")]
+        [JsonProperty("label", NullValueHandling = NullValueHandling.Include)]
         public string Label { get; set; }
 
         /// <inheritdoc/>

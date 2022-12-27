@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCustomerResponse
     {
+        private long? fbId;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "fb_id", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCustomerResponse"/> class.
         /// </summary>
@@ -43,25 +49,25 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="address">address.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="phones">phones.</param>
+        /// <param name="fbId">fb_id.</param>
         /// <param name="code">code.</param>
         /// <param name="documentType">document_type.</param>
-        /// <param name="fbId">fb_id.</param>
         public GetCustomerResponse(
-            string id,
-            string name,
-            string email,
-            bool delinquent,
-            DateTime createdAt,
-            DateTime updatedAt,
-            string document,
-            string type,
-            string fbAccessToken,
-            Models.GetAddressResponse address,
-            Dictionary<string, string> metadata,
-            Models.GetPhonesResponse phones,
-            string code,
-            string documentType,
-            long? fbId = null)
+            string id = null,
+            string name = null,
+            string email = null,
+            bool? delinquent = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null,
+            string document = null,
+            string type = null,
+            string fbAccessToken = null,
+            Models.GetAddressResponse address = null,
+            Dictionary<string, string> metadata = null,
+            Models.GetPhonesResponse phones = null,
+            long? fbId = null,
+            string code = null,
+            string documentType = null)
         {
             this.Id = id;
             this.Name = name;
@@ -75,7 +81,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.Address = address;
             this.Metadata = metadata;
             this.Phones = phones;
-            this.FbId = fbId;
+            if (fbId != null)
+            {
+                this.FbId = fbId;
+            }
+
             this.Code = code;
             this.DocumentType = documentType;
         }
@@ -83,93 +93,105 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets Name.
         /// </summary>
-        [JsonProperty("name")]
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Include)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets Email.
         /// </summary>
-        [JsonProperty("email")]
+        [JsonProperty("email", NullValueHandling = NullValueHandling.Include)]
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets Delinquent.
         /// </summary>
-        [JsonProperty("delinquent")]
-        public bool Delinquent { get; set; }
+        [JsonProperty("delinquent", NullValueHandling = NullValueHandling.Include)]
+        public bool? Delinquent { get; set; }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets UpdatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets Document.
         /// </summary>
-        [JsonProperty("document")]
+        [JsonProperty("document", NullValueHandling = NullValueHandling.Include)]
         public string Document { get; set; }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets FbAccessToken.
         /// </summary>
-        [JsonProperty("fb_access_token")]
+        [JsonProperty("fb_access_token", NullValueHandling = NullValueHandling.Include)]
         public string FbAccessToken { get; set; }
 
         /// <summary>
         /// Gets or sets Address.
         /// </summary>
-        [JsonProperty("address")]
+        [JsonProperty("address", NullValueHandling = NullValueHandling.Include)]
         public Models.GetAddressResponse Address { get; set; }
 
         /// <summary>
         /// Gets or sets Metadata.
         /// </summary>
-        [JsonProperty("metadata")]
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
         /// Gets or sets Phones.
         /// </summary>
-        [JsonProperty("phones")]
+        [JsonProperty("phones", NullValueHandling = NullValueHandling.Include)]
         public Models.GetPhonesResponse Phones { get; set; }
 
         /// <summary>
         /// Gets or sets FbId.
         /// </summary>
-        [JsonProperty("fb_id", NullValueHandling = NullValueHandling.Ignore)]
-        public long? FbId { get; set; }
+        [JsonProperty("fb_id")]
+        public long? FbId
+        {
+            get
+            {
+                return this.fbId;
+            }
+
+            set
+            {
+                this.shouldSerialize["fb_id"] = true;
+                this.fbId = value;
+            }
+        }
 
         /// <summary>
         /// Código de referência do cliente no sistema da loja. Max: 52 caracteres
         /// </summary>
-        [JsonProperty("code")]
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
         public string Code { get; set; }
 
         /// <summary>
         /// Gets or sets DocumentType.
         /// </summary>
-        [JsonProperty("document_type")]
+        [JsonProperty("document_type", NullValueHandling = NullValueHandling.Include)]
         public string DocumentType { get; set; }
 
         /// <inheritdoc/>
@@ -180,6 +202,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCustomerResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFbId()
+        {
+            this.shouldSerialize["fb_id"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFbId()
+        {
+            return this.shouldSerialize["fb_id"];
         }
 
         /// <inheritdoc/>
@@ -199,9 +238,9 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.Email == null && other.Email == null) || (this.Email?.Equals(other.Email) == true)) &&
-                this.Delinquent.Equals(other.Delinquent) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
+                ((this.Delinquent == null && other.Delinquent == null) || (this.Delinquent?.Equals(other.Delinquent) == true)) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
                 ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.FbAccessToken == null && other.FbAccessToken == null) || (this.FbAccessToken?.Equals(other.FbAccessToken) == true)) &&
@@ -223,9 +262,9 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
             toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name == string.Empty ? "" : this.Name)}");
             toStringOutput.Add($"this.Email = {(this.Email == null ? "null" : this.Email == string.Empty ? "" : this.Email)}");
-            toStringOutput.Add($"this.Delinquent = {this.Delinquent}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
+            toStringOutput.Add($"this.Delinquent = {(this.Delinquent == null ? "null" : this.Delinquent.ToString())}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
             toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document == string.Empty ? "" : this.Document)}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
             toStringOutput.Add($"this.FbAccessToken = {(this.FbAccessToken == null ? "null" : this.FbAccessToken == string.Empty ? "" : this.FbAccessToken)}");

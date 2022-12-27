@@ -21,6 +21,18 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetUsageResponse
     {
+        private DateTime? deletedAt;
+        private string code;
+        private string mGroup;
+        private int? amount;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "deleted_at", false },
+            { "code", false },
+            { "group", false },
+            { "amount", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUsageResponse"/> class.
         /// </summary>
@@ -37,20 +49,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="usedAt">used_at.</param>
         /// <param name="createdAt">created_at.</param>
         /// <param name="status">status.</param>
-        /// <param name="subscriptionItem">subscription_item.</param>
         /// <param name="deletedAt">deleted_at.</param>
+        /// <param name="subscriptionItem">subscription_item.</param>
         /// <param name="code">code.</param>
         /// <param name="mGroup">group.</param>
         /// <param name="amount">amount.</param>
         public GetUsageResponse(
-            string id,
-            int quantity,
-            string description,
-            DateTime usedAt,
-            DateTime createdAt,
-            string status,
-            Models.GetSubscriptionItemResponse subscriptionItem,
+            string id = null,
+            int? quantity = null,
+            string description = null,
+            DateTime? usedAt = null,
+            DateTime? createdAt = null,
+            string status = null,
             DateTime? deletedAt = null,
+            Models.GetSubscriptionItemResponse subscriptionItem = null,
             string code = null,
             string mGroup = null,
             int? amount = null)
@@ -61,81 +73,145 @@ namespace PagarmeApiSDK.Standard.Models
             this.UsedAt = usedAt;
             this.CreatedAt = createdAt;
             this.Status = status;
-            this.DeletedAt = deletedAt;
+            if (deletedAt != null)
+            {
+                this.DeletedAt = deletedAt;
+            }
+
             this.SubscriptionItem = subscriptionItem;
-            this.Code = code;
-            this.MGroup = mGroup;
-            this.Amount = amount;
+            if (code != null)
+            {
+                this.Code = code;
+            }
+
+            if (mGroup != null)
+            {
+                this.MGroup = mGroup;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
         }
 
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
         public string Id { get; set; }
 
         /// <summary>
         /// Quantity
         /// </summary>
-        [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        [JsonProperty("quantity", NullValueHandling = NullValueHandling.Include)]
+        public int? Quantity { get; set; }
 
         /// <summary>
         /// Description
         /// </summary>
-        [JsonProperty("description")]
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
         public string Description { get; set; }
 
         /// <summary>
         /// Used at
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("used_at")]
-        public DateTime UsedAt { get; set; }
+        [JsonProperty("used_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? UsedAt { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Status
         /// </summary>
-        [JsonProperty("status")]
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
         public string Status { get; set; }
 
         /// <summary>
         /// Gets or sets DeletedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("deleted_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? DeletedAt { get; set; }
+        [JsonProperty("deleted_at")]
+        public DateTime? DeletedAt
+        {
+            get
+            {
+                return this.deletedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["deleted_at"] = true;
+                this.deletedAt = value;
+            }
+        }
 
         /// <summary>
         /// Subscription item
         /// </summary>
-        [JsonProperty("subscription_item")]
+        [JsonProperty("subscription_item", NullValueHandling = NullValueHandling.Include)]
         public Models.GetSubscriptionItemResponse SubscriptionItem { get; set; }
 
         /// <summary>
         /// Identification code in the client system
         /// </summary>
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
-        public string Code { get; set; }
+        [JsonProperty("code")]
+        public string Code
+        {
+            get
+            {
+                return this.code;
+            }
+
+            set
+            {
+                this.shouldSerialize["code"] = true;
+                this.code = value;
+            }
+        }
 
         /// <summary>
         /// Identification group in the client system
         /// </summary>
-        [JsonProperty("group", NullValueHandling = NullValueHandling.Ignore)]
-        public string MGroup { get; set; }
+        [JsonProperty("group")]
+        public string MGroup
+        {
+            get
+            {
+                return this.mGroup;
+            }
+
+            set
+            {
+                this.shouldSerialize["group"] = true;
+                this.mGroup = value;
+            }
+        }
 
         /// <summary>
         /// Field used in item scheme type 'Percent'
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -145,6 +221,74 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetUsageResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDeletedAt()
+        {
+            this.shouldSerialize["deleted_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCode()
+        {
+            this.shouldSerialize["code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGroup()
+        {
+            this.shouldSerialize["group"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDeletedAt()
+        {
+            return this.shouldSerialize["deleted_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCode()
+        {
+            return this.shouldSerialize["code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGroup()
+        {
+            return this.shouldSerialize["group"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
         }
 
         /// <inheritdoc/>
@@ -162,10 +306,10 @@ namespace PagarmeApiSDK.Standard.Models
 
             return obj is GetUsageResponse other &&
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                this.Quantity.Equals(other.Quantity) &&
+                ((this.Quantity == null && other.Quantity == null) || (this.Quantity?.Equals(other.Quantity) == true)) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
-                this.UsedAt.Equals(other.UsedAt) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
+                ((this.UsedAt == null && other.UsedAt == null) || (this.UsedAt?.Equals(other.UsedAt) == true)) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.DeletedAt == null && other.DeletedAt == null) || (this.DeletedAt?.Equals(other.DeletedAt) == true)) &&
                 ((this.SubscriptionItem == null && other.SubscriptionItem == null) || (this.SubscriptionItem?.Equals(other.SubscriptionItem) == true)) &&
@@ -182,10 +326,10 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.Quantity = {this.Quantity}");
+            toStringOutput.Add($"this.Quantity = {(this.Quantity == null ? "null" : this.Quantity.ToString())}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
-            toStringOutput.Add($"this.UsedAt = {this.UsedAt}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
+            toStringOutput.Add($"this.UsedAt = {(this.UsedAt == null ? "null" : this.UsedAt.ToString())}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
             toStringOutput.Add($"this.DeletedAt = {(this.DeletedAt == null ? "null" : this.DeletedAt.ToString())}");
             toStringOutput.Add($"this.SubscriptionItem = {(this.SubscriptionItem == null ? "null" : this.SubscriptionItem.ToString())}");

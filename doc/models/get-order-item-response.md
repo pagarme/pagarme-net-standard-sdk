@@ -12,9 +12,9 @@ Response object for getting an order item
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `string` | Required | Id |
-| `Amount` | `int` | Required | - |
+| `Amount` | `int?` | Required | - |
 | `Description` | `string` | Required | - |
-| `Quantity` | `int` | Required | - |
+| `Quantity` | `int?` | Required | - |
 | `Category` | `string` | Required | Category |
 | `Code` | `string` | Required | Code |
 

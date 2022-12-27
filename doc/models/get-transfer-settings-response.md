@@ -9,9 +9,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `TransferEnabled` | `bool` | Required | - |
+| `TransferEnabled` | `bool?` | Required | - |
 | `TransferInterval` | `string` | Required | - |
-| `TransferDay` | `int` | Required | - |
+| `TransferDay` | `int?` | Required | - |
 
 ## Example (as JSON)
 

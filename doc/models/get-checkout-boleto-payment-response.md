@@ -9,7 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DueAt` | `DateTime` | Required | Data de vencimento do boleto |
+| `DueAt` | `DateTime?` | Required | Data de vencimento do boleto |
 | `Instructions` | `string` | Required | Instruções do boleto |
 
 ## Example (as JSON)
