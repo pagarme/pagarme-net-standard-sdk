@@ -26,7 +26,7 @@ Request for creating a subcription
 | `Shipping` | [`Models.CreateShippingRequest`](../../doc/models/create-shipping-request.md) | Required | Shipping |
 | `Discounts` | [`List<Models.CreateDiscountRequest>`](../../doc/models/create-discount-request.md) | Required | Discounts |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
-| `Setup` | [`Models.CreateSetupRequest`](../../doc/models/create-setup-request.md) | Required | Setup data |
+| `Setup` | [`Models.CreateSetupRequest`](../../doc/models/create-setup-request.md) | Optional | Setup data |
 | `PlanId` | `string` | Optional | Plan id |
 | `CustomerId` | `string` | Optional | Customer id |
 | `CardId` | `string` | Optional | Card id |
@@ -87,7 +87,6 @@ Request for creating a subcription
   "shipping": null,
   "discounts": null,
   "metadata": null,
-  "setup": null,
   "increments": null
 }
 ```

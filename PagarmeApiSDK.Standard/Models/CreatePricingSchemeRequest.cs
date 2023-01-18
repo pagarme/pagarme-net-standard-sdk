@@ -38,7 +38,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="percentage">percentage.</param>
         public CreatePricingSchemeRequest(
             string schemeType,
-            List<Models.CreatePriceBracketRequest> priceBrackets,
+            List<Models.CreatePriceBracketRequest> priceBrackets = null,
             int? price = null,
             int? minimumPrice = null,
             double? percentage = null)
@@ -59,7 +59,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Price brackets
         /// </summary>
-        [JsonProperty("price_brackets")]
+        [JsonProperty("price_brackets", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.CreatePriceBracketRequest> PriceBrackets { get; set; }
 
         /// <summary>

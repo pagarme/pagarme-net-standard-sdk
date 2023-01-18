@@ -215,13 +215,6 @@ var request = new CreatePlanItemRequest();
 request.Name = "name6";
 request.PricingScheme = new CreatePricingSchemeRequest();
 request.PricingScheme.SchemeType = "scheme_type2";
-request.PricingScheme.PriceBrackets = new List<CreatePriceBracketRequest>();
-
-var requestPricingSchemePriceBrackets0 = new CreatePriceBracketRequest();
-requestPricingSchemePriceBrackets0.StartQuantity = 87;
-requestPricingSchemePriceBrackets0.Price = 231;
-request.PricingScheme.PriceBrackets.Add(requestPricingSchemePriceBrackets0);
-
 request.Id = "id6";
 request.Description = "description6";
 
@@ -302,18 +295,6 @@ var bodyItems0 = new CreatePlanItemRequest();
 bodyItems0.Name = "name3";
 bodyItems0.PricingScheme = new CreatePricingSchemeRequest();
 bodyItems0.PricingScheme.SchemeType = "scheme_type5";
-bodyItems0.PricingScheme.PriceBrackets = new List<CreatePriceBracketRequest>();
-
-var bodyItems0PricingSchemePriceBrackets0 = new CreatePriceBracketRequest();
-bodyItems0PricingSchemePriceBrackets0.StartQuantity = 228;
-bodyItems0PricingSchemePriceBrackets0.Price = 90;
-bodyItems0.PricingScheme.PriceBrackets.Add(bodyItems0PricingSchemePriceBrackets0);
-
-var bodyItems0PricingSchemePriceBrackets1 = new CreatePriceBracketRequest();
-bodyItems0PricingSchemePriceBrackets1.StartQuantity = 229;
-bodyItems0PricingSchemePriceBrackets1.Price = 89;
-bodyItems0.PricingScheme.PriceBrackets.Add(bodyItems0PricingSchemePriceBrackets1);
-
 bodyItems0.Id = "id3";
 bodyItems0.Description = "description3";
 body.Items.Add(bodyItems0);
@@ -322,13 +303,6 @@ var bodyItems1 = new CreatePlanItemRequest();
 bodyItems1.Name = "name4";
 bodyItems1.PricingScheme = new CreatePricingSchemeRequest();
 bodyItems1.PricingScheme.SchemeType = "scheme_type4";
-bodyItems1.PricingScheme.PriceBrackets = new List<CreatePriceBracketRequest>();
-
-var bodyItems1PricingSchemePriceBrackets0 = new CreatePriceBracketRequest();
-bodyItems1PricingSchemePriceBrackets0.StartQuantity = 227;
-bodyItems1PricingSchemePriceBrackets0.Price = 91;
-bodyItems1.PricingScheme.PriceBrackets.Add(bodyItems1PricingSchemePriceBrackets0);
-
 bodyItems1.Id = "id4";
 bodyItems1.Description = "description4";
 body.Items.Add(bodyItems1);
@@ -337,23 +311,6 @@ var bodyItems2 = new CreatePlanItemRequest();
 bodyItems2.Name = "name5";
 bodyItems2.PricingScheme = new CreatePricingSchemeRequest();
 bodyItems2.PricingScheme.SchemeType = "scheme_type3";
-bodyItems2.PricingScheme.PriceBrackets = new List<CreatePriceBracketRequest>();
-
-var bodyItems2PricingSchemePriceBrackets0 = new CreatePriceBracketRequest();
-bodyItems2PricingSchemePriceBrackets0.StartQuantity = 226;
-bodyItems2PricingSchemePriceBrackets0.Price = 92;
-bodyItems2.PricingScheme.PriceBrackets.Add(bodyItems2PricingSchemePriceBrackets0);
-
-var bodyItems2PricingSchemePriceBrackets1 = new CreatePriceBracketRequest();
-bodyItems2PricingSchemePriceBrackets1.StartQuantity = 227;
-bodyItems2PricingSchemePriceBrackets1.Price = 91;
-bodyItems2.PricingScheme.PriceBrackets.Add(bodyItems2PricingSchemePriceBrackets1);
-
-var bodyItems2PricingSchemePriceBrackets2 = new CreatePriceBracketRequest();
-bodyItems2PricingSchemePriceBrackets2.StartQuantity = 228;
-bodyItems2PricingSchemePriceBrackets2.Price = 90;
-bodyItems2.PricingScheme.PriceBrackets.Add(bodyItems2PricingSchemePriceBrackets2);
-
 bodyItems2.Id = "id5";
 bodyItems2.Description = "description5";
 body.Items.Add(bodyItems2);
@@ -372,18 +329,6 @@ body.BillingDays.Add(200);
 body.BillingType = "billing_type0";
 body.PricingScheme = new CreatePricingSchemeRequest();
 body.PricingScheme.SchemeType = "scheme_type2";
-body.PricingScheme.PriceBrackets = new List<CreatePriceBracketRequest>();
-
-var bodyPricingSchemePriceBrackets0 = new CreatePriceBracketRequest();
-bodyPricingSchemePriceBrackets0.StartQuantity = 31;
-bodyPricingSchemePriceBrackets0.Price = 225;
-body.PricingScheme.PriceBrackets.Add(bodyPricingSchemePriceBrackets0);
-
-var bodyPricingSchemePriceBrackets1 = new CreatePriceBracketRequest();
-bodyPricingSchemePriceBrackets1.StartQuantity = 32;
-bodyPricingSchemePriceBrackets1.Price = 226;
-body.PricingScheme.PriceBrackets.Add(bodyPricingSchemePriceBrackets1);
-
 body.Metadata = new Dictionary<string, string>();
 body.Metadata.Add("key0", "metadata7");
 body.Metadata.Add("key1", "metadata8");

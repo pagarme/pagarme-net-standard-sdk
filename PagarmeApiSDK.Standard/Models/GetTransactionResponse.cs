@@ -19,10 +19,19 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetTransactionResponse.
     /// </summary>
+    [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
+    [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
+    [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
+    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
+    [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
+    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
+    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
+    [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse
     {
         private DateTime? nextAttempt;
-        private string transactionType;
         private Dictionary<string, string> metadata;
         private Models.GetInterestResponse interest;
         private Models.GetFineResponse fine;
@@ -30,7 +39,6 @@ namespace PagarmeApiSDK.Standard.Models
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "next_attempt", false },
-            { "transaction_type", false },
             { "metadata", false },
             { "interest", false },
             { "fine", false },
@@ -42,11 +50,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetTransactionResponse()
         {
+            this.TransactionType = "transaction";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTransactionResponse"/> class.
         /// </summary>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="gatewayId">gateway_id.</param>
         /// <param name="amount">amount.</param>
         /// <param name="status">status.</param>
@@ -57,7 +67,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
         /// <param name="nextAttempt">next_attempt.</param>
-        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
@@ -67,6 +76,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public GetTransactionResponse(
+            string transactionType = "transaction",
             string gatewayId = null,
             int? amount = null,
             string status = null,
@@ -77,7 +87,6 @@ namespace PagarmeApiSDK.Standard.Models
             int? maxAttempts = null,
             List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
-            string transactionType = null,
             string id = null,
             Models.GetGatewayResponseResponse gatewayResponse = null,
             Models.GetAntifraudResponse antifraudResponse = null,
@@ -101,11 +110,7 @@ namespace PagarmeApiSDK.Standard.Models
                 this.NextAttempt = nextAttempt;
             }
 
-            if (transactionType != null)
-            {
-                this.TransactionType = transactionType;
-            }
-
+            this.TransactionType = transactionType;
             this.Id = id;
             this.GatewayResponse = gatewayResponse;
             this.AntifraudResponse = antifraudResponse;
@@ -210,20 +215,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets TransactionType.
         /// </summary>
-        [JsonProperty("transaction_type")]
-        public string TransactionType
-        {
-            get
-            {
-                return this.transactionType;
-            }
-
-            set
-            {
-                this.shouldSerialize["transaction_type"] = true;
-                this.transactionType = value;
-            }
-        }
+        [JsonProperty("transaction_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string TransactionType { get; set; }
 
         /// <summary>
         /// Código da transação
@@ -342,14 +335,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
-        public void UnsetTransactionType()
-        {
-            this.shouldSerialize["transaction_type"] = false;
-        }
-
-        /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
         public void UnsetMetadata()
         {
             this.shouldSerialize["metadata"] = false;
@@ -386,15 +371,6 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeNextAttempt()
         {
             return this.shouldSerialize["next_attempt"];
-        }
-
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeTransactionType()
-        {
-            return this.shouldSerialize["transaction_type"];
         }
 
         /// <summary>

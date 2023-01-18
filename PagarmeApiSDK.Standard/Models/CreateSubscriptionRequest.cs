@@ -46,8 +46,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="shipping">shipping.</param>
         /// <param name="discounts">discounts.</param>
         /// <param name="metadata">metadata.</param>
-        /// <param name="setup">setup.</param>
         /// <param name="increments">increments.</param>
+        /// <param name="setup">setup.</param>
         /// <param name="planId">plan_id.</param>
         /// <param name="customerId">customer_id.</param>
         /// <param name="cardId">card_id.</param>
@@ -80,8 +80,8 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreateShippingRequest shipping,
             List<Models.CreateDiscountRequest> discounts,
             Dictionary<string, string> metadata,
-            Models.CreateSetupRequest setup,
             List<Models.CreateIncrementRequest> increments,
+            Models.CreateSetupRequest setup = null,
             string planId = null,
             string customerId = null,
             string cardId = null,
@@ -227,7 +227,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Setup data
         /// </summary>
-        [JsonProperty("setup")]
+        [JsonProperty("setup", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateSetupRequest Setup { get; set; }
 
         /// <summary>
