@@ -21,7 +21,6 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetChargeResponse
     {
-        private Models.GetTransactionResponse lastTransaction;
         private Models.GetInvoiceResponse invoice;
         private Models.GetOrderResponse order;
         private Models.GetCustomerResponse customer;
@@ -31,7 +30,6 @@ namespace PagarmeApiSDK.Standard.Models
         private string recurrencyCycle;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
-            { "last_transaction", false },
             { "invoice", false },
             { "order", false },
             { "customer", false },
@@ -51,6 +49,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="GetChargeResponse"/> class.
         /// </summary>
+        /// <param name="lastTransaction">last_transaction.</param>
         /// <param name="id">id.</param>
         /// <param name="code">code.</param>
         /// <param name="gatewayId">gateway_id.</param>
@@ -61,7 +60,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="dueAt">due_at.</param>
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
-        /// <param name="lastTransaction">last_transaction.</param>
         /// <param name="invoice">invoice.</param>
         /// <param name="order">order.</param>
         /// <param name="customer">customer.</param>
@@ -73,6 +71,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="interestAndFinePaid">interest_and_fine_paid.</param>
         /// <param name="recurrencyCycle">recurrency_cycle.</param>
         public GetChargeResponse(
+            Models.GetTransactionResponse lastTransaction,
             string id = null,
             string code = null,
             string gatewayId = null,
@@ -83,7 +82,6 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? dueAt = null,
             DateTime? createdAt = null,
             DateTime? updatedAt = null,
-            Models.GetTransactionResponse lastTransaction = null,
             Models.GetInvoiceResponse invoice = null,
             Models.GetOrderResponse order = null,
             Models.GetCustomerResponse customer = null,
@@ -105,11 +103,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.DueAt = dueAt;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
-            if (lastTransaction != null)
-            {
-                this.LastTransaction = lastTransaction;
-            }
-
+            this.LastTransaction = lastTransaction;
             if (invoice != null)
             {
                 this.Invoice = invoice;
@@ -217,19 +211,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets LastTransaction.
         /// </summary>
         [JsonProperty("last_transaction")]
-        public Models.GetTransactionResponse LastTransaction
-        {
-            get
-            {
-                return this.lastTransaction;
-            }
-
-            set
-            {
-                this.shouldSerialize["last_transaction"] = true;
-                this.lastTransaction = value;
-            }
-        }
+        public Models.GetTransactionResponse LastTransaction { get; set; }
 
         /// <summary>
         /// Gets or sets Invoice.
@@ -390,14 +372,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
-        public void UnsetLastTransaction()
-        {
-            this.shouldSerialize["last_transaction"] = false;
-        }
-
-        /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
         public void UnsetInvoice()
         {
             this.shouldSerialize["invoice"] = false;
@@ -449,15 +423,6 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetRecurrencyCycle()
         {
             this.shouldSerialize["recurrency_cycle"] = false;
-        }
-
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeLastTransaction()
-        {
-            return this.shouldSerialize["last_transaction"];
         }
 
         /// <summary>

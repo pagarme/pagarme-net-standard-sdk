@@ -171,7 +171,7 @@ namespace PagarmeApiSDK.Standard.Utilities
                 // load element value as string
                 if (pair.Value is ICollection)
                 {
-                    paramKeyValPair = FlattenCollection(pair.Value as ICollection, arrayDeserializationFormat, separator, true, Uri.EscapeDataString(pair.Key));
+                    paramKeyValPair = FlattenCollection(pair.Value as ICollection, arrayDeserializationFormat, GetSeparator(arrayDeserializationFormat), true, Uri.EscapeDataString(pair.Key));
                 }
                 else if (pair.Value is DateTime)
                 {
@@ -570,17 +570,18 @@ namespace PagarmeApiSDK.Standard.Utilities
                         {
                             var item = list[0];
 
-                            if (item.GetType().Namespace.StartsWith("System"))
+                            HandleParameter(processedParameters, kvp, item);
+                        }
+                    }
+                    else if (kvp.Value is IDictionary dictionary)
+                    {
+                        if (dictionary?.Count != 0)
+                        {
+                            var enumerator = dictionary.GetEnumerator();
+                            if (enumerator.MoveNext())
                             {
-                                // List of scalar type
-                                processedParameters.Add(kvp);
-                            }
-                            else
-                            {
-                                // List of custom type
-                                var innerList = PrepareFormFieldsFromObject(kvp.Key, kvp.Value, arrayDeserializationFormat: ArrayDeserialization.Indexed);
-                                innerList = ApplySerializationFormatToScalarArrays(innerList);
-                                processedParameters.AddRange(innerList);
+                                var item = ((DictionaryEntry)enumerator.Current).Value;
+                                HandleParameter(processedParameters, kvp, item);
                             }
                         }
                     }
@@ -638,6 +639,44 @@ namespace PagarmeApiSDK.Standard.Utilities
             processedParams.AddRange(unprocessedParams);
 
             return processedParams;
+        }
+
+        private static void HandleParameter(List<KeyValuePair<string, object>> processedParameters, KeyValuePair<string, object> kvp, object item)
+        {
+            if (item.GetType().Namespace.StartsWith("System"))
+            {
+                // List of scalar type
+                processedParameters.Add(kvp);
+            }
+            else
+            {
+                // List of custom type
+                var innerList = PrepareFormFieldsFromObject(kvp.Key, kvp.Value, arrayDeserializationFormat: ArrayDeserialization.Indexed);
+                innerList = ApplySerializationFormatToScalarArrays(innerList);
+                processedParameters.AddRange(innerList);
+            }
+        }
+
+        /// <summary>
+        /// Returns separator according to the arraySerialization.
+        /// </summary>
+        /// <param name="arraySerialization">The array serialization format.</param>
+        /// <returns>The separator character.</returns>
+        private static char GetSeparator(ArrayDeserialization arraySerialization)
+        {
+            if (arraySerialization == ArrayDeserialization.Csv)
+            {
+                return ',';
+            }
+            if (arraySerialization == ArrayDeserialization.Psv)
+            {
+                return '|';
+            }
+            if (arraySerialization == ArrayDeserialization.Tsv)
+            {
+                return '\t';
+            }
+            return '&';
         }
 
         /// <summary>

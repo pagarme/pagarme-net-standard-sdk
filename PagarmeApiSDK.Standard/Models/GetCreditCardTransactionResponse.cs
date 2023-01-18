@@ -32,11 +32,16 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetCreditCardTransactionResponse()
         {
+            this.TransactionType = "credit_card";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCreditCardTransactionResponse"/> class.
         /// </summary>
+        /// <param name="acquirerName">acquirer_name.</param>
+        /// <param name="acquirerTid">acquirer_tid.</param>
+        /// <param name="acquirerNsu">acquirer_nsu.</param>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="gatewayId">gateway_id.</param>
         /// <param name="amount">amount.</param>
         /// <param name="status">status.</param>
@@ -47,7 +52,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
         /// <param name="nextAttempt">next_attempt.</param>
-        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
@@ -57,10 +61,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="statementDescriptor">statement_descriptor.</param>
-        /// <param name="acquirerName">acquirer_name.</param>
         /// <param name="acquirerAffiliationCode">acquirer_affiliation_code.</param>
-        /// <param name="acquirerTid">acquirer_tid.</param>
-        /// <param name="acquirerNsu">acquirer_nsu.</param>
         /// <param name="acquirerAuthCode">acquirer_auth_code.</param>
         /// <param name="operationType">operation_type.</param>
         /// <param name="card">card.</param>
@@ -69,6 +70,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="installments">installments.</param>
         /// <param name="threedAuthenticationUrl">threed_authentication_url.</param>
         public GetCreditCardTransactionResponse(
+            string acquirerName,
+            string acquirerTid,
+            string acquirerNsu,
+            string transactionType = "credit_card",
             string gatewayId = null,
             int? amount = null,
             string status = null,
@@ -79,7 +84,6 @@ namespace PagarmeApiSDK.Standard.Models
             int? maxAttempts = null,
             List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
-            string transactionType = null,
             string id = null,
             Models.GetGatewayResponseResponse gatewayResponse = null,
             Models.GetAntifraudResponse antifraudResponse = null,
@@ -89,10 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null,
             string statementDescriptor = null,
-            string acquirerName = null,
             string acquirerAffiliationCode = null,
-            string acquirerTid = null,
-            string acquirerNsu = null,
             string acquirerAuthCode = null,
             string operationType = null,
             Models.GetCardResponse card = null,
@@ -101,6 +102,7 @@ namespace PagarmeApiSDK.Standard.Models
             int? installments = null,
             string threedAuthenticationUrl = null)
             : base(
+                transactionType,
                 gatewayId,
                 amount,
                 status,
@@ -111,7 +113,6 @@ namespace PagarmeApiSDK.Standard.Models
                 maxAttempts,
                 splits,
                 nextAttempt,
-                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
@@ -148,7 +149,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Acquirer name
         /// </summary>
-        [JsonProperty("acquirer_name", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("acquirer_name")]
         public string AcquirerName { get; set; }
 
         /// <summary>
@@ -160,13 +161,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Acquirer TID
         /// </summary>
-        [JsonProperty("acquirer_tid", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("acquirer_tid")]
         public string AcquirerTid { get; set; }
 
         /// <summary>
         /// Acquirer NSU
         /// </summary>
-        [JsonProperty("acquirer_nsu", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("acquirer_nsu")]
         public string AcquirerNsu { get; set; }
 
         /// <summary>

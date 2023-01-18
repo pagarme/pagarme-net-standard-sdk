@@ -32,11 +32,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetPrivateLabelTransactionResponse()
         {
+            this.TransactionType = "private_label";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPrivateLabelTransactionResponse"/> class.
         /// </summary>
+        /// <param name="transactionType">transaction_type.</param>
         /// <param name="gatewayId">gateway_id.</param>
         /// <param name="amount">amount.</param>
         /// <param name="status">status.</param>
@@ -47,7 +49,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="maxAttempts">max_attempts.</param>
         /// <param name="splits">splits.</param>
         /// <param name="nextAttempt">next_attempt.</param>
-        /// <param name="transactionType">transaction_type.</param>
         /// <param name="id">id.</param>
         /// <param name="gatewayResponse">gateway_response.</param>
         /// <param name="antifraudResponse">antifraud_response.</param>
@@ -68,6 +69,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="acquirerReturnCode">acquirer_return_code.</param>
         /// <param name="installments">installments.</param>
         public GetPrivateLabelTransactionResponse(
+            string transactionType = "private_label",
             string gatewayId = null,
             int? amount = null,
             string status = null,
@@ -78,7 +80,6 @@ namespace PagarmeApiSDK.Standard.Models
             int? maxAttempts = null,
             List<Models.GetSplitResponse> splits = null,
             DateTime? nextAttempt = null,
-            string transactionType = null,
             string id = null,
             Models.GetGatewayResponseResponse gatewayResponse = null,
             Models.GetAntifraudResponse antifraudResponse = null,
@@ -99,6 +100,7 @@ namespace PagarmeApiSDK.Standard.Models
             string acquirerReturnCode = null,
             int? installments = null)
             : base(
+                transactionType,
                 gatewayId,
                 amount,
                 status,
@@ -109,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
                 maxAttempts,
                 splits,
                 nextAttempt,
-                transactionType,
                 id,
                 gatewayResponse,
                 antifraudResponse,
