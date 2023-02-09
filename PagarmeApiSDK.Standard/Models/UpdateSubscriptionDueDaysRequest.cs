@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.BoletoDueDays.Equals(other.BoletoDueDays);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

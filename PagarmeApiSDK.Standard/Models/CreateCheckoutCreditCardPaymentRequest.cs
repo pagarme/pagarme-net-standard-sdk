@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Capture == null && other.Capture == null) || (this.Capture?.Equals(other.Capture) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

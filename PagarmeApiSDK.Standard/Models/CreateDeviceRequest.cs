@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Platform == null && other.Platform == null) || (this.Platform?.Equals(other.Platform) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

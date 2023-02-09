@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Emv == null && other.Emv == null) || (this.Emv?.Equals(other.Emv) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

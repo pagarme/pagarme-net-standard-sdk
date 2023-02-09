@@ -72,7 +72,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

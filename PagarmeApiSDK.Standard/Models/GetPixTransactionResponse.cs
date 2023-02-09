@@ -21,6 +21,22 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPixTransactionResponse : GetTransactionResponse
     {
+        private string qrCode;
+        private string qrCodeUrl;
+        private DateTime? expiresAt;
+        private List<Models.PixAdditionalInformation> additionalInformation;
+        private string endToEndId;
+        private Models.GetPixPayerResponse payer;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "qr_code", false },
+            { "qr_code_url", false },
+            { "expires_at", false },
+            { "additional_information", false },
+            { "end_to_end_id", false },
+            { "payer", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPixTransactionResponse"/> class.
         /// </summary>
@@ -104,50 +120,146 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
-            this.QrCode = qrCode;
-            this.QrCodeUrl = qrCodeUrl;
-            this.ExpiresAt = expiresAt;
-            this.AdditionalInformation = additionalInformation;
-            this.EndToEndId = endToEndId;
-            this.Payer = payer;
+            if (qrCode != null)
+            {
+                this.QrCode = qrCode;
+            }
+
+            if (qrCodeUrl != null)
+            {
+                this.QrCodeUrl = qrCodeUrl;
+            }
+
+            if (expiresAt != null)
+            {
+                this.ExpiresAt = expiresAt;
+            }
+
+            if (additionalInformation != null)
+            {
+                this.AdditionalInformation = additionalInformation;
+            }
+
+            if (endToEndId != null)
+            {
+                this.EndToEndId = endToEndId;
+            }
+
+            if (payer != null)
+            {
+                this.Payer = payer;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets QrCode.
         /// </summary>
-        [JsonProperty("qr_code", NullValueHandling = NullValueHandling.Include)]
-        public string QrCode { get; set; }
+        [JsonProperty("qr_code")]
+        public string QrCode
+        {
+            get
+            {
+                return this.qrCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["qr_code"] = true;
+                this.qrCode = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets QrCodeUrl.
         /// </summary>
-        [JsonProperty("qr_code_url", NullValueHandling = NullValueHandling.Include)]
-        public string QrCodeUrl { get; set; }
+        [JsonProperty("qr_code_url")]
+        public string QrCodeUrl
+        {
+            get
+            {
+                return this.qrCodeUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["qr_code_url"] = true;
+                this.qrCodeUrl = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ExpiresAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? ExpiresAt { get; set; }
+        [JsonProperty("expires_at")]
+        public DateTime? ExpiresAt
+        {
+            get
+            {
+                return this.expiresAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["expires_at"] = true;
+                this.expiresAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets AdditionalInformation.
         /// </summary>
-        [JsonProperty("additional_information", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.PixAdditionalInformation> AdditionalInformation { get; set; }
+        [JsonProperty("additional_information")]
+        public List<Models.PixAdditionalInformation> AdditionalInformation
+        {
+            get
+            {
+                return this.additionalInformation;
+            }
+
+            set
+            {
+                this.shouldSerialize["additional_information"] = true;
+                this.additionalInformation = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets EndToEndId.
         /// </summary>
-        [JsonProperty("end_to_end_id", NullValueHandling = NullValueHandling.Include)]
-        public string EndToEndId { get; set; }
+        [JsonProperty("end_to_end_id")]
+        public string EndToEndId
+        {
+            get
+            {
+                return this.endToEndId;
+            }
+
+            set
+            {
+                this.shouldSerialize["end_to_end_id"] = true;
+                this.endToEndId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Payer.
         /// </summary>
-        [JsonProperty("payer", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPixPayerResponse Payer { get; set; }
+        [JsonProperty("payer")]
+        public Models.GetPixPayerResponse Payer
+        {
+            get
+            {
+                return this.payer;
+            }
+
+            set
+            {
+                this.shouldSerialize["payer"] = true;
+                this.payer = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -157,6 +269,108 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPixTransactionResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetQrCode()
+        {
+            this.shouldSerialize["qr_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetQrCodeUrl()
+        {
+            this.shouldSerialize["qr_code_url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetExpiresAt()
+        {
+            this.shouldSerialize["expires_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAdditionalInformation()
+        {
+            this.shouldSerialize["additional_information"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEndToEndId()
+        {
+            this.shouldSerialize["end_to_end_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPayer()
+        {
+            this.shouldSerialize["payer"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeQrCode()
+        {
+            return this.shouldSerialize["qr_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeQrCodeUrl()
+        {
+            return this.shouldSerialize["qr_code_url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeExpiresAt()
+        {
+            return this.shouldSerialize["expires_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAdditionalInformation()
+        {
+            return this.shouldSerialize["additional_information"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEndToEndId()
+        {
+            return this.shouldSerialize["end_to_end_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePayer()
+        {
+            return this.shouldSerialize["payer"];
         }
 
         /// <inheritdoc/>
@@ -182,7 +396,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

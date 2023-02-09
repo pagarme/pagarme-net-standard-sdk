@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

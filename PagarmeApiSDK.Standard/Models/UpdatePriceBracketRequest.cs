@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.OveragePrice == null && other.OveragePrice == null) || (this.OveragePrice?.Equals(other.OveragePrice) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

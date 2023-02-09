@@ -91,7 +91,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.TransactionId == null && other.TransactionId == null) || (this.TransactionId?.Equals(other.TransactionId) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

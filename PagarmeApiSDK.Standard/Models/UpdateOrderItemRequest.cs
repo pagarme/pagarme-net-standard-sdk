@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Category == null && other.Category == null) || (this.Category?.Equals(other.Category) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

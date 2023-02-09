@@ -21,6 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetInterestResponse
     {
+        private int? days;
+        private string type;
+        private int? amount;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "days", false },
+            { "type", false },
+            { "amount", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetInterestResponse"/> class.
         /// </summary>
@@ -39,28 +49,76 @@ namespace PagarmeApiSDK.Standard.Models
             string type = null,
             int? amount = null)
         {
-            this.Days = days;
-            this.Type = type;
-            this.Amount = amount;
+            if (days != null)
+            {
+                this.Days = days;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
         }
 
         /// <summary>
         /// Days
         /// </summary>
-        [JsonProperty("days", NullValueHandling = NullValueHandling.Include)]
-        public int? Days { get; set; }
+        [JsonProperty("days")]
+        public int? Days
+        {
+            get
+            {
+                return this.days;
+            }
+
+            set
+            {
+                this.shouldSerialize["days"] = true;
+                this.days = value;
+            }
+        }
 
         /// <summary>
         /// Type
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Amount
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +128,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetInterestResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDays()
+        {
+            this.shouldSerialize["days"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDays()
+        {
+            return this.shouldSerialize["days"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
         }
 
         /// <inheritdoc/>
@@ -91,7 +200,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

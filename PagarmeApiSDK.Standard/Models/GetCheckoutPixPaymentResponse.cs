@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutPixPaymentResponse
     {
+        private DateTime? expiresAt;
+        private List<Models.PixAdditionalInformation> additionalInformation;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "expires_at", false },
+            { "additional_information", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutPixPaymentResponse"/> class.
         /// </summary>
@@ -37,22 +45,54 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? expiresAt = null,
             List<Models.PixAdditionalInformation> additionalInformation = null)
         {
-            this.ExpiresAt = expiresAt;
-            this.AdditionalInformation = additionalInformation;
+            if (expiresAt != null)
+            {
+                this.ExpiresAt = expiresAt;
+            }
+
+            if (additionalInformation != null)
+            {
+                this.AdditionalInformation = additionalInformation;
+            }
+
         }
 
         /// <summary>
         /// Expires at
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? ExpiresAt { get; set; }
+        [JsonProperty("expires_at")]
+        public DateTime? ExpiresAt
+        {
+            get
+            {
+                return this.expiresAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["expires_at"] = true;
+                this.expiresAt = value;
+            }
+        }
 
         /// <summary>
         /// Additional information
         /// </summary>
-        [JsonProperty("additional_information", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.PixAdditionalInformation> AdditionalInformation { get; set; }
+        [JsonProperty("additional_information")]
+        public List<Models.PixAdditionalInformation> AdditionalInformation
+        {
+            get
+            {
+                return this.additionalInformation;
+            }
+
+            set
+            {
+                this.shouldSerialize["additional_information"] = true;
+                this.additionalInformation = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -62,6 +102,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutPixPaymentResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetExpiresAt()
+        {
+            this.shouldSerialize["expires_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAdditionalInformation()
+        {
+            this.shouldSerialize["additional_information"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeExpiresAt()
+        {
+            return this.shouldSerialize["expires_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAdditionalInformation()
+        {
+            return this.shouldSerialize["additional_information"];
         }
 
         /// <inheritdoc/>
@@ -82,7 +156,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

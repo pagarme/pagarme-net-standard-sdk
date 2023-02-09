@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -111,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MerchantIdentifier == null && other.MerchantIdentifier == null) || (this.MerchantIdentifier?.Equals(other.MerchantIdentifier) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

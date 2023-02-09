@@ -21,13 +21,27 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetUsageResponse
     {
+        private string id;
+        private int? quantity;
+        private string description;
+        private DateTime? usedAt;
+        private DateTime? createdAt;
+        private string status;
         private DateTime? deletedAt;
+        private Models.GetSubscriptionItemResponse subscriptionItem;
         private string code;
         private string mGroup;
         private int? amount;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
+            { "quantity", false },
+            { "description", false },
+            { "used_at", false },
+            { "created_at", false },
+            { "status", false },
             { "deleted_at", false },
+            { "subscription_item", false },
             { "code", false },
             { "group", false },
             { "amount", false },
@@ -67,18 +81,46 @@ namespace PagarmeApiSDK.Standard.Models
             string mGroup = null,
             int? amount = null)
         {
-            this.Id = id;
-            this.Quantity = quantity;
-            this.Description = description;
-            this.UsedAt = usedAt;
-            this.CreatedAt = createdAt;
-            this.Status = status;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (quantity != null)
+            {
+                this.Quantity = quantity;
+            }
+
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
+            if (usedAt != null)
+            {
+                this.UsedAt = usedAt;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
             if (deletedAt != null)
             {
                 this.DeletedAt = deletedAt;
             }
 
-            this.SubscriptionItem = subscriptionItem;
+            if (subscriptionItem != null)
+            {
+                this.SubscriptionItem = subscriptionItem;
+            }
+
             if (code != null)
             {
                 this.Code = code;
@@ -99,40 +141,112 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Quantity
         /// </summary>
-        [JsonProperty("quantity", NullValueHandling = NullValueHandling.Include)]
-        public int? Quantity { get; set; }
+        [JsonProperty("quantity")]
+        public int? Quantity
+        {
+            get
+            {
+                return this.quantity;
+            }
+
+            set
+            {
+                this.shouldSerialize["quantity"] = true;
+                this.quantity = value;
+            }
+        }
 
         /// <summary>
         /// Description
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
-        public string Description { get; set; }
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <summary>
         /// Used at
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("used_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UsedAt { get; set; }
+        [JsonProperty("used_at")]
+        public DateTime? UsedAt
+        {
+            get
+            {
+                return this.usedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["used_at"] = true;
+                this.usedAt = value;
+            }
+        }
 
         /// <summary>
         /// Creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Status
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets DeletedAt.
@@ -156,8 +270,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Subscription item
         /// </summary>
-        [JsonProperty("subscription_item", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetSubscriptionItemResponse SubscriptionItem { get; set; }
+        [JsonProperty("subscription_item")]
+        public Models.GetSubscriptionItemResponse SubscriptionItem
+        {
+            get
+            {
+                return this.subscriptionItem;
+            }
+
+            set
+            {
+                this.shouldSerialize["subscription_item"] = true;
+                this.subscriptionItem = value;
+            }
+        }
 
         /// <summary>
         /// Identification code in the client system
@@ -226,9 +352,65 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetQuantity()
+        {
+            this.shouldSerialize["quantity"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUsedAt()
+        {
+            this.shouldSerialize["used_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetDeletedAt()
         {
             this.shouldSerialize["deleted_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSubscriptionItem()
+        {
+            this.shouldSerialize["subscription_item"] = false;
         }
 
         /// <summary>
@@ -259,9 +441,72 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeQuantity()
+        {
+            return this.shouldSerialize["quantity"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUsedAt()
+        {
+            return this.shouldSerialize["used_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeDeletedAt()
         {
             return this.shouldSerialize["deleted_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSubscriptionItem()
+        {
+            return this.shouldSerialize["subscription_item"];
         }
 
         /// <summary>
@@ -318,7 +563,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

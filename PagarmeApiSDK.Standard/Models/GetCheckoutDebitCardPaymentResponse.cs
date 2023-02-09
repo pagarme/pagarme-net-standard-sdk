@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutDebitCardPaymentResponse
     {
+        private string statementDescriptor;
+        private Models.GetPaymentAuthenticationResponse authentication;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "statement_descriptor", false },
+            { "authentication", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutDebitCardPaymentResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             string statementDescriptor = null,
             Models.GetPaymentAuthenticationResponse authentication = null)
         {
-            this.StatementDescriptor = statementDescriptor;
-            this.Authentication = authentication;
+            if (statementDescriptor != null)
+            {
+                this.StatementDescriptor = statementDescriptor;
+            }
+
+            if (authentication != null)
+            {
+                this.Authentication = authentication;
+            }
+
         }
 
         /// <summary>
         /// Descrição na fatura
         /// </summary>
-        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
-        public string StatementDescriptor { get; set; }
+        [JsonProperty("statement_descriptor")]
+        public string StatementDescriptor
+        {
+            get
+            {
+                return this.statementDescriptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["statement_descriptor"] = true;
+                this.statementDescriptor = value;
+            }
+        }
 
         /// <summary>
         /// Payment Authentication response object data
         /// </summary>
-        [JsonProperty("authentication", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPaymentAuthenticationResponse Authentication { get; set; }
+        [JsonProperty("authentication")]
+        public Models.GetPaymentAuthenticationResponse Authentication
+        {
+            get
+            {
+                return this.authentication;
+            }
+
+            set
+            {
+                this.shouldSerialize["authentication"] = true;
+                this.authentication = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutDebitCardPaymentResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatementDescriptor()
+        {
+            this.shouldSerialize["statement_descriptor"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAuthentication()
+        {
+            this.shouldSerialize["authentication"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatementDescriptor()
+        {
+            return this.shouldSerialize["statement_descriptor"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAuthentication()
+        {
+            return this.shouldSerialize["authentication"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

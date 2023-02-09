@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPaymentAuthenticationResponse
     {
+        private string type;
+        private Models.GetThreeDSecureResponse threedSecure;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "type", false },
+            { "threed_secure", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPaymentAuthenticationResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             string type = null,
             Models.GetThreeDSecureResponse threedSecure = null)
         {
-            this.Type = type;
-            this.ThreedSecure = threedSecure;
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (threedSecure != null)
+            {
+                this.ThreedSecure = threedSecure;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// 3D-S payment authentication response
         /// </summary>
-        [JsonProperty("threed_secure", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetThreeDSecureResponse ThreedSecure { get; set; }
+        [JsonProperty("threed_secure")]
+        public Models.GetThreeDSecureResponse ThreedSecure
+        {
+            get
+            {
+                return this.threedSecure;
+            }
+
+            set
+            {
+                this.shouldSerialize["threed_secure"] = true;
+                this.threedSecure = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPaymentAuthenticationResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetThreedSecure()
+        {
+            this.shouldSerialize["threed_secure"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeThreedSecure()
+        {
+            return this.shouldSerialize["threed_secure"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.ThreedSecure == null && other.ThreedSecure == null) || (this.ThreedSecure?.Equals(other.ThreedSecure) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

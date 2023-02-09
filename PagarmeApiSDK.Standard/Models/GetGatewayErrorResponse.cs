@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetGatewayErrorResponse
     {
+        private string message;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "message", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetGatewayErrorResponse"/> class.
         /// </summary>
@@ -35,14 +41,30 @@ namespace PagarmeApiSDK.Standard.Models
         public GetGatewayErrorResponse(
             string message = null)
         {
-            this.Message = message;
+            if (message != null)
+            {
+                this.Message = message;
+            }
+
         }
 
         /// <summary>
         /// The message error
         /// </summary>
-        [JsonProperty("message", NullValueHandling = NullValueHandling.Include)]
-        public string Message { get; set; }
+        [JsonProperty("message")]
+        public string Message
+        {
+            get
+            {
+                return this.message;
+            }
+
+            set
+            {
+                this.shouldSerialize["message"] = true;
+                this.message = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -52,6 +74,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetGatewayErrorResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMessage()
+        {
+            this.shouldSerialize["message"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMessage()
+        {
+            return this.shouldSerialize["message"];
         }
 
         /// <inheritdoc/>
@@ -71,7 +110,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

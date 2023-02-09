@@ -151,7 +151,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

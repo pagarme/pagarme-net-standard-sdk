@@ -111,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

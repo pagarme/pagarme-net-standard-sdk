@@ -211,7 +211,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

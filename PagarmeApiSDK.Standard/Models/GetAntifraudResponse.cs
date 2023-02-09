@@ -21,6 +21,20 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetAntifraudResponse
     {
+        private string status;
+        private string returnCode;
+        private string returnMessage;
+        private string providerName;
+        private string score;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "status", false },
+            { "return_code", false },
+            { "return_message", false },
+            { "provider_name", false },
+            { "score", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAntifraudResponse"/> class.
         /// </summary>
@@ -43,42 +57,122 @@ namespace PagarmeApiSDK.Standard.Models
             string providerName = null,
             string score = null)
         {
-            this.Status = status;
-            this.ReturnCode = returnCode;
-            this.ReturnMessage = returnMessage;
-            this.ProviderName = providerName;
-            this.Score = score;
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (returnCode != null)
+            {
+                this.ReturnCode = returnCode;
+            }
+
+            if (returnMessage != null)
+            {
+                this.ReturnMessage = returnMessage;
+            }
+
+            if (providerName != null)
+            {
+                this.ProviderName = providerName;
+            }
+
+            if (score != null)
+            {
+                this.Score = score;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ReturnCode.
         /// </summary>
-        [JsonProperty("return_code", NullValueHandling = NullValueHandling.Include)]
-        public string ReturnCode { get; set; }
+        [JsonProperty("return_code")]
+        public string ReturnCode
+        {
+            get
+            {
+                return this.returnCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["return_code"] = true;
+                this.returnCode = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ReturnMessage.
         /// </summary>
-        [JsonProperty("return_message", NullValueHandling = NullValueHandling.Include)]
-        public string ReturnMessage { get; set; }
+        [JsonProperty("return_message")]
+        public string ReturnMessage
+        {
+            get
+            {
+                return this.returnMessage;
+            }
+
+            set
+            {
+                this.shouldSerialize["return_message"] = true;
+                this.returnMessage = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ProviderName.
         /// </summary>
-        [JsonProperty("provider_name", NullValueHandling = NullValueHandling.Include)]
-        public string ProviderName { get; set; }
+        [JsonProperty("provider_name")]
+        public string ProviderName
+        {
+            get
+            {
+                return this.providerName;
+            }
+
+            set
+            {
+                this.shouldSerialize["provider_name"] = true;
+                this.providerName = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Score.
         /// </summary>
-        [JsonProperty("score", NullValueHandling = NullValueHandling.Include)]
-        public string Score { get; set; }
+        [JsonProperty("score")]
+        public string Score
+        {
+            get
+            {
+                return this.score;
+            }
+
+            set
+            {
+                this.shouldSerialize["score"] = true;
+                this.score = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -88,6 +182,91 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetAntifraudResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetReturnCode()
+        {
+            this.shouldSerialize["return_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetReturnMessage()
+        {
+            this.shouldSerialize["return_message"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetProviderName()
+        {
+            this.shouldSerialize["provider_name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetScore()
+        {
+            this.shouldSerialize["score"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeReturnCode()
+        {
+            return this.shouldSerialize["return_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeReturnMessage()
+        {
+            return this.shouldSerialize["return_message"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeProviderName()
+        {
+            return this.shouldSerialize["provider_name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeScore()
+        {
+            return this.shouldSerialize["score"];
         }
 
         /// <inheritdoc/>
@@ -111,7 +290,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Score == null && other.Score == null) || (this.Score?.Equals(other.Score) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

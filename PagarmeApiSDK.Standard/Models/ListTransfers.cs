@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Paging == null && other.Paging == null) || (this.Paging?.Equals(other.Paging) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

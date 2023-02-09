@@ -72,7 +72,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.NextBillingAt.Equals(other.NextBillingAt);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -20,26 +20,52 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetTransactionResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
+    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
-    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
-    [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
     [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
-    [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
+    [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
     [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
-    [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
     [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
+    [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
     public class GetTransactionResponse
     {
+        private string gatewayId;
+        private int? amount;
+        private string status;
+        private bool? success;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
+        private int? attemptCount;
+        private int? maxAttempts;
+        private List<Models.GetSplitResponse> splits;
         private DateTime? nextAttempt;
+        private string id;
+        private Models.GetGatewayResponseResponse gatewayResponse;
+        private Models.GetAntifraudResponse antifraudResponse;
         private Dictionary<string, string> metadata;
+        private List<Models.GetSplitResponse> split;
         private Models.GetInterestResponse interest;
         private Models.GetFineResponse fine;
         private int? maxDaysToPayPastDue;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "gateway_id", false },
+            { "amount", false },
+            { "status", false },
+            { "success", false },
+            { "created_at", false },
+            { "updated_at", false },
+            { "attempt_count", false },
+            { "max_attempts", false },
+            { "splits", false },
             { "next_attempt", false },
+            { "id", false },
+            { "gateway_response", false },
+            { "antifraud_response", false },
             { "metadata", false },
+            { "split", false },
             { "interest", false },
             { "fine", false },
             { "max_days_to_pay_past_due", false },
@@ -96,30 +122,82 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null)
         {
-            this.GatewayId = gatewayId;
-            this.Amount = amount;
-            this.Status = status;
-            this.Success = success;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.AttemptCount = attemptCount;
-            this.MaxAttempts = maxAttempts;
-            this.Splits = splits;
+            if (gatewayId != null)
+            {
+                this.GatewayId = gatewayId;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (success != null)
+            {
+                this.Success = success;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
+            if (attemptCount != null)
+            {
+                this.AttemptCount = attemptCount;
+            }
+
+            if (maxAttempts != null)
+            {
+                this.MaxAttempts = maxAttempts;
+            }
+
+            if (splits != null)
+            {
+                this.Splits = splits;
+            }
+
             if (nextAttempt != null)
             {
                 this.NextAttempt = nextAttempt;
             }
 
             this.TransactionType = transactionType;
-            this.Id = id;
-            this.GatewayResponse = gatewayResponse;
-            this.AntifraudResponse = antifraudResponse;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (gatewayResponse != null)
+            {
+                this.GatewayResponse = gatewayResponse;
+            }
+
+            if (antifraudResponse != null)
+            {
+                this.AntifraudResponse = antifraudResponse;
+            }
+
             if (metadata != null)
             {
                 this.Metadata = metadata;
             }
 
-            this.Split = split;
+            if (split != null)
+            {
+                this.Split = split;
+            }
+
             if (interest != null)
             {
                 this.Interest = interest;
@@ -140,58 +218,166 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gateway transaction id
         /// </summary>
-        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Include)]
-        public string GatewayId { get; set; }
+        [JsonProperty("gateway_id")]
+        public string GatewayId
+        {
+            get
+            {
+                return this.gatewayId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_id"] = true;
+                this.gatewayId = value;
+            }
+        }
 
         /// <summary>
         /// Amount in cents
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Transaction status
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Indicates if the transaction ocurred successfuly
         /// </summary>
-        [JsonProperty("success", NullValueHandling = NullValueHandling.Include)]
-        public bool? Success { get; set; }
+        [JsonProperty("success")]
+        public bool? Success
+        {
+            get
+            {
+                return this.success;
+            }
+
+            set
+            {
+                this.shouldSerialize["success"] = true;
+                this.success = value;
+            }
+        }
 
         /// <summary>
         /// Creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Last update date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <summary>
         /// Number of attempts tried
         /// </summary>
-        [JsonProperty("attempt_count", NullValueHandling = NullValueHandling.Include)]
-        public int? AttemptCount { get; set; }
+        [JsonProperty("attempt_count")]
+        public int? AttemptCount
+        {
+            get
+            {
+                return this.attemptCount;
+            }
+
+            set
+            {
+                this.shouldSerialize["attempt_count"] = true;
+                this.attemptCount = value;
+            }
+        }
 
         /// <summary>
         /// Max attempts
         /// </summary>
-        [JsonProperty("max_attempts", NullValueHandling = NullValueHandling.Include)]
-        public int? MaxAttempts { get; set; }
+        [JsonProperty("max_attempts")]
+        public int? MaxAttempts
+        {
+            get
+            {
+                return this.maxAttempts;
+            }
+
+            set
+            {
+                this.shouldSerialize["max_attempts"] = true;
+                this.maxAttempts = value;
+            }
+        }
 
         /// <summary>
         /// Splits
         /// </summary>
-        [JsonProperty("splits", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetSplitResponse> Splits { get; set; }
+        [JsonProperty("splits")]
+        public List<Models.GetSplitResponse> Splits
+        {
+            get
+            {
+                return this.splits;
+            }
+
+            set
+            {
+                this.shouldSerialize["splits"] = true;
+                this.splits = value;
+            }
+        }
 
         /// <summary>
         /// Date and time of the next attempt
@@ -221,20 +407,56 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Código da transação
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// The Gateway Response
         /// </summary>
-        [JsonProperty("gateway_response", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetGatewayResponseResponse GatewayResponse { get; set; }
+        [JsonProperty("gateway_response")]
+        public Models.GetGatewayResponseResponse GatewayResponse
+        {
+            get
+            {
+                return this.gatewayResponse;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_response"] = true;
+                this.gatewayResponse = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets AntifraudResponse.
         /// </summary>
-        [JsonProperty("antifraud_response", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetAntifraudResponse AntifraudResponse { get; set; }
+        [JsonProperty("antifraud_response")]
+        public Models.GetAntifraudResponse AntifraudResponse
+        {
+            get
+            {
+                return this.antifraudResponse;
+            }
+
+            set
+            {
+                this.shouldSerialize["antifraud_response"] = true;
+                this.antifraudResponse = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Metadata.
@@ -257,8 +479,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Split.
         /// </summary>
-        [JsonProperty("split", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetSplitResponse> Split { get; set; }
+        [JsonProperty("split")]
+        public List<Models.GetSplitResponse> Split
+        {
+            get
+            {
+                return this.split;
+            }
+
+            set
+            {
+                this.shouldSerialize["split"] = true;
+                this.split = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Interest.
@@ -327,6 +561,78 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetGatewayId()
+        {
+            this.shouldSerialize["gateway_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSuccess()
+        {
+            this.shouldSerialize["success"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAttemptCount()
+        {
+            this.shouldSerialize["attempt_count"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMaxAttempts()
+        {
+            this.shouldSerialize["max_attempts"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSplits()
+        {
+            this.shouldSerialize["splits"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetNextAttempt()
         {
             this.shouldSerialize["next_attempt"] = false;
@@ -335,9 +641,41 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGatewayResponse()
+        {
+            this.shouldSerialize["gateway_response"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAntifraudResponse()
+        {
+            this.shouldSerialize["antifraud_response"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetMetadata()
         {
             this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSplit()
+        {
+            this.shouldSerialize["split"] = false;
         }
 
         /// <summary>
@@ -368,6 +706,87 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayId()
+        {
+            return this.shouldSerialize["gateway_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSuccess()
+        {
+            return this.shouldSerialize["success"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAttemptCount()
+        {
+            return this.shouldSerialize["attempt_count"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMaxAttempts()
+        {
+            return this.shouldSerialize["max_attempts"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSplits()
+        {
+            return this.shouldSerialize["splits"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeNextAttempt()
         {
             return this.shouldSerialize["next_attempt"];
@@ -377,9 +796,45 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayResponse()
+        {
+            return this.shouldSerialize["gateway_response"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAntifraudResponse()
+        {
+            return this.shouldSerialize["antifraud_response"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeMetadata()
         {
             return this.shouldSerialize["metadata"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSplit()
+        {
+            return this.shouldSerialize["split"];
         }
 
         /// <summary>
@@ -444,7 +899,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

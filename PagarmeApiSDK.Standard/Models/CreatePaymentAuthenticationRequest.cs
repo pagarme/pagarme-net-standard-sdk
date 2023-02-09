@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.ThreedSecure == null && other.ThreedSecure == null) || (this.ThreedSecure?.Equals(other.ThreedSecure) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

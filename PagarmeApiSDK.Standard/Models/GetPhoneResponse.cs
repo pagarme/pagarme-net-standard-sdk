@@ -200,7 +200,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AreaCode == null && other.AreaCode == null) || (this.AreaCode?.Equals(other.AreaCode) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

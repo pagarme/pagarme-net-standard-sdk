@@ -21,6 +21,20 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetGatewayRecipientResponse
     {
+        private string gateway;
+        private string status;
+        private string pgid;
+        private string createdAt;
+        private string updatedAt;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "gateway", false },
+            { "status", false },
+            { "pgid", false },
+            { "created_at", false },
+            { "updated_at", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetGatewayRecipientResponse"/> class.
         /// </summary>
@@ -43,42 +57,122 @@ namespace PagarmeApiSDK.Standard.Models
             string createdAt = null,
             string updatedAt = null)
         {
-            this.Gateway = gateway;
-            this.Status = status;
-            this.Pgid = pgid;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
+            if (gateway != null)
+            {
+                this.Gateway = gateway;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (pgid != null)
+            {
+                this.Pgid = pgid;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
         }
 
         /// <summary>
         /// Gateway name
         /// </summary>
-        [JsonProperty("gateway", NullValueHandling = NullValueHandling.Include)]
-        public string Gateway { get; set; }
+        [JsonProperty("gateway")]
+        public string Gateway
+        {
+            get
+            {
+                return this.gateway;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway"] = true;
+                this.gateway = value;
+            }
+        }
 
         /// <summary>
         /// Status of the recipient on the gateway
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Recipient id on the gateway
         /// </summary>
-        [JsonProperty("pgid", NullValueHandling = NullValueHandling.Include)]
-        public string Pgid { get; set; }
+        [JsonProperty("pgid")]
+        public string Pgid
+        {
+            get
+            {
+                return this.pgid;
+            }
+
+            set
+            {
+                this.shouldSerialize["pgid"] = true;
+                this.pgid = value;
+            }
+        }
 
         /// <summary>
         /// Creation date
         /// </summary>
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public string CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public string CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Last update date
         /// </summary>
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public string UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public string UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -88,6 +182,91 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetGatewayRecipientResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGateway()
+        {
+            this.shouldSerialize["gateway"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPgid()
+        {
+            this.shouldSerialize["pgid"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGateway()
+        {
+            return this.shouldSerialize["gateway"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePgid()
+        {
+            return this.shouldSerialize["pgid"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
         }
 
         /// <inheritdoc/>
@@ -111,7 +290,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

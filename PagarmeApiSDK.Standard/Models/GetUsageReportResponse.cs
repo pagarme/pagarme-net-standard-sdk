@@ -21,6 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetUsageReportResponse
     {
+        private string url;
+        private string usageReportUrl;
+        private string groupedReportUrl;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "url", false },
+            { "usage_report_url", false },
+            { "grouped_report_url", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUsageReportResponse"/> class.
         /// </summary>
@@ -39,28 +49,76 @@ namespace PagarmeApiSDK.Standard.Models
             string usageReportUrl = null,
             string groupedReportUrl = null)
         {
-            this.Url = url;
-            this.UsageReportUrl = usageReportUrl;
-            this.GroupedReportUrl = groupedReportUrl;
+            if (url != null)
+            {
+                this.Url = url;
+            }
+
+            if (usageReportUrl != null)
+            {
+                this.UsageReportUrl = usageReportUrl;
+            }
+
+            if (groupedReportUrl != null)
+            {
+                this.GroupedReportUrl = groupedReportUrl;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Url.
         /// </summary>
-        [JsonProperty("url", NullValueHandling = NullValueHandling.Include)]
-        public string Url { get; set; }
+        [JsonProperty("url")]
+        public string Url
+        {
+            get
+            {
+                return this.url;
+            }
+
+            set
+            {
+                this.shouldSerialize["url"] = true;
+                this.url = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets UsageReportUrl.
         /// </summary>
-        [JsonProperty("usage_report_url", NullValueHandling = NullValueHandling.Include)]
-        public string UsageReportUrl { get; set; }
+        [JsonProperty("usage_report_url")]
+        public string UsageReportUrl
+        {
+            get
+            {
+                return this.usageReportUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["usage_report_url"] = true;
+                this.usageReportUrl = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets GroupedReportUrl.
         /// </summary>
-        [JsonProperty("grouped_report_url", NullValueHandling = NullValueHandling.Include)]
-        public string GroupedReportUrl { get; set; }
+        [JsonProperty("grouped_report_url")]
+        public string GroupedReportUrl
+        {
+            get
+            {
+                return this.groupedReportUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["grouped_report_url"] = true;
+                this.groupedReportUrl = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +128,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetUsageReportResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUrl()
+        {
+            this.shouldSerialize["url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUsageReportUrl()
+        {
+            this.shouldSerialize["usage_report_url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGroupedReportUrl()
+        {
+            this.shouldSerialize["grouped_report_url"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUrl()
+        {
+            return this.shouldSerialize["url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUsageReportUrl()
+        {
+            return this.shouldSerialize["usage_report_url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGroupedReportUrl()
+        {
+            return this.shouldSerialize["grouped_report_url"];
         }
 
         /// <inheritdoc/>
@@ -91,7 +200,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.GroupedReportUrl == null && other.GroupedReportUrl == null) || (this.GroupedReportUrl?.Equals(other.GroupedReportUrl) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

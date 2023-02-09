@@ -72,7 +72,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.StartAt.Equals(other.StartAt);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

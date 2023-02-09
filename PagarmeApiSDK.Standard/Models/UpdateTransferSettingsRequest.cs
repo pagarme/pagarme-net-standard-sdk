@@ -91,7 +91,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.TransferDay == null && other.TransferDay == null) || (this.TransferDay?.Equals(other.TransferDay) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

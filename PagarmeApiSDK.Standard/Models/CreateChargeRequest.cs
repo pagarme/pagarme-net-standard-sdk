@@ -152,7 +152,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.OrderId == null && other.OrderId == null) || (this.OrderId?.Equals(other.OrderId) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

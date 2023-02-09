@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetAnticipationLimitResponse
     {
+        private int? amount;
+        private int? anticipationFee;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "amount", false },
+            { "anticipation_fee", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAnticipationLimitResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             int? amount = null,
             int? anticipationFee = null)
         {
-            this.Amount = amount;
-            this.AnticipationFee = anticipationFee;
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (anticipationFee != null)
+            {
+                this.AnticipationFee = anticipationFee;
+            }
+
         }
 
         /// <summary>
         /// Amount
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Anticipation fee
         /// </summary>
-        [JsonProperty("anticipation_fee", NullValueHandling = NullValueHandling.Include)]
-        public int? AnticipationFee { get; set; }
+        [JsonProperty("anticipation_fee")]
+        public int? AnticipationFee
+        {
+            get
+            {
+                return this.anticipationFee;
+            }
+
+            set
+            {
+                this.shouldSerialize["anticipation_fee"] = true;
+                this.anticipationFee = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetAnticipationLimitResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAnticipationFee()
+        {
+            this.shouldSerialize["anticipation_fee"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAnticipationFee()
+        {
+            return this.shouldSerialize["anticipation_fee"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AnticipationFee == null && other.AnticipationFee == null) || (this.AnticipationFee?.Equals(other.AnticipationFee) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

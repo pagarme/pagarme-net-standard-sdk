@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Retries.Equals(other.Retries);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

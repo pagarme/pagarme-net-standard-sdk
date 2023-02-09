@@ -9,21 +9,21 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Status` | `string` | Required | - |
-| `ReturnCode` | `string` | Required | - |
-| `ReturnMessage` | `string` | Required | - |
-| `ProviderName` | `string` | Required | - |
-| `Score` | `string` | Required | - |
+| `Status` | `string` | Optional | - |
+| `ReturnCode` | `string` | Optional | - |
+| `ReturnMessage` | `string` | Optional | - |
+| `ProviderName` | `string` | Optional | - |
+| `Score` | `string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "status8",
-  "return_code": "return_code0",
-  "return_message": "return_message2",
-  "provider_name": "provider_name2",
-  "score": "score0"
+  "status": null,
+  "return_code": null,
+  "return_message": null,
+  "provider_name": null,
+  "score": null
 }
 ```
 

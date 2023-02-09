@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.OperationReference == null && other.OperationReference == null) || (this.OperationReference?.Equals(other.OperationReference) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

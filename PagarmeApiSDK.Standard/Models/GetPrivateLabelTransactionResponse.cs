@@ -21,9 +21,29 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPrivateLabelTransactionResponse : GetTransactionResponse
     {
+        private string statementDescriptor;
+        private string acquirerName;
+        private string acquirerAffiliationCode;
+        private string acquirerTid;
+        private string acquirerNsu;
+        private string acquirerAuthCode;
+        private string operationType;
+        private Models.GetCardResponse card;
+        private string acquirerMessage;
+        private string acquirerReturnCode;
         private int? installments;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "statement_descriptor", false },
+            { "acquirer_name", false },
+            { "acquirer_affiliation_code", false },
+            { "acquirer_tid", false },
+            { "acquirer_nsu", false },
+            { "acquirer_auth_code", false },
+            { "operation_type", false },
+            { "card", false },
+            { "acquirer_message", false },
+            { "acquirer_return_code", false },
             { "installments", false },
         };
 
@@ -120,16 +140,56 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
-            this.StatementDescriptor = statementDescriptor;
-            this.AcquirerName = acquirerName;
-            this.AcquirerAffiliationCode = acquirerAffiliationCode;
-            this.AcquirerTid = acquirerTid;
-            this.AcquirerNsu = acquirerNsu;
-            this.AcquirerAuthCode = acquirerAuthCode;
-            this.OperationType = operationType;
-            this.Card = card;
-            this.AcquirerMessage = acquirerMessage;
-            this.AcquirerReturnCode = acquirerReturnCode;
+            if (statementDescriptor != null)
+            {
+                this.StatementDescriptor = statementDescriptor;
+            }
+
+            if (acquirerName != null)
+            {
+                this.AcquirerName = acquirerName;
+            }
+
+            if (acquirerAffiliationCode != null)
+            {
+                this.AcquirerAffiliationCode = acquirerAffiliationCode;
+            }
+
+            if (acquirerTid != null)
+            {
+                this.AcquirerTid = acquirerTid;
+            }
+
+            if (acquirerNsu != null)
+            {
+                this.AcquirerNsu = acquirerNsu;
+            }
+
+            if (acquirerAuthCode != null)
+            {
+                this.AcquirerAuthCode = acquirerAuthCode;
+            }
+
+            if (operationType != null)
+            {
+                this.OperationType = operationType;
+            }
+
+            if (card != null)
+            {
+                this.Card = card;
+            }
+
+            if (acquirerMessage != null)
+            {
+                this.AcquirerMessage = acquirerMessage;
+            }
+
+            if (acquirerReturnCode != null)
+            {
+                this.AcquirerReturnCode = acquirerReturnCode;
+            }
+
             if (installments != null)
             {
                 this.Installments = installments;
@@ -140,62 +200,182 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Text that will appear on the credit card's statement
         /// </summary>
-        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
-        public string StatementDescriptor { get; set; }
+        [JsonProperty("statement_descriptor")]
+        public string StatementDescriptor
+        {
+            get
+            {
+                return this.statementDescriptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["statement_descriptor"] = true;
+                this.statementDescriptor = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer name
         /// </summary>
-        [JsonProperty("acquirer_name", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerName { get; set; }
+        [JsonProperty("acquirer_name")]
+        public string AcquirerName
+        {
+            get
+            {
+                return this.acquirerName;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_name"] = true;
+                this.acquirerName = value;
+            }
+        }
 
         /// <summary>
         /// Aquirer affiliation code
         /// </summary>
-        [JsonProperty("acquirer_affiliation_code", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerAffiliationCode { get; set; }
+        [JsonProperty("acquirer_affiliation_code")]
+        public string AcquirerAffiliationCode
+        {
+            get
+            {
+                return this.acquirerAffiliationCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_affiliation_code"] = true;
+                this.acquirerAffiliationCode = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer TID
         /// </summary>
-        [JsonProperty("acquirer_tid", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerTid { get; set; }
+        [JsonProperty("acquirer_tid")]
+        public string AcquirerTid
+        {
+            get
+            {
+                return this.acquirerTid;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_tid"] = true;
+                this.acquirerTid = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer NSU
         /// </summary>
-        [JsonProperty("acquirer_nsu", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerNsu { get; set; }
+        [JsonProperty("acquirer_nsu")]
+        public string AcquirerNsu
+        {
+            get
+            {
+                return this.acquirerNsu;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_nsu"] = true;
+                this.acquirerNsu = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer authorization code
         /// </summary>
-        [JsonProperty("acquirer_auth_code", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerAuthCode { get; set; }
+        [JsonProperty("acquirer_auth_code")]
+        public string AcquirerAuthCode
+        {
+            get
+            {
+                return this.acquirerAuthCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_auth_code"] = true;
+                this.acquirerAuthCode = value;
+            }
+        }
 
         /// <summary>
         /// Operation type
         /// </summary>
-        [JsonProperty("operation_type", NullValueHandling = NullValueHandling.Include)]
-        public string OperationType { get; set; }
+        [JsonProperty("operation_type")]
+        public string OperationType
+        {
+            get
+            {
+                return this.operationType;
+            }
+
+            set
+            {
+                this.shouldSerialize["operation_type"] = true;
+                this.operationType = value;
+            }
+        }
 
         /// <summary>
         /// Card data
         /// </summary>
-        [JsonProperty("card", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetCardResponse Card { get; set; }
+        [JsonProperty("card")]
+        public Models.GetCardResponse Card
+        {
+            get
+            {
+                return this.card;
+            }
+
+            set
+            {
+                this.shouldSerialize["card"] = true;
+                this.card = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer message
         /// </summary>
-        [JsonProperty("acquirer_message", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerMessage { get; set; }
+        [JsonProperty("acquirer_message")]
+        public string AcquirerMessage
+        {
+            get
+            {
+                return this.acquirerMessage;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_message"] = true;
+                this.acquirerMessage = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer Return Code
         /// </summary>
-        [JsonProperty("acquirer_return_code", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerReturnCode { get; set; }
+        [JsonProperty("acquirer_return_code")]
+        public string AcquirerReturnCode
+        {
+            get
+            {
+                return this.acquirerReturnCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_return_code"] = true;
+                this.acquirerReturnCode = value;
+            }
+        }
 
         /// <summary>
         /// Number of installments
@@ -228,9 +408,179 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetStatementDescriptor()
+        {
+            this.shouldSerialize["statement_descriptor"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerName()
+        {
+            this.shouldSerialize["acquirer_name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerAffiliationCode()
+        {
+            this.shouldSerialize["acquirer_affiliation_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerTid()
+        {
+            this.shouldSerialize["acquirer_tid"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerNsu()
+        {
+            this.shouldSerialize["acquirer_nsu"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerAuthCode()
+        {
+            this.shouldSerialize["acquirer_auth_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetOperationType()
+        {
+            this.shouldSerialize["operation_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCard()
+        {
+            this.shouldSerialize["card"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerMessage()
+        {
+            this.shouldSerialize["acquirer_message"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerReturnCode()
+        {
+            this.shouldSerialize["acquirer_return_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetInstallments()
         {
             this.shouldSerialize["installments"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatementDescriptor()
+        {
+            return this.shouldSerialize["statement_descriptor"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerName()
+        {
+            return this.shouldSerialize["acquirer_name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerAffiliationCode()
+        {
+            return this.shouldSerialize["acquirer_affiliation_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerTid()
+        {
+            return this.shouldSerialize["acquirer_tid"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerNsu()
+        {
+            return this.shouldSerialize["acquirer_nsu"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerAuthCode()
+        {
+            return this.shouldSerialize["acquirer_auth_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeOperationType()
+        {
+            return this.shouldSerialize["operation_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCard()
+        {
+            return this.shouldSerialize["card"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerMessage()
+        {
+            return this.shouldSerialize["acquirer_message"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerReturnCode()
+        {
+            return this.shouldSerialize["acquirer_return_code"];
         }
 
         /// <summary>
@@ -270,7 +620,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -8,11 +8,12 @@ namespace PagarmeApiSDK.Standard.Authentication
     using System.Text;
     using System.Threading.Tasks;
     using PagarmeApiSDK.Standard.Http.Request;
+    using APIMatic.Core.Authentication;
 
     /// <summary>
     /// BasicAuthManager Class.
     /// </summary>
-    internal class BasicAuthManager : IBasicAuthCredentials, IAuthManager
+    internal class BasicAuthManager : AuthManager, IBasicAuthCredentials
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IrisBasicAuthManager"/> class.
@@ -23,6 +24,8 @@ namespace PagarmeApiSDK.Standard.Authentication
         {
             this.BasicAuthUserName = username;
             this.BasicAuthPassword = password;
+            Parameters(paramBuilder => paramBuilder
+                .Header(header => header.Setup("Authorization", GetBasicAuthHeader())));
         }
 
         /// <summary>
@@ -47,30 +50,11 @@ namespace PagarmeApiSDK.Standard.Authentication
                     && basicAuthPassword.Equals(this.BasicAuthPassword);
         }
 
-        /// <summary>
-        /// Adds authentication to the given HttpRequest.
-        /// </summary>
-        /// <param name="httpRequest">Http Request.</param>
-        /// <returns>Returns the httpRequest after adding authentication.</returns>
-        public HttpRequest Apply(HttpRequest httpRequest)
+        private string GetBasicAuthHeader()
         {
             string authCredentials = this.BasicAuthUserName + ":" + this.BasicAuthPassword;
             byte[] data = Encoding.ASCII.GetBytes(authCredentials);
-            httpRequest.Headers["Authorization"] = "Basic " + Convert.ToBase64String(data);
-            return httpRequest;
-        }
-
-        /// <summary>
-        /// Adds authentication to the given HttpRequest.
-        /// </summary>
-        /// <param name="httpRequest">Http Request.</param>
-        /// <returns>Returns the httpRequest after adding authentication.</returns>
-        public Task<HttpRequest> ApplyAsync(HttpRequest httpRequest)
-        {
-            string authCredentials = this.BasicAuthUserName + ":" + this.BasicAuthPassword;
-            byte[] data = Encoding.ASCII.GetBytes(authCredentials);
-            httpRequest.Headers["Authorization"] = "Basic " + Convert.ToBase64String(data);
-            return Task.FromResult(httpRequest);
+            return "Basic " + Convert.ToBase64String(data);
         }
     }
 }

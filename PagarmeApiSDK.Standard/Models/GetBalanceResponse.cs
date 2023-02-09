@@ -21,10 +21,18 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetBalanceResponse
     {
+        private string currency;
+        private long? availableAmount;
         private Models.GetRecipientResponse recipient;
+        private long? transferredAmount;
+        private long? waitingFundsAmount;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "currency", false },
+            { "available_amount", false },
             { "recipient", false },
+            { "transferred_amount", false },
+            { "waiting_funds_amount", false },
         };
 
         /// <summary>
@@ -49,28 +57,68 @@ namespace PagarmeApiSDK.Standard.Models
             long? transferredAmount = null,
             long? waitingFundsAmount = null)
         {
-            this.Currency = currency;
-            this.AvailableAmount = availableAmount;
+            if (currency != null)
+            {
+                this.Currency = currency;
+            }
+
+            if (availableAmount != null)
+            {
+                this.AvailableAmount = availableAmount;
+            }
+
             if (recipient != null)
             {
                 this.Recipient = recipient;
             }
 
-            this.TransferredAmount = transferredAmount;
-            this.WaitingFundsAmount = waitingFundsAmount;
+            if (transferredAmount != null)
+            {
+                this.TransferredAmount = transferredAmount;
+            }
+
+            if (waitingFundsAmount != null)
+            {
+                this.WaitingFundsAmount = waitingFundsAmount;
+            }
+
         }
 
         /// <summary>
         /// Currency
         /// </summary>
-        [JsonProperty("currency", NullValueHandling = NullValueHandling.Include)]
-        public string Currency { get; set; }
+        [JsonProperty("currency")]
+        public string Currency
+        {
+            get
+            {
+                return this.currency;
+            }
+
+            set
+            {
+                this.shouldSerialize["currency"] = true;
+                this.currency = value;
+            }
+        }
 
         /// <summary>
         /// Amount available for transferring
         /// </summary>
-        [JsonProperty("available_amount", NullValueHandling = NullValueHandling.Include)]
-        public long? AvailableAmount { get; set; }
+        [JsonProperty("available_amount")]
+        public long? AvailableAmount
+        {
+            get
+            {
+                return this.availableAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["available_amount"] = true;
+                this.availableAmount = value;
+            }
+        }
 
         /// <summary>
         /// Recipient
@@ -93,14 +141,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets TransferredAmount.
         /// </summary>
-        [JsonProperty("transferred_amount", NullValueHandling = NullValueHandling.Include)]
-        public long? TransferredAmount { get; set; }
+        [JsonProperty("transferred_amount")]
+        public long? TransferredAmount
+        {
+            get
+            {
+                return this.transferredAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["transferred_amount"] = true;
+                this.transferredAmount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets WaitingFundsAmount.
         /// </summary>
-        [JsonProperty("waiting_funds_amount", NullValueHandling = NullValueHandling.Include)]
-        public long? WaitingFundsAmount { get; set; }
+        [JsonProperty("waiting_funds_amount")]
+        public long? WaitingFundsAmount
+        {
+            get
+            {
+                return this.waitingFundsAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["waiting_funds_amount"] = true;
+                this.waitingFundsAmount = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -115,9 +187,59 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetCurrency()
+        {
+            this.shouldSerialize["currency"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAvailableAmount()
+        {
+            this.shouldSerialize["available_amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetRecipient()
         {
             this.shouldSerialize["recipient"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTransferredAmount()
+        {
+            this.shouldSerialize["transferred_amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetWaitingFundsAmount()
+        {
+            this.shouldSerialize["waiting_funds_amount"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCurrency()
+        {
+            return this.shouldSerialize["currency"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAvailableAmount()
+        {
+            return this.shouldSerialize["available_amount"];
         }
 
         /// <summary>
@@ -127,6 +249,24 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeRecipient()
         {
             return this.shouldSerialize["recipient"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTransferredAmount()
+        {
+            return this.shouldSerialize["transferred_amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeWaitingFundsAmount()
+        {
+            return this.shouldSerialize["waiting_funds_amount"];
         }
 
         /// <inheritdoc/>
@@ -150,7 +290,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.WaitingFundsAmount == null && other.WaitingFundsAmount == null) || (this.WaitingFundsAmount?.Equals(other.WaitingFundsAmount) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

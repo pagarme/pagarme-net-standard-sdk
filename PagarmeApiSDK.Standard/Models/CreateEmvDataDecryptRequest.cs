@@ -91,7 +91,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Tags == null && other.Tags == null) || (this.Tags?.Equals(other.Tags) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

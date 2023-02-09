@@ -11,8 +11,8 @@ Response object for getting a price bracket
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `StartQuantity` | `int?` | Required | - |
-| `Price` | `int?` | Required | - |
+| `StartQuantity` | `int?` | Optional | - |
+| `Price` | `int?` | Optional | - |
 | `EndQuantity` | `int?` | Optional | - |
 | `OveragePrice` | `int?` | Optional | - |
 
@@ -20,8 +20,8 @@ Response object for getting a price bracket
 
 ```json
 {
-  "start_quantity": 46,
-  "price": 16,
+  "start_quantity": null,
+  "price": null,
   "end_quantity": null,
   "overage_price": null
 }

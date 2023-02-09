@@ -21,6 +21,26 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCardTokenResponse
     {
+        private string lastFourDigits;
+        private string holderName;
+        private string holderDocument;
+        private string expMonth;
+        private string expYear;
+        private string brand;
+        private string type;
+        private string label;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "last_four_digits", false },
+            { "holder_name", false },
+            { "holder_document", false },
+            { "exp_month", false },
+            { "exp_year", false },
+            { "brand", false },
+            { "type", false },
+            { "label", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCardTokenResponse"/> class.
         /// </summary>
@@ -49,63 +69,191 @@ namespace PagarmeApiSDK.Standard.Models
             string type = null,
             string label = null)
         {
-            this.LastFourDigits = lastFourDigits;
-            this.HolderName = holderName;
-            this.HolderDocument = holderDocument;
-            this.ExpMonth = expMonth;
-            this.ExpYear = expYear;
-            this.Brand = brand;
-            this.Type = type;
-            this.Label = label;
+            if (lastFourDigits != null)
+            {
+                this.LastFourDigits = lastFourDigits;
+            }
+
+            if (holderName != null)
+            {
+                this.HolderName = holderName;
+            }
+
+            if (holderDocument != null)
+            {
+                this.HolderDocument = holderDocument;
+            }
+
+            if (expMonth != null)
+            {
+                this.ExpMonth = expMonth;
+            }
+
+            if (expYear != null)
+            {
+                this.ExpYear = expYear;
+            }
+
+            if (brand != null)
+            {
+                this.Brand = brand;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (label != null)
+            {
+                this.Label = label;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets LastFourDigits.
         /// </summary>
-        [JsonProperty("last_four_digits", NullValueHandling = NullValueHandling.Include)]
-        public string LastFourDigits { get; set; }
+        [JsonProperty("last_four_digits")]
+        public string LastFourDigits
+        {
+            get
+            {
+                return this.lastFourDigits;
+            }
+
+            set
+            {
+                this.shouldSerialize["last_four_digits"] = true;
+                this.lastFourDigits = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets HolderName.
         /// </summary>
-        [JsonProperty("holder_name", NullValueHandling = NullValueHandling.Include)]
-        public string HolderName { get; set; }
+        [JsonProperty("holder_name")]
+        public string HolderName
+        {
+            get
+            {
+                return this.holderName;
+            }
+
+            set
+            {
+                this.shouldSerialize["holder_name"] = true;
+                this.holderName = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets HolderDocument.
         /// </summary>
-        [JsonProperty("holder_document", NullValueHandling = NullValueHandling.Include)]
-        public string HolderDocument { get; set; }
+        [JsonProperty("holder_document")]
+        public string HolderDocument
+        {
+            get
+            {
+                return this.holderDocument;
+            }
+
+            set
+            {
+                this.shouldSerialize["holder_document"] = true;
+                this.holderDocument = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ExpMonth.
         /// </summary>
-        [JsonProperty("exp_month", NullValueHandling = NullValueHandling.Include)]
-        public string ExpMonth { get; set; }
+        [JsonProperty("exp_month")]
+        public string ExpMonth
+        {
+            get
+            {
+                return this.expMonth;
+            }
+
+            set
+            {
+                this.shouldSerialize["exp_month"] = true;
+                this.expMonth = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ExpYear.
         /// </summary>
-        [JsonProperty("exp_year", NullValueHandling = NullValueHandling.Include)]
-        public string ExpYear { get; set; }
+        [JsonProperty("exp_year")]
+        public string ExpYear
+        {
+            get
+            {
+                return this.expYear;
+            }
+
+            set
+            {
+                this.shouldSerialize["exp_year"] = true;
+                this.expYear = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Brand.
         /// </summary>
-        [JsonProperty("brand", NullValueHandling = NullValueHandling.Include)]
-        public string Brand { get; set; }
+        [JsonProperty("brand")]
+        public string Brand
+        {
+            get
+            {
+                return this.brand;
+            }
+
+            set
+            {
+                this.shouldSerialize["brand"] = true;
+                this.brand = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Label.
         /// </summary>
-        [JsonProperty("label", NullValueHandling = NullValueHandling.Include)]
-        public string Label { get; set; }
+        [JsonProperty("label")]
+        public string Label
+        {
+            get
+            {
+                return this.label;
+            }
+
+            set
+            {
+                this.shouldSerialize["label"] = true;
+                this.label = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -115,6 +263,142 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCardTokenResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLastFourDigits()
+        {
+            this.shouldSerialize["last_four_digits"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetHolderName()
+        {
+            this.shouldSerialize["holder_name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetHolderDocument()
+        {
+            this.shouldSerialize["holder_document"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetExpMonth()
+        {
+            this.shouldSerialize["exp_month"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetExpYear()
+        {
+            this.shouldSerialize["exp_year"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBrand()
+        {
+            this.shouldSerialize["brand"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLabel()
+        {
+            this.shouldSerialize["label"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLastFourDigits()
+        {
+            return this.shouldSerialize["last_four_digits"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeHolderName()
+        {
+            return this.shouldSerialize["holder_name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeHolderDocument()
+        {
+            return this.shouldSerialize["holder_document"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeExpMonth()
+        {
+            return this.shouldSerialize["exp_month"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeExpYear()
+        {
+            return this.shouldSerialize["exp_year"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBrand()
+        {
+            return this.shouldSerialize["brand"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLabel()
+        {
+            return this.shouldSerialize["label"];
         }
 
         /// <inheritdoc/>
@@ -141,7 +425,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Label == null && other.Label == null) || (this.Label?.Equals(other.Label) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

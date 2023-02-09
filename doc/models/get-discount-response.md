@@ -11,11 +11,11 @@ Response object for getting a discount
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `string` | Required | - |
-| `MValue` | `double?` | Required | - |
-| `DiscountType` | `string` | Required | - |
-| `Status` | `string` | Required | - |
-| `CreatedAt` | `DateTime?` | Required | - |
+| `Id` | `string` | Optional | - |
+| `MValue` | `double?` | Optional | - |
+| `DiscountType` | `string` | Optional | - |
+| `Status` | `string` | Optional | - |
+| `CreatedAt` | `DateTime?` | Optional | - |
 | `Cycles` | `int?` | Optional | - |
 | `DeletedAt` | `DateTime?` | Optional | - |
 | `Description` | `string` | Optional | - |
@@ -26,11 +26,11 @@ Response object for getting a discount
 
 ```json
 {
-  "id": "id0",
-  "value": 251.52,
-  "discount_type": "discount_type8",
-  "status": "status8",
-  "created_at": "2016-03-13T12:52:32.123Z",
+  "id": null,
+  "value": null,
+  "discount_type": null,
+  "status": null,
+  "created_at": null,
   "cycles": null,
   "deleted_at": null,
   "description": null,

@@ -141,7 +141,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>
