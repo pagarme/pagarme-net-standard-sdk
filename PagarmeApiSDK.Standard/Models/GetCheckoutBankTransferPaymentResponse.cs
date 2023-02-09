@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutBankTransferPaymentResponse
     {
+        private List<string> bank;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "bank", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutBankTransferPaymentResponse"/> class.
         /// </summary>
@@ -35,14 +41,30 @@ namespace PagarmeApiSDK.Standard.Models
         public GetCheckoutBankTransferPaymentResponse(
             List<string> bank = null)
         {
-            this.Bank = bank;
+            if (bank != null)
+            {
+                this.Bank = bank;
+            }
+
         }
 
         /// <summary>
         /// bank list response
         /// </summary>
-        [JsonProperty("bank", NullValueHandling = NullValueHandling.Include)]
-        public List<string> Bank { get; set; }
+        [JsonProperty("bank")]
+        public List<string> Bank
+        {
+            get
+            {
+                return this.bank;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank"] = true;
+                this.bank = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -52,6 +74,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutBankTransferPaymentResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBank()
+        {
+            this.shouldSerialize["bank"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBank()
+        {
+            return this.shouldSerialize["bank"];
         }
 
         /// <inheritdoc/>
@@ -71,7 +110,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Total.Equals(other.Total);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

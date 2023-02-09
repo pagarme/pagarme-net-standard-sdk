@@ -111,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.SplitRuleId == null && other.SplitRuleId == null) || (this.SplitRuleId?.Equals(other.SplitRuleId) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

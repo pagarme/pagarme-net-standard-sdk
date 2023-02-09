@@ -11,23 +11,23 @@ Split response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Type` | `string` | Required | Type |
-| `Amount` | `int?` | Required | Amount |
+| `Type` | `string` | Optional | Type |
+| `Amount` | `int?` | Optional | Amount |
 | `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
-| `GatewayId` | `string` | Required | The split rule gateway id |
+| `GatewayId` | `string` | Optional | The split rule gateway id |
 | `Options` | [`Models.GetSplitOptionsResponse`](../../doc/models/get-split-options-response.md) | Optional | - |
-| `Id` | `string` | Required | - |
+| `Id` | `string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "type": "type0",
-  "amount": 46,
+  "type": null,
+  "amount": null,
   "recipient": null,
-  "gateway_id": "gateway_id0",
+  "gateway_id": null,
   "options": null,
-  "id": "id0"
+  "id": null
 }
 ```
 

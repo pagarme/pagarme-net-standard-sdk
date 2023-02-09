@@ -21,20 +21,48 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetChargeResponse
     {
+        private string id;
+        private string code;
+        private string gatewayId;
+        private int? amount;
+        private string status;
+        private string currency;
+        private string paymentMethod;
+        private DateTime? dueAt;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
+        private Models.GetTransactionResponse lastTransaction;
         private Models.GetInvoiceResponse invoice;
         private Models.GetOrderResponse order;
         private Models.GetCustomerResponse customer;
+        private Dictionary<string, string> metadata;
         private DateTime? paidAt;
         private DateTime? canceledAt;
+        private int? canceledAmount;
+        private int? paidAmount;
         private int? interestAndFinePaid;
         private string recurrencyCycle;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
+            { "code", false },
+            { "gateway_id", false },
+            { "amount", false },
+            { "status", false },
+            { "currency", false },
+            { "payment_method", false },
+            { "due_at", false },
+            { "created_at", false },
+            { "updated_at", false },
+            { "last_transaction", false },
             { "invoice", false },
             { "order", false },
             { "customer", false },
+            { "metadata", false },
             { "paid_at", false },
             { "canceled_at", false },
+            { "canceled_amount", false },
+            { "paid_amount", false },
             { "interest_and_fine_paid", false },
             { "recurrency_cycle", false },
         };
@@ -49,7 +77,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="GetChargeResponse"/> class.
         /// </summary>
-        /// <param name="lastTransaction">last_transaction.</param>
         /// <param name="id">id.</param>
         /// <param name="code">code.</param>
         /// <param name="gatewayId">gateway_id.</param>
@@ -60,6 +87,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="dueAt">due_at.</param>
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
+        /// <param name="lastTransaction">last_transaction.</param>
         /// <param name="invoice">invoice.</param>
         /// <param name="order">order.</param>
         /// <param name="customer">customer.</param>
@@ -71,7 +99,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="interestAndFinePaid">interest_and_fine_paid.</param>
         /// <param name="recurrencyCycle">recurrency_cycle.</param>
         public GetChargeResponse(
-            Models.GetTransactionResponse lastTransaction,
             string id = null,
             string code = null,
             string gatewayId = null,
@@ -82,6 +109,7 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? dueAt = null,
             DateTime? createdAt = null,
             DateTime? updatedAt = null,
+            Models.GetTransactionResponse lastTransaction = null,
             Models.GetInvoiceResponse invoice = null,
             Models.GetOrderResponse order = null,
             Models.GetCustomerResponse customer = null,
@@ -93,17 +121,61 @@ namespace PagarmeApiSDK.Standard.Models
             int? interestAndFinePaid = null,
             string recurrencyCycle = null)
         {
-            this.Id = id;
-            this.Code = code;
-            this.GatewayId = gatewayId;
-            this.Amount = amount;
-            this.Status = status;
-            this.Currency = currency;
-            this.PaymentMethod = paymentMethod;
-            this.DueAt = dueAt;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.LastTransaction = lastTransaction;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (code != null)
+            {
+                this.Code = code;
+            }
+
+            if (gatewayId != null)
+            {
+                this.GatewayId = gatewayId;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (currency != null)
+            {
+                this.Currency = currency;
+            }
+
+            if (paymentMethod != null)
+            {
+                this.PaymentMethod = paymentMethod;
+            }
+
+            if (dueAt != null)
+            {
+                this.DueAt = dueAt;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
+            if (lastTransaction != null)
+            {
+                this.LastTransaction = lastTransaction;
+            }
+
             if (invoice != null)
             {
                 this.Invoice = invoice;
@@ -119,7 +191,11 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Customer = customer;
             }
 
-            this.Metadata = metadata;
+            if (metadata != null)
+            {
+                this.Metadata = metadata;
+            }
+
             if (paidAt != null)
             {
                 this.PaidAt = paidAt;
@@ -130,8 +206,16 @@ namespace PagarmeApiSDK.Standard.Models
                 this.CanceledAt = canceledAt;
             }
 
-            this.CanceledAmount = canceledAmount;
-            this.PaidAmount = paidAmount;
+            if (canceledAmount != null)
+            {
+                this.CanceledAmount = canceledAmount;
+            }
+
+            if (paidAmount != null)
+            {
+                this.PaidAmount = paidAmount;
+            }
+
             if (interestAndFinePaid != null)
             {
                 this.InterestAndFinePaid = interestAndFinePaid;
@@ -147,71 +231,203 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Code.
         /// </summary>
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
-        public string Code { get; set; }
+        [JsonProperty("code")]
+        public string Code
+        {
+            get
+            {
+                return this.code;
+            }
+
+            set
+            {
+                this.shouldSerialize["code"] = true;
+                this.code = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets GatewayId.
         /// </summary>
-        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Include)]
-        public string GatewayId { get; set; }
+        [JsonProperty("gateway_id")]
+        public string GatewayId
+        {
+            get
+            {
+                return this.gatewayId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_id"] = true;
+                this.gatewayId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Currency.
         /// </summary>
-        [JsonProperty("currency", NullValueHandling = NullValueHandling.Include)]
-        public string Currency { get; set; }
+        [JsonProperty("currency")]
+        public string Currency
+        {
+            get
+            {
+                return this.currency;
+            }
+
+            set
+            {
+                this.shouldSerialize["currency"] = true;
+                this.currency = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PaymentMethod.
         /// </summary>
-        [JsonProperty("payment_method", NullValueHandling = NullValueHandling.Include)]
-        public string PaymentMethod { get; set; }
+        [JsonProperty("payment_method")]
+        public string PaymentMethod
+        {
+            get
+            {
+                return this.paymentMethod;
+            }
+
+            set
+            {
+                this.shouldSerialize["payment_method"] = true;
+                this.paymentMethod = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets DueAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("due_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? DueAt { get; set; }
+        [JsonProperty("due_at")]
+        public DateTime? DueAt
+        {
+            get
+            {
+                return this.dueAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["due_at"] = true;
+                this.dueAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets UpdatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets LastTransaction.
         /// </summary>
         [JsonProperty("last_transaction")]
-        public Models.GetTransactionResponse LastTransaction { get; set; }
+        public Models.GetTransactionResponse LastTransaction
+        {
+            get
+            {
+                return this.lastTransaction;
+            }
+
+            set
+            {
+                this.shouldSerialize["last_transaction"] = true;
+                this.lastTransaction = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Invoice.
@@ -270,8 +486,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Metadata.
         /// </summary>
-        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public Dictionary<string, string> Metadata { get; set; }
+        [JsonProperty("metadata")]
+        public Dictionary<string, string> Metadata
+        {
+            get
+            {
+                return this.metadata;
+            }
+
+            set
+            {
+                this.shouldSerialize["metadata"] = true;
+                this.metadata = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PaidAt.
@@ -314,14 +542,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Canceled Amount
         /// </summary>
-        [JsonProperty("canceled_amount", NullValueHandling = NullValueHandling.Include)]
-        public int? CanceledAmount { get; set; }
+        [JsonProperty("canceled_amount")]
+        public int? CanceledAmount
+        {
+            get
+            {
+                return this.canceledAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["canceled_amount"] = true;
+                this.canceledAmount = value;
+            }
+        }
 
         /// <summary>
         /// Paid amount
         /// </summary>
-        [JsonProperty("paid_amount", NullValueHandling = NullValueHandling.Include)]
-        public int? PaidAmount { get; set; }
+        [JsonProperty("paid_amount")]
+        public int? PaidAmount
+        {
+            get
+            {
+                return this.paidAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["paid_amount"] = true;
+                this.paidAmount = value;
+            }
+        }
 
         /// <summary>
         /// interest and fine paid
@@ -372,6 +624,94 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCode()
+        {
+            this.shouldSerialize["code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGatewayId()
+        {
+            this.shouldSerialize["gateway_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCurrency()
+        {
+            this.shouldSerialize["currency"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaymentMethod()
+        {
+            this.shouldSerialize["payment_method"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDueAt()
+        {
+            this.shouldSerialize["due_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLastTransaction()
+        {
+            this.shouldSerialize["last_transaction"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetInvoice()
         {
             this.shouldSerialize["invoice"] = false;
@@ -396,6 +736,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetMetadata()
+        {
+            this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetPaidAt()
         {
             this.shouldSerialize["paid_at"] = false;
@@ -412,6 +760,22 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetCanceledAmount()
+        {
+            this.shouldSerialize["canceled_amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaidAmount()
+        {
+            this.shouldSerialize["paid_amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetInterestAndFinePaid()
         {
             this.shouldSerialize["interest_and_fine_paid"] = false;
@@ -423,6 +787,105 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetRecurrencyCycle()
         {
             this.shouldSerialize["recurrency_cycle"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCode()
+        {
+            return this.shouldSerialize["code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayId()
+        {
+            return this.shouldSerialize["gateway_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCurrency()
+        {
+            return this.shouldSerialize["currency"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaymentMethod()
+        {
+            return this.shouldSerialize["payment_method"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDueAt()
+        {
+            return this.shouldSerialize["due_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLastTransaction()
+        {
+            return this.shouldSerialize["last_transaction"];
         }
 
         /// <summary>
@@ -456,6 +919,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMetadata()
+        {
+            return this.shouldSerialize["metadata"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializePaidAt()
         {
             return this.shouldSerialize["paid_at"];
@@ -468,6 +940,24 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeCanceledAt()
         {
             return this.shouldSerialize["canceled_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCanceledAmount()
+        {
+            return this.shouldSerialize["canceled_amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaidAmount()
+        {
+            return this.shouldSerialize["paid_amount"];
         }
 
         /// <summary>
@@ -525,7 +1015,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

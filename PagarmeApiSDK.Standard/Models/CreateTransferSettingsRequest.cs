@@ -91,7 +91,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.TransferDay.Equals(other.TransferDay);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

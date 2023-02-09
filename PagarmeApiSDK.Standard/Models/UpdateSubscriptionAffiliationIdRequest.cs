@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.GatewayAffiliationId == null && other.GatewayAffiliationId == null) || (this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.ExpiresIn == null && other.ExpiresIn == null) || (this.ExpiresIn?.Equals(other.ExpiresIn) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

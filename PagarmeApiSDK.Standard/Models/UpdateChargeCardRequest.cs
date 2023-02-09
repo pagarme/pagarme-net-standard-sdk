@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Recurrence.Equals(other.Recurrence);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

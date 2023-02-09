@@ -21,6 +21,22 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetOrderItemResponse
     {
+        private string id;
+        private int? amount;
+        private string description;
+        private int? quantity;
+        private string category;
+        private string code;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "id", false },
+            { "amount", false },
+            { "description", false },
+            { "quantity", false },
+            { "category", false },
+            { "code", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetOrderItemResponse"/> class.
         /// </summary>
@@ -45,49 +61,145 @@ namespace PagarmeApiSDK.Standard.Models
             string category = null,
             string code = null)
         {
-            this.Id = id;
-            this.Amount = amount;
-            this.Description = description;
-            this.Quantity = quantity;
-            this.Category = category;
-            this.Code = code;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
+            if (quantity != null)
+            {
+                this.Quantity = quantity;
+            }
+
+            if (category != null)
+            {
+                this.Category = category;
+            }
+
+            if (code != null)
+            {
+                this.Code = code;
+            }
+
         }
 
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Description.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
-        public string Description { get; set; }
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Quantity.
         /// </summary>
-        [JsonProperty("quantity", NullValueHandling = NullValueHandling.Include)]
-        public int? Quantity { get; set; }
+        [JsonProperty("quantity")]
+        public int? Quantity
+        {
+            get
+            {
+                return this.quantity;
+            }
+
+            set
+            {
+                this.shouldSerialize["quantity"] = true;
+                this.quantity = value;
+            }
+        }
 
         /// <summary>
         /// Category
         /// </summary>
-        [JsonProperty("category", NullValueHandling = NullValueHandling.Include)]
-        public string Category { get; set; }
+        [JsonProperty("category")]
+        public string Category
+        {
+            get
+            {
+                return this.category;
+            }
+
+            set
+            {
+                this.shouldSerialize["category"] = true;
+                this.category = value;
+            }
+        }
 
         /// <summary>
         /// Code
         /// </summary>
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
-        public string Code { get; set; }
+        [JsonProperty("code")]
+        public string Code
+        {
+            get
+            {
+                return this.code;
+            }
+
+            set
+            {
+                this.shouldSerialize["code"] = true;
+                this.code = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -97,6 +209,108 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetOrderItemResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetQuantity()
+        {
+            this.shouldSerialize["quantity"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCategory()
+        {
+            this.shouldSerialize["category"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCode()
+        {
+            this.shouldSerialize["code"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeQuantity()
+        {
+            return this.shouldSerialize["quantity"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCategory()
+        {
+            return this.shouldSerialize["category"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCode()
+        {
+            return this.shouldSerialize["code"];
         }
 
         /// <inheritdoc/>
@@ -121,7 +335,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

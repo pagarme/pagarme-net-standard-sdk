@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSubscriptionSplitResponse
     {
+        private bool? enabled;
+        private List<Models.GetSplitResponse> rules;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "enabled", false },
+            { "rules", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSubscriptionSplitResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             bool? enabled = null,
             List<Models.GetSplitResponse> rules = null)
         {
-            this.Enabled = enabled;
-            this.Rules = rules;
+            if (enabled != null)
+            {
+                this.Enabled = enabled;
+            }
+
+            if (rules != null)
+            {
+                this.Rules = rules;
+            }
+
         }
 
         /// <summary>
         /// Defines if the split is enabled
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Include)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("enabled")]
+        public bool? Enabled
+        {
+            get
+            {
+                return this.enabled;
+            }
+
+            set
+            {
+                this.shouldSerialize["enabled"] = true;
+                this.enabled = value;
+            }
+        }
 
         /// <summary>
         /// Split
         /// </summary>
-        [JsonProperty("rules", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetSplitResponse> Rules { get; set; }
+        [JsonProperty("rules")]
+        public List<Models.GetSplitResponse> Rules
+        {
+            get
+            {
+                return this.rules;
+            }
+
+            set
+            {
+                this.shouldSerialize["rules"] = true;
+                this.rules = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetSubscriptionSplitResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEnabled()
+        {
+            this.shouldSerialize["enabled"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRules()
+        {
+            this.shouldSerialize["rules"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEnabled()
+        {
+            return this.shouldSerialize["enabled"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRules()
+        {
+            return this.shouldSerialize["rules"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Rules == null && other.Rules == null) || (this.Rules?.Equals(other.Rules) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

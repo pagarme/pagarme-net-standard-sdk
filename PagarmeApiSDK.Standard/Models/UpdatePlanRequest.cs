@@ -211,7 +211,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.TrialPeriodDays == null && other.TrialPeriodDays == null) || (this.TrialPeriodDays?.Equals(other.TrialPeriodDays) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

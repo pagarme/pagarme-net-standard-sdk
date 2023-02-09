@@ -12,14 +12,16 @@ namespace PagarmeApiSDK.Standard.Controllers
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using APIMatic.Core;
+    using APIMatic.Core.Types;
+    using APIMatic.Core.Utilities;
+    using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
     using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Request.Configuration;
-    using PagarmeApiSDK.Standard.Http.Response;
     using PagarmeApiSDK.Standard.Utilities;
+    using System.Net.Http;
 
     /// <summary>
     /// TokensController.
@@ -29,13 +31,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="TokensController"/> class.
         /// </summary>
-        /// <param name="config"> config instance. </param>
-        /// <param name="httpClient"> httpClient. </param>
-        /// <param name="authManagers"> authManager. </param>
-        internal TokensController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers)
-            : base(config, httpClient, authManagers)
-        {
-        }
+        internal TokensController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
         /// CreateToken EndPoint.
@@ -48,11 +44,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string publicKey,
                 Models.CreateTokenRequest request,
                 string idempotencyKey = null)
-        {
-            Task<Models.GetTokenResponse> t = this.CreateTokenAsync(publicKey, request, idempotencyKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
+            => CoreHelper.RunTask(CreateTokenAsync(publicKey, request, idempotencyKey));
 
         /// <summary>
         /// CreateToken EndPoint.
@@ -67,44 +59,16 @@ namespace PagarmeApiSDK.Standard.Controllers
                 Models.CreateTokenRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/tokens?appId={public_key}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "public_key", publicKey },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-                { "content-type", "application/json; charset=utf-8" },
-                { "idempotency-key", idempotencyKey },
-            };
-
-            // append body params.
-            var bodyText = ApiHelper.JsonSerialize(request);
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().PostBody(queryBuilder.ToString(), headers, bodyText);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetTokenResponse>(response.Body);
-        }
+            => await CreateApiCall<Models.GetTokenResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/tokens?appId={public_key}")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("public_key", publicKey))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTokenResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
 
         /// <summary>
         /// Gets a token from its id.
@@ -115,11 +79,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         public Models.GetTokenResponse GetToken(
                 string id,
                 string publicKey)
-        {
-            Task<Models.GetTokenResponse> t = this.GetTokenAsync(id, publicKey);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
+            => CoreHelper.RunTask(GetTokenAsync(id, publicKey));
 
         /// <summary>
         /// Gets a token from its id.
@@ -132,39 +92,14 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string id,
                 string publicKey,
                 CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/tokens/{id}?appId={public_key}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "id", id },
-                { "public_key", publicKey },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetTokenResponse>(response.Body);
-        }
+            => await CreateApiCall<Models.GetTokenResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/tokens/{id}?appId={public_key}")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("id", id))
+                      .Template(_template => _template.Setup("public_key", publicKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTokenResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
     }
 }

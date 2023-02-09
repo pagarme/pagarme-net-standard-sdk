@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.CustomSla.Equals(other.CustomSla);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

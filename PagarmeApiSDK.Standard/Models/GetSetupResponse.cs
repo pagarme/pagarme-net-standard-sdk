@@ -21,6 +21,18 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSetupResponse
     {
+        private string id;
+        private string description;
+        private int? amount;
+        private string status;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "id", false },
+            { "description", false },
+            { "amount", false },
+            { "status", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSetupResponse"/> class.
         /// </summary>
@@ -41,35 +53,99 @@ namespace PagarmeApiSDK.Standard.Models
             int? amount = null,
             string status = null)
         {
-            this.Id = id;
-            this.Description = description;
-            this.Amount = amount;
-            this.Status = status;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Description.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
-        public string Description { get; set; }
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -79,6 +155,74 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetSetupResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
         }
 
         /// <inheritdoc/>
@@ -101,7 +245,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

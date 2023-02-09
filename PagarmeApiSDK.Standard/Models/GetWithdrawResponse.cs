@@ -21,16 +21,34 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetWithdrawResponse
     {
+        private string id;
+        private string gatewayId;
+        private int? amount;
+        private string status;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
         private List<string> metadata;
         private int? fee;
         private DateTime? fundingDate;
         private DateTime? fundingEstimatedDate;
+        private string type;
+        private Models.GetWithdrawSourceResponse source;
+        private Models.GetWithdrawTargetResponse target;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
+            { "gateway_id", false },
+            { "amount", false },
+            { "status", false },
+            { "created_at", false },
+            { "updated_at", false },
             { "metadata", false },
             { "fee", false },
             { "funding_date", false },
             { "funding_estimated_date", false },
+            { "type", false },
+            { "source", false },
+            { "target", false },
         };
 
         /// <summary>
@@ -71,12 +89,36 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetWithdrawSourceResponse source = null,
             Models.GetWithdrawTargetResponse target = null)
         {
-            this.Id = id;
-            this.GatewayId = gatewayId;
-            this.Amount = amount;
-            this.Status = status;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (gatewayId != null)
+            {
+                this.GatewayId = gatewayId;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
             if (metadata != null)
             {
                 this.Metadata = metadata;
@@ -97,48 +139,132 @@ namespace PagarmeApiSDK.Standard.Models
                 this.FundingEstimatedDate = fundingEstimatedDate;
             }
 
-            this.Type = type;
-            this.Source = source;
-            this.Target = target;
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (source != null)
+            {
+                this.Source = source;
+            }
+
+            if (target != null)
+            {
+                this.Target = target;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets GatewayId.
         /// </summary>
-        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Include)]
-        public string GatewayId { get; set; }
+        [JsonProperty("gateway_id")]
+        public string GatewayId
+        {
+            get
+            {
+                return this.gatewayId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_id"] = true;
+                this.gatewayId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets UpdatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Metadata.
@@ -217,20 +343,56 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Source.
         /// </summary>
-        [JsonProperty("source", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetWithdrawSourceResponse Source { get; set; }
+        [JsonProperty("source")]
+        public Models.GetWithdrawSourceResponse Source
+        {
+            get
+            {
+                return this.source;
+            }
+
+            set
+            {
+                this.shouldSerialize["source"] = true;
+                this.source = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Target.
         /// </summary>
-        [JsonProperty("target", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetWithdrawTargetResponse Target { get; set; }
+        [JsonProperty("target")]
+        public Models.GetWithdrawTargetResponse Target
+        {
+            get
+            {
+                return this.target;
+            }
+
+            set
+            {
+                this.shouldSerialize["target"] = true;
+                this.target = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -240,6 +402,54 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetWithdrawResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGatewayId()
+        {
+            this.shouldSerialize["gateway_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
         }
 
         /// <summary>
@@ -272,6 +482,84 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetFundingEstimatedDate()
         {
             this.shouldSerialize["funding_estimated_date"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSource()
+        {
+            this.shouldSerialize["source"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTarget()
+        {
+            this.shouldSerialize["target"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayId()
+        {
+            return this.shouldSerialize["gateway_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
         }
 
         /// <summary>
@@ -310,6 +598,33 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["funding_estimated_date"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSource()
+        {
+            return this.shouldSerialize["source"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTarget()
+        {
+            return this.shouldSerialize["target"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -339,7 +654,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Target == null && other.Target == null) || (this.Target?.Equals(other.Target) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -21,14 +21,42 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetBoletoTransactionResponse : GetTransactionResponse
     {
+        private string url;
+        private string barcode;
+        private string nossoNumero;
+        private string bank;
+        private string documentNumber;
+        private string instructions;
+        private Models.GetBillingAddressResponse billingAddress;
         private DateTime? dueAt;
+        private string qrCode;
+        private string line;
+        private string pdfPassword;
+        private string pdf;
         private DateTime? paidAt;
+        private string paidAmount;
+        private string type;
         private DateTime? creditAt;
+        private string statementDescriptor;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "url", false },
+            { "barcode", false },
+            { "nosso_numero", false },
+            { "bank", false },
+            { "document_number", false },
+            { "instructions", false },
+            { "billing_address", false },
             { "due_at", false },
+            { "qr_code", false },
+            { "line", false },
+            { "pdf_password", false },
+            { "pdf", false },
             { "paid_at", false },
+            { "paid_amount", false },
+            { "type", false },
             { "credit_at", false },
+            { "statement_descriptor", false },
         };
 
         /// <summary>
@@ -136,78 +164,218 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
-            this.Url = url;
-            this.Barcode = barcode;
-            this.NossoNumero = nossoNumero;
-            this.Bank = bank;
-            this.DocumentNumber = documentNumber;
-            this.Instructions = instructions;
-            this.BillingAddress = billingAddress;
+            if (url != null)
+            {
+                this.Url = url;
+            }
+
+            if (barcode != null)
+            {
+                this.Barcode = barcode;
+            }
+
+            if (nossoNumero != null)
+            {
+                this.NossoNumero = nossoNumero;
+            }
+
+            if (bank != null)
+            {
+                this.Bank = bank;
+            }
+
+            if (documentNumber != null)
+            {
+                this.DocumentNumber = documentNumber;
+            }
+
+            if (instructions != null)
+            {
+                this.Instructions = instructions;
+            }
+
+            if (billingAddress != null)
+            {
+                this.BillingAddress = billingAddress;
+            }
+
             if (dueAt != null)
             {
                 this.DueAt = dueAt;
             }
 
-            this.QrCode = qrCode;
-            this.Line = line;
-            this.PdfPassword = pdfPassword;
-            this.Pdf = pdf;
+            if (qrCode != null)
+            {
+                this.QrCode = qrCode;
+            }
+
+            if (line != null)
+            {
+                this.Line = line;
+            }
+
+            if (pdfPassword != null)
+            {
+                this.PdfPassword = pdfPassword;
+            }
+
+            if (pdf != null)
+            {
+                this.Pdf = pdf;
+            }
+
             if (paidAt != null)
             {
                 this.PaidAt = paidAt;
             }
 
-            this.PaidAmount = paidAmount;
-            this.Type = type;
+            if (paidAmount != null)
+            {
+                this.PaidAmount = paidAmount;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
             if (creditAt != null)
             {
                 this.CreditAt = creditAt;
             }
 
-            this.StatementDescriptor = statementDescriptor;
+            if (statementDescriptor != null)
+            {
+                this.StatementDescriptor = statementDescriptor;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Url.
         /// </summary>
-        [JsonProperty("url", NullValueHandling = NullValueHandling.Include)]
-        public string Url { get; set; }
+        [JsonProperty("url")]
+        public string Url
+        {
+            get
+            {
+                return this.url;
+            }
+
+            set
+            {
+                this.shouldSerialize["url"] = true;
+                this.url = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Barcode.
         /// </summary>
-        [JsonProperty("barcode", NullValueHandling = NullValueHandling.Include)]
-        public string Barcode { get; set; }
+        [JsonProperty("barcode")]
+        public string Barcode
+        {
+            get
+            {
+                return this.barcode;
+            }
+
+            set
+            {
+                this.shouldSerialize["barcode"] = true;
+                this.barcode = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets NossoNumero.
         /// </summary>
-        [JsonProperty("nosso_numero", NullValueHandling = NullValueHandling.Include)]
-        public string NossoNumero { get; set; }
+        [JsonProperty("nosso_numero")]
+        public string NossoNumero
+        {
+            get
+            {
+                return this.nossoNumero;
+            }
+
+            set
+            {
+                this.shouldSerialize["nosso_numero"] = true;
+                this.nossoNumero = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Bank.
         /// </summary>
-        [JsonProperty("bank", NullValueHandling = NullValueHandling.Include)]
-        public string Bank { get; set; }
+        [JsonProperty("bank")]
+        public string Bank
+        {
+            get
+            {
+                return this.bank;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank"] = true;
+                this.bank = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets DocumentNumber.
         /// </summary>
-        [JsonProperty("document_number", NullValueHandling = NullValueHandling.Include)]
-        public string DocumentNumber { get; set; }
+        [JsonProperty("document_number")]
+        public string DocumentNumber
+        {
+            get
+            {
+                return this.documentNumber;
+            }
+
+            set
+            {
+                this.shouldSerialize["document_number"] = true;
+                this.documentNumber = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Instructions.
         /// </summary>
-        [JsonProperty("instructions", NullValueHandling = NullValueHandling.Include)]
-        public string Instructions { get; set; }
+        [JsonProperty("instructions")]
+        public string Instructions
+        {
+            get
+            {
+                return this.instructions;
+            }
+
+            set
+            {
+                this.shouldSerialize["instructions"] = true;
+                this.instructions = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets BillingAddress.
         /// </summary>
-        [JsonProperty("billing_address", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetBillingAddressResponse BillingAddress { get; set; }
+        [JsonProperty("billing_address")]
+        public Models.GetBillingAddressResponse BillingAddress
+        {
+            get
+            {
+                return this.billingAddress;
+            }
+
+            set
+            {
+                this.shouldSerialize["billing_address"] = true;
+                this.billingAddress = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets DueAt.
@@ -231,26 +399,74 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets QrCode.
         /// </summary>
-        [JsonProperty("qr_code", NullValueHandling = NullValueHandling.Include)]
-        public string QrCode { get; set; }
+        [JsonProperty("qr_code")]
+        public string QrCode
+        {
+            get
+            {
+                return this.qrCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["qr_code"] = true;
+                this.qrCode = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Line.
         /// </summary>
-        [JsonProperty("line", NullValueHandling = NullValueHandling.Include)]
-        public string Line { get; set; }
+        [JsonProperty("line")]
+        public string Line
+        {
+            get
+            {
+                return this.line;
+            }
+
+            set
+            {
+                this.shouldSerialize["line"] = true;
+                this.line = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PdfPassword.
         /// </summary>
-        [JsonProperty("pdf_password", NullValueHandling = NullValueHandling.Include)]
-        public string PdfPassword { get; set; }
+        [JsonProperty("pdf_password")]
+        public string PdfPassword
+        {
+            get
+            {
+                return this.pdfPassword;
+            }
+
+            set
+            {
+                this.shouldSerialize["pdf_password"] = true;
+                this.pdfPassword = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Pdf.
         /// </summary>
-        [JsonProperty("pdf", NullValueHandling = NullValueHandling.Include)]
-        public string Pdf { get; set; }
+        [JsonProperty("pdf")]
+        public string Pdf
+        {
+            get
+            {
+                return this.pdf;
+            }
+
+            set
+            {
+                this.shouldSerialize["pdf"] = true;
+                this.pdf = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PaidAt.
@@ -274,14 +490,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets PaidAmount.
         /// </summary>
-        [JsonProperty("paid_amount", NullValueHandling = NullValueHandling.Include)]
-        public string PaidAmount { get; set; }
+        [JsonProperty("paid_amount")]
+        public string PaidAmount
+        {
+            get
+            {
+                return this.paidAmount;
+            }
+
+            set
+            {
+                this.shouldSerialize["paid_amount"] = true;
+                this.paidAmount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CreditAt.
@@ -305,8 +545,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Soft Descriptor
         /// </summary>
-        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
-        public string StatementDescriptor { get; set; }
+        [JsonProperty("statement_descriptor")]
+        public string StatementDescriptor
+        {
+            get
+            {
+                return this.statementDescriptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["statement_descriptor"] = true;
+                this.statementDescriptor = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -321,9 +573,97 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetUrl()
+        {
+            this.shouldSerialize["url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBarcode()
+        {
+            this.shouldSerialize["barcode"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetNossoNumero()
+        {
+            this.shouldSerialize["nosso_numero"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBank()
+        {
+            this.shouldSerialize["bank"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDocumentNumber()
+        {
+            this.shouldSerialize["document_number"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInstructions()
+        {
+            this.shouldSerialize["instructions"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBillingAddress()
+        {
+            this.shouldSerialize["billing_address"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetDueAt()
         {
             this.shouldSerialize["due_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetQrCode()
+        {
+            this.shouldSerialize["qr_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLine()
+        {
+            this.shouldSerialize["line"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPdfPassword()
+        {
+            this.shouldSerialize["pdf_password"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPdf()
+        {
+            this.shouldSerialize["pdf"] = false;
         }
 
         /// <summary>
@@ -337,9 +677,96 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetPaidAmount()
+        {
+            this.shouldSerialize["paid_amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCreditAt()
         {
             this.shouldSerialize["credit_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatementDescriptor()
+        {
+            this.shouldSerialize["statement_descriptor"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUrl()
+        {
+            return this.shouldSerialize["url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBarcode()
+        {
+            return this.shouldSerialize["barcode"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeNossoNumero()
+        {
+            return this.shouldSerialize["nosso_numero"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBank()
+        {
+            return this.shouldSerialize["bank"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDocumentNumber()
+        {
+            return this.shouldSerialize["document_number"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInstructions()
+        {
+            return this.shouldSerialize["instructions"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBillingAddress()
+        {
+            return this.shouldSerialize["billing_address"];
         }
 
         /// <summary>
@@ -355,6 +782,42 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeQrCode()
+        {
+            return this.shouldSerialize["qr_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLine()
+        {
+            return this.shouldSerialize["line"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePdfPassword()
+        {
+            return this.shouldSerialize["pdf_password"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePdf()
+        {
+            return this.shouldSerialize["pdf"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializePaidAt()
         {
             return this.shouldSerialize["paid_at"];
@@ -364,9 +827,36 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaidAmount()
+        {
+            return this.shouldSerialize["paid_amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeCreditAt()
         {
             return this.shouldSerialize["credit_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatementDescriptor()
+        {
+            return this.shouldSerialize["statement_descriptor"];
         }
 
         /// <inheritdoc/>
@@ -403,7 +893,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

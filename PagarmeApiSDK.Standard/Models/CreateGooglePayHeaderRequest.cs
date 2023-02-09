@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.EphemeralPublicKey == null && other.EphemeralPublicKey == null) || (this.EphemeralPublicKey?.Equals(other.EphemeralPublicKey) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

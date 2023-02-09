@@ -21,10 +21,26 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCreditCardTransactionResponse : GetTransactionResponse
     {
+        private string statementDescriptor;
+        private string acquirerAffiliationCode;
+        private string acquirerAuthCode;
+        private string operationType;
+        private Models.GetCardResponse card;
+        private string acquirerMessage;
+        private string acquirerReturnCode;
         private int? installments;
+        private string threedAuthenticationUrl;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "statement_descriptor", false },
+            { "acquirer_affiliation_code", false },
+            { "acquirer_auth_code", false },
+            { "operation_type", false },
+            { "card", false },
+            { "acquirer_message", false },
+            { "acquirer_return_code", false },
             { "installments", false },
+            { "threed_authentication_url", false },
         };
 
         /// <summary>
@@ -38,9 +54,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCreditCardTransactionResponse"/> class.
         /// </summary>
-        /// <param name="acquirerName">acquirer_name.</param>
-        /// <param name="acquirerTid">acquirer_tid.</param>
-        /// <param name="acquirerNsu">acquirer_nsu.</param>
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="gatewayId">gateway_id.</param>
         /// <param name="amount">amount.</param>
@@ -61,7 +74,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         /// <param name="statementDescriptor">statement_descriptor.</param>
+        /// <param name="acquirerName">acquirer_name.</param>
         /// <param name="acquirerAffiliationCode">acquirer_affiliation_code.</param>
+        /// <param name="acquirerTid">acquirer_tid.</param>
+        /// <param name="acquirerNsu">acquirer_nsu.</param>
         /// <param name="acquirerAuthCode">acquirer_auth_code.</param>
         /// <param name="operationType">operation_type.</param>
         /// <param name="card">card.</param>
@@ -70,9 +86,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="installments">installments.</param>
         /// <param name="threedAuthenticationUrl">threed_authentication_url.</param>
         public GetCreditCardTransactionResponse(
-            string acquirerName,
-            string acquirerTid,
-            string acquirerNsu,
             string transactionType = "credit_card",
             string gatewayId = null,
             int? amount = null,
@@ -93,7 +106,10 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null,
             string statementDescriptor = null,
+            string acquirerName = null,
             string acquirerAffiliationCode = null,
+            string acquirerTid = null,
+            string acquirerNsu = null,
             string acquirerAuthCode = null,
             string operationType = null,
             Models.GetCardResponse card = null,
@@ -122,83 +138,199 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
-            this.StatementDescriptor = statementDescriptor;
+            if (statementDescriptor != null)
+            {
+                this.StatementDescriptor = statementDescriptor;
+            }
+
             this.AcquirerName = acquirerName;
-            this.AcquirerAffiliationCode = acquirerAffiliationCode;
+            if (acquirerAffiliationCode != null)
+            {
+                this.AcquirerAffiliationCode = acquirerAffiliationCode;
+            }
+
             this.AcquirerTid = acquirerTid;
             this.AcquirerNsu = acquirerNsu;
-            this.AcquirerAuthCode = acquirerAuthCode;
-            this.OperationType = operationType;
-            this.Card = card;
-            this.AcquirerMessage = acquirerMessage;
-            this.AcquirerReturnCode = acquirerReturnCode;
+            if (acquirerAuthCode != null)
+            {
+                this.AcquirerAuthCode = acquirerAuthCode;
+            }
+
+            if (operationType != null)
+            {
+                this.OperationType = operationType;
+            }
+
+            if (card != null)
+            {
+                this.Card = card;
+            }
+
+            if (acquirerMessage != null)
+            {
+                this.AcquirerMessage = acquirerMessage;
+            }
+
+            if (acquirerReturnCode != null)
+            {
+                this.AcquirerReturnCode = acquirerReturnCode;
+            }
+
             if (installments != null)
             {
                 this.Installments = installments;
             }
 
-            this.ThreedAuthenticationUrl = threedAuthenticationUrl;
+            if (threedAuthenticationUrl != null)
+            {
+                this.ThreedAuthenticationUrl = threedAuthenticationUrl;
+            }
+
         }
 
         /// <summary>
         /// Text that will appear on the credit card's statement
         /// </summary>
-        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
-        public string StatementDescriptor { get; set; }
+        [JsonProperty("statement_descriptor")]
+        public string StatementDescriptor
+        {
+            get
+            {
+                return this.statementDescriptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["statement_descriptor"] = true;
+                this.statementDescriptor = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer name
         /// </summary>
-        [JsonProperty("acquirer_name")]
+        [JsonProperty("acquirer_name", NullValueHandling = NullValueHandling.Ignore)]
         public string AcquirerName { get; set; }
 
         /// <summary>
         /// Aquirer affiliation code
         /// </summary>
-        [JsonProperty("acquirer_affiliation_code", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerAffiliationCode { get; set; }
+        [JsonProperty("acquirer_affiliation_code")]
+        public string AcquirerAffiliationCode
+        {
+            get
+            {
+                return this.acquirerAffiliationCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_affiliation_code"] = true;
+                this.acquirerAffiliationCode = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer TID
         /// </summary>
-        [JsonProperty("acquirer_tid")]
+        [JsonProperty("acquirer_tid", NullValueHandling = NullValueHandling.Ignore)]
         public string AcquirerTid { get; set; }
 
         /// <summary>
         /// Acquirer NSU
         /// </summary>
-        [JsonProperty("acquirer_nsu")]
+        [JsonProperty("acquirer_nsu", NullValueHandling = NullValueHandling.Ignore)]
         public string AcquirerNsu { get; set; }
 
         /// <summary>
         /// Acquirer authorization code
         /// </summary>
-        [JsonProperty("acquirer_auth_code", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerAuthCode { get; set; }
+        [JsonProperty("acquirer_auth_code")]
+        public string AcquirerAuthCode
+        {
+            get
+            {
+                return this.acquirerAuthCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_auth_code"] = true;
+                this.acquirerAuthCode = value;
+            }
+        }
 
         /// <summary>
         /// Operation type
         /// </summary>
-        [JsonProperty("operation_type", NullValueHandling = NullValueHandling.Include)]
-        public string OperationType { get; set; }
+        [JsonProperty("operation_type")]
+        public string OperationType
+        {
+            get
+            {
+                return this.operationType;
+            }
+
+            set
+            {
+                this.shouldSerialize["operation_type"] = true;
+                this.operationType = value;
+            }
+        }
 
         /// <summary>
         /// Card data
         /// </summary>
-        [JsonProperty("card", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetCardResponse Card { get; set; }
+        [JsonProperty("card")]
+        public Models.GetCardResponse Card
+        {
+            get
+            {
+                return this.card;
+            }
+
+            set
+            {
+                this.shouldSerialize["card"] = true;
+                this.card = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer message
         /// </summary>
-        [JsonProperty("acquirer_message", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerMessage { get; set; }
+        [JsonProperty("acquirer_message")]
+        public string AcquirerMessage
+        {
+            get
+            {
+                return this.acquirerMessage;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_message"] = true;
+                this.acquirerMessage = value;
+            }
+        }
 
         /// <summary>
         /// Acquirer Return Code
         /// </summary>
-        [JsonProperty("acquirer_return_code", NullValueHandling = NullValueHandling.Include)]
-        public string AcquirerReturnCode { get; set; }
+        [JsonProperty("acquirer_return_code")]
+        public string AcquirerReturnCode
+        {
+            get
+            {
+                return this.acquirerReturnCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["acquirer_return_code"] = true;
+                this.acquirerReturnCode = value;
+            }
+        }
 
         /// <summary>
         /// Number of installments
@@ -221,8 +353,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// 3D-S authentication Url
         /// </summary>
-        [JsonProperty("threed_authentication_url", NullValueHandling = NullValueHandling.Include)]
-        public string ThreedAuthenticationUrl { get; set; }
+        [JsonProperty("threed_authentication_url")]
+        public string ThreedAuthenticationUrl
+        {
+            get
+            {
+                return this.threedAuthenticationUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["threed_authentication_url"] = true;
+                this.threedAuthenticationUrl = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -237,9 +381,136 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetStatementDescriptor()
+        {
+            this.shouldSerialize["statement_descriptor"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerAffiliationCode()
+        {
+            this.shouldSerialize["acquirer_affiliation_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerAuthCode()
+        {
+            this.shouldSerialize["acquirer_auth_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetOperationType()
+        {
+            this.shouldSerialize["operation_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCard()
+        {
+            this.shouldSerialize["card"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerMessage()
+        {
+            this.shouldSerialize["acquirer_message"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcquirerReturnCode()
+        {
+            this.shouldSerialize["acquirer_return_code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetInstallments()
         {
             this.shouldSerialize["installments"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetThreedAuthenticationUrl()
+        {
+            this.shouldSerialize["threed_authentication_url"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatementDescriptor()
+        {
+            return this.shouldSerialize["statement_descriptor"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerAffiliationCode()
+        {
+            return this.shouldSerialize["acquirer_affiliation_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerAuthCode()
+        {
+            return this.shouldSerialize["acquirer_auth_code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeOperationType()
+        {
+            return this.shouldSerialize["operation_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCard()
+        {
+            return this.shouldSerialize["card"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerMessage()
+        {
+            return this.shouldSerialize["acquirer_message"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcquirerReturnCode()
+        {
+            return this.shouldSerialize["acquirer_return_code"];
         }
 
         /// <summary>
@@ -249,6 +520,15 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeInstallments()
         {
             return this.shouldSerialize["installments"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeThreedAuthenticationUrl()
+        {
+            return this.shouldSerialize["threed_authentication_url"];
         }
 
         /// <inheritdoc/>
@@ -280,7 +560,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

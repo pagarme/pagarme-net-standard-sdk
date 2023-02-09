@@ -21,12 +21,24 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetShippingResponse
     {
+        private int? amount;
+        private string description;
+        private string recipientName;
+        private string recipientPhone;
+        private Models.GetAddressResponse address;
         private DateTime? maxDeliveryDate;
         private DateTime? estimatedDeliveryDate;
+        private string type;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "amount", false },
+            { "description", false },
+            { "recipient_name", false },
+            { "recipient_phone", false },
+            { "address", false },
             { "max_delivery_date", false },
             { "estimated_delivery_date", false },
+            { "type", false },
         };
 
         /// <summary>
@@ -57,11 +69,31 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? estimatedDeliveryDate = null,
             string type = null)
         {
-            this.Amount = amount;
-            this.Description = description;
-            this.RecipientName = recipientName;
-            this.RecipientPhone = recipientPhone;
-            this.Address = address;
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
+            if (recipientName != null)
+            {
+                this.RecipientName = recipientName;
+            }
+
+            if (recipientPhone != null)
+            {
+                this.RecipientPhone = recipientPhone;
+            }
+
+            if (address != null)
+            {
+                this.Address = address;
+            }
+
             if (maxDeliveryDate != null)
             {
                 this.MaxDeliveryDate = maxDeliveryDate;
@@ -72,38 +104,102 @@ namespace PagarmeApiSDK.Standard.Models
                 this.EstimatedDeliveryDate = estimatedDeliveryDate;
             }
 
-            this.Type = type;
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Description.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
-        public string Description { get; set; }
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets RecipientName.
         /// </summary>
-        [JsonProperty("recipient_name", NullValueHandling = NullValueHandling.Include)]
-        public string RecipientName { get; set; }
+        [JsonProperty("recipient_name")]
+        public string RecipientName
+        {
+            get
+            {
+                return this.recipientName;
+            }
+
+            set
+            {
+                this.shouldSerialize["recipient_name"] = true;
+                this.recipientName = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets RecipientPhone.
         /// </summary>
-        [JsonProperty("recipient_phone", NullValueHandling = NullValueHandling.Include)]
-        public string RecipientPhone { get; set; }
+        [JsonProperty("recipient_phone")]
+        public string RecipientPhone
+        {
+            get
+            {
+                return this.recipientPhone;
+            }
+
+            set
+            {
+                this.shouldSerialize["recipient_phone"] = true;
+                this.recipientPhone = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Address.
         /// </summary>
-        [JsonProperty("address", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetAddressResponse Address { get; set; }
+        [JsonProperty("address")]
+        public Models.GetAddressResponse Address
+        {
+            get
+            {
+                return this.address;
+            }
+
+            set
+            {
+                this.shouldSerialize["address"] = true;
+                this.address = value;
+            }
+        }
 
         /// <summary>
         /// Data máxima de entrega
@@ -146,8 +242,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Shipping Type
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -157,6 +265,46 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetShippingResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRecipientName()
+        {
+            this.shouldSerialize["recipient_name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRecipientPhone()
+        {
+            this.shouldSerialize["recipient_phone"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAddress()
+        {
+            this.shouldSerialize["address"] = false;
         }
 
         /// <summary>
@@ -176,6 +324,59 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRecipientName()
+        {
+            return this.shouldSerialize["recipient_name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRecipientPhone()
+        {
+            return this.shouldSerialize["recipient_phone"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAddress()
+        {
+            return this.shouldSerialize["address"];
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -191,6 +392,15 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeEstimatedDeliveryDate()
         {
             return this.shouldSerialize["estimated_delivery_date"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
         }
 
         /// <inheritdoc/>
@@ -217,7 +427,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

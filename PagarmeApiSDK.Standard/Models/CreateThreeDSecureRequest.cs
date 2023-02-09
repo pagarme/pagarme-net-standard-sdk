@@ -131,7 +131,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Version == null && other.Version == null) || (this.Version?.Equals(other.Version) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -91,7 +91,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.ChargeRemainderFee == null && other.ChargeRemainderFee == null) || (this.ChargeRemainderFee?.Equals(other.ChargeRemainderFee) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

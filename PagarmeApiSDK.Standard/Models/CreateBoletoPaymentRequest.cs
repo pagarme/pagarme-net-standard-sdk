@@ -182,7 +182,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

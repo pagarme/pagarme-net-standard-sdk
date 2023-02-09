@@ -101,7 +101,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Poi == null && other.Poi == null) || (this.Poi?.Equals(other.Poi) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

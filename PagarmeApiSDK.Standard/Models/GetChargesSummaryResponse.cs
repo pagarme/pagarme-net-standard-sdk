@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetChargesSummaryResponse
     {
+        private int? total;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "total", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetChargesSummaryResponse"/> class.
         /// </summary>
@@ -35,14 +41,30 @@ namespace PagarmeApiSDK.Standard.Models
         public GetChargesSummaryResponse(
             int? total = null)
         {
-            this.Total = total;
+            if (total != null)
+            {
+                this.Total = total;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Total.
         /// </summary>
-        [JsonProperty("total", NullValueHandling = NullValueHandling.Include)]
-        public int? Total { get; set; }
+        [JsonProperty("total")]
+        public int? Total
+        {
+            get
+            {
+                return this.total;
+            }
+
+            set
+            {
+                this.shouldSerialize["total"] = true;
+                this.total = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -52,6 +74,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetChargesSummaryResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTotal()
+        {
+            this.shouldSerialize["total"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTotal()
+        {
+            return this.shouldSerialize["total"];
         }
 
         /// <inheritdoc/>
@@ -71,7 +110,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

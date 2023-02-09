@@ -21,12 +21,20 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSplitResponse
     {
+        private string type;
+        private int? amount;
         private Models.GetRecipientResponse recipient;
+        private string gatewayId;
         private Models.GetSplitOptionsResponse options;
+        private string id;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "type", false },
+            { "amount", false },
             { "recipient", false },
+            { "gateway_id", false },
             { "options", false },
+            { "id", false },
         };
 
         /// <summary>
@@ -53,33 +61,73 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetSplitOptionsResponse options = null,
             string id = null)
         {
-            this.Type = type;
-            this.Amount = amount;
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
             if (recipient != null)
             {
                 this.Recipient = recipient;
             }
 
-            this.GatewayId = gatewayId;
+            if (gatewayId != null)
+            {
+                this.GatewayId = gatewayId;
+            }
+
             if (options != null)
             {
                 this.Options = options;
             }
 
-            this.Id = id;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
         }
 
         /// <summary>
         /// Type
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Amount
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Recipient
@@ -102,8 +150,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// The split rule gateway id
         /// </summary>
-        [JsonProperty("gateway_id", NullValueHandling = NullValueHandling.Include)]
-        public string GatewayId { get; set; }
+        [JsonProperty("gateway_id")]
+        public string GatewayId
+        {
+            get
+            {
+                return this.gatewayId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_id"] = true;
+                this.gatewayId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Options.
@@ -126,8 +186,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -142,6 +214,22 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetRecipient()
         {
             this.shouldSerialize["recipient"] = false;
@@ -150,9 +238,43 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetGatewayId()
+        {
+            this.shouldSerialize["gateway_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetOptions()
         {
             this.shouldSerialize["options"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
         }
 
         /// <summary>
@@ -168,9 +290,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayId()
+        {
+            return this.shouldSerialize["gateway_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeOptions()
         {
             return this.shouldSerialize["options"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
         }
 
         /// <inheritdoc/>
@@ -195,7 +335,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

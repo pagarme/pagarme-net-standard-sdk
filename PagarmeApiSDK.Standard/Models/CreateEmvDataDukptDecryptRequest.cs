@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Ksn == null && other.Ksn == null) || (this.Ksn?.Equals(other.Ksn) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

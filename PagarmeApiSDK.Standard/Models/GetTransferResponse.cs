@@ -21,6 +21,24 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetTransferResponse
     {
+        private string id;
+        private int? amount;
+        private string status;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
+        private Models.GetBankAccountResponse bankAccount;
+        private Dictionary<string, string> metadata;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "id", false },
+            { "amount", false },
+            { "status", false },
+            { "created_at", false },
+            { "updated_at", false },
+            { "bank_account", false },
+            { "metadata", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTransferResponse"/> class.
         /// </summary>
@@ -47,58 +65,170 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetBankAccountResponse bankAccount = null,
             Dictionary<string, string> metadata = null)
         {
-            this.Id = id;
-            this.Amount = amount;
-            this.Status = status;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.BankAccount = bankAccount;
-            this.Metadata = metadata;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
+            if (bankAccount != null)
+            {
+                this.BankAccount = bankAccount;
+            }
+
+            if (metadata != null)
+            {
+                this.Metadata = metadata;
+            }
+
         }
 
         /// <summary>
         /// Id
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Transfer amount
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Transfer status
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Transfer creation date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Transfer last update date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <summary>
         /// Bank account
         /// </summary>
-        [JsonProperty("bank_account", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetBankAccountResponse BankAccount { get; set; }
+        [JsonProperty("bank_account")]
+        public Models.GetBankAccountResponse BankAccount
+        {
+            get
+            {
+                return this.bankAccount;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank_account"] = true;
+                this.bankAccount = value;
+            }
+        }
 
         /// <summary>
         /// Metadata
         /// </summary>
-        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public Dictionary<string, string> Metadata { get; set; }
+        [JsonProperty("metadata")]
+        public Dictionary<string, string> Metadata
+        {
+            get
+            {
+                return this.metadata;
+            }
+
+            set
+            {
+                this.shouldSerialize["metadata"] = true;
+                this.metadata = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -108,6 +238,125 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetTransferResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBankAccount()
+        {
+            this.shouldSerialize["bank_account"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMetadata()
+        {
+            this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBankAccount()
+        {
+            return this.shouldSerialize["bank_account"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMetadata()
+        {
+            return this.shouldSerialize["metadata"];
         }
 
         /// <inheritdoc/>
@@ -133,7 +382,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -21,6 +21,18 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPixPayerResponse
     {
+        private string name;
+        private string document;
+        private string documentType;
+        private Models.GetPixBankAccountResponse bankAccount;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "name", false },
+            { "document", false },
+            { "document_type", false },
+            { "bank_account", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPixPayerResponse"/> class.
         /// </summary>
@@ -41,35 +53,99 @@ namespace PagarmeApiSDK.Standard.Models
             string documentType = null,
             Models.GetPixBankAccountResponse bankAccount = null)
         {
-            this.Name = name;
-            this.Document = document;
-            this.DocumentType = documentType;
-            this.BankAccount = bankAccount;
+            if (name != null)
+            {
+                this.Name = name;
+            }
+
+            if (document != null)
+            {
+                this.Document = document;
+            }
+
+            if (documentType != null)
+            {
+                this.DocumentType = documentType;
+            }
+
+            if (bankAccount != null)
+            {
+                this.BankAccount = bankAccount;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Name.
         /// </summary>
-        [JsonProperty("name", NullValueHandling = NullValueHandling.Include)]
-        public string Name { get; set; }
+        [JsonProperty("name")]
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.shouldSerialize["name"] = true;
+                this.name = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Document.
         /// </summary>
-        [JsonProperty("document", NullValueHandling = NullValueHandling.Include)]
-        public string Document { get; set; }
+        [JsonProperty("document")]
+        public string Document
+        {
+            get
+            {
+                return this.document;
+            }
+
+            set
+            {
+                this.shouldSerialize["document"] = true;
+                this.document = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets DocumentType.
         /// </summary>
-        [JsonProperty("document_type", NullValueHandling = NullValueHandling.Include)]
-        public string DocumentType { get; set; }
+        [JsonProperty("document_type")]
+        public string DocumentType
+        {
+            get
+            {
+                return this.documentType;
+            }
+
+            set
+            {
+                this.shouldSerialize["document_type"] = true;
+                this.documentType = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets BankAccount.
         /// </summary>
-        [JsonProperty("bank_account", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPixBankAccountResponse BankAccount { get; set; }
+        [JsonProperty("bank_account")]
+        public Models.GetPixBankAccountResponse BankAccount
+        {
+            get
+            {
+                return this.bankAccount;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank_account"] = true;
+                this.bankAccount = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -79,6 +155,74 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPixPayerResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetName()
+        {
+            this.shouldSerialize["name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDocument()
+        {
+            this.shouldSerialize["document"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDocumentType()
+        {
+            this.shouldSerialize["document_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBankAccount()
+        {
+            this.shouldSerialize["bank_account"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeName()
+        {
+            return this.shouldSerialize["name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDocument()
+        {
+            return this.shouldSerialize["document"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDocumentType()
+        {
+            return this.shouldSerialize["document_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBankAccount()
+        {
+            return this.shouldSerialize["bank_account"];
         }
 
         /// <inheritdoc/>
@@ -101,7 +245,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

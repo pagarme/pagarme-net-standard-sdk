@@ -21,6 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSplitOptionsResponse
     {
+        private bool? liable;
+        private bool? chargeProcessingFee;
+        private string chargeRemainderFee;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "liable", false },
+            { "charge_processing_fee", false },
+            { "charge_remainder_fee", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSplitOptionsResponse"/> class.
         /// </summary>
@@ -39,28 +49,76 @@ namespace PagarmeApiSDK.Standard.Models
             bool? chargeProcessingFee = null,
             string chargeRemainderFee = null)
         {
-            this.Liable = liable;
-            this.ChargeProcessingFee = chargeProcessingFee;
-            this.ChargeRemainderFee = chargeRemainderFee;
+            if (liable != null)
+            {
+                this.Liable = liable;
+            }
+
+            if (chargeProcessingFee != null)
+            {
+                this.ChargeProcessingFee = chargeProcessingFee;
+            }
+
+            if (chargeRemainderFee != null)
+            {
+                this.ChargeRemainderFee = chargeRemainderFee;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Liable.
         /// </summary>
-        [JsonProperty("liable", NullValueHandling = NullValueHandling.Include)]
-        public bool? Liable { get; set; }
+        [JsonProperty("liable")]
+        public bool? Liable
+        {
+            get
+            {
+                return this.liable;
+            }
+
+            set
+            {
+                this.shouldSerialize["liable"] = true;
+                this.liable = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ChargeProcessingFee.
         /// </summary>
-        [JsonProperty("charge_processing_fee", NullValueHandling = NullValueHandling.Include)]
-        public bool? ChargeProcessingFee { get; set; }
+        [JsonProperty("charge_processing_fee")]
+        public bool? ChargeProcessingFee
+        {
+            get
+            {
+                return this.chargeProcessingFee;
+            }
+
+            set
+            {
+                this.shouldSerialize["charge_processing_fee"] = true;
+                this.chargeProcessingFee = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ChargeRemainderFee.
         /// </summary>
-        [JsonProperty("charge_remainder_fee", NullValueHandling = NullValueHandling.Include)]
-        public string ChargeRemainderFee { get; set; }
+        [JsonProperty("charge_remainder_fee")]
+        public string ChargeRemainderFee
+        {
+            get
+            {
+                return this.chargeRemainderFee;
+            }
+
+            set
+            {
+                this.shouldSerialize["charge_remainder_fee"] = true;
+                this.chargeRemainderFee = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +128,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetSplitOptionsResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLiable()
+        {
+            this.shouldSerialize["liable"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetChargeProcessingFee()
+        {
+            this.shouldSerialize["charge_processing_fee"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetChargeRemainderFee()
+        {
+            this.shouldSerialize["charge_remainder_fee"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLiable()
+        {
+            return this.shouldSerialize["liable"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeChargeProcessingFee()
+        {
+            return this.shouldSerialize["charge_processing_fee"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeChargeRemainderFee()
+        {
+            return this.shouldSerialize["charge_remainder_fee"];
         }
 
         /// <inheritdoc/>
@@ -91,7 +200,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.ChargeRemainderFee == null && other.ChargeRemainderFee == null) || (this.ChargeRemainderFee?.Equals(other.ChargeRemainderFee) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

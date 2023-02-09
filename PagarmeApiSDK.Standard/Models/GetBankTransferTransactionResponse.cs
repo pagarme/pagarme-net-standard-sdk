@@ -32,9 +32,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="GetBankTransferTransactionResponse"/> class.
         /// </summary>
-        /// <param name="url">url.</param>
-        /// <param name="bankTid">bank_tid.</param>
-        /// <param name="bank">bank.</param>
         /// <param name="transactionType">transaction_type.</param>
         /// <param name="gatewayId">gateway_id.</param>
         /// <param name="amount">amount.</param>
@@ -54,12 +51,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="interest">interest.</param>
         /// <param name="fine">fine.</param>
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
+        /// <param name="url">url.</param>
+        /// <param name="bankTid">bank_tid.</param>
+        /// <param name="bank">bank.</param>
         /// <param name="paidAt">paid_at.</param>
         /// <param name="paidAmount">paid_amount.</param>
         public GetBankTransferTransactionResponse(
-            string url,
-            string bankTid,
-            string bank,
             string transactionType = "bank_transfer",
             string gatewayId = null,
             int? amount = null,
@@ -79,6 +76,9 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetInterestResponse interest = null,
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null,
+            string url = null,
+            string bankTid = null,
+            string bank = null,
             DateTime? paidAt = null,
             int? paidAmount = null)
             : base(
@@ -112,19 +112,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Payment url
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
 
         /// <summary>
         /// Transaction identifier for the bank
         /// </summary>
-        [JsonProperty("bank_tid")]
+        [JsonProperty("bank_tid", NullValueHandling = NullValueHandling.Ignore)]
         public string BankTid { get; set; }
 
         /// <summary>
         /// Bank
         /// </summary>
-        [JsonProperty("bank")]
+        [JsonProperty("bank", NullValueHandling = NullValueHandling.Ignore)]
         public string Bank { get; set; }
 
         /// <summary>
@@ -172,7 +172,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

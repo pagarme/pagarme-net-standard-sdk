@@ -21,10 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPriceBracketResponse
     {
+        private int? startQuantity;
+        private int? price;
         private int? endQuantity;
         private int? overagePrice;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "start_quantity", false },
+            { "price", false },
             { "end_quantity", false },
             { "overage_price", false },
         };
@@ -49,8 +53,16 @@ namespace PagarmeApiSDK.Standard.Models
             int? endQuantity = null,
             int? overagePrice = null)
         {
-            this.StartQuantity = startQuantity;
-            this.Price = price;
+            if (startQuantity != null)
+            {
+                this.StartQuantity = startQuantity;
+            }
+
+            if (price != null)
+            {
+                this.Price = price;
+            }
+
             if (endQuantity != null)
             {
                 this.EndQuantity = endQuantity;
@@ -66,14 +78,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets StartQuantity.
         /// </summary>
-        [JsonProperty("start_quantity", NullValueHandling = NullValueHandling.Include)]
-        public int? StartQuantity { get; set; }
+        [JsonProperty("start_quantity")]
+        public int? StartQuantity
+        {
+            get
+            {
+                return this.startQuantity;
+            }
+
+            set
+            {
+                this.shouldSerialize["start_quantity"] = true;
+                this.startQuantity = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Price.
         /// </summary>
-        [JsonProperty("price", NullValueHandling = NullValueHandling.Include)]
-        public int? Price { get; set; }
+        [JsonProperty("price")]
+        public int? Price
+        {
+            get
+            {
+                return this.price;
+            }
+
+            set
+            {
+                this.shouldSerialize["price"] = true;
+                this.price = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets EndQuantity.
@@ -124,6 +160,22 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetStartQuantity()
+        {
+            this.shouldSerialize["start_quantity"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPrice()
+        {
+            this.shouldSerialize["price"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetEndQuantity()
         {
             this.shouldSerialize["end_quantity"] = false;
@@ -135,6 +187,24 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetOveragePrice()
         {
             this.shouldSerialize["overage_price"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStartQuantity()
+        {
+            return this.shouldSerialize["start_quantity"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePrice()
+        {
+            return this.shouldSerialize["price"];
         }
 
         /// <summary>
@@ -175,7 +245,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.OveragePrice == null && other.OveragePrice == null) || (this.OveragePrice?.Equals(other.OveragePrice) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

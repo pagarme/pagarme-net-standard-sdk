@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

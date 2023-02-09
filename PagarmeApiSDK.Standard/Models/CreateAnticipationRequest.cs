@@ -92,7 +92,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.PaymentDate.Equals(other.PaymentDate);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

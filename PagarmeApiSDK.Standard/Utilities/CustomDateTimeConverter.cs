@@ -3,12 +3,12 @@
 // </copyright>
 namespace PagarmeApiSDK.Standard.Utilities
 {
-    using Newtonsoft.Json.Converters;
+    using APIMatic.Core.Utilities.Date;
 
     /// <summary>
     /// Extends from IsoDateTimeConverter to allow a custom DateTime format.
     /// </summary>
-    public class CustomDateTimeConverter : IsoDateTimeConverter
+    public class CustomDateTimeConverter : CoreCustomDateTimeConverter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomDateTimeConverter"/>
@@ -16,8 +16,6 @@ namespace PagarmeApiSDK.Standard.Utilities
         /// </summary>
         /// <param name="format">format.</param>
         public CustomDateTimeConverter(string format)
-        {
-            this.DateTimeFormat = format;
-        }
+            : base(format) { }
     }
 }

@@ -9,15 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DueAt` | `DateTime?` | Required | Data de vencimento do boleto |
-| `Instructions` | `string` | Required | Instruções do boleto |
+| `DueAt` | `DateTime?` | Optional | Data de vencimento do boleto |
+| `Instructions` | `string` | Optional | Instruções do boleto |
 
 ## Example (as JSON)
 
 ```json
 {
-  "due_at": "2016-03-13T12:52:32.123Z",
-  "instructions": "instructions2"
+  "due_at": null,
+  "instructions": null
 }
 ```
 

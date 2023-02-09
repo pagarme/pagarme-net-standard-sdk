@@ -151,7 +151,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.PrivateLabel == null && other.PrivateLabel == null) || (this.PrivateLabel?.Equals(other.PrivateLabel) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

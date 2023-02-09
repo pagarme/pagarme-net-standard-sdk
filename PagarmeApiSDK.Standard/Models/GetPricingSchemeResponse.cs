@@ -21,10 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPricingSchemeResponse
     {
+        private int? price;
+        private string schemeType;
+        private List<Models.GetPriceBracketResponse> priceBrackets;
         private int? minimumPrice;
         private double? percentage;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "price", false },
+            { "scheme_type", false },
+            { "price_brackets", false },
             { "minimum_price", false },
             { "percentage", false },
         };
@@ -51,9 +57,21 @@ namespace PagarmeApiSDK.Standard.Models
             int? minimumPrice = null,
             double? percentage = null)
         {
-            this.Price = price;
-            this.SchemeType = schemeType;
-            this.PriceBrackets = priceBrackets;
+            if (price != null)
+            {
+                this.Price = price;
+            }
+
+            if (schemeType != null)
+            {
+                this.SchemeType = schemeType;
+            }
+
+            if (priceBrackets != null)
+            {
+                this.PriceBrackets = priceBrackets;
+            }
+
             if (minimumPrice != null)
             {
                 this.MinimumPrice = minimumPrice;
@@ -69,20 +87,56 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Price.
         /// </summary>
-        [JsonProperty("price", NullValueHandling = NullValueHandling.Include)]
-        public int? Price { get; set; }
+        [JsonProperty("price")]
+        public int? Price
+        {
+            get
+            {
+                return this.price;
+            }
+
+            set
+            {
+                this.shouldSerialize["price"] = true;
+                this.price = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets SchemeType.
         /// </summary>
-        [JsonProperty("scheme_type", NullValueHandling = NullValueHandling.Include)]
-        public string SchemeType { get; set; }
+        [JsonProperty("scheme_type")]
+        public string SchemeType
+        {
+            get
+            {
+                return this.schemeType;
+            }
+
+            set
+            {
+                this.shouldSerialize["scheme_type"] = true;
+                this.schemeType = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PriceBrackets.
         /// </summary>
-        [JsonProperty("price_brackets", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetPriceBracketResponse> PriceBrackets { get; set; }
+        [JsonProperty("price_brackets")]
+        public List<Models.GetPriceBracketResponse> PriceBrackets
+        {
+            get
+            {
+                return this.priceBrackets;
+            }
+
+            set
+            {
+                this.shouldSerialize["price_brackets"] = true;
+                this.priceBrackets = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MinimumPrice.
@@ -133,6 +187,30 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetPrice()
+        {
+            this.shouldSerialize["price"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSchemeType()
+        {
+            this.shouldSerialize["scheme_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPriceBrackets()
+        {
+            this.shouldSerialize["price_brackets"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetMinimumPrice()
         {
             this.shouldSerialize["minimum_price"] = false;
@@ -144,6 +222,33 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetPercentage()
         {
             this.shouldSerialize["percentage"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePrice()
+        {
+            return this.shouldSerialize["price"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSchemeType()
+        {
+            return this.shouldSerialize["scheme_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePriceBrackets()
+        {
+            return this.shouldSerialize["price_brackets"];
         }
 
         /// <summary>
@@ -185,7 +290,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Percentage == null && other.Percentage == null) || (this.Percentage?.Equals(other.Percentage) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -92,7 +92,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.EndAt == null && other.EndAt == null) || (this.EndAt?.Equals(other.EndAt) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

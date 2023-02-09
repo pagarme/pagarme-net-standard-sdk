@@ -231,7 +231,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Pix == null && other.Pix == null) || (this.Pix?.Equals(other.Pix) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

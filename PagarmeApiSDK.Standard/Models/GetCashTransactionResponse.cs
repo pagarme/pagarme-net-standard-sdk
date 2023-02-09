@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCashTransactionResponse : GetTransactionResponse
     {
+        private string description;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "description", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCashTransactionResponse"/> class.
         /// </summary>
@@ -94,14 +100,30 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
-            this.Description = description;
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
         }
 
         /// <summary>
         /// Description
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
-        public string Description { get; set; }
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -111,6 +133,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCashTransactionResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
         }
 
         /// <inheritdoc/>
@@ -131,7 +170,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>
