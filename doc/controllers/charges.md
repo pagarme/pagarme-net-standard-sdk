@@ -113,7 +113,6 @@ request.Boleto.BillingAddress.Metadata = new Dictionary<string, string>();
 request.Boleto.BillingAddress.Metadata.Add("key0", "metadata5");
 request.Boleto.BillingAddress.Line1 = "line_18";
 request.Boleto.BillingAddress.Line2 = "line_26";
-request.Boleto.BillingAddressId = "billing_address_id2";
 request.Boleto.DocumentNumber = "document_number0";
 request.Boleto.StatementDescriptor = "statement_descriptor6";
 request.Voucher = new CreateVoucherPaymentRequest();
