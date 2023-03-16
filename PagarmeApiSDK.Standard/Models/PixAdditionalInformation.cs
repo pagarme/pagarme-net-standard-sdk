@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class PixAdditionalInformation
     {
+        private string name;
+        private string mValue;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "Name", false },
+            { "Value", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PixAdditionalInformation"/> class.
         /// </summary>
@@ -34,24 +42,56 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="name">Name.</param>
         /// <param name="mValue">Value.</param>
         public PixAdditionalInformation(
-            string name,
-            string mValue)
+            string name = null,
+            string mValue = null)
         {
-            this.Name = name;
-            this.MValue = mValue;
+            if (name != null)
+            {
+                this.Name = name;
+            }
+
+            if (mValue != null)
+            {
+                this.MValue = mValue;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Name.
         /// </summary>
         [JsonProperty("Name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.shouldSerialize["Name"] = true;
+                this.name = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MValue.
         /// </summary>
         [JsonProperty("Value")]
-        public string MValue { get; set; }
+        public string MValue
+        {
+            get
+            {
+                return this.mValue;
+            }
+
+            set
+            {
+                this.shouldSerialize["Value"] = true;
+                this.mValue = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"PixAdditionalInformation : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetName()
+        {
+            this.shouldSerialize["Name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMValue()
+        {
+            this.shouldSerialize["Value"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeName()
+        {
+            return this.shouldSerialize["Name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMValue()
+        {
+            return this.shouldSerialize["Value"];
         }
 
         /// <inheritdoc/>
