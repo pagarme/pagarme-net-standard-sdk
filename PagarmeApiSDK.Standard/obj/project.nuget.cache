@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "uwaOefPjKWv0dPEgoAznKT3L/YjmLVbx09zYZONWIX/7qZTsGLOXO4+2BDNg+OgV29PxcVHkZmNXZLZi7PJqcw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\magno.moreira\\Desktop\\resolvendo-coflito-v6\\pagarme-net-standard-sdk\\PagarmeApiSDK.Standard\\PagarmeApiSDK.Standard.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\jsonsubtypes\\1.6.0\\jsonsubtypes.1.6.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\polly\\7.2.1\\polly.7.2.1.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\system.collections.immutable\\1.5.0\\system.collections.immutable.1.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
