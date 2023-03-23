@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetGatewayResponseResponse
     {
+        private string code;
+        private List<Models.GetGatewayErrorResponse> errors;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "code", false },
+            { "errors", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetGatewayResponseResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             string code = null,
             List<Models.GetGatewayErrorResponse> errors = null)
         {
-            this.Code = code;
-            this.Errors = errors;
+            if (code != null)
+            {
+                this.Code = code;
+            }
+
+            if (errors != null)
+            {
+                this.Errors = errors;
+            }
+
         }
 
         /// <summary>
         /// The error code
         /// </summary>
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
-        public string Code { get; set; }
+        [JsonProperty("code")]
+        public string Code
+        {
+            get
+            {
+                return this.code;
+            }
+
+            set
+            {
+                this.shouldSerialize["code"] = true;
+                this.code = value;
+            }
+        }
 
         /// <summary>
         /// The gateway response errors list
         /// </summary>
-        [JsonProperty("errors", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetGatewayErrorResponse> Errors { get; set; }
+        [JsonProperty("errors")]
+        public List<Models.GetGatewayErrorResponse> Errors
+        {
+            get
+            {
+                return this.errors;
+            }
+
+            set
+            {
+                this.shouldSerialize["errors"] = true;
+                this.errors = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetGatewayResponseResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCode()
+        {
+            this.shouldSerialize["code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetErrors()
+        {
+            this.shouldSerialize["errors"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCode()
+        {
+            return this.shouldSerialize["code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeErrors()
+        {
+            return this.shouldSerialize["errors"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Errors == null && other.Errors == null) || (this.Errors?.Equals(other.Errors) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

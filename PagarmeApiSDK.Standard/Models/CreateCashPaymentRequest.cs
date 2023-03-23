@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Confirm.Equals(other.Confirm);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

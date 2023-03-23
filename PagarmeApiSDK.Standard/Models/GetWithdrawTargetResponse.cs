@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetWithdrawTargetResponse
     {
+        private string targetId;
+        private string type;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "target_id", false },
+            { "type", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetWithdrawTargetResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             string targetId = null,
             string type = null)
         {
-            this.TargetId = targetId;
-            this.Type = type;
+            if (targetId != null)
+            {
+                this.TargetId = targetId;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets TargetId.
         /// </summary>
-        [JsonProperty("target_id", NullValueHandling = NullValueHandling.Include)]
-        public string TargetId { get; set; }
+        [JsonProperty("target_id")]
+        public string TargetId
+        {
+            get
+            {
+                return this.targetId;
+            }
+
+            set
+            {
+                this.shouldSerialize["target_id"] = true;
+                this.targetId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetWithdrawTargetResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTargetId()
+        {
+            this.shouldSerialize["target_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTargetId()
+        {
+            return this.shouldSerialize["target_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

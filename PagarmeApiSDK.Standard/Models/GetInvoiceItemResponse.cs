@@ -21,12 +21,22 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetInvoiceItemResponse
     {
+        private int? amount;
+        private string description;
+        private Models.GetPricingSchemeResponse pricingScheme;
+        private Models.GetPriceBracketResponse priceBracket;
         private int? quantity;
         private string name;
+        private string subscriptionItemId;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "amount", false },
+            { "description", false },
+            { "pricing_scheme", false },
+            { "price_bracket", false },
             { "quantity", false },
             { "name", false },
+            { "subscription_item_id", false },
         };
 
         /// <summary>
@@ -55,10 +65,26 @@ namespace PagarmeApiSDK.Standard.Models
             string name = null,
             string subscriptionItemId = null)
         {
-            this.Amount = amount;
-            this.Description = description;
-            this.PricingScheme = pricingScheme;
-            this.PriceBracket = priceBracket;
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
+            if (pricingScheme != null)
+            {
+                this.PricingScheme = pricingScheme;
+            }
+
+            if (priceBracket != null)
+            {
+                this.PriceBracket = priceBracket;
+            }
+
             if (quantity != null)
             {
                 this.Quantity = quantity;
@@ -69,32 +95,84 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Name = name;
             }
 
-            this.SubscriptionItemId = subscriptionItemId;
+            if (subscriptionItemId != null)
+            {
+                this.SubscriptionItemId = subscriptionItemId;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Amount.
         /// </summary>
-        [JsonProperty("amount", NullValueHandling = NullValueHandling.Include)]
-        public int? Amount { get; set; }
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Description.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Include)]
-        public string Description { get; set; }
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PricingScheme.
         /// </summary>
-        [JsonProperty("pricing_scheme", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPricingSchemeResponse PricingScheme { get; set; }
+        [JsonProperty("pricing_scheme")]
+        public Models.GetPricingSchemeResponse PricingScheme
+        {
+            get
+            {
+                return this.pricingScheme;
+            }
+
+            set
+            {
+                this.shouldSerialize["pricing_scheme"] = true;
+                this.pricingScheme = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets PriceBracket.
         /// </summary>
-        [JsonProperty("price_bracket", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPriceBracketResponse PriceBracket { get; set; }
+        [JsonProperty("price_bracket")]
+        public Models.GetPriceBracketResponse PriceBracket
+        {
+            get
+            {
+                return this.priceBracket;
+            }
+
+            set
+            {
+                this.shouldSerialize["price_bracket"] = true;
+                this.priceBracket = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Quantity.
@@ -135,8 +213,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Subscription Item Id
         /// </summary>
-        [JsonProperty("subscription_item_id", NullValueHandling = NullValueHandling.Include)]
-        public string SubscriptionItemId { get; set; }
+        [JsonProperty("subscription_item_id")]
+        public string SubscriptionItemId
+        {
+            get
+            {
+                return this.subscriptionItemId;
+            }
+
+            set
+            {
+                this.shouldSerialize["subscription_item_id"] = true;
+                this.subscriptionItemId = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -146,6 +236,38 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetInvoiceItemResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPricingScheme()
+        {
+            this.shouldSerialize["pricing_scheme"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPriceBracket()
+        {
+            this.shouldSerialize["price_bracket"] = false;
         }
 
         /// <summary>
@@ -165,6 +287,50 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSubscriptionItemId()
+        {
+            this.shouldSerialize["subscription_item_id"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePricingScheme()
+        {
+            return this.shouldSerialize["pricing_scheme"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePriceBracket()
+        {
+            return this.shouldSerialize["price_bracket"];
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -180,6 +346,15 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeName()
         {
             return this.shouldSerialize["name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSubscriptionItemId()
+        {
+            return this.shouldSerialize["subscription_item_id"];
         }
 
         /// <inheritdoc/>
@@ -205,7 +380,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.SubscriptionItemId == null && other.SubscriptionItemId == null) || (this.SubscriptionItemId?.Equals(other.SubscriptionItemId) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

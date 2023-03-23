@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.VerifyCard.Equals(other.VerifyCard);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

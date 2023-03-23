@@ -161,7 +161,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.DocumentType == null && other.DocumentType == null) || (this.DocumentType?.Equals(other.DocumentType) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

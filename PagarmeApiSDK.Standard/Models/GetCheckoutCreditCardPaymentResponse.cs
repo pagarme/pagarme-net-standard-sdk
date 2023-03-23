@@ -21,6 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutCreditCardPaymentResponse
     {
+        private string statementDescriptor;
+        private List<Models.GetCheckoutCardInstallmentOptionsResponse> installments;
+        private Models.GetPaymentAuthenticationResponse authentication;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "statementDescriptor", false },
+            { "installments", false },
+            { "authentication", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutCreditCardPaymentResponse"/> class.
         /// </summary>
@@ -39,28 +49,76 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.GetCheckoutCardInstallmentOptionsResponse> installments = null,
             Models.GetPaymentAuthenticationResponse authentication = null)
         {
-            this.StatementDescriptor = statementDescriptor;
-            this.Installments = installments;
-            this.Authentication = authentication;
+            if (statementDescriptor != null)
+            {
+                this.StatementDescriptor = statementDescriptor;
+            }
+
+            if (installments != null)
+            {
+                this.Installments = installments;
+            }
+
+            if (authentication != null)
+            {
+                this.Authentication = authentication;
+            }
+
         }
 
         /// <summary>
         /// Descrição na fatura
         /// </summary>
-        [JsonProperty("statementDescriptor", NullValueHandling = NullValueHandling.Include)]
-        public string StatementDescriptor { get; set; }
+        [JsonProperty("statementDescriptor")]
+        public string StatementDescriptor
+        {
+            get
+            {
+                return this.statementDescriptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["statementDescriptor"] = true;
+                this.statementDescriptor = value;
+            }
+        }
 
         /// <summary>
         /// Parcelas
         /// </summary>
-        [JsonProperty("installments", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetCheckoutCardInstallmentOptionsResponse> Installments { get; set; }
+        [JsonProperty("installments")]
+        public List<Models.GetCheckoutCardInstallmentOptionsResponse> Installments
+        {
+            get
+            {
+                return this.installments;
+            }
+
+            set
+            {
+                this.shouldSerialize["installments"] = true;
+                this.installments = value;
+            }
+        }
 
         /// <summary>
         /// Payment Authentication response
         /// </summary>
-        [JsonProperty("authentication", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPaymentAuthenticationResponse Authentication { get; set; }
+        [JsonProperty("authentication")]
+        public Models.GetPaymentAuthenticationResponse Authentication
+        {
+            get
+            {
+                return this.authentication;
+            }
+
+            set
+            {
+                this.shouldSerialize["authentication"] = true;
+                this.authentication = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +128,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutCreditCardPaymentResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatementDescriptor()
+        {
+            this.shouldSerialize["statementDescriptor"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInstallments()
+        {
+            this.shouldSerialize["installments"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAuthentication()
+        {
+            this.shouldSerialize["authentication"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatementDescriptor()
+        {
+            return this.shouldSerialize["statementDescriptor"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInstallments()
+        {
+            return this.shouldSerialize["installments"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAuthentication()
+        {
+            return this.shouldSerialize["authentication"];
         }
 
         /// <inheritdoc/>
@@ -91,7 +200,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

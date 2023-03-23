@@ -21,6 +21,22 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateBoletoPaymentRequest
     {
+        private DateTime? dueAt;
+        private string billingAddressId;
+        private string nossoNumero;
+        private Models.CreateInterestRequest interest;
+        private Models.CreateFineRequest fine;
+        private int? maxDaysToPayPastDue;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "due_at", false },
+            { "billing_address_id", false },
+            { "nosso_numero", false },
+            { "interest", false },
+            { "fine", false },
+            { "max_days_to_pay_past_due", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateBoletoPaymentRequest"/> class.
         /// </summary>
@@ -35,10 +51,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="bank">bank.</param>
         /// <param name="instructions">instructions.</param>
         /// <param name="billingAddress">billing_address.</param>
-        /// <param name="billingAddressId">billing_address_id.</param>
         /// <param name="documentNumber">document_number.</param>
         /// <param name="statementDescriptor">statement_descriptor.</param>
         /// <param name="dueAt">due_at.</param>
+        /// <param name="billingAddressId">billing_address_id.</param>
         /// <param name="nossoNumero">nosso_numero.</param>
         /// <param name="interest">interest.</param>
         /// <param name="fine">fine.</param>
@@ -48,10 +64,10 @@ namespace PagarmeApiSDK.Standard.Models
             string bank,
             string instructions,
             Models.CreateAddressRequest billingAddress,
-            string billingAddressId,
             string documentNumber,
             string statementDescriptor,
             DateTime? dueAt = null,
+            string billingAddressId = null,
             string nossoNumero = null,
             Models.CreateInterestRequest interest = null,
             Models.CreateFineRequest fine = null,
@@ -60,15 +76,39 @@ namespace PagarmeApiSDK.Standard.Models
             this.Retries = retries;
             this.Bank = bank;
             this.Instructions = instructions;
-            this.DueAt = dueAt;
+            if (dueAt != null)
+            {
+                this.DueAt = dueAt;
+            }
+
             this.BillingAddress = billingAddress;
-            this.BillingAddressId = billingAddressId;
-            this.NossoNumero = nossoNumero;
+            if (billingAddressId != null)
+            {
+                this.BillingAddressId = billingAddressId;
+            }
+
+            if (nossoNumero != null)
+            {
+                this.NossoNumero = nossoNumero;
+            }
+
             this.DocumentNumber = documentNumber;
             this.StatementDescriptor = statementDescriptor;
-            this.Interest = interest;
-            this.Fine = fine;
-            this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
+            if (interest != null)
+            {
+                this.Interest = interest;
+            }
+
+            if (fine != null)
+            {
+                this.Fine = fine;
+            }
+
+            if (maxDaysToPayPastDue != null)
+            {
+                this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
+            }
+
         }
 
         /// <summary>
@@ -93,8 +133,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// Boleto due date
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("due_at", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? DueAt { get; set; }
+        [JsonProperty("due_at")]
+        public DateTime? DueAt
+        {
+            get
+            {
+                return this.dueAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["due_at"] = true;
+                this.dueAt = value;
+            }
+        }
 
         /// <summary>
         /// Card's billing address
@@ -106,13 +158,37 @@ namespace PagarmeApiSDK.Standard.Models
         /// The address id for the billing address
         /// </summary>
         [JsonProperty("billing_address_id")]
-        public string BillingAddressId { get; set; }
+        public string BillingAddressId
+        {
+            get
+            {
+                return this.billingAddressId;
+            }
+
+            set
+            {
+                this.shouldSerialize["billing_address_id"] = true;
+                this.billingAddressId = value;
+            }
+        }
 
         /// <summary>
         /// Customer identification number with the bank
         /// </summary>
-        [JsonProperty("nosso_numero", NullValueHandling = NullValueHandling.Ignore)]
-        public string NossoNumero { get; set; }
+        [JsonProperty("nosso_numero")]
+        public string NossoNumero
+        {
+            get
+            {
+                return this.nossoNumero;
+            }
+
+            set
+            {
+                this.shouldSerialize["nosso_numero"] = true;
+                this.nossoNumero = value;
+            }
+        }
 
         /// <summary>
         /// Boleto identification
@@ -129,20 +205,56 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Interest.
         /// </summary>
-        [JsonProperty("interest", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.CreateInterestRequest Interest { get; set; }
+        [JsonProperty("interest")]
+        public Models.CreateInterestRequest Interest
+        {
+            get
+            {
+                return this.interest;
+            }
+
+            set
+            {
+                this.shouldSerialize["interest"] = true;
+                this.interest = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Fine.
         /// </summary>
-        [JsonProperty("fine", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.CreateFineRequest Fine { get; set; }
+        [JsonProperty("fine")]
+        public Models.CreateFineRequest Fine
+        {
+            get
+            {
+                return this.fine;
+            }
+
+            set
+            {
+                this.shouldSerialize["fine"] = true;
+                this.fine = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MaxDaysToPayPastDue.
         /// </summary>
-        [JsonProperty("max_days_to_pay_past_due", NullValueHandling = NullValueHandling.Ignore)]
-        public int? MaxDaysToPayPastDue { get; set; }
+        [JsonProperty("max_days_to_pay_past_due")]
+        public int? MaxDaysToPayPastDue
+        {
+            get
+            {
+                return this.maxDaysToPayPastDue;
+            }
+
+            set
+            {
+                this.shouldSerialize["max_days_to_pay_past_due"] = true;
+                this.maxDaysToPayPastDue = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -152,6 +264,108 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateBoletoPaymentRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDueAt()
+        {
+            this.shouldSerialize["due_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBillingAddressId()
+        {
+            this.shouldSerialize["billing_address_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetNossoNumero()
+        {
+            this.shouldSerialize["nosso_numero"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInterest()
+        {
+            this.shouldSerialize["interest"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFine()
+        {
+            this.shouldSerialize["fine"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMaxDaysToPayPastDue()
+        {
+            this.shouldSerialize["max_days_to_pay_past_due"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDueAt()
+        {
+            return this.shouldSerialize["due_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBillingAddressId()
+        {
+            return this.shouldSerialize["billing_address_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeNossoNumero()
+        {
+            return this.shouldSerialize["nosso_numero"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInterest()
+        {
+            return this.shouldSerialize["interest"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFine()
+        {
+            return this.shouldSerialize["fine"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMaxDaysToPayPastDue()
+        {
+            return this.shouldSerialize["max_days_to_pay_past_due"];
         }
 
         /// <inheritdoc/>
@@ -182,7 +396,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

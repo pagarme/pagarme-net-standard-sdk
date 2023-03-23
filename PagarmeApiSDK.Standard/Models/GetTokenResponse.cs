@@ -21,6 +21,20 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetTokenResponse
     {
+        private string id;
+        private string type;
+        private DateTime? createdAt;
+        private string expiresAt;
+        private Models.GetCardTokenResponse card;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "id", false },
+            { "type", false },
+            { "created_at", false },
+            { "expires_at", false },
+            { "card", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTokenResponse"/> class.
         /// </summary>
@@ -43,43 +57,123 @@ namespace PagarmeApiSDK.Standard.Models
             string expiresAt = null,
             Models.GetCardTokenResponse card = null)
         {
-            this.Id = id;
-            this.Type = type;
-            this.CreatedAt = createdAt;
-            this.ExpiresAt = expiresAt;
-            this.Card = card;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (expiresAt != null)
+            {
+                this.ExpiresAt = expiresAt;
+            }
+
+            if (card != null)
+            {
+                this.Card = card;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets ExpiresAt.
         /// </summary>
-        [JsonProperty("expires_at", NullValueHandling = NullValueHandling.Include)]
-        public string ExpiresAt { get; set; }
+        [JsonProperty("expires_at")]
+        public string ExpiresAt
+        {
+            get
+            {
+                return this.expiresAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["expires_at"] = true;
+                this.expiresAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Card.
         /// </summary>
-        [JsonProperty("card", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetCardTokenResponse Card { get; set; }
+        [JsonProperty("card")]
+        public Models.GetCardTokenResponse Card
+        {
+            get
+            {
+                return this.card;
+            }
+
+            set
+            {
+                this.shouldSerialize["card"] = true;
+                this.card = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -89,6 +183,91 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetTokenResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetExpiresAt()
+        {
+            this.shouldSerialize["expires_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCard()
+        {
+            this.shouldSerialize["card"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeExpiresAt()
+        {
+            return this.shouldSerialize["expires_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCard()
+        {
+            return this.shouldSerialize["card"];
         }
 
         /// <inheritdoc/>
@@ -112,7 +291,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

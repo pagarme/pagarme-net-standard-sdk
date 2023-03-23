@@ -21,10 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSafetyPayTransactionResponse : GetTransactionResponse
     {
+        private string url;
+        private string bankTid;
         private DateTime? paidAt;
         private int? paidAmount;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "url", false },
+            { "bank_tid", false },
             { "paid_at", false },
             { "paid_amount", false },
         };
@@ -108,8 +112,16 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
-            this.Url = url;
-            this.BankTid = bankTid;
+            if (url != null)
+            {
+                this.Url = url;
+            }
+
+            if (bankTid != null)
+            {
+                this.BankTid = bankTid;
+            }
+
             if (paidAt != null)
             {
                 this.PaidAt = paidAt;
@@ -125,14 +137,38 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Payment url
         /// </summary>
-        [JsonProperty("url", NullValueHandling = NullValueHandling.Include)]
-        public string Url { get; set; }
+        [JsonProperty("url")]
+        public string Url
+        {
+            get
+            {
+                return this.url;
+            }
+
+            set
+            {
+                this.shouldSerialize["url"] = true;
+                this.url = value;
+            }
+        }
 
         /// <summary>
         /// Transaction identifier on bank
         /// </summary>
-        [JsonProperty("bank_tid", NullValueHandling = NullValueHandling.Include)]
-        public string BankTid { get; set; }
+        [JsonProperty("bank_tid")]
+        public string BankTid
+        {
+            get
+            {
+                return this.bankTid;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank_tid"] = true;
+                this.bankTid = value;
+            }
+        }
 
         /// <summary>
         /// Payment date
@@ -184,6 +220,22 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetUrl()
+        {
+            this.shouldSerialize["url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBankTid()
+        {
+            this.shouldSerialize["bank_tid"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetPaidAt()
         {
             this.shouldSerialize["paid_at"] = false;
@@ -195,6 +247,24 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetPaidAmount()
         {
             this.shouldSerialize["paid_amount"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUrl()
+        {
+            return this.shouldSerialize["url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBankTid()
+        {
+            return this.shouldSerialize["bank_tid"];
         }
 
         /// <summary>
@@ -236,7 +306,6 @@ namespace PagarmeApiSDK.Standard.Models
                 base.Equals(obj);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Clearsale == null && other.Clearsale == null) || (this.Clearsale?.Equals(other.Clearsale) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

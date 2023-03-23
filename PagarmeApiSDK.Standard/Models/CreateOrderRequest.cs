@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateOrderRequest
     {
+        private string customerId;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "customer_id", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOrderRequest"/> class.
         /// </summary>
@@ -35,9 +41,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="customer">customer.</param>
         /// <param name="payments">payments.</param>
         /// <param name="code">code.</param>
-        /// <param name="customerId">customer_id.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="closed">closed.</param>
+        /// <param name="customerId">customer_id.</param>
         /// <param name="shipping">shipping.</param>
         /// <param name="antifraudEnabled">antifraud_enabled.</param>
         /// <param name="ip">ip.</param>
@@ -52,9 +58,9 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreateCustomerRequest customer,
             List<Models.CreatePaymentRequest> payments,
             string code,
-            string customerId,
             Dictionary<string, string> metadata,
             bool closed,
+            string customerId = null,
             Models.CreateShippingRequest shipping = null,
             bool? antifraudEnabled = null,
             string ip = null,
@@ -69,7 +75,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.Customer = customer;
             this.Payments = payments;
             this.Code = code;
-            this.CustomerId = customerId;
+            if (customerId != null)
+            {
+                this.CustomerId = customerId;
+            }
+
             this.Shipping = shipping;
             this.Metadata = metadata;
             this.AntifraudEnabled = antifraudEnabled;
@@ -111,7 +121,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// The customer id
         /// </summary>
         [JsonProperty("customer_id")]
-        public string CustomerId { get; set; }
+        public string CustomerId
+        {
+            get
+            {
+                return this.customerId;
+            }
+
+            set
+            {
+                this.shouldSerialize["customer_id"] = true;
+                this.customerId = value;
+            }
+        }
 
         /// <summary>
         /// Shipping data
@@ -189,6 +211,23 @@ namespace PagarmeApiSDK.Standard.Models
             return $"CreateOrderRequest : ({string.Join(", ", toStringOutput)})";
         }
 
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCustomerId()
+        {
+            this.shouldSerialize["customer_id"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCustomerId()
+        {
+            return this.shouldSerialize["customer_id"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -221,7 +260,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Submerchant == null && other.Submerchant == null) || (this.Submerchant?.Equals(other.Submerchant) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

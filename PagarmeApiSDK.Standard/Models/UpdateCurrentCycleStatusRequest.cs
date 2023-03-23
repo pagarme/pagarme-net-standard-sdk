@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

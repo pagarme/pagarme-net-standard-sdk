@@ -21,6 +21,11 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetIncrementResponse
     {
+        private string id;
+        private double? mValue;
+        private string incrementType;
+        private string status;
+        private DateTime? createdAt;
         private int? cycles;
         private DateTime? deletedAt;
         private string description;
@@ -28,6 +33,11 @@ namespace PagarmeApiSDK.Standard.Models
         private Models.GetSubscriptionItemResponse subscriptionItem;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
+            { "value", false },
+            { "increment_type", false },
+            { "status", false },
+            { "created_at", false },
             { "cycles", false },
             { "deleted_at", false },
             { "description", false },
@@ -67,11 +77,31 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetSubscriptionResponse subscription = null,
             Models.GetSubscriptionItemResponse subscriptionItem = null)
         {
-            this.Id = id;
-            this.MValue = mValue;
-            this.IncrementType = incrementType;
-            this.Status = status;
-            this.CreatedAt = createdAt;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (mValue != null)
+            {
+                this.MValue = mValue;
+            }
+
+            if (incrementType != null)
+            {
+                this.IncrementType = incrementType;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
             if (cycles != null)
             {
                 this.Cycles = cycles;
@@ -102,33 +132,93 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MValue.
         /// </summary>
-        [JsonProperty("value", NullValueHandling = NullValueHandling.Include)]
-        public double? MValue { get; set; }
+        [JsonProperty("value")]
+        public double? MValue
+        {
+            get
+            {
+                return this.mValue;
+            }
+
+            set
+            {
+                this.shouldSerialize["value"] = true;
+                this.mValue = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets IncrementType.
         /// </summary>
-        [JsonProperty("increment_type", NullValueHandling = NullValueHandling.Include)]
-        public string IncrementType { get; set; }
+        [JsonProperty("increment_type")]
+        public string IncrementType
+        {
+            get
+            {
+                return this.incrementType;
+            }
+
+            set
+            {
+                this.shouldSerialize["increment_type"] = true;
+                this.incrementType = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Cycles.
@@ -234,6 +324,46 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMValue()
+        {
+            this.shouldSerialize["value"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetIncrementType()
+        {
+            this.shouldSerialize["increment_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCycles()
         {
             this.shouldSerialize["cycles"] = false;
@@ -269,6 +399,51 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetSubscriptionItem()
         {
             this.shouldSerialize["subscription_item"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMValue()
+        {
+            return this.shouldSerialize["value"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeIncrementType()
+        {
+            return this.shouldSerialize["increment_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
         }
 
         /// <summary>
@@ -342,7 +517,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.SubscriptionItem == null && other.SubscriptionItem == null) || (this.SubscriptionItem?.Equals(other.SubscriptionItem) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

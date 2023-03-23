@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MobilePhone == null && other.MobilePhone == null) || (this.MobilePhone?.Equals(other.MobilePhone) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

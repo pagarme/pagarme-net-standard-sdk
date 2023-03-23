@@ -11,15 +11,15 @@ Pix Additional Information
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `string` | Required | - |
-| `MValue` | `string` | Required | - |
+| `Name` | `string` | Optional | - |
+| `MValue` | `string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "Name": "Name0",
-  "Value": "Value2"
+  "Name": null,
+  "Value": null
 }
 ```
 

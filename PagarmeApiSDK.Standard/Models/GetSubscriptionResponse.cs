@@ -21,26 +21,68 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetSubscriptionResponse
     {
+        private string id;
+        private string code;
+        private DateTime? startAt;
+        private string interval;
+        private int? intervalCount;
+        private string billingType;
         private Models.GetPeriodResponse currentCycle;
+        private string paymentMethod;
+        private string currency;
+        private int? installments;
+        private string status;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
         private Models.GetCustomerResponse customer;
+        private Models.GetCardResponse card;
+        private List<Models.GetSubscriptionItemResponse> items;
+        private string statementDescriptor;
+        private Dictionary<string, string> metadata;
+        private Models.GetSetupResponse setup;
+        private string gatewayAffiliationId;
         private DateTime? nextBillingAt;
         private int? billingDay;
         private int? minimumPrice;
         private DateTime? canceledAt;
         private List<Models.GetDiscountResponse> discounts;
+        private List<Models.GetIncrementResponse> increments;
         private int? boletoDueDays;
+        private Models.GetSubscriptionSplitResponse split;
         private Models.GetSubscriptionBoletoResponse boleto;
+        private bool? manualBilling;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
+            { "code", false },
+            { "start_at", false },
+            { "interval", false },
+            { "interval_count", false },
+            { "billing_type", false },
             { "current_cycle", false },
+            { "payment_method", false },
+            { "currency", false },
+            { "installments", false },
+            { "status", false },
+            { "created_at", false },
+            { "updated_at", false },
             { "customer", false },
+            { "card", false },
+            { "items", false },
+            { "statement_descriptor", false },
+            { "metadata", false },
+            { "setup", false },
+            { "gateway_affiliation_id", false },
             { "next_billing_at", false },
             { "billing_day", false },
             { "minimum_price", false },
             { "canceled_at", false },
             { "discounts", false },
+            { "increments", false },
             { "boleto_due_days", false },
+            { "split", false },
             { "boleto", false },
+            { "manual_billing", false },
         };
 
         /// <summary>
@@ -82,6 +124,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="boletoDueDays">boleto_due_days.</param>
         /// <param name="split">split.</param>
         /// <param name="boleto">boleto.</param>
+        /// <param name="manualBilling">manual_billing.</param>
         public GetSubscriptionResponse(
             string id = null,
             string code = null,
@@ -111,36 +154,109 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.GetIncrementResponse> increments = null,
             int? boletoDueDays = null,
             Models.GetSubscriptionSplitResponse split = null,
-            Models.GetSubscriptionBoletoResponse boleto = null)
+            Models.GetSubscriptionBoletoResponse boleto = null,
+            bool? manualBilling = null)
         {
-            this.Id = id;
-            this.Code = code;
-            this.StartAt = startAt;
-            this.Interval = interval;
-            this.IntervalCount = intervalCount;
-            this.BillingType = billingType;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
+            if (code != null)
+            {
+                this.Code = code;
+            }
+
+            if (startAt != null)
+            {
+                this.StartAt = startAt;
+            }
+
+            if (interval != null)
+            {
+                this.Interval = interval;
+            }
+
+            if (intervalCount != null)
+            {
+                this.IntervalCount = intervalCount;
+            }
+
+            if (billingType != null)
+            {
+                this.BillingType = billingType;
+            }
+
             if (currentCycle != null)
             {
                 this.CurrentCycle = currentCycle;
             }
 
-            this.PaymentMethod = paymentMethod;
-            this.Currency = currency;
-            this.Installments = installments;
-            this.Status = status;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
+            if (paymentMethod != null)
+            {
+                this.PaymentMethod = paymentMethod;
+            }
+
+            if (currency != null)
+            {
+                this.Currency = currency;
+            }
+
+            if (installments != null)
+            {
+                this.Installments = installments;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
             if (customer != null)
             {
                 this.Customer = customer;
             }
 
-            this.Card = card;
-            this.Items = items;
-            this.StatementDescriptor = statementDescriptor;
-            this.Metadata = metadata;
-            this.Setup = setup;
-            this.GatewayAffiliationId = gatewayAffiliationId;
+            if (card != null)
+            {
+                this.Card = card;
+            }
+
+            if (items != null)
+            {
+                this.Items = items;
+            }
+
+            if (statementDescriptor != null)
+            {
+                this.StatementDescriptor = statementDescriptor;
+            }
+
+            if (metadata != null)
+            {
+                this.Metadata = metadata;
+            }
+
+            if (setup != null)
+            {
+                this.Setup = setup;
+            }
+
+            if (gatewayAffiliationId != null)
+            {
+                this.GatewayAffiliationId = gatewayAffiliationId;
+            }
+
             if (nextBillingAt != null)
             {
                 this.NextBillingAt = nextBillingAt;
@@ -166,16 +282,29 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Discounts = discounts;
             }
 
-            this.Increments = increments;
+            if (increments != null)
+            {
+                this.Increments = increments;
+            }
+
             if (boletoDueDays != null)
             {
                 this.BoletoDueDays = boletoDueDays;
             }
 
-            this.Split = split;
+            if (split != null)
+            {
+                this.Split = split;
+            }
+
             if (boleto != null)
             {
                 this.Boleto = boleto;
+            }
+
+            if (manualBilling != null)
+            {
+                this.ManualBilling = manualBilling;
             }
 
         }
@@ -183,39 +312,111 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Code.
         /// </summary>
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Include)]
-        public string Code { get; set; }
+        [JsonProperty("code")]
+        public string Code
+        {
+            get
+            {
+                return this.code;
+            }
+
+            set
+            {
+                this.shouldSerialize["code"] = true;
+                this.code = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets StartAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("start_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? StartAt { get; set; }
+        [JsonProperty("start_at")]
+        public DateTime? StartAt
+        {
+            get
+            {
+                return this.startAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["start_at"] = true;
+                this.startAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Interval.
         /// </summary>
-        [JsonProperty("interval", NullValueHandling = NullValueHandling.Include)]
-        public string Interval { get; set; }
+        [JsonProperty("interval")]
+        public string Interval
+        {
+            get
+            {
+                return this.interval;
+            }
+
+            set
+            {
+                this.shouldSerialize["interval"] = true;
+                this.interval = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets IntervalCount.
         /// </summary>
-        [JsonProperty("interval_count", NullValueHandling = NullValueHandling.Include)]
-        public int? IntervalCount { get; set; }
+        [JsonProperty("interval_count")]
+        public int? IntervalCount
+        {
+            get
+            {
+                return this.intervalCount;
+            }
+
+            set
+            {
+                this.shouldSerialize["interval_count"] = true;
+                this.intervalCount = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets BillingType.
         /// </summary>
-        [JsonProperty("billing_type", NullValueHandling = NullValueHandling.Include)]
-        public string BillingType { get; set; }
+        [JsonProperty("billing_type")]
+        public string BillingType
+        {
+            get
+            {
+                return this.billingType;
+            }
+
+            set
+            {
+                this.shouldSerialize["billing_type"] = true;
+                this.billingType = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CurrentCycle.
@@ -238,40 +439,112 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets PaymentMethod.
         /// </summary>
-        [JsonProperty("payment_method", NullValueHandling = NullValueHandling.Include)]
-        public string PaymentMethod { get; set; }
+        [JsonProperty("payment_method")]
+        public string PaymentMethod
+        {
+            get
+            {
+                return this.paymentMethod;
+            }
+
+            set
+            {
+                this.shouldSerialize["payment_method"] = true;
+                this.paymentMethod = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Currency.
         /// </summary>
-        [JsonProperty("currency", NullValueHandling = NullValueHandling.Include)]
-        public string Currency { get; set; }
+        [JsonProperty("currency")]
+        public string Currency
+        {
+            get
+            {
+                return this.currency;
+            }
+
+            set
+            {
+                this.shouldSerialize["currency"] = true;
+                this.currency = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Installments.
         /// </summary>
-        [JsonProperty("installments", NullValueHandling = NullValueHandling.Include)]
-        public int? Installments { get; set; }
+        [JsonProperty("installments")]
+        public int? Installments
+        {
+            get
+            {
+                return this.installments;
+            }
+
+            set
+            {
+                this.shouldSerialize["installments"] = true;
+                this.installments = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Status.
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CreatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets UpdatedAt.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Customer.
@@ -294,38 +567,110 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Card.
         /// </summary>
-        [JsonProperty("card", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetCardResponse Card { get; set; }
+        [JsonProperty("card")]
+        public Models.GetCardResponse Card
+        {
+            get
+            {
+                return this.card;
+            }
+
+            set
+            {
+                this.shouldSerialize["card"] = true;
+                this.card = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Items.
         /// </summary>
-        [JsonProperty("items", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetSubscriptionItemResponse> Items { get; set; }
+        [JsonProperty("items")]
+        public List<Models.GetSubscriptionItemResponse> Items
+        {
+            get
+            {
+                return this.items;
+            }
+
+            set
+            {
+                this.shouldSerialize["items"] = true;
+                this.items = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets StatementDescriptor.
         /// </summary>
-        [JsonProperty("statement_descriptor", NullValueHandling = NullValueHandling.Include)]
-        public string StatementDescriptor { get; set; }
+        [JsonProperty("statement_descriptor")]
+        public string StatementDescriptor
+        {
+            get
+            {
+                return this.statementDescriptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["statement_descriptor"] = true;
+                this.statementDescriptor = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Metadata.
         /// </summary>
-        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public Dictionary<string, string> Metadata { get; set; }
+        [JsonProperty("metadata")]
+        public Dictionary<string, string> Metadata
+        {
+            get
+            {
+                return this.metadata;
+            }
+
+            set
+            {
+                this.shouldSerialize["metadata"] = true;
+                this.metadata = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Setup.
         /// </summary>
-        [JsonProperty("setup", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetSetupResponse Setup { get; set; }
+        [JsonProperty("setup")]
+        public Models.GetSetupResponse Setup
+        {
+            get
+            {
+                return this.setup;
+            }
+
+            set
+            {
+                this.shouldSerialize["setup"] = true;
+                this.setup = value;
+            }
+        }
 
         /// <summary>
         /// Affiliation Code
         /// </summary>
-        [JsonProperty("gateway_affiliation_id", NullValueHandling = NullValueHandling.Include)]
-        public string GatewayAffiliationId { get; set; }
+        [JsonProperty("gateway_affiliation_id")]
+        public string GatewayAffiliationId
+        {
+            get
+            {
+                return this.gatewayAffiliationId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_affiliation_id"] = true;
+                this.gatewayAffiliationId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets NextBillingAt.
@@ -422,8 +767,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Subscription increments
         /// </summary>
-        [JsonProperty("increments", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetIncrementResponse> Increments { get; set; }
+        [JsonProperty("increments")]
+        public List<Models.GetIncrementResponse> Increments
+        {
+            get
+            {
+                return this.increments;
+            }
+
+            set
+            {
+                this.shouldSerialize["increments"] = true;
+                this.increments = value;
+            }
+        }
 
         /// <summary>
         /// Days until boleto expires
@@ -446,8 +803,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Subscription's split response
         /// </summary>
-        [JsonProperty("split", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetSubscriptionSplitResponse Split { get; set; }
+        [JsonProperty("split")]
+        public Models.GetSubscriptionSplitResponse Split
+        {
+            get
+            {
+                return this.split;
+            }
+
+            set
+            {
+                this.shouldSerialize["split"] = true;
+                this.split = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Boleto.
@@ -467,6 +836,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets ManualBilling.
+        /// </summary>
+        [JsonProperty("manual_billing")]
+        public bool? ManualBilling
+        {
+            get
+            {
+                return this.manualBilling;
+            }
+
+            set
+            {
+                this.shouldSerialize["manual_billing"] = true;
+                this.manualBilling = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -480,6 +867,54 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCode()
+        {
+            this.shouldSerialize["code"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStartAt()
+        {
+            this.shouldSerialize["start_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInterval()
+        {
+            this.shouldSerialize["interval"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetIntervalCount()
+        {
+            this.shouldSerialize["interval_count"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBillingType()
+        {
+            this.shouldSerialize["billing_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCurrentCycle()
         {
             this.shouldSerialize["current_cycle"] = false;
@@ -488,9 +923,105 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetPaymentMethod()
+        {
+            this.shouldSerialize["payment_method"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCurrency()
+        {
+            this.shouldSerialize["currency"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInstallments()
+        {
+            this.shouldSerialize["installments"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCustomer()
         {
             this.shouldSerialize["customer"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCard()
+        {
+            this.shouldSerialize["card"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetItems()
+        {
+            this.shouldSerialize["items"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatementDescriptor()
+        {
+            this.shouldSerialize["statement_descriptor"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMetadata()
+        {
+            this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSetup()
+        {
+            this.shouldSerialize["setup"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGatewayAffiliationId()
+        {
+            this.shouldSerialize["gateway_affiliation_id"] = false;
         }
 
         /// <summary>
@@ -536,6 +1067,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetIncrements()
+        {
+            this.shouldSerialize["increments"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetBoletoDueDays()
         {
             this.shouldSerialize["boleto_due_days"] = false;
@@ -544,9 +1083,79 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetSplit()
+        {
+            this.shouldSerialize["split"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetBoleto()
         {
             this.shouldSerialize["boleto"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetManualBilling()
+        {
+            this.shouldSerialize["manual_billing"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCode()
+        {
+            return this.shouldSerialize["code"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStartAt()
+        {
+            return this.shouldSerialize["start_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInterval()
+        {
+            return this.shouldSerialize["interval"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeIntervalCount()
+        {
+            return this.shouldSerialize["interval_count"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBillingType()
+        {
+            return this.shouldSerialize["billing_type"];
         }
 
         /// <summary>
@@ -562,9 +1171,117 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaymentMethod()
+        {
+            return this.shouldSerialize["payment_method"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCurrency()
+        {
+            return this.shouldSerialize["currency"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInstallments()
+        {
+            return this.shouldSerialize["installments"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeCustomer()
         {
             return this.shouldSerialize["customer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCard()
+        {
+            return this.shouldSerialize["card"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeItems()
+        {
+            return this.shouldSerialize["items"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatementDescriptor()
+        {
+            return this.shouldSerialize["statement_descriptor"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMetadata()
+        {
+            return this.shouldSerialize["metadata"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSetup()
+        {
+            return this.shouldSerialize["setup"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayAffiliationId()
+        {
+            return this.shouldSerialize["gateway_affiliation_id"];
         }
 
         /// <summary>
@@ -616,6 +1333,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeIncrements()
+        {
+            return this.shouldSerialize["increments"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeBoletoDueDays()
         {
             return this.shouldSerialize["boleto_due_days"];
@@ -625,9 +1351,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSplit()
+        {
+            return this.shouldSerialize["split"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeBoleto()
         {
             return this.shouldSerialize["boleto"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeManualBilling()
+        {
+            return this.shouldSerialize["manual_billing"];
         }
 
         /// <inheritdoc/>
@@ -672,10 +1416,10 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Increments == null && other.Increments == null) || (this.Increments?.Equals(other.Increments) == true)) &&
                 ((this.BoletoDueDays == null && other.BoletoDueDays == null) || (this.BoletoDueDays?.Equals(other.BoletoDueDays) == true)) &&
                 ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true));
+                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
+                ((this.ManualBilling == null && other.ManualBilling == null) || (this.ManualBilling?.Equals(other.ManualBilling) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>
@@ -711,6 +1455,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.BoletoDueDays = {(this.BoletoDueDays == null ? "null" : this.BoletoDueDays.ToString())}");
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : this.Split.ToString())}");
             toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"this.ManualBilling = {(this.ManualBilling == null ? "null" : this.ManualBilling.ToString())}");
         }
     }
 }

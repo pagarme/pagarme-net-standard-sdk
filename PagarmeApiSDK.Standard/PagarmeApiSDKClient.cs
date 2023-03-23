@@ -6,8 +6,9 @@ namespace PagarmeApiSDK.Standard
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
-    using System.Text;
+    using APIMatic.Core;
+    using APIMatic.Core.Authentication;
+    using APIMatic.Core.Types;
     using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Controllers;
     using PagarmeApiSDK.Standard.Http.Client;
@@ -20,78 +21,76 @@ namespace PagarmeApiSDK.Standard
     public sealed class PagarmeApiSDKClient : IPagarmeApiSDKClient
     {
         // A map of environments and their corresponding servers/baseurls
-        private static readonly Dictionary<Environment, Dictionary<Server, string>> EnvironmentsMap =
-            new Dictionary<Environment, Dictionary<Server, string>>
+        private static readonly Dictionary<Environment, Dictionary<Enum, string>> EnvironmentsMap =
+            new Dictionary<Environment, Dictionary<Enum, string>>
         {
             {
-                Environment.Production, new Dictionary<Server, string>
+                Environment.Production, new Dictionary<Enum, string>
                 {
                     { Server.Default, "https://api.pagar.me/core/v5" },
                 }
             },
         };
 
-        private readonly IDictionary<string, IAuthManager> authManagers;
-        private readonly IHttpClient httpClient;
+        private readonly GlobalConfiguration globalConfiguration;
+        private const string userAgent = "PagarmeApiSDK - DotNet 6.7.5";
         private readonly BasicAuthManager basicAuthManager;
-
+        private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IInvoicesController> invoices;
-        private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<ICustomersController> customers;
         private readonly Lazy<IRecipientsController> recipients;
         private readonly Lazy<IChargesController> charges;
-        private readonly Lazy<ITransfersController> transfers;
         private readonly Lazy<ITokensController> tokens;
+        private readonly Lazy<ITransfersController> transfers;
         private readonly Lazy<ITransactionsController> transactions;
 
         private PagarmeApiSDKClient(
             Environment environment,
             string basicAuthUserName,
             string basicAuthPassword,
-            IDictionary<string, IAuthManager> authManagers,
-            IHttpClient httpClient,
             IHttpClientConfiguration httpClientConfiguration)
         {
             this.Environment = environment;
-            this.httpClient = httpClient;
-            this.authManagers = (authManagers == null) ? new Dictionary<string, IAuthManager>() : new Dictionary<string, IAuthManager>(authManagers);
             this.HttpClientConfiguration = httpClientConfiguration;
+            basicAuthManager = new BasicAuthManager(basicAuthUserName, basicAuthPassword);
+            globalConfiguration = new GlobalConfiguration.Builder()
+                .AuthManagers(new Dictionary<string, AuthManager> {
+                        {"global", basicAuthManager}
+                })
+                .HttpConfiguration(httpClientConfiguration)
+                .ServerUrls(EnvironmentsMap[environment], Server.Default)
+                .UserAgent(userAgent)
+                .Build();
 
-            this.plans = new Lazy<IPlansController>(
-                () => new PlansController(this, this.httpClient, this.authManagers));
-            this.subscriptions = new Lazy<ISubscriptionsController>(
-                () => new SubscriptionsController(this, this.httpClient, this.authManagers));
-            this.invoices = new Lazy<IInvoicesController>(
-                () => new InvoicesController(this, this.httpClient, this.authManagers));
+
             this.orders = new Lazy<IOrdersController>(
-                () => new OrdersController(this, this.httpClient, this.authManagers));
+                () => new OrdersController(globalConfiguration));
+            this.plans = new Lazy<IPlansController>(
+                () => new PlansController(globalConfiguration));
+            this.subscriptions = new Lazy<ISubscriptionsController>(
+                () => new SubscriptionsController(globalConfiguration));
+            this.invoices = new Lazy<IInvoicesController>(
+                () => new InvoicesController(globalConfiguration));
             this.customers = new Lazy<ICustomersController>(
-                () => new CustomersController(this, this.httpClient, this.authManagers));
+                () => new CustomersController(globalConfiguration));
             this.recipients = new Lazy<IRecipientsController>(
-                () => new RecipientsController(this, this.httpClient, this.authManagers));
+                () => new RecipientsController(globalConfiguration));
             this.charges = new Lazy<IChargesController>(
-                () => new ChargesController(this, this.httpClient, this.authManagers));
-            this.transfers = new Lazy<ITransfersController>(
-                () => new TransfersController(this, this.httpClient, this.authManagers));
+                () => new ChargesController(globalConfiguration));
             this.tokens = new Lazy<ITokensController>(
-                () => new TokensController(this, this.httpClient, this.authManagers));
+                () => new TokensController(globalConfiguration));
+            this.transfers = new Lazy<ITransfersController>(
+                () => new TransfersController(globalConfiguration));
             this.transactions = new Lazy<ITransactionsController>(
-                () => new TransactionsController(this, this.httpClient, this.authManagers));
-
-            if (this.authManagers.ContainsKey("global"))
-            {
-                this.basicAuthManager = (BasicAuthManager)this.authManagers["global"];
-            }
-
-            if (!this.authManagers.ContainsKey("global")
-                || !this.BasicAuthCredentials.Equals(basicAuthUserName, basicAuthPassword))
-            {
-                this.basicAuthManager = new BasicAuthManager(basicAuthUserName, basicAuthPassword);
-                this.authManagers["global"] = this.basicAuthManager;
-            }
+                () => new TransactionsController(globalConfiguration));
         }
+
+        /// <summary>
+        /// Gets OrdersController controller.
+        /// </summary>
+        public IOrdersController OrdersController => this.orders.Value;
 
         /// <summary>
         /// Gets PlansController controller.
@@ -109,11 +108,6 @@ namespace PagarmeApiSDK.Standard
         public IInvoicesController InvoicesController => this.invoices.Value;
 
         /// <summary>
-        /// Gets OrdersController controller.
-        /// </summary>
-        public IOrdersController OrdersController => this.orders.Value;
-
-        /// <summary>
         /// Gets CustomersController controller.
         /// </summary>
         public ICustomersController CustomersController => this.customers.Value;
@@ -129,14 +123,14 @@ namespace PagarmeApiSDK.Standard
         public IChargesController ChargesController => this.charges.Value;
 
         /// <summary>
-        /// Gets TransfersController controller.
-        /// </summary>
-        public ITransfersController TransfersController => this.transfers.Value;
-
-        /// <summary>
         /// Gets TokensController controller.
         /// </summary>
         public ITokensController TokensController => this.tokens.Value;
+
+        /// <summary>
+        /// Gets TransfersController controller.
+        /// </summary>
+        public ITransfersController TransfersController => this.transfers.Value;
 
         /// <summary>
         /// Gets TransactionsController controller.
@@ -154,15 +148,6 @@ namespace PagarmeApiSDK.Standard
         /// </summary>
         public Environment Environment { get; }
 
-        /// <summary>
-        /// Gets auth managers.
-        /// </summary>
-        internal IDictionary<string, IAuthManager> AuthManagers => this.authManagers;
-
-        /// <summary>
-        /// Gets http client.
-        /// </summary>
-        internal IHttpClient HttpClient => this.httpClient;
 
         /// <summary>
         /// Gets the credentials to use with BasicAuth.
@@ -177,10 +162,7 @@ namespace PagarmeApiSDK.Standard
         /// <returns>Returns the baseurl.</returns>
         public string GetBaseUri(Server alias = Server.Default)
         {
-            StringBuilder url = new StringBuilder(EnvironmentsMap[this.Environment][alias]);
-            ApiHelper.AppendUrlWithTemplateParameters(url, this.GetBaseUriParameters());
-
-            return url.ToString();
+            return globalConfiguration.ServerUrl(alias);
         }
 
         /// <summary>
@@ -191,9 +173,7 @@ namespace PagarmeApiSDK.Standard
         {
             Builder builder = new Builder()
                 .Environment(this.Environment)
-                .BasicAuthCredentials(this.basicAuthManager.BasicAuthUserName, this.basicAuthManager.BasicAuthPassword)
-                .HttpClient(this.httpClient)
-                .AuthManagers(this.authManagers)
+                .BasicAuthCredentials(basicAuthManager.BasicAuthUserName, basicAuthManager.BasicAuthPassword)
                 .HttpClientConfig(config => config.Build());
 
             return builder;
@@ -233,18 +213,6 @@ namespace PagarmeApiSDK.Standard
         }
 
         /// <summary>
-        /// Makes a list of the BaseURL parameters.
-        /// </summary>
-        /// <returns>Returns the parameters list.</returns>
-        private List<KeyValuePair<string, object>> GetBaseUriParameters()
-        {
-            List<KeyValuePair<string, object>> kvpList = new List<KeyValuePair<string, object>>()
-            {
-            };
-            return kvpList;
-        }
-
-        /// <summary>
         /// Builder class.
         /// </summary>
         public class Builder
@@ -252,9 +220,7 @@ namespace PagarmeApiSDK.Standard
             private Environment environment = PagarmeApiSDK.Standard.Environment.Production;
             private string basicAuthUserName = "";
             private string basicAuthPassword = "";
-            private IDictionary<string, IAuthManager> authManagers = new Dictionary<string, IAuthManager>();
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
-            private IHttpClient httpClient;
 
             /// <summary>
             /// Sets credentials for BasicAuth.
@@ -296,27 +262,7 @@ namespace PagarmeApiSDK.Standard
                 return this;
             }
 
-            /// <summary>
-            /// Sets the IHttpClient for the Builder.
-            /// </summary>
-            /// <param name="httpClient"> http client. </param>
-            /// <returns>Builder.</returns>
-            internal Builder HttpClient(IHttpClient httpClient)
-            {
-                this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-                return this;
-            }
-
-            /// <summary>
-            /// Sets the authentication managers for the Builder.
-            /// </summary>
-            /// <param name="authManagers"> auth managers. </param>
-            /// <returns>Builder.</returns>
-            internal Builder AuthManagers(IDictionary<string, IAuthManager> authManagers)
-            {
-                this.authManagers = authManagers ?? throw new ArgumentNullException(nameof(authManagers));
-                return this;
-            }
+           
 
             /// <summary>
             /// Creates an object of the PagarmeApiSDKClient using the values provided for the builder.
@@ -324,15 +270,12 @@ namespace PagarmeApiSDK.Standard
             /// <returns>PagarmeApiSDKClient.</returns>
             public PagarmeApiSDKClient Build()
             {
-                this.httpClient = new HttpClientWrapper(this.httpClientConfig.Build());
 
                 return new PagarmeApiSDKClient(
-                    this.environment,
-                    this.basicAuthUserName,
-                    this.basicAuthPassword,
-                    this.authManagers,
-                    this.httpClient,
-                    this.httpClientConfig.Build());
+                    environment,
+                    basicAuthUserName,
+                    basicAuthPassword,
+                    httpClientConfig.Build());
             }
         }
     }

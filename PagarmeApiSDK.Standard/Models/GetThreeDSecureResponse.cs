@@ -21,6 +21,20 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetThreeDSecureResponse
     {
+        private string mpi;
+        private string eci;
+        private string cavv;
+        private string transactionId;
+        private string successUrl;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "mpi", false },
+            { "eci", false },
+            { "cavv", false },
+            { "transaction_Id", false },
+            { "success_url", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetThreeDSecureResponse"/> class.
         /// </summary>
@@ -43,42 +57,122 @@ namespace PagarmeApiSDK.Standard.Models
             string transactionId = null,
             string successUrl = null)
         {
-            this.Mpi = mpi;
-            this.Eci = eci;
-            this.Cavv = cavv;
-            this.TransactionId = transactionId;
-            this.SuccessUrl = successUrl;
+            if (mpi != null)
+            {
+                this.Mpi = mpi;
+            }
+
+            if (eci != null)
+            {
+                this.Eci = eci;
+            }
+
+            if (cavv != null)
+            {
+                this.Cavv = cavv;
+            }
+
+            if (transactionId != null)
+            {
+                this.TransactionId = transactionId;
+            }
+
+            if (successUrl != null)
+            {
+                this.SuccessUrl = successUrl;
+            }
+
         }
 
         /// <summary>
         /// MPI Vendor
         /// </summary>
-        [JsonProperty("mpi", NullValueHandling = NullValueHandling.Include)]
-        public string Mpi { get; set; }
+        [JsonProperty("mpi")]
+        public string Mpi
+        {
+            get
+            {
+                return this.mpi;
+            }
+
+            set
+            {
+                this.shouldSerialize["mpi"] = true;
+                this.mpi = value;
+            }
+        }
 
         /// <summary>
         /// Electronic Commerce Indicator (ECI) (Opcional)
         /// </summary>
-        [JsonProperty("eci", NullValueHandling = NullValueHandling.Include)]
-        public string Eci { get; set; }
+        [JsonProperty("eci")]
+        public string Eci
+        {
+            get
+            {
+                return this.eci;
+            }
+
+            set
+            {
+                this.shouldSerialize["eci"] = true;
+                this.eci = value;
+            }
+        }
 
         /// <summary>
         /// Online payment cryptogram, definido pelo 3-D Secure.
         /// </summary>
-        [JsonProperty("cavv", NullValueHandling = NullValueHandling.Include)]
-        public string Cavv { get; set; }
+        [JsonProperty("cavv")]
+        public string Cavv
+        {
+            get
+            {
+                return this.cavv;
+            }
+
+            set
+            {
+                this.shouldSerialize["cavv"] = true;
+                this.cavv = value;
+            }
+        }
 
         /// <summary>
         /// Identificador da transação (XID)
         /// </summary>
-        [JsonProperty("transaction_Id", NullValueHandling = NullValueHandling.Include)]
-        public string TransactionId { get; set; }
+        [JsonProperty("transaction_Id")]
+        public string TransactionId
+        {
+            get
+            {
+                return this.transactionId;
+            }
+
+            set
+            {
+                this.shouldSerialize["transaction_Id"] = true;
+                this.transactionId = value;
+            }
+        }
 
         /// <summary>
         /// Url de redirecionamento de sucessso
         /// </summary>
-        [JsonProperty("success_url", NullValueHandling = NullValueHandling.Include)]
-        public string SuccessUrl { get; set; }
+        [JsonProperty("success_url")]
+        public string SuccessUrl
+        {
+            get
+            {
+                return this.successUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["success_url"] = true;
+                this.successUrl = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -88,6 +182,91 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetThreeDSecureResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMpi()
+        {
+            this.shouldSerialize["mpi"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEci()
+        {
+            this.shouldSerialize["eci"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCavv()
+        {
+            this.shouldSerialize["cavv"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTransactionId()
+        {
+            this.shouldSerialize["transaction_Id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSuccessUrl()
+        {
+            this.shouldSerialize["success_url"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMpi()
+        {
+            return this.shouldSerialize["mpi"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEci()
+        {
+            return this.shouldSerialize["eci"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCavv()
+        {
+            return this.shouldSerialize["cavv"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTransactionId()
+        {
+            return this.shouldSerialize["transaction_Id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSuccessUrl()
+        {
+            return this.shouldSerialize["success_url"];
         }
 
         /// <inheritdoc/>
@@ -111,7 +290,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.SuccessUrl == null && other.SuccessUrl == null) || (this.SuccessUrl?.Equals(other.SuccessUrl) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

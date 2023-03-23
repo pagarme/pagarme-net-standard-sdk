@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetTransactionReportFileResponse
     {
+        private string name;
+        private DateTime? date;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "name", false },
+            { "date", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTransactionReportFileResponse"/> class.
         /// </summary>
@@ -37,22 +45,54 @@ namespace PagarmeApiSDK.Standard.Models
             string name = null,
             DateTime? date = null)
         {
-            this.Name = name;
-            this.Date = date;
+            if (name != null)
+            {
+                this.Name = name;
+            }
+
+            if (date != null)
+            {
+                this.Date = date;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Name.
         /// </summary>
-        [JsonProperty("name", NullValueHandling = NullValueHandling.Include)]
-        public string Name { get; set; }
+        [JsonProperty("name")]
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.shouldSerialize["name"] = true;
+                this.name = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Date.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("date", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? Date { get; set; }
+        [JsonProperty("date")]
+        public DateTime? Date
+        {
+            get
+            {
+                return this.date;
+            }
+
+            set
+            {
+                this.shouldSerialize["date"] = true;
+                this.date = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -62,6 +102,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetTransactionReportFileResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetName()
+        {
+            this.shouldSerialize["name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDate()
+        {
+            this.shouldSerialize["date"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeName()
+        {
+            return this.shouldSerialize["name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDate()
+        {
+            return this.shouldSerialize["date"];
         }
 
         /// <inheritdoc/>
@@ -82,7 +156,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Date == null && other.Date == null) || (this.Date?.Equals(other.Date) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

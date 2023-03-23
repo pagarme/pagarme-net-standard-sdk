@@ -171,7 +171,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.PixKey == null && other.PixKey == null) || (this.PixKey?.Equals(other.PixKey) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

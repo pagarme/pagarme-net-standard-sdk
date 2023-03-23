@@ -81,7 +81,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

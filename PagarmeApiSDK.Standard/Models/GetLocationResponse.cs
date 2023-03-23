@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetLocationResponse
     {
+        private string latitude;
+        private string longitude;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "latitude", false },
+            { "longitude", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetLocationResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             string latitude = null,
             string longitude = null)
         {
-            this.Latitude = latitude;
-            this.Longitude = longitude;
+            if (latitude != null)
+            {
+                this.Latitude = latitude;
+            }
+
+            if (longitude != null)
+            {
+                this.Longitude = longitude;
+            }
+
         }
 
         /// <summary>
         /// Latitude
         /// </summary>
-        [JsonProperty("latitude", NullValueHandling = NullValueHandling.Include)]
-        public string Latitude { get; set; }
+        [JsonProperty("latitude")]
+        public string Latitude
+        {
+            get
+            {
+                return this.latitude;
+            }
+
+            set
+            {
+                this.shouldSerialize["latitude"] = true;
+                this.latitude = value;
+            }
+        }
 
         /// <summary>
         /// Longitude
         /// </summary>
-        [JsonProperty("longitude", NullValueHandling = NullValueHandling.Include)]
-        public string Longitude { get; set; }
+        [JsonProperty("longitude")]
+        public string Longitude
+        {
+            get
+            {
+                return this.longitude;
+            }
+
+            set
+            {
+                this.shouldSerialize["longitude"] = true;
+                this.longitude = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetLocationResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLatitude()
+        {
+            this.shouldSerialize["latitude"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetLongitude()
+        {
+            this.shouldSerialize["longitude"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLatitude()
+        {
+            return this.shouldSerialize["latitude"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeLongitude()
+        {
+            return this.shouldSerialize["longitude"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Longitude == null && other.Longitude == null) || (this.Longitude?.Equals(other.Longitude) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

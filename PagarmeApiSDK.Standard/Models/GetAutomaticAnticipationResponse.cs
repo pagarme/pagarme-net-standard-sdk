@@ -21,6 +21,20 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetAutomaticAnticipationResponse
     {
+        private bool? enabled;
+        private string type;
+        private int? volumePercentage;
+        private int? delay;
+        private List<int> days;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "enabled", false },
+            { "type", false },
+            { "volume_percentage", false },
+            { "delay", false },
+            { "days", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAutomaticAnticipationResponse"/> class.
         /// </summary>
@@ -43,42 +57,122 @@ namespace PagarmeApiSDK.Standard.Models
             int? delay = null,
             List<int> days = null)
         {
-            this.Enabled = enabled;
-            this.Type = type;
-            this.VolumePercentage = volumePercentage;
-            this.Delay = delay;
-            this.Days = days;
+            if (enabled != null)
+            {
+                this.Enabled = enabled;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
+            if (volumePercentage != null)
+            {
+                this.VolumePercentage = volumePercentage;
+            }
+
+            if (delay != null)
+            {
+                this.Delay = delay;
+            }
+
+            if (days != null)
+            {
+                this.Days = days;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets Enabled.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Include)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("enabled")]
+        public bool? Enabled
+        {
+            get
+            {
+                return this.enabled;
+            }
+
+            set
+            {
+                this.shouldSerialize["enabled"] = true;
+                this.enabled = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Include)]
-        public string Type { get; set; }
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets VolumePercentage.
         /// </summary>
-        [JsonProperty("volume_percentage", NullValueHandling = NullValueHandling.Include)]
-        public int? VolumePercentage { get; set; }
+        [JsonProperty("volume_percentage")]
+        public int? VolumePercentage
+        {
+            get
+            {
+                return this.volumePercentage;
+            }
+
+            set
+            {
+                this.shouldSerialize["volume_percentage"] = true;
+                this.volumePercentage = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Delay.
         /// </summary>
-        [JsonProperty("delay", NullValueHandling = NullValueHandling.Include)]
-        public int? Delay { get; set; }
+        [JsonProperty("delay")]
+        public int? Delay
+        {
+            get
+            {
+                return this.delay;
+            }
+
+            set
+            {
+                this.shouldSerialize["delay"] = true;
+                this.delay = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Days.
         /// </summary>
-        [JsonProperty("days", NullValueHandling = NullValueHandling.Include)]
-        public List<int> Days { get; set; }
+        [JsonProperty("days")]
+        public List<int> Days
+        {
+            get
+            {
+                return this.days;
+            }
+
+            set
+            {
+                this.shouldSerialize["days"] = true;
+                this.days = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -88,6 +182,91 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetAutomaticAnticipationResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEnabled()
+        {
+            this.shouldSerialize["enabled"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetVolumePercentage()
+        {
+            this.shouldSerialize["volume_percentage"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDelay()
+        {
+            this.shouldSerialize["delay"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDays()
+        {
+            this.shouldSerialize["days"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEnabled()
+        {
+            return this.shouldSerialize["enabled"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeVolumePercentage()
+        {
+            return this.shouldSerialize["volume_percentage"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDelay()
+        {
+            return this.shouldSerialize["delay"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDays()
+        {
+            return this.shouldSerialize["days"];
         }
 
         /// <inheritdoc/>
@@ -111,7 +290,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

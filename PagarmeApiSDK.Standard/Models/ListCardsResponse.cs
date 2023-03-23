@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class ListCardsResponse
     {
+        private List<Models.GetCardResponse> data;
+        private Models.PagingResponse paging;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "data", false },
+            { "paging", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ListCardsResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.GetCardResponse> data = null,
             Models.PagingResponse paging = null)
         {
-            this.Data = data;
-            this.Paging = paging;
+            if (data != null)
+            {
+                this.Data = data;
+            }
+
+            if (paging != null)
+            {
+                this.Paging = paging;
+            }
+
         }
 
         /// <summary>
         /// The card objects
         /// </summary>
-        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
-        public List<Models.GetCardResponse> Data { get; set; }
+        [JsonProperty("data")]
+        public List<Models.GetCardResponse> Data
+        {
+            get
+            {
+                return this.data;
+            }
+
+            set
+            {
+                this.shouldSerialize["data"] = true;
+                this.data = value;
+            }
+        }
 
         /// <summary>
         /// Paging object
         /// </summary>
-        [JsonProperty("paging", NullValueHandling = NullValueHandling.Include)]
-        public Models.PagingResponse Paging { get; set; }
+        [JsonProperty("paging")]
+        public Models.PagingResponse Paging
+        {
+            get
+            {
+                return this.paging;
+            }
+
+            set
+            {
+                this.shouldSerialize["paging"] = true;
+                this.paging = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"ListCardsResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetData()
+        {
+            this.shouldSerialize["data"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaging()
+        {
+            this.shouldSerialize["paging"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeData()
+        {
+            return this.shouldSerialize["data"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaging()
+        {
+            return this.shouldSerialize["paging"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Paging == null && other.Paging == null) || (this.Paging?.Equals(other.Paging) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

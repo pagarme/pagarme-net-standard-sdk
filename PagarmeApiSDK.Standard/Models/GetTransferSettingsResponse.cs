@@ -21,6 +21,16 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetTransferSettingsResponse
     {
+        private bool? transferEnabled;
+        private string transferInterval;
+        private int? transferDay;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "transfer_enabled", false },
+            { "transfer_interval", false },
+            { "transfer_day", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTransferSettingsResponse"/> class.
         /// </summary>
@@ -39,28 +49,76 @@ namespace PagarmeApiSDK.Standard.Models
             string transferInterval = null,
             int? transferDay = null)
         {
-            this.TransferEnabled = transferEnabled;
-            this.TransferInterval = transferInterval;
-            this.TransferDay = transferDay;
+            if (transferEnabled != null)
+            {
+                this.TransferEnabled = transferEnabled;
+            }
+
+            if (transferInterval != null)
+            {
+                this.TransferInterval = transferInterval;
+            }
+
+            if (transferDay != null)
+            {
+                this.TransferDay = transferDay;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets TransferEnabled.
         /// </summary>
-        [JsonProperty("transfer_enabled", NullValueHandling = NullValueHandling.Include)]
-        public bool? TransferEnabled { get; set; }
+        [JsonProperty("transfer_enabled")]
+        public bool? TransferEnabled
+        {
+            get
+            {
+                return this.transferEnabled;
+            }
+
+            set
+            {
+                this.shouldSerialize["transfer_enabled"] = true;
+                this.transferEnabled = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets TransferInterval.
         /// </summary>
-        [JsonProperty("transfer_interval", NullValueHandling = NullValueHandling.Include)]
-        public string TransferInterval { get; set; }
+        [JsonProperty("transfer_interval")]
+        public string TransferInterval
+        {
+            get
+            {
+                return this.transferInterval;
+            }
+
+            set
+            {
+                this.shouldSerialize["transfer_interval"] = true;
+                this.transferInterval = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets TransferDay.
         /// </summary>
-        [JsonProperty("transfer_day", NullValueHandling = NullValueHandling.Include)]
-        public int? TransferDay { get; set; }
+        [JsonProperty("transfer_day")]
+        public int? TransferDay
+        {
+            get
+            {
+                return this.transferDay;
+            }
+
+            set
+            {
+                this.shouldSerialize["transfer_day"] = true;
+                this.transferDay = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -70,6 +128,57 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetTransferSettingsResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTransferEnabled()
+        {
+            this.shouldSerialize["transfer_enabled"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTransferInterval()
+        {
+            this.shouldSerialize["transfer_interval"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTransferDay()
+        {
+            this.shouldSerialize["transfer_day"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTransferEnabled()
+        {
+            return this.shouldSerialize["transfer_enabled"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTransferInterval()
+        {
+            return this.shouldSerialize["transfer_interval"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTransferDay()
+        {
+            return this.shouldSerialize["transfer_day"];
         }
 
         /// <inheritdoc/>
@@ -91,7 +200,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.TransferDay == null && other.TransferDay == null) || (this.TransferDay?.Equals(other.TransferDay) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

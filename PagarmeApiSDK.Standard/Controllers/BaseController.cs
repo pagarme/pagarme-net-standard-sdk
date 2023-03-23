@@ -3,157 +3,47 @@
 // </copyright>
 namespace PagarmeApiSDK.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
+    using APIMatic.Core;
+    using APIMatic.Core.Response;
     using PagarmeApiSDK.Standard.Exceptions;
     using PagarmeApiSDK.Standard.Http.Client;
+    using PagarmeApiSDK.Standard.Http.Request;
     using PagarmeApiSDK.Standard.Http.Response;
     using PagarmeApiSDK.Standard.Utilities;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The base class for all controller classes.
     /// </summary>
     internal class BaseController
     {
-        /// <summary>
-        /// HttpClient instance.
-        /// </summary>
-        private readonly IHttpClient httpClient;
-        private string internalUserAgent = string.Empty;
-
+        private readonly GlobalConfiguration globalConfiguration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseController"/> class.
         /// </summary>
-        /// <param name="config">Configuration for the API.</param>
-        /// <param name="httpClient">HttpClient for the API.</param>
-        /// <param name="authManagers">AuthManagers for the API.</param>
-        internal BaseController(
-            IConfiguration config,
-            IHttpClient httpClient,
-            IDictionary<string, IAuthManager> authManagers)
+        internal BaseController(GlobalConfiguration config) => globalConfiguration = config;
+
+        protected static ErrorCase<HttpRequest, HttpResponse, HttpContext, ApiException> CreateErrorCase(string reason, Func<string, HttpContext, ApiException> error, bool isErrorTemplate = false)
+            => new ErrorCase<HttpRequest, HttpResponse, HttpContext, ApiException>(reason, error, isErrorTemplate);
+
+        protected ApiCall<HttpRequest, HttpResponse, HttpContext, ApiException, T, T> CreateApiCall<T>()
+            => new ApiCall<HttpRequest, HttpResponse, HttpContext, ApiException, T, T>(
+                globalConfiguration,
+                compatibilityFactory,
+                globalErrors: globalErrors
+            );
+
+        private static readonly CompatibilityFactory compatibilityFactory = new CompatibilityFactory();
+        private static readonly Dictionary<string, ErrorCase<HttpRequest, HttpResponse, HttpContext, ApiException>> globalErrors = new Dictionary<string, ErrorCase<HttpRequest, HttpResponse, HttpContext, ApiException>>
         {
-            this.Config = config;
-            this.httpClient = httpClient;
-            this.AuthManagers = authManagers;
-            this.UpdateUserAgent();
-        }
-
-        /// <summary>
-        /// Gets AuthManager instance.
-        /// </summary>
-        internal IDictionary<string, IAuthManager> AuthManagers { get; }
-
-        /// <summary>
-        /// Gets array deserialization format.
-        /// </summary>
-        protected ArrayDeserialization ArrayDeserializationFormat => ArrayDeserialization.Indexed;
-
-        /// <summary>
-        /// Gets configuration instance.
-        /// </summary>
-        protected IConfiguration Config { get; }
-
-        /// <summary>
-        ///  Gets User-Agent header value.
-        /// </summary>
-        protected string UserAgent => internalUserAgent;
-
-        /// <summary>
-        /// Create JSON-encoded multipart content from input.
-        /// </summary>
-        /// <param name="input"> input object. </param>
-        /// <param name="headers"> Headers dictionary. </param>
-        /// <returns> MultipartContent. </returns>
-        internal static MultipartContent CreateJsonEncodedMultipartContent(object input, Dictionary<string, IReadOnlyCollection<string>> headers)
-        {
-            if (input == null)
-            {
-                return null;
-            }
-            return new MultipartByteArrayContent(Encoding.ASCII.GetBytes(ApiHelper.JsonSerialize(input)), headers);
-        }
-
-        /// <summary>
-        /// Create binary multipart content from file.
-        /// </summary>
-        /// <param name="input"> FileStreamInfo object. </param>
-        /// <param name="headers"> Headers dictionary. </param>
-        /// <returns> MultipartContent. </returns>
-        internal static MultipartContent CreateFileMultipartContent(FileStreamInfo input, Dictionary<string, IReadOnlyCollection<string>> headers = null)
-        {
-            if (input == null)
-            {
-                return null;
-            }
-            if (headers == null)
-            {
-                return new MultipartFileContent(input);
-            }
-            return new MultipartFileContent(input, headers);
-        }
-
-        /// <summary>
-        /// Get default HTTP client instance.
-        /// </summary>
-        /// <returns> IHttpClient. </returns>
-        internal IHttpClient GetClientInstance()
-        {
-            return this.httpClient;
-        }
-
-        /// <summary>
-        /// Validates the response against HTTP errors defined at the API level.
-        /// </summary>
-        /// <param name="response">The response recieved.</param>
-        /// <param name="context">Context of the request and the recieved response.</param>
-        protected void ValidateResponse(HttpResponse response, HttpContext context)
-        {
-            if (response.StatusCode == 400)
-            {
-                throw new ErrorException("Invalid request", context);
-            }
-
-            if (response.StatusCode == 401)
-            {
-                throw new ErrorException("Invalid API key", context);
-            }
-
-            if (response.StatusCode == 404)
-            {
-                throw new ErrorException("An informed resource was not found", context);
-            }
-
-            if (response.StatusCode == 412)
-            {
-                throw new ErrorException("Business validation error", context);
-            }
-
-            if (response.StatusCode == 422)
-            {
-                throw new ErrorException("Contract validation error", context);
-            }
-
-            if (response.StatusCode == 500)
-            {
-                throw new ErrorException("Internal server error", context);
-            }
-
-            // [200, 208] = HTTP OK
-            if ((response.StatusCode < 200) || (response.StatusCode > 208))
-            {
-                throw new ApiException(@"HTTP Response Not OK", context);
-            }
-        }
-        /// <summary>
-        /// Adds runtime information to the placeholders in User-Agent.
-        /// </summary>
-        private void UpdateUserAgent()
-        {
-            internalUserAgent = "PagarmeApiSDK - DotNet 6.7.2";
-        }
+            { "400", CreateErrorCase("Invalid request", (reason, context) => new ErrorException(reason, context)) },
+            { "401", CreateErrorCase("Invalid API key", (reason, context) => new ErrorException(reason, context)) },
+            { "404", CreateErrorCase("An informed resource was not found", (reason, context) => new ErrorException(reason, context)) },
+            { "412", CreateErrorCase("Business validation error", (reason, context) => new ErrorException(reason, context)) },
+            { "422", CreateErrorCase("Contract validation error", (reason, context) => new ErrorException(reason, context)) },
+            { "500", CreateErrorCase("Internal server error", (reason, context) => new ErrorException(reason, context)) }
+        };
     }
 }

@@ -12,14 +12,16 @@ namespace PagarmeApiSDK.Standard.Controllers
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using APIMatic.Core;
+    using APIMatic.Core.Types;
+    using APIMatic.Core.Utilities;
+    using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
     using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Request.Configuration;
-    using PagarmeApiSDK.Standard.Http.Response;
     using PagarmeApiSDK.Standard.Utilities;
+    using System.Net.Http;
 
     /// <summary>
     /// TransactionsController.
@@ -29,13 +31,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionsController"/> class.
         /// </summary>
-        /// <param name="config"> config instance. </param>
-        /// <param name="httpClient"> httpClient. </param>
-        /// <param name="authManagers"> authManager. </param>
-        internal TransactionsController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers)
-            : base(config, httpClient, authManagers)
-        {
-        }
+        internal TransactionsController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
         /// GetTransaction EndPoint.
@@ -44,11 +40,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <returns>Returns the Models.GetTransactionResponse response from the API call.</returns>
         public Models.GetTransactionResponse GetTransaction(
                 string transactionId)
-        {
-            Task<Models.GetTransactionResponse> t = this.GetTransactionAsync(transactionId);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
+            => CoreHelper.RunTask(GetTransactionAsync(transactionId));
 
         /// <summary>
         /// GetTransaction EndPoint.
@@ -59,40 +51,14 @@ namespace PagarmeApiSDK.Standard.Controllers
         public async Task<Models.GetTransactionResponse> GetTransactionAsync(
                 string transactionId,
                 CancellationToken cancellationToken = default)
-        {
-            // the base uri for api requests.
-            string baseUri = this.Config.GetBaseUri();
-
-            // prepare query string for API call.
-            StringBuilder queryBuilder = new StringBuilder(baseUri);
-            queryBuilder.Append("/transactions/{transaction_id}");
-
-            // process optional template parameters.
-            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
-            {
-                { "transaction_id", transactionId },
-            });
-
-            // append request with appropriate headers and parameters
-            var headers = new Dictionary<string, string>()
-            {
-                { "user-agent", this.UserAgent },
-                { "accept", "application/json" },
-            };
-
-            // prepare the API call request to fetch the response.
-            HttpRequest httpRequest = this.GetClientInstance().Get(queryBuilder.ToString(), headers);
-
-            httpRequest = await this.AuthManagers["global"].ApplyAsync(httpRequest).ConfigureAwait(false);
-
-            // invoke request and get response.
-            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
-            HttpContext context = new HttpContext(httpRequest, response);
-
-            // handle errors defined at the API level.
-            this.ValidateResponse(response, context);
-
-            return ApiHelper.JsonDeserialize<Models.GetTransactionResponse>(response.Body);
-        }
+            => await CreateApiCall<Models.GetTransactionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/transactions/{transaction_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("transaction_id", transactionId))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransactionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
     }
 }

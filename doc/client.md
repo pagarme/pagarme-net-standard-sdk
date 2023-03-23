@@ -12,7 +12,9 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```csharp
-PagarmeApiSDK.Standard.PagarmeApiSDKClient client = new PagarmeApiSDK.Standard.PagarmeApiSDKClient.Builder().Build();
+PagarmeApiSDK.Standard.PagarmeApiSDKClient client = new PagarmeApiSDK.Standard.PagarmeApiSDKClient.Builder()
+    .BasicAuthCredentials("BasicAuthUserName", "BasicAuthPassword")
+    .Build();
 ```
 
 ## PagarmeApiSDKClient Class
@@ -23,15 +25,15 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
+| OrdersController | Gets OrdersController controller. |
 | PlansController | Gets PlansController controller. |
 | SubscriptionsController | Gets SubscriptionsController controller. |
 | InvoicesController | Gets InvoicesController controller. |
-| OrdersController | Gets OrdersController controller. |
 | CustomersController | Gets CustomersController controller. |
 | RecipientsController | Gets RecipientsController controller. |
 | ChargesController | Gets ChargesController controller. |
-| TransfersController | Gets TransfersController controller. |
 | TokensController | Gets TokensController controller. |
+| TransfersController | Gets TransfersController controller. |
 | TransactionsController | Gets TransactionsController controller. |
 
 ### Properties

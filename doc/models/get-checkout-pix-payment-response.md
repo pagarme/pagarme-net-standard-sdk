@@ -11,24 +11,15 @@ Checkout pix payment response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ExpiresAt` | `DateTime?` | Required | Expires at |
-| `AdditionalInformation` | [`List<Models.PixAdditionalInformation>`](../../doc/models/pix-additional-information.md) | Required | Additional information |
+| `ExpiresAt` | `DateTime?` | Optional | Expires at |
+| `AdditionalInformation` | [`List<Models.PixAdditionalInformation>`](../../doc/models/pix-additional-information.md) | Optional | Additional information |
 
 ## Example (as JSON)
 
 ```json
 {
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "additional_information": [
-    {
-      "Name": "Name5",
-      "Value": "Value7"
-    },
-    {
-      "Name": "Name6",
-      "Value": "Value6"
-    }
-  ]
+  "expires_at": null,
+  "additional_information": null
 }
 ```
 

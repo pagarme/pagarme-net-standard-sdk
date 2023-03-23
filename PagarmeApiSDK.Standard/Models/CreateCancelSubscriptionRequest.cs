@@ -71,7 +71,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.CancelPendingInvoices.Equals(other.CancelPendingInvoices);
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

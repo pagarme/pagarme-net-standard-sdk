@@ -21,23 +21,61 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutPaymentResponse
     {
+        private string id;
         private int? amount;
+        private string defaultPaymentMethod;
+        private string successUrl;
+        private string paymentUrl;
+        private string gatewayAffiliationId;
+        private List<string> acceptedPaymentMethods;
+        private string status;
+        private bool? skipCheckoutSuccessPage;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
         private DateTime? canceledAt;
+        private bool? customerEditable;
         private Models.GetCustomerResponse customer;
+        private Models.GetAddressResponse billingaddress;
+        private Models.GetCheckoutCreditCardPaymentResponse creditCard;
+        private Models.GetCheckoutBoletoPaymentResponse boleto;
+        private bool? billingAddressEditable;
+        private Models.GetShippingResponse shipping;
+        private bool? shippable;
         private DateTime? closedAt;
         private DateTime? expiresAt;
+        private string currency;
         private Models.GetCheckoutDebitCardPaymentResponse debitCard;
         private Models.GetCheckoutBankTransferPaymentResponse bankTransfer;
+        private List<string> acceptedBrands;
         private Models.GetCheckoutPixPaymentResponse pix;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
             { "amount", false },
+            { "default_payment_method", false },
+            { "success_url", false },
+            { "payment_url", false },
+            { "gateway_affiliation_id", false },
+            { "accepted_payment_methods", false },
+            { "status", false },
+            { "skip_checkout_success_page", false },
+            { "created_at", false },
+            { "updated_at", false },
             { "canceled_at", false },
+            { "customer_editable", false },
             { "customer", false },
+            { "billingaddress", false },
+            { "credit_card", false },
+            { "boleto", false },
+            { "billing_address_editable", false },
+            { "shipping", false },
+            { "shippable", false },
             { "closed_at", false },
             { "expires_at", false },
+            { "currency", false },
             { "debit_card", false },
             { "bank_transfer", false },
+            { "accepted_brands", false },
             { "pix", false },
         };
 
@@ -107,38 +145,106 @@ namespace PagarmeApiSDK.Standard.Models
             List<string> acceptedBrands = null,
             Models.GetCheckoutPixPaymentResponse pix = null)
         {
-            this.Id = id;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
             if (amount != null)
             {
                 this.Amount = amount;
             }
 
-            this.DefaultPaymentMethod = defaultPaymentMethod;
-            this.SuccessUrl = successUrl;
-            this.PaymentUrl = paymentUrl;
-            this.GatewayAffiliationId = gatewayAffiliationId;
-            this.AcceptedPaymentMethods = acceptedPaymentMethods;
-            this.Status = status;
-            this.SkipCheckoutSuccessPage = skipCheckoutSuccessPage;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
+            if (defaultPaymentMethod != null)
+            {
+                this.DefaultPaymentMethod = defaultPaymentMethod;
+            }
+
+            if (successUrl != null)
+            {
+                this.SuccessUrl = successUrl;
+            }
+
+            if (paymentUrl != null)
+            {
+                this.PaymentUrl = paymentUrl;
+            }
+
+            if (gatewayAffiliationId != null)
+            {
+                this.GatewayAffiliationId = gatewayAffiliationId;
+            }
+
+            if (acceptedPaymentMethods != null)
+            {
+                this.AcceptedPaymentMethods = acceptedPaymentMethods;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (skipCheckoutSuccessPage != null)
+            {
+                this.SkipCheckoutSuccessPage = skipCheckoutSuccessPage;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
+            }
+
             if (canceledAt != null)
             {
                 this.CanceledAt = canceledAt;
             }
 
-            this.CustomerEditable = customerEditable;
+            if (customerEditable != null)
+            {
+                this.CustomerEditable = customerEditable;
+            }
+
             if (customer != null)
             {
                 this.Customer = customer;
             }
 
-            this.Billingaddress = billingaddress;
-            this.CreditCard = creditCard;
-            this.Boleto = boleto;
-            this.BillingAddressEditable = billingAddressEditable;
-            this.Shipping = shipping;
-            this.Shippable = shippable;
+            if (billingaddress != null)
+            {
+                this.Billingaddress = billingaddress;
+            }
+
+            if (creditCard != null)
+            {
+                this.CreditCard = creditCard;
+            }
+
+            if (boleto != null)
+            {
+                this.Boleto = boleto;
+            }
+
+            if (billingAddressEditable != null)
+            {
+                this.BillingAddressEditable = billingAddressEditable;
+            }
+
+            if (shipping != null)
+            {
+                this.Shipping = shipping;
+            }
+
+            if (shippable != null)
+            {
+                this.Shippable = shippable;
+            }
+
             if (closedAt != null)
             {
                 this.ClosedAt = closedAt;
@@ -149,7 +255,11 @@ namespace PagarmeApiSDK.Standard.Models
                 this.ExpiresAt = expiresAt;
             }
 
-            this.Currency = currency;
+            if (currency != null)
+            {
+                this.Currency = currency;
+            }
+
             if (debitCard != null)
             {
                 this.DebitCard = debitCard;
@@ -160,7 +270,11 @@ namespace PagarmeApiSDK.Standard.Models
                 this.BankTransfer = bankTransfer;
             }
 
-            this.AcceptedBrands = acceptedBrands;
+            if (acceptedBrands != null)
+            {
+                this.AcceptedBrands = acceptedBrands;
+            }
+
             if (pix != null)
             {
                 this.Pix = pix;
@@ -171,8 +285,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Valor em centavos
@@ -195,58 +321,166 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Meio de pagamento padrão no checkout
         /// </summary>
-        [JsonProperty("default_payment_method", NullValueHandling = NullValueHandling.Include)]
-        public string DefaultPaymentMethod { get; set; }
+        [JsonProperty("default_payment_method")]
+        public string DefaultPaymentMethod
+        {
+            get
+            {
+                return this.defaultPaymentMethod;
+            }
+
+            set
+            {
+                this.shouldSerialize["default_payment_method"] = true;
+                this.defaultPaymentMethod = value;
+            }
+        }
 
         /// <summary>
         /// Url de redirecionamento de sucesso após o checkou
         /// </summary>
-        [JsonProperty("success_url", NullValueHandling = NullValueHandling.Include)]
-        public string SuccessUrl { get; set; }
+        [JsonProperty("success_url")]
+        public string SuccessUrl
+        {
+            get
+            {
+                return this.successUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["success_url"] = true;
+                this.successUrl = value;
+            }
+        }
 
         /// <summary>
         /// Url para pagamento usando o checkout
         /// </summary>
-        [JsonProperty("payment_url", NullValueHandling = NullValueHandling.Include)]
-        public string PaymentUrl { get; set; }
+        [JsonProperty("payment_url")]
+        public string PaymentUrl
+        {
+            get
+            {
+                return this.paymentUrl;
+            }
+
+            set
+            {
+                this.shouldSerialize["payment_url"] = true;
+                this.paymentUrl = value;
+            }
+        }
 
         /// <summary>
         /// Código da afiliação onde o pagamento será processado no gateway
         /// </summary>
-        [JsonProperty("gateway_affiliation_id", NullValueHandling = NullValueHandling.Include)]
-        public string GatewayAffiliationId { get; set; }
+        [JsonProperty("gateway_affiliation_id")]
+        public string GatewayAffiliationId
+        {
+            get
+            {
+                return this.gatewayAffiliationId;
+            }
+
+            set
+            {
+                this.shouldSerialize["gateway_affiliation_id"] = true;
+                this.gatewayAffiliationId = value;
+            }
+        }
 
         /// <summary>
         /// Meios de pagamento aceitos no checkout
         /// </summary>
-        [JsonProperty("accepted_payment_methods", NullValueHandling = NullValueHandling.Include)]
-        public List<string> AcceptedPaymentMethods { get; set; }
+        [JsonProperty("accepted_payment_methods")]
+        public List<string> AcceptedPaymentMethods
+        {
+            get
+            {
+                return this.acceptedPaymentMethods;
+            }
+
+            set
+            {
+                this.shouldSerialize["accepted_payment_methods"] = true;
+                this.acceptedPaymentMethods = value;
+            }
+        }
 
         /// <summary>
         /// Status do checkout
         /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Include)]
-        public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
 
         /// <summary>
         /// Pular tela de sucesso pós-pagamento?
         /// </summary>
-        [JsonProperty("skip_checkout_success_page", NullValueHandling = NullValueHandling.Include)]
-        public bool? SkipCheckoutSuccessPage { get; set; }
+        [JsonProperty("skip_checkout_success_page")]
+        public bool? SkipCheckoutSuccessPage
+        {
+            get
+            {
+                return this.skipCheckoutSuccessPage;
+            }
+
+            set
+            {
+                this.shouldSerialize["skip_checkout_success_page"] = true;
+                this.skipCheckoutSuccessPage = value;
+            }
+        }
 
         /// <summary>
         /// Data de criação
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("created_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? CreatedAt { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
 
         /// <summary>
         /// Data de atualização
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("updated_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? UpdatedAt { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
 
         /// <summary>
         /// Data de cancelamento
@@ -270,8 +504,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Torna o objeto customer editável
         /// </summary>
-        [JsonProperty("customer_editable", NullValueHandling = NullValueHandling.Include)]
-        public bool? CustomerEditable { get; set; }
+        [JsonProperty("customer_editable")]
+        public bool? CustomerEditable
+        {
+            get
+            {
+                return this.customerEditable;
+            }
+
+            set
+            {
+                this.shouldSerialize["customer_editable"] = true;
+                this.customerEditable = value;
+            }
+        }
 
         /// <summary>
         /// Dados do comprador
@@ -294,38 +540,110 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Dados do endereço de cobrança
         /// </summary>
-        [JsonProperty("billingaddress", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetAddressResponse Billingaddress { get; set; }
+        [JsonProperty("billingaddress")]
+        public Models.GetAddressResponse Billingaddress
+        {
+            get
+            {
+                return this.billingaddress;
+            }
+
+            set
+            {
+                this.shouldSerialize["billingaddress"] = true;
+                this.billingaddress = value;
+            }
+        }
 
         /// <summary>
         /// Configurações de cartão de crédito
         /// </summary>
-        [JsonProperty("credit_card", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetCheckoutCreditCardPaymentResponse CreditCard { get; set; }
+        [JsonProperty("credit_card")]
+        public Models.GetCheckoutCreditCardPaymentResponse CreditCard
+        {
+            get
+            {
+                return this.creditCard;
+            }
+
+            set
+            {
+                this.shouldSerialize["credit_card"] = true;
+                this.creditCard = value;
+            }
+        }
 
         /// <summary>
         /// Configurações de boleto
         /// </summary>
-        [JsonProperty("boleto", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetCheckoutBoletoPaymentResponse Boleto { get; set; }
+        [JsonProperty("boleto")]
+        public Models.GetCheckoutBoletoPaymentResponse Boleto
+        {
+            get
+            {
+                return this.boleto;
+            }
+
+            set
+            {
+                this.shouldSerialize["boleto"] = true;
+                this.boleto = value;
+            }
+        }
 
         /// <summary>
         /// Indica se o billing address poderá ser editado
         /// </summary>
-        [JsonProperty("billing_address_editable", NullValueHandling = NullValueHandling.Include)]
-        public bool? BillingAddressEditable { get; set; }
+        [JsonProperty("billing_address_editable")]
+        public bool? BillingAddressEditable
+        {
+            get
+            {
+                return this.billingAddressEditable;
+            }
+
+            set
+            {
+                this.shouldSerialize["billing_address_editable"] = true;
+                this.billingAddressEditable = value;
+            }
+        }
 
         /// <summary>
         /// Configurações  de entrega
         /// </summary>
-        [JsonProperty("shipping", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetShippingResponse Shipping { get; set; }
+        [JsonProperty("shipping")]
+        public Models.GetShippingResponse Shipping
+        {
+            get
+            {
+                return this.shipping;
+            }
+
+            set
+            {
+                this.shouldSerialize["shipping"] = true;
+                this.shipping = value;
+            }
+        }
 
         /// <summary>
         /// Indica se possui entrega
         /// </summary>
-        [JsonProperty("shippable", NullValueHandling = NullValueHandling.Include)]
-        public bool? Shippable { get; set; }
+        [JsonProperty("shippable")]
+        public bool? Shippable
+        {
+            get
+            {
+                return this.shippable;
+            }
+
+            set
+            {
+                this.shouldSerialize["shippable"] = true;
+                this.shippable = value;
+            }
+        }
 
         /// <summary>
         /// Data de fechamento
@@ -368,8 +686,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Moeda
         /// </summary>
-        [JsonProperty("currency", NullValueHandling = NullValueHandling.Include)]
-        public string Currency { get; set; }
+        [JsonProperty("currency")]
+        public string Currency
+        {
+            get
+            {
+                return this.currency;
+            }
+
+            set
+            {
+                this.shouldSerialize["currency"] = true;
+                this.currency = value;
+            }
+        }
 
         /// <summary>
         /// Configurações de cartão de débito
@@ -410,8 +740,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Accepted Brands
         /// </summary>
-        [JsonProperty("accepted_brands", NullValueHandling = NullValueHandling.Include)]
-        public List<string> AcceptedBrands { get; set; }
+        [JsonProperty("accepted_brands")]
+        public List<string> AcceptedBrands
+        {
+            get
+            {
+                return this.acceptedBrands;
+            }
+
+            set
+            {
+                this.shouldSerialize["accepted_brands"] = true;
+                this.acceptedBrands = value;
+            }
+        }
 
         /// <summary>
         /// Pix payment response
@@ -444,9 +786,89 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetAmount()
         {
             this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDefaultPaymentMethod()
+        {
+            this.shouldSerialize["default_payment_method"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSuccessUrl()
+        {
+            this.shouldSerialize["success_url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaymentUrl()
+        {
+            this.shouldSerialize["payment_url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetGatewayAffiliationId()
+        {
+            this.shouldSerialize["gateway_affiliation_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAcceptedPaymentMethods()
+        {
+            this.shouldSerialize["accepted_payment_methods"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSkipCheckoutSuccessPage()
+        {
+            this.shouldSerialize["skip_checkout_success_page"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
         }
 
         /// <summary>
@@ -460,9 +882,65 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetCustomerEditable()
+        {
+            this.shouldSerialize["customer_editable"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCustomer()
         {
             this.shouldSerialize["customer"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBillingaddress()
+        {
+            this.shouldSerialize["billingaddress"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreditCard()
+        {
+            this.shouldSerialize["credit_card"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBoleto()
+        {
+            this.shouldSerialize["boleto"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBillingAddressEditable()
+        {
+            this.shouldSerialize["billing_address_editable"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetShipping()
+        {
+            this.shouldSerialize["shipping"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetShippable()
+        {
+            this.shouldSerialize["shippable"] = false;
         }
 
         /// <summary>
@@ -484,6 +962,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetCurrency()
+        {
+            this.shouldSerialize["currency"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetDebitCard()
         {
             this.shouldSerialize["debit_card"] = false;
@@ -500,9 +986,26 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetAcceptedBrands()
+        {
+            this.shouldSerialize["accepted_brands"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetPix()
         {
             this.shouldSerialize["pix"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
         }
 
         /// <summary>
@@ -518,6 +1021,87 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDefaultPaymentMethod()
+        {
+            return this.shouldSerialize["default_payment_method"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSuccessUrl()
+        {
+            return this.shouldSerialize["success_url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaymentUrl()
+        {
+            return this.shouldSerialize["payment_url"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeGatewayAffiliationId()
+        {
+            return this.shouldSerialize["gateway_affiliation_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcceptedPaymentMethods()
+        {
+            return this.shouldSerialize["accepted_payment_methods"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSkipCheckoutSuccessPage()
+        {
+            return this.shouldSerialize["skip_checkout_success_page"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeCanceledAt()
         {
             return this.shouldSerialize["canceled_at"];
@@ -527,9 +1111,72 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCustomerEditable()
+        {
+            return this.shouldSerialize["customer_editable"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeCustomer()
         {
             return this.shouldSerialize["customer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBillingaddress()
+        {
+            return this.shouldSerialize["billingaddress"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreditCard()
+        {
+            return this.shouldSerialize["credit_card"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBoleto()
+        {
+            return this.shouldSerialize["boleto"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBillingAddressEditable()
+        {
+            return this.shouldSerialize["billing_address_editable"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeShipping()
+        {
+            return this.shouldSerialize["shipping"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeShippable()
+        {
+            return this.shouldSerialize["shippable"];
         }
 
         /// <summary>
@@ -554,6 +1201,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCurrency()
+        {
+            return this.shouldSerialize["currency"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeDebitCard()
         {
             return this.shouldSerialize["debit_card"];
@@ -566,6 +1222,15 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeBankTransfer()
         {
             return this.shouldSerialize["bank_transfer"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAcceptedBrands()
+        {
+            return this.shouldSerialize["accepted_brands"];
         }
 
         /// <summary>
@@ -620,7 +1285,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Pix == null && other.Pix == null) || (this.Pix?.Equals(other.Pix) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

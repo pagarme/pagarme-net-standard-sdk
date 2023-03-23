@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetAnticipationLimitsResponse
     {
+        private Models.GetAnticipationLimitResponse max;
+        private Models.GetAnticipationLimitResponse min;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "max", false },
+            { "min", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAnticipationLimitsResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetAnticipationLimitResponse max = null,
             Models.GetAnticipationLimitResponse min = null)
         {
-            this.Max = max;
-            this.Min = min;
+            if (max != null)
+            {
+                this.Max = max;
+            }
+
+            if (min != null)
+            {
+                this.Min = min;
+            }
+
         }
 
         /// <summary>
         /// Max limit
         /// </summary>
-        [JsonProperty("max", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetAnticipationLimitResponse Max { get; set; }
+        [JsonProperty("max")]
+        public Models.GetAnticipationLimitResponse Max
+        {
+            get
+            {
+                return this.max;
+            }
+
+            set
+            {
+                this.shouldSerialize["max"] = true;
+                this.max = value;
+            }
+        }
 
         /// <summary>
         /// Min limit
         /// </summary>
-        [JsonProperty("min", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetAnticipationLimitResponse Min { get; set; }
+        [JsonProperty("min")]
+        public Models.GetAnticipationLimitResponse Min
+        {
+            get
+            {
+                return this.min;
+            }
+
+            set
+            {
+                this.shouldSerialize["min"] = true;
+                this.min = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetAnticipationLimitsResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMax()
+        {
+            this.shouldSerialize["max"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMin()
+        {
+            this.shouldSerialize["min"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMax()
+        {
+            return this.shouldSerialize["max"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMin()
+        {
+            return this.shouldSerialize["min"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Min == null && other.Min == null) || (this.Min?.Equals(other.Min) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

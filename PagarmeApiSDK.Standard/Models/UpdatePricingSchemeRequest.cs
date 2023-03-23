@@ -111,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Percentage == null && other.Percentage == null) || (this.Percentage?.Equals(other.Percentage) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

@@ -111,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

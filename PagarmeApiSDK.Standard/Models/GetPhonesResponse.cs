@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetPhonesResponse
     {
+        private Models.GetPhoneResponse homePhone;
+        private Models.GetPhoneResponse mobilePhone;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "home_phone", false },
+            { "mobile_phone", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPhonesResponse"/> class.
         /// </summary>
@@ -37,21 +45,53 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetPhoneResponse homePhone = null,
             Models.GetPhoneResponse mobilePhone = null)
         {
-            this.HomePhone = homePhone;
-            this.MobilePhone = mobilePhone;
+            if (homePhone != null)
+            {
+                this.HomePhone = homePhone;
+            }
+
+            if (mobilePhone != null)
+            {
+                this.MobilePhone = mobilePhone;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets HomePhone.
         /// </summary>
-        [JsonProperty("home_phone", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPhoneResponse HomePhone { get; set; }
+        [JsonProperty("home_phone")]
+        public Models.GetPhoneResponse HomePhone
+        {
+            get
+            {
+                return this.homePhone;
+            }
+
+            set
+            {
+                this.shouldSerialize["home_phone"] = true;
+                this.homePhone = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets MobilePhone.
         /// </summary>
-        [JsonProperty("mobile_phone", NullValueHandling = NullValueHandling.Include)]
-        public Models.GetPhoneResponse MobilePhone { get; set; }
+        [JsonProperty("mobile_phone")]
+        public Models.GetPhoneResponse MobilePhone
+        {
+            get
+            {
+                return this.mobilePhone;
+            }
+
+            set
+            {
+                this.shouldSerialize["mobile_phone"] = true;
+                this.mobilePhone = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -61,6 +101,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetPhonesResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetHomePhone()
+        {
+            this.shouldSerialize["home_phone"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMobilePhone()
+        {
+            this.shouldSerialize["mobile_phone"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeHomePhone()
+        {
+            return this.shouldSerialize["home_phone"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMobilePhone()
+        {
+            return this.shouldSerialize["mobile_phone"];
         }
 
         /// <inheritdoc/>
@@ -81,7 +155,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.MobilePhone == null && other.MobilePhone == null) || (this.MobilePhone?.Equals(other.MobilePhone) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>

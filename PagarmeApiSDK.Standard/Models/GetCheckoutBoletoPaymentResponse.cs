@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetCheckoutBoletoPaymentResponse
     {
+        private DateTime? dueAt;
+        private string instructions;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "due_at", false },
+            { "instructions", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetCheckoutBoletoPaymentResponse"/> class.
         /// </summary>
@@ -37,22 +45,54 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? dueAt = null,
             string instructions = null)
         {
-            this.DueAt = dueAt;
-            this.Instructions = instructions;
+            if (dueAt != null)
+            {
+                this.DueAt = dueAt;
+            }
+
+            if (instructions != null)
+            {
+                this.Instructions = instructions;
+            }
+
         }
 
         /// <summary>
         /// Data de vencimento do boleto
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("due_at", NullValueHandling = NullValueHandling.Include)]
-        public DateTime? DueAt { get; set; }
+        [JsonProperty("due_at")]
+        public DateTime? DueAt
+        {
+            get
+            {
+                return this.dueAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["due_at"] = true;
+                this.dueAt = value;
+            }
+        }
 
         /// <summary>
         /// Instruções do boleto
         /// </summary>
-        [JsonProperty("instructions", NullValueHandling = NullValueHandling.Include)]
-        public string Instructions { get; set; }
+        [JsonProperty("instructions")]
+        public string Instructions
+        {
+            get
+            {
+                return this.instructions;
+            }
+
+            set
+            {
+                this.shouldSerialize["instructions"] = true;
+                this.instructions = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -62,6 +102,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetCheckoutBoletoPaymentResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDueAt()
+        {
+            this.shouldSerialize["due_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetInstructions()
+        {
+            this.shouldSerialize["instructions"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDueAt()
+        {
+            return this.shouldSerialize["due_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeInstructions()
+        {
+            return this.shouldSerialize["instructions"];
         }
 
         /// <inheritdoc/>
@@ -82,7 +156,6 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true));
         }
         
-
         /// <summary>
         /// ToString overload.
         /// </summary>
