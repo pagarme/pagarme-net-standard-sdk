@@ -21,6 +21,7 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class GetOrderResponse
     {
+        private string id;
         private string code;
         private string currency;
         private List<Models.GetOrderItemResponse> items;
@@ -40,6 +41,7 @@ namespace PagarmeApiSDK.Standard.Models
         private bool? closed;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "id", false },
             { "code", false },
             { "currency", false },
             { "items", false },
@@ -107,7 +109,11 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetDeviceResponse device = null,
             bool? closed = null)
         {
-            this.Id = id;
+            if (id != null)
+            {
+                this.Id = id;
+            }
+
             if (code != null)
             {
                 this.Code = code;
@@ -198,8 +204,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets Id.
         /// </summary>
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Include)]
-        public string Id { get; set; }
+        [JsonProperty("id")]
+        public string Id
+        {
+            get
+            {
+                return this.id;
+            }
+
+            set
+            {
+                this.shouldSerialize["id"] = true;
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Code.
@@ -522,6 +540,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetId()
+        {
+            this.shouldSerialize["id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCode()
         {
             this.shouldSerialize["code"] = false;
@@ -653,6 +679,15 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetClosed()
         {
             this.shouldSerialize["closed"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeId()
+        {
+            return this.shouldSerialize["id"];
         }
 
         /// <summary>

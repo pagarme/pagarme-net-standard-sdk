@@ -11,7 +11,7 @@ Response object for getting an Order
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `string` | Required | - |
+| `Id` | `string` | Optional | - |
 | `Code` | `string` | Optional | - |
 | `Currency` | `string` | Optional | - |
 | `Items` | [`List<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md) | Optional | - |
@@ -34,7 +34,7 @@ Response object for getting an Order
 
 ```json
 {
-  "id": "id0",
+  "id": null,
   "code": null,
   "currency": null,
   "items": null,
