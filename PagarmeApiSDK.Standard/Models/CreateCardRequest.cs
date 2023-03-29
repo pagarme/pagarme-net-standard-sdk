@@ -42,26 +42,26 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="metadata">metadata.</param>
         /// <param name="type">type.</param>
         /// <param name="options">options.</param>
+        /// <param name="holderDocument">holder_document.</param>
         /// <param name="privateLabel">private_label.</param>
         /// <param name="label">label.</param>
-        /// <param name="holderDocument">holder_document.</param>
         /// <param name="id">id.</param>
         /// <param name="token">token.</param>
         public CreateCardRequest(
-            string number,
-            string holderName,
-            int expMonth,
-            int expYear,
-            string cvv,
-            Models.CreateAddressRequest billingAddress,
-            string brand,
-            string billingAddressId,
-            Dictionary<string, string> metadata,
-            string type,
-            Models.CreateCardOptionsRequest options,
-            bool privateLabel,
-            string label,
+            string number = null,
+            string holderName = null,
+            int? expMonth = null,
+            int? expYear = null,
+            string cvv = null,
+            Models.CreateAddressRequest billingAddress = null,
+            string brand = null,
+            string billingAddressId = null,
+            Dictionary<string, string> metadata = null,
+            string type = "credit",
+            Models.CreateCardOptionsRequest options = null,
             string holderDocument = null,
+            bool? privateLabel = null,
+            string label = null,
             string id = null,
             string token = null)
         {
@@ -86,67 +86,67 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Credit card number
         /// </summary>
-        [JsonProperty("number")]
+        [JsonProperty("number", NullValueHandling = NullValueHandling.Ignore)]
         public string Number { get; set; }
 
         /// <summary>
         /// Holder name, as written on the card
         /// </summary>
-        [JsonProperty("holder_name")]
+        [JsonProperty("holder_name", NullValueHandling = NullValueHandling.Ignore)]
         public string HolderName { get; set; }
 
         /// <summary>
         /// The expiration month
         /// </summary>
-        [JsonProperty("exp_month")]
-        public int ExpMonth { get; set; }
+        [JsonProperty("exp_month", NullValueHandling = NullValueHandling.Ignore)]
+        public int? ExpMonth { get; set; }
 
         /// <summary>
         /// The expiration year, that can be informed with 2 or 4 digits
         /// </summary>
-        [JsonProperty("exp_year")]
-        public int ExpYear { get; set; }
+        [JsonProperty("exp_year", NullValueHandling = NullValueHandling.Ignore)]
+        public int? ExpYear { get; set; }
 
         /// <summary>
         /// The card's security code
         /// </summary>
-        [JsonProperty("cvv")]
+        [JsonProperty("cvv", NullValueHandling = NullValueHandling.Ignore)]
         public string Cvv { get; set; }
 
         /// <summary>
         /// Card's billing address
         /// </summary>
-        [JsonProperty("billing_address")]
+        [JsonProperty("billing_address", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateAddressRequest BillingAddress { get; set; }
 
         /// <summary>
         /// Card brand
         /// </summary>
-        [JsonProperty("brand")]
+        [JsonProperty("brand", NullValueHandling = NullValueHandling.Ignore)]
         public string Brand { get; set; }
 
         /// <summary>
         /// The address id for the billing address
         /// </summary>
-        [JsonProperty("billing_address_id")]
+        [JsonProperty("billing_address_id", NullValueHandling = NullValueHandling.Ignore)]
         public string BillingAddressId { get; set; }
 
         /// <summary>
         /// Metadata
         /// </summary>
-        [JsonProperty("metadata")]
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
         /// Card type
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
 
         /// <summary>
         /// Options for creating the card
         /// </summary>
-        [JsonProperty("options")]
+        [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateCardOptionsRequest Options { get; set; }
 
         /// <summary>
@@ -158,13 +158,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Indicates whether it is a private label card
         /// </summary>
-        [JsonProperty("private_label")]
-        public bool PrivateLabel { get; set; }
+        [JsonProperty("private_label", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? PrivateLabel { get; set; }
 
         /// <summary>
         /// Gets or sets Label.
         /// </summary>
-        [JsonProperty("label")]
+        [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }
 
         /// <summary>
@@ -205,8 +205,8 @@ namespace PagarmeApiSDK.Standard.Models
             return obj is CreateCardRequest other &&
                 ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
                 ((this.HolderName == null && other.HolderName == null) || (this.HolderName?.Equals(other.HolderName) == true)) &&
-                this.ExpMonth.Equals(other.ExpMonth) &&
-                this.ExpYear.Equals(other.ExpYear) &&
+                ((this.ExpMonth == null && other.ExpMonth == null) || (this.ExpMonth?.Equals(other.ExpMonth) == true)) &&
+                ((this.ExpYear == null && other.ExpYear == null) || (this.ExpYear?.Equals(other.ExpYear) == true)) &&
                 ((this.Cvv == null && other.Cvv == null) || (this.Cvv?.Equals(other.Cvv) == true)) &&
                 ((this.BillingAddress == null && other.BillingAddress == null) || (this.BillingAddress?.Equals(other.BillingAddress) == true)) &&
                 ((this.Brand == null && other.Brand == null) || (this.Brand?.Equals(other.Brand) == true)) &&
@@ -215,7 +215,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.Options == null && other.Options == null) || (this.Options?.Equals(other.Options) == true)) &&
                 ((this.HolderDocument == null && other.HolderDocument == null) || (this.HolderDocument?.Equals(other.HolderDocument) == true)) &&
-                this.PrivateLabel.Equals(other.PrivateLabel) &&
+                ((this.PrivateLabel == null && other.PrivateLabel == null) || (this.PrivateLabel?.Equals(other.PrivateLabel) == true)) &&
                 ((this.Label == null && other.Label == null) || (this.Label?.Equals(other.Label) == true)) &&
                 ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Token == null && other.Token == null) || (this.Token?.Equals(other.Token) == true));
@@ -229,8 +229,8 @@ namespace PagarmeApiSDK.Standard.Models
         {
             toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number == string.Empty ? "" : this.Number)}");
             toStringOutput.Add($"this.HolderName = {(this.HolderName == null ? "null" : this.HolderName == string.Empty ? "" : this.HolderName)}");
-            toStringOutput.Add($"this.ExpMonth = {this.ExpMonth}");
-            toStringOutput.Add($"this.ExpYear = {this.ExpYear}");
+            toStringOutput.Add($"this.ExpMonth = {(this.ExpMonth == null ? "null" : this.ExpMonth.ToString())}");
+            toStringOutput.Add($"this.ExpYear = {(this.ExpYear == null ? "null" : this.ExpYear.ToString())}");
             toStringOutput.Add($"this.Cvv = {(this.Cvv == null ? "null" : this.Cvv == string.Empty ? "" : this.Cvv)}");
             toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
             toStringOutput.Add($"this.Brand = {(this.Brand == null ? "null" : this.Brand == string.Empty ? "" : this.Brand)}");
@@ -239,7 +239,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
             toStringOutput.Add($"this.Options = {(this.Options == null ? "null" : this.Options.ToString())}");
             toStringOutput.Add($"this.HolderDocument = {(this.HolderDocument == null ? "null" : this.HolderDocument == string.Empty ? "" : this.HolderDocument)}");
-            toStringOutput.Add($"this.PrivateLabel = {this.PrivateLabel}");
+            toStringOutput.Add($"this.PrivateLabel = {(this.PrivateLabel == null ? "null" : this.PrivateLabel.ToString())}");
             toStringOutput.Add($"this.Label = {(this.Label == null ? "null" : this.Label == string.Empty ? "" : this.Label)}");
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
             toStringOutput.Add($"this.Token = {(this.Token == null ? "null" : this.Token == string.Empty ? "" : this.Token)}");

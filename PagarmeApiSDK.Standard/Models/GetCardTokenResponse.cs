@@ -24,8 +24,8 @@ namespace PagarmeApiSDK.Standard.Models
         private string lastFourDigits;
         private string holderName;
         private string holderDocument;
-        private string expMonth;
-        private string expYear;
+        private int? expMonth;
+        private int? expYear;
         private string brand;
         private string type;
         private string label;
@@ -63,8 +63,8 @@ namespace PagarmeApiSDK.Standard.Models
             string lastFourDigits = null,
             string holderName = null,
             string holderDocument = null,
-            string expMonth = null,
-            string expYear = null,
+            int? expMonth = null,
+            int? expYear = null,
             string brand = null,
             string type = null,
             string label = null)
@@ -169,7 +169,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets ExpMonth.
         /// </summary>
         [JsonProperty("exp_month")]
-        public string ExpMonth
+        public int? ExpMonth
         {
             get
             {
@@ -187,7 +187,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets ExpYear.
         /// </summary>
         [JsonProperty("exp_year")]
-        public string ExpYear
+        public int? ExpYear
         {
             get
             {
@@ -434,8 +434,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.LastFourDigits = {(this.LastFourDigits == null ? "null" : this.LastFourDigits == string.Empty ? "" : this.LastFourDigits)}");
             toStringOutput.Add($"this.HolderName = {(this.HolderName == null ? "null" : this.HolderName == string.Empty ? "" : this.HolderName)}");
             toStringOutput.Add($"this.HolderDocument = {(this.HolderDocument == null ? "null" : this.HolderDocument == string.Empty ? "" : this.HolderDocument)}");
-            toStringOutput.Add($"this.ExpMonth = {(this.ExpMonth == null ? "null" : this.ExpMonth == string.Empty ? "" : this.ExpMonth)}");
-            toStringOutput.Add($"this.ExpYear = {(this.ExpYear == null ? "null" : this.ExpYear == string.Empty ? "" : this.ExpYear)}");
+            toStringOutput.Add($"this.ExpMonth = {(this.ExpMonth == null ? "null" : this.ExpMonth.ToString())}");
+            toStringOutput.Add($"this.ExpYear = {(this.ExpYear == null ? "null" : this.ExpYear.ToString())}");
             toStringOutput.Add($"this.Brand = {(this.Brand == null ? "null" : this.Brand == string.Empty ? "" : this.Brand)}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
             toStringOutput.Add($"this.Label = {(this.Label == null ? "null" : this.Label == string.Empty ? "" : this.Label)}");
