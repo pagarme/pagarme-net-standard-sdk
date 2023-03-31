@@ -14,8 +14,8 @@ Card token data
 | `LastFourDigits` | `string` | Optional | - |
 | `HolderName` | `string` | Optional | - |
 | `HolderDocument` | `string` | Optional | - |
-| `ExpMonth` | `string` | Optional | - |
-| `ExpYear` | `string` | Optional | - |
+| `ExpMonth` | `int?` | Optional | - |
+| `ExpYear` | `int?` | Optional | - |
 | `Brand` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 | `Label` | `string` | Optional | - |

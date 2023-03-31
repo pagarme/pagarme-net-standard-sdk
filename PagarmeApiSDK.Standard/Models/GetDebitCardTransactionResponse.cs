@@ -35,6 +35,7 @@ namespace PagarmeApiSDK.Standard.Models
         private string eci;
         private string authenticationType;
         private string threedAuthenticationUrl;
+        private string fundingSource;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "statement_descriptor", false },
@@ -51,6 +52,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "eci", false },
             { "authentication_type", false },
             { "threed_authentication_url", false },
+            { "funding_source", false },
         };
 
         /// <summary>
@@ -97,6 +99,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="eci">eci.</param>
         /// <param name="authenticationType">authentication_type.</param>
         /// <param name="threedAuthenticationUrl">threed_authentication_url.</param>
+        /// <param name="fundingSource">funding_source.</param>
         public GetDebitCardTransactionResponse(
             string transactionType = "debit_card",
             string gatewayId = null,
@@ -130,7 +133,8 @@ namespace PagarmeApiSDK.Standard.Models
             string mpi = null,
             string eci = null,
             string authenticationType = null,
-            string threedAuthenticationUrl = null)
+            string threedAuthenticationUrl = null,
+            string fundingSource = null)
             : base(
                 transactionType,
                 gatewayId,
@@ -220,6 +224,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (threedAuthenticationUrl != null)
             {
                 this.ThreedAuthenticationUrl = threedAuthenticationUrl;
+            }
+
+            if (fundingSource != null)
+            {
+                this.FundingSource = fundingSource;
             }
 
         }
@@ -476,6 +485,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Identify when a card is prepaid, credit or debit.
+        /// </summary>
+        [JsonProperty("funding_source")]
+        public string FundingSource
+        {
+            get
+            {
+                return this.fundingSource;
+            }
+
+            set
+            {
+                this.shouldSerialize["funding_source"] = true;
+                this.fundingSource = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -596,6 +623,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetThreedAuthenticationUrl()
         {
             this.shouldSerialize["threed_authentication_url"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFundingSource()
+        {
+            this.shouldSerialize["funding_source"] = false;
         }
 
         /// <summary>
@@ -724,6 +759,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["threed_authentication_url"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFundingSource()
+        {
+            return this.shouldSerialize["funding_source"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -752,6 +796,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Eci == null && other.Eci == null) || (this.Eci?.Equals(other.Eci) == true)) &&
                 ((this.AuthenticationType == null && other.AuthenticationType == null) || (this.AuthenticationType?.Equals(other.AuthenticationType) == true)) &&
                 ((this.ThreedAuthenticationUrl == null && other.ThreedAuthenticationUrl == null) || (this.ThreedAuthenticationUrl?.Equals(other.ThreedAuthenticationUrl) == true)) &&
+                ((this.FundingSource == null && other.FundingSource == null) || (this.FundingSource?.Equals(other.FundingSource) == true)) &&
                 base.Equals(obj);
         }
         
@@ -775,6 +820,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Eci = {(this.Eci == null ? "null" : this.Eci == string.Empty ? "" : this.Eci)}");
             toStringOutput.Add($"this.AuthenticationType = {(this.AuthenticationType == null ? "null" : this.AuthenticationType == string.Empty ? "" : this.AuthenticationType)}");
             toStringOutput.Add($"this.ThreedAuthenticationUrl = {(this.ThreedAuthenticationUrl == null ? "null" : this.ThreedAuthenticationUrl == string.Empty ? "" : this.ThreedAuthenticationUrl)}");
+            toStringOutput.Add($"this.FundingSource = {(this.FundingSource == null ? "null" : this.FundingSource == string.Empty ? "" : this.FundingSource)}");
 
             base.ToString(toStringOutput);
         }
