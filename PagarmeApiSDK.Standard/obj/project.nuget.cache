@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "UXmWMj0bPMZyOqggrdFzCrUBUX0Lj3y5a0dFepwEhhy4SMBbxt2QveJSGZOFi+PPzxnKkg/PEjCkc/BFag7yBg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\magno.moreira\\work\\sdks\\v6\\dot-net\\refactoring-build\\pagarme-net-standard-sdk\\PagarmeApiSDK.Standard\\PagarmeApiSDK.Standard.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\apimatic.core\\0.2.3\\apimatic.core.0.2.3.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\jsonsubtypes\\2.0.1\\jsonsubtypes.2.0.1.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\microsoft.json.pointer\\2.3.0\\microsoft.json.pointer.2.3.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
+    "C:\\Users\\magno.moreira\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
