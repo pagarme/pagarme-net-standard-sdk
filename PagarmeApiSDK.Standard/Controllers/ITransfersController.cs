@@ -23,6 +23,19 @@ namespace PagarmeApiSDK.Standard.Controllers
     public interface ITransfersController
     {
         /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        Models.ListTransfers GetTransfers();
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// GetTransferById EndPoint.
         /// </summary>
         /// <param name="transferId">Required parameter: Example: .</param>
@@ -57,18 +70,5 @@ namespace PagarmeApiSDK.Standard.Controllers
         Task<Models.GetTransfer> CreateTransferAsync(
                 Models.CreateTransfer request,
                 CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        Models.ListTransfers GetTransfers();
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default);
     }
 }
