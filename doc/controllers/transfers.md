@@ -10,32 +10,9 @@ ITransfersController transfersController = client.TransfersController;
 
 ## Methods
 
-* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
 * [Get Transfer by Id](../../doc/controllers/transfers.md#get-transfer-by-id)
 * [Create Transfer](../../doc/controllers/transfers.md#create-transfer)
-
-
-# Get Transfers
-
-Gets all transfers
-
-```csharp
-GetTransfersAsync()
-```
-
-## Response Type
-
-[`Task<Models.ListTransfers>`](../../doc/models/list-transfers.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListTransfers result = await transfersController.GetTransfersAsync();
-}
-catch (ApiException e){};
-```
+* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
 
 
 # Get Transfer by Id
@@ -59,12 +36,15 @@ GetTransferByIdAsync(
 
 ```csharp
 string transferId = "transfer_id6";
-
 try
 {
     GetTransfer result = await transfersController.GetTransferByIdAsync(transferId);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
@@ -88,15 +68,48 @@ CreateTransferAsync(
 ## Example Usage
 
 ```csharp
-var request = new CreateTransfer();
-request.Amount = 242;
-request.SourceId = "source_id0";
-request.TargetId = "target_id6";
+CreateTransfer request = new CreateTransfer
+{
+    Amount = 242,
+    SourceId = "source_id0",
+    TargetId = "target_id6",
+};
 
 try
 {
     GetTransfer result = await transfersController.CreateTransferAsync(request);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Transfers
+
+Gets all transfers
+
+```csharp
+GetTransfersAsync()
+```
+
+## Response Type
+
+[`Task<Models.ListTransfers>`](../../doc/models/list-transfers.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListTransfers result = await transfersController.GetTransfersAsync();
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
