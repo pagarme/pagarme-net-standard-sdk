@@ -41,22 +41,30 @@ CreateTokenAsync(
 
 ```csharp
 string publicKey = "public_key6";
-var request = new CreateTokenRequest();
-request.Type = "card";
-request.Card = new CreateCardTokenRequest();
-request.Card.Number = "number2";
-request.Card.HolderName = "holder_name6";
-request.Card.ExpMonth = 80;
-request.Card.ExpYear = 216;
-request.Card.Cvv = "cvv8";
-request.Card.Brand = "brand4";
-request.Card.Label = "label0";
+CreateTokenRequest request = new CreateTokenRequest
+{
+    Type = "card",
+    Card = new CreateCardTokenRequest
+    {
+        Number = "number2",
+        HolderName = "holder_name6",
+        ExpMonth = 80,
+        ExpYear = 216,
+        Cvv = "cvv8",
+        Brand = "brand4",
+        Label = "label0",
+    },
+};
 
 try
 {
     GetTokenResponse result = await tokensController.CreateTokenAsync(publicKey, request, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
@@ -88,11 +96,14 @@ GetTokenAsync(
 ```csharp
 string id = "id0";
 string publicKey = "public_key6";
-
 try
 {
     GetTokenResponse result = await tokensController.GetTokenAsync(id, publicKey);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 

@@ -30,11 +30,14 @@ GetTransactionAsync(
 
 ```csharp
 string transactionId = "transaction_id8";
-
 try
 {
     GetTransactionResponse result = await transactionsController.GetTransactionAsync(transactionId);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 

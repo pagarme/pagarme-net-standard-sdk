@@ -12,17 +12,17 @@ IChargesController chargesController = client.ChargesController;
 
 * [Update Charge Metadata](../../doc/controllers/charges.md#update-charge-metadata)
 * [Update Charge Payment Method](../../doc/controllers/charges.md#update-charge-payment-method)
-* [Update Charge Card](../../doc/controllers/charges.md#update-charge-card)
-* [Get Charges Summary](../../doc/controllers/charges.md#get-charges-summary)
-* [Create Charge](../../doc/controllers/charges.md#create-charge)
 * [Get Charge Transactions](../../doc/controllers/charges.md#get-charge-transactions)
-* [Capture Charge](../../doc/controllers/charges.md#capture-charge)
-* [Get Charge](../../doc/controllers/charges.md#get-charge)
-* [Cancel Charge](../../doc/controllers/charges.md#cancel-charge)
-* [Get Charges](../../doc/controllers/charges.md#get-charges)
-* [Confirm Payment](../../doc/controllers/charges.md#confirm-payment)
 * [Update Charge Due Date](../../doc/controllers/charges.md#update-charge-due-date)
+* [Get Charges](../../doc/controllers/charges.md#get-charges)
+* [Capture Charge](../../doc/controllers/charges.md#capture-charge)
+* [Update Charge Card](../../doc/controllers/charges.md#update-charge-card)
+* [Get Charge](../../doc/controllers/charges.md#get-charge)
+* [Get Charges Summary](../../doc/controllers/charges.md#get-charges-summary)
 * [Retry Charge](../../doc/controllers/charges.md#retry-charge)
+* [Cancel Charge](../../doc/controllers/charges.md#cancel-charge)
+* [Create Charge](../../doc/controllers/charges.md#create-charge)
+* [Confirm Payment](../../doc/controllers/charges.md#confirm-payment)
 
 
 # Update Charge Metadata
@@ -52,15 +52,23 @@ UpdateChargeMetadataAsync(
 
 ```csharp
 string chargeId = "charge_id8";
-var request = new UpdateMetadataRequest();
-request.Metadata = new Dictionary<string, string>();
-request.Metadata.Add("key0", "metadata3");
+UpdateMetadataRequest request = new UpdateMetadataRequest
+{
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
+};
 
 try
 {
     GetChargeResponse result = await chargesController.UpdateChargeMetadataAsync(chargeId, request, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
@@ -91,190 +99,75 @@ UpdateChargePaymentMethodAsync(
 
 ```csharp
 string chargeId = "charge_id8";
-var request = new UpdateChargePaymentMethodRequest();
-request.UpdateSubscription = false;
-request.PaymentMethod = "payment_method4";
-request.CreditCard = new CreateCreditCardPaymentRequest();
-request.DebitCard = new CreateDebitCardPaymentRequest();
-request.Boleto = new CreateBoletoPaymentRequest();
-request.Boleto.Retries = 10;
-request.Boleto.Bank = "bank4";
-request.Boleto.Instructions = "instructions4";
-request.Boleto.BillingAddress = new CreateAddressRequest();
-request.Boleto.BillingAddress.Street = "street8";
-request.Boleto.BillingAddress.Number = "number4";
-request.Boleto.BillingAddress.ZipCode = "zip_code2";
-request.Boleto.BillingAddress.Neighborhood = "neighborhood4";
-request.Boleto.BillingAddress.City = "city2";
-request.Boleto.BillingAddress.State = "state6";
-request.Boleto.BillingAddress.Country = "country2";
-request.Boleto.BillingAddress.Complement = "complement6";
-request.Boleto.BillingAddress.Metadata = new Dictionary<string, string>();
-request.Boleto.BillingAddress.Metadata.Add("key0", "metadata5");
-request.Boleto.BillingAddress.Line1 = "line_18";
-request.Boleto.BillingAddress.Line2 = "line_26";
-request.Boleto.DocumentNumber = "document_number0";
-request.Boleto.StatementDescriptor = "statement_descriptor6";
-request.Voucher = new CreateVoucherPaymentRequest();
-request.Cash = new CreateCashPaymentRequest();
-request.Cash.Description = "description6";
-request.Cash.Confirm = false;
-request.BankTransfer = new CreateBankTransferPaymentRequest();
-request.BankTransfer.Bank = "bank4";
-request.BankTransfer.Retries = 204;
-request.PrivateLabel = new CreatePrivateLabelPaymentRequest();
+UpdateChargePaymentMethodRequest request = new UpdateChargePaymentMethodRequest
+{
+    UpdateSubscription = false,
+    PaymentMethod = "payment_method4",
+    CreditCard = new CreateCreditCardPaymentRequest
+    {
+        Installments = 1,
+        Capture = true,
+        RecurrencyCycle = "\"first\" or \"subsequent\"",
+    },
+    DebitCard = new CreateDebitCardPaymentRequest
+    {
+    },
+    Boleto = new CreateBoletoPaymentRequest
+    {
+        Retries = 10,
+        Bank = "bank4",
+        Instructions = "instructions4",
+        BillingAddress = new CreateAddressRequest
+        {
+            Street = "street8",
+            Number = "number4",
+            ZipCode = "zip_code2",
+            Neighborhood = "neighborhood4",
+            City = "city2",
+            State = "state6",
+            Country = "country2",
+            Complement = "complement6",
+            Metadata = new Dictionary<string, string>
+            {
+                ["key0"] = "metadata5",
+            },
+            Line1 = "line_18",
+            Line2 = "line_26",
+        },
+        DocumentNumber = "document_number0",
+        StatementDescriptor = "statement_descriptor6",
+    },
+    Voucher = new CreateVoucherPaymentRequest
+    {
+        RecurrencyCycle = "\"first\" or \"subsequent\"",
+    },
+    Cash = new CreateCashPaymentRequest
+    {
+        Description = "description6",
+        Confirm = false,
+    },
+    BankTransfer = new CreateBankTransferPaymentRequest
+    {
+        Bank = "bank4",
+        Retries = 204,
+    },
+    PrivateLabel = new CreatePrivateLabelPaymentRequest
+    {
+        Installments = 1,
+        Capture = true,
+        RecurrencyCycle = "\"first\" or \"subsequent\"",
+    },
+};
 
 try
 {
     GetChargeResponse result = await chargesController.UpdateChargePaymentMethodAsync(chargeId, request, null);
 }
-catch (ApiException e){};
-```
-
-
-# Update Charge Card
-
-Updates the card from a charge
-
-```csharp
-UpdateChargeCardAsync(
-    string chargeId,
-    Models.UpdateChargeCardRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `chargeId` | `string` | Template, Required | Charge id |
-| `request` | [`Models.UpdateChargeCardRequest`](../../doc/models/update-charge-card-request.md) | Body, Required | Request for updating a charge's card |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```csharp
-string chargeId = "charge_id8";
-var request = new UpdateChargeCardRequest();
-request.UpdateSubscription = false;
-request.CardId = "card_id2";
-request.Card = new CreateCardRequest();
-request.Recurrence = false;
-
-try
+catch (ApiException e)
 {
-    GetChargeResponse result = await chargesController.UpdateChargeCardAsync(chargeId, request, null);
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
 }
-catch (ApiException e){};
-```
-
-
-# Get Charges Summary
-
-```csharp
-GetChargesSummaryAsync(
-    string status,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `status` | `string` | Query, Required | - |
-| `createdSince` | `DateTime?` | Query, Optional | - |
-| `createdUntil` | `DateTime?` | Query, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetChargesSummaryResponse>`](../../doc/models/get-charges-summary-response.md)
-
-## Example Usage
-
-```csharp
-string status = "status8";
-
-try
-{
-    GetChargesSummaryResponse result = await chargesController.GetChargesSummaryAsync(status, null, null);
-}
-catch (ApiException e){};
-```
-
-
-# Create Charge
-
-Creates a new charge
-
-```csharp
-CreateChargeAsync(
-    Models.CreateChargeRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `request` | [`Models.CreateChargeRequest`](../../doc/models/create-charge-request.md) | Body, Required | Request for creating a charge |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```csharp
-var request = new CreateChargeRequest();
-request.Code = "code4";
-request.Amount = 242;
-request.CustomerId = "customer_id4";
-request.Customer = new CreateCustomerRequest();
-request.Customer.Name = "{\\n    \"name\": \"Tony Stark\"\\n}";
-request.Customer.Email = "email0";
-request.Customer.Document = "document0";
-request.Customer.Type = "type4";
-request.Customer.Address = new CreateAddressRequest();
-request.Customer.Address.Street = "street2";
-request.Customer.Address.Number = "number0";
-request.Customer.Address.ZipCode = "zip_code6";
-request.Customer.Address.Neighborhood = "neighborhood8";
-request.Customer.Address.City = "city2";
-request.Customer.Address.State = "state8";
-request.Customer.Address.Country = "country6";
-request.Customer.Address.Complement = "complement8";
-request.Customer.Address.Metadata = new Dictionary<string, string>();
-request.Customer.Address.Metadata.Add("key0", "metadata7");
-request.Customer.Address.Metadata.Add("key1", "metadata6");
-request.Customer.Address.Line1 = "line_16";
-request.Customer.Address.Line2 = "line_20";
-request.Customer.Metadata = new Dictionary<string, string>();
-request.Customer.Metadata.Add("key0", "metadata3");
-request.Customer.Metadata.Add("key1", "metadata2");
-request.Customer.Metadata.Add("key2", "metadata1");
-request.Customer.Phones = new CreatePhonesRequest();
-request.Customer.Code = "code4";
-request.Payment = new CreatePaymentRequest();
-request.Payment.PaymentMethod = "payment_method2";
-request.Metadata = new Dictionary<string, string>();
-request.Metadata.Add("key0", "metadata3");
-request.Antifraud = new CreateAntifraudRequest();
-request.Antifraud.Type = "type0";
-request.Antifraud.Clearsale = new CreateClearSaleRequest();
-request.Antifraud.Clearsale.CustomSla = 52;
-request.OrderId = "order_id0";
-
-try
-{
-    GetChargeResponse result = await chargesController.CreateChargeAsync(request, null);
-}
-catch (ApiException e){};
 ```
 
 
@@ -303,23 +196,26 @@ GetChargeTransactionsAsync(
 
 ```csharp
 string chargeId = "charge_id8";
-
 try
 {
     ListChargeTransactionsResponse result = await chargesController.GetChargeTransactionsAsync(chargeId, null, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
-# Capture Charge
+# Update Charge Due Date
 
-Captures a charge
+Updates the due date from a charge
 
 ```csharp
-CaptureChargeAsync(
+UpdateChargeDueDateAsync(
     string chargeId,
-    Models.CreateCaptureChargeRequest request = null,
+    Models.UpdateChargeDueDateRequest request,
     string idempotencyKey = null)
 ```
 
@@ -327,8 +223,8 @@ CaptureChargeAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `chargeId` | `string` | Template, Required | Charge id |
-| `request` | [`Models.CreateCaptureChargeRequest`](../../doc/models/create-capture-charge-request.md) | Body, Optional | Request for capturing a charge |
+| `chargeId` | `string` | Template, Required | Charge Id |
+| `request` | [`Models.UpdateChargeDueDateRequest`](../../doc/models/update-charge-due-date-request.md) | Body, Required | Request for updating the due date |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -339,80 +235,19 @@ CaptureChargeAsync(
 
 ```csharp
 string chargeId = "charge_id8";
+UpdateChargeDueDateRequest request = new UpdateChargeDueDateRequest
+{
+};
 
 try
 {
-    GetChargeResponse result = await chargesController.CaptureChargeAsync(chargeId, null, null);
+    GetChargeResponse result = await chargesController.UpdateChargeDueDateAsync(chargeId, request, null);
 }
-catch (ApiException e){};
-```
-
-
-# Get Charge
-
-Get a charge from its id
-
-```csharp
-GetChargeAsync(
-    string chargeId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `chargeId` | `string` | Template, Required | Charge id |
-
-## Response Type
-
-[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```csharp
-string chargeId = "charge_id8";
-
-try
+catch (ApiException e)
 {
-    GetChargeResponse result = await chargesController.GetChargeAsync(chargeId);
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
 }
-catch (ApiException e){};
-```
-
-
-# Cancel Charge
-
-Cancel a charge
-
-```csharp
-CancelChargeAsync(
-    string chargeId,
-    Models.CreateCancelChargeRequest request = null,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `chargeId` | `string` | Template, Required | Charge id |
-| `request` | [`Models.CreateCancelChargeRequest`](../../doc/models/create-cancel-charge-request.md) | Body, Optional | Request for cancelling a charge |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```csharp
-string chargeId = "charge_id8";
-
-try
-{
-    GetChargeResponse result = await chargesController.CancelChargeAsync(chargeId, null, null);
-}
-catch (ApiException e){};
 ```
 
 
@@ -458,16 +293,22 @@ try
 {
     ListChargesResponse result = await chargesController.GetChargesAsync(null, null, null, null, null, null, null, null, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
-# Confirm Payment
+# Capture Charge
+
+Captures a charge
 
 ```csharp
-ConfirmPaymentAsync(
+CaptureChargeAsync(
     string chargeId,
-    Models.CreateConfirmPaymentRequest request = null,
+    Models.CreateCaptureChargeRequest request = null,
     string idempotencyKey = null)
 ```
 
@@ -475,8 +316,8 @@ ConfirmPaymentAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `chargeId` | `string` | Template, Required | - |
-| `request` | [`Models.CreateConfirmPaymentRequest`](../../doc/models/create-confirm-payment-request.md) | Body, Optional | Request for confirm payment |
+| `chargeId` | `string` | Template, Required | Charge id |
+| `request` | [`Models.CreateCaptureChargeRequest`](../../doc/models/create-capture-charge-request.md) | Body, Optional | Request for capturing a charge |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -487,23 +328,26 @@ ConfirmPaymentAsync(
 
 ```csharp
 string chargeId = "charge_id8";
-
 try
 {
-    GetChargeResponse result = await chargesController.ConfirmPaymentAsync(chargeId, null, null);
+    GetChargeResponse result = await chargesController.CaptureChargeAsync(chargeId, null, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
-# Update Charge Due Date
+# Update Charge Card
 
-Updates the due date from a charge
+Updates the card from a charge
 
 ```csharp
-UpdateChargeDueDateAsync(
+UpdateChargeCardAsync(
     string chargeId,
-    Models.UpdateChargeDueDateRequest request,
+    Models.UpdateChargeCardRequest request,
     string idempotencyKey = null)
 ```
 
@@ -511,8 +355,8 @@ UpdateChargeDueDateAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `chargeId` | `string` | Template, Required | Charge Id |
-| `request` | [`Models.UpdateChargeDueDateRequest`](../../doc/models/update-charge-due-date-request.md) | Body, Required | Request for updating the due date |
+| `chargeId` | `string` | Template, Required | Charge id |
+| `request` | [`Models.UpdateChargeCardRequest`](../../doc/models/update-charge-card-request.md) | Body, Required | Request for updating a charge's card |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -523,13 +367,98 @@ UpdateChargeDueDateAsync(
 
 ```csharp
 string chargeId = "charge_id8";
-var request = new UpdateChargeDueDateRequest();
+UpdateChargeCardRequest request = new UpdateChargeCardRequest
+{
+    UpdateSubscription = false,
+    CardId = "card_id2",
+    Card = new CreateCardRequest
+    {
+        Type = "credit",
+    },
+    Recurrence = false,
+};
 
 try
 {
-    GetChargeResponse result = await chargesController.UpdateChargeDueDateAsync(chargeId, request, null);
+    GetChargeResponse result = await chargesController.UpdateChargeCardAsync(chargeId, request, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Charge
+
+Get a charge from its id
+
+```csharp
+GetChargeAsync(
+    string chargeId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `chargeId` | `string` | Template, Required | Charge id |
+
+## Response Type
+
+[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```csharp
+string chargeId = "charge_id8";
+try
+{
+    GetChargeResponse result = await chargesController.GetChargeAsync(chargeId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Charges Summary
+
+```csharp
+GetChargesSummaryAsync(
+    string status,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `status` | `string` | Query, Required | - |
+| `createdSince` | `DateTime?` | Query, Optional | - |
+| `createdUntil` | `DateTime?` | Query, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetChargesSummaryResponse>`](../../doc/models/get-charges-summary-response.md)
+
+## Example Usage
+
+```csharp
+string status = "status8";
+try
+{
+    GetChargesSummaryResponse result = await chargesController.GetChargesSummaryAsync(status, null, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
 
@@ -558,11 +487,185 @@ RetryChargeAsync(
 
 ```csharp
 string chargeId = "charge_id8";
-
 try
 {
     GetChargeResponse result = await chargesController.RetryChargeAsync(chargeId, null);
 }
-catch (ApiException e){};
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Cancel Charge
+
+Cancel a charge
+
+```csharp
+CancelChargeAsync(
+    string chargeId,
+    Models.CreateCancelChargeRequest request = null,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `chargeId` | `string` | Template, Required | Charge id |
+| `request` | [`Models.CreateCancelChargeRequest`](../../doc/models/create-cancel-charge-request.md) | Body, Optional | Request for cancelling a charge |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```csharp
+string chargeId = "charge_id8";
+try
+{
+    GetChargeResponse result = await chargesController.CancelChargeAsync(chargeId, null, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Create Charge
+
+Creates a new charge
+
+```csharp
+CreateChargeAsync(
+    Models.CreateChargeRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `request` | [`Models.CreateChargeRequest`](../../doc/models/create-charge-request.md) | Body, Required | Request for creating a charge |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```csharp
+CreateChargeRequest request = new CreateChargeRequest
+{
+    Code = "code4",
+    Amount = 242,
+    CustomerId = "customer_id4",
+    Customer = new CreateCustomerRequest
+    {
+        Name = "{\\n    \"name\": \"Tony Stark\"\\n}",
+        Email = "email0",
+        Document = "document0",
+        Type = "type4",
+        Address = new CreateAddressRequest
+        {
+            Street = "street2",
+            Number = "number0",
+            ZipCode = "zip_code6",
+            Neighborhood = "neighborhood8",
+            City = "city2",
+            State = "state8",
+            Country = "country6",
+            Complement = "complement8",
+            Metadata = new Dictionary<string, string>
+            {
+                ["key0"] = "metadata7",
+                ["key1"] = "metadata6",
+            },
+            Line1 = "line_16",
+            Line2 = "line_20",
+        },
+        Metadata = new Dictionary<string, string>
+        {
+            ["key0"] = "metadata3",
+            ["key1"] = "metadata2",
+            ["key2"] = "metadata1",
+        },
+        Phones = new CreatePhonesRequest
+        {
+        },
+        Code = "code4",
+    },
+    Payment = new CreatePaymentRequest
+    {
+        PaymentMethod = "payment_method2",
+    },
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
+    Antifraud = new CreateAntifraudRequest
+    {
+        Type = "type0",
+        Clearsale = new CreateClearSaleRequest
+        {
+            CustomSla = 52,
+        },
+    },
+    OrderId = "order_id0",
+};
+
+try
+{
+    GetChargeResponse result = await chargesController.CreateChargeAsync(request, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Confirm Payment
+
+```csharp
+ConfirmPaymentAsync(
+    string chargeId,
+    Models.CreateConfirmPaymentRequest request = null,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `chargeId` | `string` | Template, Required | - |
+| `request` | [`Models.CreateConfirmPaymentRequest`](../../doc/models/create-confirm-payment-request.md) | Body, Optional | Request for confirm payment |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetChargeResponse>`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```csharp
+string chargeId = "charge_id8";
+try
+{
+    GetChargeResponse result = await chargesController.ConfirmPaymentAsync(chargeId, null, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
 ```
 
