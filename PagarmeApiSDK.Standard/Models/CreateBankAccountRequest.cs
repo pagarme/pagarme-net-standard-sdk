@@ -21,6 +21,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateBankAccountRequest
     {
+        private string branchCheckDigit;
+        private string pixKey;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "branch_check_digit", false },
+            { "pix_key", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateBankAccountRequest"/> class.
         /// </summary>
@@ -36,11 +44,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="holderDocument">holder_document.</param>
         /// <param name="bank">bank.</param>
         /// <param name="branchNumber">branch_number.</param>
-        /// <param name="branchCheckDigit">branch_check_digit.</param>
         /// <param name="accountNumber">account_number.</param>
         /// <param name="accountCheckDigit">account_check_digit.</param>
         /// <param name="type">type.</param>
         /// <param name="metadata">metadata.</param>
+        /// <param name="branchCheckDigit">branch_check_digit.</param>
         /// <param name="pixKey">pix_key.</param>
         public CreateBankAccountRequest(
             string holderName,
@@ -48,24 +56,32 @@ namespace PagarmeApiSDK.Standard.Models
             string holderDocument,
             string bank,
             string branchNumber,
-            string branchCheckDigit,
             string accountNumber,
             string accountCheckDigit,
             string type,
             Dictionary<string, string> metadata,
-            string pixKey)
+            string branchCheckDigit = null,
+            string pixKey = null)
         {
             this.HolderName = holderName;
             this.HolderType = holderType;
             this.HolderDocument = holderDocument;
             this.Bank = bank;
             this.BranchNumber = branchNumber;
-            this.BranchCheckDigit = branchCheckDigit;
+            if (branchCheckDigit != null)
+            {
+                this.BranchCheckDigit = branchCheckDigit;
+            }
+
             this.AccountNumber = accountNumber;
             this.AccountCheckDigit = accountCheckDigit;
             this.Type = type;
             this.Metadata = metadata;
-            this.PixKey = pixKey;
+            if (pixKey != null)
+            {
+                this.PixKey = pixKey;
+            }
+
         }
 
         /// <summary>
@@ -102,7 +118,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// Branch check digit
         /// </summary>
         [JsonProperty("branch_check_digit")]
-        public string BranchCheckDigit { get; set; }
+        public string BranchCheckDigit
+        {
+            get
+            {
+                return this.branchCheckDigit;
+            }
+
+            set
+            {
+                this.shouldSerialize["branch_check_digit"] = true;
+                this.branchCheckDigit = value;
+            }
+        }
 
         /// <summary>
         /// Account number
@@ -132,7 +160,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// Pix key
         /// </summary>
         [JsonProperty("pix_key")]
-        public string PixKey { get; set; }
+        public string PixKey
+        {
+            get
+            {
+                return this.pixKey;
+            }
+
+            set
+            {
+                this.shouldSerialize["pix_key"] = true;
+                this.pixKey = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -142,6 +182,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateBankAccountRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBranchCheckDigit()
+        {
+            this.shouldSerialize["branch_check_digit"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPixKey()
+        {
+            this.shouldSerialize["pix_key"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBranchCheckDigit()
+        {
+            return this.shouldSerialize["branch_check_digit"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePixKey()
+        {
+            return this.shouldSerialize["pix_key"];
         }
 
         /// <inheritdoc/>
