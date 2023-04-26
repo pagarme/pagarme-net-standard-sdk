@@ -288,7 +288,6 @@ UpdateRecipientBankAccountRequest request = new UpdateRecipientBankAccountReques
         HolderDocument = "holder_document4",
         Bank = "bank8",
         BranchNumber = "branch_number6",
-        BranchCheckDigit = "branch_check_digit6",
         AccountNumber = "account_number0",
         AccountCheckDigit = "account_check_digit6",
         Type = "type0",
@@ -297,7 +296,6 @@ UpdateRecipientBankAccountRequest request = new UpdateRecipientBankAccountReques
             ["key0"] = "metadata9",
             ["key1"] = "metadata8",
         },
-        PixKey = "pix_key4",
     },
     PaymentMode = "bank_transfer",
 };
@@ -861,7 +859,6 @@ CreateRecipientRequest request = new CreateRecipientRequest
         HolderDocument = "holder_document8",
         Bank = "bank2",
         BranchNumber = "branch_number0",
-        BranchCheckDigit = "branch_check_digit0",
         AccountNumber = "account_number4",
         AccountCheckDigit = "account_check_digit0",
         Type = "type4",
@@ -869,7 +866,6 @@ CreateRecipientRequest request = new CreateRecipientRequest
         {
             ["key0"] = "metadata5",
         },
-        PixKey = "pix_key8",
     },
     Metadata = new Dictionary<string, string>
     {

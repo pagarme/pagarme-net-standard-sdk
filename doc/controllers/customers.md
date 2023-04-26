@@ -68,7 +68,6 @@ UpdateCardRequest request = new UpdateCardRequest
     HolderName = "holder_name2",
     ExpMonth = 10,
     ExpYear = 30,
-    BillingAddressId = "billing_address_id2",
     BillingAddress = new CreateAddressRequest
     {
         Street = "street8",

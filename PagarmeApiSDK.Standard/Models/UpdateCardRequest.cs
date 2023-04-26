@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class UpdateCardRequest
     {
+        private string billingAddressId;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "billing_address_id", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCardRequest"/> class.
         /// </summary>
@@ -34,23 +40,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="holderName">holder_name.</param>
         /// <param name="expMonth">exp_month.</param>
         /// <param name="expYear">exp_year.</param>
-        /// <param name="billingAddressId">billing_address_id.</param>
         /// <param name="billingAddress">billing_address.</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="label">label.</param>
+        /// <param name="billingAddressId">billing_address_id.</param>
         public UpdateCardRequest(
             string holderName,
             int expMonth,
             int expYear,
-            string billingAddressId,
             Models.CreateAddressRequest billingAddress,
             Dictionary<string, string> metadata,
-            string label)
+            string label,
+            string billingAddressId = null)
         {
             this.HolderName = holderName;
             this.ExpMonth = expMonth;
             this.ExpYear = expYear;
-            this.BillingAddressId = billingAddressId;
+            if (billingAddressId != null)
+            {
+                this.BillingAddressId = billingAddressId;
+            }
+
             this.BillingAddress = billingAddress;
             this.Metadata = metadata;
             this.Label = label;
@@ -78,7 +88,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// Id of the address to be used as billing address
         /// </summary>
         [JsonProperty("billing_address_id")]
-        public string BillingAddressId { get; set; }
+        public string BillingAddressId
+        {
+            get
+            {
+                return this.billingAddressId;
+            }
+
+            set
+            {
+                this.shouldSerialize["billing_address_id"] = true;
+                this.billingAddressId = value;
+            }
+        }
 
         /// <summary>
         /// Billing address
@@ -106,6 +128,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"UpdateCardRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBillingAddressId()
+        {
+            this.shouldSerialize["billing_address_id"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBillingAddressId()
+        {
+            return this.shouldSerialize["billing_address_id"];
         }
 
         /// <inheritdoc/>
