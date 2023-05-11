@@ -186,11 +186,6 @@ UpdatePlanItemRequest body = new UpdatePlanItemRequest
                 StartQuantity = 31,
                 Price = 225,
             },
-            new UpdatePriceBracketRequest
-            {
-                StartQuantity = 32,
-                Price = 226,
-            },
         },
     },
 };
@@ -335,26 +330,6 @@ CreatePlanRequest body = new CreatePlanRequest
             },
             Id = "id3",
             Description = "description3",
-        },
-        new CreatePlanItemRequest
-        {
-            Name = "name4",
-            PricingScheme = new CreatePricingSchemeRequest
-            {
-                SchemeType = "scheme_type4",
-            },
-            Id = "id4",
-            Description = "description4",
-        },
-        new CreatePlanItemRequest
-        {
-            Name = "name5",
-            PricingScheme = new CreatePricingSchemeRequest
-            {
-                SchemeType = "scheme_type3",
-            },
-            Id = "id5",
-            Description = "description5",
         },
     },
     Shippable = false,

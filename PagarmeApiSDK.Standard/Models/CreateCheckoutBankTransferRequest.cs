@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCheckoutBankTransferRequest other &&
-                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
+            return obj is CreateCheckoutBankTransferRequest other &&                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
                 this.Retries.Equals(other.Retries);
         }
         

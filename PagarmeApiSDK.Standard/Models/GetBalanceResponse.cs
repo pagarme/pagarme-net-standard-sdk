@@ -281,9 +281,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetBalanceResponse other &&
-                ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
+            return obj is GetBalanceResponse other &&                ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
                 ((this.AvailableAmount == null && other.AvailableAmount == null) || (this.AvailableAmount?.Equals(other.AvailableAmount) == true)) &&
                 ((this.Recipient == null && other.Recipient == null) || (this.Recipient?.Equals(other.Recipient) == true)) &&
                 ((this.TransferredAmount == null && other.TransferredAmount == null) || (this.TransferredAmount?.Equals(other.TransferredAmount) == true)) &&

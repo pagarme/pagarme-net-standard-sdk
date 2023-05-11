@@ -193,9 +193,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetFineResponse other &&
-                ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true)) &&
+            return obj is GetFineResponse other &&                ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true));
         }

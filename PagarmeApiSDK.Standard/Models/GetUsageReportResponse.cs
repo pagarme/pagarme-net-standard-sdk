@@ -193,9 +193,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetUsageReportResponse other &&
-                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
+            return obj is GetUsageReportResponse other &&                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
                 ((this.UsageReportUrl == null && other.UsageReportUrl == null) || (this.UsageReportUrl?.Equals(other.UsageReportUrl) == true)) &&
                 ((this.GroupedReportUrl == null && other.GroupedReportUrl == null) || (this.GroupedReportUrl?.Equals(other.GroupedReportUrl) == true));
         }

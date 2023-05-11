@@ -93,9 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCaptureChargeRequest other &&
-                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
+            return obj is CreateCaptureChargeRequest other &&                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
                 ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
                 ((this.OperationReference == null && other.OperationReference == null) || (this.OperationReference?.Equals(other.OperationReference) == true));

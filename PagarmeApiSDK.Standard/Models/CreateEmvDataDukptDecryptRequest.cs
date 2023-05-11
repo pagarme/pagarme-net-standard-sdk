@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateEmvDataDukptDecryptRequest other &&
-                ((this.Ksn == null && other.Ksn == null) || (this.Ksn?.Equals(other.Ksn) == true));
+            return obj is CreateEmvDataDukptDecryptRequest other &&                ((this.Ksn == null && other.Ksn == null) || (this.Ksn?.Equals(other.Ksn) == true));
         }
         
         /// <summary>

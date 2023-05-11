@@ -150,9 +150,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetTransactionReportFileResponse other &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
+            return obj is GetTransactionReportFileResponse other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.Date == null && other.Date == null) || (this.Date?.Equals(other.Date) == true));
         }
         

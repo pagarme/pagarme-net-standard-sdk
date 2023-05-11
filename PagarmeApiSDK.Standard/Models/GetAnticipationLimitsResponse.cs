@@ -149,9 +149,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetAnticipationLimitsResponse other &&
-                ((this.Max == null && other.Max == null) || (this.Max?.Equals(other.Max) == true)) &&
+            return obj is GetAnticipationLimitsResponse other &&                ((this.Max == null && other.Max == null) || (this.Max?.Equals(other.Max) == true)) &&
                 ((this.Min == null && other.Min == null) || (this.Min?.Equals(other.Min) == true));
         }
         

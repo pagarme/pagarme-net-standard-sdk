@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateTransferRequest other &&
-                this.Amount.Equals(other.Amount) &&
+            return obj is CreateTransferRequest other &&                this.Amount.Equals(other.Amount) &&
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true));
         }
         

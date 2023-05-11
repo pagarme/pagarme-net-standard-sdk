@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateVoucherPaymentRequest
     {
+        private long? merchantCategoryCode;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "merchant_category_code", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateVoucherPaymentRequest"/> class.
         /// </summary>
@@ -36,18 +42,25 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="cardToken">card_token.</param>
         /// <param name="card">Card.</param>
         /// <param name="recurrencyCycle">recurrency_cycle.</param>
+        /// <param name="merchantCategoryCode">merchant_category_code.</param>
         public CreateVoucherPaymentRequest(
             string statementDescriptor = null,
             string cardId = null,
             string cardToken = null,
             Models.CreateCardRequest card = null,
-            string recurrencyCycle = null)
+            string recurrencyCycle = null,
+            long? merchantCategoryCode = null)
         {
             this.StatementDescriptor = statementDescriptor;
             this.CardId = cardId;
             this.CardToken = cardToken;
             this.Card = card;
             this.RecurrencyCycle = recurrencyCycle;
+            if (merchantCategoryCode != null)
+            {
+                this.MerchantCategoryCode = merchantCategoryCode;
+            }
+
         }
 
         /// <summary>
@@ -80,6 +93,24 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("recurrency_cycle", NullValueHandling = NullValueHandling.Ignore)]
         public string RecurrencyCycle { get; set; }
 
+        /// <summary>
+        /// Customer business segment code
+        /// </summary>
+        [JsonProperty("merchant_category_code")]
+        public long? MerchantCategoryCode
+        {
+            get
+            {
+                return this.merchantCategoryCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["merchant_category_code"] = true;
+                this.merchantCategoryCode = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -88,6 +119,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateVoucherPaymentRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMerchantCategoryCode()
+        {
+            this.shouldSerialize["merchant_category_code"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMerchantCategoryCode()
+        {
+            return this.shouldSerialize["merchant_category_code"];
         }
 
         /// <inheritdoc/>
@@ -102,13 +150,12 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateVoucherPaymentRequest other &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
+            return obj is CreateVoucherPaymentRequest other &&                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
                 ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
                 ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true)) &&
+                ((this.MerchantCategoryCode == null && other.MerchantCategoryCode == null) || (this.MerchantCategoryCode?.Equals(other.MerchantCategoryCode) == true));
         }
         
         /// <summary>
@@ -122,6 +169,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken == string.Empty ? "" : this.CardToken)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
             toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle == string.Empty ? "" : this.RecurrencyCycle)}");
+            toStringOutput.Add($"this.MerchantCategoryCode = {(this.MerchantCategoryCode == null ? "null" : this.MerchantCategoryCode.ToString())}");
         }
     }
 }

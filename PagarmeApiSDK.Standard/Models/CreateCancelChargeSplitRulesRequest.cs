@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCancelChargeSplitRulesRequest other &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
+            return obj is CreateCancelChargeSplitRulesRequest other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 this.Amount.Equals(other.Amount) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
         }

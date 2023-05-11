@@ -105,9 +105,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetGatewayErrorResponse other &&
-                ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true));
+            return obj is GetGatewayErrorResponse other &&                ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true));
         }
         
         /// <summary>

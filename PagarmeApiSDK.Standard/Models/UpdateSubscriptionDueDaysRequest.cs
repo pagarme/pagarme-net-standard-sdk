@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateSubscriptionDueDaysRequest other &&
-                this.BoletoDueDays.Equals(other.BoletoDueDays);
+            return obj is UpdateSubscriptionDueDaysRequest other &&                this.BoletoDueDays.Equals(other.BoletoDueDays);
         }
         
         /// <summary>

@@ -105,9 +105,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetCheckoutBankTransferPaymentResponse other &&
-                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true));
+            return obj is GetCheckoutBankTransferPaymentResponse other &&                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true));
         }
         
         /// <summary>

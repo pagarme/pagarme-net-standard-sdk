@@ -281,9 +281,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetAntifraudResponse other &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+            return obj is GetAntifraudResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.ReturnCode == null && other.ReturnCode == null) || (this.ReturnCode?.Equals(other.ReturnCode) == true)) &&
                 ((this.ReturnMessage == null && other.ReturnMessage == null) || (this.ReturnMessage?.Equals(other.ReturnMessage) == true)) &&
                 ((this.ProviderName == null && other.ProviderName == null) || (this.ProviderName?.Equals(other.ProviderName) == true)) &&

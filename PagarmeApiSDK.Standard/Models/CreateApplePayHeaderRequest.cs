@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateApplePayHeaderRequest other &&
-                ((this.PublicKeyHash == null && other.PublicKeyHash == null) || (this.PublicKeyHash?.Equals(other.PublicKeyHash) == true)) &&
+            return obj is CreateApplePayHeaderRequest other &&                ((this.PublicKeyHash == null && other.PublicKeyHash == null) || (this.PublicKeyHash?.Equals(other.PublicKeyHash) == true)) &&
                 ((this.EphemeralPublicKey == null && other.EphemeralPublicKey == null) || (this.EphemeralPublicKey?.Equals(other.EphemeralPublicKey) == true)) &&
                 ((this.TransactionId == null && other.TransactionId == null) || (this.TransactionId?.Equals(other.TransactionId) == true));
         }

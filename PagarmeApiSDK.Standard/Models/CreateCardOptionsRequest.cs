@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCardOptionsRequest other &&
-                this.VerifyCard.Equals(other.VerifyCard);
+            return obj is CreateCardOptionsRequest other &&                this.VerifyCard.Equals(other.VerifyCard);
         }
         
         /// <summary>

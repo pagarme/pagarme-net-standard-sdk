@@ -105,9 +105,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetChargesSummaryResponse other &&
-                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true));
+            return obj is GetChargesSummaryResponse other &&                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true));
         }
         
         /// <summary>

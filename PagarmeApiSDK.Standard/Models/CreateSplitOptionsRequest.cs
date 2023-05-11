@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateSplitOptionsRequest other &&
-                ((this.Liable == null && other.Liable == null) || (this.Liable?.Equals(other.Liable) == true)) &&
+            return obj is CreateSplitOptionsRequest other &&                ((this.Liable == null && other.Liable == null) || (this.Liable?.Equals(other.Liable) == true)) &&
                 ((this.ChargeProcessingFee == null && other.ChargeProcessingFee == null) || (this.ChargeProcessingFee?.Equals(other.ChargeProcessingFee) == true)) &&
                 ((this.ChargeRemainderFee == null && other.ChargeRemainderFee == null) || (this.ChargeRemainderFee?.Equals(other.ChargeRemainderFee) == true));
         }

@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateSetupRequest other &&
-                this.Amount.Equals(other.Amount) &&
+            return obj is CreateSetupRequest other &&                this.Amount.Equals(other.Amount) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 ((this.Payment == null && other.Payment == null) || (this.Payment?.Equals(other.Payment) == true));
         }

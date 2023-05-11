@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreatePaymentAuthenticationRequest other &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
+            return obj is CreatePaymentAuthenticationRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.ThreedSecure == null && other.ThreedSecure == null) || (this.ThreedSecure?.Equals(other.ThreedSecure) == true));
         }
         

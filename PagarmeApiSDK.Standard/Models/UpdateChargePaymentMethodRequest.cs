@@ -138,9 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateChargePaymentMethodRequest other &&
-                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
+            return obj is UpdateChargePaymentMethodRequest other &&                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
                 ((this.PaymentMethod == null && other.PaymentMethod == null) || (this.PaymentMethod?.Equals(other.PaymentMethod) == true)) &&
                 ((this.CreditCard == null && other.CreditCard == null) || (this.CreditCard?.Equals(other.CreditCard) == true)) &&
                 ((this.DebitCard == null && other.DebitCard == null) || (this.DebitCard?.Equals(other.DebitCard) == true)) &&

@@ -93,9 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateEmvDecryptRequest other &&
-                ((this.IccData == null && other.IccData == null) || (this.IccData?.Equals(other.IccData) == true)) &&
+            return obj is CreateEmvDecryptRequest other &&                ((this.IccData == null && other.IccData == null) || (this.IccData?.Equals(other.IccData) == true)) &&
                 ((this.CardSequenceNumber == null && other.CardSequenceNumber == null) || (this.CardSequenceNumber?.Equals(other.CardSequenceNumber) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
                 ((this.Poi == null && other.Poi == null) || (this.Poi?.Equals(other.Poi) == true));

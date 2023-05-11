@@ -193,9 +193,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is PagingResponse other &&
-                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true)) &&
+            return obj is PagingResponse other &&                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true)) &&
                 ((this.Previous == null && other.Previous == null) || (this.Previous?.Equals(other.Previous) == true)) &&
                 ((this.Next == null && other.Next == null) || (this.Next?.Equals(other.Next) == true));
         }

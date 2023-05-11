@@ -102,9 +102,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateAutomaticAnticipationSettingsRequest other &&
-                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
+            return obj is UpdateAutomaticAnticipationSettingsRequest other &&                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.VolumePercentage == null && other.VolumePercentage == null) || (this.VolumePercentage?.Equals(other.VolumePercentage) == true)) &&
                 ((this.Delay == null && other.Delay == null) || (this.Delay?.Equals(other.Delay) == true)) &&

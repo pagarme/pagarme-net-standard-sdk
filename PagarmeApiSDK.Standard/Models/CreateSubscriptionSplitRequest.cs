@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateSubscriptionSplitRequest other &&
-                this.Enabled.Equals(other.Enabled) &&
+            return obj is CreateSubscriptionSplitRequest other &&                this.Enabled.Equals(other.Enabled) &&
                 ((this.Rules == null && other.Rules == null) || (this.Rules?.Equals(other.Rules) == true));
         }
         

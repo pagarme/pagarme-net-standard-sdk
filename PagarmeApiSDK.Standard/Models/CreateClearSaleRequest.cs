@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateClearSaleRequest other &&
-                this.CustomSla.Equals(other.CustomSla);
+            return obj is CreateClearSaleRequest other &&                this.CustomSla.Equals(other.CustomSla);
         }
         
         /// <summary>

@@ -93,9 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateOrderItemRequest other &&
-                this.Amount.Equals(other.Amount) &&
+            return obj is UpdateOrderItemRequest other &&                this.Amount.Equals(other.Amount) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 this.Quantity.Equals(other.Quantity) &&
                 ((this.Category == null && other.Category == null) || (this.Category?.Equals(other.Category) == true));

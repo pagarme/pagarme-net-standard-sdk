@@ -871,9 +871,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetBoletoTransactionResponse other &&
-                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
+            return obj is GetBoletoTransactionResponse other &&                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
                 ((this.Barcode == null && other.Barcode == null) || (this.Barcode?.Equals(other.Barcode) == true)) &&
                 ((this.NossoNumero == null && other.NossoNumero == null) || (this.NossoNumero?.Equals(other.NossoNumero) == true)) &&
                 ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&

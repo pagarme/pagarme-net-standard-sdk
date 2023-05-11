@@ -112,9 +112,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateUsageRequest other &&
-                this.Quantity.Equals(other.Quantity) &&
+            return obj is CreateUsageRequest other &&                this.Quantity.Equals(other.Quantity) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 this.UsedAt.Equals(other.UsedAt) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&

@@ -129,9 +129,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateSubMerchantRequest other &&
-                ((this.PaymentFacilitatorCode == null && other.PaymentFacilitatorCode == null) || (this.PaymentFacilitatorCode?.Equals(other.PaymentFacilitatorCode) == true)) &&
+            return obj is CreateSubMerchantRequest other &&                ((this.PaymentFacilitatorCode == null && other.PaymentFacilitatorCode == null) || (this.PaymentFacilitatorCode?.Equals(other.PaymentFacilitatorCode) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
                 ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.MerchantCategoryCode == null && other.MerchantCategoryCode == null) || (this.MerchantCategoryCode?.Equals(other.MerchantCategoryCode) == true)) &&

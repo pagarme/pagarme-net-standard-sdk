@@ -105,9 +105,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetDeviceResponse other &&
-                ((this.Platform == null && other.Platform == null) || (this.Platform?.Equals(other.Platform) == true));
+            return obj is GetDeviceResponse other &&                ((this.Platform == null && other.Platform == null) || (this.Platform?.Equals(other.Platform) == true));
         }
         
         /// <summary>

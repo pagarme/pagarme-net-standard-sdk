@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagarmeApiSDK.Standard", "PagarmeApiSDK.Standard/PagarmeApiSDK.Standard.csproj", "{368aae47-75cf-4027-96e5-8a62fa7d4b18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagarmeApiSDK.Standard", "PagarmeApiSDK.Standard/PagarmeApiSDK.Standard.csproj", "{e7480ad9-3283-49e7-96da-1729f4e952d3}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +10,10 @@ Global
         Release|Any CPU = Release|Any CPU
     EndGlobalSection
     GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {368aae47-75cf-4027-96e5-8a62fa7d4b18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {368aae47-75cf-4027-96e5-8a62fa7d4b18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {368aae47-75cf-4027-96e5-8a62fa7d4b18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {368aae47-75cf-4027-96e5-8a62fa7d4b18}.Release|Any CPU.Build.0 = Release|Any CPU
+        {e7480ad9-3283-49e7-96da-1729f4e952d3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {e7480ad9-3283-49e7-96da-1729f4e952d3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {e7480ad9-3283-49e7-96da-1729f4e952d3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {e7480ad9-3283-49e7-96da-1729f4e952d3}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
     GlobalSection(SolutionProperties) = preSolution
         HideSolutionNode = FALSE

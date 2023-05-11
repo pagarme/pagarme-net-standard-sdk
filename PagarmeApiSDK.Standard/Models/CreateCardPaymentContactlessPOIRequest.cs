@@ -102,9 +102,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCardPaymentContactlessPOIRequest other &&
-                ((this.SystemName == null && other.SystemName == null) || (this.SystemName?.Equals(other.SystemName) == true)) &&
+            return obj is CreateCardPaymentContactlessPOIRequest other &&                ((this.SystemName == null && other.SystemName == null) || (this.SystemName?.Equals(other.SystemName) == true)) &&
                 ((this.Model == null && other.Model == null) || (this.Model?.Equals(other.Model) == true)) &&
                 ((this.Provider == null && other.Provider == null) || (this.Provider?.Equals(other.Provider) == true)) &&
                 ((this.SerialNumber == null && other.SerialNumber == null) || (this.SerialNumber?.Equals(other.SerialNumber) == true)) &&

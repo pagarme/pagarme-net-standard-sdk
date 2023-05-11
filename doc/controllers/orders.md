@@ -266,20 +266,6 @@ CreateOrderRequest body = new CreateOrderRequest
             Quantity = 215,
             Category = "category1",
         },
-        new CreateOrderItemRequest
-        {
-            Amount = 102,
-            Description = "description4",
-            Quantity = 216,
-            Category = "category2",
-        },
-        new CreateOrderItemRequest
-        {
-            Amount = 103,
-            Description = "description5",
-            Quantity = 217,
-            Category = "category3",
-        },
     },
     Customer = new CreateCustomerRequest
     {
@@ -320,10 +306,6 @@ CreateOrderRequest body = new CreateOrderRequest
         new CreatePaymentRequest
         {
             PaymentMethod = "payment_method0",
-        },
-        new CreatePaymentRequest
-        {
-            PaymentMethod = "payment_method9",
         },
     },
     Code = "code4",

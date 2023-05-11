@@ -149,9 +149,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetSubscriptionSplitResponse other &&
-                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
+            return obj is GetSubscriptionSplitResponse other &&                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
                 ((this.Rules == null && other.Rules == null) || (this.Rules?.Equals(other.Rules) == true));
         }
         

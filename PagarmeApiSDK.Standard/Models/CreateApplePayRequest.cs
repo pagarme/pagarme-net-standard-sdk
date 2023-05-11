@@ -102,9 +102,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateApplePayRequest other &&
-                ((this.Version == null && other.Version == null) || (this.Version?.Equals(other.Version) == true)) &&
+            return obj is CreateApplePayRequest other &&                ((this.Version == null && other.Version == null) || (this.Version?.Equals(other.Version) == true)) &&
                 ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
                 ((this.Header == null && other.Header == null) || (this.Header?.Equals(other.Header) == true)) &&
                 ((this.Signature == null && other.Signature == null) || (this.Signature?.Equals(other.Signature) == true)) &&
