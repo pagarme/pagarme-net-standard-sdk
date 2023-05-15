@@ -503,9 +503,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetDiscountResponse other &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
+            return obj is GetDiscountResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.MValue == null && other.MValue == null) || (this.MValue?.Equals(other.MValue) == true)) &&
                 ((this.DiscountType == null && other.DiscountType == null) || (this.DiscountType?.Equals(other.DiscountType) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&

@@ -149,9 +149,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is PixAdditionalInformation other &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
+            return obj is PixAdditionalInformation other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.MValue == null && other.MValue == null) || (this.MValue?.Equals(other.MValue) == true));
         }
         

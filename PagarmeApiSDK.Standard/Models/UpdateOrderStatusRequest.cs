@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateOrderStatusRequest other &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true));
+            return obj is UpdateOrderStatusRequest other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true));
         }
         
         /// <summary>

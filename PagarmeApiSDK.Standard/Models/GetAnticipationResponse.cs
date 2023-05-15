@@ -504,9 +504,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetAnticipationResponse other &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
+            return obj is GetAnticipationResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.RequestedAmount == null && other.RequestedAmount == null) || (this.RequestedAmount?.Equals(other.RequestedAmount) == true)) &&
                 ((this.ApprovedAmount == null && other.ApprovedAmount == null) || (this.ApprovedAmount?.Equals(other.ApprovedAmount) == true)) &&
                 ((this.Recipient == null && other.Recipient == null) || (this.Recipient?.Equals(other.Recipient) == true)) &&

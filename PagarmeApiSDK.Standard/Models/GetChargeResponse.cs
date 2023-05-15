@@ -990,9 +990,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetChargeResponse other &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
+            return obj is GetChargeResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
                 ((this.GatewayId == null && other.GatewayId == null) || (this.GatewayId?.Equals(other.GatewayId) == true)) &&
                 ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&

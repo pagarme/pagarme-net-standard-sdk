@@ -85,9 +85,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateTransactionReportFileRequest other &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
+            return obj is CreateTransactionReportFileRequest other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.StartAt == null && other.StartAt == null) || (this.StartAt?.Equals(other.StartAt) == true)) &&
                 ((this.EndAt == null && other.EndAt == null) || (this.EndAt?.Equals(other.EndAt) == true));
         }

@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateTransferSettingsRequest other &&
-                ((this.TransferEnabled == null && other.TransferEnabled == null) || (this.TransferEnabled?.Equals(other.TransferEnabled) == true)) &&
+            return obj is UpdateTransferSettingsRequest other &&                ((this.TransferEnabled == null && other.TransferEnabled == null) || (this.TransferEnabled?.Equals(other.TransferEnabled) == true)) &&
                 ((this.TransferInterval == null && other.TransferInterval == null) || (this.TransferInterval?.Equals(other.TransferInterval) == true)) &&
                 ((this.TransferDay == null && other.TransferDay == null) || (this.TransferDay?.Equals(other.TransferDay) == true));
         }

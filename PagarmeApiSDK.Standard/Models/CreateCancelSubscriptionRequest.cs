@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCancelSubscriptionRequest other &&
-                this.CancelPendingInvoices.Equals(other.CancelPendingInvoices);
+            return obj is CreateCancelSubscriptionRequest other &&                this.CancelPendingInvoices.Equals(other.CancelPendingInvoices);
         }
         
         /// <summary>

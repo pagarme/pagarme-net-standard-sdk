@@ -281,9 +281,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetPricingSchemeResponse other &&
-                ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
+            return obj is GetPricingSchemeResponse other &&                ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
                 ((this.SchemeType == null && other.SchemeType == null) || (this.SchemeType?.Equals(other.SchemeType) == true)) &&
                 ((this.PriceBrackets == null && other.PriceBrackets == null) || (this.PriceBrackets?.Equals(other.PriceBrackets) == true)) &&
                 ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true)) &&

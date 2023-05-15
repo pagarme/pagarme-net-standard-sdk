@@ -102,6 +102,7 @@ namespace PagarmeApiSDK.Standard.Http.Client
         public class Builder
         {
             internal CoreHttpClientConfiguration.Builder CoreHttpClientConfigurationBuilder { private get; set; } = new CoreHttpClientConfiguration.Builder();
+
             /// <summary>
             /// Sets the Timeout.
             /// </summary>

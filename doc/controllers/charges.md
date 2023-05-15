@@ -564,59 +564,10 @@ CreateChargeAsync(
 ```csharp
 CreateChargeRequest request = new CreateChargeRequest
 {
-    Code = "code4",
     Amount = 242,
-    CustomerId = "customer_id4",
-    Customer = new CreateCustomerRequest
-    {
-        Name = "{\\n    \"name\": \"Tony Stark\"\\n}",
-        Email = "email0",
-        Document = "document0",
-        Type = "type4",
-        Address = new CreateAddressRequest
-        {
-            Street = "street2",
-            Number = "number0",
-            ZipCode = "zip_code6",
-            Neighborhood = "neighborhood8",
-            City = "city2",
-            State = "state8",
-            Country = "country6",
-            Complement = "complement8",
-            Metadata = new Dictionary<string, string>
-            {
-                ["key0"] = "metadata7",
-                ["key1"] = "metadata6",
-            },
-            Line1 = "line_16",
-            Line2 = "line_20",
-        },
-        Metadata = new Dictionary<string, string>
-        {
-            ["key0"] = "metadata3",
-            ["key1"] = "metadata2",
-            ["key2"] = "metadata1",
-        },
-        Phones = new CreatePhonesRequest
-        {
-        },
-        Code = "code4",
-    },
     Payment = new CreatePaymentRequest
     {
         PaymentMethod = "payment_method2",
-    },
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
-    Antifraud = new CreateAntifraudRequest
-    {
-        Type = "type0",
-        Clearsale = new CreateClearSaleRequest
-        {
-            CustomSla = 52,
-        },
     },
     OrderId = "order_id0",
 };

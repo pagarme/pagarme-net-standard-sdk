@@ -164,9 +164,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetCashTransactionResponse other &&
-                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
+            return obj is GetCashTransactionResponse other &&                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 base.Equals(obj);
         }
         

@@ -147,9 +147,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCustomerRequest other &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
+            return obj is CreateCustomerRequest other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.Email == null && other.Email == null) || (this.Email?.Equals(other.Email) == true)) &&
                 ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&

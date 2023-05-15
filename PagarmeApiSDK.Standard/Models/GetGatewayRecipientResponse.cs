@@ -281,9 +281,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetGatewayRecipientResponse other &&
-                ((this.Gateway == null && other.Gateway == null) || (this.Gateway?.Equals(other.Gateway) == true)) &&
+            return obj is GetGatewayRecipientResponse other &&                ((this.Gateway == null && other.Gateway == null) || (this.Gateway?.Equals(other.Gateway) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.Pgid == null && other.Pgid == null) || (this.Pgid?.Equals(other.Pgid) == true)) &&
                 ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&

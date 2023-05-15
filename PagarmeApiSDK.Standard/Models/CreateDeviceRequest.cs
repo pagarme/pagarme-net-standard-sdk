@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateDeviceRequest other &&
-                ((this.Platform == null && other.Platform == null) || (this.Platform?.Equals(other.Platform) == true));
+            return obj is CreateDeviceRequest other &&                ((this.Platform == null && other.Platform == null) || (this.Platform?.Equals(other.Platform) == true));
         }
         
         /// <summary>

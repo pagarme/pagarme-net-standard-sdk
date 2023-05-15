@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateRecipientBankAccountRequest other &&
-                ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true)) &&
+            return obj is UpdateRecipientBankAccountRequest other &&                ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true)) &&
                 ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true));
         }
         

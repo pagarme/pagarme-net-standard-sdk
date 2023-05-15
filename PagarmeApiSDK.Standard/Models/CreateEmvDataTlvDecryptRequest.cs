@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateEmvDataTlvDecryptRequest other &&
-                ((this.Tag == null && other.Tag == null) || (this.Tag?.Equals(other.Tag) == true)) &&
+            return obj is CreateEmvDataTlvDecryptRequest other &&                ((this.Tag == null && other.Tag == null) || (this.Tag?.Equals(other.Tag) == true)) &&
                 ((this.Lenght == null && other.Lenght == null) || (this.Lenght?.Equals(other.Lenght) == true)) &&
                 ((this.MValue == null && other.MValue == null) || (this.MValue?.Equals(other.MValue) == true));
         }

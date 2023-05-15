@@ -67,9 +67,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateSubscriptionBillingDateRequest other &&
-                this.NextBillingAt.Equals(other.NextBillingAt);
+            return obj is UpdateSubscriptionBillingDateRequest other &&                this.NextBillingAt.Equals(other.NextBillingAt);
         }
         
         /// <summary>

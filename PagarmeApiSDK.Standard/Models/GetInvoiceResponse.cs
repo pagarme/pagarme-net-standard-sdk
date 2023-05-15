@@ -1078,9 +1078,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetInvoiceResponse other &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
+            return obj is GetInvoiceResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
                 ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
                 ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&

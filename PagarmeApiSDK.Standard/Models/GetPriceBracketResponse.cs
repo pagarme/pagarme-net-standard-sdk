@@ -237,9 +237,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetPriceBracketResponse other &&
-                ((this.StartQuantity == null && other.StartQuantity == null) || (this.StartQuantity?.Equals(other.StartQuantity) == true)) &&
+            return obj is GetPriceBracketResponse other &&                ((this.StartQuantity == null && other.StartQuantity == null) || (this.StartQuantity?.Equals(other.StartQuantity) == true)) &&
                 ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
                 ((this.EndQuantity == null && other.EndQuantity == null) || (this.EndQuantity?.Equals(other.EndQuantity) == true)) &&
                 ((this.OveragePrice == null && other.OveragePrice == null) || (this.OveragePrice?.Equals(other.OveragePrice) == true));

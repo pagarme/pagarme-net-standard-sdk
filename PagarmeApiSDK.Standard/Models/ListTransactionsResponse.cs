@@ -149,9 +149,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is ListTransactionsResponse other &&
-                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
+            return obj is ListTransactionsResponse other &&                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
                 ((this.Paging == null && other.Paging == null) || (this.Paging?.Equals(other.Paging) == true));
         }
         

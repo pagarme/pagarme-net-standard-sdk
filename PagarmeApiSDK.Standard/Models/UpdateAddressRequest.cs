@@ -93,9 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateAddressRequest other &&
-                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
+            return obj is UpdateAddressRequest other &&                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
                 ((this.Complement == null && other.Complement == null) || (this.Complement?.Equals(other.Complement) == true)) &&
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
                 ((this.Line2 == null && other.Line2 == null) || (this.Line2?.Equals(other.Line2) == true));

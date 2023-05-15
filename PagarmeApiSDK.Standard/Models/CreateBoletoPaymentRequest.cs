@@ -380,9 +380,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateBoletoPaymentRequest other &&
-                this.Retries.Equals(other.Retries) &&
+            return obj is CreateBoletoPaymentRequest other &&                this.Retries.Equals(other.Retries) &&
                 ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
                 ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true)) &&
                 ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true)) &&

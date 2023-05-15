@@ -85,9 +85,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCheckoutBoletoPaymentRequest other &&
-                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
+            return obj is CreateCheckoutBoletoPaymentRequest other &&                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
                 ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true)) &&
                 this.DueAt.Equals(other.DueAt);
         }

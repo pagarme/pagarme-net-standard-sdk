@@ -67,9 +67,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateChargeDueDateRequest other &&
-                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true));
+            return obj is UpdateChargeDueDateRequest other &&                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true));
         }
         
         /// <summary>

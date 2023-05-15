@@ -85,9 +85,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateAnticipationRequest other &&
-                this.Amount.Equals(other.Amount) &&
+            return obj is CreateAnticipationRequest other &&                this.Amount.Equals(other.Amount) &&
                 ((this.Timeframe == null && other.Timeframe == null) || (this.Timeframe?.Equals(other.Timeframe) == true)) &&
                 this.PaymentDate.Equals(other.PaymentDate);
         }

@@ -385,9 +385,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetPixTransactionResponse other &&
-                ((this.QrCode == null && other.QrCode == null) || (this.QrCode?.Equals(other.QrCode) == true)) &&
+            return obj is GetPixTransactionResponse other &&                ((this.QrCode == null && other.QrCode == null) || (this.QrCode?.Equals(other.QrCode) == true)) &&
                 ((this.QrCodeUrl == null && other.QrCodeUrl == null) || (this.QrCodeUrl?.Equals(other.QrCodeUrl) == true)) &&
                 ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
                 ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true)) &&

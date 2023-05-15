@@ -149,9 +149,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetTransferTargetResponse other &&
-                ((this.TargetId == null && other.TargetId == null) || (this.TargetId?.Equals(other.TargetId) == true)) &&
+            return obj is GetTransferTargetResponse other &&                ((this.TargetId == null && other.TargetId == null) || (this.TargetId?.Equals(other.TargetId) == true)) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
         }
         

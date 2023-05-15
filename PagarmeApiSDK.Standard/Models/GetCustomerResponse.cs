@@ -723,9 +723,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetCustomerResponse other &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
+            return obj is GetCustomerResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.Email == null && other.Email == null) || (this.Email?.Equals(other.Email) == true)) &&
                 ((this.Delinquent == null && other.Delinquent == null) || (this.Delinquent?.Equals(other.Delinquent) == true)) &&

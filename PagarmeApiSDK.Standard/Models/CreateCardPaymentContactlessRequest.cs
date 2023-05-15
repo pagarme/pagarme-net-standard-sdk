@@ -93,9 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCardPaymentContactlessRequest other &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
+            return obj is CreateCardPaymentContactlessRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.ApplePay == null && other.ApplePay == null) || (this.ApplePay?.Equals(other.ApplePay) == true)) &&
                 ((this.GooglePay == null && other.GooglePay == null) || (this.GooglePay?.Equals(other.GooglePay) == true)) &&
                 ((this.Emv == null && other.Emv == null) || (this.Emv?.Equals(other.Emv) == true));

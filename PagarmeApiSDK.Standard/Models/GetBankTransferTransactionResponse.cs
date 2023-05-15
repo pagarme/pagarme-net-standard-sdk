@@ -162,9 +162,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetBankTransferTransactionResponse other &&
-                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
+            return obj is GetBankTransferTransactionResponse other &&                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
                 ((this.BankTid == null && other.BankTid == null) || (this.BankTid?.Equals(other.BankTid) == true)) &&
                 ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
                 ((this.PaidAt == null && other.PaidAt == null) || (this.PaidAt?.Equals(other.PaidAt) == true)) &&

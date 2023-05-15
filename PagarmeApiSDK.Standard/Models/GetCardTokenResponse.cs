@@ -413,9 +413,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetCardTokenResponse other &&
-                ((this.LastFourDigits == null && other.LastFourDigits == null) || (this.LastFourDigits?.Equals(other.LastFourDigits) == true)) &&
+            return obj is GetCardTokenResponse other &&                ((this.LastFourDigits == null && other.LastFourDigits == null) || (this.LastFourDigits?.Equals(other.LastFourDigits) == true)) &&
                 ((this.HolderName == null && other.HolderName == null) || (this.HolderName?.Equals(other.HolderName) == true)) &&
                 ((this.HolderDocument == null && other.HolderDocument == null) || (this.HolderDocument?.Equals(other.HolderDocument) == true)) &&
                 ((this.ExpMonth == null && other.ExpMonth == null) || (this.ExpMonth?.Equals(other.ExpMonth) == true)) &&

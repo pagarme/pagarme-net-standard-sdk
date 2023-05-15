@@ -297,9 +297,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetSafetyPayTransactionResponse other &&
-                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
+            return obj is GetSafetyPayTransactionResponse other &&                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
                 ((this.BankTid == null && other.BankTid == null) || (this.BankTid?.Equals(other.BankTid) == true)) &&
                 ((this.PaidAt == null && other.PaidAt == null) || (this.PaidAt?.Equals(other.PaidAt) == true)) &&
                 ((this.PaidAmount == null && other.PaidAmount == null) || (this.PaidAmount?.Equals(other.PaidAmount) == true)) &&

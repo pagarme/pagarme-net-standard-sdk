@@ -93,9 +93,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateChargeCardRequest other &&
-                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
+            return obj is UpdateChargeCardRequest other &&                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
                 ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
                 this.Recurrence.Equals(other.Recurrence);

@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateAntifraudRequest other &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
+            return obj is CreateAntifraudRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.Clearsale == null && other.Clearsale == null) || (this.Clearsale?.Equals(other.Clearsale) == true));
         }
         

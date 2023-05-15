@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateCheckoutCardInstallmentOptionRequest other &&
-                this.Number.Equals(other.Number) &&
+            return obj is CreateCheckoutCardInstallmentOptionRequest other &&                this.Number.Equals(other.Number) &&
                 this.Total.Equals(other.Total);
         }
         

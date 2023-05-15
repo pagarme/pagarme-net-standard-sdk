@@ -84,9 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateFineRequest other &&
-                this.Days.Equals(other.Days) &&
+            return obj is CreateFineRequest other &&                this.Days.Equals(other.Days) &&
                 ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 this.Amount.Equals(other.Amount);
         }

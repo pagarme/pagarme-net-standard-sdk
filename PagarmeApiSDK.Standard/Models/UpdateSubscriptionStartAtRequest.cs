@@ -67,9 +67,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateSubscriptionStartAtRequest other &&
-                this.StartAt.Equals(other.StartAt);
+            return obj is UpdateSubscriptionStartAtRequest other &&                this.StartAt.Equals(other.StartAt);
         }
         
         /// <summary>

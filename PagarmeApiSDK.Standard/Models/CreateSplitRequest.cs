@@ -102,9 +102,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateSplitRequest other &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
+            return obj is CreateSplitRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 this.Amount.Equals(other.Amount) &&
                 ((this.RecipientId == null && other.RecipientId == null) || (this.RecipientId?.Equals(other.RecipientId) == true)) &&
                 ((this.Options == null && other.Options == null) || (this.Options?.Equals(other.Options) == true)) &&

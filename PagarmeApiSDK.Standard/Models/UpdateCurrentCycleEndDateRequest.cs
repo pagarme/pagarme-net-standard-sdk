@@ -67,9 +67,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateCurrentCycleEndDateRequest other &&
-                ((this.EndAt == null && other.EndAt == null) || (this.EndAt?.Equals(other.EndAt) == true));
+            return obj is UpdateCurrentCycleEndDateRequest other &&                ((this.EndAt == null && other.EndAt == null) || (this.EndAt?.Equals(other.EndAt) == true));
         }
         
         /// <summary>

@@ -219,9 +219,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreatePlanRequest other &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
+            return obj is CreatePlanRequest other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
                 ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
                 ((this.Items == null && other.Items == null) || (this.Items?.Equals(other.Items) == true)) &&

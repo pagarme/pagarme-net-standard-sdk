@@ -237,9 +237,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is GetPixBankAccountResponse other &&
-                ((this.BankName == null && other.BankName == null) || (this.BankName?.Equals(other.BankName) == true)) &&
+            return obj is GetPixBankAccountResponse other &&                ((this.BankName == null && other.BankName == null) || (this.BankName?.Equals(other.BankName) == true)) &&
                 ((this.Ispb == null && other.Ispb == null) || (this.Ispb?.Equals(other.Ispb) == true)) &&
                 ((this.BranchCode == null && other.BranchCode == null) || (this.BranchCode?.Equals(other.BranchCode) == true)) &&
                 ((this.AccountNumber == null && other.AccountNumber == null) || (this.AccountNumber?.Equals(other.AccountNumber) == true));

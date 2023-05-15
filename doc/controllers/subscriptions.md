@@ -813,64 +813,6 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
             },
             Name = "name3",
         },
-        new CreateSubscriptionItemRequest
-        {
-            Description = "description4",
-            PricingScheme = new CreatePricingSchemeRequest
-            {
-                SchemeType = "scheme_type4",
-            },
-            Id = "id4",
-            PlanItemId = "plan_item_id4",
-            Discounts = new List<Models.CreateDiscountRequest>
-            {
-                new CreateDiscountRequest
-                {
-                    MValue = 65.47,
-                    DiscountType = "discount_type3",
-                    ItemId = "item_id5",
-                },
-                new CreateDiscountRequest
-                {
-                    MValue = 65.48,
-                    DiscountType = "discount_type4",
-                    ItemId = "item_id6",
-                },
-            },
-            Name = "name4",
-        },
-        new CreateSubscriptionItemRequest
-        {
-            Description = "description5",
-            PricingScheme = new CreatePricingSchemeRequest
-            {
-                SchemeType = "scheme_type3",
-            },
-            Id = "id5",
-            PlanItemId = "plan_item_id5",
-            Discounts = new List<Models.CreateDiscountRequest>
-            {
-                new CreateDiscountRequest
-                {
-                    MValue = 65.48,
-                    DiscountType = "discount_type4",
-                    ItemId = "item_id6",
-                },
-                new CreateDiscountRequest
-                {
-                    MValue = 65.49,
-                    DiscountType = "discount_type5",
-                    ItemId = "item_id7",
-                },
-                new CreateDiscountRequest
-                {
-                    MValue = 65.5,
-                    DiscountType = "discount_type6",
-                    ItemId = "item_id8",
-                },
-            },
-            Name = "name5",
-        },
     },
     Shipping = new CreateShippingRequest
     {
@@ -920,18 +862,6 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
             MValue = 38.83,
             IncrementType = "increment_type3",
             ItemId = "item_id9",
-        },
-        new CreateIncrementRequest
-        {
-            MValue = 38.84,
-            IncrementType = "increment_type4",
-            ItemId = "item_id8",
-        },
-        new CreateIncrementRequest
-        {
-            MValue = 38.85,
-            IncrementType = "increment_type5",
-            ItemId = "item_id7",
         },
     },
 };
@@ -1452,11 +1382,6 @@ UpdateSubscriptionItemRequest body = new UpdateSubscriptionItemRequest
                 StartQuantity = 31,
                 Price = 225,
             },
-            new UpdatePriceBracketRequest
-            {
-                StartQuantity = 32,
-                Price = 226,
-            },
         },
     },
     Name = "name6",
@@ -1517,12 +1442,6 @@ CreateSubscriptionItemRequest request = new CreateSubscriptionItemRequest
             MValue = 199.99,
             DiscountType = "discount_type5",
             ItemId = "item_id7",
-        },
-        new CreateDiscountRequest
-        {
-            MValue = 200,
-            DiscountType = "discount_type6",
-            ItemId = "item_id8",
         },
     },
     Name = "name6",
@@ -1814,18 +1733,6 @@ UpdateSubscriptionSplitRequest request = new UpdateSubscriptionSplitRequest
             Type = "type6",
             Amount = 222,
             RecipientId = "recipient_id6",
-        },
-        new CreateSplitRequest
-        {
-            Type = "type5",
-            Amount = 223,
-            RecipientId = "recipient_id5",
-        },
-        new CreateSplitRequest
-        {
-            Type = "type4",
-            Amount = 224,
-            RecipientId = "recipient_id4",
         },
     },
 };

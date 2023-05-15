@@ -66,9 +66,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is UpdateSubscriptionMinimumPriceRequest other &&
-                ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true));
+            return obj is UpdateSubscriptionMinimumPriceRequest other &&                ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true));
         }
         
         /// <summary>

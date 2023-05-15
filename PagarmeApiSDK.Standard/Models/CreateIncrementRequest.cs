@@ -102,9 +102,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateIncrementRequest other &&
-                this.MValue.Equals(other.MValue) &&
+            return obj is CreateIncrementRequest other &&                this.MValue.Equals(other.MValue) &&
                 ((this.IncrementType == null && other.IncrementType == null) || (this.IncrementType?.Equals(other.IncrementType) == true)) &&
                 ((this.ItemId == null && other.ItemId == null) || (this.ItemId?.Equals(other.ItemId) == true)) &&
                 ((this.Cycles == null && other.Cycles == null) || (this.Cycles?.Equals(other.Cycles) == true)) &&

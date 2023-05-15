@@ -75,9 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-
-            return obj is CreateTokenRequest other &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
+            return obj is CreateTokenRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true));
         }
         
