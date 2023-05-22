@@ -27,6 +27,7 @@ namespace PagarmeApiSDK.Standard.Models
         private List<Models.PixAdditionalInformation> additionalInformation;
         private string endToEndId;
         private Models.GetPixPayerResponse payer;
+        private string providerTransactionId;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "qr_code", false },
@@ -35,6 +36,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "additional_information", false },
             { "end_to_end_id", false },
             { "payer", false },
+            { "provider_transaction_id", false },
         };
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="additionalInformation">additional_information.</param>
         /// <param name="endToEndId">end_to_end_id.</param>
         /// <param name="payer">payer.</param>
+        /// <param name="providerTransactionId">provider_transaction_id.</param>
         public GetPixTransactionResponse(
             string transactionType = "pix",
             string gatewayId = null,
@@ -98,7 +101,8 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? expiresAt = null,
             List<Models.PixAdditionalInformation> additionalInformation = null,
             string endToEndId = null,
-            Models.GetPixPayerResponse payer = null)
+            Models.GetPixPayerResponse payer = null,
+            string providerTransactionId = null)
             : base(
                 transactionType,
                 gatewayId,
@@ -148,6 +152,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (payer != null)
             {
                 this.Payer = payer;
+            }
+
+            if (providerTransactionId != null)
+            {
+                this.ProviderTransactionId = providerTransactionId;
             }
 
         }
@@ -261,6 +270,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Provider transaction id
+        /// </summary>
+        [JsonProperty("provider_transaction_id")]
+        public string ProviderTransactionId
+        {
+            get
+            {
+                return this.providerTransactionId;
+            }
+
+            set
+            {
+                this.shouldSerialize["provider_transaction_id"] = true;
+                this.providerTransactionId = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -320,6 +347,14 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetProviderTransactionId()
+        {
+            this.shouldSerialize["provider_transaction_id"] = false;
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -373,6 +408,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["payer"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeProviderTransactionId()
+        {
+            return this.shouldSerialize["provider_transaction_id"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -391,6 +435,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true)) &&
                 ((this.EndToEndId == null && other.EndToEndId == null) || (this.EndToEndId?.Equals(other.EndToEndId) == true)) &&
                 ((this.Payer == null && other.Payer == null) || (this.Payer?.Equals(other.Payer) == true)) &&
+                ((this.ProviderTransactionId == null && other.ProviderTransactionId == null) || (this.ProviderTransactionId?.Equals(other.ProviderTransactionId) == true)) &&
                 base.Equals(obj);
         }
         
@@ -406,6 +451,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
             toStringOutput.Add($"this.EndToEndId = {(this.EndToEndId == null ? "null" : this.EndToEndId == string.Empty ? "" : this.EndToEndId)}");
             toStringOutput.Add($"this.Payer = {(this.Payer == null ? "null" : this.Payer.ToString())}");
+            toStringOutput.Add($"this.ProviderTransactionId = {(this.ProviderTransactionId == null ? "null" : this.ProviderTransactionId == string.Empty ? "" : this.ProviderTransactionId)}");
 
             base.ToString(toStringOutput);
         }
