@@ -11,15 +11,15 @@ IPlansController plansController = client.PlansController;
 ## Methods
 
 * [Get Plan](../../doc/controllers/plans.md#get-plan)
-* [Delete Plan](../../doc/controllers/plans.md#delete-plan)
+* [Update Plan](../../doc/controllers/plans.md#update-plan)
 * [Update Plan Metadata](../../doc/controllers/plans.md#update-plan-metadata)
-* [Update Plan Item](../../doc/controllers/plans.md#update-plan-item)
-* [Create Plan Item](../../doc/controllers/plans.md#create-plan-item)
-* [Get Plan Item](../../doc/controllers/plans.md#get-plan-item)
-* [Create Plan](../../doc/controllers/plans.md#create-plan)
 * [Delete Plan Item](../../doc/controllers/plans.md#delete-plan-item)
 * [Get Plans](../../doc/controllers/plans.md#get-plans)
-* [Update Plan](../../doc/controllers/plans.md#update-plan)
+* [Get Plan Item](../../doc/controllers/plans.md#get-plan-item)
+* [Delete Plan](../../doc/controllers/plans.md#delete-plan)
+* [Update Plan Item](../../doc/controllers/plans.md#update-plan-item)
+* [Create Plan Item](../../doc/controllers/plans.md#create-plan-item)
+* [Create Plan](../../doc/controllers/plans.md#create-plan)
 
 
 # Get Plan
@@ -57,13 +57,14 @@ catch (ApiException e)
 ```
 
 
-# Delete Plan
+# Update Plan
 
-Deletes a plan
+Updates a plan
 
 ```csharp
-DeletePlanAsync(
+UpdatePlanAsync(
     string planId,
+    Models.UpdatePlanRequest request,
     string idempotencyKey = null)
 ```
 
@@ -72,6 +73,7 @@ DeletePlanAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `planId` | `string` | Template, Required | Plan id |
+| `request` | [`Models.UpdatePlanRequest`](../../doc/models/update-plan-request.md) | Body, Required | Request for updating a plan |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -82,9 +84,41 @@ DeletePlanAsync(
 
 ```csharp
 string planId = "plan_id8";
+UpdatePlanRequest request = new UpdatePlanRequest
+{
+    Name = "name6",
+    Description = "description6",
+    Installments = new List<int>
+    {
+        151,
+        152,
+    },
+    StatementDescriptor = "statement_descriptor6",
+    Currency = "currency6",
+    Interval = "interval4",
+    IntervalCount = 114,
+    PaymentMethods = new List<string>
+    {
+        "payment_methods1",
+        "payment_methods0",
+        "payment_methods9",
+    },
+    BillingType = "billing_type0",
+    Status = "status8",
+    Shippable = false,
+    BillingDays = new List<int>
+    {
+        115,
+    },
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
+};
+
 try
 {
-    GetPlanResponse result = await plansController.DeletePlanAsync(planId, null);
+    GetPlanResponse result = await plansController.UpdatePlanAsync(planId, request, null);
 }
 catch (ApiException e)
 {
@@ -132,6 +166,167 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 try
 {
     GetPlanResponse result = await plansController.UpdatePlanMetadataAsync(planId, request, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Delete Plan Item
+
+Removes an item from a plan
+
+```csharp
+DeletePlanItemAsync(
+    string planId,
+    string planItemId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `planId` | `string` | Template, Required | Plan id |
+| `planItemId` | `string` | Template, Required | Plan item id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
+
+## Example Usage
+
+```csharp
+string planId = "plan_id8";
+string planItemId = "plan_item_id0";
+try
+{
+    GetPlanItemResponse result = await plansController.DeletePlanItemAsync(planId, planItemId, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Plans
+
+Gets all plans
+
+```csharp
+GetPlansAsync(
+    int? page = null,
+    int? size = null,
+    string name = null,
+    string status = null,
+    string billingType = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `name` | `string` | Query, Optional | Filter for Plan's name |
+| `status` | `string` | Query, Optional | Filter for Plan's status |
+| `billingType` | `string` | Query, Optional | Filter for plan's billing type |
+| `createdSince` | `DateTime?` | Query, Optional | Filter for plan's creation date start range |
+| `createdUntil` | `DateTime?` | Query, Optional | Filter for plan's creation date end range |
+
+## Response Type
+
+[`Task<Models.ListPlansResponse>`](../../doc/models/list-plans-response.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListPlansResponse result = await plansController.GetPlansAsync(null, null, null, null, null, null, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Plan Item
+
+Gets a plan item
+
+```csharp
+GetPlanItemAsync(
+    string planId,
+    string planItemId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `planId` | `string` | Template, Required | Plan id |
+| `planItemId` | `string` | Template, Required | Plan item id |
+
+## Response Type
+
+[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
+
+## Example Usage
+
+```csharp
+string planId = "plan_id8";
+string planItemId = "plan_item_id0";
+try
+{
+    GetPlanItemResponse result = await plansController.GetPlanItemAsync(planId, planItemId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Delete Plan
+
+Deletes a plan
+
+```csharp
+DeletePlanAsync(
+    string planId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `planId` | `string` | Template, Required | Plan id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
+
+## Example Usage
+
+```csharp
+string planId = "plan_id8";
+try
+{
+    GetPlanResponse result = await plansController.DeletePlanAsync(planId, null);
 }
 catch (ApiException e)
 {
@@ -252,44 +447,6 @@ catch (ApiException e)
 ```
 
 
-# Get Plan Item
-
-Gets a plan item
-
-```csharp
-GetPlanItemAsync(
-    string planId,
-    string planItemId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | Plan id |
-| `planItemId` | `string` | Template, Required | Plan item id |
-
-## Response Type
-
-[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
-
-## Example Usage
-
-```csharp
-string planId = "plan_id8";
-string planItemId = "plan_item_id0";
-try
-{
-    GetPlanItemResponse result = await plansController.GetPlanItemAsync(planId, planItemId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
 # Create Plan
 
 Creates a new plan
@@ -364,163 +521,6 @@ CreatePlanRequest body = new CreatePlanRequest
 try
 {
     GetPlanResponse result = await plansController.CreatePlanAsync(body, null);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Plan Item
-
-Removes an item from a plan
-
-```csharp
-DeletePlanItemAsync(
-    string planId,
-    string planItemId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | Plan id |
-| `planItemId` | `string` | Template, Required | Plan item id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
-
-## Example Usage
-
-```csharp
-string planId = "plan_id8";
-string planItemId = "plan_item_id0";
-try
-{
-    GetPlanItemResponse result = await plansController.DeletePlanItemAsync(planId, planItemId, null);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Plans
-
-Gets all plans
-
-```csharp
-GetPlansAsync(
-    int? page = null,
-    int? size = null,
-    string name = null,
-    string status = null,
-    string billingType = null,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `name` | `string` | Query, Optional | Filter for Plan's name |
-| `status` | `string` | Query, Optional | Filter for Plan's status |
-| `billingType` | `string` | Query, Optional | Filter for plan's billing type |
-| `createdSince` | `DateTime?` | Query, Optional | Filter for plan's creation date start range |
-| `createdUntil` | `DateTime?` | Query, Optional | Filter for plan's creation date end range |
-
-## Response Type
-
-[`Task<Models.ListPlansResponse>`](../../doc/models/list-plans-response.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListPlansResponse result = await plansController.GetPlansAsync(null, null, null, null, null, null, null);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Plan
-
-Updates a plan
-
-```csharp
-UpdatePlanAsync(
-    string planId,
-    Models.UpdatePlanRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | Plan id |
-| `request` | [`Models.UpdatePlanRequest`](../../doc/models/update-plan-request.md) | Body, Required | Request for updating a plan |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
-
-## Example Usage
-
-```csharp
-string planId = "plan_id8";
-UpdatePlanRequest request = new UpdatePlanRequest
-{
-    Name = "name6",
-    Description = "description6",
-    Installments = new List<int>
-    {
-        151,
-        152,
-    },
-    StatementDescriptor = "statement_descriptor6",
-    Currency = "currency6",
-    Interval = "interval4",
-    IntervalCount = 114,
-    PaymentMethods = new List<string>
-    {
-        "payment_methods1",
-        "payment_methods0",
-        "payment_methods9",
-    },
-    BillingType = "billing_type0",
-    Status = "status8",
-    Shippable = false,
-    BillingDays = new List<int>
-    {
-        115,
-    },
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
-};
-
-try
-{
-    GetPlanResponse result = await plansController.UpdatePlanAsync(planId, request, null);
 }
 catch (ApiException e)
 {
