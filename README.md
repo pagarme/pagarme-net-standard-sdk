@@ -61,6 +61,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
+| `ServiceRefererName` | `string` |  |
 | `Timeout` | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
 | `BasicAuthUserName` | `string` | The username to use with basic authentication |
 | `BasicAuthPassword` | `string` | The password to use with basic authentication |
@@ -70,6 +71,7 @@ The API client can be initialized as follows:
 ```csharp
 PagarmeApiSDK.Standard.PagarmeApiSDKClient client = new PagarmeApiSDK.Standard.PagarmeApiSDKClient.Builder()
     .BasicAuthCredentials("BasicAuthUserName", "BasicAuthPassword")
+    .ServiceRefererName("ServiceRefererName")
     .Build();
 ```
 

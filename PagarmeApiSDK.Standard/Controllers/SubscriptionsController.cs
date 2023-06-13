@@ -67,6 +67,198 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
+        /// Updates the credit card from a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for updating a card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse UpdateSubscriptionCard(
+                string subscriptionId,
+                Models.UpdateSubscriptionCardRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateSubscriptionCardAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates the credit card from a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for updating a card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionCardAsync(
+                string subscriptionId,
+                Models.UpdateSubscriptionCardRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/card")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Deletes a usage.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="itemId">Required parameter: The subscription item id.</param>
+        /// <param name="usageId">Required parameter: The usage id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
+        public Models.GetUsageResponse DeleteUsage(
+                string subscriptionId,
+                string itemId,
+                string usageId,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(DeleteUsageAsync(subscriptionId, itemId, usageId, idempotencyKey));
+
+        /// <summary>
+        /// Deletes a usage.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="itemId">Required parameter: The subscription item id.</param>
+        /// <param name="usageId">Required parameter: The usage id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
+        public async Task<Models.GetUsageResponse> DeleteUsageAsync(
+                string subscriptionId,
+                string itemId,
+                string usageId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetUsageResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("item_id", itemId))
+                      .Template(_template => _template.Setup("usage_id", usageId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Creates a discount.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for creating a discount.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetDiscountResponse response from the API call.</returns>
+        public Models.GetDiscountResponse CreateDiscount(
+                string subscriptionId,
+                Models.CreateDiscountRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateDiscountAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a discount.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for creating a discount.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetDiscountResponse response from the API call.</returns>
+        public async Task<Models.GetDiscountResponse> CreateDiscountAsync(
+                string subscriptionId,
+                Models.CreateDiscountRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetDiscountResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/discounts")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetDiscountResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Create Usage.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
+        public Models.GetUsageResponse CreateAnUsage(
+                string subscriptionId,
+                string itemId,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateAnUsageAsync(subscriptionId, itemId, idempotencyKey));
+
+        /// <summary>
+        /// Create Usage.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
+        public async Task<Models.GetUsageResponse> CreateAnUsageAsync(
+                string subscriptionId,
+                string itemId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetUsageResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items/{item_id}/usages")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("item_id", itemId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// UpdateCurrentCycleStatus EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="request">Required parameter: Request for updating the end date of the subscription current status.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        public void UpdateCurrentCycleStatus(
+                string subscriptionId,
+                Models.UpdateCurrentCycleStatusRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunVoidTask(UpdateCurrentCycleStatusAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// UpdateCurrentCycleStatus EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="request">Required parameter: Request for updating the end date of the subscription current status.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the void response from the API call.</returns>
+        public async Task UpdateCurrentCycleStatusAsync(
+                string subscriptionId,
+                Models.UpdateCurrentCycleStatusRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<VoidType>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/cycle-status")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
         /// Deletes a discount.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: Subscription id.</param>
@@ -102,6 +294,145 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetDiscountResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Get Subscription Items.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="name">Optional parameter: The item name.</param>
+        /// <param name="code">Optional parameter: Identification code in the client system.</param>
+        /// <param name="status">Optional parameter: The item statis.</param>
+        /// <param name="description">Optional parameter: The item description.</param>
+        /// <param name="createdSince">Optional parameter: Filter for item's creation date start range.</param>
+        /// <param name="createdUntil">Optional parameter: Filter for item's creation date end range.</param>
+        /// <returns>Returns the Models.ListSubscriptionItemsResponse response from the API call.</returns>
+        public Models.ListSubscriptionItemsResponse GetSubscriptionItems(
+                string subscriptionId,
+                int? page = null,
+                int? size = null,
+                string name = null,
+                string code = null,
+                string status = null,
+                string description = null,
+                string createdSince = null,
+                string createdUntil = null)
+            => CoreHelper.RunTask(GetSubscriptionItemsAsync(subscriptionId, page, size, name, code, status, description, createdSince, createdUntil));
+
+        /// <summary>
+        /// Get Subscription Items.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="name">Optional parameter: The item name.</param>
+        /// <param name="code">Optional parameter: Identification code in the client system.</param>
+        /// <param name="status">Optional parameter: The item statis.</param>
+        /// <param name="description">Optional parameter: The item description.</param>
+        /// <param name="createdSince">Optional parameter: Filter for item's creation date start range.</param>
+        /// <param name="createdUntil">Optional parameter: Filter for item's creation date end range.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListSubscriptionItemsResponse response from the API call.</returns>
+        public async Task<Models.ListSubscriptionItemsResponse> GetSubscriptionItemsAsync(
+                string subscriptionId,
+                int? page = null,
+                int? size = null,
+                string name = null,
+                string code = null,
+                string status = null,
+                string description = null,
+                string createdSince = null,
+                string createdUntil = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListSubscriptionItemsResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Query(_query => _query.Setup("page", page))
+                      .Query(_query => _query.Setup("size", size))
+                      .Query(_query => _query.Setup("name", name))
+                      .Query(_query => _query.Setup("code", code))
+                      .Query(_query => _query.Setup("status", status))
+                      .Query(_query => _query.Setup("description", description))
+                      .Query(_query => _query.Setup("created_since", createdSince))
+                      .Query(_query => _query.Setup("created_until", createdUntil))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListSubscriptionItemsResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Updates the payment method from a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for updating the paymentmethod from a subscription.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse UpdateSubscriptionPaymentMethod(
+                string subscriptionId,
+                Models.UpdateSubscriptionPaymentMethodRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateSubscriptionPaymentMethodAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates the payment method from a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for updating the paymentmethod from a subscription.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionPaymentMethodAsync(
+                string subscriptionId,
+                Models.UpdateSubscriptionPaymentMethodRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/payment-method")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Get Subscription Item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
+        public Models.GetSubscriptionItemResponse GetSubscriptionItem(
+                string subscriptionId,
+                string itemId)
+            => CoreHelper.RunTask(GetSubscriptionItemAsync(subscriptionId, itemId));
+
+        /// <summary>
+        /// Get Subscription Item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionItemResponse> GetSubscriptionItemAsync(
+                string subscriptionId,
+                string itemId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items/{item_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("item_id", itemId))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -185,6 +516,125 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListSubscriptionsResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Cancels a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Optional parameter: Request for cancelling a subscription.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse CancelSubscription(
+                string subscriptionId,
+                Models.CreateCancelSubscriptionRequest request = null,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CancelSubscriptionAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Cancels a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Optional parameter: Request for cancelling a subscription.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> CancelSubscriptionAsync(
+                string subscriptionId,
+                Models.CreateCancelSubscriptionRequest request = null,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Creates a increment.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for creating a increment.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetIncrementResponse response from the API call.</returns>
+        public Models.GetIncrementResponse CreateIncrement(
+                string subscriptionId,
+                Models.CreateIncrementRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateIncrementAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a increment.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for creating a increment.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetIncrementResponse response from the API call.</returns>
+        public async Task<Models.GetIncrementResponse> CreateIncrementAsync(
+                string subscriptionId,
+                Models.CreateIncrementRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetIncrementResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/increments")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetIncrementResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Creates a usage.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="body">Required parameter: Request for creating a usage.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
+        public Models.GetUsageResponse CreateUsage(
+                string subscriptionId,
+                string itemId,
+                Models.CreateUsageRequest body,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateUsageAsync(subscriptionId, itemId, body, idempotencyKey));
+
+        /// <summary>
+        /// Creates a usage.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="body">Required parameter: Request for creating a usage.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
+        public async Task<Models.GetUsageResponse> CreateUsageAsync(
+                string subscriptionId,
+                string itemId,
+                Models.CreateUsageRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetUsageResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items/{item_id}/usages")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("item_id", itemId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -287,6 +737,44 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
+        /// UpdateSubscriptionAffiliationId EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Request for updating a subscription affiliation id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse UpdateSubscriptionAffiliationId(
+                string subscriptionId,
+                Models.UpdateSubscriptionAffiliationIdRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateSubscriptionAffiliationIdAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// UpdateSubscriptionAffiliationId EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Request for updating a subscription affiliation id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionAffiliationIdAsync(
+                string subscriptionId,
+                Models.UpdateSubscriptionAffiliationIdRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/gateway-affiliation-id")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
         /// Updates the metadata from a subscription.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: The subscription id.</param>
@@ -363,243 +851,41 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
-        /// Gets a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse GetSubscription(
-                string subscriptionId)
-            => CoreHelper.RunTask(GetSubscriptionAsync(subscriptionId));
-
-        /// <summary>
-        /// Gets a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> GetSubscriptionAsync(
-                string subscriptionId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// UpdateLatestPeriodEndAt EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Request for updating the end date of the current signature cycle.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse UpdateLatestPeriodEndAt(
-                string subscriptionId,
-                Models.UpdateCurrentCycleEndDateRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateLatestPeriodEndAtAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// UpdateLatestPeriodEndAt EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Request for updating the end date of the current signature cycle.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> UpdateLatestPeriodEndAtAsync(
-                string subscriptionId,
-                Models.UpdateCurrentCycleEndDateRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/periods/latest/end-at")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// UpdateCurrentCycleStatus EndPoint.
+        /// GetSubscriptionCycles EndPoint.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="request">Required parameter: Request for updating the end date of the subscription current status.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        public void UpdateCurrentCycleStatus(
+        /// <param name="page">Required parameter: Page number.</param>
+        /// <param name="size">Required parameter: Page size.</param>
+        /// <returns>Returns the Models.ListCyclesResponse response from the API call.</returns>
+        public Models.ListCyclesResponse GetSubscriptionCycles(
                 string subscriptionId,
-                Models.UpdateCurrentCycleStatusRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunVoidTask(UpdateCurrentCycleStatusAsync(subscriptionId, request, idempotencyKey));
+                string page,
+                string size)
+            => CoreHelper.RunTask(GetSubscriptionCyclesAsync(subscriptionId, page, size));
 
         /// <summary>
-        /// UpdateCurrentCycleStatus EndPoint.
+        /// GetSubscriptionCycles EndPoint.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="request">Required parameter: Request for updating the end date of the subscription current status.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="page">Required parameter: Page number.</param>
+        /// <param name="size">Required parameter: Page size.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the void response from the API call.</returns>
-        public async Task UpdateCurrentCycleStatusAsync(
+        /// <returns>Returns the Models.ListCyclesResponse response from the API call.</returns>
+        public async Task<Models.ListCyclesResponse> GetSubscriptionCyclesAsync(
                 string subscriptionId,
-                Models.UpdateCurrentCycleStatusRequest request,
-                string idempotencyKey = null,
+                string page,
+                string size,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<VoidType>()
+            => await CreateApiCall<Models.ListCyclesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/cycle-status")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Get Subscription Items.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="name">Optional parameter: The item name.</param>
-        /// <param name="code">Optional parameter: Identification code in the client system.</param>
-        /// <param name="status">Optional parameter: The item statis.</param>
-        /// <param name="description">Optional parameter: The item description.</param>
-        /// <param name="createdSince">Optional parameter: Filter for item's creation date start range.</param>
-        /// <param name="createdUntil">Optional parameter: Filter for item's creation date end range.</param>
-        /// <returns>Returns the Models.ListSubscriptionItemsResponse response from the API call.</returns>
-        public Models.ListSubscriptionItemsResponse GetSubscriptionItems(
-                string subscriptionId,
-                int? page = null,
-                int? size = null,
-                string name = null,
-                string code = null,
-                string status = null,
-                string description = null,
-                string createdSince = null,
-                string createdUntil = null)
-            => CoreHelper.RunTask(GetSubscriptionItemsAsync(subscriptionId, page, size, name, code, status, description, createdSince, createdUntil));
-
-        /// <summary>
-        /// Get Subscription Items.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="name">Optional parameter: The item name.</param>
-        /// <param name="code">Optional parameter: Identification code in the client system.</param>
-        /// <param name="status">Optional parameter: The item statis.</param>
-        /// <param name="description">Optional parameter: The item description.</param>
-        /// <param name="createdSince">Optional parameter: Filter for item's creation date start range.</param>
-        /// <param name="createdUntil">Optional parameter: Filter for item's creation date end range.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListSubscriptionItemsResponse response from the API call.</returns>
-        public async Task<Models.ListSubscriptionItemsResponse> GetSubscriptionItemsAsync(
-                string subscriptionId,
-                int? page = null,
-                int? size = null,
-                string name = null,
-                string code = null,
-                string status = null,
-                string description = null,
-                string createdSince = null,
-                string createdUntil = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListSubscriptionItemsResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items")
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/cycles")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
-                      .Query(_query => _query.Setup("size", size))
-                      .Query(_query => _query.Setup("name", name))
-                      .Query(_query => _query.Setup("code", code))
-                      .Query(_query => _query.Setup("status", status))
-                      .Query(_query => _query.Setup("description", description))
-                      .Query(_query => _query.Setup("created_since", createdSince))
-                      .Query(_query => _query.Setup("created_until", createdUntil))))
+                      .Query(_query => _query.Setup("size", size))))
               .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListSubscriptionItemsResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Get Subscription Item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
-        public Models.GetSubscriptionItemResponse GetSubscriptionItem(
-                string subscriptionId,
-                string itemId)
-            => CoreHelper.RunTask(GetSubscriptionItemAsync(subscriptionId, itemId));
-
-        /// <summary>
-        /// Get Subscription Item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionItemResponse> GetSubscriptionItemAsync(
-                string subscriptionId,
-                string itemId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items/{item_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("item_id", itemId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// UpdateSubscriptionAffiliationId EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Request for updating a subscription affiliation id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse UpdateSubscriptionAffiliationId(
-                string subscriptionId,
-                Models.UpdateSubscriptionAffiliationIdRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateSubscriptionAffiliationIdAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// UpdateSubscriptionAffiliationId EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Request for updating a subscription affiliation id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionAffiliationIdAsync(
-                string subscriptionId,
-                Models.UpdateSubscriptionAffiliationIdRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/gateway-affiliation-id")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListCyclesResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -641,287 +927,34 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
-        /// Updates a subscription item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="body">Required parameter: Request for updating a subscription item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
-        public Models.GetSubscriptionItemResponse UpdateSubscriptionItem(
-                string subscriptionId,
-                string itemId,
-                Models.UpdateSubscriptionItemRequest body,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateSubscriptionItemAsync(subscriptionId, itemId, body, idempotencyKey));
-
-        /// <summary>
-        /// Updates a subscription item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="body">Required parameter: Request for updating a subscription item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionItemResponse> UpdateSubscriptionItemAsync(
-                string subscriptionId,
-                string itemId,
-                Models.UpdateSubscriptionItemRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Put, "/subscriptions/{subscription_id}/items/{item_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("item_id", itemId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a new Subscription item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for creating a subscription item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
-        public Models.GetSubscriptionItemResponse CreateSubscriptionItem(
-                string subscriptionId,
-                Models.CreateSubscriptionItemRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateSubscriptionItemAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new Subscription item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for creating a subscription item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionItemResponse> CreateSubscriptionItemAsync(
-                string subscriptionId,
-                Models.CreateSubscriptionItemRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Lists all usages from a subscription item.
+        /// Updates the billing date from a subscription.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="itemId">Required parameter: The subscription item id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="code">Optional parameter: Identification code in the client system.</param>
-        /// <param name="mGroup">Optional parameter: Identification group in the client system.</param>
-        /// <param name="usedSince">Optional parameter: Example: .</param>
-        /// <param name="usedUntil">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.ListUsagesResponse response from the API call.</returns>
-        public Models.ListUsagesResponse GetUsages(
-                string subscriptionId,
-                string itemId,
-                int? page = null,
-                int? size = null,
-                string code = null,
-                string mGroup = null,
-                DateTime? usedSince = null,
-                DateTime? usedUntil = null)
-            => CoreHelper.RunTask(GetUsagesAsync(subscriptionId, itemId, page, size, code, mGroup, usedSince, usedUntil));
-
-        /// <summary>
-        /// Lists all usages from a subscription item.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="itemId">Required parameter: The subscription item id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="code">Optional parameter: Identification code in the client system.</param>
-        /// <param name="mGroup">Optional parameter: Identification group in the client system.</param>
-        /// <param name="usedSince">Optional parameter: Example: .</param>
-        /// <param name="usedUntil">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListUsagesResponse response from the API call.</returns>
-        public async Task<Models.ListUsagesResponse> GetUsagesAsync(
-                string subscriptionId,
-                string itemId,
-                int? page = null,
-                int? size = null,
-                string code = null,
-                string mGroup = null,
-                DateTime? usedSince = null,
-                DateTime? usedUntil = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListUsagesResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items/{item_id}/usages")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("item_id", itemId))
-                      .Query(_query => _query.Setup("page", page))
-                      .Query(_query => _query.Setup("size", size))
-                      .Query(_query => _query.Setup("code", code))
-                      .Query(_query => _query.Setup("group", mGroup))
-                      .Query(_query => _query.Setup("used_since", usedSince.HasValue ? usedSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
-                      .Query(_query => _query.Setup("used_until", usedUntil.HasValue ? usedUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListUsagesResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Atualização do valor mínimo da assinatura.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="request">Required parameter: Request da requisição com o valor mínimo que será configurado.</param>
+        /// <param name="request">Required parameter: Request for updating the subscription billing date.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse UpdateSubscriptionMiniumPrice(
+        public Models.GetSubscriptionResponse UpdateSubscriptionBillingDate(
                 string subscriptionId,
-                Models.UpdateSubscriptionMinimumPriceRequest request,
+                Models.UpdateSubscriptionBillingDateRequest request,
                 string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateSubscriptionMiniumPriceAsync(subscriptionId, request, idempotencyKey));
+            => CoreHelper.RunTask(UpdateSubscriptionBillingDateAsync(subscriptionId, request, idempotencyKey));
 
         /// <summary>
-        /// Atualização do valor mínimo da assinatura.
+        /// Updates the billing date from a subscription.
         /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="request">Required parameter: Request da requisição com o valor mínimo que será configurado.</param>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="request">Required parameter: Request for updating the subscription billing date.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionMiniumPriceAsync(
+        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionBillingDateAsync(
                 string subscriptionId,
-                Models.UpdateSubscriptionMinimumPriceRequest request,
+                Models.UpdateSubscriptionBillingDateRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/minimum_price")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// GetSubscriptionCycleById EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="cycleId">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPeriodResponse response from the API call.</returns>
-        public Models.GetPeriodResponse GetSubscriptionCycleById(
-                string subscriptionId,
-                string cycleId)
-            => CoreHelper.RunTask(GetSubscriptionCycleByIdAsync(subscriptionId, cycleId));
-
-        /// <summary>
-        /// GetSubscriptionCycleById EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="cycleId">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPeriodResponse response from the API call.</returns>
-        public async Task<Models.GetPeriodResponse> GetSubscriptionCycleByIdAsync(
-                string subscriptionId,
-                string cycleId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetPeriodResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/cycles/{cycleId}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("cycleId", cycleId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetPeriodResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Create Usage.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
-        public Models.GetUsageResponse CreateAnUsage(
-                string subscriptionId,
-                string itemId,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateAnUsageAsync(subscriptionId, itemId, idempotencyKey));
-
-        /// <summary>
-        /// Create Usage.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
-        public async Task<Models.GetUsageResponse> CreateAnUsageAsync(
-                string subscriptionId,
-                string itemId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetUsageResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items/{item_id}/usages")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("item_id", itemId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Cancels a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Optional parameter: Request for cancelling a subscription.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse CancelSubscription(
-                string subscriptionId,
-                Models.CreateCancelSubscriptionRequest request = null,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CancelSubscriptionAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Cancels a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Optional parameter: Request for cancelling a subscription.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> CancelSubscriptionAsync(
-                string subscriptionId,
-                Models.CreateCancelSubscriptionRequest request = null,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}")
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/billing-date")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
@@ -1046,320 +1079,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
-        /// Updates the credit card from a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for updating a card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse UpdateSubscriptionCard(
-                string subscriptionId,
-                Models.UpdateSubscriptionCardRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateSubscriptionCardAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the credit card from a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for updating a card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionCardAsync(
-                string subscriptionId,
-                Models.UpdateSubscriptionCardRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/card")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Deletes a usage.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="itemId">Required parameter: The subscription item id.</param>
-        /// <param name="usageId">Required parameter: The usage id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
-        public Models.GetUsageResponse DeleteUsage(
-                string subscriptionId,
-                string itemId,
-                string usageId,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(DeleteUsageAsync(subscriptionId, itemId, usageId, idempotencyKey));
-
-        /// <summary>
-        /// Deletes a usage.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="itemId">Required parameter: The subscription item id.</param>
-        /// <param name="usageId">Required parameter: The usage id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
-        public async Task<Models.GetUsageResponse> DeleteUsageAsync(
-                string subscriptionId,
-                string itemId,
-                string usageId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetUsageResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("item_id", itemId))
-                      .Template(_template => _template.Setup("usage_id", usageId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a discount.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for creating a discount.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetDiscountResponse response from the API call.</returns>
-        public Models.GetDiscountResponse CreateDiscount(
-                string subscriptionId,
-                Models.CreateDiscountRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateDiscountAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a discount.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for creating a discount.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetDiscountResponse response from the API call.</returns>
-        public async Task<Models.GetDiscountResponse> CreateDiscountAsync(
-                string subscriptionId,
-                Models.CreateDiscountRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetDiscountResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/discounts")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetDiscountResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates the payment method from a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for updating the paymentmethod from a subscription.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse UpdateSubscriptionPaymentMethod(
-                string subscriptionId,
-                Models.UpdateSubscriptionPaymentMethodRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateSubscriptionPaymentMethodAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the payment method from a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for updating the paymentmethod from a subscription.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionPaymentMethodAsync(
-                string subscriptionId,
-                Models.UpdateSubscriptionPaymentMethodRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/payment-method")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a increment.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for creating a increment.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetIncrementResponse response from the API call.</returns>
-        public Models.GetIncrementResponse CreateIncrement(
-                string subscriptionId,
-                Models.CreateIncrementRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateIncrementAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a increment.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
-        /// <param name="request">Required parameter: Request for creating a increment.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetIncrementResponse response from the API call.</returns>
-        public async Task<Models.GetIncrementResponse> CreateIncrementAsync(
-                string subscriptionId,
-                Models.CreateIncrementRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetIncrementResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/increments")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetIncrementResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a usage.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="body">Required parameter: Request for creating a usage.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
-        public Models.GetUsageResponse CreateUsage(
-                string subscriptionId,
-                string itemId,
-                Models.CreateUsageRequest body,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateUsageAsync(subscriptionId, itemId, body, idempotencyKey));
-
-        /// <summary>
-        /// Creates a usage.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="itemId">Required parameter: Item id.</param>
-        /// <param name="body">Required parameter: Request for creating a usage.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetUsageResponse response from the API call.</returns>
-        public async Task<Models.GetUsageResponse> CreateUsageAsync(
-                string subscriptionId,
-                string itemId,
-                Models.CreateUsageRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetUsageResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items/{item_id}/usages")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Template(_template => _template.Setup("item_id", itemId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// GetSubscriptionCycles EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="page">Required parameter: Page number.</param>
-        /// <param name="size">Required parameter: Page size.</param>
-        /// <returns>Returns the Models.ListCyclesResponse response from the API call.</returns>
-        public Models.ListCyclesResponse GetSubscriptionCycles(
-                string subscriptionId,
-                string page,
-                string size)
-            => CoreHelper.RunTask(GetSubscriptionCyclesAsync(subscriptionId, page, size));
-
-        /// <summary>
-        /// GetSubscriptionCycles EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="page">Required parameter: Page number.</param>
-        /// <param name="size">Required parameter: Page size.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListCyclesResponse response from the API call.</returns>
-        public async Task<Models.ListCyclesResponse> GetSubscriptionCyclesAsync(
-                string subscriptionId,
-                string page,
-                string size,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListCyclesResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/cycles")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Query(_query => _query.Setup("page", page))
-                      .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListCyclesResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates the billing date from a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="request">Required parameter: Request for updating the subscription billing date.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public Models.GetSubscriptionResponse UpdateSubscriptionBillingDate(
-                string subscriptionId,
-                Models.UpdateSubscriptionBillingDateRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateSubscriptionBillingDateAsync(subscriptionId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the billing date from a subscription.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
-        /// <param name="request">Required parameter: Request for updating the subscription billing date.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
-        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionBillingDateAsync(
-                string subscriptionId,
-                Models.UpdateSubscriptionBillingDateRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetSubscriptionResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/billing-date")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
         /// Updates the start at date from a subscription.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: The subscription id.</param>
@@ -1395,6 +1114,287 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Updates a subscription item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="body">Required parameter: Request for updating a subscription item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
+        public Models.GetSubscriptionItemResponse UpdateSubscriptionItem(
+                string subscriptionId,
+                string itemId,
+                Models.UpdateSubscriptionItemRequest body,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateSubscriptionItemAsync(subscriptionId, itemId, body, idempotencyKey));
+
+        /// <summary>
+        /// Updates a subscription item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="itemId">Required parameter: Item id.</param>
+        /// <param name="body">Required parameter: Request for updating a subscription item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionItemResponse> UpdateSubscriptionItemAsync(
+                string subscriptionId,
+                string itemId,
+                Models.UpdateSubscriptionItemRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Put, "/subscriptions/{subscription_id}/items/{item_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("item_id", itemId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Creates a new Subscription item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for creating a subscription item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
+        public Models.GetSubscriptionItemResponse CreateSubscriptionItem(
+                string subscriptionId,
+                Models.CreateSubscriptionItemRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateSubscriptionItemAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new Subscription item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="request">Required parameter: Request for creating a subscription item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionItemResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionItemResponse> CreateSubscriptionItemAsync(
+                string subscriptionId,
+                Models.CreateSubscriptionItemRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Gets a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse GetSubscription(
+                string subscriptionId)
+            => CoreHelper.RunTask(GetSubscriptionAsync(subscriptionId));
+
+        /// <summary>
+        /// Gets a subscription.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> GetSubscriptionAsync(
+                string subscriptionId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Lists all usages from a subscription item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="itemId">Required parameter: The subscription item id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="code">Optional parameter: Identification code in the client system.</param>
+        /// <param name="mGroup">Optional parameter: Identification group in the client system.</param>
+        /// <param name="usedSince">Optional parameter: Example: .</param>
+        /// <param name="usedUntil">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.ListUsagesResponse response from the API call.</returns>
+        public Models.ListUsagesResponse GetUsages(
+                string subscriptionId,
+                string itemId,
+                int? page = null,
+                int? size = null,
+                string code = null,
+                string mGroup = null,
+                DateTime? usedSince = null,
+                DateTime? usedUntil = null)
+            => CoreHelper.RunTask(GetUsagesAsync(subscriptionId, itemId, page, size, code, mGroup, usedSince, usedUntil));
+
+        /// <summary>
+        /// Lists all usages from a subscription item.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="itemId">Required parameter: The subscription item id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="code">Optional parameter: Identification code in the client system.</param>
+        /// <param name="mGroup">Optional parameter: Identification group in the client system.</param>
+        /// <param name="usedSince">Optional parameter: Example: .</param>
+        /// <param name="usedUntil">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListUsagesResponse response from the API call.</returns>
+        public async Task<Models.ListUsagesResponse> GetUsagesAsync(
+                string subscriptionId,
+                string itemId,
+                int? page = null,
+                int? size = null,
+                string code = null,
+                string mGroup = null,
+                DateTime? usedSince = null,
+                DateTime? usedUntil = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListUsagesResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items/{item_id}/usages")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("item_id", itemId))
+                      .Query(_query => _query.Setup("page", page))
+                      .Query(_query => _query.Setup("size", size))
+                      .Query(_query => _query.Setup("code", code))
+                      .Query(_query => _query.Setup("group", mGroup))
+                      .Query(_query => _query.Setup("used_since", usedSince.HasValue ? usedSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
+                      .Query(_query => _query.Setup("used_until", usedUntil.HasValue ? usedUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListUsagesResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// UpdateLatestPeriodEndAt EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Request for updating the end date of the current signature cycle.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse UpdateLatestPeriodEndAt(
+                string subscriptionId,
+                Models.UpdateCurrentCycleEndDateRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateLatestPeriodEndAtAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// UpdateLatestPeriodEndAt EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Request for updating the end date of the current signature cycle.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> UpdateLatestPeriodEndAtAsync(
+                string subscriptionId,
+                Models.UpdateCurrentCycleEndDateRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/periods/latest/end-at")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Atualização do valor mínimo da assinatura.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="request">Required parameter: Request da requisição com o valor mínimo que será configurado.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public Models.GetSubscriptionResponse UpdateSubscriptionMiniumPrice(
+                string subscriptionId,
+                Models.UpdateSubscriptionMinimumPriceRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateSubscriptionMiniumPriceAsync(subscriptionId, request, idempotencyKey));
+
+        /// <summary>
+        /// Atualização do valor mínimo da assinatura.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="request">Required parameter: Request da requisição com o valor mínimo que será configurado.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetSubscriptionResponse response from the API call.</returns>
+        public async Task<Models.GetSubscriptionResponse> UpdateSubscriptionMiniumPriceAsync(
+                string subscriptionId,
+                Models.UpdateSubscriptionMinimumPriceRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetSubscriptionResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/minimum_price")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// GetSubscriptionCycleById EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="cycleId">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPeriodResponse response from the API call.</returns>
+        public Models.GetPeriodResponse GetSubscriptionCycleById(
+                string subscriptionId,
+                string cycleId)
+            => CoreHelper.RunTask(GetSubscriptionCycleByIdAsync(subscriptionId, cycleId));
+
+        /// <summary>
+        /// GetSubscriptionCycleById EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: The subscription id.</param>
+        /// <param name="cycleId">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPeriodResponse response from the API call.</returns>
+        public async Task<Models.GetPeriodResponse> GetSubscriptionCycleByIdAsync(
+                string subscriptionId,
+                string cycleId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetPeriodResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/cycles/{cycleId}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))
+                      .Template(_template => _template.Setup("cycleId", cycleId))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetPeriodResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>

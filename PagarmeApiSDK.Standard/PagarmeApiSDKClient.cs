@@ -33,25 +33,27 @@ namespace PagarmeApiSDK.Standard
         };
 
         private readonly GlobalConfiguration globalConfiguration;
-        private const string userAgent = "PagarmeApiSDK - DotNet 6.7.12";
+        private const string userAgent = "PagarmeApiSDK - DotNet 6.7.13";
         private readonly BasicAuthManager basicAuthManager;
-        private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IInvoicesController> invoices;
+        private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<ICustomersController> customers;
         private readonly Lazy<IRecipientsController> recipients;
         private readonly Lazy<IChargesController> charges;
-        private readonly Lazy<ITokensController> tokens;
         private readonly Lazy<ITransfersController> transfers;
+        private readonly Lazy<ITokensController> tokens;
         private readonly Lazy<ITransactionsController> transactions;
 
         private PagarmeApiSDKClient(
+            string serviceRefererName,
             Environment environment,
             string basicAuthUserName,
             string basicAuthPassword,
             IHttpClientConfiguration httpClientConfiguration)
         {
+            this.ServiceRefererName = serviceRefererName;
             this.Environment = environment;
             this.HttpClientConfiguration = httpClientConfiguration;
             basicAuthManager = new BasicAuthManager(basicAuthUserName, basicAuthPassword);
@@ -61,36 +63,34 @@ namespace PagarmeApiSDK.Standard
                 })
                 .HttpConfiguration(httpClientConfiguration)
                 .ServerUrls(EnvironmentsMap[environment], Server.Default)
+                .Parameters(globalParameter => globalParameter
+                    .Header(headerParameter => headerParameter.Setup("ServiceRefererName", this.ServiceRefererName))
+)
                 .UserAgent(userAgent)
                 .Build();
 
 
-            this.orders = new Lazy<IOrdersController>(
-                () => new OrdersController(globalConfiguration));
             this.plans = new Lazy<IPlansController>(
                 () => new PlansController(globalConfiguration));
             this.subscriptions = new Lazy<ISubscriptionsController>(
                 () => new SubscriptionsController(globalConfiguration));
             this.invoices = new Lazy<IInvoicesController>(
                 () => new InvoicesController(globalConfiguration));
+            this.orders = new Lazy<IOrdersController>(
+                () => new OrdersController(globalConfiguration));
             this.customers = new Lazy<ICustomersController>(
                 () => new CustomersController(globalConfiguration));
             this.recipients = new Lazy<IRecipientsController>(
                 () => new RecipientsController(globalConfiguration));
             this.charges = new Lazy<IChargesController>(
                 () => new ChargesController(globalConfiguration));
-            this.tokens = new Lazy<ITokensController>(
-                () => new TokensController(globalConfiguration));
             this.transfers = new Lazy<ITransfersController>(
                 () => new TransfersController(globalConfiguration));
+            this.tokens = new Lazy<ITokensController>(
+                () => new TokensController(globalConfiguration));
             this.transactions = new Lazy<ITransactionsController>(
                 () => new TransactionsController(globalConfiguration));
         }
-
-        /// <summary>
-        /// Gets OrdersController controller.
-        /// </summary>
-        public IOrdersController OrdersController => this.orders.Value;
 
         /// <summary>
         /// Gets PlansController controller.
@@ -108,6 +108,11 @@ namespace PagarmeApiSDK.Standard
         public IInvoicesController InvoicesController => this.invoices.Value;
 
         /// <summary>
+        /// Gets OrdersController controller.
+        /// </summary>
+        public IOrdersController OrdersController => this.orders.Value;
+
+        /// <summary>
         /// Gets CustomersController controller.
         /// </summary>
         public ICustomersController CustomersController => this.customers.Value;
@@ -123,14 +128,14 @@ namespace PagarmeApiSDK.Standard
         public IChargesController ChargesController => this.charges.Value;
 
         /// <summary>
-        /// Gets TokensController controller.
-        /// </summary>
-        public ITokensController TokensController => this.tokens.Value;
-
-        /// <summary>
         /// Gets TransfersController controller.
         /// </summary>
         public ITransfersController TransfersController => this.transfers.Value;
+
+        /// <summary>
+        /// Gets TokensController controller.
+        /// </summary>
+        public ITokensController TokensController => this.tokens.Value;
 
         /// <summary>
         /// Gets TransactionsController controller.
@@ -141,6 +146,11 @@ namespace PagarmeApiSDK.Standard
         /// Gets the configuration of the Http Client associated with this client.
         /// </summary>
         public IHttpClientConfiguration HttpClientConfiguration { get; }
+
+        /// <summary>
+         /// Gets ServiceRefererName.
+        /// </summary>
+        public string ServiceRefererName { get; }
 
         /// <summary>
         /// Gets Environment.
@@ -172,6 +182,7 @@ namespace PagarmeApiSDK.Standard
         public Builder ToBuilder()
         {
             Builder builder = new Builder()
+                .ServiceRefererName(this.ServiceRefererName)
                 .Environment(this.Environment)
                 .BasicAuthCredentials(basicAuthManager.BasicAuthUserName, basicAuthManager.BasicAuthPassword)
                 .HttpClientConfig(config => config.Build());
@@ -183,6 +194,7 @@ namespace PagarmeApiSDK.Standard
         public override string ToString()
         {
             return
+                $"ServiceRefererName = {this.ServiceRefererName}, " +
                 $"Environment = {this.Environment}, " +
                 $"HttpClientConfiguration = {this.HttpClientConfiguration}, ";
         }
@@ -195,9 +207,15 @@ namespace PagarmeApiSDK.Standard
         {
             var builder = new Builder();
 
+            string serviceRefererName = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_SERVICE_REFERER_NAME");
             string environment = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_ENVIRONMENT");
             string basicAuthUserName = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_BASIC_AUTH_USER_NAME");
             string basicAuthPassword = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_BASIC_AUTH_PASSWORD");
+
+            if (serviceRefererName != null)
+            {
+                builder.ServiceRefererName(serviceRefererName);
+            }
 
             if (environment != null)
             {
@@ -217,6 +235,7 @@ namespace PagarmeApiSDK.Standard
         /// </summary>
         public class Builder
         {
+            private string serviceRefererName = String.Empty;
             private Environment environment = PagarmeApiSDK.Standard.Environment.Production;
             private string basicAuthUserName = "";
             private string basicAuthPassword = "";
@@ -232,6 +251,17 @@ namespace PagarmeApiSDK.Standard
             {
                 this.basicAuthUserName = basicAuthUserName ?? throw new ArgumentNullException(nameof(basicAuthUserName));
                 this.basicAuthPassword = basicAuthPassword ?? throw new ArgumentNullException(nameof(basicAuthPassword));
+                return this;
+            }
+
+            /// <summary>
+            /// Sets ServiceRefererName.
+            /// </summary>
+            /// <param name="serviceRefererName"> ServiceRefererName. </param>
+            /// <returns> Builder. </returns>
+            public Builder ServiceRefererName(string serviceRefererName)
+            {
+                this.serviceRefererName = serviceRefererName ?? throw new ArgumentNullException(nameof(serviceRefererName));
                 return this;
             }
 
@@ -272,6 +302,7 @@ namespace PagarmeApiSDK.Standard
             {
 
                 return new PagarmeApiSDKClient(
+                    serviceRefererName,
                     environment,
                     basicAuthUserName,
                     basicAuthPassword,

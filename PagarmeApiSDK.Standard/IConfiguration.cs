@@ -13,6 +13,8 @@ namespace PagarmeApiSDK.Standard
     /// </summary>
     public interface IConfiguration
     {
+        string ServiceRefererName { get; }
+
         /// <summary>
         /// Gets Current API environment.
         /// </summary>
