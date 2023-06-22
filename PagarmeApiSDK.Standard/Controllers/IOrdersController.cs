@@ -65,94 +65,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GetOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        Models.GetOrderItemResponse GetOrderItem(
-                string orderId,
-                string itemId);
-
-        /// <summary>
-        /// GetOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        Task<Models.GetOrderItemResponse> GetOrderItemAsync(
-                string orderId,
-                string itemId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Gets an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order id.</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Models.GetOrderResponse GetOrder(
-                string orderId);
-
-        /// <summary>
-        /// Gets an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Task<Models.GetOrderResponse> GetOrderAsync(
-                string orderId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// CloseOrder EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Update Order Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Models.GetOrderResponse CloseOrder(
-                string id,
-                Models.UpdateOrderStatusRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// CloseOrder EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Update Order Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Task<Models.GetOrderResponse> CloseOrderAsync(
-                string id,
-                Models.UpdateOrderStatusRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Creates a new Order.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating an order.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Models.GetOrderResponse CreateOrder(
-                Models.CreateOrderRequest body,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Creates a new Order.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating an order.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Task<Models.GetOrderResponse> CreateOrderAsync(
-                Models.CreateOrderRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// UpdateOrderItem EndPoint.
         /// </summary>
         /// <param name="orderId">Required parameter: Order Id.</param>
@@ -205,32 +117,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates the metadata from an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: The order id.</param>
-        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Models.GetOrderResponse UpdateOrderMetadata(
-                string orderId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Updates the metadata from an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: The order id.</param>
-        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        Task<Models.GetOrderResponse> UpdateOrderMetadataAsync(
-                string orderId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// DeleteOrderItem EndPoint.
         /// </summary>
         /// <param name="orderId">Required parameter: Order Id.</param>
@@ -253,6 +139,54 @@ namespace PagarmeApiSDK.Standard.Controllers
         Task<Models.GetOrderItemResponse> DeleteOrderItemAsync(
                 string orderId,
                 string itemId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// CloseOrder EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Update Order Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Models.GetOrderResponse CloseOrder(
+                string id,
+                Models.UpdateOrderStatusRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// CloseOrder EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Update Order Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Task<Models.GetOrderResponse> CloseOrderAsync(
+                string id,
+                Models.UpdateOrderStatusRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a new Order.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating an order.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Models.GetOrderResponse CreateOrder(
+                Models.CreateOrderRequest body,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates a new Order.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating an order.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Task<Models.GetOrderResponse> CreateOrderAsync(
+                Models.CreateOrderRequest body,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
@@ -280,6 +214,72 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string orderId,
                 Models.CreateOrderItemRequest request,
                 string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// GetOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        Models.GetOrderItemResponse GetOrderItem(
+                string orderId,
+                string itemId);
+
+        /// <summary>
+        /// GetOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        Task<Models.GetOrderItemResponse> GetOrderItemAsync(
+                string orderId,
+                string itemId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates the metadata from an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: The order id.</param>
+        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Models.GetOrderResponse UpdateOrderMetadata(
+                string orderId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates the metadata from an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: The order id.</param>
+        /// <param name="request">Required parameter: Request for updating the order metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Task<Models.GetOrderResponse> UpdateOrderMetadataAsync(
+                string orderId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Gets an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order id.</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Models.GetOrderResponse GetOrder(
+                string orderId);
+
+        /// <summary>
+        /// Gets an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        Task<Models.GetOrderResponse> GetOrderAsync(
+                string orderId,
                 CancellationToken cancellationToken = default);
     }
 }

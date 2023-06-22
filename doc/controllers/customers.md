@@ -13,24 +13,24 @@ ICustomersController customersController = client.CustomersController;
 * [Update Card](../../doc/controllers/customers.md#update-card)
 * [Update Address](../../doc/controllers/customers.md#update-address)
 * [Delete Access Token](../../doc/controllers/customers.md#delete-access-token)
-* [Create Address](../../doc/controllers/customers.md#create-address)
 * [Create Customer](../../doc/controllers/customers.md#create-customer)
-* [Create Card](../../doc/controllers/customers.md#create-card)
-* [Get Cards](../../doc/controllers/customers.md#get-cards)
-* [Renew Card](../../doc/controllers/customers.md#renew-card)
+* [Create Address](../../doc/controllers/customers.md#create-address)
+* [Delete Access Tokens](../../doc/controllers/customers.md#delete-access-tokens)
 * [Get Address](../../doc/controllers/customers.md#get-address)
 * [Delete Address](../../doc/controllers/customers.md#delete-address)
-* [Get Access Token](../../doc/controllers/customers.md#get-access-token)
-* [Update Customer Metadata](../../doc/controllers/customers.md#update-customer-metadata)
-* [Get Card](../../doc/controllers/customers.md#get-card)
-* [Delete Access Tokens](../../doc/controllers/customers.md#delete-access-tokens)
-* [Create Access Token](../../doc/controllers/customers.md#create-access-token)
-* [Get Access Tokens](../../doc/controllers/customers.md#get-access-tokens)
+* [Create Card](../../doc/controllers/customers.md#create-card)
 * [Get Customers](../../doc/controllers/customers.md#get-customers)
 * [Update Customer](../../doc/controllers/customers.md#update-customer)
+* [Create Access Token](../../doc/controllers/customers.md#create-access-token)
+* [Get Access Tokens](../../doc/controllers/customers.md#get-access-tokens)
+* [Get Cards](../../doc/controllers/customers.md#get-cards)
+* [Renew Card](../../doc/controllers/customers.md#renew-card)
+* [Get Access Token](../../doc/controllers/customers.md#get-access-token)
+* [Update Customer Metadata](../../doc/controllers/customers.md#update-customer-metadata)
 * [Delete Card](../../doc/controllers/customers.md#delete-card)
 * [Get Addresses](../../doc/controllers/customers.md#get-addresses)
 * [Get Customer](../../doc/controllers/customers.md#get-customer)
+* [Get Card](../../doc/controllers/customers.md#get-card)
 
 
 # Update Card
@@ -198,63 +198,6 @@ catch (ApiException e)
 ```
 
 
-# Create Address
-
-Creates a new address for a customer
-
-```csharp
-CreateAddressAsync(
-    string customerId,
-    Models.CreateAddressRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | Customer Id |
-| `request` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Body, Required | Request for creating an address |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetAddressResponse>`](../../doc/models/get-address-response.md)
-
-## Example Usage
-
-```csharp
-string customerId = "customer_id8";
-CreateAddressRequest request = new CreateAddressRequest
-{
-    Street = "street6",
-    Number = "number4",
-    ZipCode = "zip_code0",
-    Neighborhood = "neighborhood2",
-    City = "city6",
-    State = "state2",
-    Country = "country0",
-    Complement = "complement2",
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
-    Line1 = "line_10",
-    Line2 = "line_24",
-};
-
-try
-{
-    GetAddressResponse result = await customersController.CreateAddressAsync(customerId, request, null);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
 # Create Customer
 
 Creates a new customer
@@ -324,59 +267,15 @@ catch (ApiException e)
 ```
 
 
-# Create Card
+# Create Address
 
-Creates a new card for a customer
+Creates a new address for a customer
 
 ```csharp
-CreateCardAsync(
+CreateAddressAsync(
     string customerId,
-    Models.CreateCardRequest request,
+    Models.CreateAddressRequest request,
     string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | Customer id |
-| `request` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Body, Required | Request for creating a card |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetCardResponse>`](../../doc/models/get-card-response.md)
-
-## Example Usage
-
-```csharp
-string customerId = "customer_id8";
-CreateCardRequest request = new CreateCardRequest
-{
-    Type = "credit",
-};
-
-try
-{
-    GetCardResponse result = await customersController.CreateCardAsync(customerId, request, null);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Cards
-
-Get all cards from a customer
-
-```csharp
-GetCardsAsync(
-    string customerId,
-    int? page = null,
-    int? size = null)
 ```
 
 ## Parameters
@@ -384,20 +283,38 @@ GetCardsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer Id |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
+| `request` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Body, Required | Request for creating an address |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.ListCardsResponse>`](../../doc/models/list-cards-response.md)
+[`Task<Models.GetAddressResponse>`](../../doc/models/get-address-response.md)
 
 ## Example Usage
 
 ```csharp
 string customerId = "customer_id8";
+CreateAddressRequest request = new CreateAddressRequest
+{
+    Street = "street6",
+    Number = "number4",
+    ZipCode = "zip_code0",
+    Neighborhood = "neighborhood2",
+    City = "city6",
+    State = "state2",
+    Country = "country0",
+    Complement = "complement2",
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
+    Line1 = "line_10",
+    Line2 = "line_24",
+};
+
 try
 {
-    ListCardsResponse result = await customersController.GetCardsAsync(customerId, null, null);
+    GetAddressResponse result = await customersController.CreateAddressAsync(customerId, request, null);
 }
 catch (ApiException e)
 {
@@ -407,37 +324,32 @@ catch (ApiException e)
 ```
 
 
-# Renew Card
+# Delete Access Tokens
 
-Renew a card
+Delete a Customer's access tokens
 
 ```csharp
-RenewCardAsync(
-    string customerId,
-    string cardId,
-    string idempotencyKey = null)
+DeleteAccessTokensAsync(
+    string customerId)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | Customer id |
-| `cardId` | `string` | Template, Required | Card Id |
-| `idempotencyKey` | `string` | Header, Optional | - |
+| `customerId` | `string` | Template, Required | Customer Id |
 
 ## Response Type
 
-[`Task<Models.GetCardResponse>`](../../doc/models/get-card-response.md)
+[`Task<Models.ListAccessTokensResponse>`](../../doc/models/list-access-tokens-response.md)
 
 ## Example Usage
 
 ```csharp
 string customerId = "customer_id8";
-string cardId = "card_id4";
 try
 {
-    GetCardResponse result = await customersController.RenewCardAsync(customerId, cardId, null);
+    ListAccessTokensResponse result = await customersController.DeleteAccessTokensAsync(customerId);
 }
 catch (ApiException e)
 {
@@ -525,35 +437,41 @@ catch (ApiException e)
 ```
 
 
-# Get Access Token
+# Create Card
 
-Get a Customer's access token
+Creates a new card for a customer
 
 ```csharp
-GetAccessTokenAsync(
+CreateCardAsync(
     string customerId,
-    string tokenId)
+    Models.CreateCardRequest request,
+    string idempotencyKey = null)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | Customer Id |
-| `tokenId` | `string` | Template, Required | Token Id |
+| `customerId` | `string` | Template, Required | Customer id |
+| `request` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Body, Required | Request for creating a card |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetAccessTokenResponse>`](../../doc/models/get-access-token-response.md)
+[`Task<Models.GetCardResponse>`](../../doc/models/get-card-response.md)
 
 ## Example Usage
 
 ```csharp
 string customerId = "customer_id8";
-string tokenId = "token_id6";
+CreateCardRequest request = new CreateCardRequest
+{
+    Type = "credit",
+};
+
 try
 {
-    GetAccessTokenResponse result = await customersController.GetAccessTokenAsync(customerId, tokenId);
+    GetCardResponse result = await customersController.CreateCardAsync(customerId, request, null);
 }
 catch (ApiException e)
 {
@@ -563,14 +481,60 @@ catch (ApiException e)
 ```
 
 
-# Update Customer Metadata
+# Get Customers
 
-Updates the metadata a customer
+Get all Customers
 
 ```csharp
-UpdateCustomerMetadataAsync(
+GetCustomersAsync(
+    string name = null,
+    string document = null,
+    int? page = 1,
+    int? size = 10,
+    string email = null,
+    string code = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `name` | `string` | Query, Optional | Name of the Customer |
+| `document` | `string` | Query, Optional | Document of the Customer |
+| `page` | `int?` | Query, Optional | Current page the the search<br>**Default**: `1` |
+| `size` | `int?` | Query, Optional | Quantity pages of the search<br>**Default**: `10` |
+| `email` | `string` | Query, Optional | Customer's email |
+| `code` | `string` | Query, Optional | Customer's code |
+
+## Response Type
+
+[`Task<Models.ListCustomersResponse>`](../../doc/models/list-customers-response.md)
+
+## Example Usage
+
+```csharp
+int? page = 1;
+int? size = 10;
+try
+{
+    ListCustomersResponse result = await customersController.GetCustomersAsync(null, null, page, size, null, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Customer
+
+Updates a customer
+
+```csharp
+UpdateCustomerAsync(
     string customerId,
-    Models.UpdateMetadataRequest request,
+    Models.UpdateCustomerRequest request,
     string idempotencyKey = null)
 ```
 
@@ -578,8 +542,8 @@ UpdateCustomerMetadataAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | The customer id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the customer metadata |
+| `customerId` | `string` | Template, Required | Customer id |
+| `request` | [`Models.UpdateCustomerRequest`](../../doc/models/update-customer-request.md) | Body, Required | Request for updating a customer |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -590,90 +554,13 @@ UpdateCustomerMetadataAsync(
 
 ```csharp
 string customerId = "customer_id8";
-UpdateMetadataRequest request = new UpdateMetadataRequest
+UpdateCustomerRequest request = new UpdateCustomerRequest
 {
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
 };
 
 try
 {
-    GetCustomerResponse result = await customersController.UpdateCustomerMetadataAsync(customerId, request, null);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Card
-
-Get a customer's card
-
-```csharp
-GetCardAsync(
-    string customerId,
-    string cardId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | Customer id |
-| `cardId` | `string` | Template, Required | Card id |
-
-## Response Type
-
-[`Task<Models.GetCardResponse>`](../../doc/models/get-card-response.md)
-
-## Example Usage
-
-```csharp
-string customerId = "customer_id8";
-string cardId = "card_id4";
-try
-{
-    GetCardResponse result = await customersController.GetCardAsync(customerId, cardId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Access Tokens
-
-Delete a Customer's access tokens
-
-```csharp
-DeleteAccessTokensAsync(
-    string customerId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `customerId` | `string` | Template, Required | Customer Id |
-
-## Response Type
-
-[`Task<Models.ListAccessTokensResponse>`](../../doc/models/list-access-tokens-response.md)
-
-## Example Usage
-
-```csharp
-string customerId = "customer_id8";
-try
-{
-    ListAccessTokensResponse result = await customersController.DeleteAccessTokensAsync(customerId);
+    GetCustomerResponse result = await customersController.UpdateCustomerAsync(customerId, request, null);
 }
 catch (ApiException e)
 {
@@ -765,43 +652,36 @@ catch (ApiException e)
 ```
 
 
-# Get Customers
+# Get Cards
 
-Get all Customers
+Get all cards from a customer
 
 ```csharp
-GetCustomersAsync(
-    string name = null,
-    string document = null,
-    int? page = 1,
-    int? size = 10,
-    string email = null,
-    string code = null)
+GetCardsAsync(
+    string customerId,
+    int? page = null,
+    int? size = null)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Query, Optional | Name of the Customer |
-| `document` | `string` | Query, Optional | Document of the Customer |
-| `page` | `int?` | Query, Optional | Current page the the search<br>**Default**: `1` |
-| `size` | `int?` | Query, Optional | Quantity pages of the search<br>**Default**: `10` |
-| `email` | `string` | Query, Optional | Customer's email |
-| `code` | `string` | Query, Optional | Customer's code |
+| `customerId` | `string` | Template, Required | Customer Id |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
 
 ## Response Type
 
-[`Task<Models.ListCustomersResponse>`](../../doc/models/list-customers-response.md)
+[`Task<Models.ListCardsResponse>`](../../doc/models/list-cards-response.md)
 
 ## Example Usage
 
 ```csharp
-int? page = 1;
-int? size = 10;
+string customerId = "customer_id8";
 try
 {
-    ListCustomersResponse result = await customersController.GetCustomersAsync(null, null, page, size, null, null);
+    ListCardsResponse result = await customersController.GetCardsAsync(customerId, null, null);
 }
 catch (ApiException e)
 {
@@ -811,14 +691,14 @@ catch (ApiException e)
 ```
 
 
-# Update Customer
+# Renew Card
 
-Updates a customer
+Renew a card
 
 ```csharp
-UpdateCustomerAsync(
+RenewCardAsync(
     string customerId,
-    Models.UpdateCustomerRequest request,
+    string cardId,
     string idempotencyKey = null)
 ```
 
@@ -827,7 +707,85 @@ UpdateCustomerAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer id |
-| `request` | [`Models.UpdateCustomerRequest`](../../doc/models/update-customer-request.md) | Body, Required | Request for updating a customer |
+| `cardId` | `string` | Template, Required | Card Id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetCardResponse>`](../../doc/models/get-card-response.md)
+
+## Example Usage
+
+```csharp
+string customerId = "customer_id8";
+string cardId = "card_id4";
+try
+{
+    GetCardResponse result = await customersController.RenewCardAsync(customerId, cardId, null);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Access Token
+
+Get a Customer's access token
+
+```csharp
+GetAccessTokenAsync(
+    string customerId,
+    string tokenId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `customerId` | `string` | Template, Required | Customer Id |
+| `tokenId` | `string` | Template, Required | Token Id |
+
+## Response Type
+
+[`Task<Models.GetAccessTokenResponse>`](../../doc/models/get-access-token-response.md)
+
+## Example Usage
+
+```csharp
+string customerId = "customer_id8";
+string tokenId = "token_id6";
+try
+{
+    GetAccessTokenResponse result = await customersController.GetAccessTokenAsync(customerId, tokenId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Customer Metadata
+
+Updates the metadata a customer
+
+```csharp
+UpdateCustomerMetadataAsync(
+    string customerId,
+    Models.UpdateMetadataRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `customerId` | `string` | Template, Required | The customer id |
+| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the customer metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -838,13 +796,17 @@ UpdateCustomerAsync(
 
 ```csharp
 string customerId = "customer_id8";
-UpdateCustomerRequest request = new UpdateCustomerRequest
+UpdateMetadataRequest request = new UpdateMetadataRequest
 {
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
 };
 
 try
 {
-    GetCustomerResponse result = await customersController.UpdateCustomerAsync(customerId, request, null);
+    GetCustomerResponse result = await customersController.UpdateCustomerMetadataAsync(customerId, request, null);
 }
 catch (ApiException e)
 {
@@ -959,6 +921,44 @@ string customerId = "customer_id8";
 try
 {
     GetCustomerResponse result = await customersController.GetCustomerAsync(customerId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Card
+
+Get a customer's card
+
+```csharp
+GetCardAsync(
+    string customerId,
+    string cardId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `customerId` | `string` | Template, Required | Customer id |
+| `cardId` | `string` | Template, Required | Card id |
+
+## Response Type
+
+[`Task<Models.GetCardResponse>`](../../doc/models/get-card-response.md)
+
+## Example Usage
+
+```csharp
+string customerId = "customer_id8";
+string cardId = "card_id4";
+try
+{
+    GetCardResponse result = await customersController.GetCardAsync(customerId, cardId);
 }
 catch (ApiException e)
 {
