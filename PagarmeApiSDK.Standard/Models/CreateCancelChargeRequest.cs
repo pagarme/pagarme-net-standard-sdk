@@ -35,16 +35,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="amount">amount.</param>
         /// <param name="splitRules">split_rules.</param>
         /// <param name="split">split.</param>
+        /// <param name="bankAccount">bank_account.</param>
         public CreateCancelChargeRequest(
             string operationReference,
             int? amount = null,
             List<Models.CreateCancelChargeSplitRulesRequest> splitRules = null,
-            List<Models.CreateSplitRequest> split = null)
+            List<Models.CreateSplitRequest> split = null,
+            Models.CreateBankAccountRefundingDTO bankAccount = null)
         {
             this.Amount = amount;
             this.SplitRules = splitRules;
             this.Split = split;
             this.OperationReference = operationReference;
+            this.BankAccount = bankAccount;
         }
 
         /// <summary>
@@ -71,6 +74,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("operation_reference")]
         public string OperationReference { get; set; }
 
+        /// <summary>
+        /// Gets or sets BankAccount.
+        /// </summary>
+        [JsonProperty("bank_account", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreateBankAccountRefundingDTO BankAccount { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -96,7 +105,8 @@ namespace PagarmeApiSDK.Standard.Models
             return obj is CreateCancelChargeRequest other &&                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.SplitRules == null && other.SplitRules == null) || (this.SplitRules?.Equals(other.SplitRules) == true)) &&
                 ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
-                ((this.OperationReference == null && other.OperationReference == null) || (this.OperationReference?.Equals(other.OperationReference) == true));
+                ((this.OperationReference == null && other.OperationReference == null) || (this.OperationReference?.Equals(other.OperationReference) == true)) &&
+                ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true));
         }
         
         /// <summary>
@@ -109,6 +119,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.SplitRules = {(this.SplitRules == null ? "null" : $"[{string.Join(", ", this.SplitRules)} ]")}");
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : $"[{string.Join(", ", this.Split)} ]")}");
             toStringOutput.Add($"this.OperationReference = {(this.OperationReference == null ? "null" : this.OperationReference == string.Empty ? "" : this.OperationReference)}");
+            toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
         }
     }
 }
