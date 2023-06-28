@@ -115,7 +115,6 @@ UpdateChargePaymentMethodRequest request = new UpdateChargePaymentMethodRequest
     Boleto = new CreateBoletoPaymentRequest
     {
         Retries = 10,
-        Bank = "bank4",
         Instructions = "instructions4",
         BillingAddress = new CreateAddressRequest
         {
@@ -127,10 +126,6 @@ UpdateChargePaymentMethodRequest request = new UpdateChargePaymentMethodRequest
             State = "state6",
             Country = "country2",
             Complement = "complement6",
-            Metadata = new Dictionary<string, string>
-            {
-                ["key0"] = "metadata5",
-            },
             Line1 = "line_18",
             Line2 = "line_26",
         },

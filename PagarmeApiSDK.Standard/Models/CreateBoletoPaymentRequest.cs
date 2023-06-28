@@ -21,6 +21,7 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateBoletoPaymentRequest
     {
+        private string bank;
         private DateTime? dueAt;
         private string billingAddressId;
         private string nossoNumero;
@@ -29,6 +30,7 @@ namespace PagarmeApiSDK.Standard.Models
         private int? maxDaysToPayPastDue;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "bank", false },
             { "due_at", false },
             { "billing_address_id", false },
             { "nosso_numero", false },
@@ -48,11 +50,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// Initializes a new instance of the <see cref="CreateBoletoPaymentRequest"/> class.
         /// </summary>
         /// <param name="retries">retries.</param>
-        /// <param name="bank">bank.</param>
         /// <param name="instructions">instructions.</param>
         /// <param name="billingAddress">billing_address.</param>
         /// <param name="documentNumber">document_number.</param>
         /// <param name="statementDescriptor">statement_descriptor.</param>
+        /// <param name="bank">bank.</param>
         /// <param name="dueAt">due_at.</param>
         /// <param name="billingAddressId">billing_address_id.</param>
         /// <param name="nossoNumero">nosso_numero.</param>
@@ -61,11 +63,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="maxDaysToPayPastDue">max_days_to_pay_past_due.</param>
         public CreateBoletoPaymentRequest(
             int retries,
-            string bank,
             string instructions,
             Models.CreateAddressRequest billingAddress,
             string documentNumber,
             string statementDescriptor,
+            string bank = null,
             DateTime? dueAt = null,
             string billingAddressId = null,
             string nossoNumero = null,
@@ -74,7 +76,11 @@ namespace PagarmeApiSDK.Standard.Models
             int? maxDaysToPayPastDue = null)
         {
             this.Retries = retries;
-            this.Bank = bank;
+            if (bank != null)
+            {
+                this.Bank = bank;
+            }
+
             this.Instructions = instructions;
             if (dueAt != null)
             {
@@ -121,7 +127,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// The bank code, containing three characters. The available codes are on the API specification
         /// </summary>
         [JsonProperty("bank")]
-        public string Bank { get; set; }
+        public string Bank
+        {
+            get
+            {
+                return this.bank;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank"] = true;
+                this.bank = value;
+            }
+        }
 
         /// <summary>
         /// The instructions field that will be printed on the boleto.
@@ -269,6 +287,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetBank()
+        {
+            this.shouldSerialize["bank"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetDueAt()
         {
             this.shouldSerialize["due_at"] = false;
@@ -312,6 +338,15 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetMaxDaysToPayPastDue()
         {
             this.shouldSerialize["max_days_to_pay_past_due"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBank()
+        {
+            return this.shouldSerialize["bank"];
         }
 
         /// <summary>

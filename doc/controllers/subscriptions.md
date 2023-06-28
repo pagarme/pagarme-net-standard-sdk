@@ -257,11 +257,6 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
             State = "state6",
             Country = "country4",
             Complement = "complement6",
-            Metadata = new Dictionary<string, string>
-            {
-                ["key0"] = "metadata7",
-                ["key1"] = "metadata6",
-            },
             Line1 = "line_16",
             Line2 = "line_28",
         },
@@ -331,11 +326,6 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
             State = "state2",
             Country = "country0",
             Complement = "complement2",
-            Metadata = new Dictionary<string, string>
-            {
-                ["key0"] = "metadata3",
-                ["key1"] = "metadata2",
-            },
             Line1 = "line_10",
             Line2 = "line_24",
         },

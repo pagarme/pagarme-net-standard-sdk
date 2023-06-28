@@ -78,11 +78,6 @@ UpdateCardRequest request = new UpdateCardRequest
         State = "state4",
         Country = "country2",
         Complement = "complement6",
-        Metadata = new Dictionary<string, string>
-        {
-            ["key0"] = "metadata5",
-            ["key1"] = "metadata6",
-        },
         Line1 = "line_18",
         Line2 = "line_26",
     },
@@ -235,10 +230,6 @@ CreateAddressRequest request = new CreateAddressRequest
     State = "state2",
     Country = "country0",
     Complement = "complement2",
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
     Line1 = "line_10",
     Line2 = "line_24",
 };
@@ -295,10 +286,6 @@ CreateCustomerRequest request = new CreateCustomerRequest
         State = "state8",
         Country = "country6",
         Complement = "complement8",
-        Metadata = new Dictionary<string, string>
-        {
-            ["key0"] = "metadata7",
-        },
         Line1 = "line_16",
         Line2 = "line_20",
     },

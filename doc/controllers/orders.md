@@ -233,11 +233,6 @@ CreateOrderRequest body = new CreateOrderRequest
             State = "state6",
             Country = "country4",
             Complement = "complement6",
-            Metadata = new Dictionary<string, string>
-            {
-                ["key0"] = "metadata7",
-                ["key1"] = "metadata6",
-            },
             Line1 = "line_16",
             Line2 = "line_28",
         },
@@ -259,11 +254,6 @@ CreateOrderRequest body = new CreateOrderRequest
         },
     },
     Code = "code4",
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata7",
-        ["key1"] = "metadata8",
-    },
     Closed = true,
 };
 
