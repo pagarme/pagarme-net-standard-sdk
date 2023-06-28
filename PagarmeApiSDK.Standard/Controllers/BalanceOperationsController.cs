@@ -60,7 +60,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<VoidType>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/operations")
+                  .Setup(HttpMethod.Get, "/balance/operations")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("status", status))
@@ -72,25 +72,28 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// GetBalanceOperationById EndPoint.
         /// </summary>
         /// <param name="id">Required parameter: Example: .</param>
-        public void GetBalanceOperationById(
-                string id)
-            => CoreHelper.RunVoidTask(GetBalanceOperationByIdAsync(id));
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        public Models.GetBalanceOperationResponse GetBalanceOperationById(
+                long id)
+            => CoreHelper.RunTask(GetBalanceOperationByIdAsync(id));
 
         /// <summary>
         /// GetBalanceOperationById EndPoint.
         /// </summary>
         /// <param name="id">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the void response from the API call.</returns>
-        public async Task GetBalanceOperationByIdAsync(
-                string id,
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        public async Task<Models.GetBalanceOperationResponse> GetBalanceOperationByIdAsync(
+                long id,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<VoidType>()
+            => await CreateApiCall<Models.GetBalanceOperationResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/operations/{id}")
+                  .Setup(HttpMethod.Get, "/balance/operations/{id}")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("id", id))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetBalanceOperationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

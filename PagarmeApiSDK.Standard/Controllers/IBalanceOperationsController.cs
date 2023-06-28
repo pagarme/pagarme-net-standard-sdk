@@ -51,17 +51,18 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// GetBalanceOperationById EndPoint.
         /// </summary>
         /// <param name="id">Required parameter: Example: .</param>
-        void GetBalanceOperationById(
-                string id);
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        Models.GetBalanceOperationResponse GetBalanceOperationById(
+                long id);
 
         /// <summary>
         /// GetBalanceOperationById EndPoint.
         /// </summary>
         /// <param name="id">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the void response from the API call.</returns>
-        Task GetBalanceOperationByIdAsync(
-                string id,
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        Task<Models.GetBalanceOperationResponse> GetBalanceOperationByIdAsync(
+                long id,
                 CancellationToken cancellationToken = default);
     }
 }

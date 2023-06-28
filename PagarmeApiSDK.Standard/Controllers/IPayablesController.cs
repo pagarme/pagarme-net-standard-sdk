@@ -42,6 +42,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="liquidationArrangementId">Optional parameter: Example: .</param>
         /// <param name="page">Optional parameter: Example: .</param>
         /// <param name="size">Optional parameter: Example: .</param>
+        /// <param name="gatewayId">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.ListPayablesResponse response from the API call.</returns>
         Models.ListPayablesResponse GetPayables(
                 string type = null,
@@ -60,7 +61,8 @@ namespace PagarmeApiSDK.Standard.Controllers
                 DateTime? createdSince = null,
                 string liquidationArrangementId = null,
                 int? page = null,
-                int? size = null);
+                int? size = null,
+                long? gatewayId = null);
 
         /// <summary>
         /// GetPayables EndPoint.
@@ -82,6 +84,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="liquidationArrangementId">Optional parameter: Example: .</param>
         /// <param name="page">Optional parameter: Example: .</param>
         /// <param name="size">Optional parameter: Example: .</param>
+        /// <param name="gatewayId">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ListPayablesResponse response from the API call.</returns>
         Task<Models.ListPayablesResponse> GetPayablesAsync(
@@ -102,6 +105,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string liquidationArrangementId = null,
                 int? page = null,
                 int? size = null,
+                long? gatewayId = null,
                 CancellationToken cancellationToken = default);
 
         /// <summary>

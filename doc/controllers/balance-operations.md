@@ -65,26 +65,26 @@ catch (ApiException e)
 
 ```csharp
 GetBalanceOperationByIdAsync(
-    string id)
+    long id)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Template, Required | - |
+| `id` | `long` | Template, Required | - |
 
 ## Response Type
 
-`Task`
+[`Task<Models.GetBalanceOperationResponse>`](../../doc/models/get-balance-operation-response.md)
 
 ## Example Usage
 
 ```csharp
-string id = "id0";
+long id = 112L;
 try
 {
-    await balanceOperationsController.GetBalanceOperationByIdAsync(id);
+    GetBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationByIdAsync(id);
 }
 catch (ApiException e)
 {

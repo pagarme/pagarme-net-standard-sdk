@@ -34,7 +34,8 @@ GetPayablesAsync(
     DateTime? createdSince = null,
     string liquidationArrangementId = null,
     int? page = null,
-    int? size = null)
+    int? size = null,
+    long? gatewayId = null)
 ```
 
 ## Parameters
@@ -58,6 +59,7 @@ GetPayablesAsync(
 | `liquidationArrangementId` | `string` | Query, Optional | - |
 | `page` | `int?` | Query, Optional | - |
 | `size` | `int?` | Query, Optional | - |
+| `gatewayId` | `long?` | Query, Optional | - |
 
 ## Response Type
 
@@ -68,7 +70,7 @@ GetPayablesAsync(
 ```csharp
 try
 {
-    ListPayablesResponse result = await payablesController.GetPayablesAsync(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    ListPayablesResponse result = await payablesController.GetPayablesAsync(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 }
 catch (ApiException e)
 {
