@@ -26,7 +26,6 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectTransferResponse()
         {
-            this.MObject = "GetMovementObjectTransferResponse";
         }
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace PagarmeApiSDK.Standard.Models
             string fundingDate,
             string fundingEstimatedDate,
             string bankAccount,
-            string mObject = "GetMovementObjectTransferResponse",
+            string mObject = null,
             string id = null,
             string status = null,
             string amount = null,

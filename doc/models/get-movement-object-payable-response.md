@@ -33,7 +33,7 @@
 
 ```json
 {
-  "object": "GetMovementObjectPayableResponse",
+  "object": "object8",
   "id": "id0",
   "status": "status2",
   "amount": "amount2",
