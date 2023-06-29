@@ -69,7 +69,7 @@ namespace PagarmeApiSDK.Standard.Models
             string amount = null,
             string fee = null,
             string createdAt = null,
-            Models.GetMovementObjectBaseResponse movementObject = null)
+            object movementObject = null)
         {
             if (id != null)
             {
@@ -262,7 +262,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets MovementObject.
         /// </summary>
         [JsonProperty("movement_object", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.GetMovementObjectBaseResponse MovementObject { get; set; }
+        public object MovementObject { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -447,7 +447,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount == string.Empty ? "" : this.Amount)}");
             toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee == string.Empty ? "" : this.Fee)}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt == string.Empty ? "" : this.CreatedAt)}");
-            toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");
+            toStringOutput.Add($"MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");
         }
     }
 }
