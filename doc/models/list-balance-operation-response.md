@@ -11,7 +11,7 @@ Response object for listing BalanceOperation objects
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | `List<string>` | Optional | The BalanceOperation object |
+| `Data` | [`List<Models.GetBalanceOperationResponse>`](../../doc/models/get-balance-operation-response.md) | Optional | The BalanceOperation object |
 | `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Optional | - |
 
 ## Example (as JSON)
@@ -19,8 +19,20 @@ Response object for listing BalanceOperation objects
 ```json
 {
   "data": [
-    "data5",
-    "data6"
+    {
+      "id": "id5",
+      "status": "status7",
+      "balance_amount": "balance_amount5",
+      "balance_old_amount": "balance_old_amount3",
+      "type": "type5"
+    },
+    {
+      "id": "id6",
+      "status": "status8",
+      "balance_amount": "balance_amount6",
+      "balance_old_amount": "balance_old_amount4",
+      "type": "type6"
+    }
   ],
   "paging": {
     "total": 6,

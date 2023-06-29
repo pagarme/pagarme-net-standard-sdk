@@ -21,7 +21,7 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class ListBalanceOperationResponse
     {
-        private List<string> data;
+        private List<Models.GetBalanceOperationResponse> data;
         private Models.PagingResponse paging;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
@@ -42,7 +42,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="data">data.</param>
         /// <param name="paging">paging.</param>
         public ListBalanceOperationResponse(
-            List<string> data = null,
+            List<Models.GetBalanceOperationResponse> data = null,
             Models.PagingResponse paging = null)
         {
             if (data != null)
@@ -61,7 +61,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// The BalanceOperation object
         /// </summary>
         [JsonProperty("data")]
-        public List<string> Data
+        public List<Models.GetBalanceOperationResponse> Data
         {
             get
             {
