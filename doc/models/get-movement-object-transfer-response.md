@@ -7,7 +7,7 @@
 
 ## Inherits From
 
-[`GetBalanceOperationResponse`](../../doc/models/get-balance-operation-response.md)
+[`GetMovementObjectBaseResponse`](../../doc/models/get-movement-object-base-response.md)
 
 ## Fields
 
@@ -26,12 +26,11 @@
 
 ```json
 {
+  "object": "object6",
   "id": "id6",
   "status": "status2",
-  "balance_amount": "balance_amount4",
-  "balance_old_amount": "balance_old_amount6",
-  "type": "type4",
-  "movement_object": "transfer",
+  "amount": "amount8",
+  "created_at": "created_at4",
   "source_type": "source_type0",
   "source_id": "source_id6",
   "target_type": "target_type2",

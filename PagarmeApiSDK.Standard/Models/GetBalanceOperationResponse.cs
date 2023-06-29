@@ -20,10 +20,6 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetBalanceOperationResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "movement_object")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectFeeCollectionResponse), "FeeCollection")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectPayableResponse), "payable")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectTransferResponse), "transfer")]
     public class GetBalanceOperationResponse
     {
         private string id;
@@ -51,7 +47,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetBalanceOperationResponse()
         {
-            this.MovementObject = "object";
+            this.MovementObject = "MovementObject";
         }
 
         /// <summary>
@@ -67,7 +63,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fee">fee.</param>
         /// <param name="createdAt">created_at.</param>
         public GetBalanceOperationResponse(
-            string movementObject = "object",
+            string movementObject = "MovementObject",
             string id = null,
             string status = null,
             string balanceAmount = null,

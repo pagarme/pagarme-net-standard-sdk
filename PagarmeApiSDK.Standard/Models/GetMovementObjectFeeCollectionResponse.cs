@@ -19,7 +19,7 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetMovementObjectFeeCollectionResponse.
     /// </summary>
-    public class GetMovementObjectFeeCollectionResponse : GetBalanceOperationResponse
+    public class GetMovementObjectFeeCollectionResponse : GetMovementObjectBaseResponse
     {
         private string description;
         private string paymentDate;
@@ -36,47 +36,43 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectFeeCollectionResponse()
         {
-            this.MovementObject = "FeeCollection";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetMovementObjectFeeCollectionResponse"/> class.
         /// </summary>
-        /// <param name="movementObject">movement_object.</param>
+        /// <param name="mObject">object.</param>
         /// <param name="id">id.</param>
         /// <param name="status">status.</param>
-        /// <param name="balanceAmount">balance_amount.</param>
-        /// <param name="balanceOldAmount">balance_old_amount.</param>
-        /// <param name="type">type.</param>
         /// <param name="amount">amount.</param>
-        /// <param name="fee">fee.</param>
         /// <param name="createdAt">created_at.</param>
+        /// <param name="type">type.</param>
+        /// <param name="chargeId">charge_id.</param>
+        /// <param name="gatewayId">gateway_id.</param>
         /// <param name="description">description.</param>
         /// <param name="paymentDate">payment_date.</param>
         /// <param name="recipientId">recipient_id.</param>
         public GetMovementObjectFeeCollectionResponse(
-            string movementObject = "FeeCollection",
+            string mObject = null,
             string id = null,
             string status = null,
-            string balanceAmount = null,
-            string balanceOldAmount = null,
-            string type = null,
             string amount = null,
-            string fee = null,
             string createdAt = null,
+            string type = null,
+            string chargeId = null,
+            string gatewayId = null,
             string description = null,
             string paymentDate = null,
             string recipientId = null)
             : base(
-                movementObject,
+                mObject,
                 id,
                 status,
-                balanceAmount,
-                balanceOldAmount,
-                type,
                 amount,
-                fee,
-                createdAt)
+                createdAt,
+                type,
+                chargeId,
+                gatewayId)
         {
             if (description != null)
             {

@@ -30,7 +30,7 @@ Generic response object for getting a BalanceOperation.
   "balance_amount": "balance_amount0",
   "balance_old_amount": "balance_old_amount2",
   "type": "type0",
-  "movement_object": "object"
+  "movement_object": "MovementObject"
 }
 ```
 
