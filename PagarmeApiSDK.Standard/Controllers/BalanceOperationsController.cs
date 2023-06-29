@@ -36,28 +36,28 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <summary>
         /// GetBalanceOperations EndPoint.
         /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Required parameter: Example: .</param>
-        /// <param name="createdUntil">Required parameter: Example: .</param>
+        /// <param name="status">Optional parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
         public Models.ListBalanceOperationResponse GetBalanceOperations(
-                string status,
-                DateTime createdSince,
-                DateTime createdUntil)
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null)
             => CoreHelper.RunTask(GetBalanceOperationsAsync(status, createdSince, createdUntil));
 
         /// <summary>
         /// GetBalanceOperations EndPoint.
         /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Required parameter: Example: .</param>
-        /// <param name="createdUntil">Required parameter: Example: .</param>
+        /// <param name="status">Optional parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
         public async Task<Models.ListBalanceOperationResponse> GetBalanceOperationsAsync(
-                string status,
-                DateTime createdSince,
-                DateTime createdUntil,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ListBalanceOperationResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
@@ -65,8 +65,8 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("status", status))
-                      .Query(_query => _query.Setup("created_since", createdSince.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))
-                      .Query(_query => _query.Setup("created_until", createdUntil.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
+                      .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
+                      .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
               .ResponseHandler(_responseHandler => _responseHandler
                   .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListBalanceOperationResponse>(_response)))
               .ExecuteAsync(cancellationToken);

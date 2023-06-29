@@ -25,27 +25,27 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <summary>
         /// GetBalanceOperations EndPoint.
         /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Required parameter: Example: .</param>
-        /// <param name="createdUntil">Required parameter: Example: .</param>
+        /// <param name="status">Optional parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
         Models.ListBalanceOperationResponse GetBalanceOperations(
-                string status,
-                DateTime createdSince,
-                DateTime createdUntil);
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null);
 
         /// <summary>
         /// GetBalanceOperations EndPoint.
         /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Required parameter: Example: .</param>
-        /// <param name="createdUntil">Required parameter: Example: .</param>
+        /// <param name="status">Optional parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
         Task<Models.ListBalanceOperationResponse> GetBalanceOperationsAsync(
-                string status,
-                DateTime createdSince,
-                DateTime createdUntil,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
                 CancellationToken cancellationToken = default);
 
         /// <summary>

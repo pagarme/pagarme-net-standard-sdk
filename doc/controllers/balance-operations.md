@@ -18,18 +18,18 @@ IBalanceOperationsController balanceOperationsController = client.BalanceOperati
 
 ```csharp
 GetBalanceOperationsAsync(
-    string status,
-    DateTime createdSince,
-    DateTime createdUntil)
+    string status = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Query, Required | - |
-| `createdSince` | `DateTime` | Query, Required | - |
-| `createdUntil` | `DateTime` | Query, Required | - |
+| `status` | `string` | Query, Optional | - |
+| `createdSince` | `DateTime?` | Query, Optional | - |
+| `createdUntil` | `DateTime?` | Query, Optional | - |
 
 ## Response Type
 
@@ -38,20 +38,9 @@ GetBalanceOperationsAsync(
 ## Example Usage
 
 ```csharp
-string status = "status8";
-DateTime createdSince = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
-        provider: CultureInfo.InvariantCulture,
-        DateTimeStyles.RoundtripKind);
-DateTime createdUntil = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
-        provider: CultureInfo.InvariantCulture,
-        DateTimeStyles.RoundtripKind);
 try
 {
-    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync(status, createdSince, createdUntil);
+    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync(null, null, null);
 }
 catch (ApiException e)
 {
