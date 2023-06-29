@@ -19,7 +19,6 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetBalanceOperationResponse.
     /// </summary>
-    [JsonConverter(typeof(JsonSubtypes), "movement_object")]
     public class GetBalanceOperationResponse
     {
         private string id;
@@ -47,13 +46,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetBalanceOperationResponse()
         {
-            this.MovementObject = "MovementObject";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetBalanceOperationResponse"/> class.
         /// </summary>
-        /// <param name="movementObject">movement_object.</param>
         /// <param name="id">id.</param>
         /// <param name="status">status.</param>
         /// <param name="balanceAmount">balance_amount.</param>
@@ -62,8 +59,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="amount">amount.</param>
         /// <param name="fee">fee.</param>
         /// <param name="createdAt">created_at.</param>
+        /// <param name="movementObject">movement_object.</param>
         public GetBalanceOperationResponse(
-            string movementObject = "MovementObject",
             string id = null,
             string status = null,
             string balanceAmount = null,
@@ -71,7 +68,8 @@ namespace PagarmeApiSDK.Standard.Models
             string type = null,
             string amount = null,
             string fee = null,
-            string createdAt = null)
+            string createdAt = null,
+            Models.GetMovementObjectBaseResponse movementObject = null)
         {
             if (id != null)
             {
@@ -264,7 +262,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets MovementObject.
         /// </summary>
         [JsonProperty("movement_object", NullValueHandling = NullValueHandling.Ignore)]
-        public string MovementObject { get; set; }
+        public Models.GetMovementObjectBaseResponse MovementObject { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -449,7 +447,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount == string.Empty ? "" : this.Amount)}");
             toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee == string.Empty ? "" : this.Fee)}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt == string.Empty ? "" : this.CreatedAt)}");
-            toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject == string.Empty ? "" : this.MovementObject)}");
+            toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");
         }
     }
 }
