@@ -19,18 +19,48 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetMovementObjectTransferResponse.
     /// </summary>
-    public class GetMovementObjectTransferResponse : GetMovementObjectBaseResponse
+    public class GetMovementObjectTransferResponse : GetBalanceOperationResponse
     {
+        private string sourceType;
+        private string sourceId;
+        private string targetType;
+        private string targetId;
+        private string fee;
+        private string fundingDate;
+        private string fundingEstimatedDate;
+        private string bankAccount;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "source_type", false },
+            { "source_id", false },
+            { "target_type", false },
+            { "target_id", false },
+            { "fee", false },
+            { "funding_date", false },
+            { "funding_estimated_date", false },
+            { "bank_account", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GetMovementObjectTransferResponse"/> class.
         /// </summary>
         public GetMovementObjectTransferResponse()
         {
+            this.MovementObject = "transfer";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetMovementObjectTransferResponse"/> class.
         /// </summary>
+        /// <param name="movementObject">movement_object.</param>
+        /// <param name="id">id.</param>
+        /// <param name="status">status.</param>
+        /// <param name="balanceAmount">balance_amount.</param>
+        /// <param name="balanceOldAmount">balance_old_amount.</param>
+        /// <param name="type">type.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="fee">fee.</param>
+        /// <param name="createdAt">created_at.</param>
         /// <param name="sourceType">source_type.</param>
         /// <param name="sourceId">source_id.</param>
         /// <param name="targetType">target_type.</param>
@@ -39,98 +69,220 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fundingDate">funding_date.</param>
         /// <param name="fundingEstimatedDate">funding_estimated_date.</param>
         /// <param name="bankAccount">bank_account.</param>
-        /// <param name="mObject">object.</param>
-        /// <param name="id">id.</param>
-        /// <param name="status">status.</param>
-        /// <param name="amount">amount.</param>
-        /// <param name="createdAt">created_at.</param>
-        /// <param name="type">type.</param>
-        /// <param name="chargeId">charge_id.</param>
-        /// <param name="gatewayId">gateway_id.</param>
         public GetMovementObjectTransferResponse(
-            string sourceType,
-            string sourceId,
-            string targetType,
-            string targetId,
-            string fee,
-            string fundingDate,
-            string fundingEstimatedDate,
-            string bankAccount,
-            string mObject = null,
+            string movementObject = "transfer",
             string id = null,
             string status = null,
-            string amount = null,
-            string createdAt = null,
+            string balanceAmount = null,
+            string balanceOldAmount = null,
             string type = null,
-            string chargeId = null,
-            string gatewayId = null)
+            string amount = null,
+            string fee = null,
+            string createdAt = null,
+            string sourceType = null,
+            string sourceId = null,
+            string targetType = null,
+            string targetId = null,
+            string fee = null,
+            string fundingDate = null,
+            string fundingEstimatedDate = null,
+            string bankAccount = null)
             : base(
-                mObject,
+                movementObject,
                 id,
                 status,
-                amount,
-                createdAt,
+                balanceAmount,
+                balanceOldAmount,
                 type,
-                chargeId,
-                gatewayId)
+                amount,
+                fee,
+                createdAt)
         {
-            this.SourceType = sourceType;
-            this.SourceId = sourceId;
-            this.TargetType = targetType;
-            this.TargetId = targetId;
-            this.Fee = fee;
-            this.FundingDate = fundingDate;
-            this.FundingEstimatedDate = fundingEstimatedDate;
-            this.BankAccount = bankAccount;
+            if (sourceType != null)
+            {
+                this.SourceType = sourceType;
+            }
+
+            if (sourceId != null)
+            {
+                this.SourceId = sourceId;
+            }
+
+            if (targetType != null)
+            {
+                this.TargetType = targetType;
+            }
+
+            if (targetId != null)
+            {
+                this.TargetId = targetId;
+            }
+
+            if (fee != null)
+            {
+                this.Fee = fee;
+            }
+
+            if (fundingDate != null)
+            {
+                this.FundingDate = fundingDate;
+            }
+
+            if (fundingEstimatedDate != null)
+            {
+                this.FundingEstimatedDate = fundingEstimatedDate;
+            }
+
+            if (bankAccount != null)
+            {
+                this.BankAccount = bankAccount;
+            }
+
         }
 
         /// <summary>
         /// Gets or sets SourceType.
         /// </summary>
         [JsonProperty("source_type")]
-        public string SourceType { get; set; }
+        public string SourceType
+        {
+            get
+            {
+                return this.sourceType;
+            }
+
+            set
+            {
+                this.shouldSerialize["source_type"] = true;
+                this.sourceType = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets SourceId.
         /// </summary>
         [JsonProperty("source_id")]
-        public string SourceId { get; set; }
+        public string SourceId
+        {
+            get
+            {
+                return this.sourceId;
+            }
+
+            set
+            {
+                this.shouldSerialize["source_id"] = true;
+                this.sourceId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets TargetType.
         /// </summary>
         [JsonProperty("target_type")]
-        public string TargetType { get; set; }
+        public string TargetType
+        {
+            get
+            {
+                return this.targetType;
+            }
+
+            set
+            {
+                this.shouldSerialize["target_type"] = true;
+                this.targetType = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets TargetId.
         /// </summary>
         [JsonProperty("target_id")]
-        public string TargetId { get; set; }
+        public string TargetId
+        {
+            get
+            {
+                return this.targetId;
+            }
+
+            set
+            {
+                this.shouldSerialize["target_id"] = true;
+                this.targetId = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Fee.
         /// </summary>
         [JsonProperty("fee")]
-        public string Fee { get; set; }
+        public new string Fee
+        {
+            get
+            {
+                return this.fee;
+            }
+
+            set
+            {
+                this.shouldSerialize["fee"] = true;
+                this.fee = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets FundingDate.
         /// </summary>
         [JsonProperty("funding_date")]
-        public string FundingDate { get; set; }
+        public string FundingDate
+        {
+            get
+            {
+                return this.fundingDate;
+            }
+
+            set
+            {
+                this.shouldSerialize["funding_date"] = true;
+                this.fundingDate = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets FundingEstimatedDate.
         /// </summary>
         [JsonProperty("funding_estimated_date")]
-        public string FundingEstimatedDate { get; set; }
+        public string FundingEstimatedDate
+        {
+            get
+            {
+                return this.fundingEstimatedDate;
+            }
+
+            set
+            {
+                this.shouldSerialize["funding_estimated_date"] = true;
+                this.fundingEstimatedDate = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets BankAccount.
         /// </summary>
         [JsonProperty("bank_account")]
-        public string BankAccount { get; set; }
+        public string BankAccount
+        {
+            get
+            {
+                return this.bankAccount;
+            }
+
+            set
+            {
+                this.shouldSerialize["bank_account"] = true;
+                this.bankAccount = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -140,6 +292,142 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"GetMovementObjectTransferResponse : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSourceType()
+        {
+            this.shouldSerialize["source_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSourceId()
+        {
+            this.shouldSerialize["source_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTargetType()
+        {
+            this.shouldSerialize["target_type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetTargetId()
+        {
+            this.shouldSerialize["target_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFee()
+        {
+            this.shouldSerialize["fee"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFundingDate()
+        {
+            this.shouldSerialize["funding_date"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetFundingEstimatedDate()
+        {
+            this.shouldSerialize["funding_estimated_date"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBankAccount()
+        {
+            this.shouldSerialize["bank_account"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSourceType()
+        {
+            return this.shouldSerialize["source_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSourceId()
+        {
+            return this.shouldSerialize["source_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTargetType()
+        {
+            return this.shouldSerialize["target_type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeTargetId()
+        {
+            return this.shouldSerialize["target_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFee()
+        {
+            return this.shouldSerialize["fee"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFundingDate()
+        {
+            return this.shouldSerialize["funding_date"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeFundingEstimatedDate()
+        {
+            return this.shouldSerialize["funding_estimated_date"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBankAccount()
+        {
+            return this.shouldSerialize["bank_account"];
         }
 
         /// <inheritdoc/>

@@ -19,7 +19,7 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetMovementObjectRefundResponse.
     /// </summary>
-    public class GetMovementObjectRefundResponse : GetMovementObjectBaseResponse
+    public class GetMovementObjectRefundResponse : GetBalanceOperationResponse
     {
         private string fraudCoverageFee;
         private string chargeFeeRecipientId;
@@ -40,47 +40,51 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectRefundResponse()
         {
+            this.MovementObject = "refund";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetMovementObjectRefundResponse"/> class.
         /// </summary>
-        /// <param name="mObject">object.</param>
+        /// <param name="movementObject">movement_object.</param>
         /// <param name="id">id.</param>
         /// <param name="status">status.</param>
-        /// <param name="amount">amount.</param>
-        /// <param name="createdAt">created_at.</param>
+        /// <param name="balanceAmount">balance_amount.</param>
+        /// <param name="balanceOldAmount">balance_old_amount.</param>
         /// <param name="type">type.</param>
-        /// <param name="chargeId">charge_id.</param>
-        /// <param name="gatewayId">gateway_id.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="fee">fee.</param>
+        /// <param name="createdAt">created_at.</param>
         /// <param name="fraudCoverageFee">fraud_coverage_fee.</param>
         /// <param name="chargeFeeRecipientId">charge_fee_recipient_id.</param>
         /// <param name="bankAccountId">bank_account_id.</param>
         /// <param name="localTransactionId">local_transaction_id.</param>
         /// <param name="updatedAt">updated_at.</param>
         public GetMovementObjectRefundResponse(
-            string mObject = null,
+            string movementObject = "refund",
             string id = null,
             string status = null,
-            string amount = null,
-            string createdAt = null,
+            string balanceAmount = null,
+            string balanceOldAmount = null,
             string type = null,
-            string chargeId = null,
-            string gatewayId = null,
+            string amount = null,
+            string fee = null,
+            string createdAt = null,
             string fraudCoverageFee = null,
             string chargeFeeRecipientId = null,
             string bankAccountId = null,
             string localTransactionId = null,
             string updatedAt = null)
             : base(
-                mObject,
+                movementObject,
                 id,
                 status,
-                amount,
-                createdAt,
+                balanceAmount,
+                balanceOldAmount,
                 type,
-                chargeId,
-                gatewayId)
+                amount,
+                fee,
+                createdAt)
         {
             if (fraudCoverageFee != null)
             {

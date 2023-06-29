@@ -7,38 +7,36 @@
 
 ## Inherits From
 
-[`GetMovementObjectBaseResponse`](../../doc/models/get-movement-object-base-response.md)
+[`GetBalanceOperationResponse`](../../doc/models/get-balance-operation-response.md)
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `SourceType` | `string` | Required | - |
-| `SourceId` | `string` | Required | - |
-| `TargetType` | `string` | Required | - |
-| `TargetId` | `string` | Required | - |
-| `Fee` | `string` | Required | - |
-| `FundingDate` | `string` | Required | - |
-| `FundingEstimatedDate` | `string` | Required | - |
-| `BankAccount` | `string` | Required | - |
+| `SourceType` | `string` | Optional | - |
+| `SourceId` | `string` | Optional | - |
+| `TargetType` | `string` | Optional | - |
+| `TargetId` | `string` | Optional | - |
+| `Fee` | `string` | Optional | - |
+| `FundingDate` | `string` | Optional | - |
+| `FundingEstimatedDate` | `string` | Optional | - |
+| `BankAccount` | `string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "object": "object6",
   "id": "id6",
   "status": "status2",
-  "amount": "amount8",
-  "created_at": "created_at4",
+  "balance_amount": "balance_amount4",
+  "balance_old_amount": "balance_old_amount6",
+  "type": "type4",
+  "movement_object": "transfer",
   "source_type": "source_type0",
   "source_id": "source_id6",
   "target_type": "target_type2",
   "target_id": "target_id0",
-  "fee": "fee2",
-  "funding_date": "funding_date2",
-  "funding_estimated_date": "funding_estimated_date8",
-  "bank_account": "bank_account4"
+  "fee": "fee2"
 }
 ```
 

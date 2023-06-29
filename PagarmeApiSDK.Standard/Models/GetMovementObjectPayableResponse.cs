@@ -19,7 +19,7 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetMovementObjectPayableResponse.
     /// </summary>
-    public class GetMovementObjectPayableResponse : GetMovementObjectBaseResponse
+    public class GetMovementObjectPayableResponse : GetBalanceOperationResponse
     {
         private string fee;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
@@ -32,6 +32,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectPayableResponse()
         {
+            this.MovementObject = "payable";
         }
 
         /// <summary>
@@ -51,14 +52,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="paymentMethod">payment_method.</param>
         /// <param name="accrualAt">accrual_at.</param>
         /// <param name="liquidationArrangementId">liquidation_arrangement_id.</param>
-        /// <param name="mObject">object.</param>
+        /// <param name="movementObject">movement_object.</param>
         /// <param name="id">id.</param>
         /// <param name="status">status.</param>
-        /// <param name="amount">amount.</param>
-        /// <param name="createdAt">created_at.</param>
+        /// <param name="balanceAmount">balance_amount.</param>
+        /// <param name="balanceOldAmount">balance_old_amount.</param>
         /// <param name="type">type.</param>
-        /// <param name="chargeId">charge_id.</param>
-        /// <param name="gatewayId">gateway_id.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="fee">fee.</param>
+        /// <param name="createdAt">created_at.</param>
         /// <param name="fee">fee.</param>
         public GetMovementObjectPayableResponse(
             string anticipationFee,
@@ -75,24 +77,26 @@ namespace PagarmeApiSDK.Standard.Models
             string paymentMethod,
             string accrualAt,
             string liquidationArrangementId,
-            string mObject = null,
+            string movementObject = "payable",
             string id = null,
             string status = null,
-            string amount = null,
-            string createdAt = null,
+            string balanceAmount = null,
+            string balanceOldAmount = null,
             string type = null,
-            string chargeId = null,
-            string gatewayId = null,
+            string amount = null,
+            string fee = null,
+            string createdAt = null,
             string fee = null)
             : base(
-                mObject,
+                movementObject,
                 id,
                 status,
-                amount,
-                createdAt,
+                balanceAmount,
+                balanceOldAmount,
                 type,
-                chargeId,
-                gatewayId)
+                amount,
+                fee,
+                createdAt)
         {
             if (fee != null)
             {
@@ -119,7 +123,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets Fee.
         /// </summary>
         [JsonProperty("fee")]
-        public string Fee
+        public new string Fee
         {
             get
             {

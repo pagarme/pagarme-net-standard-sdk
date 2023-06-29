@@ -9,7 +9,7 @@ Generic response object for getting a MovementObjectRefund.
 
 ## Inherits From
 
-[`GetMovementObjectBaseResponse`](../../doc/models/get-movement-object-base-response.md)
+[`GetBalanceOperationResponse`](../../doc/models/get-balance-operation-response.md)
 
 ## Fields
 
@@ -25,11 +25,12 @@ Generic response object for getting a MovementObjectRefund.
 
 ```json
 {
-  "object": "object0",
   "id": "id2",
   "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
+  "balance_amount": "balance_amount2",
+  "balance_old_amount": "balance_old_amount0",
+  "type": "type8",
+  "movement_object": "refund",
   "fraud_coverage_fee": "fraud_coverage_fee2",
   "charge_fee_recipient_id": "charge_fee_recipient_id4",
   "bank_account_id": "bank_account_id0",

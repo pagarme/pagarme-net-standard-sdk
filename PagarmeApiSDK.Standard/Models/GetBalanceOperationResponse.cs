@@ -19,6 +19,11 @@ namespace PagarmeApiSDK.Standard.Models
     /// <summary>
     /// GetBalanceOperationResponse.
     /// </summary>
+    [JsonConverter(typeof(JsonSubtypes), "movement_object")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectFeeCollectionResponse), "FeeCollection")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectPayableResponse), "payable")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectTransferResponse), "transfer")]
     public class GetBalanceOperationResponse
     {
         private string id;
@@ -29,7 +34,6 @@ namespace PagarmeApiSDK.Standard.Models
         private string amount;
         private string fee;
         private string createdAt;
-        private Models.GetMovementObjectBaseResponse movementObject;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
@@ -40,7 +44,6 @@ namespace PagarmeApiSDK.Standard.Models
             { "amount", false },
             { "fee", false },
             { "created_at", false },
-            { "movement_object", false },
         };
 
         /// <summary>
@@ -48,11 +51,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetBalanceOperationResponse()
         {
+            this.MovementObject = "object";
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetBalanceOperationResponse"/> class.
         /// </summary>
+        /// <param name="movementObject">movement_object.</param>
         /// <param name="id">id.</param>
         /// <param name="status">status.</param>
         /// <param name="balanceAmount">balance_amount.</param>
@@ -61,8 +66,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="amount">amount.</param>
         /// <param name="fee">fee.</param>
         /// <param name="createdAt">created_at.</param>
-        /// <param name="movementObject">movement_object.</param>
         public GetBalanceOperationResponse(
+            string movementObject = "object",
             string id = null,
             string status = null,
             string balanceAmount = null,
@@ -70,8 +75,7 @@ namespace PagarmeApiSDK.Standard.Models
             string type = null,
             string amount = null,
             string fee = null,
-            string createdAt = null,
-            Models.GetMovementObjectBaseResponse movementObject = null)
+            string createdAt = null)
         {
             if (id != null)
             {
@@ -113,11 +117,7 @@ namespace PagarmeApiSDK.Standard.Models
                 this.CreatedAt = createdAt;
             }
 
-            if (movementObject != null)
-            {
-                this.MovementObject = movementObject;
-            }
-
+            this.MovementObject = movementObject;
         }
 
         /// <summary>
@@ -267,20 +267,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Gets or sets MovementObject.
         /// </summary>
-        [JsonProperty("movement_object")]
-        public Models.GetMovementObjectBaseResponse MovementObject
-        {
-            get
-            {
-                return this.movementObject;
-            }
-
-            set
-            {
-                this.shouldSerialize["movement_object"] = true;
-                this.movementObject = value;
-            }
-        }
+        [JsonProperty("movement_object", NullValueHandling = NullValueHandling.Ignore)]
+        public string MovementObject { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -357,14 +345,6 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
-        public void UnsetMovementObject()
-        {
-            this.shouldSerialize["movement_object"] = false;
-        }
-
-        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -436,15 +416,6 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["created_at"];
         }
 
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeMovementObject()
-        {
-            return this.shouldSerialize["movement_object"];
-        }
-
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -482,7 +453,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount == string.Empty ? "" : this.Amount)}");
             toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee == string.Empty ? "" : this.Fee)}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt == string.Empty ? "" : this.CreatedAt)}");
-            toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");
+            toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject == string.Empty ? "" : this.MovementObject)}");
         }
     }
 }
