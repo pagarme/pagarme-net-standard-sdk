@@ -24,7 +24,7 @@ Generic response object for getting a MovementObjectBase.
 
 ```json
 {
-  "object": "object",
+  "object": "MovementObject",
   "id": "id0",
   "status": "status8",
   "amount": "amount8",

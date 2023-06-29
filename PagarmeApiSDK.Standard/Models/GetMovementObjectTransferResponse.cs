@@ -46,7 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectTransferResponse()
         {
-            this.MObject = "GetMovementObjectTransferResponse";
+            this.MObject = "transfer";
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fundingEstimatedDate">funding_estimated_date.</param>
         /// <param name="bankAccount">bank_account.</param>
         public GetMovementObjectTransferResponse(
-            string mObject = "GetMovementObjectTransferResponse",
+            string mObject = "transfer",
             string id = null,
             string status = null,
             string amount = null,

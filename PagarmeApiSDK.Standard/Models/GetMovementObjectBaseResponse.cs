@@ -20,10 +20,10 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetMovementObjectBaseResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "object")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "GetMovementObjectRefundResponse")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectFeeCollectionResponse), "GetMovementObjectFeeCollectionResponse")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectPayableResponse), "GetMovementObjectPayableResponse")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectTransferResponse), "GetMovementObjectTransferResponse")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectFeeCollectionResponse), "feeCollection")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectPayableResponse), "payable")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectTransferResponse), "transfer")]
     public class GetMovementObjectBaseResponse
     {
         private string id;
@@ -49,7 +49,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectBaseResponse()
         {
-            this.MObject = "object";
+            this.MObject = "MovementObject";
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="chargeId">charge_id.</param>
         /// <param name="gatewayId">gateway_id.</param>
         public GetMovementObjectBaseResponse(
-            string mObject = "object",
+            string mObject = "MovementObject",
             string id = null,
             string status = null,
             string amount = null,

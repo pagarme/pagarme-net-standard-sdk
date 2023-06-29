@@ -19,7 +19,7 @@ Generic response object for getting a BalanceOperation.
 | `Amount` | `string` | Optional | - |
 | `Fee` | `string` | Optional | - |
 | `CreatedAt` | `string` | Optional | - |
-| `MovementObject` | `object` | Optional | - |
+| `MovementObject` | [`Models.GetMovementObjectBaseResponse`](../../doc/models/get-movement-object-base-response.md) | Optional | - |
 
 ## Example (as JSON)
 

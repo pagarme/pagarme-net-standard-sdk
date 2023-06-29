@@ -23,7 +23,7 @@ Generic response object for getting a MovementObjectFeeCollection.
 
 ```json
 {
-  "object": "GetMovementObjectFeeCollectionResponse",
+  "object": "feeCollection",
   "id": "id4",
   "status": "status4",
   "amount": "amount6",

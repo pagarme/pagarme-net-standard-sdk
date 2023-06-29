@@ -36,7 +36,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectFeeCollectionResponse()
         {
-            this.MObject = "GetMovementObjectFeeCollectionResponse";
+            this.MObject = "feeCollection";
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="paymentDate">payment_date.</param>
         /// <param name="recipientId">recipient_id.</param>
         public GetMovementObjectFeeCollectionResponse(
-            string mObject = "GetMovementObjectFeeCollectionResponse",
+            string mObject = "feeCollection",
             string id = null,
             string status = null,
             string amount = null,

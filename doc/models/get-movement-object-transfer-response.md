@@ -26,7 +26,7 @@
 
 ```json
 {
-  "object": "GetMovementObjectTransferResponse",
+  "object": "transfer",
   "id": "id6",
   "status": "status2",
   "amount": "amount8",
