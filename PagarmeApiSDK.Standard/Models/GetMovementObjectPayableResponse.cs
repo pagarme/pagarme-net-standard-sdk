@@ -32,6 +32,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectPayableResponse()
         {
+            this.MObject = "GetMovementObjectPayableResponse";
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace PagarmeApiSDK.Standard.Models
             string paymentMethod,
             string accrualAt,
             string liquidationArrangementId,
-            string mObject = null,
+            string mObject = "GetMovementObjectPayableResponse",
             string id = null,
             string status = null,
             string amount = null,

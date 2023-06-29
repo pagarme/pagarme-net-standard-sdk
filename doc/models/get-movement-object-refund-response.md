@@ -25,7 +25,7 @@ Generic response object for getting a MovementObjectRefund.
 
 ```json
 {
-  "object": "object0",
+  "object": "GetMovementObjectRefundResponse",
   "id": "id2",
   "status": "status4",
   "amount": "amount4",

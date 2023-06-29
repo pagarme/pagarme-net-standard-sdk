@@ -40,6 +40,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         public GetMovementObjectRefundResponse()
         {
+            this.MObject = "GetMovementObjectRefundResponse";
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="localTransactionId">local_transaction_id.</param>
         /// <param name="updatedAt">updated_at.</param>
         public GetMovementObjectRefundResponse(
-            string mObject = null,
+            string mObject = "GetMovementObjectRefundResponse",
             string id = null,
             string status = null,
             string amount = null,
