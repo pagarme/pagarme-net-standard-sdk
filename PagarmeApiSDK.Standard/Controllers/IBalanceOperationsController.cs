@@ -28,7 +28,8 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="status">Required parameter: Example: .</param>
         /// <param name="createdSince">Required parameter: Example: .</param>
         /// <param name="createdUntil">Required parameter: Example: .</param>
-        void GetBalanceOperations(
+        /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
+        Models.ListBalanceOperationResponse GetBalanceOperations(
                 string status,
                 DateTime createdSince,
                 DateTime createdUntil);
@@ -40,8 +41,8 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="createdSince">Required parameter: Example: .</param>
         /// <param name="createdUntil">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the void response from the API call.</returns>
-        Task GetBalanceOperationsAsync(
+        /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
+        Task<Models.ListBalanceOperationResponse> GetBalanceOperationsAsync(
                 string status,
                 DateTime createdSince,
                 DateTime createdUntil,

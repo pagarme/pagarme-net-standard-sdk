@@ -39,11 +39,12 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="status">Required parameter: Example: .</param>
         /// <param name="createdSince">Required parameter: Example: .</param>
         /// <param name="createdUntil">Required parameter: Example: .</param>
-        public void GetBalanceOperations(
+        /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
+        public Models.ListBalanceOperationResponse GetBalanceOperations(
                 string status,
                 DateTime createdSince,
                 DateTime createdUntil)
-            => CoreHelper.RunVoidTask(GetBalanceOperationsAsync(status, createdSince, createdUntil));
+            => CoreHelper.RunTask(GetBalanceOperationsAsync(status, createdSince, createdUntil));
 
         /// <summary>
         /// GetBalanceOperations EndPoint.
@@ -52,13 +53,13 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="createdSince">Required parameter: Example: .</param>
         /// <param name="createdUntil">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the void response from the API call.</returns>
-        public async Task GetBalanceOperationsAsync(
+        /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
+        public async Task<Models.ListBalanceOperationResponse> GetBalanceOperationsAsync(
                 string status,
                 DateTime createdSince,
                 DateTime createdUntil,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<VoidType>()
+            => await CreateApiCall<Models.ListBalanceOperationResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/balance/operations")
                   .WithAuth("global")
@@ -66,6 +67,8 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))
                       .Query(_query => _query.Setup("created_until", createdUntil.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
+              .ResponseHandler(_responseHandler => _responseHandler
+                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListBalanceOperationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>

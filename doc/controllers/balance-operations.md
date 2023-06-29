@@ -33,7 +33,7 @@ GetBalanceOperationsAsync(
 
 ## Response Type
 
-`Task`
+[`Task<Models.ListBalanceOperationResponse>`](../../doc/models/list-balance-operation-response.md)
 
 ## Example Usage
 
@@ -51,7 +51,7 @@ DateTime createdUntil = DateTime.ParseExact(
         DateTimeStyles.RoundtripKind);
 try
 {
-    await balanceOperationsController.GetBalanceOperationsAsync(status, createdSince, createdUntil);
+    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync(status, createdSince, createdUntil);
 }
 catch (ApiException e)
 {
