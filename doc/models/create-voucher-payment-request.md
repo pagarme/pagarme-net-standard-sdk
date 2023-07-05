@@ -16,7 +16,6 @@ The settings for creating a voucher payment
 | `CardToken` | `string` | Optional | Card token |
 | `Card` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Optional | Card info |
 | `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
-| `MerchantCategoryCode` | `long?` | Optional | Customer business segment code |
 
 ## Example (as JSON)
 

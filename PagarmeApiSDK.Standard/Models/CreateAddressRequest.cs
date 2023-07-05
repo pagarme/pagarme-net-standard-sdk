@@ -21,6 +21,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateAddressRequest
     {
+        private Dictionary<string, string> metadata;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "metadata", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAddressRequest"/> class.
         /// </summary>
@@ -39,9 +45,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="state">state.</param>
         /// <param name="country">country.</param>
         /// <param name="complement">complement.</param>
-        /// <param name="metadata">metadata.</param>
         /// <param name="line1">line_1.</param>
         /// <param name="line2">line_2.</param>
+        /// <param name="metadata">metadata.</param>
         public CreateAddressRequest(
             string street,
             string number,
@@ -51,9 +57,9 @@ namespace PagarmeApiSDK.Standard.Models
             string state,
             string country,
             string complement,
-            Dictionary<string, string> metadata,
             string line1,
-            string line2)
+            string line2,
+            Dictionary<string, string> metadata = null)
         {
             this.Street = street;
             this.Number = number;
@@ -63,7 +69,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.State = state;
             this.Country = country;
             this.Complement = complement;
-            this.Metadata = metadata;
+            if (metadata != null)
+            {
+                this.Metadata = metadata;
+            }
+
             this.Line1 = line1;
             this.Line2 = line2;
         }
@@ -120,7 +130,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// Metadata
         /// </summary>
         [JsonProperty("metadata")]
-        public Dictionary<string, string> Metadata { get; set; }
+        public Dictionary<string, string> Metadata
+        {
+            get
+            {
+                return this.metadata;
+            }
+
+            set
+            {
+                this.shouldSerialize["metadata"] = true;
+                this.metadata = value;
+            }
+        }
 
         /// <summary>
         /// Line 1 for address
@@ -142,6 +164,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateAddressRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMetadata()
+        {
+            this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMetadata()
+        {
+            return this.shouldSerialize["metadata"];
         }
 
         /// <inheritdoc/>

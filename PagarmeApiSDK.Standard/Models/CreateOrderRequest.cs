@@ -22,9 +22,11 @@ namespace PagarmeApiSDK.Standard.Models
     public class CreateOrderRequest
     {
         private string customerId;
+        private Dictionary<string, string> metadata;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "customer_id", false },
+            { "metadata", false },
         };
 
         /// <summary>
@@ -41,10 +43,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="customer">customer.</param>
         /// <param name="payments">payments.</param>
         /// <param name="code">code.</param>
-        /// <param name="metadata">metadata.</param>
         /// <param name="closed">closed.</param>
         /// <param name="customerId">customer_id.</param>
         /// <param name="shipping">shipping.</param>
+        /// <param name="metadata">metadata.</param>
         /// <param name="antifraudEnabled">antifraud_enabled.</param>
         /// <param name="ip">ip.</param>
         /// <param name="sessionId">session_id.</param>
@@ -58,10 +60,10 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreateCustomerRequest customer,
             List<Models.CreatePaymentRequest> payments,
             string code,
-            Dictionary<string, string> metadata,
             bool closed,
             string customerId = null,
             Models.CreateShippingRequest shipping = null,
+            Dictionary<string, string> metadata = null,
             bool? antifraudEnabled = null,
             string ip = null,
             string sessionId = null,
@@ -81,7 +83,11 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             this.Shipping = shipping;
-            this.Metadata = metadata;
+            if (metadata != null)
+            {
+                this.Metadata = metadata;
+            }
+
             this.AntifraudEnabled = antifraudEnabled;
             this.Ip = ip;
             this.SessionId = sessionId;
@@ -145,7 +151,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// Metadata
         /// </summary>
         [JsonProperty("metadata")]
-        public Dictionary<string, string> Metadata { get; set; }
+        public Dictionary<string, string> Metadata
+        {
+            get
+            {
+                return this.metadata;
+            }
+
+            set
+            {
+                this.shouldSerialize["metadata"] = true;
+                this.metadata = value;
+            }
+        }
 
         /// <summary>
         /// Defines whether the order will go through anti-fraud
@@ -220,12 +238,29 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMetadata()
+        {
+            this.shouldSerialize["metadata"] = false;
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeCustomerId()
         {
             return this.shouldSerialize["customer_id"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMetadata()
+        {
+            return this.shouldSerialize["metadata"];
         }
 
         /// <inheritdoc/>
