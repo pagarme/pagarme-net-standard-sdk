@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -125,11 +126,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name == string.Empty ? "" : this.Name)}");
-            toStringOutput.Add($"this.Email = {(this.Email == null ? "null" : this.Email == string.Empty ? "" : this.Email)}");
-            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
+            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
+            toStringOutput.Add($"this.Email = {(this.Email == null ? "null" : this.Email)}");
+            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
+            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
         }
     }

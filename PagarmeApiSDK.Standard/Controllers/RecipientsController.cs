@@ -67,8 +67,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -105,8 +103,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAnticipationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -143,8 +139,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Query(_query => _query.Setup("timeframe", timeframe))
                       .Query(_query => _query.Setup("payment_date", paymentDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAnticipationLimitResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -176,8 +170,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -214,8 +206,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -247,8 +237,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("transfer_id", transferId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransferResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -280,8 +268,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("anticipation_id", anticipationId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAnticipationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -318,8 +304,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -386,8 +370,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("payment_date_until", paymentDateUntil.HasValue ? paymentDateUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListAnticipationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -424,8 +406,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -457,8 +437,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -485,8 +463,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetBalanceResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -523,8 +499,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransferResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -556,8 +530,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -594,8 +566,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -622,8 +592,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -675,8 +643,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListWithdrawals>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -708,8 +674,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("withdrawal_id", withdrawalId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -761,8 +725,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListTransferResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -789,8 +751,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("code", code))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -810,8 +770,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/default")
                   .WithAuth("global"))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

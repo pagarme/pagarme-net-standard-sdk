@@ -21,11 +21,11 @@ Recipient response
 | `CreatedAt` | `DateTime?` | Optional | Creation date |
 | `UpdatedAt` | `DateTime?` | Optional | Last update date |
 | `DeletedAt` | `DateTime?` | Optional | Deletion date |
-| `DefaultBankAccount` | [`Models.GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Optional | Default bank account |
-| `GatewayRecipients` | [`List<Models.GetGatewayRecipientResponse>`](../../doc/models/get-gateway-recipient-response.md) | Optional | Info about the recipient on the gateway |
+| `DefaultBankAccount` | [`GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Optional | Default bank account |
+| `GatewayRecipients` | [`List<GetGatewayRecipientResponse>`](../../doc/models/get-gateway-recipient-response.md) | Optional | Info about the recipient on the gateway |
 | `Metadata` | `Dictionary<string, string>` | Optional | Metadata |
-| `AutomaticAnticipationSettings` | [`Models.GetAutomaticAnticipationResponse`](../../doc/models/get-automatic-anticipation-response.md) | Optional | - |
-| `TransferSettings` | [`Models.GetTransferSettingsResponse`](../../doc/models/get-transfer-settings-response.md) | Optional | - |
+| `AutomaticAnticipationSettings` | [`GetAutomaticAnticipationResponse`](../../doc/models/get-automatic-anticipation-response.md) | Optional | - |
+| `TransferSettings` | [`GetTransferSettingsResponse`](../../doc/models/get-transfer-settings-response.md) | Optional | - |
 | `Code` | `string` | Optional | Recipient code |
 | `PaymentMode` | `string` | Optional | Payment mode<br>**Default**: `"bank_transfer"` |
 
@@ -34,11 +34,11 @@ Recipient response
 ```json
 {
   "payment_mode": "bank_transfer",
-  "id": "id0",
-  "name": "name0",
-  "email": "email6",
-  "document": "document6",
-  "description": "description0"
+  "id": "id4",
+  "name": "name4",
+  "email": "email2",
+  "document": "document2",
+  "description": "description6"
 }
 ```
 

@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -370,15 +371,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
+            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
             toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.CustomerId = {(this.CustomerId == null ? "null" : this.CustomerId == string.Empty ? "" : this.CustomerId)}");
+            toStringOutput.Add($"this.CustomerId = {(this.CustomerId == null ? "null" : this.CustomerId)}");
             toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
             toStringOutput.Add($"this.Payment = {(this.Payment == null ? "null" : this.Payment.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
             toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
             toStringOutput.Add($"this.Antifraud = {(this.Antifraud == null ? "null" : this.Antifraud.ToString())}");
-            toStringOutput.Add($"this.OrderId = {(this.OrderId == null ? "null" : this.OrderId == string.Empty ? "" : this.OrderId)}");
+            toStringOutput.Add($"this.OrderId = {(this.OrderId == null ? "null" : this.OrderId)}");
         }
     }
 }

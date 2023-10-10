@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -281,21 +282,21 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee == string.Empty ? "" : this.Fee)}");
-            toStringOutput.Add($"this.AnticipationFee = {(this.AnticipationFee == null ? "null" : this.AnticipationFee == string.Empty ? "" : this.AnticipationFee)}");
-            toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee == string.Empty ? "" : this.FraudCoverageFee)}");
-            toStringOutput.Add($"this.Installment = {(this.Installment == null ? "null" : this.Installment == string.Empty ? "" : this.Installment)}");
-            toStringOutput.Add($"this.SplitId = {(this.SplitId == null ? "null" : this.SplitId == string.Empty ? "" : this.SplitId)}");
-            toStringOutput.Add($"this.BulkAnticipationId = {(this.BulkAnticipationId == null ? "null" : this.BulkAnticipationId == string.Empty ? "" : this.BulkAnticipationId)}");
-            toStringOutput.Add($"this.AnticipationId = {(this.AnticipationId == null ? "null" : this.AnticipationId == string.Empty ? "" : this.AnticipationId)}");
-            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId == string.Empty ? "" : this.RecipientId)}");
-            toStringOutput.Add($"this.OriginatorModel = {(this.OriginatorModel == null ? "null" : this.OriginatorModel == string.Empty ? "" : this.OriginatorModel)}");
-            toStringOutput.Add($"this.OriginatorModelId = {(this.OriginatorModelId == null ? "null" : this.OriginatorModelId == string.Empty ? "" : this.OriginatorModelId)}");
-            toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate == string.Empty ? "" : this.PaymentDate)}");
-            toStringOutput.Add($"this.OriginalPaymentDate = {(this.OriginalPaymentDate == null ? "null" : this.OriginalPaymentDate == string.Empty ? "" : this.OriginalPaymentDate)}");
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod == string.Empty ? "" : this.PaymentMethod)}");
-            toStringOutput.Add($"this.AccrualAt = {(this.AccrualAt == null ? "null" : this.AccrualAt == string.Empty ? "" : this.AccrualAt)}");
-            toStringOutput.Add($"this.LiquidationArrangementId = {(this.LiquidationArrangementId == null ? "null" : this.LiquidationArrangementId == string.Empty ? "" : this.LiquidationArrangementId)}");
+            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee)}");
+            toStringOutput.Add($"this.AnticipationFee = {(this.AnticipationFee == null ? "null" : this.AnticipationFee)}");
+            toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee)}");
+            toStringOutput.Add($"this.Installment = {(this.Installment == null ? "null" : this.Installment)}");
+            toStringOutput.Add($"this.SplitId = {(this.SplitId == null ? "null" : this.SplitId)}");
+            toStringOutput.Add($"this.BulkAnticipationId = {(this.BulkAnticipationId == null ? "null" : this.BulkAnticipationId)}");
+            toStringOutput.Add($"this.AnticipationId = {(this.AnticipationId == null ? "null" : this.AnticipationId)}");
+            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId)}");
+            toStringOutput.Add($"this.OriginatorModel = {(this.OriginatorModel == null ? "null" : this.OriginatorModel)}");
+            toStringOutput.Add($"this.OriginatorModelId = {(this.OriginatorModelId == null ? "null" : this.OriginatorModelId)}");
+            toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate)}");
+            toStringOutput.Add($"this.OriginalPaymentDate = {(this.OriginalPaymentDate == null ? "null" : this.OriginalPaymentDate)}");
+            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
+            toStringOutput.Add($"this.AccrualAt = {(this.AccrualAt == null ? "null" : this.AccrualAt)}");
+            toStringOutput.Add($"this.LiquidationArrangementId = {(this.LiquidationArrangementId == null ? "null" : this.LiquidationArrangementId)}");
 
             base.ToString(toStringOutput);
         }

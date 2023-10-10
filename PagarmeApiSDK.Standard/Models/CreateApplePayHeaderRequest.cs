@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -95,9 +96,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.PublicKeyHash = {(this.PublicKeyHash == null ? "null" : this.PublicKeyHash == string.Empty ? "" : this.PublicKeyHash)}");
-            toStringOutput.Add($"this.EphemeralPublicKey = {(this.EphemeralPublicKey == null ? "null" : this.EphemeralPublicKey == string.Empty ? "" : this.EphemeralPublicKey)}");
-            toStringOutput.Add($"this.TransactionId = {(this.TransactionId == null ? "null" : this.TransactionId == string.Empty ? "" : this.TransactionId)}");
+            toStringOutput.Add($"this.PublicKeyHash = {(this.PublicKeyHash == null ? "null" : this.PublicKeyHash)}");
+            toStringOutput.Add($"this.EphemeralPublicKey = {(this.EphemeralPublicKey == null ? "null" : this.EphemeralPublicKey)}");
+            toStringOutput.Add($"this.TransactionId = {(this.TransactionId == null ? "null" : this.TransactionId)}");
         }
     }
 }

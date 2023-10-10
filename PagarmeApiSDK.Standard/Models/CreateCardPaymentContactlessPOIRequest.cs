@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -115,11 +116,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SystemName = {(this.SystemName == null ? "null" : this.SystemName == string.Empty ? "" : this.SystemName)}");
-            toStringOutput.Add($"this.Model = {(this.Model == null ? "null" : this.Model == string.Empty ? "" : this.Model)}");
-            toStringOutput.Add($"this.Provider = {(this.Provider == null ? "null" : this.Provider == string.Empty ? "" : this.Provider)}");
-            toStringOutput.Add($"this.SerialNumber = {(this.SerialNumber == null ? "null" : this.SerialNumber == string.Empty ? "" : this.SerialNumber)}");
-            toStringOutput.Add($"this.VersionNumber = {(this.VersionNumber == null ? "null" : this.VersionNumber == string.Empty ? "" : this.VersionNumber)}");
+            toStringOutput.Add($"this.SystemName = {(this.SystemName == null ? "null" : this.SystemName)}");
+            toStringOutput.Add($"this.Model = {(this.Model == null ? "null" : this.Model)}");
+            toStringOutput.Add($"this.Provider = {(this.Provider == null ? "null" : this.Provider)}");
+            toStringOutput.Add($"this.SerialNumber = {(this.SerialNumber == null ? "null" : this.SerialNumber)}");
+            toStringOutput.Add($"this.VersionNumber = {(this.VersionNumber == null ? "null" : this.VersionNumber)}");
         }
     }
 }

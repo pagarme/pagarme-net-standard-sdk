@@ -67,8 +67,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListBalanceOperationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -95,8 +93,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("id", id))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetBalanceOperationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

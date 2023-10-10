@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -1109,12 +1110,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
-            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url == string.Empty ? "" : this.Url)}");
+            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
+            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
+            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url)}");
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod == string.Empty ? "" : this.PaymentMethod)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.Items = {(this.Items == null ? "null" : $"[{string.Join(", ", this.Items)} ]")}");
             toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
@@ -1131,7 +1132,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.SeenAt = {(this.SeenAt == null ? "null" : this.SeenAt.ToString())}");
             toStringOutput.Add($"this.TotalDiscount = {(this.TotalDiscount == null ? "null" : this.TotalDiscount.ToString())}");
             toStringOutput.Add($"this.TotalIncrement = {(this.TotalIncrement == null ? "null" : this.TotalIncrement.ToString())}");
-            toStringOutput.Add($"this.SubscriptionId = {(this.SubscriptionId == null ? "null" : this.SubscriptionId == string.Empty ? "" : this.SubscriptionId)}");
+            toStringOutput.Add($"this.SubscriptionId = {(this.SubscriptionId == null ? "null" : this.SubscriptionId)}");
         }
     }
 }

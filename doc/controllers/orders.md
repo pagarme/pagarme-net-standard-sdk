@@ -58,7 +58,7 @@ GetOrdersAsync(
 ```csharp
 try
 {
-    ListOrderResponse result = await ordersController.GetOrdersAsync(null, null, null, null, null, null, null);
+    ListOrderResponse result = await ordersController.GetOrdersAsync();
 }
 catch (ApiException e)
 {
@@ -94,7 +94,10 @@ string orderId = "orderId2";
 string itemId = "itemId8";
 try
 {
-    GetOrderItemResponse result = await ordersController.GetOrderItemAsync(orderId, itemId);
+    GetOrderItemResponse result = await ordersController.GetOrderItemAsync(
+        orderId,
+        itemId
+    );
 }
 catch (ApiException e)
 {
@@ -153,7 +156,7 @@ CloseOrderAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `string` | Template, Required | Order Id |
-| `request` | [`Models.UpdateOrderStatusRequest`](../../doc/models/update-order-status-request.md) | Body, Required | Update Order Model |
+| `request` | [`UpdateOrderStatusRequest`](../../doc/models/update-order-status-request.md) | Body, Required | Update Order Model |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -171,7 +174,10 @@ UpdateOrderStatusRequest request = new UpdateOrderStatusRequest
 
 try
 {
-    GetOrderResponse result = await ordersController.CloseOrderAsync(id, request, null);
+    GetOrderResponse result = await ordersController.CloseOrderAsync(
+        id,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -195,7 +201,7 @@ CreateOrderAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Models.CreateOrderRequest`](../../doc/models/create-order-request.md) | Body, Required | Request for creating an order |
+| `body` | [`CreateOrderRequest`](../../doc/models/create-order-request.md) | Body, Required | Request for creating an order |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -211,46 +217,45 @@ CreateOrderRequest body = new CreateOrderRequest
     {
         new CreateOrderItemRequest
         {
-            Amount = 101,
-            Description = "description3",
-            Quantity = 215,
-            Category = "category1",
+            Amount = 164,
+            Description = "description2",
+            Quantity = 22,
+            Category = "category6",
         },
     },
     Customer = new CreateCustomerRequest
     {
-        Name = "{\\n    \"name\": \"Tony Stark\"\\n}",
-        Email = "email2",
-        Document = "document2",
-        Type = "type6",
+        Name = "{\n    \"name\": \"Tony Stark\"\n}",
+        Email = "email6",
+        Document = "document6",
+        Type = "type0",
         Address = new CreateAddressRequest
         {
-            Street = "street0",
-            Number = "number8",
-            ZipCode = "zip_code4",
-            Neighborhood = "neighborhood6",
-            City = "city0",
-            State = "state6",
-            Country = "country4",
-            Complement = "complement6",
-            Line1 = "line_16",
-            Line2 = "line_28",
+            Street = "street6",
+            Number = "number4",
+            ZipCode = "zip_code0",
+            Neighborhood = "neighborhood2",
+            City = "city6",
+            State = "state2",
+            Country = "country0",
+            Complement = "complement2",
+            Line1 = "line_10",
+            Line2 = "line_24",
         },
         Metadata = new Dictionary<string, string>
         {
-            ["key0"] = "metadata9",
-            ["key1"] = "metadata0",
+            ["key0"] = "metadata3",
         },
         Phones = new CreatePhonesRequest
         {
         },
-        Code = "code2",
+        Code = "code8",
     },
     Payments = new List<Models.CreatePaymentRequest>
     {
         new CreatePaymentRequest
         {
-            PaymentMethod = "payment_method0",
+            PaymentMethod = "payment_method8",
         },
     },
     Code = "code4",
@@ -259,7 +264,7 @@ CreateOrderRequest body = new CreateOrderRequest
 
 try
 {
-    GetOrderResponse result = await ordersController.CreateOrderAsync(body, null);
+    GetOrderResponse result = await ordersController.CreateOrderAsync(body);
 }
 catch (ApiException e)
 {
@@ -285,7 +290,7 @@ UpdateOrderItemAsync(
 |  --- | --- | --- | --- |
 | `orderId` | `string` | Template, Required | Order Id |
 | `itemId` | `string` | Template, Required | Item Id |
-| `request` | [`Models.UpdateOrderItemRequest`](../../doc/models/update-order-item-request.md) | Body, Required | Item Model |
+| `request` | [`UpdateOrderItemRequest`](../../doc/models/update-order-item-request.md) | Body, Required | Item Model |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -307,7 +312,11 @@ UpdateOrderItemRequest request = new UpdateOrderItemRequest
 
 try
 {
-    GetOrderItemResponse result = await ordersController.UpdateOrderItemAsync(orderId, itemId, request, null);
+    GetOrderItemResponse result = await ordersController.UpdateOrderItemAsync(
+        orderId,
+        itemId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -342,7 +351,7 @@ DeleteAllOrderItemsAsync(
 string orderId = "orderId2";
 try
 {
-    GetOrderResponse result = await ordersController.DeleteAllOrderItemsAsync(orderId, null);
+    GetOrderResponse result = await ordersController.DeleteAllOrderItemsAsync(orderId);
 }
 catch (ApiException e)
 {
@@ -368,7 +377,7 @@ UpdateOrderMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orderId` | `string` | Template, Required | The order id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the order metadata |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the order metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -389,7 +398,10 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 
 try
 {
-    GetOrderResponse result = await ordersController.UpdateOrderMetadataAsync(orderId, request, null);
+    GetOrderResponse result = await ordersController.UpdateOrderMetadataAsync(
+        orderId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -427,7 +439,10 @@ string orderId = "orderId2";
 string itemId = "itemId8";
 try
 {
-    GetOrderItemResponse result = await ordersController.DeleteOrderItemAsync(orderId, itemId, null);
+    GetOrderItemResponse result = await ordersController.DeleteOrderItemAsync(
+        orderId,
+        itemId
+    );
 }
 catch (ApiException e)
 {
@@ -451,7 +466,7 @@ CreateOrderItemAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orderId` | `string` | Template, Required | Order Id |
-| `request` | [`Models.CreateOrderItemRequest`](../../doc/models/create-order-item-request.md) | Body, Required | Order Item Model |
+| `request` | [`CreateOrderItemRequest`](../../doc/models/create-order-item-request.md) | Body, Required | Order Item Model |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -472,7 +487,10 @@ CreateOrderItemRequest request = new CreateOrderItemRequest
 
 try
 {
-    GetOrderItemResponse result = await ordersController.CreateOrderItemAsync(orderId, request, null);
+    GetOrderItemResponse result = await ordersController.CreateOrderItemAsync(
+        orderId,
+        request
+    );
 }
 catch (ApiException e)
 {

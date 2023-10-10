@@ -15,7 +15,7 @@ Response object for getting a period
 | `EndAt` | `DateTime?` | Optional | - |
 | `Id` | `string` | Optional | - |
 | `BillingAt` | `DateTime?` | Optional | - |
-| `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
+| `Subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `Status` | `string` | Optional | - |
 | `Duration` | `int?` | Optional | - |
 | `CreatedAt` | `string` | Optional | - |

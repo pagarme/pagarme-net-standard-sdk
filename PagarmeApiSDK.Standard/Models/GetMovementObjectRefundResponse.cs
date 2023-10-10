@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -321,11 +322,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee == string.Empty ? "" : this.FraudCoverageFee)}");
-            toStringOutput.Add($"this.ChargeFeeRecipientId = {(this.ChargeFeeRecipientId == null ? "null" : this.ChargeFeeRecipientId == string.Empty ? "" : this.ChargeFeeRecipientId)}");
-            toStringOutput.Add($"this.BankAccountId = {(this.BankAccountId == null ? "null" : this.BankAccountId == string.Empty ? "" : this.BankAccountId)}");
-            toStringOutput.Add($"this.LocalTransactionId = {(this.LocalTransactionId == null ? "null" : this.LocalTransactionId == string.Empty ? "" : this.LocalTransactionId)}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt == string.Empty ? "" : this.UpdatedAt)}");
+            toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee)}");
+            toStringOutput.Add($"this.ChargeFeeRecipientId = {(this.ChargeFeeRecipientId == null ? "null" : this.ChargeFeeRecipientId)}");
+            toStringOutput.Add($"this.BankAccountId = {(this.BankAccountId == null ? "null" : this.BankAccountId)}");
+            toStringOutput.Add($"this.LocalTransactionId = {(this.LocalTransactionId == null ? "null" : this.LocalTransactionId)}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt)}");
 
             base.ToString(toStringOutput);
         }

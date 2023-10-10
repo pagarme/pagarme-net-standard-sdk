@@ -18,7 +18,7 @@ Response object for getting a usage
 | `CreatedAt` | `DateTime?` | Optional | Creation date |
 | `Status` | `string` | Optional | Status |
 | `DeletedAt` | `DateTime?` | Optional | - |
-| `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | Subscription item |
+| `SubscriptionItem` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | Subscription item |
 | `Code` | `string` | Optional | Identification code in the client system |
 | `Group` | `string` | Optional | Identification group in the client system |
 | `Amount` | `int?` | Optional | Field used in item scheme type 'Percent' |
@@ -27,9 +27,9 @@ Response object for getting a usage
 
 ```json
 {
-  "id": "id0",
-  "quantity": 68,
-  "description": "description0",
+  "id": "id2",
+  "quantity": 34,
+  "description": "description2",
   "used_at": "2016-03-13T12:52:32.123Z",
   "created_at": "2016-03-13T12:52:32.123Z"
 }

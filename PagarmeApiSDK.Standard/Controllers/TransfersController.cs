@@ -50,8 +50,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/transfers")
                   .WithAuth("global"))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListTransfers>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -78,8 +76,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("transfer_id", transferId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransfer>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -106,8 +102,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransfer>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

@@ -37,7 +37,7 @@ CreateInvoiceAsync(
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription Id |
 | `cycleId` | `string` | Template, Required | Cycle Id |
-| `request` | [`Models.CreateInvoiceRequest`](../../doc/models/create-invoice-request.md) | Body, Optional | - |
+| `request` | [`CreateInvoiceRequest`](../../doc/models/create-invoice-request.md) | Body, Optional | - |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -51,7 +51,10 @@ string subscriptionId = "subscription_id0";
 string cycleId = "cycle_id6";
 try
 {
-    GetInvoiceResponse result = await invoicesController.CreateInvoiceAsync(subscriptionId, cycleId, null, null);
+    GetInvoiceResponse result = await invoicesController.CreateInvoiceAsync(
+        subscriptionId,
+        cycleId
+    );
 }
 catch (ApiException e)
 {
@@ -105,7 +108,7 @@ GetInvoicesAsync(
 ```csharp
 try
 {
-    ListInvoicesResponse result = await invoicesController.GetInvoicesAsync(null, null, null, null, null, null, null, null, null, null, null);
+    ListInvoicesResponse result = await invoicesController.GetInvoicesAsync();
 }
 catch (ApiException e)
 {
@@ -142,7 +145,7 @@ CancelInvoiceAsync(
 string invoiceId = "invoice_id0";
 try
 {
-    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId, null);
+    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId);
 }
 catch (ApiException e)
 {
@@ -168,7 +171,7 @@ UpdateInvoiceMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `invoiceId` | `string` | Template, Required | The invoice id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the invoice metadata |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the invoice metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -189,7 +192,10 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 
 try
 {
-    GetInvoiceResponse result = await invoicesController.UpdateInvoiceMetadataAsync(invoiceId, request, null);
+    GetInvoiceResponse result = await invoicesController.UpdateInvoiceMetadataAsync(
+        invoiceId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -248,7 +254,7 @@ UpdateInvoiceStatusAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `invoiceId` | `string` | Template, Required | Invoice Id |
-| `request` | [`Models.UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
+| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -266,7 +272,10 @@ UpdateInvoiceStatusRequest request = new UpdateInvoiceStatusRequest
 
 try
 {
-    GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(invoiceId, request, null);
+    GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(
+        invoiceId,
+        request
+    );
 }
 catch (ApiException e)
 {

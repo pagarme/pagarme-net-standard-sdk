@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -456,14 +457,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SourceType = {(this.SourceType == null ? "null" : this.SourceType == string.Empty ? "" : this.SourceType)}");
-            toStringOutput.Add($"this.SourceId = {(this.SourceId == null ? "null" : this.SourceId == string.Empty ? "" : this.SourceId)}");
-            toStringOutput.Add($"this.TargetType = {(this.TargetType == null ? "null" : this.TargetType == string.Empty ? "" : this.TargetType)}");
-            toStringOutput.Add($"this.TargetId = {(this.TargetId == null ? "null" : this.TargetId == string.Empty ? "" : this.TargetId)}");
-            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee == string.Empty ? "" : this.Fee)}");
-            toStringOutput.Add($"this.FundingDate = {(this.FundingDate == null ? "null" : this.FundingDate == string.Empty ? "" : this.FundingDate)}");
-            toStringOutput.Add($"this.FundingEstimatedDate = {(this.FundingEstimatedDate == null ? "null" : this.FundingEstimatedDate == string.Empty ? "" : this.FundingEstimatedDate)}");
-            toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount == string.Empty ? "" : this.BankAccount)}");
+            toStringOutput.Add($"this.SourceType = {(this.SourceType == null ? "null" : this.SourceType)}");
+            toStringOutput.Add($"this.SourceId = {(this.SourceId == null ? "null" : this.SourceId)}");
+            toStringOutput.Add($"this.TargetType = {(this.TargetType == null ? "null" : this.TargetType)}");
+            toStringOutput.Add($"this.TargetId = {(this.TargetId == null ? "null" : this.TargetId)}");
+            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee)}");
+            toStringOutput.Add($"this.FundingDate = {(this.FundingDate == null ? "null" : this.FundingDate)}");
+            toStringOutput.Add($"this.FundingEstimatedDate = {(this.FundingEstimatedDate == null ? "null" : this.FundingEstimatedDate)}");
+            toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount)}");
 
             base.ToString(toStringOutput);
         }

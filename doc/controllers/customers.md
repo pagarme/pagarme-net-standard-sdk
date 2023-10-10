@@ -51,7 +51,7 @@ UpdateCardAsync(
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer Id |
 | `cardId` | `string` | Template, Required | Card id |
-| `request` | [`Models.UpdateCardRequest`](../../doc/models/update-card-request.md) | Body, Required | Request for updating a card |
+| `request` | [`UpdateCardRequest`](../../doc/models/update-card-request.md) | Body, Required | Request for updating a card |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -74,8 +74,8 @@ UpdateCardRequest request = new UpdateCardRequest
         Number = "number4",
         ZipCode = "zip_code2",
         Neighborhood = "neighborhood4",
-        City = "city8",
-        State = "state4",
+        City = "city2",
+        State = "state6",
         Country = "country2",
         Complement = "complement6",
         Line1 = "line_18",
@@ -90,7 +90,11 @@ UpdateCardRequest request = new UpdateCardRequest
 
 try
 {
-    GetCardResponse result = await customersController.UpdateCardAsync(customerId, cardId, request, null);
+    GetCardResponse result = await customersController.UpdateCardAsync(
+        customerId,
+        cardId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -118,7 +122,7 @@ UpdateAddressAsync(
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer Id |
 | `addressId` | `string` | Template, Required | Address Id |
-| `request` | [`Models.UpdateAddressRequest`](../../doc/models/update-address-request.md) | Body, Required | Request for updating an address |
+| `request` | [`UpdateAddressRequest`](../../doc/models/update-address-request.md) | Body, Required | Request for updating an address |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -143,7 +147,11 @@ UpdateAddressRequest request = new UpdateAddressRequest
 
 try
 {
-    GetAddressResponse result = await customersController.UpdateAddressAsync(customerId, addressId, request, null);
+    GetAddressResponse result = await customersController.UpdateAddressAsync(
+        customerId,
+        addressId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -183,7 +191,10 @@ string customerId = "customer_id8";
 string tokenId = "token_id6";
 try
 {
-    GetAccessTokenResponse result = await customersController.DeleteAccessTokenAsync(customerId, tokenId, null);
+    GetAccessTokenResponse result = await customersController.DeleteAccessTokenAsync(
+        customerId,
+        tokenId
+    );
 }
 catch (ApiException e)
 {
@@ -209,7 +220,7 @@ CreateAddressAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer Id |
-| `request` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Body, Required | Request for creating an address |
+| `request` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Body, Required | Request for creating an address |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -236,7 +247,10 @@ CreateAddressRequest request = new CreateAddressRequest
 
 try
 {
-    GetAddressResponse result = await customersController.CreateAddressAsync(customerId, request, null);
+    GetAddressResponse result = await customersController.CreateAddressAsync(
+        customerId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -260,7 +274,7 @@ CreateCustomerAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `request` | [`Models.CreateCustomerRequest`](../../doc/models/create-customer-request.md) | Body, Required | Request for creating a customer |
+| `request` | [`CreateCustomerRequest`](../../doc/models/create-customer-request.md) | Body, Required | Request for creating a customer |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -272,22 +286,22 @@ CreateCustomerAsync(
 ```csharp
 CreateCustomerRequest request = new CreateCustomerRequest
 {
-    Name = "{\\n    \"name\": \"Tony Stark\"\\n}",
+    Name = "{\n    \"name\": \"Tony Stark\"\n}",
     Email = "email0",
     Document = "document0",
     Type = "type4",
     Address = new CreateAddressRequest
     {
-        Street = "street2",
-        Number = "number0",
-        ZipCode = "zip_code6",
-        Neighborhood = "neighborhood8",
-        City = "city2",
-        State = "state8",
-        Country = "country6",
-        Complement = "complement8",
-        Line1 = "line_16",
-        Line2 = "line_20",
+        Street = "street6",
+        Number = "number4",
+        ZipCode = "zip_code0",
+        Neighborhood = "neighborhood2",
+        City = "city6",
+        State = "state2",
+        Country = "country0",
+        Complement = "complement2",
+        Line1 = "line_10",
+        Line2 = "line_24",
     },
     Metadata = new Dictionary<string, string>
     {
@@ -301,7 +315,7 @@ CreateCustomerRequest request = new CreateCustomerRequest
 
 try
 {
-    GetCustomerResponse result = await customersController.CreateCustomerAsync(request, null);
+    GetCustomerResponse result = await customersController.CreateCustomerAsync(request);
 }
 catch (ApiException e)
 {
@@ -327,7 +341,7 @@ CreateCardAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer id |
-| `request` | [`Models.CreateCardRequest`](../../doc/models/create-card-request.md) | Body, Required | Request for creating a card |
+| `request` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Body, Required | Request for creating a card |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -345,7 +359,10 @@ CreateCardRequest request = new CreateCardRequest
 
 try
 {
-    GetCardResponse result = await customersController.CreateCardAsync(customerId, request, null);
+    GetCardResponse result = await customersController.CreateCardAsync(
+        customerId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -384,7 +401,7 @@ GetCardsAsync(
 string customerId = "customer_id8";
 try
 {
-    ListCardsResponse result = await customersController.GetCardsAsync(customerId, null, null);
+    ListCardsResponse result = await customersController.GetCardsAsync(customerId);
 }
 catch (ApiException e)
 {
@@ -424,7 +441,10 @@ string customerId = "customer_id8";
 string cardId = "card_id4";
 try
 {
-    GetCardResponse result = await customersController.RenewCardAsync(customerId, cardId, null);
+    GetCardResponse result = await customersController.RenewCardAsync(
+        customerId,
+        cardId
+    );
 }
 catch (ApiException e)
 {
@@ -462,7 +482,10 @@ string customerId = "customer_id8";
 string addressId = "address_id0";
 try
 {
-    GetAddressResponse result = await customersController.GetAddressAsync(customerId, addressId);
+    GetAddressResponse result = await customersController.GetAddressAsync(
+        customerId,
+        addressId
+    );
 }
 catch (ApiException e)
 {
@@ -502,7 +525,10 @@ string customerId = "customer_id8";
 string addressId = "address_id0";
 try
 {
-    GetAddressResponse result = await customersController.DeleteAddressAsync(customerId, addressId, null);
+    GetAddressResponse result = await customersController.DeleteAddressAsync(
+        customerId,
+        addressId
+    );
 }
 catch (ApiException e)
 {
@@ -540,7 +566,10 @@ string customerId = "customer_id8";
 string tokenId = "token_id6";
 try
 {
-    GetAccessTokenResponse result = await customersController.GetAccessTokenAsync(customerId, tokenId);
+    GetAccessTokenResponse result = await customersController.GetAccessTokenAsync(
+        customerId,
+        tokenId
+    );
 }
 catch (ApiException e)
 {
@@ -566,7 +595,7 @@ UpdateCustomerMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | The customer id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the customer metadata |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the customer metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -587,7 +616,10 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 
 try
 {
-    GetCustomerResponse result = await customersController.UpdateCustomerMetadataAsync(customerId, request, null);
+    GetCustomerResponse result = await customersController.UpdateCustomerMetadataAsync(
+        customerId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -625,7 +657,10 @@ string customerId = "customer_id8";
 string cardId = "card_id4";
 try
 {
-    GetCardResponse result = await customersController.GetCardAsync(customerId, cardId);
+    GetCardResponse result = await customersController.GetCardAsync(
+        customerId,
+        cardId
+    );
 }
 catch (ApiException e)
 {
@@ -686,7 +721,7 @@ CreateAccessTokenAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer Id |
-| `request` | [`Models.CreateAccessTokenRequest`](../../doc/models/create-access-token-request.md) | Body, Required | Request for creating a access token |
+| `request` | [`CreateAccessTokenRequest`](../../doc/models/create-access-token-request.md) | Body, Required | Request for creating a access token |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -703,7 +738,10 @@ CreateAccessTokenRequest request = new CreateAccessTokenRequest
 
 try
 {
-    GetAccessTokenResponse result = await customersController.CreateAccessTokenAsync(customerId, request, null);
+    GetAccessTokenResponse result = await customersController.CreateAccessTokenAsync(
+        customerId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -742,7 +780,7 @@ GetAccessTokensAsync(
 string customerId = "customer_id8";
 try
 {
-    ListAccessTokensResponse result = await customersController.GetAccessTokensAsync(customerId, null, null);
+    ListAccessTokensResponse result = await customersController.GetAccessTokensAsync(customerId);
 }
 catch (ApiException e)
 {
@@ -788,7 +826,12 @@ int? page = 1;
 int? size = 10;
 try
 {
-    ListCustomersResponse result = await customersController.GetCustomersAsync(null, null, page, size, null, null);
+    ListCustomersResponse result = await customersController.GetCustomersAsync(
+        null,
+        null,
+        page,
+        size
+    );
 }
 catch (ApiException e)
 {
@@ -814,7 +857,7 @@ UpdateCustomerAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `customerId` | `string` | Template, Required | Customer id |
-| `request` | [`Models.UpdateCustomerRequest`](../../doc/models/update-customer-request.md) | Body, Required | Request for updating a customer |
+| `request` | [`UpdateCustomerRequest`](../../doc/models/update-customer-request.md) | Body, Required | Request for updating a customer |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -831,7 +874,10 @@ UpdateCustomerRequest request = new UpdateCustomerRequest
 
 try
 {
-    GetCustomerResponse result = await customersController.UpdateCustomerAsync(customerId, request, null);
+    GetCustomerResponse result = await customersController.UpdateCustomerAsync(
+        customerId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -871,7 +917,10 @@ string customerId = "customer_id8";
 string cardId = "card_id4";
 try
 {
-    GetCardResponse result = await customersController.DeleteCardAsync(customerId, cardId, null);
+    GetCardResponse result = await customersController.DeleteCardAsync(
+        customerId,
+        cardId
+    );
 }
 catch (ApiException e)
 {
@@ -910,7 +959,7 @@ GetAddressesAsync(
 string customerId = "customer_id8";
 try
 {
-    ListAddressesResponse result = await customersController.GetAddressesAsync(customerId, null, null);
+    ListAddressesResponse result = await customersController.GetAddressesAsync(customerId);
 }
 catch (ApiException e)
 {

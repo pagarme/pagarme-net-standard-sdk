@@ -73,7 +73,7 @@ UpdatePlanAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `planId` | `string` | Template, Required | Plan id |
-| `request` | [`Models.UpdatePlanRequest`](../../doc/models/update-plan-request.md) | Body, Required | Request for updating a plan |
+| `request` | [`UpdatePlanRequest`](../../doc/models/update-plan-request.md) | Body, Required | Request for updating a plan |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -118,7 +118,10 @@ UpdatePlanRequest request = new UpdatePlanRequest
 
 try
 {
-    GetPlanResponse result = await plansController.UpdatePlanAsync(planId, request, null);
+    GetPlanResponse result = await plansController.UpdatePlanAsync(
+        planId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -144,7 +147,7 @@ UpdatePlanMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `planId` | `string` | Template, Required | The plan id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the plan metadata |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the plan metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -165,7 +168,10 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 
 try
 {
-    GetPlanResponse result = await plansController.UpdatePlanMetadataAsync(planId, request, null);
+    GetPlanResponse result = await plansController.UpdatePlanMetadataAsync(
+        planId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -205,7 +211,10 @@ string planId = "plan_id8";
 string planItemId = "plan_item_id0";
 try
 {
-    GetPlanItemResponse result = await plansController.DeletePlanItemAsync(planId, planItemId, null);
+    GetPlanItemResponse result = await plansController.DeletePlanItemAsync(
+        planId,
+        planItemId
+    );
 }
 catch (ApiException e)
 {
@@ -251,7 +260,7 @@ GetPlansAsync(
 ```csharp
 try
 {
-    ListPlansResponse result = await plansController.GetPlansAsync(null, null, null, null, null, null, null);
+    ListPlansResponse result = await plansController.GetPlansAsync();
 }
 catch (ApiException e)
 {
@@ -289,7 +298,10 @@ string planId = "plan_id8";
 string planItemId = "plan_item_id0";
 try
 {
-    GetPlanItemResponse result = await plansController.GetPlanItemAsync(planId, planItemId);
+    GetPlanItemResponse result = await plansController.GetPlanItemAsync(
+        planId,
+        planItemId
+    );
 }
 catch (ApiException e)
 {
@@ -326,7 +338,7 @@ DeletePlanAsync(
 string planId = "plan_id8";
 try
 {
-    GetPlanResponse result = await plansController.DeletePlanAsync(planId, null);
+    GetPlanResponse result = await plansController.DeletePlanAsync(planId);
 }
 catch (ApiException e)
 {
@@ -354,7 +366,7 @@ UpdatePlanItemAsync(
 |  --- | --- | --- | --- |
 | `planId` | `string` | Template, Required | Plan id |
 | `planItemId` | `string` | Template, Required | Plan item id |
-| `body` | [`Models.UpdatePlanItemRequest`](../../doc/models/update-plan-item-request.md) | Body, Required | Request for updating the plan item |
+| `body` | [`UpdatePlanItemRequest`](../../doc/models/update-plan-item-request.md) | Body, Required | Request for updating the plan item |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -373,13 +385,13 @@ UpdatePlanItemRequest body = new UpdatePlanItemRequest
     Status = "status2",
     PricingScheme = new UpdatePricingSchemeRequest
     {
-        SchemeType = "scheme_type2",
+        SchemeType = "scheme_type8",
         PriceBrackets = new List<Models.UpdatePriceBracketRequest>
         {
             new UpdatePriceBracketRequest
             {
-                StartQuantity = 31,
-                Price = 225,
+                StartQuantity = 144,
+                Price = 174,
             },
         },
     },
@@ -387,7 +399,11 @@ UpdatePlanItemRequest body = new UpdatePlanItemRequest
 
 try
 {
-    GetPlanItemResponse result = await plansController.UpdatePlanItemAsync(planId, planItemId, body, null);
+    GetPlanItemResponse result = await plansController.UpdatePlanItemAsync(
+        planId,
+        planItemId,
+        body
+    );
 }
 catch (ApiException e)
 {
@@ -413,7 +429,7 @@ CreatePlanItemAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `planId` | `string` | Template, Required | Plan id |
-| `request` | [`Models.CreatePlanItemRequest`](../../doc/models/create-plan-item-request.md) | Body, Required | Request for creating a plan item |
+| `request` | [`CreatePlanItemRequest`](../../doc/models/create-plan-item-request.md) | Body, Required | Request for creating a plan item |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -429,7 +445,7 @@ CreatePlanItemRequest request = new CreatePlanItemRequest
     Name = "name6",
     PricingScheme = new CreatePricingSchemeRequest
     {
-        SchemeType = "scheme_type2",
+        SchemeType = "scheme_type8",
     },
     Id = "id6",
     Description = "description6",
@@ -437,7 +453,10 @@ CreatePlanItemRequest request = new CreatePlanItemRequest
 
 try
 {
-    GetPlanItemResponse result = await plansController.CreatePlanItemAsync(planId, request, null);
+    GetPlanItemResponse result = await plansController.CreatePlanItemAsync(
+        planId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -461,7 +480,7 @@ CreatePlanAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Models.CreatePlanRequest`](../../doc/models/create-plan-request.md) | Body, Required | Request for creating a plan |
+| `body` | [`CreatePlanRequest`](../../doc/models/create-plan-request.md) | Body, Required | Request for creating a plan |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -480,13 +499,13 @@ CreatePlanRequest body = new CreatePlanRequest
     {
         new CreatePlanItemRequest
         {
-            Name = "name3",
+            Name = "name8",
             PricingScheme = new CreatePricingSchemeRequest
             {
-                SchemeType = "scheme_type5",
+                SchemeType = "scheme_type8",
             },
-            Id = "id3",
-            Description = "description3",
+            Id = "id8",
+            Description = "description2",
         },
     },
     Shippable = false,
@@ -509,7 +528,7 @@ CreatePlanRequest body = new CreatePlanRequest
     BillingType = "billing_type0",
     PricingScheme = new CreatePricingSchemeRequest
     {
-        SchemeType = "scheme_type2",
+        SchemeType = "scheme_type8",
     },
     Metadata = new Dictionary<string, string>
     {
@@ -520,7 +539,7 @@ CreatePlanRequest body = new CreatePlanRequest
 
 try
 {
-    GetPlanResponse result = await plansController.CreatePlanAsync(body, null);
+    GetPlanResponse result = await plansController.CreatePlanAsync(body);
 }
 catch (ApiException e)
 {

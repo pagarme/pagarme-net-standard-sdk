@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -75,7 +76,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.EphemeralPublicKey = {(this.EphemeralPublicKey == null ? "null" : this.EphemeralPublicKey == string.Empty ? "" : this.EphemeralPublicKey)}");
+            toStringOutput.Add($"this.EphemeralPublicKey = {(this.EphemeralPublicKey == null ? "null" : this.EphemeralPublicKey)}");
         }
     }
 }

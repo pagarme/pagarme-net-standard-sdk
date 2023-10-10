@@ -23,7 +23,7 @@ Response object for getting an Address
 | `Status` | `string` | Optional | - |
 | `CreatedAt` | `DateTime?` | Optional | - |
 | `UpdatedAt` | `DateTime?` | Optional | - |
-| `Customer` | [`Models.GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
+| `Customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `Metadata` | `Dictionary<string, string>` | Optional | - |
 | `Line1` | `string` | Optional | Line 1 for address |
 | `Line2` | `string` | Optional | Line 2 for address |
@@ -33,11 +33,11 @@ Response object for getting an Address
 
 ```json
 {
-  "id": "id0",
-  "street": "street0",
-  "number": "number2",
-  "complement": "complement4",
-  "zip_code": "zip_code4"
+  "id": "id2",
+  "street": "street2",
+  "number": "number0",
+  "complement": "complement8",
+  "zip_code": "zip_code6"
 }
 ```
 

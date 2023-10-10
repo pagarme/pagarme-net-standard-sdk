@@ -49,7 +49,7 @@ UpdateRecipientAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateRecipientRequest`](../../doc/models/update-recipient-request.md) | Body, Required | Recipient data |
+| `request` | [`UpdateRecipientRequest`](../../doc/models/update-recipient-request.md) | Body, Required | Recipient data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -75,7 +75,10 @@ UpdateRecipientRequest request = new UpdateRecipientRequest
 
 try
 {
-    GetRecipientResponse result = await recipientsController.UpdateRecipientAsync(recipientId, request, null);
+    GetRecipientResponse result = await recipientsController.UpdateRecipientAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -101,7 +104,7 @@ CreateAnticipationAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.CreateAnticipationRequest`](../../doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
+| `request` | [`CreateAnticipationRequest`](../../doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -116,16 +119,17 @@ CreateAnticipationRequest request = new CreateAnticipationRequest
 {
     Amount = 242,
     Timeframe = "timeframe8",
-    PaymentDate = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+    PaymentDate = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
         provider: CultureInfo.InvariantCulture,
         DateTimeStyles.RoundtripKind),
 };
 
 try
 {
-    GetAnticipationResponse result = await recipientsController.CreateAnticipationAsync(recipientId, request, null);
+    GetAnticipationResponse result = await recipientsController.CreateAnticipationAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -163,14 +167,16 @@ GetAnticipationLimitsAsync(
 ```csharp
 string recipientId = "recipient_id0";
 string timeframe = "timeframe2";
-DateTime paymentDate = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+DateTime paymentDate = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
         provider: CultureInfo.InvariantCulture,
         DateTimeStyles.RoundtripKind);
 try
 {
-    GetAnticipationLimitResponse result = await recipientsController.GetAnticipationLimitsAsync(recipientId, timeframe, paymentDate);
+    GetAnticipationLimitResponse result = await recipientsController.GetAnticipationLimitsAsync(
+        recipientId,
+        timeframe,
+        paymentDate
+    );
 }
 catch (ApiException e)
 {
@@ -206,7 +212,7 @@ GetRecipientsAsync(
 ```csharp
 try
 {
-    ListRecipientResponse result = await recipientsController.GetRecipientsAsync(null, null);
+    ListRecipientResponse result = await recipientsController.GetRecipientsAsync();
 }
 catch (ApiException e)
 {
@@ -232,7 +238,7 @@ UpdateRecipientMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Metadata |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -253,7 +259,10 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 
 try
 {
-    GetRecipientResponse result = await recipientsController.UpdateRecipientMetadataAsync(recipientId, request, null);
+    GetRecipientResponse result = await recipientsController.UpdateRecipientMetadataAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -291,7 +300,10 @@ string recipientId = "recipient_id0";
 string transferId = "transfer_id6";
 try
 {
-    GetTransferResponse result = await recipientsController.GetTransferAsync(recipientId, transferId);
+    GetTransferResponse result = await recipientsController.GetTransferAsync(
+        recipientId,
+        transferId
+    );
 }
 catch (ApiException e)
 {
@@ -329,7 +341,10 @@ string recipientId = "recipient_id0";
 string anticipationId = "anticipation_id0";
 try
 {
-    GetAnticipationResponse result = await recipientsController.GetAnticipationAsync(recipientId, anticipationId);
+    GetAnticipationResponse result = await recipientsController.GetAnticipationAsync(
+        recipientId,
+        anticipationId
+    );
 }
 catch (ApiException e)
 {
@@ -353,7 +368,7 @@ UpdateRecipientTransferSettingsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient Identificator |
-| `request` | [`Models.UpdateTransferSettingsRequest`](../../doc/models/update-transfer-settings-request.md) | Body, Required | - |
+| `request` | [`UpdateTransferSettingsRequest`](../../doc/models/update-transfer-settings-request.md) | Body, Required | - |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -373,7 +388,10 @@ UpdateTransferSettingsRequest request = new UpdateTransferSettingsRequest
 
 try
 {
-    GetRecipientResponse result = await recipientsController.UpdateRecipientTransferSettingsAsync(recipientId, request, null);
+    GetRecipientResponse result = await recipientsController.UpdateRecipientTransferSettingsAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -424,7 +442,7 @@ GetAnticipationsAsync(
 string recipientId = "recipient_id0";
 try
 {
-    ListAnticipationResponse result = await recipientsController.GetAnticipationsAsync(recipientId, null, null, null, null, null, null, null, null);
+    ListAnticipationResponse result = await recipientsController.GetAnticipationsAsync(recipientId);
 }
 catch (ApiException e)
 {
@@ -450,7 +468,7 @@ UpdateRecipientDefaultBankAccountAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateRecipientBankAccountRequest`](../../doc/models/update-recipient-bank-account-request.md) | Body, Required | Bank account data |
+| `request` | [`UpdateRecipientBankAccountRequest`](../../doc/models/update-recipient-bank-account-request.md) | Body, Required | Bank account data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -465,18 +483,18 @@ UpdateRecipientBankAccountRequest request = new UpdateRecipientBankAccountReques
 {
     BankAccount = new CreateBankAccountRequest
     {
-        HolderName = "holder_name6",
-        HolderType = "holder_type2",
-        HolderDocument = "holder_document4",
-        Bank = "bank8",
-        BranchNumber = "branch_number6",
-        AccountNumber = "account_number0",
-        AccountCheckDigit = "account_check_digit6",
-        Type = "type0",
+        HolderName = "holder_name0",
+        HolderType = "holder_type6",
+        HolderDocument = "holder_document8",
+        Bank = "bank2",
+        BranchNumber = "branch_number0",
+        AccountNumber = "account_number4",
+        AccountCheckDigit = "account_check_digit0",
+        Type = "type6",
         Metadata = new Dictionary<string, string>
         {
-            ["key0"] = "metadata9",
-            ["key1"] = "metadata8",
+            ["key0"] = "metadata1",
+            ["key1"] = "metadata0",
         },
     },
     PaymentMode = "bank_transfer",
@@ -484,7 +502,10 @@ UpdateRecipientBankAccountRequest request = new UpdateRecipientBankAccountReques
 
 try
 {
-    GetRecipientResponse result = await recipientsController.UpdateRecipientDefaultBankAccountAsync(recipientId, request, null);
+    GetRecipientResponse result = await recipientsController.UpdateRecipientDefaultBankAccountAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -507,7 +528,7 @@ CreateWithdrawAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | - |
-| `request` | [`Models.CreateWithdrawRequest`](../../doc/models/create-withdraw-request.md) | Body, Required | - |
+| `request` | [`CreateWithdrawRequest`](../../doc/models/create-withdraw-request.md) | Body, Required | - |
 
 ## Response Type
 
@@ -524,7 +545,10 @@ CreateWithdrawRequest request = new CreateWithdrawRequest
 
 try
 {
-    GetWithdrawResponse result = await recipientsController.CreateWithdrawAsync(recipientId, request);
+    GetWithdrawResponse result = await recipientsController.CreateWithdrawAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -585,7 +609,7 @@ CreateTransferAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient Id |
-| `request` | [`Models.CreateTransferRequest`](../../doc/models/create-transfer-request.md) | Body, Required | Transfer data |
+| `request` | [`CreateTransferRequest`](../../doc/models/create-transfer-request.md) | Body, Required | Transfer data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -607,7 +631,10 @@ CreateTransferRequest request = new CreateTransferRequest
 
 try
 {
-    GetTransferResponse result = await recipientsController.CreateTransferAsync(recipientId, request, null);
+    GetTransferResponse result = await recipientsController.CreateTransferAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -631,7 +658,7 @@ CreateRecipientAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `request` | [`Models.CreateRecipientRequest`](../../doc/models/create-recipient-request.md) | Body, Required | Recipient data |
+| `request` | [`CreateRecipientRequest`](../../doc/models/create-recipient-request.md) | Body, Required | Recipient data |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -650,17 +677,19 @@ CreateRecipientRequest request = new CreateRecipientRequest
     Type = "type4",
     DefaultBankAccount = new CreateBankAccountRequest
     {
-        HolderName = "holder_name0",
-        HolderType = "holder_type6",
-        HolderDocument = "holder_document8",
-        Bank = "bank2",
-        BranchNumber = "branch_number0",
-        AccountNumber = "account_number4",
-        AccountCheckDigit = "account_check_digit0",
-        Type = "type4",
+        HolderName = "holder_name4",
+        HolderType = "holder_type0",
+        HolderDocument = "holder_document2",
+        Bank = "bank6",
+        BranchNumber = "branch_number4",
+        AccountNumber = "account_number8",
+        AccountCheckDigit = "account_check_digit4",
+        Type = "type2",
         Metadata = new Dictionary<string, string>
         {
             ["key0"] = "metadata5",
+            ["key1"] = "metadata4",
+            ["key2"] = "metadata3",
         },
     },
     Metadata = new Dictionary<string, string>
@@ -673,7 +702,7 @@ CreateRecipientRequest request = new CreateRecipientRequest
 
 try
 {
-    GetRecipientResponse result = await recipientsController.CreateRecipientAsync(request, null);
+    GetRecipientResponse result = await recipientsController.CreateRecipientAsync(request);
 }
 catch (ApiException e)
 {
@@ -699,7 +728,7 @@ UpdateAutomaticAnticipationSettingsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipientId` | `string` | Template, Required | Recipient id |
-| `request` | [`Models.UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
+| `request` | [`UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -716,7 +745,10 @@ UpdateAutomaticAnticipationSettingsRequest request = new UpdateAutomaticAnticipa
 
 try
 {
-    GetRecipientResponse result = await recipientsController.UpdateAutomaticAnticipationSettingsAsync(recipientId, request, null);
+    GetRecipientResponse result = await recipientsController.UpdateAutomaticAnticipationSettingsAsync(
+        recipientId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -796,7 +828,7 @@ GetWithdrawalsAsync(
 string recipientId = "recipient_id0";
 try
 {
-    ListWithdrawals result = await recipientsController.GetWithdrawalsAsync(recipientId, null, null, null, null, null);
+    ListWithdrawals result = await recipientsController.GetWithdrawalsAsync(recipientId);
 }
 catch (ApiException e)
 {
@@ -832,7 +864,10 @@ string recipientId = "recipient_id0";
 string withdrawalId = "withdrawal_id2";
 try
 {
-    GetWithdrawResponse result = await recipientsController.GetWithdrawByIdAsync(recipientId, withdrawalId);
+    GetWithdrawResponse result = await recipientsController.GetWithdrawByIdAsync(
+        recipientId,
+        withdrawalId
+    );
 }
 catch (ApiException e)
 {
@@ -877,7 +912,7 @@ GetTransfersAsync(
 string recipientId = "recipient_id0";
 try
 {
-    ListTransferResponse result = await recipientsController.GetTransfersAsync(recipientId, null, null, null, null, null);
+    ListTransferResponse result = await recipientsController.GetTransfersAsync(recipientId);
 }
 catch (ApiException e)
 {

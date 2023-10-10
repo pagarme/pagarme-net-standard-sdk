@@ -13,9 +13,9 @@ Split response
 |  --- | --- | --- | --- |
 | `Type` | `string` | Optional | Type |
 | `Amount` | `int?` | Optional | Amount |
-| `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
+| `Recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `GatewayId` | `string` | Optional | The split rule gateway id |
-| `Options` | [`Models.GetSplitOptionsResponse`](../../doc/models/get-split-options-response.md) | Optional | - |
+| `Options` | [`GetSplitOptionsResponse`](../../doc/models/get-split-options-response.md) | Optional | - |
 | `Id` | `string` | Optional | - |
 
 ## Example (as JSON)
@@ -23,7 +23,7 @@ Split response
 ```json
 {
   "type": "type0",
-  "amount": 46,
+  "amount": 252,
   "recipient": {
     "id": "id8",
     "name": "name8",

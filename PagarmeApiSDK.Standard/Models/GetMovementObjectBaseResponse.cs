@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -400,14 +401,14 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.MObject = {(this.MObject == null ? "null" : this.MObject == string.Empty ? "" : this.MObject)}");
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount == string.Empty ? "" : this.Amount)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt == string.Empty ? "" : this.CreatedAt)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
-            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId == string.Empty ? "" : this.ChargeId)}");
-            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId == string.Empty ? "" : this.GatewayId)}");
+            toStringOutput.Add($"this.MObject = {(this.MObject == null ? "null" : this.MObject)}");
+            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount)}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt)}");
+            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId)}");
+            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId)}");
         }
     }
 }

@@ -62,8 +62,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetPeriodResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -100,8 +98,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("discount_id", discountId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetDiscountResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -183,8 +179,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("next_billing_until", nextBillingUntil.HasValue ? nextBillingUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListSubscriptionsResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -216,8 +210,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("discountId", discountId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetDiscountResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -249,8 +241,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -282,8 +272,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("increment_id", incrementId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetIncrementResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -320,8 +308,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -358,8 +344,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("increment_id", incrementId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetIncrementResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -386,8 +370,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -424,8 +406,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -527,8 +507,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("description", description))
                       .Query(_query => _query.Setup("created_since", createdSince))
                       .Query(_query => _query.Setup("created_until", createdUntil))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListSubscriptionItemsResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -560,8 +538,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -598,8 +574,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -636,8 +610,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListDiscountsResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -679,8 +651,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -717,8 +687,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -780,8 +748,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("group", mGroup))
                       .Query(_query => _query.Setup("used_since", usedSince.HasValue ? usedSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("used_until", usedUntil.HasValue ? usedUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListUsagesResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -818,8 +784,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -851,8 +815,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("cycleId", cycleId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetPeriodResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -889,8 +851,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -927,8 +887,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -965,8 +923,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("subscription_item_id", subscriptionItemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1003,8 +959,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListIncrementsResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1041,8 +995,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1079,8 +1031,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1122,8 +1072,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("item_id", itemId))
                       .Template(_template => _template.Setup("usage_id", usageId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1160,8 +1108,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetDiscountResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1198,8 +1144,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1236,8 +1180,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetIncrementResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1279,8 +1221,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1317,8 +1257,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListCyclesResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1355,8 +1293,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1393,8 +1329,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1426,8 +1360,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("period_id", periodId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetUsageReportResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -1459,8 +1391,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("id", id))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetSubscriptionResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

@@ -87,8 +87,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("customer_id", customerId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListOrderResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -120,8 +118,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -148,8 +144,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("order_id", orderId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -186,8 +180,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("id", id))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -219,8 +211,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -262,8 +252,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -295,8 +283,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -333,8 +319,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("order_id", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -371,8 +355,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -409,8 +391,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetOrderItemResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

@@ -86,7 +86,7 @@ CreateTransferAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `request` | [`Models.CreateTransfer`](../../doc/models/create-transfer.md) | Body, Required | - |
+| `request` | [`CreateTransfer`](../../doc/models/create-transfer.md) | Body, Required | - |
 
 ## Response Type
 

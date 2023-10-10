@@ -20,16 +20,16 @@
 | `FundingDate` | `DateTime?` | Optional | - |
 | `FundingEstimatedDate` | `DateTime?` | Optional | - |
 | `Type` | `string` | Optional | - |
-| `Source` | [`Models.GetWithdrawSourceResponse`](../../doc/models/get-withdraw-source-response.md) | Optional | - |
-| `Target` | [`Models.GetWithdrawTargetResponse`](../../doc/models/get-withdraw-target-response.md) | Optional | - |
+| `Source` | [`GetWithdrawSourceResponse`](../../doc/models/get-withdraw-source-response.md) | Optional | - |
+| `Target` | [`GetWithdrawTargetResponse`](../../doc/models/get-withdraw-target-response.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "gateway_id": "gateway_id0",
-  "amount": 46,
+  "id": "id6",
+  "gateway_id": "gateway_id4",
+  "amount": 78,
   "status": "status8",
   "created_at": "2016-03-13T12:52:32.123Z"
 }

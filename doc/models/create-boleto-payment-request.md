@@ -15,22 +15,22 @@ Contains the settings for creating a boleto payment
 | `Bank` | `string` | Optional | The bank code, containing three characters. The available codes are on the API specification |
 | `Instructions` | `string` | Required | The instructions field that will be printed on the boleto. |
 | `DueAt` | `DateTime?` | Optional | Boleto due date |
-| `BillingAddress` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Card's billing address |
+| `BillingAddress` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Card's billing address |
 | `BillingAddressId` | `string` | Optional | The address id for the billing address |
 | `NossoNumero` | `string` | Optional | Customer identification number with the bank |
 | `DocumentNumber` | `string` | Required | Boleto identification |
 | `StatementDescriptor` | `string` | Required | Soft Descriptor |
-| `Interest` | [`Models.CreateInterestRequest`](../../doc/models/create-interest-request.md) | Optional | - |
-| `Fine` | [`Models.CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
+| `Interest` | [`CreateInterestRequest`](../../doc/models/create-interest-request.md) | Optional | - |
+| `Fine` | [`CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
 | `MaxDaysToPayPastDue` | `int?` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "retries": 230,
+  "retries": 14,
   "bank": "bank8",
-  "instructions": "instructions2",
+  "instructions": "instructions8",
   "due_at": "2016-03-13T12:52:32.123Z",
   "billing_address": {
     "street": "street8",
@@ -50,7 +50,7 @@ Contains the settings for creating a boleto payment
   },
   "billing_address_id": "billing_address_id6",
   "nosso_numero": "nosso_numero0",
-  "document_number": "document_number6",
+  "document_number": "document_number4",
   "statement_descriptor": "statement_descriptor0",
   "interest": {
     "days": 156,

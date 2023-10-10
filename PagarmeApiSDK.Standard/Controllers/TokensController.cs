@@ -66,8 +66,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("public_key", publicKey))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTokenResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -98,8 +96,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("id", id))
                       .Template(_template => _template.Setup("public_key", publicKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTokenResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

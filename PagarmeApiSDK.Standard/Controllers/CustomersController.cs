@@ -72,8 +72,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("card_id", cardId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCardResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -115,8 +113,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("address_id", addressId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAddressResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -153,8 +149,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("token_id", tokenId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAccessTokenResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -191,8 +185,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAddressResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -224,8 +216,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCustomerResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -262,8 +252,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCardResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -300,8 +288,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListCardsResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -338,8 +324,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("card_id", cardId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCardResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -371,8 +355,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("address_id", addressId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAddressResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -409,8 +391,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("address_id", addressId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAddressResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -442,8 +422,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("token_id", tokenId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAccessTokenResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -480,8 +458,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCustomerResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -513,8 +489,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("card_id", cardId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCardResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -541,8 +515,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListAccessTokensResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -579,8 +551,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAccessTokenResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -617,8 +587,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListAccessTokensResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -670,8 +638,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("size", (size != null) ? size : 10))
                       .Query(_query => _query.Setup("email", email))
                       .Query(_query => _query.Setup("Code", code))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListCustomersResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -708,8 +674,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCustomerResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -746,8 +710,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("card_id", cardId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCardResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -784,8 +746,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListAddressesResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -812,8 +772,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetCustomerResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

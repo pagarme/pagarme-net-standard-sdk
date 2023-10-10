@@ -142,8 +142,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
                       .Query(_query => _query.Setup("gateway_id", gatewayId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListPayablesResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -170,8 +168,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("id", id))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetPayableResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

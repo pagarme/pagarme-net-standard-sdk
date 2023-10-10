@@ -40,7 +40,7 @@ GetBalanceOperationsAsync(
 ```csharp
 try
 {
-    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync(null, null, null);
+    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync();
 }
 catch (ApiException e)
 {

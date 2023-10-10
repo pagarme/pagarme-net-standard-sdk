@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -118,7 +119,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.SplitRules = {(this.SplitRules == null ? "null" : $"[{string.Join(", ", this.SplitRules)} ]")}");
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : $"[{string.Join(", ", this.Split)} ]")}");
-            toStringOutput.Add($"this.OperationReference = {(this.OperationReference == null ? "null" : this.OperationReference == string.Empty ? "" : this.OperationReference)}");
+            toStringOutput.Add($"this.OperationReference = {(this.OperationReference == null ? "null" : this.OperationReference)}");
             toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
         }
     }

@@ -12,22 +12,19 @@ The Transaction Gateway Response
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Code` | `string` | Optional | The error code |
-| `Errors` | [`List<Models.GetGatewayErrorResponse>`](../../doc/models/get-gateway-error-response.md) | Optional | The gateway response errors list |
+| `Errors` | [`List<GetGatewayErrorResponse>`](../../doc/models/get-gateway-error-response.md) | Optional | The gateway response errors list |
 
 ## Example (as JSON)
 
 ```json
 {
-  "code": "code8",
+  "code": "code6",
   "errors": [
     {
-      "message": "message5"
+      "message": "message0"
     },
     {
-      "message": "message6"
-    },
-    {
-      "message": "message7"
+      "message": "message0"
     }
   ]
 }

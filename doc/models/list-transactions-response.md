@@ -11,8 +11,8 @@ Response object for listing transactions
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`List<Models.GetTransactionResponse>`](../../doc/models/get-transaction-response.md) | Optional | The transaction objects |
-| `Paging` | [`Models.PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
+| `Data` | [`List<GetTransactionResponse>`](../../doc/models/get-transaction-response.md) | Optional | The transaction objects |
+| `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
 ## Example (as JSON)
 
@@ -20,20 +20,40 @@ Response object for listing transactions
 {
   "data": [
     {
-      "gateway_id": "gateway_id5",
-      "amount": 121,
-      "status": "status7",
-      "success": true,
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "transaction_type": "transaction"
-    },
-    {
-      "gateway_id": "gateway_id6",
-      "amount": 122,
-      "status": "status8",
+      "gateway_id": "gateway_id8",
+      "amount": 40,
+      "status": "status6",
       "success": false,
       "created_at": "2016-03-13T12:52:32.123Z",
-      "transaction_type": "transaction"
+      "statement_descriptor": "statement_descriptor2",
+      "acquirer_name": "acquirer_name6",
+      "acquirer_affiliation_code": "acquirer_affiliation_code6",
+      "acquirer_tid": "acquirer_tid8",
+      "acquirer_nsu": "acquirer_nsu8"
+    },
+    {
+      "gateway_id": "gateway_id8",
+      "amount": 40,
+      "status": "status6",
+      "success": false,
+      "created_at": "2016-03-13T12:52:32.123Z",
+      "statement_descriptor": "statement_descriptor2",
+      "acquirer_name": "acquirer_name6",
+      "acquirer_affiliation_code": "acquirer_affiliation_code6",
+      "acquirer_tid": "acquirer_tid8",
+      "acquirer_nsu": "acquirer_nsu8"
+    },
+    {
+      "gateway_id": "gateway_id8",
+      "amount": 40,
+      "status": "status6",
+      "success": false,
+      "created_at": "2016-03-13T12:52:32.123Z",
+      "statement_descriptor": "statement_descriptor2",
+      "acquirer_name": "acquirer_name6",
+      "acquirer_affiliation_code": "acquirer_affiliation_code6",
+      "acquirer_tid": "acquirer_tid8",
+      "acquirer_nsu": "acquirer_nsu8"
     }
   ],
   "paging": {

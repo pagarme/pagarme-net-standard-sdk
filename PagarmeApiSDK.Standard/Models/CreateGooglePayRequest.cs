@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -115,11 +116,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Version = {(this.Version == null ? "null" : this.Version == string.Empty ? "" : this.Version)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data == string.Empty ? "" : this.Data)}");
+            toStringOutput.Add($"this.Version = {(this.Version == null ? "null" : this.Version)}");
+            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data)}");
             toStringOutput.Add($"this.Header = {(this.Header == null ? "null" : this.Header.ToString())}");
-            toStringOutput.Add($"this.Signature = {(this.Signature == null ? "null" : this.Signature == string.Empty ? "" : this.Signature)}");
-            toStringOutput.Add($"this.MerchantIdentifier = {(this.MerchantIdentifier == null ? "null" : this.MerchantIdentifier == string.Empty ? "" : this.MerchantIdentifier)}");
+            toStringOutput.Add($"this.Signature = {(this.Signature == null ? "null" : this.Signature)}");
+            toStringOutput.Add($"this.MerchantIdentifier = {(this.MerchantIdentifier == null ? "null" : this.MerchantIdentifier)}");
         }
     }
 }

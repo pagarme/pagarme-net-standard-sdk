@@ -15,7 +15,7 @@ Response object for getting the shipping data
 | `Description` | `string` | Optional | - |
 | `RecipientName` | `string` | Optional | - |
 | `RecipientPhone` | `string` | Optional | - |
-| `Address` | [`Models.GetAddressResponse`](../../doc/models/get-address-response.md) | Optional | - |
+| `Address` | [`GetAddressResponse`](../../doc/models/get-address-response.md) | Optional | - |
 | `MaxDeliveryDate` | `DateTime?` | Optional | Data máxima de entrega |
 | `EstimatedDeliveryDate` | `DateTime?` | Optional | Prazo estimado de entrega |
 | `Type` | `string` | Optional | Shipping Type |
@@ -24,10 +24,10 @@ Response object for getting the shipping data
 
 ```json
 {
-  "amount": 46,
-  "description": "description0",
-  "recipient_name": "recipient_name8",
-  "recipient_phone": "recipient_phone2",
+  "amount": 214,
+  "description": "description8",
+  "recipient_name": "recipient_name6",
+  "recipient_phone": "recipient_phone0",
   "address": {
     "id": "id6",
     "street": "street6",

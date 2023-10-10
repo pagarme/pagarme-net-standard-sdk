@@ -73,7 +73,7 @@ RenewSubscriptionAsync(
 string subscriptionId = "subscription_id0";
 try
 {
-    GetPeriodResponse result = await subscriptionsController.RenewSubscriptionAsync(subscriptionId, null);
+    GetPeriodResponse result = await subscriptionsController.RenewSubscriptionAsync(subscriptionId);
 }
 catch (ApiException e)
 {
@@ -113,7 +113,10 @@ string subscriptionId = "subscription_id0";
 string discountId = "discount_id8";
 try
 {
-    GetDiscountResponse result = await subscriptionsController.DeleteDiscountAsync(subscriptionId, discountId, null);
+    GetDiscountResponse result = await subscriptionsController.DeleteDiscountAsync(
+        subscriptionId,
+        discountId
+    );
 }
 catch (ApiException e)
 {
@@ -169,7 +172,7 @@ GetSubscriptionsAsync(
 ```csharp
 try
 {
-    ListSubscriptionsResponse result = await subscriptionsController.GetSubscriptionsAsync(null, null, null, null, null, null, null, null, null, null, null, null);
+    ListSubscriptionsResponse result = await subscriptionsController.GetSubscriptionsAsync();
 }
 catch (ApiException e)
 {
@@ -205,7 +208,10 @@ string subscriptionId = "subscription_id0";
 string discountId = "discountId0";
 try
 {
-    GetDiscountResponse result = await subscriptionsController.GetDiscountByIdAsync(subscriptionId, discountId);
+    GetDiscountResponse result = await subscriptionsController.GetDiscountByIdAsync(
+        subscriptionId,
+        discountId
+    );
 }
 catch (ApiException e)
 {
@@ -229,7 +235,7 @@ CreateSubscriptionAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`Models.CreateSubscriptionRequest`](../../doc/models/create-subscription-request.md) | Body, Required | Request for creating a subscription |
+| `body` | [`CreateSubscriptionRequest`](../../doc/models/create-subscription-request.md) | Body, Required | Request for creating a subscription |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -243,32 +249,31 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
 {
     Customer = new CreateCustomerRequest
     {
-        Name = "{\\n    \"name\": \"Tony Stark\"\\n}",
-        Email = "email2",
-        Document = "document2",
-        Type = "type6",
+        Name = "{\n    \"name\": \"Tony Stark\"\n}",
+        Email = "email6",
+        Document = "document6",
+        Type = "type0",
         Address = new CreateAddressRequest
         {
-            Street = "street0",
-            Number = "number8",
-            ZipCode = "zip_code4",
-            Neighborhood = "neighborhood6",
-            City = "city0",
-            State = "state6",
-            Country = "country4",
-            Complement = "complement6",
-            Line1 = "line_16",
-            Line2 = "line_28",
+            Street = "street6",
+            Number = "number4",
+            ZipCode = "zip_code0",
+            Neighborhood = "neighborhood2",
+            City = "city6",
+            State = "state2",
+            Country = "country0",
+            Complement = "complement2",
+            Line1 = "line_10",
+            Line2 = "line_24",
         },
         Metadata = new Dictionary<string, string>
         {
-            ["key0"] = "metadata9",
-            ["key1"] = "metadata0",
+            ["key0"] = "metadata3",
         },
         Phones = new CreatePhonesRequest
         {
         },
-        Code = "code2",
+        Code = "code8",
     },
     Card = new CreateCardRequest
     {
@@ -284,38 +289,38 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
     IntervalCount = 170,
     PricingScheme = new CreatePricingSchemeRequest
     {
-        SchemeType = "scheme_type2",
+        SchemeType = "scheme_type8",
     },
     Items = new List<Models.CreateSubscriptionItemRequest>
     {
         new CreateSubscriptionItemRequest
         {
-            Description = "description3",
+            Description = "description2",
             PricingScheme = new CreatePricingSchemeRequest
             {
-                SchemeType = "scheme_type5",
+                SchemeType = "scheme_type8",
             },
-            Id = "id3",
-            PlanItemId = "plan_item_id3",
+            Id = "id8",
+            PlanItemId = "plan_item_id8",
             Discounts = new List<Models.CreateDiscountRequest>
             {
                 new CreateDiscountRequest
                 {
-                    MValue = 65.46,
+                    MValue = 90.66,
                     DiscountType = "discount_type2",
                     ItemId = "item_id4",
                 },
             },
-            Name = "name3",
+            Name = "name8",
         },
     },
     Shipping = new CreateShippingRequest
     {
-        Amount = 140,
-        Description = "description0",
-        RecipientName = "recipient_name8",
-        RecipientPhone = "recipient_phone2",
-        AddressId = "address_id0",
+        Amount = 52,
+        Description = "description6",
+        RecipientName = "recipient_name2",
+        RecipientPhone = "recipient_phone6",
+        AddressId = "address_id6",
         Address = new CreateAddressRequest
         {
             Street = "street6",
@@ -329,15 +334,15 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
             Line1 = "line_10",
             Line2 = "line_24",
         },
-        Type = "type0",
+        Type = "type6",
     },
     Discounts = new List<Models.CreateDiscountRequest>
     {
         new CreateDiscountRequest
         {
-            MValue = 95.59,
-            DiscountType = "discount_type5",
-            ItemId = "item_id7",
+            MValue = 90.66,
+            DiscountType = "discount_type2",
+            ItemId = "item_id4",
         },
     },
     Metadata = new Dictionary<string, string>
@@ -349,16 +354,16 @@ CreateSubscriptionRequest body = new CreateSubscriptionRequest
     {
         new CreateIncrementRequest
         {
-            MValue = 38.83,
-            IncrementType = "increment_type3",
-            ItemId = "item_id9",
+            MValue = 252.86,
+            IncrementType = "increment_type6",
+            ItemId = "item_id6",
         },
     },
 };
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.CreateSubscriptionAsync(body, null);
+    GetSubscriptionResponse result = await subscriptionsController.CreateSubscriptionAsync(body);
 }
 catch (ApiException e)
 {
@@ -394,7 +399,10 @@ string subscriptionId = "subscription_id0";
 string incrementId = "increment_id8";
 try
 {
-    GetIncrementResponse result = await subscriptionsController.GetIncrementByIdAsync(subscriptionId, incrementId);
+    GetIncrementResponse result = await subscriptionsController.GetIncrementByIdAsync(
+        subscriptionId,
+        incrementId
+    );
 }
 catch (ApiException e)
 {
@@ -420,7 +428,7 @@ UpdateSubscriptionMetadataAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | The subscription id |
-| `request` | [`Models.UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the subscrption metadata |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the subscrption metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -441,7 +449,10 @@ UpdateMetadataRequest request = new UpdateMetadataRequest
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionMetadataAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionMetadataAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -481,7 +492,10 @@ string subscriptionId = "subscription_id0";
 string incrementId = "increment_id8";
 try
 {
-    GetIncrementResponse result = await subscriptionsController.DeleteIncrementAsync(subscriptionId, incrementId, null);
+    GetIncrementResponse result = await subscriptionsController.DeleteIncrementAsync(
+        subscriptionId,
+        incrementId
+    );
 }
 catch (ApiException e)
 {
@@ -540,7 +554,7 @@ UpdateLatestPeriodEndAtAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | - |
-| `request` | [`Models.UpdateCurrentCycleEndDateRequest`](../../doc/models/update-current-cycle-end-date-request.md) | Body, Required | Request for updating the end date of the current signature cycle |
+| `request` | [`UpdateCurrentCycleEndDateRequest`](../../doc/models/update-current-cycle-end-date-request.md) | Body, Required | Request for updating the end date of the current signature cycle |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -557,7 +571,10 @@ UpdateCurrentCycleEndDateRequest request = new UpdateCurrentCycleEndDateRequest
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateLatestPeriodEndAtAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateLatestPeriodEndAtAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -581,7 +598,7 @@ UpdateCurrentCycleStatusAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `request` | [`Models.UpdateCurrentCycleStatusRequest`](../../doc/models/update-current-cycle-status-request.md) | Body, Required | Request for updating the end date of the subscription current status |
+| `request` | [`UpdateCurrentCycleStatusRequest`](../../doc/models/update-current-cycle-status-request.md) | Body, Required | Request for updating the end date of the subscription current status |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -599,7 +616,10 @@ UpdateCurrentCycleStatusRequest request = new UpdateCurrentCycleStatusRequest
 
 try
 {
-    await subscriptionsController.UpdateCurrentCycleStatusAsync(subscriptionId, request, null);
+    await subscriptionsController.UpdateCurrentCycleStatusAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -650,7 +670,7 @@ GetSubscriptionItemsAsync(
 string subscriptionId = "subscription_id0";
 try
 {
-    ListSubscriptionItemsResponse result = await subscriptionsController.GetSubscriptionItemsAsync(subscriptionId, null, null, null, null, null, null, null, null);
+    ListSubscriptionItemsResponse result = await subscriptionsController.GetSubscriptionItemsAsync(subscriptionId);
 }
 catch (ApiException e)
 {
@@ -688,7 +708,10 @@ string subscriptionId = "subscription_id0";
 string itemId = "item_id0";
 try
 {
-    GetSubscriptionItemResponse result = await subscriptionsController.GetSubscriptionItemAsync(subscriptionId, itemId);
+    GetSubscriptionItemResponse result = await subscriptionsController.GetSubscriptionItemAsync(
+        subscriptionId,
+        itemId
+    );
 }
 catch (ApiException e)
 {
@@ -712,7 +735,7 @@ UpdateSubscriptionAffiliationIdAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | - |
-| `request` | [`Models.UpdateSubscriptionAffiliationIdRequest`](../../doc/models/update-subscription-affiliation-id-request.md) | Body, Required | Request for updating a subscription affiliation id |
+| `request` | [`UpdateSubscriptionAffiliationIdRequest`](../../doc/models/update-subscription-affiliation-id-request.md) | Body, Required | Request for updating a subscription affiliation id |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -730,7 +753,10 @@ UpdateSubscriptionAffiliationIdRequest request = new UpdateSubscriptionAffiliati
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionAffiliationIdAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionAffiliationIdAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -769,7 +795,11 @@ int page = 30;
 int size = 18;
 try
 {
-    ListDiscountsResponse result = await subscriptionsController.GetDiscountsAsync(subscriptionId, page, size);
+    ListDiscountsResponse result = await subscriptionsController.GetDiscountsAsync(
+        subscriptionId,
+        page,
+        size
+    );
 }
 catch (ApiException e)
 {
@@ -797,7 +827,7 @@ UpdateSubscriptionItemAsync(
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription Id |
 | `itemId` | `string` | Template, Required | Item id |
-| `body` | [`Models.UpdateSubscriptionItemRequest`](../../doc/models/update-subscription-item-request.md) | Body, Required | Request for updating a subscription item |
+| `body` | [`UpdateSubscriptionItemRequest`](../../doc/models/update-subscription-item-request.md) | Body, Required | Request for updating a subscription item |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -815,13 +845,13 @@ UpdateSubscriptionItemRequest body = new UpdateSubscriptionItemRequest
     Status = "status2",
     PricingScheme = new UpdatePricingSchemeRequest
     {
-        SchemeType = "scheme_type2",
+        SchemeType = "scheme_type8",
         PriceBrackets = new List<Models.UpdatePriceBracketRequest>
         {
             new UpdatePriceBracketRequest
             {
-                StartQuantity = 31,
-                Price = 225,
+                StartQuantity = 144,
+                Price = 174,
             },
         },
     },
@@ -830,7 +860,11 @@ UpdateSubscriptionItemRequest body = new UpdateSubscriptionItemRequest
 
 try
 {
-    GetSubscriptionItemResponse result = await subscriptionsController.UpdateSubscriptionItemAsync(subscriptionId, itemId, body, null);
+    GetSubscriptionItemResponse result = await subscriptionsController.UpdateSubscriptionItemAsync(
+        subscriptionId,
+        itemId,
+        body
+    );
 }
 catch (ApiException e)
 {
@@ -856,7 +890,7 @@ CreateSubscriptionItemAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`Models.CreateSubscriptionItemRequest`](../../doc/models/create-subscription-item-request.md) | Body, Required | Request for creating a subscription item |
+| `request` | [`CreateSubscriptionItemRequest`](../../doc/models/create-subscription-item-request.md) | Body, Required | Request for creating a subscription item |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -872,7 +906,7 @@ CreateSubscriptionItemRequest request = new CreateSubscriptionItemRequest
     Description = "description6",
     PricingScheme = new CreatePricingSchemeRequest
     {
-        SchemeType = "scheme_type2",
+        SchemeType = "scheme_type8",
     },
     Id = "id6",
     PlanItemId = "plan_item_id6",
@@ -880,9 +914,9 @@ CreateSubscriptionItemRequest request = new CreateSubscriptionItemRequest
     {
         new CreateDiscountRequest
         {
-            MValue = 199.99,
-            DiscountType = "discount_type5",
-            ItemId = "item_id7",
+            MValue = 90.66,
+            DiscountType = "discount_type2",
+            ItemId = "item_id4",
         },
     },
     Name = "name6",
@@ -890,7 +924,10 @@ CreateSubscriptionItemRequest request = new CreateSubscriptionItemRequest
 
 try
 {
-    GetSubscriptionItemResponse result = await subscriptionsController.CreateSubscriptionItemAsync(subscriptionId, request, null);
+    GetSubscriptionItemResponse result = await subscriptionsController.CreateSubscriptionItemAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -940,7 +977,10 @@ string subscriptionId = "subscription_id0";
 string itemId = "item_id0";
 try
 {
-    ListUsagesResponse result = await subscriptionsController.GetUsagesAsync(subscriptionId, itemId, null, null, null, null, null, null);
+    ListUsagesResponse result = await subscriptionsController.GetUsagesAsync(
+        subscriptionId,
+        itemId
+    );
 }
 catch (ApiException e)
 {
@@ -966,7 +1006,7 @@ UpdateSubscriptionMiniumPriceAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `request` | [`Models.UpdateSubscriptionMinimumPriceRequest`](../../doc/models/update-subscription-minimum-price-request.md) | Body, Required | Request da requisição com o valor mínimo que será configurado |
+| `request` | [`UpdateSubscriptionMinimumPriceRequest`](../../doc/models/update-subscription-minimum-price-request.md) | Body, Required | Request da requisição com o valor mínimo que será configurado |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -983,7 +1023,10 @@ UpdateSubscriptionMinimumPriceRequest request = new UpdateSubscriptionMinimumPri
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionMiniumPriceAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionMiniumPriceAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1019,7 +1062,10 @@ string subscriptionId = "subscription_id0";
 string cycleId = "cycleId0";
 try
 {
-    GetPeriodResponse result = await subscriptionsController.GetSubscriptionCycleByIdAsync(subscriptionId, cycleId);
+    GetPeriodResponse result = await subscriptionsController.GetSubscriptionCycleByIdAsync(
+        subscriptionId,
+        cycleId
+    );
 }
 catch (ApiException e)
 {
@@ -1059,7 +1105,10 @@ string subscriptionId = "subscription_id0";
 string itemId = "item_id0";
 try
 {
-    GetUsageResponse result = await subscriptionsController.CreateAnUsageAsync(subscriptionId, itemId, null);
+    GetUsageResponse result = await subscriptionsController.CreateAnUsageAsync(
+        subscriptionId,
+        itemId
+    );
 }
 catch (ApiException e)
 {
@@ -1085,7 +1134,7 @@ CancelSubscriptionAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`Models.CreateCancelSubscriptionRequest`](../../doc/models/create-cancel-subscription-request.md) | Body, Optional | Request for cancelling a subscription |
+| `request` | [`CreateCancelSubscriptionRequest`](../../doc/models/create-cancel-subscription-request.md) | Body, Optional | Request for cancelling a subscription |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1103,7 +1152,10 @@ CreateCancelSubscriptionRequest request = new CreateCancelSubscriptionRequest
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.CancelSubscriptionAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.CancelSubscriptionAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1143,7 +1195,10 @@ string subscriptionId = "subscription_id0";
 string subscriptionItemId = "subscription_item_id4";
 try
 {
-    GetSubscriptionItemResponse result = await subscriptionsController.DeleteSubscriptionItemAsync(subscriptionId, subscriptionItemId, null);
+    GetSubscriptionItemResponse result = await subscriptionsController.DeleteSubscriptionItemAsync(
+        subscriptionId,
+        subscriptionItemId
+    );
 }
 catch (ApiException e)
 {
@@ -1180,7 +1235,7 @@ GetIncrementsAsync(
 string subscriptionId = "subscription_id0";
 try
 {
-    ListIncrementsResponse result = await subscriptionsController.GetIncrementsAsync(subscriptionId, null, null);
+    ListIncrementsResponse result = await subscriptionsController.GetIncrementsAsync(subscriptionId);
 }
 catch (ApiException e)
 {
@@ -1206,7 +1261,7 @@ UpdateSubscriptionDueDaysAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `request` | [`Models.UpdateSubscriptionDueDaysRequest`](../../doc/models/update-subscription-due-days-request.md) | Body, Required | - |
+| `request` | [`UpdateSubscriptionDueDaysRequest`](../../doc/models/update-subscription-due-days-request.md) | Body, Required | - |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1224,7 +1279,10 @@ UpdateSubscriptionDueDaysRequest request = new UpdateSubscriptionDueDaysRequest
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionDueDaysAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionDueDaysAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1250,7 +1308,7 @@ UpdateSubscriptionCardAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`Models.UpdateSubscriptionCardRequest`](../../doc/models/update-subscription-card-request.md) | Body, Required | Request for updating a card |
+| `request` | [`UpdateSubscriptionCardRequest`](../../doc/models/update-subscription-card-request.md) | Body, Required | Request for updating a card |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1272,7 +1330,10 @@ UpdateSubscriptionCardRequest request = new UpdateSubscriptionCardRequest
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionCardAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionCardAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1315,7 +1376,11 @@ string itemId = "item_id0";
 string usageId = "usage_id0";
 try
 {
-    GetUsageResponse result = await subscriptionsController.DeleteUsageAsync(subscriptionId, itemId, usageId, null);
+    GetUsageResponse result = await subscriptionsController.DeleteUsageAsync(
+        subscriptionId,
+        itemId,
+        usageId
+    );
 }
 catch (ApiException e)
 {
@@ -1341,7 +1406,7 @@ CreateDiscountAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`Models.CreateDiscountRequest`](../../doc/models/create-discount-request.md) | Body, Required | Request for creating a discount |
+| `request` | [`CreateDiscountRequest`](../../doc/models/create-discount-request.md) | Body, Required | Request for creating a discount |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1361,7 +1426,10 @@ CreateDiscountRequest request = new CreateDiscountRequest
 
 try
 {
-    GetDiscountResponse result = await subscriptionsController.CreateDiscountAsync(subscriptionId, request, null);
+    GetDiscountResponse result = await subscriptionsController.CreateDiscountAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1387,7 +1455,7 @@ UpdateSubscriptionPaymentMethodAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`Models.UpdateSubscriptionPaymentMethodRequest`](../../doc/models/update-subscription-payment-method-request.md) | Body, Required | Request for updating the paymentmethod from a subscription |
+| `request` | [`UpdateSubscriptionPaymentMethodRequest`](../../doc/models/update-subscription-payment-method-request.md) | Body, Required | Request for updating the paymentmethod from a subscription |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1410,7 +1478,10 @@ UpdateSubscriptionPaymentMethodRequest request = new UpdateSubscriptionPaymentMe
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionPaymentMethodAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionPaymentMethodAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1436,7 +1507,7 @@ CreateIncrementAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`Models.CreateIncrementRequest`](../../doc/models/create-increment-request.md) | Body, Required | Request for creating a increment |
+| `request` | [`CreateIncrementRequest`](../../doc/models/create-increment-request.md) | Body, Required | Request for creating a increment |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1456,7 +1527,10 @@ CreateIncrementRequest request = new CreateIncrementRequest
 
 try
 {
-    GetIncrementResponse result = await subscriptionsController.CreateIncrementAsync(subscriptionId, request, null);
+    GetIncrementResponse result = await subscriptionsController.CreateIncrementAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1484,7 +1558,7 @@ CreateUsageAsync(
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription Id |
 | `itemId` | `string` | Template, Required | Item id |
-| `body` | [`Models.CreateUsageRequest`](../../doc/models/create-usage-request.md) | Body, Required | Request for creating a usage |
+| `body` | [`CreateUsageRequest`](../../doc/models/create-usage-request.md) | Body, Required | Request for creating a usage |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1500,16 +1574,18 @@ CreateUsageRequest body = new CreateUsageRequest
 {
     Quantity = 156,
     Description = "description4",
-    UsedAt = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+    UsedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
         provider: CultureInfo.InvariantCulture,
         DateTimeStyles.RoundtripKind),
 };
 
 try
 {
-    GetUsageResponse result = await subscriptionsController.CreateUsageAsync(subscriptionId, itemId, body, null);
+    GetUsageResponse result = await subscriptionsController.CreateUsageAsync(
+        subscriptionId,
+        itemId,
+        body
+    );
 }
 catch (ApiException e)
 {
@@ -1548,7 +1624,11 @@ string page = "page8";
 string size = "size0";
 try
 {
-    ListCyclesResponse result = await subscriptionsController.GetSubscriptionCyclesAsync(subscriptionId, page, size);
+    ListCyclesResponse result = await subscriptionsController.GetSubscriptionCyclesAsync(
+        subscriptionId,
+        page,
+        size
+    );
 }
 catch (ApiException e)
 {
@@ -1574,7 +1654,7 @@ UpdateSubscriptionBillingDateAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | The subscription id |
-| `request` | [`Models.UpdateSubscriptionBillingDateRequest`](../../doc/models/update-subscription-billing-date-request.md) | Body, Required | Request for updating the subscription billing date |
+| `request` | [`UpdateSubscriptionBillingDateRequest`](../../doc/models/update-subscription-billing-date-request.md) | Body, Required | Request for updating the subscription billing date |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1587,16 +1667,17 @@ UpdateSubscriptionBillingDateAsync(
 string subscriptionId = "subscription_id0";
 UpdateSubscriptionBillingDateRequest request = new UpdateSubscriptionBillingDateRequest
 {
-    NextBillingAt = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+    NextBillingAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
         provider: CultureInfo.InvariantCulture,
         DateTimeStyles.RoundtripKind),
 };
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionBillingDateAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionBillingDateAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1622,7 +1703,7 @@ UpdateSubscriptionStartAtAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | The subscription id |
-| `request` | [`Models.UpdateSubscriptionStartAtRequest`](../../doc/models/update-subscription-start-at-request.md) | Body, Required | Request for updating the subscription start date |
+| `request` | [`UpdateSubscriptionStartAtRequest`](../../doc/models/update-subscription-start-at-request.md) | Body, Required | Request for updating the subscription start date |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -1635,16 +1716,17 @@ UpdateSubscriptionStartAtAsync(
 string subscriptionId = "subscription_id0";
 UpdateSubscriptionStartAtRequest request = new UpdateSubscriptionStartAtRequest
 {
-    StartAt = DateTime.ParseExact(
-        "2016-03-13T12:52:32.123Z",
-        "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+    StartAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
         provider: CultureInfo.InvariantCulture,
         DateTimeStyles.RoundtripKind),
 };
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionStartAtAsync(subscriptionId, request, null);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionStartAtAsync(
+        subscriptionId,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -1680,7 +1762,10 @@ string subscriptionId = "subscription_id0";
 string periodId = "period_id0";
 try
 {
-    GetUsageReportResponse result = await subscriptionsController.GetUsageReportAsync(subscriptionId, periodId);
+    GetUsageReportResponse result = await subscriptionsController.GetUsageReportAsync(
+        subscriptionId,
+        periodId
+    );
 }
 catch (ApiException e)
 {
@@ -1703,7 +1788,7 @@ UpdateSplitSubscriptionAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `string` | Template, Required | Subscription's id |
-| `request` | [`Models.UpdateSubscriptionSplitRequest`](../../doc/models/update-subscription-split-request.md) | Body, Required | - |
+| `request` | [`UpdateSubscriptionSplitRequest`](../../doc/models/update-subscription-split-request.md) | Body, Required | - |
 
 ## Response Type
 
@@ -1720,16 +1805,19 @@ UpdateSubscriptionSplitRequest request = new UpdateSubscriptionSplitRequest
     {
         new CreateSplitRequest
         {
-            Type = "type6",
-            Amount = 222,
-            RecipientId = "recipient_id6",
+            Type = "type2",
+            Amount = 118,
+            RecipientId = "recipient_id2",
         },
     },
 };
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSplitSubscriptionAsync(id, request);
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSplitSubscriptionAsync(
+        id,
+        request
+    );
 }
 catch (ApiException e)
 {
