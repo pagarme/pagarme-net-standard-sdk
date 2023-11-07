@@ -34,27 +34,6 @@ namespace PagarmeApiSDK.Standard.Controllers
         internal TransfersController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public Models.ListTransfers GetTransfers()
-            => CoreHelper.RunTask(GetTransfersAsync());
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListTransfers>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/transfers")
-                  .WithAuth("global"))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListTransfers>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
         /// GetTransferById EndPoint.
         /// </summary>
         /// <param name="transferId">Required parameter: Example: .</param>
@@ -78,8 +57,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("transfer_id", transferId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransfer>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -106,8 +83,25 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransfer>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public Models.ListTransfers GetTransfers()
+            => CoreHelper.RunTask(GetTransfersAsync());
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListTransfers>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/transfers")
+                  .WithAuth("global"))
               .ExecuteAsync(cancellationToken);
     }
 }

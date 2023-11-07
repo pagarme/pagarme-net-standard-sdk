@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -897,23 +898,23 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url == string.Empty ? "" : this.Url)}");
-            toStringOutput.Add($"this.Barcode = {(this.Barcode == null ? "null" : this.Barcode == string.Empty ? "" : this.Barcode)}");
-            toStringOutput.Add($"this.NossoNumero = {(this.NossoNumero == null ? "null" : this.NossoNumero == string.Empty ? "" : this.NossoNumero)}");
-            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : this.Bank == string.Empty ? "" : this.Bank)}");
-            toStringOutput.Add($"this.DocumentNumber = {(this.DocumentNumber == null ? "null" : this.DocumentNumber == string.Empty ? "" : this.DocumentNumber)}");
-            toStringOutput.Add($"this.Instructions = {(this.Instructions == null ? "null" : this.Instructions == string.Empty ? "" : this.Instructions)}");
+            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url)}");
+            toStringOutput.Add($"this.Barcode = {(this.Barcode == null ? "null" : this.Barcode)}");
+            toStringOutput.Add($"this.NossoNumero = {(this.NossoNumero == null ? "null" : this.NossoNumero)}");
+            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : this.Bank)}");
+            toStringOutput.Add($"this.DocumentNumber = {(this.DocumentNumber == null ? "null" : this.DocumentNumber)}");
+            toStringOutput.Add($"this.Instructions = {(this.Instructions == null ? "null" : this.Instructions)}");
             toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
             toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
-            toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode == string.Empty ? "" : this.QrCode)}");
-            toStringOutput.Add($"this.Line = {(this.Line == null ? "null" : this.Line == string.Empty ? "" : this.Line)}");
-            toStringOutput.Add($"this.PdfPassword = {(this.PdfPassword == null ? "null" : this.PdfPassword == string.Empty ? "" : this.PdfPassword)}");
-            toStringOutput.Add($"this.Pdf = {(this.Pdf == null ? "null" : this.Pdf == string.Empty ? "" : this.Pdf)}");
+            toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode)}");
+            toStringOutput.Add($"this.Line = {(this.Line == null ? "null" : this.Line)}");
+            toStringOutput.Add($"this.PdfPassword = {(this.PdfPassword == null ? "null" : this.PdfPassword)}");
+            toStringOutput.Add($"this.Pdf = {(this.Pdf == null ? "null" : this.Pdf)}");
             toStringOutput.Add($"this.PaidAt = {(this.PaidAt == null ? "null" : this.PaidAt.ToString())}");
-            toStringOutput.Add($"this.PaidAmount = {(this.PaidAmount == null ? "null" : this.PaidAmount == string.Empty ? "" : this.PaidAmount)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
+            toStringOutput.Add($"this.PaidAmount = {(this.PaidAmount == null ? "null" : this.PaidAmount)}");
+            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
             toStringOutput.Add($"this.CreditAt = {(this.CreditAt == null ? "null" : this.CreditAt.ToString())}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor == string.Empty ? "" : this.StatementDescriptor)}");
+            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
 
             base.ToString(toStringOutput);
         }

@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -445,13 +446,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode == string.Empty ? "" : this.QrCode)}");
-            toStringOutput.Add($"this.QrCodeUrl = {(this.QrCodeUrl == null ? "null" : this.QrCodeUrl == string.Empty ? "" : this.QrCodeUrl)}");
+            toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode)}");
+            toStringOutput.Add($"this.QrCodeUrl = {(this.QrCodeUrl == null ? "null" : this.QrCodeUrl)}");
             toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
             toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
-            toStringOutput.Add($"this.EndToEndId = {(this.EndToEndId == null ? "null" : this.EndToEndId == string.Empty ? "" : this.EndToEndId)}");
+            toStringOutput.Add($"this.EndToEndId = {(this.EndToEndId == null ? "null" : this.EndToEndId)}");
             toStringOutput.Add($"this.Payer = {(this.Payer == null ? "null" : this.Payer.ToString())}");
-            toStringOutput.Add($"this.PixProviderTid = {(this.PixProviderTid == null ? "null" : this.PixProviderTid == string.Empty ? "" : this.PixProviderTid)}");
+            toStringOutput.Add($"this.PixProviderTid = {(this.PixProviderTid == null ? "null" : this.PixProviderTid)}");
 
             base.ToString(toStringOutput);
         }

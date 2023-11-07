@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -106,7 +107,7 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.UpdateSubscription = {this.UpdateSubscription}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId == string.Empty ? "" : this.CardId)}");
+            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
             toStringOutput.Add($"this.Recurrence = {this.Recurrence}");
         }

@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -1064,27 +1065,27 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee.ToString())}");
             toStringOutput.Add($"this.AnticipationFee = {(this.AnticipationFee == null ? "null" : this.AnticipationFee.ToString())}");
             toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee.ToString())}");
             toStringOutput.Add($"this.Installment = {(this.Installment == null ? "null" : this.Installment.ToString())}");
             toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId.ToString())}");
-            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId == string.Empty ? "" : this.ChargeId)}");
-            toStringOutput.Add($"this.SplitId = {(this.SplitId == null ? "null" : this.SplitId == string.Empty ? "" : this.SplitId)}");
-            toStringOutput.Add($"this.BulkAnticipationId = {(this.BulkAnticipationId == null ? "null" : this.BulkAnticipationId == string.Empty ? "" : this.BulkAnticipationId)}");
-            toStringOutput.Add($"this.AnticipationId = {(this.AnticipationId == null ? "null" : this.AnticipationId == string.Empty ? "" : this.AnticipationId)}");
-            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId == string.Empty ? "" : this.RecipientId)}");
-            toStringOutput.Add($"this.OriginatorModel = {(this.OriginatorModel == null ? "null" : this.OriginatorModel == string.Empty ? "" : this.OriginatorModel)}");
-            toStringOutput.Add($"this.OriginatorModelId = {(this.OriginatorModelId == null ? "null" : this.OriginatorModelId == string.Empty ? "" : this.OriginatorModelId)}");
+            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId)}");
+            toStringOutput.Add($"this.SplitId = {(this.SplitId == null ? "null" : this.SplitId)}");
+            toStringOutput.Add($"this.BulkAnticipationId = {(this.BulkAnticipationId == null ? "null" : this.BulkAnticipationId)}");
+            toStringOutput.Add($"this.AnticipationId = {(this.AnticipationId == null ? "null" : this.AnticipationId)}");
+            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId)}");
+            toStringOutput.Add($"this.OriginatorModel = {(this.OriginatorModel == null ? "null" : this.OriginatorModel)}");
+            toStringOutput.Add($"this.OriginatorModelId = {(this.OriginatorModelId == null ? "null" : this.OriginatorModelId)}");
             toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate.ToString())}");
             toStringOutput.Add($"this.OriginalPaymentDate = {(this.OriginalPaymentDate == null ? "null" : this.OriginalPaymentDate.ToString())}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod == string.Empty ? "" : this.PaymentMethod)}");
+            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
             toStringOutput.Add($"this.AccrualAt = {(this.AccrualAt == null ? "null" : this.AccrualAt.ToString())}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.LiquidationArrangementId = {(this.LiquidationArrangementId == null ? "null" : this.LiquidationArrangementId == string.Empty ? "" : this.LiquidationArrangementId)}");
+            toStringOutput.Add($"this.LiquidationArrangementId = {(this.LiquidationArrangementId == null ? "null" : this.LiquidationArrangementId)}");
         }
     }
 }

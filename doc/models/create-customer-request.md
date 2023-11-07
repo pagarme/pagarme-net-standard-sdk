@@ -15,9 +15,9 @@ Request for creating a new customer
 | `Email` | `string` | Required | Email |
 | `Document` | `string` | Required | Document number. Only numbers, no special characters. |
 | `Type` | `string` | Required | Person type. Can be either 'individual' or 'company' |
-| `Address` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | The customer's address |
+| `Address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | The customer's address |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
-| `Phones` | [`Models.CreatePhonesRequest`](../../doc/models/create-phones-request.md) | Required | - |
+| `Phones` | [`CreatePhonesRequest`](../../doc/models/create-phones-request.md) | Required | - |
 | `Code` | `string` | Required | Customer code |
 | `Gender` | `string` | Optional | Customer Gender |
 | `DocumentType` | `string` | Optional | - |
@@ -27,9 +27,9 @@ Request for creating a new customer
 ```json
 {
   "name": "{\n    \"name\": \"Tony Stark\"\n}",
-  "email": "email6",
-  "document": "document6",
-  "type": "type0",
+  "email": "email8",
+  "document": "document8",
+  "type": "type2",
   "address": {
     "street": "street6",
     "number": "number4",
@@ -48,25 +48,25 @@ Request for creating a new customer
     "line_2": "line_24"
   },
   "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
+    "key0": "metadata5"
   },
   "phones": {
     "home_phone": {
-      "country_code": "country_code8",
-      "number": "number0",
-      "area_code": "area_code2"
+      "country_code": "country_code0",
+      "number": "number2",
+      "area_code": "area_code0",
+      "Type": "Type0"
     },
     "mobile_phone": {
-      "country_code": "country_code8",
-      "number": "number4",
-      "area_code": "area_code8"
+      "country_code": "country_code0",
+      "number": "number8",
+      "area_code": "area_code0",
+      "Type": "Type0"
     }
   },
-  "code": "code8",
-  "gender": "gender6",
-  "document_type": "document_type8"
+  "code": "code6",
+  "gender": "gender8",
+  "document_type": "document_type6"
 }
 ```
 

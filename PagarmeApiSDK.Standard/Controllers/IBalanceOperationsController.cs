@@ -28,11 +28,13 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="status">Optional parameter: Example: .</param>
         /// <param name="createdSince">Optional parameter: Example: .</param>
         /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <param name="recipientId">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
         Models.ListBalanceOperationResponse GetBalanceOperations(
                 string status = null,
                 DateTime? createdSince = null,
-                DateTime? createdUntil = null);
+                DateTime? createdUntil = null,
+                string recipientId = null);
 
         /// <summary>
         /// GetBalanceOperations EndPoint.
@@ -40,12 +42,14 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <param name="status">Optional parameter: Example: .</param>
         /// <param name="createdSince">Optional parameter: Example: .</param>
         /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <param name="recipientId">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ListBalanceOperationResponse response from the API call.</returns>
         Task<Models.ListBalanceOperationResponse> GetBalanceOperationsAsync(
                 string status = null,
                 DateTime? createdSince = null,
                 DateTime? createdUntil = null,
+                string recipientId = null,
                 CancellationToken cancellationToken = default);
 
         /// <summary>

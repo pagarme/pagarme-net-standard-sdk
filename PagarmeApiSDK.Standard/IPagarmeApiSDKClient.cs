@@ -12,6 +12,11 @@ namespace PagarmeApiSDK.Standard
     public interface IPagarmeApiSDKClient : IConfiguration
     {
         /// <summary>
+        /// Gets instance for ISubscriptionsController.
+        /// </summary>
+        ISubscriptionsController SubscriptionsController { get; }
+
+        /// <summary>
         /// Gets instance for IOrdersController.
         /// </summary>
         IOrdersController OrdersController { get; }
@@ -20,11 +25,6 @@ namespace PagarmeApiSDK.Standard
         /// Gets instance for IPlansController.
         /// </summary>
         IPlansController PlansController { get; }
-
-        /// <summary>
-        /// Gets instance for ISubscriptionsController.
-        /// </summary>
-        ISubscriptionsController SubscriptionsController { get; }
 
         /// <summary>
         /// Gets instance for IInvoicesController.
@@ -37,14 +37,14 @@ namespace PagarmeApiSDK.Standard
         ICustomersController CustomersController { get; }
 
         /// <summary>
-        /// Gets instance for IRecipientsController.
-        /// </summary>
-        IRecipientsController RecipientsController { get; }
-
-        /// <summary>
         /// Gets instance for IChargesController.
         /// </summary>
         IChargesController ChargesController { get; }
+
+        /// <summary>
+        /// Gets instance for IRecipientsController.
+        /// </summary>
+        IRecipientsController RecipientsController { get; }
 
         /// <summary>
         /// Gets instance for ITokensController.
@@ -52,14 +52,14 @@ namespace PagarmeApiSDK.Standard
         ITokensController TokensController { get; }
 
         /// <summary>
-        /// Gets instance for ITransfersController.
-        /// </summary>
-        ITransfersController TransfersController { get; }
-
-        /// <summary>
         /// Gets instance for ITransactionsController.
         /// </summary>
         ITransactionsController TransactionsController { get; }
+
+        /// <summary>
+        /// Gets instance for ITransfersController.
+        /// </summary>
+        ITransfersController TransfersController { get; }
 
         /// <summary>
         /// Gets instance for IPayablesController.

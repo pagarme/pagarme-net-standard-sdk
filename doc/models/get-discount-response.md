@@ -19,17 +19,17 @@ Response object for getting a discount
 | `Cycles` | `int?` | Optional | - |
 | `DeletedAt` | `DateTime?` | Optional | - |
 | `Description` | `string` | Optional | - |
-| `Subscription` | [`Models.GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
-| `SubscriptionItem` | [`Models.GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The subscription item |
+| `Subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
+| `SubscriptionItem` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The subscription item |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "value": 251.52,
-  "discount_type": "discount_type8",
-  "status": "status8",
+  "id": "id4",
+  "value": 139.66,
+  "discount_type": "discount_type2",
+  "status": "status6",
   "created_at": "2016-03-13T12:52:32.123Z"
 }
 ```

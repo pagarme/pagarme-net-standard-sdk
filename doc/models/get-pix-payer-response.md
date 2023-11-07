@@ -14,14 +14,14 @@ Pix payer data.
 | `Name` | `string` | Optional | - |
 | `Document` | `string` | Optional | - |
 | `DocumentType` | `string` | Optional | - |
-| `BankAccount` | [`Models.GetPixBankAccountResponse`](../../doc/models/get-pix-bank-account-response.md) | Optional | - |
+| `BankAccount` | [`GetPixBankAccountResponse`](../../doc/models/get-pix-bank-account-response.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "name": "name0",
-  "document": "document6",
+  "document": "document4",
   "document_type": "document_type8",
   "bank_account": {
     "bank_name": "bank_name0",
