@@ -11,11 +11,12 @@ The GooglePay Token Payment Request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Version` | `string` | Required | Informação sobre a versão do token. Único valor aceito é EC_v2 |
-| `Data` | `string` | Required | Dados de pagamento criptografados. Corresponde ao encryptedMessage do token Google. |
-| `IntermediateSigningKey` | [`CreateGooglePayIntermediateSigningKeyRequest`](../../doc/models/create-google-pay-intermediate-signing-key-request.md) | Required | The GooglePay intermediate signing key request |
-| `Signature` | `string` | Required | Assinatura dos dados de pagamento. Verifica se a origem da mensagem é o Google. Corresponde ao signature do token Google. |
-| `SignedMessage` | `string` | Required | - |
+| `Version` | `string` | Optional | Informação sobre a versão do token. Único valor aceito é EC_v2 |
+| `Data` | `string` | Optional | Dados de pagamento criptografados. Corresponde ao encryptedMessage do token Google. |
+| `IntermediateSigningKey` | [`CreateGooglePayIntermediateSigningKeyRequest`](../../doc/models/create-google-pay-intermediate-signing-key-request.md) | Optional | The GooglePay intermediate signing key request |
+| `Signature` | `string` | Optional | Assinatura dos dados de pagamento. Verifica se a origem da mensagem é o Google. Corresponde ao signature do token Google. |
+| `SignedMessage` | `string` | Optional | - |
+| `MerchantIdentifier` | `string` | Optional | - |
 
 ## Example (as JSON)
 

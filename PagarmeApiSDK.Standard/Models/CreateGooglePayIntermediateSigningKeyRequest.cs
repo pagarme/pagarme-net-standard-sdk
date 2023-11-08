@@ -22,6 +22,14 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateGooglePayIntermediateSigningKeyRequest
     {
+        private string signedKey;
+        private List<string> signatures;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "signed_key", false },
+            { "signatures", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateGooglePayIntermediateSigningKeyRequest"/> class.
         /// </summary>
@@ -35,24 +43,56 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="signedKey">signed_key.</param>
         /// <param name="signatures">signatures.</param>
         public CreateGooglePayIntermediateSigningKeyRequest(
-            string signedKey,
-            List<string> signatures)
+            string signedKey = null,
+            List<string> signatures = null)
         {
-            this.SignedKey = signedKey;
-            this.Signatures = signatures;
+            if (signedKey != null)
+            {
+                this.SignedKey = signedKey;
+            }
+
+            if (signatures != null)
+            {
+                this.Signatures = signatures;
+            }
+
         }
 
         /// <summary>
         /// Uma mensagem codificada em Base64 com a descrição de pagamento da chave.
         /// </summary>
         [JsonProperty("signed_key")]
-        public string SignedKey { get; set; }
+        public string SignedKey
+        {
+            get
+            {
+                return this.signedKey;
+            }
+
+            set
+            {
+                this.shouldSerialize["signed_key"] = true;
+                this.signedKey = value;
+            }
+        }
 
         /// <summary>
         /// Verifica se a origem da chave de assinatura intermediária é o Google. É codificada em Base64 e criada usando o ECDSA.
         /// </summary>
         [JsonProperty("signatures")]
-        public List<string> Signatures { get; set; }
+        public List<string> Signatures
+        {
+            get
+            {
+                return this.signatures;
+            }
+
+            set
+            {
+                this.shouldSerialize["signatures"] = true;
+                this.signatures = value;
+            }
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -62,6 +102,40 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateGooglePayIntermediateSigningKeyRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSignedKey()
+        {
+            this.shouldSerialize["signed_key"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetSignatures()
+        {
+            this.shouldSerialize["signatures"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSignedKey()
+        {
+            return this.shouldSerialize["signed_key"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeSignatures()
+        {
+            return this.shouldSerialize["signatures"];
         }
 
         /// <inheritdoc/>
