@@ -23,19 +23,27 @@ namespace PagarmeApiSDK.Standard.Models
     public class GetOrderItemResponse
     {
         private string id;
-        private int? amount;
+        private string type;
         private string description;
+        private int? amount;
         private int? quantity;
         private string category;
         private string code;
+        private string status;
+        private DateTime? createdAt;
+        private DateTime? updatedAt;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
-            { "amount", false },
+            { "type", false },
             { "description", false },
+            { "amount", false },
             { "quantity", false },
             { "category", false },
             { "code", false },
+            { "status", false },
+            { "created_at", false },
+            { "updated_at", false },
         };
 
         /// <summary>
@@ -49,32 +57,45 @@ namespace PagarmeApiSDK.Standard.Models
         /// Initializes a new instance of the <see cref="GetOrderItemResponse"/> class.
         /// </summary>
         /// <param name="id">id.</param>
-        /// <param name="amount">amount.</param>
+        /// <param name="type">type.</param>
         /// <param name="description">description.</param>
+        /// <param name="amount">amount.</param>
         /// <param name="quantity">quantity.</param>
         /// <param name="category">category.</param>
         /// <param name="code">code.</param>
+        /// <param name="status">status.</param>
+        /// <param name="createdAt">created_at.</param>
+        /// <param name="updatedAt">updated_at.</param>
         public GetOrderItemResponse(
             string id = null,
-            int? amount = null,
+            string type = null,
             string description = null,
+            int? amount = null,
             int? quantity = null,
             string category = null,
-            string code = null)
+            string code = null,
+            string status = null,
+            DateTime? createdAt = null,
+            DateTime? updatedAt = null)
         {
             if (id != null)
             {
                 this.Id = id;
             }
 
-            if (amount != null)
+            if (type != null)
             {
-                this.Amount = amount;
+                this.Type = type;
             }
 
             if (description != null)
             {
                 this.Description = description;
+            }
+
+            if (amount != null)
+            {
+                this.Amount = amount;
             }
 
             if (quantity != null)
@@ -90,6 +111,21 @@ namespace PagarmeApiSDK.Standard.Models
             if (code != null)
             {
                 this.Code = code;
+            }
+
+            if (status != null)
+            {
+                this.Status = status;
+            }
+
+            if (createdAt != null)
+            {
+                this.CreatedAt = createdAt;
+            }
+
+            if (updatedAt != null)
+            {
+                this.UpdatedAt = updatedAt;
             }
 
         }
@@ -113,20 +149,20 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Gets or sets Amount.
+        /// Gets or sets Type.
         /// </summary>
-        [JsonProperty("amount")]
-        public int? Amount
+        [JsonProperty("type")]
+        public string Type
         {
             get
             {
-                return this.amount;
+                return this.type;
             }
 
             set
             {
-                this.shouldSerialize["amount"] = true;
-                this.amount = value;
+                this.shouldSerialize["type"] = true;
+                this.type = value;
             }
         }
 
@@ -145,6 +181,24 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.shouldSerialize["description"] = true;
                 this.description = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets Amount.
+        /// </summary>
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
             }
         }
 
@@ -202,6 +256,62 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets Status.
+        /// </summary>
+        [JsonProperty("status")]
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.shouldSerialize["status"] = true;
+                this.status = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets CreatedAt.
+        /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt
+        {
+            get
+            {
+                return this.createdAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["created_at"] = true;
+                this.createdAt = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets UpdatedAt.
+        /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt
+        {
+            get
+            {
+                return this.updatedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["updated_at"] = true;
+                this.updatedAt = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -223,9 +333,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
-        public void UnsetAmount()
+        public void UnsetType()
         {
-            this.shouldSerialize["amount"] = false;
+            this.shouldSerialize["type"] = false;
         }
 
         /// <summary>
@@ -234,6 +344,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetDescription()
         {
             this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
         }
 
         /// <summary>
@@ -261,6 +379,30 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetStatus()
+        {
+            this.shouldSerialize["status"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetCreatedAt()
+        {
+            this.shouldSerialize["created_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetUpdatedAt()
+        {
+            this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -273,9 +415,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeAmount()
+        public bool ShouldSerializeType()
         {
-            return this.shouldSerialize["amount"];
+            return this.shouldSerialize["type"];
         }
 
         /// <summary>
@@ -285,6 +427,15 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeDescription()
         {
             return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
         }
 
         /// <summary>
@@ -314,6 +465,33 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["code"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeStatus()
+        {
+            return this.shouldSerialize["status"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeCreatedAt()
+        {
+            return this.shouldSerialize["created_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeUpdatedAt()
+        {
+            return this.shouldSerialize["updated_at"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -327,11 +505,15 @@ namespace PagarmeApiSDK.Standard.Models
                 return true;
             }
             return obj is GetOrderItemResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
+                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
                 ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Quantity == null && other.Quantity == null) || (this.Quantity?.Equals(other.Quantity) == true)) &&
                 ((this.Category == null && other.Category == null) || (this.Category?.Equals(other.Category) == true)) &&
-                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true));
+                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
+                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
+                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
+                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true));
         }
         
         /// <summary>
@@ -341,11 +523,15 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
+            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Quantity = {(this.Quantity == null ? "null" : this.Quantity.ToString())}");
             toStringOutput.Add($"this.Category = {(this.Category == null ? "null" : this.Category)}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
         }
     }
 }
