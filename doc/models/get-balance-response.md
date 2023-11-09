@@ -13,7 +13,7 @@ Balance
 |  --- | --- | --- | --- |
 | `Currency` | `string` | Optional | Currency |
 | `AvailableAmount` | `long?` | Optional | Amount available for transferring |
-| `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
+| `Recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `TransferredAmount` | `long?` | Optional | - |
 | `WaitingFundsAmount` | `long?` | Optional | - |
 
@@ -21,8 +21,8 @@ Balance
 
 ```json
 {
-  "currency": "currency0",
-  "available_amount": 182,
+  "currency": "currency2",
+  "available_amount": 96,
   "recipient": {
     "id": "id8",
     "name": "name8",
@@ -30,8 +30,8 @@ Balance
     "document": "document8",
     "description": "description2"
   },
-  "transferred_amount": 228,
-  "waiting_funds_amount": 252
+  "transferred_amount": 142,
+  "waiting_funds_amount": 174
 }
 ```
 

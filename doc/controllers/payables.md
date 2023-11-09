@@ -70,7 +70,7 @@ GetPayablesAsync(
 ```csharp
 try
 {
-    ListPayablesResponse result = await payablesController.GetPayablesAsync(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    ListPayablesResponse result = await payablesController.GetPayablesAsync();
 }
 catch (ApiException e)
 {

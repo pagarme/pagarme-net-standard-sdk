@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -95,9 +96,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.TransferEnabled = {(this.TransferEnabled == null ? "null" : this.TransferEnabled == string.Empty ? "" : this.TransferEnabled)}");
-            toStringOutput.Add($"this.TransferInterval = {(this.TransferInterval == null ? "null" : this.TransferInterval == string.Empty ? "" : this.TransferInterval)}");
-            toStringOutput.Add($"this.TransferDay = {(this.TransferDay == null ? "null" : this.TransferDay == string.Empty ? "" : this.TransferDay)}");
+            toStringOutput.Add($"this.TransferEnabled = {(this.TransferEnabled == null ? "null" : this.TransferEnabled)}");
+            toStringOutput.Add($"this.TransferInterval = {(this.TransferInterval == null ? "null" : this.TransferInterval)}");
+            toStringOutput.Add($"this.TransferDay = {(this.TransferDay == null ? "null" : this.TransferDay)}");
         }
     }
 }

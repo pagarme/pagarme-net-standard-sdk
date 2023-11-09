@@ -16,26 +16,25 @@ Checkout payment request
 | `SuccessUrl` | `string` | Required | Success url |
 | `DefaultPaymentMethod` | `string` | Optional | Default payment method |
 | `GatewayAffiliationId` | `string` | Optional | Gateway Affiliation Id |
-| `CreditCard` | [`Models.CreateCheckoutCreditCardPaymentRequest`](../../doc/models/create-checkout-credit-card-payment-request.md) | Optional | Credit Card payment request |
-| `DebitCard` | [`Models.CreateCheckoutDebitCardPaymentRequest`](../../doc/models/create-checkout-debit-card-payment-request.md) | Optional | Debit Card payment request |
-| `Boleto` | [`Models.CreateCheckoutBoletoPaymentRequest`](../../doc/models/create-checkout-boleto-payment-request.md) | Optional | Boleto payment request |
+| `CreditCard` | [`CreateCheckoutCreditCardPaymentRequest`](../../doc/models/create-checkout-credit-card-payment-request.md) | Optional | Credit Card payment request |
+| `DebitCard` | [`CreateCheckoutDebitCardPaymentRequest`](../../doc/models/create-checkout-debit-card-payment-request.md) | Optional | Debit Card payment request |
+| `Boleto` | [`CreateCheckoutBoletoPaymentRequest`](../../doc/models/create-checkout-boleto-payment-request.md) | Optional | Boleto payment request |
 | `CustomerEditable` | `bool?` | Optional | Customer is editable? |
 | `ExpiresIn` | `int?` | Optional | Time in minutes for expiration |
 | `SkipCheckoutSuccessPage` | `bool` | Required | Skip postpay success screen? |
 | `BillingAddressEditable` | `bool` | Required | Billing Address is editable? |
-| `BillingAddress` | [`Models.CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Billing Address |
-| `BankTransfer` | [`Models.CreateCheckoutBankTransferRequest`](../../doc/models/create-checkout-bank-transfer-request.md) | Optional | Bank Transfer payment request |
+| `BillingAddress` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Billing Address |
+| `BankTransfer` | [`CreateCheckoutBankTransferRequest`](../../doc/models/create-checkout-bank-transfer-request.md) | Optional | Bank Transfer payment request |
 | `AcceptedBrands` | `List<string>` | Required | Accepted Brands |
-| `Pix` | [`Models.CreateCheckoutPixPaymentRequest`](../../doc/models/create-checkout-pix-payment-request.md) | Optional | Pix payment request |
+| `Pix` | [`CreateCheckoutPixPaymentRequest`](../../doc/models/create-checkout-pix-payment-request.md) | Optional | Pix payment request |
 
 ## Example (as JSON)
 
 ```json
 {
   "accepted_payment_methods": [
-    "accepted_payment_methods3",
-    "accepted_payment_methods4",
-    "accepted_payment_methods5"
+    "accepted_payment_methods9",
+    "accepted_payment_methods0"
   ],
   "accepted_multi_payment_methods": [
     {
@@ -47,19 +46,19 @@ Checkout payment request
       "key2": "val2"
     }
   ],
-  "success_url": "success_url2",
-  "default_payment_method": "default_payment_method0",
-  "gateway_affiliation_id": "gateway_affiliation_id4",
+  "success_url": "success_url8",
+  "default_payment_method": "default_payment_method6",
+  "gateway_affiliation_id": "gateway_affiliation_id2",
   "credit_card": {
     "statement_descriptor": "statement_descriptor8",
     "installments": [
       {
-        "number": 19,
-        "total": 167
+        "number": 164,
+        "total": 16
       }
     ],
     "authentication": {
-      "type": "type0",
+      "type": "type2",
       "threed_secure": {
         "mpi": "mpi0",
         "cavv": "cavv8",
@@ -74,10 +73,10 @@ Checkout payment request
   "debit_card": {
     "statement_descriptor": "statement_descriptor4",
     "authentication": {
-      "type": "type6",
+      "type": "type2",
       "threed_secure": {
         "mpi": "mpi0",
-        "cavv": "cavv2",
+        "cavv": "cavv8",
         "eci": "eci2",
         "transaction_id": "transaction_id0",
         "success_url": "success_url4",
@@ -109,8 +108,8 @@ Checkout payment request
     "line_2": "line_26"
   },
   "accepted_brands": [
-    "accepted_brands8",
-    "accepted_brands9"
+    "accepted_brands2",
+    "accepted_brands3"
   ]
 }
 ```

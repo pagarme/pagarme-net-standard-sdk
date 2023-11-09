@@ -11,22 +11,22 @@
 |  --- | --- | --- | --- |
 | `IccData` | `string` | Required | - |
 | `CardSequenceNumber` | `string` | Required | - |
-| `Data` | [`Models.CreateEmvDataDecryptRequest`](../../doc/models/create-emv-data-decrypt-request.md) | Required | - |
-| `Poi` | [`Models.CreateCardPaymentContactlessPOIRequest`](../../doc/models/create-card-payment-contactless-poi-request.md) | Optional | - |
+| `Data` | [`CreateEmvDataDecryptRequest`](../../doc/models/create-emv-data-decrypt-request.md) | Required | - |
+| `Poi` | [`CreateCardPaymentContactlessPOIRequest`](../../doc/models/create-card-payment-contactless-poi-request.md) | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "icc_data": "icc_data6",
-  "card_sequence_number": "card_sequence_number0",
+  "icc_data": "icc_data4",
+  "card_sequence_number": "card_sequence_number2",
   "data": {
     "cipher": "cipher4",
     "tags": [
       {
-        "tag": "tag9",
-        "lenght": "lenght7",
-        "value": "value7"
+        "tag": "tag4",
+        "lenght": "lenght2",
+        "value": "value2"
       }
     ],
     "dukpt": {

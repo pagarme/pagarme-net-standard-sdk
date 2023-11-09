@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -46,6 +47,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="autoRecovery">auto_recovery.</param>
         /// <param name="operationType">operation_type.</param>
         /// <param name="recurrencyCycle">recurrency_cycle.</param>
+        /// <param name="payload">payload.</param>
         public CreateCreditCardPaymentRequest(
             int? installments = 1,
             string statementDescriptor = null,
@@ -61,7 +63,8 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreateCardPaymentContactlessRequest contactless = null,
             bool? autoRecovery = null,
             string operationType = null,
-            string recurrencyCycle = null)
+            string recurrencyCycle = null,
+            Models.CreateCardPayloadRequest payload = null)
         {
             this.Installments = installments;
             this.StatementDescriptor = statementDescriptor;
@@ -78,6 +81,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.AutoRecovery = autoRecovery;
             this.OperationType = operationType;
             this.RecurrencyCycle = recurrencyCycle;
+            this.Payload = payload;
         }
 
         /// <summary>
@@ -170,6 +174,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("recurrency_cycle", NullValueHandling = NullValueHandling.Ignore)]
         public string RecurrencyCycle { get; set; }
 
+        /// <summary>
+        /// Gets or sets Payload.
+        /// </summary>
+        [JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreateCardPayloadRequest Payload { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -206,7 +216,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Contactless == null && other.Contactless == null) || (this.Contactless?.Equals(other.Contactless) == true)) &&
                 ((this.AutoRecovery == null && other.AutoRecovery == null) || (this.AutoRecovery?.Equals(other.AutoRecovery) == true)) &&
                 ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true)) &&
-                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true)) &&
+                ((this.Payload == null && other.Payload == null) || (this.Payload?.Equals(other.Payload) == true));
         }
         
         /// <summary>
@@ -216,20 +227,21 @@ namespace PagarmeApiSDK.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor == string.Empty ? "" : this.StatementDescriptor)}");
+            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId == string.Empty ? "" : this.CardId)}");
-            toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken == string.Empty ? "" : this.CardToken)}");
+            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
+            toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken)}");
             toStringOutput.Add($"this.Recurrence = {(this.Recurrence == null ? "null" : this.Recurrence.ToString())}");
             toStringOutput.Add($"this.Capture = {(this.Capture == null ? "null" : this.Capture.ToString())}");
             toStringOutput.Add($"this.ExtendedLimitEnabled = {(this.ExtendedLimitEnabled == null ? "null" : this.ExtendedLimitEnabled.ToString())}");
-            toStringOutput.Add($"this.ExtendedLimitCode = {(this.ExtendedLimitCode == null ? "null" : this.ExtendedLimitCode == string.Empty ? "" : this.ExtendedLimitCode)}");
+            toStringOutput.Add($"this.ExtendedLimitCode = {(this.ExtendedLimitCode == null ? "null" : this.ExtendedLimitCode)}");
             toStringOutput.Add($"this.MerchantCategoryCode = {(this.MerchantCategoryCode == null ? "null" : this.MerchantCategoryCode.ToString())}");
             toStringOutput.Add($"this.Authentication = {(this.Authentication == null ? "null" : this.Authentication.ToString())}");
             toStringOutput.Add($"this.Contactless = {(this.Contactless == null ? "null" : this.Contactless.ToString())}");
             toStringOutput.Add($"this.AutoRecovery = {(this.AutoRecovery == null ? "null" : this.AutoRecovery.ToString())}");
-            toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType == string.Empty ? "" : this.OperationType)}");
-            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle == string.Empty ? "" : this.RecurrencyCycle)}");
+            toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType)}");
+            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle)}");
+            toStringOutput.Add($"this.Payload = {(this.Payload == null ? "null" : this.Payload.ToString())}");
         }
     }
 }

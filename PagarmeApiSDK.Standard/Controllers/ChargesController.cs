@@ -67,8 +67,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -105,117 +103,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates the card from a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse UpdateChargeCard(
-                string chargeId,
-                Models.UpdateChargeCardRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateChargeCardAsync(chargeId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the card from a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> UpdateChargeCardAsync(
-                string chargeId,
-                Models.UpdateChargeCardRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargeResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/charges/{charge_id}/card")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("charge_id", chargeId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// GetChargesSummary EndPoint.
-        /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Optional parameter: Example: .</param>
-        /// <param name="createdUntil">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
-        public Models.GetChargesSummaryResponse GetChargesSummary(
-                string status,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null)
-            => CoreHelper.RunTask(GetChargesSummaryAsync(status, createdSince, createdUntil));
-
-        /// <summary>
-        /// GetChargesSummary EndPoint.
-        /// </summary>
-        /// <param name="status">Required parameter: Example: .</param>
-        /// <param name="createdSince">Optional parameter: Example: .</param>
-        /// <param name="createdUntil">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
-        public async Task<Models.GetChargesSummaryResponse> GetChargesSummaryAsync(
-                string status,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargesSummaryResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/charges/summary")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("status", status))
-                      .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
-                      .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargesSummaryResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a new charge.
-        /// </summary>
-        /// <param name="request">Required parameter: Request for creating a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse CreateCharge(
-                Models.CreateChargeRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateChargeAsync(request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new charge.
-        /// </summary>
-        /// <param name="request">Required parameter: Request for creating a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> CreateChargeAsync(
-                Models.CreateChargeRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargeResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/Charges")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -252,112 +139,42 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListChargeTransactionsResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
-        /// Captures a charge.
+        /// Updates the due date from a charge.
         /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
+        /// <param name="chargeId">Required parameter: Charge Id.</param>
+        /// <param name="request">Required parameter: Request for updating the due date.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse CaptureCharge(
+        public Models.GetChargeResponse UpdateChargeDueDate(
                 string chargeId,
-                Models.CreateCaptureChargeRequest request = null,
+                Models.UpdateChargeDueDateRequest request,
                 string idempotencyKey = null)
-            => CoreHelper.RunTask(CaptureChargeAsync(chargeId, request, idempotencyKey));
+            => CoreHelper.RunTask(UpdateChargeDueDateAsync(chargeId, request, idempotencyKey));
 
         /// <summary>
-        /// Captures a charge.
+        /// Updates the due date from a charge.
         /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
+        /// <param name="chargeId">Required parameter: Charge Id.</param>
+        /// <param name="request">Required parameter: Request for updating the due date.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> CaptureChargeAsync(
+        public async Task<Models.GetChargeResponse> UpdateChargeDueDateAsync(
                 string chargeId,
-                Models.CreateCaptureChargeRequest request = null,
+                Models.UpdateChargeDueDateRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/charges/{charge_id}/capture")
+                  .Setup(new HttpMethod("PATCH"), "/Charges/{charge_id}/due-date")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Get a charge from its id.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse GetCharge(
-                string chargeId)
-            => CoreHelper.RunTask(GetChargeAsync(chargeId));
-
-        /// <summary>
-        /// Get a charge from its id.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> GetChargeAsync(
-                string chargeId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargeResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/charges/{charge_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("charge_id", chargeId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Cancel a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse CancelCharge(
-                string chargeId,
-                Models.CreateCancelChargeRequest request = null,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CancelChargeAsync(chargeId, request, idempotencyKey));
-
-        /// <summary>
-        /// Cancel a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> CancelChargeAsync(
-                string chargeId,
-                Models.CreateCancelChargeRequest request = null,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargeResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/charges/{charge_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("charge_id", chargeId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -424,8 +241,238 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("order_id", orderId))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListChargesResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Captures a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public Models.GetChargeResponse CaptureCharge(
+                string chargeId,
+                Models.CreateCaptureChargeRequest request = null,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CaptureChargeAsync(chargeId, request, idempotencyKey));
+
+        /// <summary>
+        /// Captures a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for capturing a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public async Task<Models.GetChargeResponse> CaptureChargeAsync(
+                string chargeId,
+                Models.CreateCaptureChargeRequest request = null,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargeResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/charges/{charge_id}/capture")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("charge_id", chargeId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Updates the card from a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public Models.GetChargeResponse UpdateChargeCard(
+                string chargeId,
+                Models.UpdateChargeCardRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateChargeCardAsync(chargeId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates the card from a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Required parameter: Request for updating a charge's card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public async Task<Models.GetChargeResponse> UpdateChargeCardAsync(
+                string chargeId,
+                Models.UpdateChargeCardRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargeResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/charges/{charge_id}/card")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("charge_id", chargeId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Get a charge from its id.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public Models.GetChargeResponse GetCharge(
+                string chargeId)
+            => CoreHelper.RunTask(GetChargeAsync(chargeId));
+
+        /// <summary>
+        /// Get a charge from its id.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public async Task<Models.GetChargeResponse> GetChargeAsync(
+                string chargeId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargeResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/charges/{charge_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("charge_id", chargeId))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// GetChargesSummary EndPoint.
+        /// </summary>
+        /// <param name="status">Required parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
+        public Models.GetChargesSummaryResponse GetChargesSummary(
+                string status,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null)
+            => CoreHelper.RunTask(GetChargesSummaryAsync(status, createdSince, createdUntil));
+
+        /// <summary>
+        /// GetChargesSummary EndPoint.
+        /// </summary>
+        /// <param name="status">Required parameter: Example: .</param>
+        /// <param name="createdSince">Optional parameter: Example: .</param>
+        /// <param name="createdUntil">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargesSummaryResponse response from the API call.</returns>
+        public async Task<Models.GetChargesSummaryResponse> GetChargesSummaryAsync(
+                string status,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargesSummaryResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/charges/summary")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Query(_query => _query.Setup("status", status))
+                      .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
+                      .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Retries a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public Models.GetChargeResponse RetryCharge(
+                string chargeId,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(RetryChargeAsync(chargeId, idempotencyKey));
+
+        /// <summary>
+        /// Retries a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public async Task<Models.GetChargeResponse> RetryChargeAsync(
+                string chargeId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargeResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/charges/{charge_id}/retry")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("charge_id", chargeId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Cancel a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public Models.GetChargeResponse CancelCharge(
+                string chargeId,
+                Models.CreateCancelChargeRequest request = null,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CancelChargeAsync(chargeId, request, idempotencyKey));
+
+        /// <summary>
+        /// Cancel a charge.
+        /// </summary>
+        /// <param name="chargeId">Required parameter: Charge id.</param>
+        /// <param name="request">Optional parameter: Request for cancelling a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public async Task<Models.GetChargeResponse> CancelChargeAsync(
+                string chargeId,
+                Models.CreateCancelChargeRequest request = null,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargeResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Delete, "/charges/{charge_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("charge_id", chargeId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Creates a new charge.
+        /// </summary>
+        /// <param name="request">Required parameter: Request for creating a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public Models.GetChargeResponse CreateCharge(
+                Models.CreateChargeRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateChargeAsync(request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new charge.
+        /// </summary>
+        /// <param name="request">Required parameter: Request for creating a charge.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
+        public async Task<Models.GetChargeResponse> CreateChargeAsync(
+                Models.CreateChargeRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetChargeResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/Charges")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -462,79 +509,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates the due date from a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge Id.</param>
-        /// <param name="request">Required parameter: Request for updating the due date.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse UpdateChargeDueDate(
-                string chargeId,
-                Models.UpdateChargeDueDateRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateChargeDueDateAsync(chargeId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the due date from a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge Id.</param>
-        /// <param name="request">Required parameter: Request for updating the due date.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> UpdateChargeDueDateAsync(
-                string chargeId,
-                Models.UpdateChargeDueDateRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargeResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/Charges/{charge_id}/due-date")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("charge_id", chargeId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Retries a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public Models.GetChargeResponse RetryCharge(
-                string chargeId,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(RetryChargeAsync(chargeId, idempotencyKey));
-
-        /// <summary>
-        /// Retries a charge.
-        /// </summary>
-        /// <param name="chargeId">Required parameter: Charge id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetChargeResponse response from the API call.</returns>
-        public async Task<Models.GetChargeResponse> RetryChargeAsync(
-                string chargeId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetChargeResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/charges/{charge_id}/retry")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("charge_id", chargeId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetChargeResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

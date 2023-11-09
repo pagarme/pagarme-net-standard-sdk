@@ -11,8 +11,8 @@ Information about fines and interest on the "boleto" used from payment
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Interest` | [`Models.CreateInterestRequest`](../../doc/models/create-interest-request.md) | Optional | - |
-| `Fine` | [`Models.CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
+| `Interest` | [`CreateInterestRequest`](../../doc/models/create-interest-request.md) | Optional | - |
+| `Fine` | [`CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
 | `MaxDaysToPayPastDue` | `int?` | Optional | - |
 
 ## Example (as JSON)
@@ -29,7 +29,7 @@ Information about fines and interest on the "boleto" used from payment
     "type": "type2",
     "amount": 212
   },
-  "max_days_to_pay_past_due": 122
+  "max_days_to_pay_past_due": 22
 }
 ```
 

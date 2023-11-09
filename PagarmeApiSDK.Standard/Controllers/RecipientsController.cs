@@ -67,8 +67,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -105,8 +103,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAnticipationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -143,8 +139,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Query(_query => _query.Setup("timeframe", timeframe))
                       .Query(_query => _query.Setup("payment_date", paymentDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAnticipationLimitResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -176,8 +170,73 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListRecipientResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// GetWithdrawById EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public Models.GetWithdrawResponse GetWithdrawById(
+                string recipientId,
+                string withdrawalId)
+            => CoreHelper.RunTask(GetWithdrawByIdAsync(recipientId, withdrawalId));
+
+        /// <summary>
+        /// GetWithdrawById EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public async Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
+                string recipientId,
+                string withdrawalId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetWithdrawResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/withdrawals/{withdrawal_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Template(_template => _template.Setup("withdrawal_id", withdrawalId))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Updates the default bank account from a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Bank account data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse UpdateRecipientDefaultBankAccount(
+                string recipientId,
+                Models.UpdateRecipientBankAccountRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateRecipientDefaultBankAccountAsync(recipientId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates the default bank account from a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Bank account data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> UpdateRecipientDefaultBankAccountAsync(
+                string recipientId,
+                Models.UpdateRecipientBankAccountRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/default-bank-account")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -214,8 +273,57 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Gets a paginated list of transfers for the recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="status">Optional parameter: Filter for transfer status.</param>
+        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
+        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
+        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
+        public Models.ListTransferResponse GetTransfers(
+                string recipientId,
+                int? page = null,
+                int? size = null,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null)
+            => CoreHelper.RunTask(GetTransfersAsync(recipientId, page, size, status, createdSince, createdUntil));
+
+        /// <summary>
+        /// Gets a paginated list of transfers for the recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="status">Optional parameter: Filter for transfer status.</param>
+        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
+        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
+        public async Task<Models.ListTransferResponse> GetTransfersAsync(
+                string recipientId,
+                int? page = null,
+                int? size = null,
+                string status = null,
+                DateTime? createdSince = null,
+                DateTime? createdUntil = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListTransferResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/transfers")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Query(_query => _query.Setup("page", page))
+                      .Query(_query => _query.Setup("size", size))
+                      .Query(_query => _query.Setup("status", status))
+                      .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
+                      .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -247,8 +355,73 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("transfer_id", transferId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransferResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// CreateWithdraw EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public Models.GetWithdrawResponse CreateWithdraw(
+                string recipientId,
+                Models.CreateWithdrawRequest request)
+            => CoreHelper.RunTask(CreateWithdrawAsync(recipientId, request));
+
+        /// <summary>
+        /// CreateWithdraw EndPoint.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="request">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public async Task<Models.GetWithdrawResponse> CreateWithdrawAsync(
+                string recipientId,
+                Models.CreateWithdrawRequest request,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetWithdrawResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/withdrawals")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateAutomaticAnticipationSettingsAsync(recipientId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/automatic-anticipation-settings")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -280,8 +453,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("anticipation_id", anticipationId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetAnticipationResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -318,8 +489,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -386,216 +555,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("payment_date_until", paymentDateUntil.HasValue ? paymentDateUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListAnticipationResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates the default bank account from a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Bank account data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse UpdateRecipientDefaultBankAccount(
-                string recipientId,
-                Models.UpdateRecipientBankAccountRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateRecipientDefaultBankAccountAsync(recipientId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the default bank account from a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Bank account data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> UpdateRecipientDefaultBankAccountAsync(
-                string recipientId,
-                Models.UpdateRecipientBankAccountRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/default-bank-account")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// CreateWithdraw EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public Models.GetWithdrawResponse CreateWithdraw(
-                string recipientId,
-                Models.CreateWithdrawRequest request)
-            => CoreHelper.RunTask(CreateWithdrawAsync(recipientId, request));
-
-        /// <summary>
-        /// CreateWithdraw EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="request">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public async Task<Models.GetWithdrawResponse> CreateWithdrawAsync(
-                string recipientId,
-                Models.CreateWithdrawRequest request,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetWithdrawResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/withdrawals")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Get balance information for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
-        public Models.GetBalanceResponse GetBalance(
-                string recipientId)
-            => CoreHelper.RunTask(GetBalanceAsync(recipientId));
-
-        /// <summary>
-        /// Get balance information for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
-        public async Task<Models.GetBalanceResponse> GetBalanceAsync(
-                string recipientId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetBalanceResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/balance")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetBalanceResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a transfer for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient Id.</param>
-        /// <param name="request">Required parameter: Transfer data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
-        public Models.GetTransferResponse CreateTransfer(
-                string recipientId,
-                Models.CreateTransferRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateTransferAsync(recipientId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a transfer for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient Id.</param>
-        /// <param name="request">Required parameter: Transfer data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
-        public async Task<Models.GetTransferResponse> CreateTransferAsync(
-                string recipientId,
-                Models.CreateTransferRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetTransferResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/transfers")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetTransferResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a new recipient.
-        /// </summary>
-        /// <param name="request">Required parameter: Recipient data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse CreateRecipient(
-                Models.CreateRecipientRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateRecipientAsync(request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new recipient.
-        /// </summary>
-        /// <param name="request">Required parameter: Recipient data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> CreateRecipientAsync(
-                Models.CreateRecipientRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/recipients")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateAutomaticAnticipationSettingsAsync(recipientId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/automatic-anticipation-settings")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -622,8 +581,32 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
+              .ExecuteAsync(cancellationToken);
+
+        /// <summary>
+        /// Get balance information for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
+        public Models.GetBalanceResponse GetBalance(
+                string recipientId)
+            => CoreHelper.RunTask(GetBalanceAsync(recipientId));
+
+        /// <summary>
+        /// Get balance information for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
+        public async Task<Models.GetBalanceResponse> GetBalanceAsync(
+                string recipientId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetBalanceResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/balance")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("recipient_id", recipientId))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -675,94 +658,73 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListWithdrawals>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
-        /// GetWithdrawById EndPoint.
+        /// Creates a transfer for a recipient.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public Models.GetWithdrawResponse GetWithdrawById(
+        /// <param name="recipientId">Required parameter: Recipient Id.</param>
+        /// <param name="request">Required parameter: Transfer data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
+        public Models.GetTransferResponse CreateTransfer(
                 string recipientId,
-                string withdrawalId)
-            => CoreHelper.RunTask(GetWithdrawByIdAsync(recipientId, withdrawalId));
+                Models.CreateTransferRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateTransferAsync(recipientId, request, idempotencyKey));
 
         /// <summary>
-        /// GetWithdrawById EndPoint.
+        /// Creates a transfer for a recipient.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <param name="recipientId">Required parameter: Recipient Id.</param>
+        /// <param name="request">Required parameter: Transfer data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public async Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
+        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
+        public async Task<Models.GetTransferResponse> CreateTransferAsync(
                 string recipientId,
-                string withdrawalId,
+                Models.CreateTransferRequest request,
+                string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetWithdrawResponse>()
+            => await CreateApiCall<Models.GetTransferResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/withdrawals/{withdrawal_id}")
+                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/transfers")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Template(_template => _template.Setup("withdrawal_id", withdrawalId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetWithdrawResponse>(_response)))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
-        /// Gets a paginated list of transfers for the recipient.
+        /// Creates a new recipient.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="status">Optional parameter: Filter for transfer status.</param>
-        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
-        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
-        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
-        public Models.ListTransferResponse GetTransfers(
-                string recipientId,
-                int? page = null,
-                int? size = null,
-                string status = null,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null)
-            => CoreHelper.RunTask(GetTransfersAsync(recipientId, page, size, status, createdSince, createdUntil));
+        /// <param name="request">Required parameter: Recipient data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse CreateRecipient(
+                Models.CreateRecipientRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateRecipientAsync(request, idempotencyKey));
 
         /// <summary>
-        /// Gets a paginated list of transfers for the recipient.
+        /// Creates a new recipient.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="status">Optional parameter: Filter for transfer status.</param>
-        /// <param name="createdSince">Optional parameter: Filter for start range of transfer creation date.</param>
-        /// <param name="createdUntil">Optional parameter: Filter for end range of transfer creation date.</param>
+        /// <param name="request">Required parameter: Recipient data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransferResponse response from the API call.</returns>
-        public async Task<Models.ListTransferResponse> GetTransfersAsync(
-                string recipientId,
-                int? page = null,
-                int? size = null,
-                string status = null,
-                DateTime? createdSince = null,
-                DateTime? createdUntil = null,
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> CreateRecipientAsync(
+                Models.CreateRecipientRequest request,
+                string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListTransferResponse>()
+            => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/transfers")
+                  .Setup(HttpMethod.Post, "/recipients")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Query(_query => _query.Setup("page", page))
-                      .Query(_query => _query.Setup("size", size))
-                      .Query(_query => _query.Setup("status", status))
-                      .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
-                      .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.ListTransferResponse>(_response)))
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -789,8 +751,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("code", code))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
 
         /// <summary>
@@ -810,8 +770,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/default")
                   .WithAuth("global"))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .Deserializer(_response => ApiHelper.JsonDeserialize<Models.GetRecipientResponse>(_response)))
               .ExecuteAsync(cancellationToken);
     }
 }

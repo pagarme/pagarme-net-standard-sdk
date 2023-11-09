@@ -30,7 +30,7 @@ CreateTokenAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `publicKey` | `string` | Template, Required | Public key |
-| `request` | [`Models.CreateTokenRequest`](../../doc/models/create-token-request.md) | Body, Required | Request for creating a token |
+| `request` | [`CreateTokenRequest`](../../doc/models/create-token-request.md) | Body, Required | Request for creating a token |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -46,19 +46,22 @@ CreateTokenRequest request = new CreateTokenRequest
     Type = "card",
     Card = new CreateCardTokenRequest
     {
-        Number = "number2",
-        HolderName = "holder_name6",
-        ExpMonth = 80,
-        ExpYear = 216,
-        Cvv = "cvv8",
-        Brand = "brand4",
-        Label = "label0",
+        Number = "number6",
+        HolderName = "holder_name2",
+        ExpMonth = 228,
+        ExpYear = 68,
+        Cvv = "cvv4",
+        Brand = "brand0",
+        Label = "label6",
     },
 };
 
 try
 {
-    GetTokenResponse result = await tokensController.CreateTokenAsync(publicKey, request, null);
+    GetTokenResponse result = await tokensController.CreateTokenAsync(
+        publicKey,
+        request
+    );
 }
 catch (ApiException e)
 {
@@ -98,7 +101,10 @@ string id = "id0";
 string publicKey = "public_key6";
 try
 {
-    GetTokenResponse result = await tokensController.GetTokenAsync(id, publicKey);
+    GetTokenResponse result = await tokensController.GetTokenAsync(
+        id,
+        publicKey
+    );
 }
 catch (ApiException e)
 {

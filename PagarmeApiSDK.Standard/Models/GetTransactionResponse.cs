@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -20,15 +21,15 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetTransactionResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
-    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
-    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
-    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
+    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
     [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
-    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
+    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse
     {
         private string gatewayId;
@@ -903,9 +904,9 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId == string.Empty ? "" : this.GatewayId)}");
+            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId)}");
             toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"this.Success = {(this.Success == null ? "null" : this.Success.ToString())}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
@@ -913,8 +914,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.MaxAttempts = {(this.MaxAttempts == null ? "null" : this.MaxAttempts.ToString())}");
             toStringOutput.Add($"this.Splits = {(this.Splits == null ? "null" : $"[{string.Join(", ", this.Splits)} ]")}");
             toStringOutput.Add($"this.NextAttempt = {(this.NextAttempt == null ? "null" : this.NextAttempt.ToString())}");
-            toStringOutput.Add($"this.TransactionType = {(this.TransactionType == null ? "null" : this.TransactionType == string.Empty ? "" : this.TransactionType)}");
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
+            toStringOutput.Add($"this.TransactionType = {(this.TransactionType == null ? "null" : this.TransactionType)}");
+            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
             toStringOutput.Add($"this.GatewayResponse = {(this.GatewayResponse == null ? "null" : this.GatewayResponse.ToString())}");
             toStringOutput.Add($"this.AntifraudResponse = {(this.AntifraudResponse == null ? "null" : this.AntifraudResponse.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");

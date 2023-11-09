@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -294,11 +295,11 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
-            toStringOutput.Add($"this.ReturnCode = {(this.ReturnCode == null ? "null" : this.ReturnCode == string.Empty ? "" : this.ReturnCode)}");
-            toStringOutput.Add($"this.ReturnMessage = {(this.ReturnMessage == null ? "null" : this.ReturnMessage == string.Empty ? "" : this.ReturnMessage)}");
-            toStringOutput.Add($"this.ProviderName = {(this.ProviderName == null ? "null" : this.ProviderName == string.Empty ? "" : this.ProviderName)}");
-            toStringOutput.Add($"this.Score = {(this.Score == null ? "null" : this.Score == string.Empty ? "" : this.Score)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"this.ReturnCode = {(this.ReturnCode == null ? "null" : this.ReturnCode)}");
+            toStringOutput.Add($"this.ReturnMessage = {(this.ReturnMessage == null ? "null" : this.ReturnMessage)}");
+            toStringOutput.Add($"this.ProviderName = {(this.ProviderName == null ? "null" : this.ProviderName)}");
+            toStringOutput.Add($"this.Score = {(this.Score == null ? "null" : this.Score)}");
         }
     }
 }

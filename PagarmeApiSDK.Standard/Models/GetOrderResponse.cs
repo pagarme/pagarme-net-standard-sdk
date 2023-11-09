@@ -10,6 +10,7 @@ namespace PagarmeApiSDK.Standard.Models
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using APIMatic.Core.Utilities.Converters;
     using JsonSubTypes;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -23,12 +24,15 @@ namespace PagarmeApiSDK.Standard.Models
     {
         private string id;
         private string code;
+        private int? amount;
         private string currency;
+        private bool? closed;
         private List<Models.GetOrderItemResponse> items;
         private Models.GetCustomerResponse customer;
         private string status;
         private DateTime? createdAt;
         private DateTime? updatedAt;
+        private DateTime? closedAt;
         private List<Models.GetChargeResponse> charges;
         private string invoiceUrl;
         private Models.GetShippingResponse shipping;
@@ -38,17 +42,19 @@ namespace PagarmeApiSDK.Standard.Models
         private string sessionId;
         private Models.GetLocationResponse location;
         private Models.GetDeviceResponse device;
-        private bool? closed;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
             { "code", false },
+            { "amount", false },
             { "currency", false },
+            { "closed", false },
             { "items", false },
             { "customer", false },
             { "status", false },
             { "created_at", false },
             { "updated_at", false },
+            { "closed_at", false },
             { "charges", false },
             { "invoice_url", false },
             { "shipping", false },
@@ -58,7 +64,6 @@ namespace PagarmeApiSDK.Standard.Models
             { "session_id", false },
             { "location", false },
             { "device", false },
-            { "closed", false },
         };
 
         /// <summary>
@@ -73,12 +78,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="code">code.</param>
+        /// <param name="amount">amount.</param>
         /// <param name="currency">currency.</param>
+        /// <param name="closed">closed.</param>
         /// <param name="items">items.</param>
         /// <param name="customer">customer.</param>
         /// <param name="status">status.</param>
         /// <param name="createdAt">created_at.</param>
         /// <param name="updatedAt">updated_at.</param>
+        /// <param name="closedAt">closed_at.</param>
         /// <param name="charges">charges.</param>
         /// <param name="invoiceUrl">invoice_url.</param>
         /// <param name="shipping">shipping.</param>
@@ -88,16 +96,18 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="sessionId">session_id.</param>
         /// <param name="location">location.</param>
         /// <param name="device">device.</param>
-        /// <param name="closed">closed.</param>
         public GetOrderResponse(
             string id = null,
             string code = null,
+            int? amount = null,
             string currency = null,
+            bool? closed = null,
             List<Models.GetOrderItemResponse> items = null,
             Models.GetCustomerResponse customer = null,
             string status = null,
             DateTime? createdAt = null,
             DateTime? updatedAt = null,
+            DateTime? closedAt = null,
             List<Models.GetChargeResponse> charges = null,
             string invoiceUrl = null,
             Models.GetShippingResponse shipping = null,
@@ -106,8 +116,7 @@ namespace PagarmeApiSDK.Standard.Models
             string ip = null,
             string sessionId = null,
             Models.GetLocationResponse location = null,
-            Models.GetDeviceResponse device = null,
-            bool? closed = null)
+            Models.GetDeviceResponse device = null)
         {
             if (id != null)
             {
@@ -119,9 +128,19 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Code = code;
             }
 
+            if (amount != null)
+            {
+                this.Amount = amount;
+            }
+
             if (currency != null)
             {
                 this.Currency = currency;
+            }
+
+            if (closed != null)
+            {
+                this.Closed = closed;
             }
 
             if (items != null)
@@ -147,6 +166,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (updatedAt != null)
             {
                 this.UpdatedAt = updatedAt;
+            }
+
+            if (closedAt != null)
+            {
+                this.ClosedAt = closedAt;
             }
 
             if (charges != null)
@@ -194,11 +218,6 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Device = device;
             }
 
-            if (closed != null)
-            {
-                this.Closed = closed;
-            }
-
         }
 
         /// <summary>
@@ -238,6 +257,24 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
+        /// Gets or sets Amount.
+        /// </summary>
+        [JsonProperty("amount")]
+        public int? Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+
+            set
+            {
+                this.shouldSerialize["amount"] = true;
+                this.amount = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets Currency.
         /// </summary>
         [JsonProperty("currency")]
@@ -252,6 +289,24 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.shouldSerialize["currency"] = true;
                 this.currency = value;
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the order is closed
+        /// </summary>
+        [JsonProperty("closed")]
+        public bool? Closed
+        {
+            get
+            {
+                return this.closed;
+            }
+
+            set
+            {
+                this.shouldSerialize["closed"] = true;
+                this.closed = value;
             }
         }
 
@@ -344,6 +399,25 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.shouldSerialize["updated_at"] = true;
                 this.updatedAt = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets ClosedAt.
+        /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty("closed_at")]
+        public DateTime? ClosedAt
+        {
+            get
+            {
+                return this.closedAt;
+            }
+
+            set
+            {
+                this.shouldSerialize["closed_at"] = true;
+                this.closedAt = value;
             }
         }
 
@@ -509,24 +583,6 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
-        /// <summary>
-        /// Indicates whether the order is closed
-        /// </summary>
-        [JsonProperty("closed")]
-        public bool? Closed
-        {
-            get
-            {
-                return this.closed;
-            }
-
-            set
-            {
-                this.shouldSerialize["closed"] = true;
-                this.closed = value;
-            }
-        }
-
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -556,9 +612,25 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
+        public void UnsetAmount()
+        {
+            this.shouldSerialize["amount"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
         public void UnsetCurrency()
         {
             this.shouldSerialize["currency"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetClosed()
+        {
+            this.shouldSerialize["closed"] = false;
         }
 
         /// <summary>
@@ -599,6 +671,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetUpdatedAt()
         {
             this.shouldSerialize["updated_at"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetClosedAt()
+        {
+            this.shouldSerialize["closed_at"] = false;
         }
 
         /// <summary>
@@ -674,14 +754,6 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
-        public void UnsetClosed()
-        {
-            this.shouldSerialize["closed"] = false;
-        }
-
-        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -703,9 +775,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeAmount()
+        {
+            return this.shouldSerialize["amount"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeCurrency()
         {
             return this.shouldSerialize["currency"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeClosed()
+        {
+            return this.shouldSerialize["closed"];
         }
 
         /// <summary>
@@ -751,6 +841,15 @@ namespace PagarmeApiSDK.Standard.Models
         public bool ShouldSerializeUpdatedAt()
         {
             return this.shouldSerialize["updated_at"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeClosedAt()
+        {
+            return this.shouldSerialize["closed_at"];
         }
 
         /// <summary>
@@ -834,15 +933,6 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["device"];
         }
 
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeClosed()
-        {
-            return this.shouldSerialize["closed"];
-        }
-
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -857,12 +947,15 @@ namespace PagarmeApiSDK.Standard.Models
             }
             return obj is GetOrderResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
+                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
                 ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
+                ((this.Closed == null && other.Closed == null) || (this.Closed?.Equals(other.Closed) == true)) &&
                 ((this.Items == null && other.Items == null) || (this.Items?.Equals(other.Items) == true)) &&
                 ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
                 ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
+                ((this.ClosedAt == null && other.ClosedAt == null) || (this.ClosedAt?.Equals(other.ClosedAt) == true)) &&
                 ((this.Charges == null && other.Charges == null) || (this.Charges?.Equals(other.Charges) == true)) &&
                 ((this.InvoiceUrl == null && other.InvoiceUrl == null) || (this.InvoiceUrl?.Equals(other.InvoiceUrl) == true)) &&
                 ((this.Shipping == null && other.Shipping == null) || (this.Shipping?.Equals(other.Shipping) == true)) &&
@@ -871,8 +964,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Ip == null && other.Ip == null) || (this.Ip?.Equals(other.Ip) == true)) &&
                 ((this.SessionId == null && other.SessionId == null) || (this.SessionId?.Equals(other.SessionId) == true)) &&
                 ((this.Location == null && other.Location == null) || (this.Location?.Equals(other.Location) == true)) &&
-                ((this.Device == null && other.Device == null) || (this.Device?.Equals(other.Device) == true)) &&
-                ((this.Closed == null && other.Closed == null) || (this.Closed?.Equals(other.Closed) == true));
+                ((this.Device == null && other.Device == null) || (this.Device?.Equals(other.Device) == true));
         }
         
         /// <summary>
@@ -881,24 +973,26 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id == string.Empty ? "" : this.Id)}");
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code == string.Empty ? "" : this.Code)}");
-            toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency == string.Empty ? "" : this.Currency)}");
+            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
+            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
+            toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency)}");
+            toStringOutput.Add($"this.Closed = {(this.Closed == null ? "null" : this.Closed.ToString())}");
             toStringOutput.Add($"this.Items = {(this.Items == null ? "null" : $"[{string.Join(", ", this.Items)} ]")}");
             toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status == string.Empty ? "" : this.Status)}");
+            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
             toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"this.ClosedAt = {(this.ClosedAt == null ? "null" : this.ClosedAt.ToString())}");
             toStringOutput.Add($"this.Charges = {(this.Charges == null ? "null" : $"[{string.Join(", ", this.Charges)} ]")}");
-            toStringOutput.Add($"this.InvoiceUrl = {(this.InvoiceUrl == null ? "null" : this.InvoiceUrl == string.Empty ? "" : this.InvoiceUrl)}");
+            toStringOutput.Add($"this.InvoiceUrl = {(this.InvoiceUrl == null ? "null" : this.InvoiceUrl)}");
             toStringOutput.Add($"this.Shipping = {(this.Shipping == null ? "null" : this.Shipping.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
             toStringOutput.Add($"this.Checkouts = {(this.Checkouts == null ? "null" : $"[{string.Join(", ", this.Checkouts)} ]")}");
-            toStringOutput.Add($"this.Ip = {(this.Ip == null ? "null" : this.Ip == string.Empty ? "" : this.Ip)}");
-            toStringOutput.Add($"this.SessionId = {(this.SessionId == null ? "null" : this.SessionId == string.Empty ? "" : this.SessionId)}");
+            toStringOutput.Add($"this.Ip = {(this.Ip == null ? "null" : this.Ip)}");
+            toStringOutput.Add($"this.SessionId = {(this.SessionId == null ? "null" : this.SessionId)}");
             toStringOutput.Add($"this.Location = {(this.Location == null ? "null" : this.Location.ToString())}");
             toStringOutput.Add($"this.Device = {(this.Device == null ? "null" : this.Device.ToString())}");
-            toStringOutput.Add($"this.Closed = {(this.Closed == null ? "null" : this.Closed.ToString())}");
         }
     }
 }

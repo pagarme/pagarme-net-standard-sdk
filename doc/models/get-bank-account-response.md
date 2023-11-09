@@ -22,7 +22,7 @@
 | `CreatedAt` | `DateTime?` | Optional | Creation date |
 | `UpdatedAt` | `DateTime?` | Optional | Last update date |
 | `DeletedAt` | `DateTime?` | Optional | Deletion date |
-| `Recipient` | [`Models.GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
+| `Recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `Metadata` | `Dictionary<string, string>` | Optional | Metadata |
 | `PixKey` | `string` | Optional | Pix Key |
 
@@ -30,11 +30,11 @@
 
 ```json
 {
-  "id": "id0",
-  "holder_name": "holder_name4",
-  "holder_type": "holder_type2",
-  "bank": "bank8",
-  "branch_number": "branch_number6"
+  "id": "id6",
+  "holder_name": "holder_name2",
+  "holder_type": "holder_type8",
+  "bank": "bank4",
+  "branch_number": "branch_number2"
 }
 ```
 

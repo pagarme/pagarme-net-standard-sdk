@@ -20,7 +20,8 @@ IBalanceOperationsController balanceOperationsController = client.BalanceOperati
 GetBalanceOperationsAsync(
     string status = null,
     DateTime? createdSince = null,
-    DateTime? createdUntil = null)
+    DateTime? createdUntil = null,
+    string recipientId = null)
 ```
 
 ## Parameters
@@ -30,6 +31,7 @@ GetBalanceOperationsAsync(
 | `status` | `string` | Query, Optional | - |
 | `createdSince` | `DateTime?` | Query, Optional | - |
 | `createdUntil` | `DateTime?` | Query, Optional | - |
+| `recipientId` | `string` | Query, Optional | - |
 
 ## Response Type
 
@@ -40,7 +42,7 @@ GetBalanceOperationsAsync(
 ```csharp
 try
 {
-    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync(null, null, null);
+    ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync();
 }
 catch (ApiException e)
 {
