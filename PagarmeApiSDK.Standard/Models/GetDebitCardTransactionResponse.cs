@@ -37,6 +37,7 @@ namespace PagarmeApiSDK.Standard.Models
         private string authenticationType;
         private string threedAuthenticationUrl;
         private string fundingSource;
+        private Models.GetRetryTransactionInformationResponse retryInfo;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "statement_descriptor", false },
@@ -54,6 +55,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "authentication_type", false },
             { "threed_authentication_url", false },
             { "funding_source", false },
+            { "retry_info", false },
         };
 
         /// <summary>
@@ -101,6 +103,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="authenticationType">authentication_type.</param>
         /// <param name="threedAuthenticationUrl">threed_authentication_url.</param>
         /// <param name="fundingSource">funding_source.</param>
+        /// <param name="retryInfo">retry_info.</param>
         public GetDebitCardTransactionResponse(
             string transactionType = "debit_card",
             string gatewayId = null,
@@ -135,7 +138,8 @@ namespace PagarmeApiSDK.Standard.Models
             string eci = null,
             string authenticationType = null,
             string threedAuthenticationUrl = null,
-            string fundingSource = null)
+            string fundingSource = null,
+            Models.GetRetryTransactionInformationResponse retryInfo = null)
             : base(
                 transactionType,
                 gatewayId,
@@ -230,6 +234,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (fundingSource != null)
             {
                 this.FundingSource = fundingSource;
+            }
+
+            if (retryInfo != null)
+            {
+                this.RetryInfo = retryInfo;
             }
 
         }
@@ -504,6 +513,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Retry transaction information
+        /// </summary>
+        [JsonProperty("retry_info")]
+        public Models.GetRetryTransactionInformationResponse RetryInfo
+        {
+            get
+            {
+                return this.retryInfo;
+            }
+
+            set
+            {
+                this.shouldSerialize["retry_info"] = true;
+                this.retryInfo = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -632,6 +659,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetFundingSource()
         {
             this.shouldSerialize["funding_source"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRetryInfo()
+        {
+            this.shouldSerialize["retry_info"] = false;
         }
 
         /// <summary>
@@ -769,6 +804,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["funding_source"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRetryInfo()
+        {
+            return this.shouldSerialize["retry_info"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -796,6 +840,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AuthenticationType == null && other.AuthenticationType == null) || (this.AuthenticationType?.Equals(other.AuthenticationType) == true)) &&
                 ((this.ThreedAuthenticationUrl == null && other.ThreedAuthenticationUrl == null) || (this.ThreedAuthenticationUrl?.Equals(other.ThreedAuthenticationUrl) == true)) &&
                 ((this.FundingSource == null && other.FundingSource == null) || (this.FundingSource?.Equals(other.FundingSource) == true)) &&
+                ((this.RetryInfo == null && other.RetryInfo == null) || (this.RetryInfo?.Equals(other.RetryInfo) == true)) &&
                 base.Equals(obj);
         }
         
@@ -820,6 +865,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.AuthenticationType = {(this.AuthenticationType == null ? "null" : this.AuthenticationType)}");
             toStringOutput.Add($"this.ThreedAuthenticationUrl = {(this.ThreedAuthenticationUrl == null ? "null" : this.ThreedAuthenticationUrl)}");
             toStringOutput.Add($"this.FundingSource = {(this.FundingSource == null ? "null" : this.FundingSource)}");
+            toStringOutput.Add($"this.RetryInfo = {(this.RetryInfo == null ? "null" : this.RetryInfo.ToString())}");
 
             base.ToString(toStringOutput);
         }
