@@ -35,7 +35,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="number">number.</param>
         /// <param name="total">total.</param>
         public GetCheckoutCardInstallmentOptionsResponse(
-            string number = null,
+            long? number = null,
             int? total = null)
         {
             this.Number = number;
@@ -46,7 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Número de parcelas
         /// </summary>
         [JsonProperty("number", NullValueHandling = NullValueHandling.Include)]
-        public string Number { get; set; }
+        public long? Number { get; set; }
 
         /// <summary>
         /// Valor total da compra
@@ -86,7 +86,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number)}");
+            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number.ToString())}");
             toStringOutput.Add($"this.Total = {(this.Total == null ? "null" : this.Total.ToString())}");
         }
     }
