@@ -16,7 +16,7 @@ namespace PagarmeApiSDK.Standard.Authentication
     internal class BasicAuthManager : AuthManager, IBasicAuthCredentials
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IrisBasicAuthManager"/> class.
+        /// Initializes a new instance of the <see cref="BasicAuthManager"/> class.
         /// </summary>
         /// <param name="username"> Username.</param>
         /// <param name="password"> Password.</param>

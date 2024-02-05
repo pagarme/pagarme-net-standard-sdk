@@ -87,7 +87,131 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("customer_id", customerId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// GetOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public Models.GetOrderItemResponse GetOrderItem(
+                string orderId,
+                string itemId)
+            => CoreHelper.RunTask(GetOrderItemAsync(orderId, itemId));
+
+        /// <summary>
+        /// GetOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public async Task<Models.GetOrderItemResponse> GetOrderItemAsync(
+                string orderId,
+                string itemId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetOrderItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/orders/{orderId}/items/{itemId}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("orderId", orderId))
+                      .Template(_template => _template.Setup("itemId", itemId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Gets an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order id.</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse GetOrder(
+                string orderId)
+            => CoreHelper.RunTask(GetOrderAsync(orderId));
+
+        /// <summary>
+        /// Gets an order.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> GetOrderAsync(
+                string orderId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetOrderResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/orders/{order_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("order_id", orderId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// CloseOrder EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Update Order Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse CloseOrder(
+                string id,
+                Models.UpdateOrderStatusRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CloseOrderAsync(id, request, idempotencyKey));
+
+        /// <summary>
+        /// CloseOrder EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Update Order Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> CloseOrderAsync(
+                string id,
+                Models.UpdateOrderStatusRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetOrderResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/orders/{id}/closed")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("id", id))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Creates a new Order.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating an order.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public Models.GetOrderResponse CreateOrder(
+                Models.CreateOrderRequest body,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateOrderAsync(body, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new Order.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating an order.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
+        public async Task<Models.GetOrderResponse> CreateOrderAsync(
+                Models.CreateOrderRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetOrderResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/orders")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// UpdateOrderItem EndPoint.
@@ -128,7 +252,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// DeleteAllOrderItems EndPoint.
@@ -159,177 +283,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// DeleteOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public Models.GetOrderItemResponse DeleteOrderItem(
-                string orderId,
-                string itemId,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(DeleteOrderItemAsync(orderId, itemId, idempotencyKey));
-
-        /// <summary>
-        /// DeleteOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public async Task<Models.GetOrderItemResponse> DeleteOrderItemAsync(
-                string orderId,
-                string itemId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetOrderItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/orders/{orderId}/items/{itemId}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("orderId", orderId))
-                      .Template(_template => _template.Setup("itemId", itemId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// CloseOrder EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Update Order Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse CloseOrder(
-                string id,
-                Models.UpdateOrderStatusRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CloseOrderAsync(id, request, idempotencyKey));
-
-        /// <summary>
-        /// CloseOrder EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Update Order Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> CloseOrderAsync(
-                string id,
-                Models.UpdateOrderStatusRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetOrderResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/orders/{id}/closed")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("id", id))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a new Order.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating an order.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse CreateOrder(
-                Models.CreateOrderRequest body,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateOrderAsync(body, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new Order.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating an order.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> CreateOrderAsync(
-                Models.CreateOrderRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetOrderResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/orders")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// CreateOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Order Item Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public Models.GetOrderItemResponse CreateOrderItem(
-                string orderId,
-                Models.CreateOrderItemRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateOrderItemAsync(orderId, request, idempotencyKey));
-
-        /// <summary>
-        /// CreateOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="request">Required parameter: Order Item Model.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public async Task<Models.GetOrderItemResponse> CreateOrderItemAsync(
-                string orderId,
-                Models.CreateOrderItemRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetOrderItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/orders/{orderId}/items")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("orderId", orderId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// GetOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public Models.GetOrderItemResponse GetOrderItem(
-                string orderId,
-                string itemId)
-            => CoreHelper.RunTask(GetOrderItemAsync(orderId, itemId));
-
-        /// <summary>
-        /// GetOrderItem EndPoint.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order Id.</param>
-        /// <param name="itemId">Required parameter: Item Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
-        public async Task<Models.GetOrderItemResponse> GetOrderItemAsync(
-                string orderId,
-                string itemId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetOrderItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/orders/{orderId}/items/{itemId}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("orderId", orderId))
-                      .Template(_template => _template.Setup("itemId", itemId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the metadata from an order.
@@ -365,32 +319,78 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("order_id", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Gets an order.
+        /// DeleteOrderItem EndPoint.
         /// </summary>
-        /// <param name="orderId">Required parameter: Order id.</param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public Models.GetOrderResponse GetOrder(
-                string orderId)
-            => CoreHelper.RunTask(GetOrderAsync(orderId));
-
-        /// <summary>
-        /// Gets an order.
-        /// </summary>
-        /// <param name="orderId">Required parameter: Order id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetOrderResponse response from the API call.</returns>
-        public async Task<Models.GetOrderResponse> GetOrderAsync(
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public Models.GetOrderItemResponse DeleteOrderItem(
                 string orderId,
+                string itemId,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(DeleteOrderItemAsync(orderId, itemId, idempotencyKey));
+
+        /// <summary>
+        /// DeleteOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="itemId">Required parameter: Item Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public async Task<Models.GetOrderItemResponse> DeleteOrderItemAsync(
+                string orderId,
+                string itemId,
+                string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetOrderResponse>()
+            => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/orders/{order_id}")
+                  .Setup(HttpMethod.Delete, "/orders/{orderId}/items/{itemId}")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("order_id", orderId))))
-              .ExecuteAsync(cancellationToken);
+                      .Template(_template => _template.Setup("orderId", orderId))
+                      .Template(_template => _template.Setup("itemId", itemId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// CreateOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Order Item Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public Models.GetOrderItemResponse CreateOrderItem(
+                string orderId,
+                Models.CreateOrderItemRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateOrderItemAsync(orderId, request, idempotencyKey));
+
+        /// <summary>
+        /// CreateOrderItem EndPoint.
+        /// </summary>
+        /// <param name="orderId">Required parameter: Order Id.</param>
+        /// <param name="request">Required parameter: Order Item Model.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetOrderItemResponse response from the API call.</returns>
+        public async Task<Models.GetOrderItemResponse> CreateOrderItemAsync(
+                string orderId,
+                Models.CreateOrderItemRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetOrderItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/orders/{orderId}/items")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("orderId", orderId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

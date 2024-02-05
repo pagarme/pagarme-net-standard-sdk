@@ -27,7 +27,7 @@ namespace PagarmeApiSDK.Standard.Models
         private string balanceAmount;
         private string balanceOldAmount;
         private string type;
-        private string amount;
+        private int? amount;
         private string fee;
         private string createdAt;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
@@ -67,7 +67,7 @@ namespace PagarmeApiSDK.Standard.Models
             string balanceAmount = null,
             string balanceOldAmount = null,
             string type = null,
-            string amount = null,
+            int? amount = null,
             string fee = null,
             string createdAt = null,
             Models.GetMovementObjectBaseResponse movementObject = null)
@@ -209,7 +209,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets Amount.
         /// </summary>
         [JsonProperty("amount")]
-        public string Amount
+        public int? Amount
         {
             get
             {
@@ -445,7 +445,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.BalanceAmount = {(this.BalanceAmount == null ? "null" : this.BalanceAmount)}");
             toStringOutput.Add($"this.BalanceOldAmount = {(this.BalanceOldAmount == null ? "null" : this.BalanceOldAmount)}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount)}");
+            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
             toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee)}");
             toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt)}");
             toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");

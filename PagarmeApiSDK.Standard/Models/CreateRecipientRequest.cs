@@ -22,6 +22,22 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateRecipientRequest
     {
+        private string name;
+        private string email;
+        private string description;
+        private string document;
+        private string type;
+        private Models.CreateRegisterInformationBaseRequest registerInformation;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "name", false },
+            { "email", false },
+            { "description", false },
+            { "document", false },
+            { "type", false },
+            { "register_information", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateRecipientRequest"/> class.
         /// </summary>
@@ -32,69 +48,156 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateRecipientRequest"/> class.
         /// </summary>
+        /// <param name="defaultBankAccount">default_bank_account.</param>
+        /// <param name="metadata">metadata.</param>
+        /// <param name="code">code.</param>
+        /// <param name="paymentMode">payment_mode.</param>
         /// <param name="name">name.</param>
         /// <param name="email">email.</param>
         /// <param name="description">description.</param>
         /// <param name="document">document.</param>
         /// <param name="type">type.</param>
-        /// <param name="defaultBankAccount">default_bank_account.</param>
-        /// <param name="metadata">metadata.</param>
-        /// <param name="code">code.</param>
-        /// <param name="paymentMode">payment_mode.</param>
         /// <param name="transferSettings">transfer_settings.</param>
+        /// <param name="registerInformation">register_information.</param>
         public CreateRecipientRequest(
-            string name,
-            string email,
-            string description,
-            string document,
-            string type,
             Models.CreateBankAccountRequest defaultBankAccount,
             Dictionary<string, string> metadata,
             string code,
             string paymentMode,
-            Models.CreateTransferSettingsRequest transferSettings = null)
+            string name = null,
+            string email = null,
+            string description = null,
+            string document = null,
+            string type = null,
+            Models.CreateTransferSettingsRequest transferSettings = null,
+            Models.CreateRegisterInformationBaseRequest registerInformation = null)
         {
-            this.Name = name;
-            this.Email = email;
-            this.Description = description;
-            this.Document = document;
-            this.Type = type;
+            if (name != null)
+            {
+                this.Name = name;
+            }
+
+            if (email != null)
+            {
+                this.Email = email;
+            }
+
+            if (description != null)
+            {
+                this.Description = description;
+            }
+
+            if (document != null)
+            {
+                this.Document = document;
+            }
+
+            if (type != null)
+            {
+                this.Type = type;
+            }
+
             this.DefaultBankAccount = defaultBankAccount;
             this.Metadata = metadata;
             this.TransferSettings = transferSettings;
             this.Code = code;
             this.PaymentMode = paymentMode;
+            if (registerInformation != null)
+            {
+                this.RegisterInformation = registerInformation;
+            }
+
         }
 
         /// <summary>
-        /// Recipient name
+        /// Recipient name. Required if the register_information field isn't populated.
         /// </summary>
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.shouldSerialize["name"] = true;
+                this.name = value;
+            }
+        }
 
         /// <summary>
-        /// Recipient email
+        /// Recipient email. Required if the register_information field isn't populated.
         /// </summary>
         [JsonProperty("email")]
-        public string Email { get; set; }
+        public string Email
+        {
+            get
+            {
+                return this.email;
+            }
+
+            set
+            {
+                this.shouldSerialize["email"] = true;
+                this.email = value;
+            }
+        }
 
         /// <summary>
         /// Recipient description
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+
+            set
+            {
+                this.shouldSerialize["description"] = true;
+                this.description = value;
+            }
+        }
 
         /// <summary>
-        /// Recipient document number
+        /// Recipient document number. Required if the register_information field isn't populated.
         /// </summary>
         [JsonProperty("document")]
-        public string Document { get; set; }
+        public string Document
+        {
+            get
+            {
+                return this.document;
+            }
+
+            set
+            {
+                this.shouldSerialize["document"] = true;
+                this.document = value;
+            }
+        }
 
         /// <summary>
-        /// Recipient type
+        /// Recipient type. Required if the register_information field isn't populated.
         /// </summary>
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string Type
+        {
+            get
+            {
+                return this.type;
+            }
+
+            set
+            {
+                this.shouldSerialize["type"] = true;
+                this.type = value;
+            }
+        }
 
         /// <summary>
         /// Bank account
@@ -126,6 +229,24 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("payment_mode")]
         public string PaymentMode { get; set; }
 
+        /// <summary>
+        /// Register Information
+        /// </summary>
+        [JsonProperty("register_information")]
+        public Models.CreateRegisterInformationBaseRequest RegisterInformation
+        {
+            get
+            {
+                return this.registerInformation;
+            }
+
+            set
+            {
+                this.shouldSerialize["register_information"] = true;
+                this.registerInformation = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -134,6 +255,108 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateRecipientRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetName()
+        {
+            this.shouldSerialize["name"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetEmail()
+        {
+            this.shouldSerialize["email"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDescription()
+        {
+            this.shouldSerialize["description"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetDocument()
+        {
+            this.shouldSerialize["document"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetType()
+        {
+            this.shouldSerialize["type"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRegisterInformation()
+        {
+            this.shouldSerialize["register_information"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeName()
+        {
+            return this.shouldSerialize["name"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeEmail()
+        {
+            return this.shouldSerialize["email"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDescription()
+        {
+            return this.shouldSerialize["description"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDocument()
+        {
+            return this.shouldSerialize["document"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeType()
+        {
+            return this.shouldSerialize["type"];
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRegisterInformation()
+        {
+            return this.shouldSerialize["register_information"];
         }
 
         /// <inheritdoc/>
@@ -157,7 +380,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
                 ((this.TransferSettings == null && other.TransferSettings == null) || (this.TransferSettings?.Equals(other.TransferSettings) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true));
+                ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true)) &&
+                ((this.RegisterInformation == null && other.RegisterInformation == null) || (this.RegisterInformation?.Equals(other.RegisterInformation) == true));
         }
         
         /// <summary>
@@ -176,6 +400,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.TransferSettings = {(this.TransferSettings == null ? "null" : this.TransferSettings.ToString())}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
             toStringOutput.Add($"this.PaymentMode = {(this.PaymentMode == null ? "null" : this.PaymentMode)}");
+            toStringOutput.Add($"this.RegisterInformation = {(this.RegisterInformation == null ? "null" : this.RegisterInformation.ToString())}");
         }
     }
 }

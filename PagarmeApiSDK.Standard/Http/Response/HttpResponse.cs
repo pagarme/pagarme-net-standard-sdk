@@ -18,6 +18,7 @@ namespace PagarmeApiSDK.Standard.Http.Response
         /// <param name="statusCode">statusCode.</param>
         /// <param name="headers">headers.</param>
         /// <param name="rawBody">rawBody.</param>
+        /// <param name="body">body.</param>
         public HttpResponse(int statusCode, Dictionary<string, string> headers, Stream rawBody, string body = null)
             : base(statusCode, headers, rawBody, body) { }
     }

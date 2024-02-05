@@ -34,99 +34,6 @@ namespace PagarmeApiSDK.Standard.Controllers
         internal InvoicesController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Updates the metadata from an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: The invoice id.</param>
-        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse UpdateInvoiceMetadata(
-                string invoiceId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateInvoiceMetadataAsync(invoiceId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates the metadata from an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: The invoice id.</param>
-        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> UpdateInvoiceMetadataAsync(
-                string invoiceId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetInvoiceResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/invoices/{invoice_id}/metadata")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("invoice_id", invoiceId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// GetPartialInvoice EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse GetPartialInvoice(
-                string subscriptionId)
-            => CoreHelper.RunTask(GetPartialInvoiceAsync(subscriptionId));
-
-        /// <summary>
-        /// GetPartialInvoice EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> GetPartialInvoiceAsync(
-                string subscriptionId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetInvoiceResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/partial-invoice")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("subscription_id", subscriptionId))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Cancels an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse CancelInvoice(
-                string invoiceId,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CancelInvoiceAsync(invoiceId, idempotencyKey));
-
-        /// <summary>
-        /// Cancels an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> CancelInvoiceAsync(
-                string invoiceId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetInvoiceResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/invoices/{invoice_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("invoice_id", invoiceId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
         /// Create an Invoice.
         /// </summary>
         /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
@@ -165,7 +72,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("cycle_id", cycleId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets all invoices.
@@ -241,33 +148,100 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("due_since", dueSince.HasValue ? dueSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("due_until", dueUntil.HasValue ? dueUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("customer_document", customerDocument))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Gets an invoice.
+        /// Cancels an invoice.
         /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
+        /// <param name="invoiceId">Required parameter: Invoice id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public Models.GetInvoiceResponse GetInvoice(
-                string invoiceId)
-            => CoreHelper.RunTask(GetInvoiceAsync(invoiceId));
+        public Models.GetInvoiceResponse CancelInvoice(
+                string invoiceId,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CancelInvoiceAsync(invoiceId, idempotencyKey));
 
         /// <summary>
-        /// Gets an invoice.
+        /// Cancels an invoice.
         /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
+        /// <param name="invoiceId">Required parameter: Invoice id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        public async Task<Models.GetInvoiceResponse> GetInvoiceAsync(
+        public async Task<Models.GetInvoiceResponse> CancelInvoiceAsync(
                 string invoiceId,
+                string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/invoices/{invoice_id}")
+                  .Setup(HttpMethod.Delete, "/invoices/{invoice_id}")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("invoice_id", invoiceId))))
-              .ExecuteAsync(cancellationToken);
+                      .Template(_template => _template.Setup("invoice_id", invoiceId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Updates the metadata from an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: The invoice id.</param>
+        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public Models.GetInvoiceResponse UpdateInvoiceMetadata(
+                string invoiceId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateInvoiceMetadataAsync(invoiceId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates the metadata from an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: The invoice id.</param>
+        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public async Task<Models.GetInvoiceResponse> UpdateInvoiceMetadataAsync(
+                string invoiceId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetInvoiceResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/invoices/{invoice_id}/metadata")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("invoice_id", invoiceId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// GetPartialInvoice EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public Models.GetInvoiceResponse GetPartialInvoice(
+                string subscriptionId)
+            => CoreHelper.RunTask(GetPartialInvoiceAsync(subscriptionId));
+
+        /// <summary>
+        /// GetPartialInvoice EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public async Task<Models.GetInvoiceResponse> GetPartialInvoiceAsync(
+                string subscriptionId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetInvoiceResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/partial-invoice")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("subscription_id", subscriptionId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the status from an invoice.
@@ -303,6 +277,32 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("invoice_id", invoiceId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Gets an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public Models.GetInvoiceResponse GetInvoice(
+                string invoiceId)
+            => CoreHelper.RunTask(GetInvoiceAsync(invoiceId));
+
+        /// <summary>
+        /// Gets an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        public async Task<Models.GetInvoiceResponse> GetInvoiceAsync(
+                string invoiceId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetInvoiceResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/invoices/{invoice_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("invoice_id", invoiceId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

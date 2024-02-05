@@ -39,6 +39,7 @@ namespace PagarmeApiSDK.Standard.Models
         private Models.GetTransferSettingsResponse transferSettings;
         private string code;
         private string paymentMode;
+        private Models.GetRegisterInformationResponse registerInformation;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
@@ -58,6 +59,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "transfer_settings", false },
             { "code", false },
             { "payment_mode", true },
+            { "register_information", false },
         };
 
         /// <summary>
@@ -87,6 +89,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="transferSettings">transfer_settings.</param>
         /// <param name="code">code.</param>
         /// <param name="paymentMode">payment_mode.</param>
+        /// <param name="registerInformation">register_information.</param>
         public GetRecipientResponse(
             string id = null,
             string name = null,
@@ -104,7 +107,8 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetAutomaticAnticipationResponse automaticAnticipationSettings = null,
             Models.GetTransferSettingsResponse transferSettings = null,
             string code = null,
-            string paymentMode = "bank_transfer")
+            string paymentMode = "bank_transfer",
+            Models.GetRegisterInformationResponse registerInformation = null)
         {
             if (id != null)
             {
@@ -187,6 +191,11 @@ namespace PagarmeApiSDK.Standard.Models
             }
 
             this.PaymentMode = paymentMode;
+            if (registerInformation != null)
+            {
+                this.RegisterInformation = registerInformation;
+            }
+
         }
 
         /// <summary>
@@ -498,6 +507,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets RegisterInformation.
+        /// </summary>
+        [JsonProperty("register_information")]
+        public Models.GetRegisterInformationResponse RegisterInformation
+        {
+            get
+            {
+                return this.registerInformation;
+            }
+
+            set
+            {
+                this.shouldSerialize["register_information"] = true;
+                this.registerInformation = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -642,6 +669,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetPaymentMode()
         {
             this.shouldSerialize["payment_mode"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetRegisterInformation()
+        {
+            this.shouldSerialize["register_information"] = false;
         }
 
         /// <summary>
@@ -797,6 +832,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["payment_mode"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeRegisterInformation()
+        {
+            return this.shouldSerialize["register_information"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -825,7 +869,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AutomaticAnticipationSettings == null && other.AutomaticAnticipationSettings == null) || (this.AutomaticAnticipationSettings?.Equals(other.AutomaticAnticipationSettings) == true)) &&
                 ((this.TransferSettings == null && other.TransferSettings == null) || (this.TransferSettings?.Equals(other.TransferSettings) == true)) &&
                 ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true));
+                ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true)) &&
+                ((this.RegisterInformation == null && other.RegisterInformation == null) || (this.RegisterInformation?.Equals(other.RegisterInformation) == true));
         }
         
         /// <summary>
@@ -851,6 +896,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.TransferSettings = {(this.TransferSettings == null ? "null" : this.TransferSettings.ToString())}");
             toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
             toStringOutput.Add($"this.PaymentMode = {(this.PaymentMode == null ? "null" : this.PaymentMode)}");
+            toStringOutput.Add($"this.RegisterInformation = {(this.RegisterInformation == null ? "null" : this.RegisterInformation.ToString())}");
         }
     }
 }

@@ -11,26 +11,22 @@ Request for creating a recipient
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `string` | Required | Recipient name |
-| `Email` | `string` | Required | Recipient email |
-| `Description` | `string` | Required | Recipient description |
-| `Document` | `string` | Required | Recipient document number |
-| `Type` | `string` | Required | Recipient type |
+| `Name` | `string` | Optional | Recipient name. Required if the register_information field isn't populated. |
+| `Email` | `string` | Optional | Recipient email. Required if the register_information field isn't populated. |
+| `Description` | `string` | Optional | Recipient description |
+| `Document` | `string` | Optional | Recipient document number. Required if the register_information field isn't populated. |
+| `Type` | `string` | Optional | Recipient type. Required if the register_information field isn't populated. |
 | `DefaultBankAccount` | [`CreateBankAccountRequest`](../../doc/models/create-bank-account-request.md) | Required | Bank account |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `TransferSettings` | [`CreateTransferSettingsRequest`](../../doc/models/create-transfer-settings-request.md) | Optional | Receiver Transfer Information |
 | `Code` | `string` | Required | Recipient code |
 | `PaymentMode` | `string` | Required | Payment mode<br>**Default**: `"bank_transfer"` |
+| `RegisterInformation` | [`CreateRegisterInformationBaseRequest`](../../doc/models/create-register-information-base-request.md) | Optional | Register Information |
 
 ## Example (as JSON)
 
 ```json
 {
-  "name": "name6",
-  "email": "email0",
-  "description": "description6",
-  "document": "document0",
-  "type": "type4",
   "default_bank_account": {
     "holder_name": "holder_name4",
     "holder_type": "holder_type0",
@@ -53,11 +49,11 @@ Request for creating a recipient
   },
   "code": "code4",
   "payment_mode": "bank_transfer",
-  "transfer_settings": {
-    "transfer_enabled": false,
-    "transfer_interval": "transfer_interval4",
-    "transfer_day": 10
-  }
+  "name": "name6",
+  "email": "email0",
+  "description": "description6",
+  "document": "document0",
+  "type": "type4"
 }
 ```
 

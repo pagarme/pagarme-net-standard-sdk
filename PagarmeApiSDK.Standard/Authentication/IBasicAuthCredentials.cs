@@ -5,6 +5,9 @@ namespace PagarmeApiSDK.Standard.Authentication
 {
     using System;
 
+    /// <summary>
+    /// Authentication configuration interface for BasicAuth.
+    /// </summary>
     public interface IBasicAuthCredentials
     {
         /// <summary>

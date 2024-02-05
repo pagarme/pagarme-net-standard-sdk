@@ -57,38 +57,43 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Deletes a plan.
+        /// Updates a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public Models.GetPlanResponse DeletePlan(
+        public Models.GetPlanResponse UpdatePlan(
                 string planId,
+                Models.UpdatePlanRequest request,
                 string idempotencyKey = null)
-            => CoreHelper.RunTask(DeletePlanAsync(planId, idempotencyKey));
+            => CoreHelper.RunTask(UpdatePlanAsync(planId, request, idempotencyKey));
 
         /// <summary>
-        /// Deletes a plan.
+        /// Updates a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public async Task<Models.GetPlanResponse> DeletePlanAsync(
+        public async Task<Models.GetPlanResponse> UpdatePlanAsync(
                 string planId,
+                Models.UpdatePlanRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/plans/{plan_id}")
+                  .Setup(HttpMethod.Put, "/plans/{plan_id}")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the metadata from a plan.
@@ -124,146 +129,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Updates a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <param name="body">Required parameter: Request for updating the plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public Models.GetPlanItemResponse UpdatePlanItem(
-                string planId,
-                string planItemId,
-                Models.UpdatePlanItemRequest body,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdatePlanItemAsync(planId, planItemId, body, idempotencyKey));
-
-        /// <summary>
-        /// Updates a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <param name="body">Required parameter: Request for updating the plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public async Task<Models.GetPlanItemResponse> UpdatePlanItemAsync(
-                string planId,
-                string planItemId,
-                Models.UpdatePlanItemRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetPlanItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Put, "/plans/{plan_id}/items/{plan_item_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Template(_template => _template.Setup("plan_id", planId))
-                      .Template(_template => _template.Setup("plan_item_id", planItemId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Adds a new item to a plan.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for creating a plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public Models.GetPlanItemResponse CreatePlanItem(
-                string planId,
-                Models.CreatePlanItemRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreatePlanItemAsync(planId, request, idempotencyKey));
-
-        /// <summary>
-        /// Adds a new item to a plan.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for creating a plan item.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public async Task<Models.GetPlanItemResponse> CreatePlanItemAsync(
-                string planId,
-                Models.CreatePlanItemRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetPlanItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/plans/{plan_id}/items")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("plan_id", planId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Gets a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public Models.GetPlanItemResponse GetPlanItem(
-                string planId,
-                string planItemId)
-            => CoreHelper.RunTask(GetPlanItemAsync(planId, planItemId));
-
-        /// <summary>
-        /// Gets a plan item.
-        /// </summary>
-        /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="planItemId">Required parameter: Plan item id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
-        public async Task<Models.GetPlanItemResponse> GetPlanItemAsync(
-                string planId,
-                string planItemId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetPlanItemResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/plans/{plan_id}/items/{plan_item_id}")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("plan_id", planId))
-                      .Template(_template => _template.Setup("plan_item_id", planItemId))))
-              .ExecuteAsync(cancellationToken);
-
-        /// <summary>
-        /// Creates a new plan.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating a plan.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public Models.GetPlanResponse CreatePlan(
-                Models.CreatePlanRequest body,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreatePlanAsync(body, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new plan.
-        /// </summary>
-        /// <param name="body">Required parameter: Request for creating a plan.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public async Task<Models.GetPlanResponse> CreatePlanAsync(
-                Models.CreatePlanRequest body,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetPlanResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/plans")
-                  .WithAuth("global")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Removes an item from a plan.
@@ -299,7 +165,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Template(_template => _template.Setup("plan_item_id", planItemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets all plans.
@@ -355,42 +221,176 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("billing_type", billingType))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Updates a plan.
+        /// Gets a plan item.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for updating a plan.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public Models.GetPlanItemResponse GetPlanItem(
+                string planId,
+                string planItemId)
+            => CoreHelper.RunTask(GetPlanItemAsync(planId, planItemId));
+
+        /// <summary>
+        /// Gets a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public async Task<Models.GetPlanItemResponse> GetPlanItemAsync(
+                string planId,
+                string planItemId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetPlanItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/plans/{plan_id}/items/{plan_item_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("plan_id", planId))
+                      .Template(_template => _template.Setup("plan_item_id", planItemId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Deletes a plan.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public Models.GetPlanResponse UpdatePlan(
+        public Models.GetPlanResponse DeletePlan(
                 string planId,
-                Models.UpdatePlanRequest request,
                 string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdatePlanAsync(planId, request, idempotencyKey));
+            => CoreHelper.RunTask(DeletePlanAsync(planId, idempotencyKey));
 
         /// <summary>
-        /// Updates a plan.
+        /// Deletes a plan.
         /// </summary>
         /// <param name="planId">Required parameter: Plan id.</param>
-        /// <param name="request">Required parameter: Request for updating a plan.</param>
         /// <param name="idempotencyKey">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
-        public async Task<Models.GetPlanResponse> UpdatePlanAsync(
+        public async Task<Models.GetPlanResponse> DeletePlanAsync(
                 string planId,
-                Models.UpdatePlanRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Put, "/plans/{plan_id}")
+                  .Setup(HttpMethod.Delete, "/plans/{plan_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("plan_id", planId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Updates a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <param name="body">Required parameter: Request for updating the plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public Models.GetPlanItemResponse UpdatePlanItem(
+                string planId,
+                string planItemId,
+                Models.UpdatePlanItemRequest body,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdatePlanItemAsync(planId, planItemId, body, idempotencyKey));
+
+        /// <summary>
+        /// Updates a plan item.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="planItemId">Required parameter: Plan item id.</param>
+        /// <param name="body">Required parameter: Request for updating the plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public async Task<Models.GetPlanItemResponse> UpdatePlanItemAsync(
+                string planId,
+                string planItemId,
+                Models.UpdatePlanItemRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetPlanItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Put, "/plans/{plan_id}/items/{plan_item_id}")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Template(_template => _template.Setup("plan_id", planId))
+                      .Template(_template => _template.Setup("plan_item_id", planItemId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Adds a new item to a plan.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for creating a plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public Models.GetPlanItemResponse CreatePlanItem(
+                string planId,
+                Models.CreatePlanItemRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreatePlanItemAsync(planId, request, idempotencyKey));
+
+        /// <summary>
+        /// Adds a new item to a plan.
+        /// </summary>
+        /// <param name="planId">Required parameter: Plan id.</param>
+        /// <param name="request">Required parameter: Request for creating a plan item.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanItemResponse response from the API call.</returns>
+        public async Task<Models.GetPlanItemResponse> CreatePlanItemAsync(
+                string planId,
+                Models.CreatePlanItemRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetPlanItemResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/plans/{plan_id}/items")
                   .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Creates a new plan.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating a plan.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
+        public Models.GetPlanResponse CreatePlan(
+                Models.CreatePlanRequest body,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreatePlanAsync(body, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new plan.
+        /// </summary>
+        /// <param name="body">Required parameter: Request for creating a plan.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetPlanResponse response from the API call.</returns>
+        public async Task<Models.GetPlanResponse> CreatePlanAsync(
+                Models.CreatePlanRequest body,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetPlanResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/plans")
+                  .WithAuth("global")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(body))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }
