@@ -62,7 +62,7 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.CreateRegisterInformationPhoneRequest> phoneNumbers,
             string companyName,
             string tradingName,
-            string annualRevenue,
+            int annualRevenue,
             List<Models.CreateManagingPartnerRequest> managingPartners,
             Models.CreateRegisterInformationAddressRequest mainAddress,
             string siteUrl = null,
@@ -114,7 +114,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets AnnualRevenue.
         /// </summary>
         [JsonProperty("annual_revenue")]
-        public string AnnualRevenue { get; set; }
+        public int AnnualRevenue { get; set; }
 
         /// <summary>
         /// Gets or sets CorporationType.
@@ -257,7 +257,7 @@ namespace PagarmeApiSDK.Standard.Models
             }
             return obj is CreateRegisterInformationCorporationRequest other &&                ((this.CompanyName == null && other.CompanyName == null) || (this.CompanyName?.Equals(other.CompanyName) == true)) &&
                 ((this.TradingName == null && other.TradingName == null) || (this.TradingName?.Equals(other.TradingName) == true)) &&
-                ((this.AnnualRevenue == null && other.AnnualRevenue == null) || (this.AnnualRevenue?.Equals(other.AnnualRevenue) == true)) &&
+                this.AnnualRevenue.Equals(other.AnnualRevenue) &&
                 ((this.CorporationType == null && other.CorporationType == null) || (this.CorporationType?.Equals(other.CorporationType) == true)) &&
                 ((this.FoundingDate == null && other.FoundingDate == null) || (this.FoundingDate?.Equals(other.FoundingDate) == true)) &&
                 ((this.Cnae == null && other.Cnae == null) || (this.Cnae?.Equals(other.Cnae) == true)) &&
@@ -274,7 +274,7 @@ namespace PagarmeApiSDK.Standard.Models
         {
             toStringOutput.Add($"this.CompanyName = {(this.CompanyName == null ? "null" : this.CompanyName)}");
             toStringOutput.Add($"this.TradingName = {(this.TradingName == null ? "null" : this.TradingName)}");
-            toStringOutput.Add($"this.AnnualRevenue = {(this.AnnualRevenue == null ? "null" : this.AnnualRevenue)}");
+            toStringOutput.Add($"this.AnnualRevenue = {this.AnnualRevenue}");
             toStringOutput.Add($"this.CorporationType = {(this.CorporationType == null ? "null" : this.CorporationType)}");
             toStringOutput.Add($"this.FoundingDate = {(this.FoundingDate == null ? "null" : this.FoundingDate)}");
             toStringOutput.Add($"this.Cnae = {(this.Cnae == null ? "null" : this.Cnae)}");

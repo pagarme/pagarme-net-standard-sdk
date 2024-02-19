@@ -7,9 +7,7 @@ namespace PagarmeApiSDK.Standard
     using System.Collections.Generic;
     using System.Linq;
     using APIMatic.Core;
-    using APIMatic.Core.Authentication;
     using APIMatic.Core.Types;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Controllers;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
@@ -33,8 +31,7 @@ namespace PagarmeApiSDK.Standard
         };
 
         private readonly GlobalConfiguration globalConfiguration;
-        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.4";
-        private readonly BasicAuthManager basicAuthManager;
+        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.5";
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
@@ -51,18 +48,13 @@ namespace PagarmeApiSDK.Standard
         private PagarmeApiSDKClient(
             string serviceRefererName,
             Environment environment,
-            string basicAuthUserName,
-            string basicAuthPassword,
             IHttpClientConfiguration httpClientConfiguration)
         {
             this.ServiceRefererName = serviceRefererName;
             this.Environment = environment;
             this.HttpClientConfiguration = httpClientConfiguration;
-            basicAuthManager = new BasicAuthManager(basicAuthUserName, basicAuthPassword);
+
             globalConfiguration = new GlobalConfiguration.Builder()
-                .AuthManagers(new Dictionary<string, AuthManager> {
-                        {"global", basicAuthManager}
-                })
                 .HttpConfiguration(httpClientConfiguration)
                 .ServerUrls(EnvironmentsMap[environment], Server.Default)
                 .Parameters(globalParameter => globalParameter
@@ -176,11 +168,6 @@ namespace PagarmeApiSDK.Standard
 
 
         /// <summary>
-        /// Gets the credentials to use with BasicAuth.
-        /// </summary>
-        public IBasicAuthCredentials BasicAuthCredentials => this.basicAuthManager;
-
-        /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends
         /// it with template parameters.
         /// </summary>
@@ -200,7 +187,6 @@ namespace PagarmeApiSDK.Standard
             Builder builder = new Builder()
                 .ServiceRefererName(this.ServiceRefererName)
                 .Environment(this.Environment)
-                .BasicAuthCredentials(basicAuthManager.BasicAuthUserName, basicAuthManager.BasicAuthPassword)
                 .HttpClientConfig(config => config.Build());
 
             return builder;
@@ -225,8 +211,6 @@ namespace PagarmeApiSDK.Standard
 
             string serviceRefererName = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_SERVICE_REFERER_NAME");
             string environment = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_ENVIRONMENT");
-            string basicAuthUserName = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_BASIC_AUTH_USER_NAME");
-            string basicAuthPassword = System.Environment.GetEnvironmentVariable("PAGARME_API_SDK_STANDARD_BASIC_AUTH_PASSWORD");
 
             if (serviceRefererName != null)
             {
@@ -236,11 +220,6 @@ namespace PagarmeApiSDK.Standard
             if (environment != null)
             {
                 builder.Environment(ApiHelper.JsonDeserialize<Environment>($"\"{environment}\""));
-            }
-
-            if (basicAuthUserName != null && basicAuthPassword != null)
-            {
-                builder.BasicAuthCredentials(basicAuthUserName, basicAuthPassword);
             }
 
             return builder.Build();
@@ -253,22 +232,7 @@ namespace PagarmeApiSDK.Standard
         {
             private string serviceRefererName = String.Empty;
             private Environment environment = PagarmeApiSDK.Standard.Environment.Production;
-            private string basicAuthUserName = "";
-            private string basicAuthPassword = "";
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
-
-            /// <summary>
-            /// Sets credentials for BasicAuth.
-            /// </summary>
-            /// <param name="basicAuthUserName">BasicAuthUserName.</param>
-            /// <param name="basicAuthPassword">BasicAuthPassword.</param>
-            /// <returns>Builder.</returns>
-            public Builder BasicAuthCredentials(string basicAuthUserName, string basicAuthPassword)
-            {
-                this.basicAuthUserName = basicAuthUserName ?? throw new ArgumentNullException(nameof(basicAuthUserName));
-                this.basicAuthPassword = basicAuthPassword ?? throw new ArgumentNullException(nameof(basicAuthPassword));
-                return this;
-            }
 
             /// <summary>
             /// Sets ServiceRefererName.
@@ -320,8 +284,6 @@ namespace PagarmeApiSDK.Standard
                 return new PagarmeApiSDKClient(
                     serviceRefererName,
                     environment,
-                    basicAuthUserName,
-                    basicAuthPassword,
                     httpClientConfig.Build());
             }
         }

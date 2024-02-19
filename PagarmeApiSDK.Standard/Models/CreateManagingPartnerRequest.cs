@@ -48,7 +48,7 @@ namespace PagarmeApiSDK.Standard.Models
             string document,
             string motherName,
             string birthdate,
-            string monthlyIncome,
+            int monthlyIncome,
             string professionalOccupation,
             bool selfDeclaredLegalRepresentative,
             Models.CreateRegisterInformationAddressRequest address,
@@ -100,7 +100,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets MonthlyIncome.
         /// </summary>
         [JsonProperty("monthly_income")]
-        public string MonthlyIncome { get; set; }
+        public int MonthlyIncome { get; set; }
 
         /// <summary>
         /// Gets or sets ProfessionalOccupation.
@@ -153,7 +153,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
                 ((this.MotherName == null && other.MotherName == null) || (this.MotherName?.Equals(other.MotherName) == true)) &&
                 ((this.Birthdate == null && other.Birthdate == null) || (this.Birthdate?.Equals(other.Birthdate) == true)) &&
-                ((this.MonthlyIncome == null && other.MonthlyIncome == null) || (this.MonthlyIncome?.Equals(other.MonthlyIncome) == true)) &&
+                this.MonthlyIncome.Equals(other.MonthlyIncome) &&
                 ((this.ProfessionalOccupation == null && other.ProfessionalOccupation == null) || (this.ProfessionalOccupation?.Equals(other.ProfessionalOccupation) == true)) &&
                 this.SelfDeclaredLegalRepresentative.Equals(other.SelfDeclaredLegalRepresentative) &&
                 ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true)) &&
@@ -171,7 +171,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document)}");
             toStringOutput.Add($"this.MotherName = {(this.MotherName == null ? "null" : this.MotherName)}");
             toStringOutput.Add($"this.Birthdate = {(this.Birthdate == null ? "null" : this.Birthdate)}");
-            toStringOutput.Add($"this.MonthlyIncome = {(this.MonthlyIncome == null ? "null" : this.MonthlyIncome)}");
+            toStringOutput.Add($"this.MonthlyIncome = {this.MonthlyIncome}");
             toStringOutput.Add($"this.ProfessionalOccupation = {(this.ProfessionalOccupation == null ? "null" : this.ProfessionalOccupation)}");
             toStringOutput.Add($"this.SelfDeclaredLegalRepresentative = {this.SelfDeclaredLegalRepresentative}");
             toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");

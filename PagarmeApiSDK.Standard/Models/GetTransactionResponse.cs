@@ -21,15 +21,15 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetTransactionResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
-    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
-    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
     [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
-    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
+    [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
     [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
-    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
+    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
+    [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse
     {
         private string gatewayId;
