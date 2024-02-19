@@ -29,7 +29,7 @@ namespace PagarmeApiSDK.Standard.Models
         private int? anticipationFee;
         private int? fraudCoverageFee;
         private int? installment;
-        private int? gatewayId;
+        private long? gatewayId;
         private string chargeId;
         private string splitId;
         private string bulkAnticipationId;
@@ -110,7 +110,7 @@ namespace PagarmeApiSDK.Standard.Models
             int? anticipationFee = null,
             int? fraudCoverageFee = null,
             int? installment = null,
-            int? gatewayId = null,
+            long? gatewayId = null,
             string chargeId = null,
             string splitId = null,
             string bulkAnticipationId = null,
@@ -368,7 +368,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets GatewayId.
         /// </summary>
         [JsonProperty("gateway_id")]
-        public int? GatewayId
+        public long? GatewayId
         {
             get
             {

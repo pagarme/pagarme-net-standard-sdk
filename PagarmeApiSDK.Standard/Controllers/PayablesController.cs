@@ -18,7 +18,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
     using System.Net.Http;
@@ -122,7 +121,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListPayablesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/payables")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("type", type))
                       .Query(_query => _query.Setup("split_id", splitId))
@@ -142,7 +140,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
                       .Query(_query => _query.Setup("gateway_id", gatewayId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// GetPayableById EndPoint.
@@ -165,9 +163,8 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPayableResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/payables/{id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("id", id))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

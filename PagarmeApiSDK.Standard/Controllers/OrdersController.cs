@@ -18,7 +18,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
     using System.Net.Http;
@@ -78,7 +77,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/orders")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -87,7 +85,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("customer_id", customerId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// UpdateOrderItem EndPoint.
@@ -122,13 +120,12 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/orders/{orderId}/items/{itemId}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// DeleteAllOrderItems EndPoint.
@@ -155,11 +152,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/orders/{orderId}/items")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// DeleteOrderItem EndPoint.
@@ -190,12 +186,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/orders/{orderId}/items/{itemId}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// CloseOrder EndPoint.
@@ -226,12 +221,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/orders/{id}/closed")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("id", id))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Creates a new Order.
@@ -258,11 +252,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/orders")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// CreateOrderItem EndPoint.
@@ -293,12 +286,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/orders/{orderId}/items")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// GetOrderItem EndPoint.
@@ -325,11 +317,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/orders/{orderId}/items/{itemId}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the metadata from an order.
@@ -360,12 +351,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Orders/{order_id}/metadata")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("order_id", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets an order.
@@ -388,9 +378,8 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/orders/{order_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("order_id", orderId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

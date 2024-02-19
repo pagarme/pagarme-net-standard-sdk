@@ -880,11 +880,6 @@ CreateRecipientAsync(
 ```csharp
 CreateRecipientRequest request = new CreateRecipientRequest
 {
-    Name = "name6",
-    Email = "email0",
-    Description = "description6",
-    Document = "document0",
-    Type = "type4",
     DefaultBankAccount = new CreateBankAccountRequest
     {
         HolderName = "holder_name4",

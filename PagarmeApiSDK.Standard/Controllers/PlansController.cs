@@ -18,7 +18,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
     using System.Net.Http;
@@ -54,10 +53,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/plans/{plan_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Deletes a plan.
@@ -84,11 +82,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/plans/{plan_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the metadata from a plan.
@@ -119,12 +116,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Plans/{plan_id}/metadata")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates a plan item.
@@ -159,13 +155,12 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/plans/{plan_id}/items/{plan_item_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Template(_template => _template.Setup("plan_item_id", planItemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Adds a new item to a plan.
@@ -196,12 +191,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/plans/{plan_id}/items")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets a plan item.
@@ -228,11 +222,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/plans/{plan_id}/items/{plan_item_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Template(_template => _template.Setup("plan_item_id", planItemId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Creates a new plan.
@@ -259,11 +252,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/plans")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Removes an item from a plan.
@@ -294,12 +286,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/plans/{plan_id}/items/{plan_item_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Template(_template => _template.Setup("plan_item_id", planItemId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets all plans.
@@ -346,7 +337,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListPlansResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/plans")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -355,7 +345,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("billing_type", billingType))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates a plan.
@@ -386,11 +376,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/plans/{plan_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

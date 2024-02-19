@@ -5,7 +5,6 @@ namespace PagarmeApiSDK.Standard
 {
     using System;
     using System.Net;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Models;
 
     /// <summary>
@@ -19,11 +18,6 @@ namespace PagarmeApiSDK.Standard
         /// Gets Current API environment.
         /// </summary>
         Environment Environment { get; }
-
-        /// <summary>
-        /// Gets the credentials to use with BasicAuth.
-        /// </summary>
-        IBasicAuthCredentials BasicAuthCredentials { get; }
 
         /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends it with template parameters.

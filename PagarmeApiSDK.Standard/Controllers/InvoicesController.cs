@@ -18,7 +18,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
     using System.Net.Http;
@@ -62,12 +61,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/invoices/{invoice_id}/metadata")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("invoice_id", invoiceId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// GetPartialInvoice EndPoint.
@@ -90,10 +88,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/partial-invoice")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Cancels an invoice.
@@ -120,11 +117,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/invoices/{invoice_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("invoice_id", invoiceId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Create an Invoice.
@@ -159,13 +155,12 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/cycles/{cycle_id}/pay")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("cycle_id", cycleId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets all invoices.
@@ -228,7 +223,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListInvoicesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/invoices")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -241,7 +235,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("due_since", dueSince.HasValue ? dueSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("due_until", dueUntil.HasValue ? dueUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("customer_document", customerDocument))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets an invoice.
@@ -264,10 +258,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/invoices/{invoice_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("invoice_id", invoiceId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the status from an invoice.
@@ -298,11 +291,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetInvoiceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/invoices/{invoice_id}/status")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("invoice_id", invoiceId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

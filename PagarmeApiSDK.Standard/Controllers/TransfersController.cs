@@ -18,7 +18,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
     using System.Net.Http;
@@ -54,10 +53,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransfer>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/transfers/{transfer_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("transfer_id", transferId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// CreateTransfer EndPoint.
@@ -80,10 +78,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransfer>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/transfers/recipients")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets all transfers.
@@ -100,8 +97,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ListTransfers>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/transfers")
-                  .WithAuth("global"))
-              .ExecuteAsync(cancellationToken);
+                  .Setup(HttpMethod.Get, "/transfers"))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

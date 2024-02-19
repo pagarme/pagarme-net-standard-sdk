@@ -18,7 +18,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     using APIMatic.Core.Utilities.Date.Xml;
     using Newtonsoft.Json.Converters;
     using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Authentication;
     using PagarmeApiSDK.Standard.Http.Client;
     using PagarmeApiSDK.Standard.Utilities;
     using System.Net.Http;
@@ -62,12 +61,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/recipients/{recipient_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Creates an anticipation.
@@ -98,12 +96,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetAnticipationResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/recipients/{recipient_id}/anticipations")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets the anticipation limits for a recipient.
@@ -134,12 +131,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetAnticipationLimitResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/anticipation_limits")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Query(_query => _query.Setup("timeframe", timeframe))
                       .Query(_query => _query.Setup("payment_date", paymentDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Retrieves paginated recipients information.
@@ -166,11 +162,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// GetWithdrawById EndPoint.
@@ -197,11 +192,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetWithdrawResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/withdrawals/{withdrawal_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("withdrawal_id", withdrawalId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates the default bank account from a recipient.
@@ -232,12 +226,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/default-bank-account")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates recipient metadata.
@@ -268,12 +261,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/metadata")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets a paginated list of transfers for the recipient.
@@ -316,7 +308,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListTransferResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/transfers")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Query(_query => _query.Setup("page", page))
@@ -324,7 +315,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets a transfer.
@@ -351,11 +342,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransferResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/transfers/{transfer_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("transfer_id", transferId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// CreateWithdraw EndPoint.
@@ -382,11 +372,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetWithdrawResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/recipients/{recipient_id}/withdrawals")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Updates recipient metadata.
@@ -417,12 +406,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/automatic-anticipation-settings")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets an anticipation.
@@ -449,11 +437,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetAnticipationResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/anticipations/{anticipation_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Template(_template => _template.Setup("anticipation_id", anticipationId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// UpdateRecipientTransferSettings EndPoint.
@@ -484,12 +471,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/transfer-settings")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Retrieves a paginated list of anticipations from a recipient.
@@ -544,7 +530,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListAnticipationResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/anticipations")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Query(_query => _query.Setup("page", page))
@@ -555,7 +540,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("payment_date_until", paymentDateUntil.HasValue ? paymentDateUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Retrieves recipient information.
@@ -578,10 +563,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Get balance information for a recipient.
@@ -604,10 +588,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetBalanceResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/balance")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Gets a paginated list of transfers for the recipient.
@@ -650,7 +633,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListWithdrawals>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{recipient_id}/withdrawals")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Query(_query => _query.Setup("page", page))
@@ -658,7 +640,7 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Creates a transfer for a recipient.
@@ -689,12 +671,11 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransferResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/recipients/{recipient_id}/transfers")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Creates a new recipient.
@@ -721,11 +702,10 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/recipients")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// Retrieves recipient information.
@@ -748,10 +728,9 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/recipients/{code}")
-                  .WithAuth("global")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("code", code))))
-              .ExecuteAsync(cancellationToken);
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
         /// GetDefaultRecipient EndPoint.
@@ -768,8 +747,7 @@ namespace PagarmeApiSDK.Standard.Controllers
         public async Task<Models.GetRecipientResponse> GetDefaultRecipientAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/default")
-                  .WithAuth("global"))
-              .ExecuteAsync(cancellationToken);
+                  .Setup(HttpMethod.Get, "/recipients/default"))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }
