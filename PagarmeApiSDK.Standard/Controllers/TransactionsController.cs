@@ -53,6 +53,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransactionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/transactions/{transaction_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("transaction_id", transactionId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

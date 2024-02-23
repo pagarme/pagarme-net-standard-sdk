@@ -77,6 +77,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/orders")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -120,6 +121,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/orders/{orderId}/items/{itemId}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("orderId", orderId))
@@ -152,6 +154,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/orders/{orderId}/items")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -186,6 +189,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/orders/{orderId}/items/{itemId}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))
@@ -221,6 +225,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/orders/{id}/closed")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("id", id))
@@ -252,6 +257,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/orders")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -286,6 +292,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/orders/{orderId}/items")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("orderId", orderId))
@@ -317,6 +324,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/orders/{orderId}/items/{itemId}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("orderId", orderId))
                       .Template(_template => _template.Setup("itemId", itemId))))
@@ -351,6 +359,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Orders/{order_id}/metadata")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("order_id", orderId))
@@ -378,6 +387,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetOrderResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/orders/{order_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("order_id", orderId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

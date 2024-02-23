@@ -53,6 +53,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransfer>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/transfers/{transfer_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("transfer_id", transferId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -78,6 +79,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetTransfer>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/transfers/recipients")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -97,7 +99,8 @@ namespace PagarmeApiSDK.Standard.Controllers
         public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ListTransfers>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/transfers"))
+                  .Setup(HttpMethod.Get, "/transfers")
+                  .WithAuth("httpBasic"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

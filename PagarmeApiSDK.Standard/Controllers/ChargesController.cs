@@ -61,6 +61,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Charges/{charge_id}/metadata")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
@@ -96,6 +97,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/charges/{charge_id}/payment-method")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
@@ -131,6 +133,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListChargeTransactionsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/charges/{charge_id}/transactions")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Query(_query => _query.Setup("page", page))
@@ -166,6 +169,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Charges/{charge_id}/due-date")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
@@ -225,6 +229,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListChargesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/charges")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -266,6 +271,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/charges/{charge_id}/capture")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
@@ -301,6 +307,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/charges/{charge_id}/card")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
@@ -328,6 +335,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/charges/{charge_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("charge_id", chargeId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -361,6 +369,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargesSummaryResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/charges/summary")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
@@ -392,6 +401,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/charges/{charge_id}/retry")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("charge_id", chargeId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -426,6 +436,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/charges/{charge_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))
@@ -457,6 +468,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/Charges")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -491,6 +503,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetChargeResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/charges/{charge_id}/confirm-payment")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("charge_id", chargeId))

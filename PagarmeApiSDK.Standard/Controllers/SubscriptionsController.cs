@@ -57,6 +57,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPeriodResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/cycles")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -91,6 +92,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/card")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -130,6 +132,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetUsageResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))
@@ -166,6 +169,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetDiscountResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/discounts")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -201,6 +205,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetUsageResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items/{item_id}/usages")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))
@@ -235,6 +240,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<VoidType>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/cycle-status")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -270,6 +276,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetDiscountResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}/discounts/{discount_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("discount_id", discountId))
@@ -329,6 +336,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListSubscriptionItemsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
@@ -370,6 +378,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/payment-method")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -401,6 +410,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items/{item_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))))
@@ -471,6 +481,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListSubscriptionsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -515,6 +526,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -550,6 +562,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetIncrementResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/increments")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -589,6 +602,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetUsageResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items/{item_id}/usages")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -621,6 +635,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetDiscountResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/discounts/{discountId}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("discountId", discountId))))
@@ -651,6 +666,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -681,6 +697,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetIncrementResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/increments/{increment_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("increment_id", incrementId))))
@@ -715,6 +732,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/gateway-affiliation-id")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -750,6 +768,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Subscriptions/{subscription_id}/metadata")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -785,6 +804,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetIncrementResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}/increments/{increment_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("increment_id", incrementId))
@@ -820,6 +840,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListCyclesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/cycles")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
@@ -855,6 +876,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListDiscountsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/discounts/")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
@@ -890,6 +912,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/billing-date")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -925,6 +948,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/subscriptions/{subscription_id}/items/{subscription_item_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("subscription_item_id", subscriptionItemId))
@@ -960,6 +984,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListIncrementsResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/increments/")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Query(_query => _query.Setup("page", page))
@@ -995,6 +1020,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/boleto-due-days")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -1030,6 +1056,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/start-at")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -1069,6 +1096,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/subscriptions/{subscription_id}/items/{item_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -1105,6 +1133,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/subscriptions/{subscription_id}/items")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -1132,6 +1161,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -1185,6 +1215,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListUsagesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/items/{item_id}/usages")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("item_id", itemId))
@@ -1225,6 +1256,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/periods/latest/end-at")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -1260,6 +1292,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{subscription_id}/minimum_price")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
@@ -1291,6 +1324,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPeriodResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/cycles/{cycleId}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("cycleId", cycleId))))
@@ -1321,6 +1355,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetUsageReportResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/subscriptions/{subscription_id}/periods/{period_id}/usages/report")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("subscription_id", subscriptionId))
                       .Template(_template => _template.Setup("period_id", periodId))))
@@ -1351,6 +1386,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetSubscriptionResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/subscriptions/{id}/split")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("id", id))))

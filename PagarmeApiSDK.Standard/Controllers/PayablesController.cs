@@ -121,6 +121,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListPayablesResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/payables")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("type", type))
                       .Query(_query => _query.Setup("split_id", splitId))
@@ -163,6 +164,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPayableResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/payables/{id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("id", id))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

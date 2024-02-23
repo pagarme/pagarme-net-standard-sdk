@@ -53,6 +53,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/plans/{plan_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -82,6 +83,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/plans/{plan_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -116,6 +118,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/Plans/{plan_id}/metadata")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
@@ -155,6 +158,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/plans/{plan_id}/items/{plan_item_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Template(_template => _template.Setup("plan_id", planId))
@@ -191,6 +195,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/plans/{plan_id}/items")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
@@ -222,6 +227,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/plans/{plan_id}/items/{plan_item_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Template(_template => _template.Setup("plan_item_id", planItemId))))
@@ -252,6 +258,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Post, "/plans")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
@@ -286,6 +293,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanItemResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Delete, "/plans/{plan_id}/items/{plan_item_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("plan_id", planId))
                       .Template(_template => _template.Setup("plan_item_id", planItemId))
@@ -337,6 +345,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.ListPlansResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/plans")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Query(_query => _query.Setup("page", page))
                       .Query(_query => _query.Setup("size", size))
@@ -376,6 +385,7 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetPlanResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Put, "/plans/{plan_id}")
+                  .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("plan_id", planId))
