@@ -16,6 +16,8 @@ ITokensController tokensController = client.TokensController;
 
 # Create Token
 
+:information_source: **Note** This endpoint does not require authentication.
+
 ```csharp
 CreateTokenAsync(
     string publicKey,
@@ -72,6 +74,8 @@ catch (ApiException e)
 # Get Token
 
 Gets a token from its id
+
+:information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
 GetTokenAsync(
