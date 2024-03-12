@@ -33,6 +33,42 @@ namespace PagarmeApiSDK.Standard.Controllers
         internal CustomersController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
+        /// Creates a new address for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="request">Required parameter: Request for creating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        public Models.GetAddressResponse CreateAddress(
+                string customerId,
+                Models.CreateAddressRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateAddressAsync(customerId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new address for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="request">Required parameter: Request for creating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        public async Task<Models.GetAddressResponse> CreateAddressAsync(
+                string customerId,
+                Models.CreateAddressRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetAddressResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/customers/{customer_id}/addresses")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
         /// Updates a card.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -70,47 +106,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("customer_id", customerId))
                       .Template(_template => _template.Setup("card_id", cardId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Updates an address.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="addressId">Required parameter: Address Id.</param>
-        /// <param name="request">Required parameter: Request for updating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        public Models.GetAddressResponse UpdateAddress(
-                string customerId,
-                string addressId,
-                Models.UpdateAddressRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateAddressAsync(customerId, addressId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates an address.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="addressId">Required parameter: Address Id.</param>
-        /// <param name="request">Required parameter: Request for updating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        public async Task<Models.GetAddressResponse> UpdateAddressAsync(
-                string customerId,
-                string addressId,
-                Models.UpdateAddressRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetAddressResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Put, "/customers/{customer_id}/addresses/{address_id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Template(_template => _template.Setup("address_id", addressId))
                       .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
@@ -182,42 +177,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Creates a new address for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="request">Required parameter: Request for creating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        public Models.GetAddressResponse CreateAddress(
-                string customerId,
-                Models.CreateAddressRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateAddressAsync(customerId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new address for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="request">Required parameter: Request for creating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        public async Task<Models.GetAddressResponse> CreateAddressAsync(
-                string customerId,
-                Models.CreateAddressRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetAddressResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/customers/{customer_id}/addresses")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Delete a Customer's access tokens.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -241,6 +200,47 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Updates an address.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="addressId">Required parameter: Address Id.</param>
+        /// <param name="request">Required parameter: Request for updating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        public Models.GetAddressResponse UpdateAddress(
+                string customerId,
+                string addressId,
+                Models.UpdateAddressRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateAddressAsync(customerId, addressId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates an address.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="addressId">Required parameter: Address Id.</param>
+        /// <param name="request">Required parameter: Request for updating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        public async Task<Models.GetAddressResponse> UpdateAddressAsync(
+                string customerId,
+                string addressId,
+                Models.UpdateAddressRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetAddressResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Put, "/customers/{customer_id}/addresses/{address_id}")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Template(_template => _template.Setup("address_id", addressId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -311,42 +311,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Creates a new card for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="request">Required parameter: Request for creating a card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        public Models.GetCardResponse CreateCard(
-                string customerId,
-                Models.CreateCardRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateCardAsync(customerId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new card for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="request">Required parameter: Request for creating a card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        public async Task<Models.GetCardResponse> CreateCardAsync(
-                string customerId,
-                Models.CreateCardRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetCardResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/customers/{customer_id}/cards")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Get all Customers.
         /// </summary>
         /// <param name="name">Optional parameter: Name of the Customer.</param>
@@ -395,6 +359,212 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("size", (size != null) ? size : 10))
                       .Query(_query => _query.Setup("email", email))
                       .Query(_query => _query.Setup("Code", code))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Get all access tokens from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
+        public Models.ListAccessTokensResponse GetAccessTokens(
+                string customerId,
+                int? page = null,
+                int? size = null)
+            => CoreHelper.RunTask(GetAccessTokensAsync(customerId, page, size));
+
+        /// <summary>
+        /// Get all access tokens from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
+        public async Task<Models.ListAccessTokensResponse> GetAccessTokensAsync(
+                string customerId,
+                int? page = null,
+                int? size = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListAccessTokensResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/customers/{customer_id}/access-tokens")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Query(_query => _query.Setup("page", page))
+                      .Query(_query => _query.Setup("size", size))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Delete a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="cardId">Required parameter: Card Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        public Models.GetCardResponse DeleteCard(
+                string customerId,
+                string cardId,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(DeleteCardAsync(customerId, cardId, idempotencyKey));
+
+        /// <summary>
+        /// Delete a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="cardId">Required parameter: Card Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        public async Task<Models.GetCardResponse> DeleteCardAsync(
+                string customerId,
+                string cardId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetCardResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Delete, "/customers/{customer_id}/cards/{card_id}")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Template(_template => _template.Setup("card_id", cardId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Get a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="cardId">Required parameter: Card id.</param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        public Models.GetCardResponse GetCard(
+                string customerId,
+                string cardId)
+            => CoreHelper.RunTask(GetCardAsync(customerId, cardId));
+
+        /// <summary>
+        /// Get a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="cardId">Required parameter: Card id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        public async Task<Models.GetCardResponse> GetCardAsync(
+                string customerId,
+                string cardId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetCardResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/customers/{customer_id}/cards/{card_id}")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Template(_template => _template.Setup("card_id", cardId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Creates a new card for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="request">Required parameter: Request for creating a card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        public Models.GetCardResponse CreateCard(
+                string customerId,
+                Models.CreateCardRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateCardAsync(customerId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new card for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="request">Required parameter: Request for creating a card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        public async Task<Models.GetCardResponse> CreateCardAsync(
+                string customerId,
+                Models.CreateCardRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetCardResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/customers/{customer_id}/cards")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Get a Customer's access token.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="tokenId">Required parameter: Token Id.</param>
+        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
+        public Models.GetAccessTokenResponse GetAccessToken(
+                string customerId,
+                string tokenId)
+            => CoreHelper.RunTask(GetAccessTokenAsync(customerId, tokenId));
+
+        /// <summary>
+        /// Get a Customer's access token.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="tokenId">Required parameter: Token Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
+        public async Task<Models.GetAccessTokenResponse> GetAccessTokenAsync(
+                string customerId,
+                string tokenId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetAccessTokenResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/customers/{customer_id}/access-tokens/{token_id}")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Template(_template => _template.Setup("token_id", tokenId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Gets all adressess from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
+        public Models.ListAddressesResponse GetAddresses(
+                string customerId,
+                int? page = null,
+                int? size = null)
+            => CoreHelper.RunTask(GetAddressesAsync(customerId, page, size));
+
+        /// <summary>
+        /// Gets all adressess from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
+        public async Task<Models.ListAddressesResponse> GetAddressesAsync(
+                string customerId,
+                int? page = null,
+                int? size = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListAddressesResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/customers/{customer_id}/addresses")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("customer_id", customerId))
+                      .Query(_query => _query.Setup("page", page))
+                      .Query(_query => _query.Setup("size", size))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -470,42 +640,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get all access tokens from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
-        public Models.ListAccessTokensResponse GetAccessTokens(
-                string customerId,
-                int? page = null,
-                int? size = null)
-            => CoreHelper.RunTask(GetAccessTokensAsync(customerId, page, size));
-
-        /// <summary>
-        /// Get all access tokens from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
-        public async Task<Models.ListAccessTokensResponse> GetAccessTokensAsync(
-                string customerId,
-                int? page = null,
-                int? size = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListAccessTokensResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/customers/{customer_id}/access-tokens")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Query(_query => _query.Setup("page", page))
-                      .Query(_query => _query.Setup("size", size))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Get all cards from a customer.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -578,37 +712,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get a Customer's access token.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="tokenId">Required parameter: Token Id.</param>
-        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
-        public Models.GetAccessTokenResponse GetAccessToken(
-                string customerId,
-                string tokenId)
-            => CoreHelper.RunTask(GetAccessTokenAsync(customerId, tokenId));
-
-        /// <summary>
-        /// Get a Customer's access token.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="tokenId">Required parameter: Token Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
-        public async Task<Models.GetAccessTokenResponse> GetAccessTokenAsync(
-                string customerId,
-                string tokenId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetAccessTokenResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/customers/{customer_id}/access-tokens/{token_id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Template(_template => _template.Setup("token_id", tokenId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Updates the metadata a customer.
         /// </summary>
         /// <param name="customerId">Required parameter: The customer id.</param>
@@ -645,78 +748,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Delete a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="cardId">Required parameter: Card Id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        public Models.GetCardResponse DeleteCard(
-                string customerId,
-                string cardId,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(DeleteCardAsync(customerId, cardId, idempotencyKey));
-
-        /// <summary>
-        /// Delete a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="cardId">Required parameter: Card Id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        public async Task<Models.GetCardResponse> DeleteCardAsync(
-                string customerId,
-                string cardId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetCardResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Delete, "/customers/{customer_id}/cards/{card_id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Template(_template => _template.Setup("card_id", cardId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Gets all adressess from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
-        public Models.ListAddressesResponse GetAddresses(
-                string customerId,
-                int? page = null,
-                int? size = null)
-            => CoreHelper.RunTask(GetAddressesAsync(customerId, page, size));
-
-        /// <summary>
-        /// Gets all adressess from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
-        public async Task<Models.ListAddressesResponse> GetAddressesAsync(
-                string customerId,
-                int? page = null,
-                int? size = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListAddressesResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/customers/{customer_id}/addresses")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Query(_query => _query.Setup("page", page))
-                      .Query(_query => _query.Setup("size", size))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Get a customer.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -740,37 +771,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Template(_template => _template.Setup("customer_id", customerId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Get a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="cardId">Required parameter: Card id.</param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        public Models.GetCardResponse GetCard(
-                string customerId,
-                string cardId)
-            => CoreHelper.RunTask(GetCardAsync(customerId, cardId));
-
-        /// <summary>
-        /// Get a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="cardId">Required parameter: Card id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        public async Task<Models.GetCardResponse> GetCardAsync(
-                string customerId,
-                string cardId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetCardResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/customers/{customer_id}/cards/{card_id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("customer_id", customerId))
-                      .Template(_template => _template.Setup("card_id", cardId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

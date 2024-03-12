@@ -21,10 +21,11 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetMovementObjectBaseResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "object")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectFeeCollectionResponse), "feeCollection")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectPayableResponse), "payable")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectTransferResponse), "transfer")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectSettlementResponse), "settlement")]
     public class GetMovementObjectBaseResponse
     {
         private string id;
