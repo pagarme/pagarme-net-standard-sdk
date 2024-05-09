@@ -11,8 +11,8 @@ ITransfersController transfersController = client.TransfersController;
 ## Methods
 
 * [Get Transfer by Id](../../doc/controllers/transfers.md#get-transfer-by-id)
-* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
 * [Create Transfer](../../doc/controllers/transfers.md#create-transfer)
+* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
 
 
 # Get Transfer by Id
@@ -39,33 +39,6 @@ string transferId = "transfer_id6";
 try
 {
     GetTransfer result = await transfersController.GetTransferByIdAsync(transferId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Transfers
-
-Gets all transfers
-
-```csharp
-GetTransfersAsync()
-```
-
-## Response Type
-
-[`Task<Models.ListTransfers>`](../../doc/models/list-transfers.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListTransfers result = await transfersController.GetTransfersAsync();
 }
 catch (ApiException e)
 {
@@ -105,6 +78,33 @@ CreateTransfer request = new CreateTransfer
 try
 {
     GetTransfer result = await transfersController.CreateTransferAsync(request);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Transfers
+
+Gets all transfers
+
+```csharp
+GetTransfersAsync()
+```
+
+## Response Type
+
+[`Task<Models.ListTransfers>`](../../doc/models/list-transfers.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListTransfers result = await transfersController.GetTransfersAsync();
 }
 catch (ApiException e)
 {

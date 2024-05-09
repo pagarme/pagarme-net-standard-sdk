@@ -23,32 +23,6 @@ namespace PagarmeApiSDK.Standard.Controllers
     public interface ICustomersController
     {
         /// <summary>
-        /// Creates a new address for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="request">Required parameter: Request for creating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        Models.GetAddressResponse CreateAddress(
-                string customerId,
-                Models.CreateAddressRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Creates a new address for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="request">Required parameter: Request for creating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        Task<Models.GetAddressResponse> CreateAddressAsync(
-                string customerId,
-                Models.CreateAddressRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Updates a card.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -75,6 +49,36 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string customerId,
                 string cardId,
                 Models.UpdateCardRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates an address.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="addressId">Required parameter: Address Id.</param>
+        /// <param name="request">Required parameter: Request for updating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        Models.GetAddressResponse UpdateAddress(
+                string customerId,
+                string addressId,
+                Models.UpdateAddressRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates an address.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="addressId">Required parameter: Address Id.</param>
+        /// <param name="request">Required parameter: Request for updating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        Task<Models.GetAddressResponse> UpdateAddressAsync(
+                string customerId,
+                string addressId,
+                Models.UpdateAddressRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
@@ -127,6 +131,32 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Creates a new address for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="request">Required parameter: Request for creating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        Models.GetAddressResponse CreateAddress(
+                string customerId,
+                Models.CreateAddressRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates a new address for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="request">Required parameter: Request for creating an address.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
+        Task<Models.GetAddressResponse> CreateAddressAsync(
+                string customerId,
+                Models.CreateAddressRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Delete a Customer's access tokens.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -142,36 +172,6 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
         Task<Models.ListAccessTokensResponse> DeleteAccessTokensAsync(
                 string customerId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Updates an address.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="addressId">Required parameter: Address Id.</param>
-        /// <param name="request">Required parameter: Request for updating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        Models.GetAddressResponse UpdateAddress(
-                string customerId,
-                string addressId,
-                Models.UpdateAddressRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Updates an address.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="addressId">Required parameter: Address Id.</param>
-        /// <param name="request">Required parameter: Request for updating an address.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAddressResponse response from the API call.</returns>
-        Task<Models.GetAddressResponse> UpdateAddressAsync(
-                string customerId,
-                string addressId,
-                Models.UpdateAddressRequest request,
-                string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -223,6 +223,32 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Creates a new card for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="request">Required parameter: Request for creating a card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        Models.GetCardResponse CreateCard(
+                string customerId,
+                Models.CreateCardRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates a new card for a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="request">Required parameter: Request for creating a card.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        Task<Models.GetCardResponse> CreateCardAsync(
+                string customerId,
+                Models.CreateCardRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get all Customers.
         /// </summary>
         /// <param name="name">Optional parameter: Name of the Customer.</param>
@@ -258,154 +284,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 int? size = 10,
                 string email = null,
                 string code = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get all access tokens from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
-        Models.ListAccessTokensResponse GetAccessTokens(
-                string customerId,
-                int? page = null,
-                int? size = null);
-
-        /// <summary>
-        /// Get all access tokens from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
-        Task<Models.ListAccessTokensResponse> GetAccessTokensAsync(
-                string customerId,
-                int? page = null,
-                int? size = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Delete a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="cardId">Required parameter: Card Id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        Models.GetCardResponse DeleteCard(
-                string customerId,
-                string cardId,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Delete a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="cardId">Required parameter: Card Id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        Task<Models.GetCardResponse> DeleteCardAsync(
-                string customerId,
-                string cardId,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="cardId">Required parameter: Card id.</param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        Models.GetCardResponse GetCard(
-                string customerId,
-                string cardId);
-
-        /// <summary>
-        /// Get a customer's card.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="cardId">Required parameter: Card id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        Task<Models.GetCardResponse> GetCardAsync(
-                string customerId,
-                string cardId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Creates a new card for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="request">Required parameter: Request for creating a card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        Models.GetCardResponse CreateCard(
-                string customerId,
-                Models.CreateCardRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Creates a new card for a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="request">Required parameter: Request for creating a card.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
-        Task<Models.GetCardResponse> CreateCardAsync(
-                string customerId,
-                Models.CreateCardRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get a Customer's access token.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="tokenId">Required parameter: Token Id.</param>
-        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
-        Models.GetAccessTokenResponse GetAccessToken(
-                string customerId,
-                string tokenId);
-
-        /// <summary>
-        /// Get a Customer's access token.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer Id.</param>
-        /// <param name="tokenId">Required parameter: Token Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
-        Task<Models.GetAccessTokenResponse> GetAccessTokenAsync(
-                string customerId,
-                string tokenId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Gets all adressess from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
-        Models.ListAddressesResponse GetAddresses(
-                string customerId,
-                int? page = null,
-                int? size = null);
-
-        /// <summary>
-        /// Gets all adressess from a customer.
-        /// </summary>
-        /// <param name="customerId">Required parameter: Customer id.</param>
-        /// <param name="page">Optional parameter: Page number.</param>
-        /// <param name="size">Optional parameter: Page size.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
-        Task<Models.ListAddressesResponse> GetAddressesAsync(
-                string customerId,
-                int? page = null,
-                int? size = null,
                 CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -461,6 +339,32 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Get all access tokens from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
+        Models.ListAccessTokensResponse GetAccessTokens(
+                string customerId,
+                int? page = null,
+                int? size = null);
+
+        /// <summary>
+        /// Get all access tokens from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListAccessTokensResponse response from the API call.</returns>
+        Task<Models.ListAccessTokensResponse> GetAccessTokensAsync(
+                string customerId,
+                int? page = null,
+                int? size = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get all cards from a customer.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -513,6 +417,28 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Get a Customer's access token.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="tokenId">Required parameter: Token Id.</param>
+        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
+        Models.GetAccessTokenResponse GetAccessToken(
+                string customerId,
+                string tokenId);
+
+        /// <summary>
+        /// Get a Customer's access token.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="tokenId">Required parameter: Token Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAccessTokenResponse response from the API call.</returns>
+        Task<Models.GetAccessTokenResponse> GetAccessTokenAsync(
+                string customerId,
+                string tokenId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Updates the metadata a customer.
         /// </summary>
         /// <param name="customerId">Required parameter: The customer id.</param>
@@ -539,6 +465,58 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Delete a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="cardId">Required parameter: Card Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        Models.GetCardResponse DeleteCard(
+                string customerId,
+                string cardId,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Delete a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer Id.</param>
+        /// <param name="cardId">Required parameter: Card Id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        Task<Models.GetCardResponse> DeleteCardAsync(
+                string customerId,
+                string cardId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Gets all adressess from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
+        Models.ListAddressesResponse GetAddresses(
+                string customerId,
+                int? page = null,
+                int? size = null);
+
+        /// <summary>
+        /// Gets all adressess from a customer.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="page">Optional parameter: Page number.</param>
+        /// <param name="size">Optional parameter: Page size.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListAddressesResponse response from the API call.</returns>
+        Task<Models.ListAddressesResponse> GetAddressesAsync(
+                string customerId,
+                int? page = null,
+                int? size = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get a customer.
         /// </summary>
         /// <param name="customerId">Required parameter: Customer Id.</param>
@@ -554,6 +532,28 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <returns>Returns the Models.GetCustomerResponse response from the API call.</returns>
         Task<Models.GetCustomerResponse> GetCustomerAsync(
                 string customerId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="cardId">Required parameter: Card id.</param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        Models.GetCardResponse GetCard(
+                string customerId,
+                string cardId);
+
+        /// <summary>
+        /// Get a customer's card.
+        /// </summary>
+        /// <param name="customerId">Required parameter: Customer id.</param>
+        /// <param name="cardId">Required parameter: Card id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetCardResponse response from the API call.</returns>
+        Task<Models.GetCardResponse> GetCardAsync(
+                string customerId,
+                string cardId,
                 CancellationToken cancellationToken = default);
     }
 }
