@@ -22,6 +22,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateManagingPartnerRequest
     {
+        private string motherName;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "mother_name", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateManagingPartnerRequest"/> class.
         /// </summary>
@@ -35,29 +41,33 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="name">name.</param>
         /// <param name="email">email.</param>
         /// <param name="document">document.</param>
-        /// <param name="motherName">mother_name.</param>
         /// <param name="birthdate">birthdate.</param>
         /// <param name="monthlyIncome">monthly_income.</param>
         /// <param name="professionalOccupation">professional_occupation.</param>
         /// <param name="selfDeclaredLegalRepresentative">self_declared_legal_representative.</param>
         /// <param name="address">address.</param>
         /// <param name="phoneNumbers">phone_numbers.</param>
+        /// <param name="motherName">mother_name.</param>
         public CreateManagingPartnerRequest(
             string name,
             string email,
             string document,
-            string motherName,
             string birthdate,
             int monthlyIncome,
             string professionalOccupation,
             bool selfDeclaredLegalRepresentative,
             Models.CreateRegisterInformationAddressRequest address,
-            List<Models.CreateRegisterInformationPhoneRequest> phoneNumbers)
+            List<Models.CreateRegisterInformationPhoneRequest> phoneNumbers,
+            string motherName = null)
         {
             this.Name = name;
             this.Email = email;
             this.Document = document;
-            this.MotherName = motherName;
+            if (motherName != null)
+            {
+                this.MotherName = motherName;
+            }
+
             this.Birthdate = birthdate;
             this.MonthlyIncome = monthlyIncome;
             this.ProfessionalOccupation = professionalOccupation;
@@ -88,7 +98,19 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets MotherName.
         /// </summary>
         [JsonProperty("mother_name")]
-        public string MotherName { get; set; }
+        public string MotherName
+        {
+            get
+            {
+                return this.motherName;
+            }
+
+            set
+            {
+                this.shouldSerialize["mother_name"] = true;
+                this.motherName = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets Birthdate.
@@ -134,6 +156,23 @@ namespace PagarmeApiSDK.Standard.Models
             this.ToString(toStringOutput);
 
             return $"CreateManagingPartnerRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetMotherName()
+        {
+            this.shouldSerialize["mother_name"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMotherName()
+        {
+            return this.shouldSerialize["mother_name"];
         }
 
         /// <inheritdoc/>
