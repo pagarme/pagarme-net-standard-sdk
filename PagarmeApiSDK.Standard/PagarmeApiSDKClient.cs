@@ -33,7 +33,7 @@ namespace PagarmeApiSDK.Standard
         };
 
         private readonly GlobalConfiguration globalConfiguration;
-        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.8";
+        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.9";
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
@@ -337,6 +337,7 @@ namespace PagarmeApiSDK.Standard
                 return this;
             }
 
+
            
 
             /// <summary>
@@ -345,7 +346,6 @@ namespace PagarmeApiSDK.Standard
             /// <returns>PagarmeApiSDKClient.</returns>
             public PagarmeApiSDKClient Build()
             {
-
                 if (basicAuthModel.Username == null || basicAuthModel.Password == null)
                 {
                     basicAuthModel = null;
