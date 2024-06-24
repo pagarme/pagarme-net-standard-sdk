@@ -62,7 +62,7 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.CreateRegisterInformationPhoneRequest> phoneNumbers,
             string companyName,
             string tradingName,
-            int annualRevenue,
+            long annualRevenue,
             List<Models.CreateManagingPartnerRequest> managingPartners,
             Models.CreateRegisterInformationAddressRequest mainAddress,
             string siteUrl = null,
@@ -114,7 +114,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets AnnualRevenue.
         /// </summary>
         [JsonProperty("annual_revenue")]
-        public int AnnualRevenue { get; set; }
+        public long AnnualRevenue { get; set; }
 
         /// <summary>
         /// Gets or sets CorporationType.
