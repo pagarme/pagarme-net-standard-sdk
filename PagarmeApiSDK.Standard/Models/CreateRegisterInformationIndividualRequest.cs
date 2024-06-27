@@ -56,7 +56,7 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.CreateRegisterInformationPhoneRequest> phoneNumbers,
             string name,
             string birthdate,
-            int monthlyIncome,
+            long monthlyIncome,
             string professionalOccupation,
             Models.CreateRegisterInformationAddressRequest address,
             string siteUrl = null,
@@ -114,7 +114,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets MonthlyIncome.
         /// </summary>
         [JsonProperty("monthly_income")]
-        public int MonthlyIncome { get; set; }
+        public long MonthlyIncome { get; set; }
 
         /// <summary>
         /// Gets or sets ProfessionalOccupation.

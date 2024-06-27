@@ -53,7 +53,7 @@ namespace PagarmeApiSDK.Standard.Models
             string email,
             string document,
             string birthdate,
-            int monthlyIncome,
+            long monthlyIncome,
             string professionalOccupation,
             bool selfDeclaredLegalRepresentative,
             Models.CreateRegisterInformationAddressRequest address,
@@ -122,7 +122,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// Gets or sets MonthlyIncome.
         /// </summary>
         [JsonProperty("monthly_income")]
-        public int MonthlyIncome { get; set; }
+        public long MonthlyIncome { get; set; }
 
         /// <summary>
         /// Gets or sets ProfessionalOccupation.

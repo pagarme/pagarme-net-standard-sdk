@@ -16,7 +16,7 @@
 | `Name` | `string` | Required | - |
 | `MotherName` | `string` | Optional | - |
 | `Birthdate` | `string` | Required | - |
-| `MonthlyIncome` | `int` | Required | - |
+| `MonthlyIncome` | `long` | Required | - |
 | `ProfessionalOccupation` | `string` | Required | - |
 | `Address` | [`CreateRegisterInformationAddressRequest`](../../doc/models/create-register-information-address-request.md) | Required | - |
 
