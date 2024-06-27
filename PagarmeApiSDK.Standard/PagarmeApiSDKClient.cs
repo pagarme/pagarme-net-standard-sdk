@@ -33,7 +33,7 @@ namespace PagarmeApiSDK.Standard
         };
 
         private readonly GlobalConfiguration globalConfiguration;
-        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.9";
+        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.10";
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
