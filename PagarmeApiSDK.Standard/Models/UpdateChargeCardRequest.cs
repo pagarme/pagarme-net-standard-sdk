@@ -36,16 +36,22 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="cardId">card_id.</param>
         /// <param name="card">card.</param>
         /// <param name="recurrence">recurrence.</param>
+        /// <param name="initiatedType">initiated_type.</param>
+        /// <param name="recurrenceModel">recurrence_model.</param>
         public UpdateChargeCardRequest(
             bool updateSubscription,
             string cardId,
             Models.CreateCardRequest card,
-            bool recurrence)
+            bool recurrence,
+            string initiatedType = null,
+            string recurrenceModel = null)
         {
             this.UpdateSubscription = updateSubscription;
             this.CardId = cardId;
             this.Card = card;
             this.Recurrence = recurrence;
+            this.InitiatedType = initiatedType;
+            this.RecurrenceModel = recurrenceModel;
         }
 
         /// <summary>
@@ -72,6 +78,18 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("recurrence")]
         public bool Recurrence { get; set; }
 
+        /// <summary>
+        /// Gets or sets InitiatedType.
+        /// </summary>
+        [JsonProperty("initiated_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string InitiatedType { get; set; }
+
+        /// <summary>
+        /// Gets or sets RecurrenceModel.
+        /// </summary>
+        [JsonProperty("recurrence_model", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrenceModel { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -97,7 +115,9 @@ namespace PagarmeApiSDK.Standard.Models
             return obj is UpdateChargeCardRequest other &&                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
                 ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                this.Recurrence.Equals(other.Recurrence);
+                this.Recurrence.Equals(other.Recurrence) &&
+                ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
+                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true));
         }
         
         /// <summary>
@@ -110,6 +130,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
             toStringOutput.Add($"this.Recurrence = {this.Recurrence}");
+            toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
+            toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
         }
     }
 }

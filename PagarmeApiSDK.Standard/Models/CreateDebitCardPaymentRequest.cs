@@ -39,6 +39,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="recurrence">recurrence.</param>
         /// <param name="authentication">authentication.</param>
         /// <param name="token">token.</param>
+        /// <param name="initiatedType">initiated_type.</param>
+        /// <param name="recurrenceModel">recurrence_model.</param>
         public CreateDebitCardPaymentRequest(
             string statementDescriptor = null,
             Models.CreateCardRequest card = null,
@@ -46,7 +48,9 @@ namespace PagarmeApiSDK.Standard.Models
             string cardToken = null,
             bool? recurrence = null,
             Models.CreatePaymentAuthenticationRequest authentication = null,
-            Models.CreateCardPaymentContactlessRequest token = null)
+            Models.CreateCardPaymentContactlessRequest token = null,
+            string initiatedType = null,
+            string recurrenceModel = null)
         {
             this.StatementDescriptor = statementDescriptor;
             this.Card = card;
@@ -55,6 +59,8 @@ namespace PagarmeApiSDK.Standard.Models
             this.Recurrence = recurrence;
             this.Authentication = authentication;
             this.Token = token;
+            this.InitiatedType = initiatedType;
+            this.RecurrenceModel = recurrenceModel;
         }
 
         /// <summary>
@@ -99,6 +105,18 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("token", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateCardPaymentContactlessRequest Token { get; set; }
 
+        /// <summary>
+        /// Gets or sets InitiatedType.
+        /// </summary>
+        [JsonProperty("initiated_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string InitiatedType { get; set; }
+
+        /// <summary>
+        /// Gets or sets RecurrenceModel.
+        /// </summary>
+        [JsonProperty("recurrence_model", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrenceModel { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -127,7 +145,9 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
                 ((this.Recurrence == null && other.Recurrence == null) || (this.Recurrence?.Equals(other.Recurrence) == true)) &&
                 ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true)) &&
-                ((this.Token == null && other.Token == null) || (this.Token?.Equals(other.Token) == true));
+                ((this.Token == null && other.Token == null) || (this.Token?.Equals(other.Token) == true)) &&
+                ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
+                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true));
         }
         
         /// <summary>
@@ -143,6 +163,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Recurrence = {(this.Recurrence == null ? "null" : this.Recurrence.ToString())}");
             toStringOutput.Add($"this.Authentication = {(this.Authentication == null ? "null" : this.Authentication.ToString())}");
             toStringOutput.Add($"this.Token = {(this.Token == null ? "null" : this.Token.ToString())}");
+            toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
+            toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
         }
     }
 }
