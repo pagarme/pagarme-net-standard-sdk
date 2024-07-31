@@ -48,6 +48,8 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="operationType">operation_type.</param>
         /// <param name="recurrencyCycle">recurrency_cycle.</param>
         /// <param name="payload">payload.</param>
+        /// <param name="initiatedType">initiated_type.</param>
+        /// <param name="recurrenceModel">recurrence_model.</param>
         public CreateCreditCardPaymentRequest(
             int? installments = 1,
             string statementDescriptor = null,
@@ -64,7 +66,9 @@ namespace PagarmeApiSDK.Standard.Models
             bool? autoRecovery = null,
             string operationType = null,
             string recurrencyCycle = null,
-            Models.CreateCardPayloadRequest payload = null)
+            Models.CreateCardPayloadRequest payload = null,
+            string initiatedType = null,
+            string recurrenceModel = null)
         {
             this.Installments = installments;
             this.StatementDescriptor = statementDescriptor;
@@ -82,6 +86,8 @@ namespace PagarmeApiSDK.Standard.Models
             this.OperationType = operationType;
             this.RecurrencyCycle = recurrencyCycle;
             this.Payload = payload;
+            this.InitiatedType = initiatedType;
+            this.RecurrenceModel = recurrenceModel;
         }
 
         /// <summary>
@@ -180,6 +186,18 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateCardPayloadRequest Payload { get; set; }
 
+        /// <summary>
+        /// Gets or sets InitiatedType.
+        /// </summary>
+        [JsonProperty("initiated_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string InitiatedType { get; set; }
+
+        /// <summary>
+        /// Gets or sets RecurrenceModel.
+        /// </summary>
+        [JsonProperty("recurrence_model", NullValueHandling = NullValueHandling.Ignore)]
+        public string RecurrenceModel { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -217,7 +235,9 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.AutoRecovery == null && other.AutoRecovery == null) || (this.AutoRecovery?.Equals(other.AutoRecovery) == true)) &&
                 ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true)) &&
                 ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true)) &&
-                ((this.Payload == null && other.Payload == null) || (this.Payload?.Equals(other.Payload) == true));
+                ((this.Payload == null && other.Payload == null) || (this.Payload?.Equals(other.Payload) == true)) &&
+                ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
+                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true));
         }
         
         /// <summary>
@@ -242,6 +262,8 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType)}");
             toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle)}");
             toStringOutput.Add($"this.Payload = {(this.Payload == null ? "null" : this.Payload.ToString())}");
+            toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
+            toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
         }
     }
 }

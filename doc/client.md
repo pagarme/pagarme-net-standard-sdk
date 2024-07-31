@@ -7,7 +7,7 @@ The following parameters are configurable for the API Client:
 |  --- | --- | --- |
 | `ServiceRefererName` | `string` |  |
 | `Timeout` | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
-| `BasicAuthCredentials` | [`BasicAuthCredentials`]($a/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| `BasicAuthCredentials` | [`BasicAuthCredentials`](auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
 
 The API client can be initialized as follows:
 
@@ -52,7 +52,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | Timeout | Http client timeout. | `TimeSpan` |
 | ServiceRefererName | - | `string` |
 | Environment | Current API environment. | `Environment` |
-| BasicAuthCredentials | Gets the credentials to use with BasicAuth. | [`IBasicAuthCredentials`]($a/basic-authentication.md) |
+| BasicAuthCredentials | Gets the credentials to use with BasicAuth. | [`IBasicAuthCredentials`](auth/basic-authentication.md) |
 
 ### Methods
 
