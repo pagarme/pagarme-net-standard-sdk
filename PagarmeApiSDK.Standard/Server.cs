@@ -1,6 +1,7 @@
 // <copyright file="Server.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+
 namespace PagarmeApiSDK.Standard
 {
     /// <summary>

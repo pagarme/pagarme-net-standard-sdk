@@ -1,12 +1,12 @@
 // <copyright file="HttpResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System.IO;
+using System.Collections.Generic;
+using APIMatic.Core.Types.Sdk;
+
 namespace PagarmeApiSDK.Standard.Http.Response
 {
-    using System.IO;
-    using System.Collections.Generic;
-    using APIMatic.Core.Types.Sdk;
-
     /// <summary>
     /// HttpResponse stores necessary information about the http response.
     /// </summary>

@@ -1,10 +1,10 @@
 // <copyright file="CustomDateTimeConverter.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using APIMatic.Core.Utilities.Date;
+
 namespace PagarmeApiSDK.Standard.Utilities
 {
-    using APIMatic.Core.Utilities.Date;
-
     /// <summary>
     /// Extends from IsoDateTimeConverter to allow a custom DateTime format.
     /// </summary>

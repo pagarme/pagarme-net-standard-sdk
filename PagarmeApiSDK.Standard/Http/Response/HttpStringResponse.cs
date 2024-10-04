@@ -1,11 +1,11 @@
 // <copyright file="HttpStringResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System.IO;
+using System.Collections.Generic;
+
 namespace PagarmeApiSDK.Standard.Http.Response
 {
-    using System.IO;
-    using System.Collections.Generic;
-
     /// <summary>
     /// HttpStringResponse inherits from HttpResponse and has additional property
     /// of string body.

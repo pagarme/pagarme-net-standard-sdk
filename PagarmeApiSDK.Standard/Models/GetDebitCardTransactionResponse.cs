@@ -1,22 +1,22 @@
 // <copyright file="GetDebitCardTransactionResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// GetDebitCardTransactionResponse.
     /// </summary>
@@ -38,6 +38,7 @@ namespace PagarmeApiSDK.Standard.Models
         private string threedAuthenticationUrl;
         private string fundingSource;
         private Models.GetRetryTransactionInformationResponse retryInfo;
+        private string brandId;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "statement_descriptor", false },
@@ -56,6 +57,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "threed_authentication_url", false },
             { "funding_source", false },
             { "retry_info", false },
+            { "brand_id", false },
         };
 
         /// <summary>
@@ -104,6 +106,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="threedAuthenticationUrl">threed_authentication_url.</param>
         /// <param name="fundingSource">funding_source.</param>
         /// <param name="retryInfo">retry_info.</param>
+        /// <param name="brandId">brand_id.</param>
         public GetDebitCardTransactionResponse(
             string transactionType = "debit_card",
             string gatewayId = null,
@@ -139,7 +142,8 @@ namespace PagarmeApiSDK.Standard.Models
             string authenticationType = null,
             string threedAuthenticationUrl = null,
             string fundingSource = null,
-            Models.GetRetryTransactionInformationResponse retryInfo = null)
+            Models.GetRetryTransactionInformationResponse retryInfo = null,
+            string brandId = null)
             : base(
                 transactionType,
                 gatewayId,
@@ -239,6 +243,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (retryInfo != null)
             {
                 this.RetryInfo = retryInfo;
+            }
+
+            if (brandId != null)
+            {
+                this.BrandId = brandId;
             }
 
         }
@@ -531,6 +540,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets BrandId.
+        /// </summary>
+        [JsonProperty("brand_id")]
+        public string BrandId
+        {
+            get
+            {
+                return this.brandId;
+            }
+
+            set
+            {
+                this.shouldSerialize["brand_id"] = true;
+                this.brandId = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -667,6 +694,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetRetryInfo()
         {
             this.shouldSerialize["retry_info"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetBrandId()
+        {
+            this.shouldSerialize["brand_id"] = false;
         }
 
         /// <summary>
@@ -813,6 +848,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["retry_info"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeBrandId()
+        {
+            return this.shouldSerialize["brand_id"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -841,6 +885,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.ThreedAuthenticationUrl == null && other.ThreedAuthenticationUrl == null) || (this.ThreedAuthenticationUrl?.Equals(other.ThreedAuthenticationUrl) == true)) &&
                 ((this.FundingSource == null && other.FundingSource == null) || (this.FundingSource?.Equals(other.FundingSource) == true)) &&
                 ((this.RetryInfo == null && other.RetryInfo == null) || (this.RetryInfo?.Equals(other.RetryInfo) == true)) &&
+                ((this.BrandId == null && other.BrandId == null) || (this.BrandId?.Equals(other.BrandId) == true)) &&
                 base.Equals(obj);
         }
         
@@ -866,6 +911,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.ThreedAuthenticationUrl = {(this.ThreedAuthenticationUrl == null ? "null" : this.ThreedAuthenticationUrl)}");
             toStringOutput.Add($"this.FundingSource = {(this.FundingSource == null ? "null" : this.FundingSource)}");
             toStringOutput.Add($"this.RetryInfo = {(this.RetryInfo == null ? "null" : this.RetryInfo.ToString())}");
+            toStringOutput.Add($"this.BrandId = {(this.BrandId == null ? "null" : this.BrandId)}");
 
             base.ToString(toStringOutput);
         }

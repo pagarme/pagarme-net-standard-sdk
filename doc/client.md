@@ -12,7 +12,7 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```csharp
-PagarmeApiSDK.Standard.PagarmeApiSDKClient client = new PagarmeApiSDK.Standard.PagarmeApiSDKClient.Builder()
+PagarmeApiSDKClient client = new PagarmeApiSDKClient.Builder()
     .BasicAuthCredentials(
         new BasicAuthModel.Builder(
             "BasicAuthUserName",

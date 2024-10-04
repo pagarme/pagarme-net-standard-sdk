@@ -1,27 +1,27 @@
 // <copyright file="TransactionsController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using APIMatic.Core;
+using APIMatic.Core.Types;
+using APIMatic.Core.Utilities;
+using APIMatic.Core.Utilities.Date.Xml;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Utilities;
+using System.Net.Http;
+
 namespace PagarmeApiSDK.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using APIMatic.Core;
-    using APIMatic.Core.Types;
-    using APIMatic.Core.Utilities;
-    using APIMatic.Core.Utilities.Date.Xml;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Utilities;
-    using System.Net.Http;
-
     /// <summary>
     /// TransactionsController.
     /// </summary>

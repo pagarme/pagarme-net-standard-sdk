@@ -1,22 +1,22 @@
 // <copyright file="UpdateChargeCardRequest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// UpdateChargeCardRequest.
     /// </summary>
@@ -38,13 +38,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="recurrence">recurrence.</param>
         /// <param name="initiatedType">initiated_type.</param>
         /// <param name="recurrenceModel">recurrence_model.</param>
+        /// <param name="paymentOrigin">payment_origin.</param>
         public UpdateChargeCardRequest(
             bool updateSubscription,
             string cardId,
             Models.CreateCardRequest card,
             bool recurrence,
             string initiatedType = null,
-            string recurrenceModel = null)
+            string recurrenceModel = null,
+            Models.CreatePaymentOriginRequest paymentOrigin = null)
         {
             this.UpdateSubscription = updateSubscription;
             this.CardId = cardId;
@@ -52,6 +54,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Recurrence = recurrence;
             this.InitiatedType = initiatedType;
             this.RecurrenceModel = recurrenceModel;
+            this.PaymentOrigin = paymentOrigin;
         }
 
         /// <summary>
@@ -90,6 +93,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("recurrence_model", NullValueHandling = NullValueHandling.Ignore)]
         public string RecurrenceModel { get; set; }
 
+        /// <summary>
+        /// Gets or sets PaymentOrigin.
+        /// </summary>
+        [JsonProperty("payment_origin", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreatePaymentOriginRequest PaymentOrigin { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -117,7 +126,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
                 this.Recurrence.Equals(other.Recurrence) &&
                 ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
-                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true));
+                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true)) &&
+                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true));
         }
         
         /// <summary>
@@ -132,6 +142,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Recurrence = {this.Recurrence}");
             toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
             toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
+            toStringOutput.Add($"this.PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
         }
     }
 }

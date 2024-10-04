@@ -1,27 +1,27 @@
 // <copyright file="TransfersController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using APIMatic.Core;
+using APIMatic.Core.Types;
+using APIMatic.Core.Utilities;
+using APIMatic.Core.Utilities.Date.Xml;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Utilities;
+using System.Net.Http;
+
 namespace PagarmeApiSDK.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using APIMatic.Core;
-    using APIMatic.Core.Types;
-    using APIMatic.Core.Utilities;
-    using APIMatic.Core.Utilities.Date.Xml;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Utilities;
-    using System.Net.Http;
-
     /// <summary>
     /// TransfersController.
     /// </summary>
@@ -59,25 +59,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public Models.ListTransfers GetTransfers()
-            => CoreHelper.RunTask(GetTransfersAsync());
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListTransfers>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/transfers")
-                  .WithAuth("httpBasic"))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// CreateTransfer EndPoint.
         /// </summary>
         /// <param name="request">Required parameter: Example: .</param>
@@ -101,6 +82,25 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public Models.ListTransfers GetTransfers()
+            => CoreHelper.RunTask(GetTransfersAsync());
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListTransfers>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/transfers")
+                  .WithAuth("httpBasic"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

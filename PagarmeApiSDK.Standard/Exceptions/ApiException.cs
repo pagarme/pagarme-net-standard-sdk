@@ -1,13 +1,13 @@
 // <copyright file="ApiException.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using APIMatic.Core.Types.Sdk;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Http.Request;
+using PagarmeApiSDK.Standard.Http.Response;
+
 namespace PagarmeApiSDK.Standard.Exceptions
 {
-    using APIMatic.Core.Types.Sdk;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Response;
-
     /// <summary>
     /// This is the base class for all exceptions that represent an error response
     /// from the server.

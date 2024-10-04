@@ -1,33 +1,33 @@
 // <copyright file="GetTransactionResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// GetTransactionResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
+    [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
     [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
-    [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
     [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
-    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
+    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
     [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse

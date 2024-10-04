@@ -1,11 +1,11 @@
 // <copyright file="IPagarmeApiSDKClient.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using PagarmeApiSDK.Standard.Controllers;
+
 namespace PagarmeApiSDK.Standard
 {
-    using System;
-    using PagarmeApiSDK.Standard.Controllers;
-
     /// <summary>
     /// IPagarmeApiSDKClient.
     /// </summary>

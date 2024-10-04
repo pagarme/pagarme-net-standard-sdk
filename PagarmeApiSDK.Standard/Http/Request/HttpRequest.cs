@@ -1,12 +1,12 @@
 // <copyright file="HttpRequest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System.Net.Http;
+using System.Collections.Generic;
+using APIMatic.Core.Types.Sdk;
+
 namespace PagarmeApiSDK.Standard.Http.Request
 {
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using APIMatic.Core.Types.Sdk;
-
     /// <summary>
     /// HttpRequest stores necessary information about the http request.
     /// </summary>

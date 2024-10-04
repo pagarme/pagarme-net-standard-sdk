@@ -1,13 +1,13 @@
 // <copyright file="IConfiguration.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Net;
+using PagarmeApiSDK.Standard.Authentication;
+using PagarmeApiSDK.Standard.Models;
+
 namespace PagarmeApiSDK.Standard
 {
-    using System;
-    using System.Net;
-    using PagarmeApiSDK.Standard.Authentication;
-    using PagarmeApiSDK.Standard.Models;
-
     /// <summary>
     /// IConfiguration.
     /// </summary>

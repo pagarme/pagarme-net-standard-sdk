@@ -1,22 +1,22 @@
 // <copyright file="GetTransfer.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// GetTransfer.
     /// </summary>
