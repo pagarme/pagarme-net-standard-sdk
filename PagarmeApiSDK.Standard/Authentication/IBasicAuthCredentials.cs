@@ -1,10 +1,10 @@
 // <copyright file="IBasicAuthCredentials.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+
 namespace PagarmeApiSDK.Standard.Authentication
 {
-    using System;
-
     /// <summary>
     /// Authentication configuration interface for BasicAuth.
     /// </summary>

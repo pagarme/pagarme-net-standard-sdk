@@ -1,19 +1,18 @@
 // <copyright file="PagarmeApiSDKClient.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using APIMatic.Core;
+using APIMatic.Core.Authentication;
+using PagarmeApiSDK.Standard.Authentication;
+using PagarmeApiSDK.Standard.Controllers;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using APIMatic.Core;
-    using APIMatic.Core.Authentication;
-    using APIMatic.Core.Types;
-    using PagarmeApiSDK.Standard.Authentication;
-    using PagarmeApiSDK.Standard.Controllers;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// The gateway for the SDK. This class acts as a factory for Controller and
     /// holds the configuration of the SDK.
@@ -33,7 +32,8 @@ namespace PagarmeApiSDK.Standard
         };
 
         private readonly GlobalConfiguration globalConfiguration;
-        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.11";
+        private const string userAgent = "PagarmeApiSDK - DotNet 6.8.12";
+        private readonly HttpCallback httpCallback;
         private readonly Lazy<ISubscriptionsController> subscriptions;
         private readonly Lazy<IOrdersController> orders;
         private readonly Lazy<IPlansController> plans;
@@ -51,10 +51,12 @@ namespace PagarmeApiSDK.Standard
             string serviceRefererName,
             Environment environment,
             BasicAuthModel basicAuthModel,
+            HttpCallback httpCallback,
             IHttpClientConfiguration httpClientConfiguration)
         {
             this.ServiceRefererName = serviceRefererName;
             this.Environment = environment;
+            this.httpCallback = httpCallback;
             this.HttpClientConfiguration = httpClientConfiguration;
             BasicAuthModel = basicAuthModel;
             var basicAuthManager = new BasicAuthManager(basicAuthModel);
@@ -62,6 +64,7 @@ namespace PagarmeApiSDK.Standard
                 .AuthManagers(new Dictionary<string, AuthManager> {
                     {"httpBasic", basicAuthManager},
                 })
+                .ApiCallback(httpCallback)
                 .HttpConfiguration(httpClientConfiguration)
                 .ServerUrls(EnvironmentsMap[environment], Server.Default)
                 .Parameters(globalParameter => globalParameter
@@ -174,6 +177,10 @@ namespace PagarmeApiSDK.Standard
         /// </summary>
         public Environment Environment { get; }
 
+        /// <summary>
+        /// Gets http callback.
+        /// </summary>
+        public HttpCallback HttpCallback => this.httpCallback;
 
         /// <summary>
         /// Gets the credentials to use with BasicAuth.
@@ -205,6 +212,7 @@ namespace PagarmeApiSDK.Standard
             Builder builder = new Builder()
                 .ServiceRefererName(this.ServiceRefererName)
                 .Environment(this.Environment)
+                .HttpCallback(httpCallback)
                 .HttpClientConfig(config => config.Build());
 
             if (BasicAuthModel != null)
@@ -266,6 +274,7 @@ namespace PagarmeApiSDK.Standard
             private Environment environment = PagarmeApiSDK.Standard.Environment.Production;
             private BasicAuthModel basicAuthModel = new BasicAuthModel();
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
+            private HttpCallback httpCallback;
 
             /// <summary>
             /// Sets credentials for BasicAuth.
@@ -338,7 +347,17 @@ namespace PagarmeApiSDK.Standard
             }
 
 
-           
+
+            /// <summary>
+            /// Sets the HttpCallback for the Builder.
+            /// </summary>
+            /// <param name="httpCallback"> http callback. </param>
+            /// <returns>Builder.</returns>
+            public Builder HttpCallback(HttpCallback httpCallback)
+            {
+                this.httpCallback = httpCallback;
+                return this;
+            }
 
             /// <summary>
             /// Creates an object of the PagarmeApiSDKClient using the values provided for the builder.
@@ -354,6 +373,7 @@ namespace PagarmeApiSDK.Standard
                     serviceRefererName,
                     environment,
                     basicAuthModel,
+                    httpCallback,
                     httpClientConfig.Build());
             }
         }

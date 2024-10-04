@@ -1,22 +1,22 @@
 // <copyright file="GetRecipientResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// GetRecipientResponse.
     /// </summary>
@@ -60,6 +60,11 @@ namespace PagarmeApiSDK.Standard.Models
             { "code", false },
             { "payment_mode", true },
             { "register_information", false },
+        };
+
+        private Dictionary<string, bool> hasPropertySetterCalledFor = new Dictionary<string, bool>
+        {
+            { "payment_mode", false },
         };
 
         /// <summary>
@@ -497,12 +502,19 @@ namespace PagarmeApiSDK.Standard.Models
         {
             get
             {
+                if (!hasPropertySetterCalledFor["payment_mode"] &&
+                    paymentMode == null)
+                {
+                    return "bank_transfer"; // Default value
+                }
+
                 return this.paymentMode;
             }
 
             set
             {
                 this.shouldSerialize["payment_mode"] = true;
+                hasPropertySetterCalledFor["payment_mode"] = true;
                 this.paymentMode = value;
             }
         }
@@ -669,6 +681,7 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetPaymentMode()
         {
             this.shouldSerialize["payment_mode"] = false;
+            this.hasPropertySetterCalledFor["payment_mode"] = false;
         }
 
         /// <summary>

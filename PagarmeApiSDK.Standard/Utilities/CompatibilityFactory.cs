@@ -1,16 +1,15 @@
 // <copyright file="CompatibilityFactory.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using APIMatic.Core.Types.Sdk;
+using APIMatic.Core.Utilities;
+using PagarmeApiSDK.Standard.Exceptions;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Http.Request;
+using PagarmeApiSDK.Standard.Http.Response;
 
 namespace PagarmeApiSDK.Standard.Utilities
 {
-    using APIMatic.Core.Types.Sdk;
-    using APIMatic.Core.Utilities;
-    using PagarmeApiSDK.Standard.Exceptions;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Response;
-
     internal class CompatibilityFactory : ICompatibilityFactory<HttpRequest, HttpResponse, HttpContext, ApiException>
     {
         public ApiException CreateApiException(string reason, CoreContext<CoreRequest, CoreResponse> context) =>

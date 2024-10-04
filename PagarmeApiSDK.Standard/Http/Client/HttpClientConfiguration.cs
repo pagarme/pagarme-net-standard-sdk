@@ -1,15 +1,15 @@
 // <copyright file="HttpClientConfiguration.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using System.Net.Http;
+using APIMatic.Core.Http.Configuration;
+
 namespace PagarmeApiSDK.Standard.Http.Client
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.Immutable;
-    using System.Linq;
-    using System.Net.Http;
-    using APIMatic.Core.Http.Configuration;
-
     /// <summary>
     /// HttpClientConfiguration represents the current state of the Http Client.
     /// </summary>

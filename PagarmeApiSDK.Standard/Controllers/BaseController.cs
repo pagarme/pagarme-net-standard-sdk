@@ -1,19 +1,19 @@
 // <copyright file="BaseController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using APIMatic.Core;
+using APIMatic.Core.Http.Configuration;
+using APIMatic.Core.Response;
+using PagarmeApiSDK.Standard.Exceptions;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Http.Request;
+using PagarmeApiSDK.Standard.Http.Response;
+using PagarmeApiSDK.Standard.Utilities;
+using System;
+using System.Collections.Generic;
+
 namespace PagarmeApiSDK.Standard.Controllers
 {
-    using APIMatic.Core;
-    using APIMatic.Core.Http.Configuration;
-    using APIMatic.Core.Response;
-    using PagarmeApiSDK.Standard.Exceptions;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Response;
-    using PagarmeApiSDK.Standard.Utilities;
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// The base class for all controller classes.
     /// </summary>

@@ -1,22 +1,22 @@
 // <copyright file="CreateDebitCardPaymentRequest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// CreateDebitCardPaymentRequest.
     /// </summary>
@@ -41,6 +41,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="token">token.</param>
         /// <param name="initiatedType">initiated_type.</param>
         /// <param name="recurrenceModel">recurrence_model.</param>
+        /// <param name="paymentOrigin">payment_origin.</param>
         public CreateDebitCardPaymentRequest(
             string statementDescriptor = null,
             Models.CreateCardRequest card = null,
@@ -50,7 +51,8 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreatePaymentAuthenticationRequest authentication = null,
             Models.CreateCardPaymentContactlessRequest token = null,
             string initiatedType = null,
-            string recurrenceModel = null)
+            string recurrenceModel = null,
+            Models.CreatePaymentOriginRequest paymentOrigin = null)
         {
             this.StatementDescriptor = statementDescriptor;
             this.Card = card;
@@ -61,6 +63,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Token = token;
             this.InitiatedType = initiatedType;
             this.RecurrenceModel = recurrenceModel;
+            this.PaymentOrigin = paymentOrigin;
         }
 
         /// <summary>
@@ -117,6 +120,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("recurrence_model", NullValueHandling = NullValueHandling.Ignore)]
         public string RecurrenceModel { get; set; }
 
+        /// <summary>
+        /// Gets or sets PaymentOrigin.
+        /// </summary>
+        [JsonProperty("payment_origin", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.CreatePaymentOriginRequest PaymentOrigin { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -147,7 +156,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true)) &&
                 ((this.Token == null && other.Token == null) || (this.Token?.Equals(other.Token) == true)) &&
                 ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
-                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true));
+                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true)) &&
+                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true));
         }
         
         /// <summary>
@@ -165,6 +175,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Token = {(this.Token == null ? "null" : this.Token.ToString())}");
             toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
             toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
+            toStringOutput.Add($"this.PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
         }
     }
 }

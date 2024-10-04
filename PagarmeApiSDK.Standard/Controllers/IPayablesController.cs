@@ -1,22 +1,22 @@
 // <copyright file="IPayablesController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Http.Request;
+using PagarmeApiSDK.Standard.Http.Response;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Response;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// IPayablesController.
     /// </summary>

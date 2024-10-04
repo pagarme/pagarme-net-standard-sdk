@@ -32,6 +32,7 @@ Response object for getting a charge
 | `PaidAmount` | `int?` | Optional | Paid amount |
 | `InterestAndFinePaid` | `int?` | Optional | interest and fine paid |
 | `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
+| `PaymentOrigin` | [`GetPaymentOriginResponse`](../../doc/models/get-payment-origin-response.md) | Optional | - |
 
 ## Example (as JSON)
 

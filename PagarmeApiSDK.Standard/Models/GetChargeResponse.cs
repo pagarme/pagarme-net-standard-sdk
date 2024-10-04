@@ -1,22 +1,22 @@
 // <copyright file="GetChargeResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using JsonSubTypes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using JsonSubTypes;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// GetChargeResponse.
     /// </summary>
@@ -43,6 +43,7 @@ namespace PagarmeApiSDK.Standard.Models
         private int? paidAmount;
         private int? interestAndFinePaid;
         private string recurrencyCycle;
+        private Models.GetPaymentOriginResponse paymentOrigin;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
@@ -66,6 +67,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "paid_amount", false },
             { "interest_and_fine_paid", false },
             { "recurrency_cycle", false },
+            { "payment_origin", false },
         };
 
         /// <summary>
@@ -99,6 +101,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="paidAmount">paid_amount.</param>
         /// <param name="interestAndFinePaid">interest_and_fine_paid.</param>
         /// <param name="recurrencyCycle">recurrency_cycle.</param>
+        /// <param name="paymentOrigin">payment_origin.</param>
         public GetChargeResponse(
             string id = null,
             string code = null,
@@ -120,7 +123,8 @@ namespace PagarmeApiSDK.Standard.Models
             int? canceledAmount = null,
             int? paidAmount = null,
             int? interestAndFinePaid = null,
-            string recurrencyCycle = null)
+            string recurrencyCycle = null,
+            Models.GetPaymentOriginResponse paymentOrigin = null)
         {
             if (id != null)
             {
@@ -225,6 +229,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (recurrencyCycle != null)
             {
                 this.RecurrencyCycle = recurrencyCycle;
+            }
+
+            if (paymentOrigin != null)
+            {
+                this.PaymentOrigin = paymentOrigin;
             }
 
         }
@@ -612,6 +621,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets PaymentOrigin.
+        /// </summary>
+        [JsonProperty("payment_origin")]
+        public Models.GetPaymentOriginResponse PaymentOrigin
+        {
+            get
+            {
+                return this.paymentOrigin;
+            }
+
+            set
+            {
+                this.shouldSerialize["payment_origin"] = true;
+                this.paymentOrigin = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -788,6 +815,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetRecurrencyCycle()
         {
             this.shouldSerialize["recurrency_cycle"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPaymentOrigin()
+        {
+            this.shouldSerialize["payment_origin"] = false;
         }
 
         /// <summary>
@@ -979,6 +1014,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["recurrency_cycle"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePaymentOrigin()
+        {
+            return this.shouldSerialize["payment_origin"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -1011,7 +1055,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.CanceledAmount == null && other.CanceledAmount == null) || (this.CanceledAmount?.Equals(other.CanceledAmount) == true)) &&
                 ((this.PaidAmount == null && other.PaidAmount == null) || (this.PaidAmount?.Equals(other.PaidAmount) == true)) &&
                 ((this.InterestAndFinePaid == null && other.InterestAndFinePaid == null) || (this.InterestAndFinePaid?.Equals(other.InterestAndFinePaid) == true)) &&
-                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
+                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true)) &&
+                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true));
         }
         
         /// <summary>
@@ -1041,6 +1086,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.PaidAmount = {(this.PaidAmount == null ? "null" : this.PaidAmount.ToString())}");
             toStringOutput.Add($"this.InterestAndFinePaid = {(this.InterestAndFinePaid == null ? "null" : this.InterestAndFinePaid.ToString())}");
             toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle)}");
+            toStringOutput.Add($"this.PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
         }
     }
 }

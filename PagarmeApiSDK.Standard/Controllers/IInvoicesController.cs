@@ -1,27 +1,123 @@
 // <copyright file="IInvoicesController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Http.Client;
+using PagarmeApiSDK.Standard.Http.Request;
+using PagarmeApiSDK.Standard.Http.Response;
+using PagarmeApiSDK.Standard.Utilities;
+
 namespace PagarmeApiSDK.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using PagarmeApiSDK.Standard;
-    using PagarmeApiSDK.Standard.Http.Client;
-    using PagarmeApiSDK.Standard.Http.Request;
-    using PagarmeApiSDK.Standard.Http.Response;
-    using PagarmeApiSDK.Standard.Utilities;
-
     /// <summary>
     /// IInvoicesController.
     /// </summary>
     public interface IInvoicesController
     {
+        /// <summary>
+        /// Updates the metadata from an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: The invoice id.</param>
+        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Models.GetInvoiceResponse UpdateInvoiceMetadata(
+                string invoiceId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates the metadata from an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: The invoice id.</param>
+        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Task<Models.GetInvoiceResponse> UpdateInvoiceMetadataAsync(
+                string invoiceId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// GetPartialInvoice EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Models.GetInvoiceResponse GetPartialInvoice(
+                string subscriptionId);
+
+        /// <summary>
+        /// GetPartialInvoice EndPoint.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Task<Models.GetInvoiceResponse> GetPartialInvoiceAsync(
+                string subscriptionId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Cancels an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: Invoice id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Models.GetInvoiceResponse CancelInvoice(
+                string invoiceId,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Cancels an invoice.
+        /// </summary>
+        /// <param name="invoiceId">Required parameter: Invoice id.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Task<Models.GetInvoiceResponse> CancelInvoiceAsync(
+                string invoiceId,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create an Invoice.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="cycleId">Required parameter: Cycle Id.</param>
+        /// <param name="request">Optional parameter: Example: .</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Models.GetInvoiceResponse CreateInvoice(
+                string subscriptionId,
+                string cycleId,
+                Models.CreateInvoiceRequest request = null,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Create an Invoice.
+        /// </summary>
+        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
+        /// <param name="cycleId">Required parameter: Cycle Id.</param>
+        /// <param name="request">Optional parameter: Example: .</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
+        Task<Models.GetInvoiceResponse> CreateInvoiceAsync(
+                string subscriptionId,
+                string cycleId,
+                Models.CreateInvoiceRequest request = null,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
         /// <summary>
         /// Gets all invoices.
         /// </summary>
@@ -81,25 +177,21 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Cancels an invoice.
+        /// Gets an invoice.
         /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
         /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Models.GetInvoiceResponse CancelInvoice(
-                string invoiceId,
-                string idempotencyKey = null);
+        Models.GetInvoiceResponse GetInvoice(
+                string invoiceId);
 
         /// <summary>
-        /// Cancels an invoice.
+        /// Gets an invoice.
         /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice id.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Task<Models.GetInvoiceResponse> CancelInvoiceAsync(
+        Task<Models.GetInvoiceResponse> GetInvoiceAsync(
                 string invoiceId,
-                string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -126,98 +218,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string invoiceId,
                 Models.UpdateInvoiceStatusRequest request,
                 string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Updates the metadata from an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: The invoice id.</param>
-        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Models.GetInvoiceResponse UpdateInvoiceMetadata(
-                string invoiceId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Updates the metadata from an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: The invoice id.</param>
-        /// <param name="request">Required parameter: Request for updating the invoice metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Task<Models.GetInvoiceResponse> UpdateInvoiceMetadataAsync(
-                string invoiceId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// GetPartialInvoice EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Models.GetInvoiceResponse GetPartialInvoice(
-                string subscriptionId);
-
-        /// <summary>
-        /// GetPartialInvoice EndPoint.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Task<Models.GetInvoiceResponse> GetPartialInvoiceAsync(
-                string subscriptionId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Create an Invoice.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="cycleId">Required parameter: Cycle Id.</param>
-        /// <param name="request">Optional parameter: Example: .</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Models.GetInvoiceResponse CreateInvoice(
-                string subscriptionId,
-                string cycleId,
-                Models.CreateInvoiceRequest request = null,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Create an Invoice.
-        /// </summary>
-        /// <param name="subscriptionId">Required parameter: Subscription Id.</param>
-        /// <param name="cycleId">Required parameter: Cycle Id.</param>
-        /// <param name="request">Optional parameter: Example: .</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Task<Models.GetInvoiceResponse> CreateInvoiceAsync(
-                string subscriptionId,
-                string cycleId,
-                Models.CreateInvoiceRequest request = null,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Gets an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Models.GetInvoiceResponse GetInvoice(
-                string invoiceId);
-
-        /// <summary>
-        /// Gets an invoice.
-        /// </summary>
-        /// <param name="invoiceId">Required parameter: Invoice Id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetInvoiceResponse response from the API call.</returns>
-        Task<Models.GetInvoiceResponse> GetInvoiceAsync(
-                string invoiceId,
                 CancellationToken cancellationToken = default);
     }
 }

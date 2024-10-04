@@ -23,7 +23,7 @@ Documentation for accessing and setting credentials for httpBasic.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```csharp
-PagarmeApiSDK.Standard.PagarmeApiSDKClient client = new PagarmeApiSDK.Standard.PagarmeApiSDKClient.Builder()
+PagarmeApiSDKClient client = new PagarmeApiSDKClient.Builder()
     .BasicAuthCredentials(
         new BasicAuthModel.Builder(
             "BasicAuthUserName",
