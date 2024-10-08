@@ -42,6 +42,7 @@ namespace PagarmeApiSDK.Standard.Models
         private string sessionId;
         private Models.GetLocationResponse location;
         private Models.GetDeviceResponse device;
+        private Models.GetIntegrationResponse integration;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
@@ -64,6 +65,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "session_id", false },
             { "location", false },
             { "device", false },
+            { "integration", false },
         };
 
         /// <summary>
@@ -96,6 +98,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="sessionId">session_id.</param>
         /// <param name="location">location.</param>
         /// <param name="device">device.</param>
+        /// <param name="integration">integration.</param>
         public GetOrderResponse(
             string id = null,
             string code = null,
@@ -116,7 +119,8 @@ namespace PagarmeApiSDK.Standard.Models
             string ip = null,
             string sessionId = null,
             Models.GetLocationResponse location = null,
-            Models.GetDeviceResponse device = null)
+            Models.GetDeviceResponse device = null,
+            Models.GetIntegrationResponse integration = null)
         {
             if (id != null)
             {
@@ -216,6 +220,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (device != null)
             {
                 this.Device = device;
+            }
+
+            if (integration != null)
+            {
+                this.Integration = integration;
             }
 
         }
@@ -583,6 +592,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets Integration.
+        /// </summary>
+        [JsonProperty("integration")]
+        public Models.GetIntegrationResponse Integration
+        {
+            get
+            {
+                return this.integration;
+            }
+
+            set
+            {
+                this.shouldSerialize["integration"] = true;
+                this.integration = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -751,6 +778,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetDevice()
         {
             this.shouldSerialize["device"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetIntegration()
+        {
+            this.shouldSerialize["integration"] = false;
         }
 
         /// <summary>
@@ -933,6 +968,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["device"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeIntegration()
+        {
+            return this.shouldSerialize["integration"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -964,7 +1008,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Ip == null && other.Ip == null) || (this.Ip?.Equals(other.Ip) == true)) &&
                 ((this.SessionId == null && other.SessionId == null) || (this.SessionId?.Equals(other.SessionId) == true)) &&
                 ((this.Location == null && other.Location == null) || (this.Location?.Equals(other.Location) == true)) &&
-                ((this.Device == null && other.Device == null) || (this.Device?.Equals(other.Device) == true));
+                ((this.Device == null && other.Device == null) || (this.Device?.Equals(other.Device) == true)) &&
+                ((this.Integration == null && other.Integration == null) || (this.Integration?.Equals(other.Integration) == true));
         }
         
         /// <summary>
@@ -993,6 +1038,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.SessionId = {(this.SessionId == null ? "null" : this.SessionId)}");
             toStringOutput.Add($"this.Location = {(this.Location == null ? "null" : this.Location.ToString())}");
             toStringOutput.Add($"this.Device = {(this.Device == null ? "null" : this.Device.ToString())}");
+            toStringOutput.Add($"this.Integration = {(this.Integration == null ? "null" : this.Integration.ToString())}");
         }
     }
 }

@@ -31,6 +31,7 @@ Response object for getting an Order
 | `SessionId` | `string` | Optional | Session id |
 | `Location` | [`GetLocationResponse`](../../doc/models/get-location-response.md) | Optional | Location |
 | `Device` | [`GetDeviceResponse`](../../doc/models/get-device-response.md) | Optional | Device's informations |
+| `Integration` | [`GetIntegrationResponse`](../../doc/models/get-integration-response.md) | Optional | - |
 
 ## Example (as JSON)
 
