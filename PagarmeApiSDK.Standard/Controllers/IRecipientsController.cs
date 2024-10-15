@@ -49,55 +49,61 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Creates an anticipation.
+        /// GetWithdrawById EndPoint.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Anticipation data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
-        Models.GetAnticipationResponse CreateAnticipation(
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        Models.GetWithdrawResponse GetWithdrawById(
                 string recipientId,
-                Models.CreateAnticipationRequest request,
-                string idempotencyKey = null);
+                string withdrawalId);
 
         /// <summary>
-        /// Creates an anticipation.
+        /// GetWithdrawById EndPoint.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Anticipation data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
-        Task<Models.GetAnticipationResponse> CreateAnticipationAsync(
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
                 string recipientId,
-                Models.CreateAnticipationRequest request,
-                string idempotencyKey = null,
+                string withdrawalId,
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Gets the anticipation limits for a recipient.
+        /// Retrieves recipient information.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="timeframe">Required parameter: Timeframe.</param>
-        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
-        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
-        Models.GetAnticipationLimitResponse GetAnticipationLimits(
-                string recipientId,
-                string timeframe,
-                DateTime paymentDate);
+        /// <param name="recipientId">Required parameter: Recipiend id.</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse GetRecipient(
+                string recipientId);
 
         /// <summary>
-        /// Gets the anticipation limits for a recipient.
+        /// Retrieves recipient information.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipiend id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> GetRecipientAsync(
+                string recipientId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get balance information for a recipient.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="timeframe">Required parameter: Timeframe.</param>
-        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
+        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
+        Models.GetBalanceResponse GetBalance(
+                string recipientId);
+
+        /// <summary>
+        /// Get balance information for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
-        Task<Models.GetAnticipationLimitResponse> GetAnticipationLimitsAsync(
+        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
+        Task<Models.GetBalanceResponse> GetBalanceAsync(
                 string recipientId,
-                string timeframe,
-                DateTime paymentDate,
                 CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -123,28 +129,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GetWithdrawById EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        Models.GetWithdrawResponse GetWithdrawById(
-                string recipientId,
-                string withdrawalId);
-
-        /// <summary>
-        /// GetWithdrawById EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
-                string recipientId,
-                string withdrawalId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Updates the default bank account from a recipient.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -167,32 +151,6 @@ namespace PagarmeApiSDK.Standard.Controllers
         Task<Models.GetRecipientResponse> UpdateRecipientDefaultBankAccountAsync(
                 string recipientId,
                 Models.UpdateRecipientBankAccountRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Models.GetRecipientResponse UpdateRecipientMetadata(
-                string recipientId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Task<Models.GetRecipientResponse> UpdateRecipientMetadataAsync(
-                string recipientId,
-                Models.UpdateMetadataRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
@@ -279,32 +237,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Gets an anticipation.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -349,6 +281,189 @@ namespace PagarmeApiSDK.Standard.Controllers
         Task<Models.GetRecipientResponse> UpdateRecipientTransferSettingsAsync(
                 string recipientId,
                 Models.UpdateTransferSettingsRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves recipient information.
+        /// </summary>
+        /// <param name="code">Required parameter: Recipient code.</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse GetRecipientByCode(
+                string code);
+
+        /// <summary>
+        /// Retrieves recipient information.
+        /// </summary>
+        /// <param name="code">Required parameter: Recipient code.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> GetRecipientByCodeAsync(
+                string code,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a transfer for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient Id.</param>
+        /// <param name="request">Required parameter: Transfer data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
+        Models.GetTransferResponse CreateTransfer(
+                string recipientId,
+                Models.CreateTransferRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates a transfer for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient Id.</param>
+        /// <param name="request">Required parameter: Transfer data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
+        Task<Models.GetTransferResponse> CreateTransferAsync(
+                string recipientId,
+                Models.CreateTransferRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates a new recipient.
+        /// </summary>
+        /// <param name="request">Required parameter: Recipient data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse CreateRecipient(
+                Models.CreateRecipientRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates a new recipient.
+        /// </summary>
+        /// <param name="request">Required parameter: Recipient data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> CreateRecipientAsync(
+                Models.CreateRecipientRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// GetDefaultRecipient EndPoint.
+        /// </summary>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse GetDefaultRecipient();
+
+        /// <summary>
+        /// GetDefaultRecipient EndPoint.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> GetDefaultRecipientAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creates an anticipation.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Anticipation data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
+        Models.GetAnticipationResponse CreateAnticipation(
+                string recipientId,
+                Models.CreateAnticipationRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Creates an anticipation.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Anticipation data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
+        Task<Models.GetAnticipationResponse> CreateAnticipationAsync(
+                string recipientId,
+                Models.CreateAnticipationRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Gets the anticipation limits for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="timeframe">Required parameter: Timeframe.</param>
+        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
+        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
+        Models.GetAnticipationLimitResponse GetAnticipationLimits(
+                string recipientId,
+                string timeframe,
+                DateTime paymentDate);
+
+        /// <summary>
+        /// Gets the anticipation limits for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="timeframe">Required parameter: Timeframe.</param>
+        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
+        Task<Models.GetAnticipationLimitResponse> GetAnticipationLimitsAsync(
+                string recipientId,
+                string timeframe,
+                DateTime paymentDate,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse UpdateRecipientMetadata(
+                string recipientId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> UpdateRecipientMetadataAsync(
+                string recipientId,
+                Models.UpdateMetadataRequest request,
                 string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
 
@@ -403,42 +518,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipiend id.</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Models.GetRecipientResponse GetRecipient(
-                string recipientId);
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipiend id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Task<Models.GetRecipientResponse> GetRecipientAsync(
-                string recipientId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get balance information for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
-        Models.GetBalanceResponse GetBalance(
-                string recipientId);
-
-        /// <summary>
-        /// Get balance information for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
-        Task<Models.GetBalanceResponse> GetBalanceAsync(
-                string recipientId,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Gets a paginated list of transfers for the recipient.
         /// </summary>
         /// <param name="recipientId">Required parameter: Example: .</param>
@@ -477,85 +556,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Creates a transfer for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient Id.</param>
-        /// <param name="request">Required parameter: Transfer data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
-        Models.GetTransferResponse CreateTransfer(
-                string recipientId,
-                Models.CreateTransferRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Creates a transfer for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient Id.</param>
-        /// <param name="request">Required parameter: Transfer data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
-        Task<Models.GetTransferResponse> CreateTransferAsync(
-                string recipientId,
-                Models.CreateTransferRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Creates a new recipient.
-        /// </summary>
-        /// <param name="request">Required parameter: Recipient data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Models.GetRecipientResponse CreateRecipient(
-                Models.CreateRecipientRequest request,
-                string idempotencyKey = null);
-
-        /// <summary>
-        /// Creates a new recipient.
-        /// </summary>
-        /// <param name="request">Required parameter: Recipient data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Task<Models.GetRecipientResponse> CreateRecipientAsync(
-                Models.CreateRecipientRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="code">Required parameter: Recipient code.</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Models.GetRecipientResponse GetRecipientByCode(
-                string code);
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="code">Required parameter: Recipient code.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Task<Models.GetRecipientResponse> GetRecipientByCodeAsync(
-                string code,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// GetDefaultRecipient EndPoint.
-        /// </summary>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Models.GetRecipientResponse GetDefaultRecipient();
-
-        /// <summary>
-        /// GetDefaultRecipient EndPoint.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        Task<Models.GetRecipientResponse> GetDefaultRecipientAsync(CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Create a KYC link.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -571,6 +571,32 @@ namespace PagarmeApiSDK.Standard.Controllers
         /// <returns>Returns the Models.CreateKYCLinkResponse response from the API call.</returns>
         Task<Models.CreateKYCLinkResponse> CreateKYCLinkAsync(
                 string recipientId,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Updates recipient code.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: UpdateRecipientCodeRequest.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Models.GetRecipientResponse UpdateRecipientCode(
+                string recipientId,
+                Models.UpdateRecipientCodeRequest request,
+                string idempotencyKey = null);
+
+        /// <summary>
+        /// Updates recipient code.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: UpdateRecipientCodeRequest.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        Task<Models.GetRecipientResponse> UpdateRecipientCodeAsync(
+                string recipientId,
+                Models.UpdateRecipientCodeRequest request,
+                string idempotencyKey = null,
                 CancellationToken cancellationToken = default);
     }
 }

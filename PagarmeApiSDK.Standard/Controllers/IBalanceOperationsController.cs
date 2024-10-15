@@ -23,6 +23,24 @@ namespace PagarmeApiSDK.Standard.Controllers
     public interface IBalanceOperationsController
     {
         /// <summary>
+        /// GetBalanceOperationById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        Models.GetBalanceOperationResponse GetBalanceOperationById(
+                long id);
+
+        /// <summary>
+        /// GetBalanceOperationById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        Task<Models.GetBalanceOperationResponse> GetBalanceOperationByIdAsync(
+                long id,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// GetBalanceOperations EndPoint.
         /// </summary>
         /// <param name="status">Optional parameter: Example: .</param>
@@ -50,24 +68,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 DateTime? createdSince = null,
                 DateTime? createdUntil = null,
                 string recipientId = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// GetBalanceOperationById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
-        Models.GetBalanceOperationResponse GetBalanceOperationById(
-                long id);
-
-        /// <summary>
-        /// GetBalanceOperationById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
-        Task<Models.GetBalanceOperationResponse> GetBalanceOperationByIdAsync(
-                long id,
                 CancellationToken cancellationToken = default);
     }
 }

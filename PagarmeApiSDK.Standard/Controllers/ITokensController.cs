@@ -23,6 +23,28 @@ namespace PagarmeApiSDK.Standard.Controllers
     public interface ITokensController
     {
         /// <summary>
+        /// Gets a token from its id.
+        /// </summary>
+        /// <param name="id">Required parameter: Token id.</param>
+        /// <param name="publicKey">Required parameter: Public key.</param>
+        /// <returns>Returns the Models.GetTokenResponse response from the API call.</returns>
+        Models.GetTokenResponse GetToken(
+                string id,
+                string publicKey);
+
+        /// <summary>
+        /// Gets a token from its id.
+        /// </summary>
+        /// <param name="id">Required parameter: Token id.</param>
+        /// <param name="publicKey">Required parameter: Public key.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetTokenResponse response from the API call.</returns>
+        Task<Models.GetTokenResponse> GetTokenAsync(
+                string id,
+                string publicKey,
+                CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// CreateToken EndPoint.
         /// </summary>
         /// <param name="publicKey">Required parameter: Public key.</param>
@@ -46,28 +68,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                 string publicKey,
                 Models.CreateTokenRequest request,
                 string idempotencyKey = null,
-                CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Gets a token from its id.
-        /// </summary>
-        /// <param name="id">Required parameter: Token id.</param>
-        /// <param name="publicKey">Required parameter: Public key.</param>
-        /// <returns>Returns the Models.GetTokenResponse response from the API call.</returns>
-        Models.GetTokenResponse GetToken(
-                string id,
-                string publicKey);
-
-        /// <summary>
-        /// Gets a token from its id.
-        /// </summary>
-        /// <param name="id">Required parameter: Token id.</param>
-        /// <param name="publicKey">Required parameter: Public key.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetTokenResponse response from the API call.</returns>
-        Task<Models.GetTokenResponse> GetTokenAsync(
-                string id,
-                string publicKey,
                 CancellationToken cancellationToken = default);
     }
 }

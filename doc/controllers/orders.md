@@ -10,16 +10,216 @@ IOrdersController ordersController = client.OrdersController;
 
 ## Methods
 
+* [Delete All Order Items](../../doc/controllers/orders.md#delete-all-order-items)
+* [Get Order Item](../../doc/controllers/orders.md#get-order-item)
+* [Update Order Metadata](../../doc/controllers/orders.md#update-order-metadata)
+* [Delete Order Item](../../doc/controllers/orders.md#delete-order-item)
+* [Get Order](../../doc/controllers/orders.md#get-order)
 * [Get Orders](../../doc/controllers/orders.md#get-orders)
 * [Update Order Item](../../doc/controllers/orders.md#update-order-item)
-* [Delete All Order Items](../../doc/controllers/orders.md#delete-all-order-items)
-* [Delete Order Item](../../doc/controllers/orders.md#delete-order-item)
 * [Close Order](../../doc/controllers/orders.md#close-order)
 * [Create Order](../../doc/controllers/orders.md#create-order)
 * [Create Order Item](../../doc/controllers/orders.md#create-order-item)
-* [Get Order Item](../../doc/controllers/orders.md#get-order-item)
-* [Update Order Metadata](../../doc/controllers/orders.md#update-order-metadata)
-* [Get Order](../../doc/controllers/orders.md#get-order)
+
+
+# Delete All Order Items
+
+```csharp
+DeleteAllOrderItemsAsync(
+    string orderId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orderId` | `string` | Template, Required | Order Id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetOrderResponse>`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```csharp
+string orderId = "orderId2";
+try
+{
+    GetOrderResponse result = await ordersController.DeleteAllOrderItemsAsync(orderId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Order Item
+
+```csharp
+GetOrderItemAsync(
+    string orderId,
+    string itemId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orderId` | `string` | Template, Required | Order Id |
+| `itemId` | `string` | Template, Required | Item Id |
+
+## Response Type
+
+[`Task<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md)
+
+## Example Usage
+
+```csharp
+string orderId = "orderId2";
+string itemId = "itemId8";
+try
+{
+    GetOrderItemResponse result = await ordersController.GetOrderItemAsync(
+        orderId,
+        itemId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Order Metadata
+
+Updates the metadata from an order
+
+```csharp
+UpdateOrderMetadataAsync(
+    string orderId,
+    Models.UpdateMetadataRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orderId` | `string` | Template, Required | The order id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the order metadata |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetOrderResponse>`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```csharp
+string orderId = "order_id6";
+UpdateMetadataRequest request = new UpdateMetadataRequest
+{
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
+};
+
+try
+{
+    GetOrderResponse result = await ordersController.UpdateOrderMetadataAsync(
+        orderId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Delete Order Item
+
+```csharp
+DeleteOrderItemAsync(
+    string orderId,
+    string itemId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orderId` | `string` | Template, Required | Order Id |
+| `itemId` | `string` | Template, Required | Item Id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md)
+
+## Example Usage
+
+```csharp
+string orderId = "orderId2";
+string itemId = "itemId8";
+try
+{
+    GetOrderItemResponse result = await ordersController.DeleteOrderItemAsync(
+        orderId,
+        itemId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Order
+
+Gets an order
+
+```csharp
+GetOrderAsync(
+    string orderId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orderId` | `string` | Template, Required | Order id |
+
+## Response Type
+
+[`Task<Models.GetOrderResponse>`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```csharp
+string orderId = "order_id6";
+try
+{
+    GetOrderResponse result = await ordersController.GetOrderAsync(orderId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
 
 
 # Get Orders
@@ -110,82 +310,6 @@ try
         orderId,
         itemId,
         request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete All Order Items
-
-```csharp
-DeleteAllOrderItemsAsync(
-    string orderId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order Id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetOrderResponse>`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```csharp
-string orderId = "orderId2";
-try
-{
-    GetOrderResponse result = await ordersController.DeleteAllOrderItemsAsync(orderId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Order Item
-
-```csharp
-DeleteOrderItemAsync(
-    string orderId,
-    string itemId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order Id |
-| `itemId` | `string` | Template, Required | Item Id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md)
-
-## Example Usage
-
-```csharp
-string orderId = "orderId2";
-string itemId = "itemId8";
-try
-{
-    GetOrderItemResponse result = await ordersController.DeleteOrderItemAsync(
-        orderId,
-        itemId
     );
 }
 catch (ApiException e)
@@ -367,130 +491,6 @@ try
         orderId,
         request
     );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Order Item
-
-```csharp
-GetOrderItemAsync(
-    string orderId,
-    string itemId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order Id |
-| `itemId` | `string` | Template, Required | Item Id |
-
-## Response Type
-
-[`Task<Models.GetOrderItemResponse>`](../../doc/models/get-order-item-response.md)
-
-## Example Usage
-
-```csharp
-string orderId = "orderId2";
-string itemId = "itemId8";
-try
-{
-    GetOrderItemResponse result = await ordersController.GetOrderItemAsync(
-        orderId,
-        itemId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Order Metadata
-
-Updates the metadata from an order
-
-```csharp
-UpdateOrderMetadataAsync(
-    string orderId,
-    Models.UpdateMetadataRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | The order id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the order metadata |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetOrderResponse>`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```csharp
-string orderId = "order_id6";
-UpdateMetadataRequest request = new UpdateMetadataRequest
-{
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
-};
-
-try
-{
-    GetOrderResponse result = await ordersController.UpdateOrderMetadataAsync(
-        orderId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Order
-
-Gets an order
-
-```csharp
-GetOrderAsync(
-    string orderId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orderId` | `string` | Template, Required | Order id |
-
-## Response Type
-
-[`Task<Models.GetOrderResponse>`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```csharp
-string orderId = "order_id6";
-try
-{
-    GetOrderResponse result = await ordersController.GetOrderAsync(orderId);
 }
 catch (ApiException e)
 {

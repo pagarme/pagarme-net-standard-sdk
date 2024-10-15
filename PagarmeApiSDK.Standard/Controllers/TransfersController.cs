@@ -59,6 +59,25 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public Models.ListTransfers GetTransfers()
+            => CoreHelper.RunTask(GetTransfersAsync());
+
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
+        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.ListTransfers>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/transfers")
+                  .WithAuth("httpBasic"))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
         /// CreateTransfer EndPoint.
         /// </summary>
         /// <param name="request">Required parameter: Example: .</param>
@@ -82,25 +101,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public Models.ListTransfers GetTransfers()
-            => CoreHelper.RunTask(GetTransfersAsync());
-
-        /// <summary>
-        /// Gets all transfers.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.ListTransfers response from the API call.</returns>
-        public async Task<Models.ListTransfers> GetTransfersAsync(CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.ListTransfers>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/transfers")
-                  .WithAuth("httpBasic"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }
