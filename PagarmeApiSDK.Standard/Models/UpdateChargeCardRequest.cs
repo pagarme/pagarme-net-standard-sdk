@@ -39,6 +39,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="initiatedType">initiated_type.</param>
         /// <param name="recurrenceModel">recurrence_model.</param>
         /// <param name="paymentOrigin">payment_origin.</param>
+        /// <param name="indirectAcceptor">indirect_acceptor.</param>
         public UpdateChargeCardRequest(
             bool updateSubscription,
             string cardId,
@@ -46,7 +47,8 @@ namespace PagarmeApiSDK.Standard.Models
             bool recurrence,
             string initiatedType = null,
             string recurrenceModel = null,
-            Models.CreatePaymentOriginRequest paymentOrigin = null)
+            Models.CreatePaymentOriginRequest paymentOrigin = null,
+            string indirectAcceptor = null)
         {
             this.UpdateSubscription = updateSubscription;
             this.CardId = cardId;
@@ -55,6 +57,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.InitiatedType = initiatedType;
             this.RecurrenceModel = recurrenceModel;
             this.PaymentOrigin = paymentOrigin;
+            this.IndirectAcceptor = indirectAcceptor;
         }
 
         /// <summary>
@@ -99,6 +102,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("payment_origin", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreatePaymentOriginRequest PaymentOrigin { get; set; }
 
+        /// <summary>
+        /// Business model identifier
+        /// </summary>
+        [JsonProperty("indirect_acceptor", NullValueHandling = NullValueHandling.Ignore)]
+        public string IndirectAcceptor { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -127,7 +136,8 @@ namespace PagarmeApiSDK.Standard.Models
                 this.Recurrence.Equals(other.Recurrence) &&
                 ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
                 ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true)) &&
-                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true));
+                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true)) &&
+                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
         }
         
         /// <summary>
@@ -143,6 +153,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
             toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
             toStringOutput.Add($"this.PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
+            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
         }
     }
 }

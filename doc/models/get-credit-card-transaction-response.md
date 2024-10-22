@@ -30,6 +30,7 @@ Response object for getting a credit card transaction
 | `FundingSource` | `string` | Optional | Identify when a card is prepaid, credit or debit. |
 | `RetryInfo` | [`GetRetryTransactionInformationResponse`](../../doc/models/get-retry-transaction-information-response.md) | Optional | Retry transaction information |
 | `BrandId` | `string` | Optional | - |
+| `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
 ## Example (as JSON)
 

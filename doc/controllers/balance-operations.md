@@ -10,8 +10,41 @@ IBalanceOperationsController balanceOperationsController = client.BalanceOperati
 
 ## Methods
 
-* [Get Balance Operations](../../doc/controllers/balance-operations.md#get-balance-operations)
 * [Get Balance Operation by Id](../../doc/controllers/balance-operations.md#get-balance-operation-by-id)
+* [Get Balance Operations](../../doc/controllers/balance-operations.md#get-balance-operations)
+
+
+# Get Balance Operation by Id
+
+```csharp
+GetBalanceOperationByIdAsync(
+    long id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `long` | Template, Required | - |
+
+## Response Type
+
+[`Task<Models.GetBalanceOperationResponse>`](../../doc/models/get-balance-operation-response.md)
+
+## Example Usage
+
+```csharp
+long id = 112L;
+try
+{
+    GetBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationByIdAsync(id);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
 
 
 # Get Balance Operations
@@ -43,39 +76,6 @@ GetBalanceOperationsAsync(
 try
 {
     ListBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationsAsync();
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Balance Operation by Id
-
-```csharp
-GetBalanceOperationByIdAsync(
-    long id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `long` | Template, Required | - |
-
-## Response Type
-
-[`Task<Models.GetBalanceOperationResponse>`](../../doc/models/get-balance-operation-response.md)
-
-## Example Usage
-
-```csharp
-long id = 112L;
-try
-{
-    GetBalanceOperationResponse result = await balanceOperationsController.GetBalanceOperationByIdAsync(id);
 }
 catch (ApiException e)
 {

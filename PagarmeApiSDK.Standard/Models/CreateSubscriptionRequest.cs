@@ -65,6 +65,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="submerchant">submerchant.</param>
         /// <param name="split">split.</param>
         /// <param name="boleto">boleto.</param>
+        /// <param name="indirectAcceptor">indirect_acceptor.</param>
         public CreateSubscriptionRequest(
             Models.CreateCustomerRequest customer,
             Models.CreateCardRequest card,
@@ -98,7 +99,8 @@ namespace PagarmeApiSDK.Standard.Models
             Models.CreatePeriodRequest period = null,
             Models.CreateSubMerchantRequest submerchant = null,
             Models.CreateSubscriptionSplitRequest split = null,
-            Models.CreateSubscriptionBoletoRequest boleto = null)
+            Models.CreateSubscriptionBoletoRequest boleto = null,
+            string indirectAcceptor = null)
         {
             this.Customer = customer;
             this.Card = card;
@@ -133,6 +135,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Submerchant = submerchant;
             this.Split = split;
             this.Boleto = boleto;
+            this.IndirectAcceptor = indirectAcceptor;
         }
 
         /// <summary>
@@ -334,6 +337,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("boleto", NullValueHandling = NullValueHandling.Ignore)]
         public Models.CreateSubscriptionBoletoRequest Boleto { get; set; }
 
+        /// <summary>
+        /// Business model identifier
+        /// </summary>
+        [JsonProperty("indirect_acceptor", NullValueHandling = NullValueHandling.Ignore)]
+        public string IndirectAcceptor { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -388,7 +397,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.Period == null && other.Period == null) || (this.Period?.Equals(other.Period) == true)) &&
                 ((this.Submerchant == null && other.Submerchant == null) || (this.Submerchant?.Equals(other.Submerchant) == true)) &&
                 ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true));
+                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
+                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
         }
         
         /// <summary>
@@ -430,6 +440,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Submerchant = {(this.Submerchant == null ? "null" : this.Submerchant.ToString())}");
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : this.Split.ToString())}");
             toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
         }
     }
 }
