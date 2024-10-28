@@ -52,6 +52,7 @@ namespace PagarmeApiSDK.Standard.Models
         private Models.GetSubscriptionSplitResponse split;
         private Models.GetSubscriptionBoletoResponse boleto;
         private bool? manualBilling;
+        private string indirectAcceptor;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "id", false },
@@ -84,6 +85,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "split", false },
             { "boleto", false },
             { "manual_billing", false },
+            { "indirect_acceptor", false },
         };
 
         /// <summary>
@@ -126,6 +128,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="split">split.</param>
         /// <param name="boleto">boleto.</param>
         /// <param name="manualBilling">manual_billing.</param>
+        /// <param name="indirectAcceptor">indirect_acceptor.</param>
         public GetSubscriptionResponse(
             string id = null,
             string code = null,
@@ -156,7 +159,8 @@ namespace PagarmeApiSDK.Standard.Models
             int? boletoDueDays = null,
             Models.GetSubscriptionSplitResponse split = null,
             Models.GetSubscriptionBoletoResponse boleto = null,
-            bool? manualBilling = null)
+            bool? manualBilling = null,
+            string indirectAcceptor = null)
         {
             if (id != null)
             {
@@ -306,6 +310,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (manualBilling != null)
             {
                 this.ManualBilling = manualBilling;
+            }
+
+            if (indirectAcceptor != null)
+            {
+                this.IndirectAcceptor = indirectAcceptor;
             }
 
         }
@@ -855,6 +864,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Business model identifier
+        /// </summary>
+        [JsonProperty("indirect_acceptor")]
+        public string IndirectAcceptor
+        {
+            get
+            {
+                return this.indirectAcceptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["indirect_acceptor"] = true;
+                this.indirectAcceptor = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -1103,6 +1130,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetManualBilling()
         {
             this.shouldSerialize["manual_billing"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetIndirectAcceptor()
+        {
+            this.shouldSerialize["indirect_acceptor"] = false;
         }
 
         /// <summary>
@@ -1375,6 +1410,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["manual_billing"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeIndirectAcceptor()
+        {
+            return this.shouldSerialize["indirect_acceptor"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -1416,7 +1460,8 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.BoletoDueDays == null && other.BoletoDueDays == null) || (this.BoletoDueDays?.Equals(other.BoletoDueDays) == true)) &&
                 ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
                 ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                ((this.ManualBilling == null && other.ManualBilling == null) || (this.ManualBilling?.Equals(other.ManualBilling) == true));
+                ((this.ManualBilling == null && other.ManualBilling == null) || (this.ManualBilling?.Equals(other.ManualBilling) == true)) &&
+                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
         }
         
         /// <summary>
@@ -1455,6 +1500,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : this.Split.ToString())}");
             toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
             toStringOutput.Add($"this.ManualBilling = {(this.ManualBilling == null ? "null" : this.ManualBilling.ToString())}");
+            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
         }
     }
 }

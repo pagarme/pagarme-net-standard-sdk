@@ -34,6 +34,7 @@ namespace PagarmeApiSDK.Standard.Models
         private string fundingSource;
         private Models.GetRetryTransactionInformationResponse retryInfo;
         private string brandId;
+        private string indirectAcceptor;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "statement_descriptor", false },
@@ -48,6 +49,7 @@ namespace PagarmeApiSDK.Standard.Models
             { "funding_source", false },
             { "retry_info", false },
             { "brand_id", false },
+            { "indirect_acceptor", false },
         };
 
         /// <summary>
@@ -95,6 +97,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="fundingSource">funding_source.</param>
         /// <param name="retryInfo">retry_info.</param>
         /// <param name="brandId">brand_id.</param>
+        /// <param name="indirectAcceptor">indirect_acceptor.</param>
         public GetCreditCardTransactionResponse(
             string transactionType = "credit_card",
             string gatewayId = null,
@@ -129,7 +132,8 @@ namespace PagarmeApiSDK.Standard.Models
             string threedAuthenticationUrl = null,
             string fundingSource = null,
             Models.GetRetryTransactionInformationResponse retryInfo = null,
-            string brandId = null)
+            string brandId = null,
+            string indirectAcceptor = null)
             : base(
                 transactionType,
                 gatewayId,
@@ -212,6 +216,11 @@ namespace PagarmeApiSDK.Standard.Models
             if (brandId != null)
             {
                 this.BrandId = brandId;
+            }
+
+            if (indirectAcceptor != null)
+            {
+                this.IndirectAcceptor = indirectAcceptor;
             }
 
         }
@@ -450,6 +459,24 @@ namespace PagarmeApiSDK.Standard.Models
             }
         }
 
+        /// <summary>
+        /// Business model identifier
+        /// </summary>
+        [JsonProperty("indirect_acceptor")]
+        public string IndirectAcceptor
+        {
+            get
+            {
+                return this.indirectAcceptor;
+            }
+
+            set
+            {
+                this.shouldSerialize["indirect_acceptor"] = true;
+                this.indirectAcceptor = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -554,6 +581,14 @@ namespace PagarmeApiSDK.Standard.Models
         public void UnsetBrandId()
         {
             this.shouldSerialize["brand_id"] = false;
+        }
+
+        /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetIndirectAcceptor()
+        {
+            this.shouldSerialize["indirect_acceptor"] = false;
         }
 
         /// <summary>
@@ -664,6 +699,15 @@ namespace PagarmeApiSDK.Standard.Models
             return this.shouldSerialize["brand_id"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeIndirectAcceptor()
+        {
+            return this.shouldSerialize["indirect_acceptor"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -691,6 +735,7 @@ namespace PagarmeApiSDK.Standard.Models
                 ((this.FundingSource == null && other.FundingSource == null) || (this.FundingSource?.Equals(other.FundingSource) == true)) &&
                 ((this.RetryInfo == null && other.RetryInfo == null) || (this.RetryInfo?.Equals(other.RetryInfo) == true)) &&
                 ((this.BrandId == null && other.BrandId == null) || (this.BrandId?.Equals(other.BrandId) == true)) &&
+                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true)) &&
                 base.Equals(obj);
         }
         
@@ -715,6 +760,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"this.FundingSource = {(this.FundingSource == null ? "null" : this.FundingSource)}");
             toStringOutput.Add($"this.RetryInfo = {(this.RetryInfo == null ? "null" : this.RetryInfo.ToString())}");
             toStringOutput.Add($"this.BrandId = {(this.BrandId == null ? "null" : this.BrandId)}");
+            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
 
             base.ToString(toStringOutput);
         }

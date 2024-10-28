@@ -34,12 +34,15 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         /// <param name="card">card.</param>
         /// <param name="cardId">card_id.</param>
+        /// <param name="indirectAcceptor">indirect_acceptor.</param>
         public UpdateSubscriptionCardRequest(
             Models.CreateCardRequest card,
-            string cardId)
+            string cardId,
+            string indirectAcceptor = null)
         {
             this.Card = card;
             this.CardId = cardId;
+            this.IndirectAcceptor = indirectAcceptor;
         }
 
         /// <summary>
@@ -53,6 +56,12 @@ namespace PagarmeApiSDK.Standard.Models
         /// </summary>
         [JsonProperty("card_id")]
         public string CardId { get; set; }
+
+        /// <summary>
+        /// Business model identifier
+        /// </summary>
+        [JsonProperty("indirect_acceptor", NullValueHandling = NullValueHandling.Ignore)]
+        public string IndirectAcceptor { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -77,7 +86,8 @@ namespace PagarmeApiSDK.Standard.Models
                 return true;
             }
             return obj is UpdateSubscriptionCardRequest other &&                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true));
+                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
+                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
         }
         
         /// <summary>
@@ -88,6 +98,7 @@ namespace PagarmeApiSDK.Standard.Models
         {
             toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
             toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
+            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
         }
     }
 }
