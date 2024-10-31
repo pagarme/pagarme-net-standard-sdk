@@ -10,42 +10,77 @@ ISubscriptionsController subscriptionsController = client.SubscriptionsControlle
 
 ## Methods
 
-* [Update Subscription Card](../../doc/controllers/subscriptions.md#update-subscription-card)
-* [Create Discount](../../doc/controllers/subscriptions.md#create-discount)
-* [Update Subscription Billing Date](../../doc/controllers/subscriptions.md#update-subscription-billing-date)
-* [Update Subscription Start At](../../doc/controllers/subscriptions.md#update-subscription-start-at)
-* [Get Subscription](../../doc/controllers/subscriptions.md#get-subscription)
-* [Get Usages](../../doc/controllers/subscriptions.md#get-usages)
-* [Update Latest Period End At](../../doc/controllers/subscriptions.md#update-latest-period-end-at)
-* [Delete Discount](../../doc/controllers/subscriptions.md#delete-discount)
-* [Update Subscription Payment Method](../../doc/controllers/subscriptions.md#update-subscription-payment-method)
-* [Cancel Subscription](../../doc/controllers/subscriptions.md#cancel-subscription)
-* [Create Subscription](../../doc/controllers/subscriptions.md#create-subscription)
-* [Update Subscription Affiliation Id](../../doc/controllers/subscriptions.md#update-subscription-affiliation-id)
-* [Update Subscription Minium Price](../../doc/controllers/subscriptions.md#update-subscription-minium-price)
-* [Get Subscription Cycle by Id](../../doc/controllers/subscriptions.md#get-subscription-cycle-by-id)
-* [Get Usage Report](../../doc/controllers/subscriptions.md#get-usage-report)
 * [Renew Subscription](../../doc/controllers/subscriptions.md#renew-subscription)
+* [Update Subscription Card](../../doc/controllers/subscriptions.md#update-subscription-card)
 * [Delete Usage](../../doc/controllers/subscriptions.md#delete-usage)
+* [Create Discount](../../doc/controllers/subscriptions.md#create-discount)
 * [Create an Usage](../../doc/controllers/subscriptions.md#create-an-usage)
 * [Update Current Cycle Status](../../doc/controllers/subscriptions.md#update-current-cycle-status)
-* [Get Subscription Item](../../doc/controllers/subscriptions.md#get-subscription-item)
-* [Get Increment by Id](../../doc/controllers/subscriptions.md#get-increment-by-id)
-* [Delete Increment](../../doc/controllers/subscriptions.md#delete-increment)
-* [Get Discounts](../../doc/controllers/subscriptions.md#get-discounts)
-* [Update Subscription Due Days](../../doc/controllers/subscriptions.md#update-subscription-due-days)
-* [Create Subscription Item](../../doc/controllers/subscriptions.md#create-subscription-item)
-* [Update Split Subscription](../../doc/controllers/subscriptions.md#update-split-subscription)
+* [Delete Discount](../../doc/controllers/subscriptions.md#delete-discount)
 * [Get Subscription Items](../../doc/controllers/subscriptions.md#get-subscription-items)
+* [Update Subscription Payment Method](../../doc/controllers/subscriptions.md#update-subscription-payment-method)
+* [Get Subscription Item](../../doc/controllers/subscriptions.md#get-subscription-item)
 * [Get Subscriptions](../../doc/controllers/subscriptions.md#get-subscriptions)
+* [Cancel Subscription](../../doc/controllers/subscriptions.md#cancel-subscription)
 * [Create Increment](../../doc/controllers/subscriptions.md#create-increment)
 * [Create Usage](../../doc/controllers/subscriptions.md#create-usage)
 * [Get Discount by Id](../../doc/controllers/subscriptions.md#get-discount-by-id)
+* [Create Subscription](../../doc/controllers/subscriptions.md#create-subscription)
+* [Get Increment by Id](../../doc/controllers/subscriptions.md#get-increment-by-id)
+* [Update Subscription Affiliation Id](../../doc/controllers/subscriptions.md#update-subscription-affiliation-id)
 * [Update Subscription Metadata](../../doc/controllers/subscriptions.md#update-subscription-metadata)
+* [Delete Increment](../../doc/controllers/subscriptions.md#delete-increment)
 * [Get Subscription Cycles](../../doc/controllers/subscriptions.md#get-subscription-cycles)
+* [Get Discounts](../../doc/controllers/subscriptions.md#get-discounts)
+* [Update Subscription Billing Date](../../doc/controllers/subscriptions.md#update-subscription-billing-date)
 * [Delete Subscription Item](../../doc/controllers/subscriptions.md#delete-subscription-item)
 * [Get Increments](../../doc/controllers/subscriptions.md#get-increments)
+* [Update Subscription Due Days](../../doc/controllers/subscriptions.md#update-subscription-due-days)
+* [Update Subscription Start At](../../doc/controllers/subscriptions.md#update-subscription-start-at)
 * [Update Subscription Item](../../doc/controllers/subscriptions.md#update-subscription-item)
+* [Create Subscription Item](../../doc/controllers/subscriptions.md#create-subscription-item)
+* [Get Subscription](../../doc/controllers/subscriptions.md#get-subscription)
+* [Get Usages](../../doc/controllers/subscriptions.md#get-usages)
+* [Update Latest Period End At](../../doc/controllers/subscriptions.md#update-latest-period-end-at)
+* [Update Subscription Minium Price](../../doc/controllers/subscriptions.md#update-subscription-minium-price)
+* [Get Subscription Cycle by Id](../../doc/controllers/subscriptions.md#get-subscription-cycle-by-id)
+* [Get Usage Report](../../doc/controllers/subscriptions.md#get-usage-report)
+* [Update Split Subscription](../../doc/controllers/subscriptions.md#update-split-subscription)
+
+
+# Renew Subscription
+
+```csharp
+RenewSubscriptionAsync(
+    string subscriptionId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | - |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetPeriodResponse>`](../../doc/models/get-period-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+try
+{
+    GetPeriodResponse result = await subscriptionsController.RenewSubscriptionAsync(subscriptionId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
 
 
 # Update Subscription Card
@@ -89,6 +124,53 @@ try
     GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionCardAsync(
         subscriptionId,
         request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Delete Usage
+
+Deletes a usage
+
+```csharp
+DeleteUsageAsync(
+    string subscriptionId,
+    string itemId,
+    string usageId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `itemId` | `string` | Template, Required | The subscription item id |
+| `usageId` | `string` | Template, Required | The usage id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetUsageResponse>`](../../doc/models/get-usage-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string itemId = "item_id0";
+string usageId = "usage_id0";
+try
+{
+    GetUsageResponse result = await subscriptionsController.DeleteUsageAsync(
+        subscriptionId,
+        itemId,
+        usageId
     );
 }
 catch (ApiException e)
@@ -148,111 +230,15 @@ catch (ApiException e)
 ```
 
 
-# Update Subscription Billing Date
+# Create an Usage
 
-Updates the billing date from a subscription
+Create Usage
 
 ```csharp
-UpdateSubscriptionBillingDateAsync(
+CreateAnUsageAsync(
     string subscriptionId,
-    Models.UpdateSubscriptionBillingDateRequest request,
+    string itemId,
     string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `request` | [`UpdateSubscriptionBillingDateRequest`](../../doc/models/update-subscription-billing-date-request.md) | Body, Required | Request for updating the subscription billing date |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-UpdateSubscriptionBillingDateRequest request = new UpdateSubscriptionBillingDateRequest
-{
-    NextBillingAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
-        provider: CultureInfo.InvariantCulture,
-        DateTimeStyles.RoundtripKind),
-};
-
-try
-{
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionBillingDateAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Subscription Start At
-
-Updates the start at date from a subscription
-
-```csharp
-UpdateSubscriptionStartAtAsync(
-    string subscriptionId,
-    Models.UpdateSubscriptionStartAtRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `request` | [`UpdateSubscriptionStartAtRequest`](../../doc/models/update-subscription-start-at-request.md) | Body, Required | Request for updating the subscription start date |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-UpdateSubscriptionStartAtRequest request = new UpdateSubscriptionStartAtRequest
-{
-    StartAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
-        provider: CultureInfo.InvariantCulture,
-        DateTimeStyles.RoundtripKind),
-};
-
-try
-{
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionStartAtAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Subscription
-
-Gets a subscription
-
-```csharp
-GetSubscriptionAsync(
-    string subscriptionId)
 ```
 
 ## Parameters
@@ -260,59 +246,12 @@ GetSubscriptionAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `subscriptionId` | `string` | Template, Required | Subscription id |
+| `itemId` | `string` | Template, Required | Item id |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-try
-{
-    GetSubscriptionResponse result = await subscriptionsController.GetSubscriptionAsync(subscriptionId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Usages
-
-Lists all usages from a subscription item
-
-```csharp
-GetUsagesAsync(
-    string subscriptionId,
-    string itemId,
-    int? page = null,
-    int? size = null,
-    string code = null,
-    string mGroup = null,
-    DateTime? usedSince = null,
-    DateTime? usedUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `itemId` | `string` | Template, Required | The subscription item id |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `code` | `string` | Query, Optional | Identification code in the client system |
-| `mGroup` | `string` | Query, Optional | Identification group in the client system |
-| `usedSince` | `DateTime?` | Query, Optional | - |
-| `usedUntil` | `DateTime?` | Query, Optional | - |
-
-## Response Type
-
-[`Task<Models.ListUsagesResponse>`](../../doc/models/list-usages-response.md)
+[`Task<Models.GetUsageResponse>`](../../doc/models/get-usage-response.md)
 
 ## Example Usage
 
@@ -321,7 +260,7 @@ string subscriptionId = "subscription_id0";
 string itemId = "item_id0";
 try
 {
-    ListUsagesResponse result = await subscriptionsController.GetUsagesAsync(
+    GetUsageResponse result = await subscriptionsController.CreateAnUsageAsync(
         subscriptionId,
         itemId
     );
@@ -334,12 +273,12 @@ catch (ApiException e)
 ```
 
 
-# Update Latest Period End At
+# Update Current Cycle Status
 
 ```csharp
-UpdateLatestPeriodEndAtAsync(
+UpdateCurrentCycleStatusAsync(
     string subscriptionId,
-    Models.UpdateCurrentCycleEndDateRequest request,
+    Models.UpdateCurrentCycleStatusRequest request,
     string idempotencyKey = null)
 ```
 
@@ -347,25 +286,26 @@ UpdateLatestPeriodEndAtAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | - |
-| `request` | [`UpdateCurrentCycleEndDateRequest`](../../doc/models/update-current-cycle-end-date-request.md) | Body, Required | Request for updating the end date of the current signature cycle |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `request` | [`UpdateCurrentCycleStatusRequest`](../../doc/models/update-current-cycle-status-request.md) | Body, Required | Request for updating the end date of the subscription current status |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+`Task`
 
 ## Example Usage
 
 ```csharp
 string subscriptionId = "subscription_id0";
-UpdateCurrentCycleEndDateRequest request = new UpdateCurrentCycleEndDateRequest
+UpdateCurrentCycleStatusRequest request = new UpdateCurrentCycleStatusRequest
 {
+    Status = "status8",
 };
 
 try
 {
-    GetSubscriptionResponse result = await subscriptionsController.UpdateLatestPeriodEndAtAsync(
+    await subscriptionsController.UpdateCurrentCycleStatusAsync(
         subscriptionId,
         request
     );
@@ -412,6 +352,57 @@ try
         subscriptionId,
         discountId
     );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Subscription Items
+
+Get Subscription Items
+
+```csharp
+GetSubscriptionItemsAsync(
+    string subscriptionId,
+    int? page = null,
+    int? size = null,
+    string name = null,
+    string code = null,
+    string status = null,
+    string description = null,
+    string createdSince = null,
+    string createdUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `name` | `string` | Query, Optional | The item name |
+| `code` | `string` | Query, Optional | Identification code in the client system |
+| `status` | `string` | Query, Optional | The item statis |
+| `description` | `string` | Query, Optional | The item description |
+| `createdSince` | `string` | Query, Optional | Filter for item's creation date start range |
+| `createdUntil` | `string` | Query, Optional | Filter for item's creation date end range |
+
+## Response Type
+
+[`Task<Models.ListSubscriptionItemsResponse>`](../../doc/models/list-subscription-items-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+try
+{
+    ListSubscriptionItemsResponse result = await subscriptionsController.GetSubscriptionItemsAsync(subscriptionId);
 }
 catch (ApiException e)
 {
@@ -473,6 +464,103 @@ catch (ApiException e)
 ```
 
 
+# Get Subscription Item
+
+Get Subscription Item
+
+```csharp
+GetSubscriptionItemAsync(
+    string subscriptionId,
+    string itemId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `itemId` | `string` | Template, Required | Item id |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string itemId = "item_id0";
+try
+{
+    GetSubscriptionItemResponse result = await subscriptionsController.GetSubscriptionItemAsync(
+        subscriptionId,
+        itemId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Subscriptions
+
+Gets all subscriptions
+
+```csharp
+GetSubscriptionsAsync(
+    int? page = null,
+    int? size = null,
+    string code = null,
+    string billingType = null,
+    string customerId = null,
+    string planId = null,
+    string cardId = null,
+    string status = null,
+    DateTime? nextBillingSince = null,
+    DateTime? nextBillingUntil = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `code` | `string` | Query, Optional | Filter for subscription's code |
+| `billingType` | `string` | Query, Optional | Filter for subscription's billing type |
+| `customerId` | `string` | Query, Optional | Filter for subscription's customer id |
+| `planId` | `string` | Query, Optional | Filter for subscription's plan id |
+| `cardId` | `string` | Query, Optional | Filter for subscription's card id |
+| `status` | `string` | Query, Optional | Filter for subscription's status |
+| `nextBillingSince` | `DateTime?` | Query, Optional | Filter for subscription's next billing date start range |
+| `nextBillingUntil` | `DateTime?` | Query, Optional | Filter for subscription's next billing date end range |
+| `createdSince` | `DateTime?` | Query, Optional | Filter for subscription's creation date start range |
+| `createdUntil` | `DateTime?` | Query, Optional | Filter for subscriptions creation date end range |
+
+## Response Type
+
+[`Task<Models.ListSubscriptionsResponse>`](../../doc/models/list-subscriptions-response.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListSubscriptionsResponse result = await subscriptionsController.GetSubscriptionsAsync();
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
 # Cancel Subscription
 
 Cancels a subscription
@@ -510,6 +598,149 @@ try
     GetSubscriptionResponse result = await subscriptionsController.CancelSubscriptionAsync(
         subscriptionId,
         request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Create Increment
+
+Creates a increment
+
+```csharp
+CreateIncrementAsync(
+    string subscriptionId,
+    Models.CreateIncrementRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription id |
+| `request` | [`CreateIncrementRequest`](../../doc/models/create-increment-request.md) | Body, Required | Request for creating a increment |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+CreateIncrementRequest request = new CreateIncrementRequest
+{
+    MValue = 185.28,
+    IncrementType = "increment_type8",
+    ItemId = "item_id6",
+};
+
+try
+{
+    GetIncrementResponse result = await subscriptionsController.CreateIncrementAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Create Usage
+
+Creates a usage
+
+```csharp
+CreateUsageAsync(
+    string subscriptionId,
+    string itemId,
+    Models.CreateUsageRequest body,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `itemId` | `string` | Template, Required | Item id |
+| `body` | [`CreateUsageRequest`](../../doc/models/create-usage-request.md) | Body, Required | Request for creating a usage |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetUsageResponse>`](../../doc/models/get-usage-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string itemId = "item_id0";
+CreateUsageRequest body = new CreateUsageRequest
+{
+    Quantity = 156,
+    Description = "description4",
+    UsedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
+
+try
+{
+    GetUsageResponse result = await subscriptionsController.CreateUsageAsync(
+        subscriptionId,
+        itemId,
+        body
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Discount by Id
+
+```csharp
+GetDiscountByIdAsync(
+    string subscriptionId,
+    string discountId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `discountId` | `string` | Template, Required | - |
+
+## Response Type
+
+[`Task<Models.GetDiscountResponse>`](../../doc/models/get-discount-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string discountId = "discountId0";
+try
+{
+    GetDiscountResponse result = await subscriptionsController.GetDiscountByIdAsync(
+        subscriptionId,
+        discountId
     );
 }
 catch (ApiException e)
@@ -672,6 +903,45 @@ catch (ApiException e)
 ```
 
 
+# Get Increment by Id
+
+```csharp
+GetIncrementByIdAsync(
+    string subscriptionId,
+    string incrementId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription Id |
+| `incrementId` | `string` | Template, Required | The increment Id |
+
+## Response Type
+
+[`Task<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string incrementId = "increment_id8";
+try
+{
+    GetIncrementResponse result = await subscriptionsController.GetIncrementByIdAsync(
+        subscriptionId,
+        incrementId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
 # Update Subscription Affiliation Id
 
 ```csharp
@@ -705,6 +975,670 @@ UpdateSubscriptionAffiliationIdRequest request = new UpdateSubscriptionAffiliati
 try
 {
     GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionAffiliationIdAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Subscription Metadata
+
+Updates the metadata from a subscription
+
+```csharp
+UpdateSubscriptionMetadataAsync(
+    string subscriptionId,
+    Models.UpdateMetadataRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the subscrption metadata |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+UpdateMetadataRequest request = new UpdateMetadataRequest
+{
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+    },
+};
+
+try
+{
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionMetadataAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Delete Increment
+
+Deletes a increment
+
+```csharp
+DeleteIncrementAsync(
+    string subscriptionId,
+    string incrementId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription id |
+| `incrementId` | `string` | Template, Required | Increment id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string incrementId = "increment_id8";
+try
+{
+    GetIncrementResponse result = await subscriptionsController.DeleteIncrementAsync(
+        subscriptionId,
+        incrementId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Subscription Cycles
+
+```csharp
+GetSubscriptionCyclesAsync(
+    string subscriptionId,
+    string page,
+    string size)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `page` | `string` | Query, Required | Page number |
+| `size` | `string` | Query, Required | Page size |
+
+## Response Type
+
+[`Task<Models.ListCyclesResponse>`](../../doc/models/list-cycles-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string page = "page8";
+string size = "size0";
+try
+{
+    ListCyclesResponse result = await subscriptionsController.GetSubscriptionCyclesAsync(
+        subscriptionId,
+        page,
+        size
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Discounts
+
+```csharp
+GetDiscountsAsync(
+    string subscriptionId,
+    int page,
+    int size)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `page` | `int` | Query, Required | Page number |
+| `size` | `int` | Query, Required | Page size |
+
+## Response Type
+
+[`Task<Models.ListDiscountsResponse>`](../../doc/models/list-discounts-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+int page = 30;
+int size = 18;
+try
+{
+    ListDiscountsResponse result = await subscriptionsController.GetDiscountsAsync(
+        subscriptionId,
+        page,
+        size
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Subscription Billing Date
+
+Updates the billing date from a subscription
+
+```csharp
+UpdateSubscriptionBillingDateAsync(
+    string subscriptionId,
+    Models.UpdateSubscriptionBillingDateRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `request` | [`UpdateSubscriptionBillingDateRequest`](../../doc/models/update-subscription-billing-date-request.md) | Body, Required | Request for updating the subscription billing date |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+UpdateSubscriptionBillingDateRequest request = new UpdateSubscriptionBillingDateRequest
+{
+    NextBillingAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
+
+try
+{
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionBillingDateAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Delete Subscription Item
+
+Deletes a subscription item
+
+```csharp
+DeleteSubscriptionItemAsync(
+    string subscriptionId,
+    string subscriptionItemId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription id |
+| `subscriptionItemId` | `string` | Template, Required | Subscription item id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string subscriptionItemId = "subscription_item_id4";
+try
+{
+    GetSubscriptionItemResponse result = await subscriptionsController.DeleteSubscriptionItemAsync(
+        subscriptionId,
+        subscriptionItemId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Increments
+
+```csharp
+GetIncrementsAsync(
+    string subscriptionId,
+    int? page = null,
+    int? size = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+
+## Response Type
+
+[`Task<Models.ListIncrementsResponse>`](../../doc/models/list-increments-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+try
+{
+    ListIncrementsResponse result = await subscriptionsController.GetIncrementsAsync(subscriptionId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Subscription Due Days
+
+Updates the boleto due days from a subscription
+
+```csharp
+UpdateSubscriptionDueDaysAsync(
+    string subscriptionId,
+    Models.UpdateSubscriptionDueDaysRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `request` | [`UpdateSubscriptionDueDaysRequest`](../../doc/models/update-subscription-due-days-request.md) | Body, Required | - |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+UpdateSubscriptionDueDaysRequest request = new UpdateSubscriptionDueDaysRequest
+{
+    BoletoDueDays = 226,
+};
+
+try
+{
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionDueDaysAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Subscription Start At
+
+Updates the start at date from a subscription
+
+```csharp
+UpdateSubscriptionStartAtAsync(
+    string subscriptionId,
+    Models.UpdateSubscriptionStartAtRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `request` | [`UpdateSubscriptionStartAtRequest`](../../doc/models/update-subscription-start-at-request.md) | Body, Required | Request for updating the subscription start date |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+UpdateSubscriptionStartAtRequest request = new UpdateSubscriptionStartAtRequest
+{
+    StartAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
+
+try
+{
+    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionStartAtAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Subscription Item
+
+Updates a subscription item
+
+```csharp
+UpdateSubscriptionItemAsync(
+    string subscriptionId,
+    string itemId,
+    Models.UpdateSubscriptionItemRequest body,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `itemId` | `string` | Template, Required | Item id |
+| `body` | [`UpdateSubscriptionItemRequest`](../../doc/models/update-subscription-item-request.md) | Body, Required | Request for updating a subscription item |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string itemId = "item_id0";
+UpdateSubscriptionItemRequest body = new UpdateSubscriptionItemRequest
+{
+    Description = "description4",
+    Status = "status2",
+    PricingScheme = new UpdatePricingSchemeRequest
+    {
+        SchemeType = "scheme_type8",
+        PriceBrackets = new List<UpdatePriceBracketRequest>
+        {
+            new UpdatePriceBracketRequest
+            {
+                StartQuantity = 144,
+                Price = 174,
+            },
+        },
+    },
+    Name = "name6",
+};
+
+try
+{
+    GetSubscriptionItemResponse result = await subscriptionsController.UpdateSubscriptionItemAsync(
+        subscriptionId,
+        itemId,
+        body
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Create Subscription Item
+
+Creates a new Subscription item
+
+```csharp
+CreateSubscriptionItemAsync(
+    string subscriptionId,
+    Models.CreateSubscriptionItemRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription id |
+| `request` | [`CreateSubscriptionItemRequest`](../../doc/models/create-subscription-item-request.md) | Body, Required | Request for creating a subscription item |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+CreateSubscriptionItemRequest request = new CreateSubscriptionItemRequest
+{
+    Description = "description6",
+    PricingScheme = new CreatePricingSchemeRequest
+    {
+        SchemeType = "scheme_type8",
+    },
+    Id = "id6",
+    PlanItemId = "plan_item_id6",
+    Discounts = new List<CreateDiscountRequest>
+    {
+        new CreateDiscountRequest
+        {
+            MValue = 90.66,
+            DiscountType = "discount_type2",
+            ItemId = "item_id4",
+        },
+    },
+    Name = "name6",
+};
+
+try
+{
+    GetSubscriptionItemResponse result = await subscriptionsController.CreateSubscriptionItemAsync(
+        subscriptionId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Subscription
+
+Gets a subscription
+
+```csharp
+GetSubscriptionAsync(
+    string subscriptionId)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription id |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+try
+{
+    GetSubscriptionResponse result = await subscriptionsController.GetSubscriptionAsync(subscriptionId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Usages
+
+Lists all usages from a subscription item
+
+```csharp
+GetUsagesAsync(
+    string subscriptionId,
+    string itemId,
+    int? page = null,
+    int? size = null,
+    string code = null,
+    string mGroup = null,
+    DateTime? usedSince = null,
+    DateTime? usedUntil = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | The subscription id |
+| `itemId` | `string` | Template, Required | The subscription item id |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `code` | `string` | Query, Optional | Identification code in the client system |
+| `mGroup` | `string` | Query, Optional | Identification group in the client system |
+| `usedSince` | `DateTime?` | Query, Optional | - |
+| `usedUntil` | `DateTime?` | Query, Optional | - |
+
+## Response Type
+
+[`Task<Models.ListUsagesResponse>`](../../doc/models/list-usages-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string itemId = "item_id0";
+try
+{
+    ListUsagesResponse result = await subscriptionsController.GetUsagesAsync(
+        subscriptionId,
+        itemId
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Latest Period End At
+
+```csharp
+UpdateLatestPeriodEndAtAsync(
+    string subscriptionId,
+    Models.UpdateCurrentCycleEndDateRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | - |
+| `request` | [`UpdateCurrentCycleEndDateRequest`](../../doc/models/update-current-cycle-end-date-request.md) | Body, Required | Request for updating the end date of the current signature cycle |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+UpdateCurrentCycleEndDateRequest request = new UpdateCurrentCycleEndDateRequest
+{
+};
+
+try
+{
+    GetSubscriptionResponse result = await subscriptionsController.UpdateLatestPeriodEndAtAsync(
         subscriptionId,
         request
     );
@@ -841,452 +1775,6 @@ catch (ApiException e)
 ```
 
 
-# Renew Subscription
-
-```csharp
-RenewSubscriptionAsync(
-    string subscriptionId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | - |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetPeriodResponse>`](../../doc/models/get-period-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-try
-{
-    GetPeriodResponse result = await subscriptionsController.RenewSubscriptionAsync(subscriptionId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Usage
-
-Deletes a usage
-
-```csharp
-DeleteUsageAsync(
-    string subscriptionId,
-    string itemId,
-    string usageId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `itemId` | `string` | Template, Required | The subscription item id |
-| `usageId` | `string` | Template, Required | The usage id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetUsageResponse>`](../../doc/models/get-usage-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string itemId = "item_id0";
-string usageId = "usage_id0";
-try
-{
-    GetUsageResponse result = await subscriptionsController.DeleteUsageAsync(
-        subscriptionId,
-        itemId,
-        usageId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Create an Usage
-
-Create Usage
-
-```csharp
-CreateAnUsageAsync(
-    string subscriptionId,
-    string itemId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription id |
-| `itemId` | `string` | Template, Required | Item id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetUsageResponse>`](../../doc/models/get-usage-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string itemId = "item_id0";
-try
-{
-    GetUsageResponse result = await subscriptionsController.CreateAnUsageAsync(
-        subscriptionId,
-        itemId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Current Cycle Status
-
-```csharp
-UpdateCurrentCycleStatusAsync(
-    string subscriptionId,
-    Models.UpdateCurrentCycleStatusRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `request` | [`UpdateCurrentCycleStatusRequest`](../../doc/models/update-current-cycle-status-request.md) | Body, Required | Request for updating the end date of the subscription current status |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-`Task`
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-UpdateCurrentCycleStatusRequest request = new UpdateCurrentCycleStatusRequest
-{
-    Status = "status8",
-};
-
-try
-{
-    await subscriptionsController.UpdateCurrentCycleStatusAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Subscription Item
-
-Get Subscription Item
-
-```csharp
-GetSubscriptionItemAsync(
-    string subscriptionId,
-    string itemId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `itemId` | `string` | Template, Required | Item id |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string itemId = "item_id0";
-try
-{
-    GetSubscriptionItemResponse result = await subscriptionsController.GetSubscriptionItemAsync(
-        subscriptionId,
-        itemId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Increment by Id
-
-```csharp
-GetIncrementByIdAsync(
-    string subscriptionId,
-    string incrementId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription Id |
-| `incrementId` | `string` | Template, Required | The increment Id |
-
-## Response Type
-
-[`Task<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string incrementId = "increment_id8";
-try
-{
-    GetIncrementResponse result = await subscriptionsController.GetIncrementByIdAsync(
-        subscriptionId,
-        incrementId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Increment
-
-Deletes a increment
-
-```csharp
-DeleteIncrementAsync(
-    string subscriptionId,
-    string incrementId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription id |
-| `incrementId` | `string` | Template, Required | Increment id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string incrementId = "increment_id8";
-try
-{
-    GetIncrementResponse result = await subscriptionsController.DeleteIncrementAsync(
-        subscriptionId,
-        incrementId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Discounts
-
-```csharp
-GetDiscountsAsync(
-    string subscriptionId,
-    int page,
-    int size)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `page` | `int` | Query, Required | Page number |
-| `size` | `int` | Query, Required | Page size |
-
-## Response Type
-
-[`Task<Models.ListDiscountsResponse>`](../../doc/models/list-discounts-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-int page = 30;
-int size = 18;
-try
-{
-    ListDiscountsResponse result = await subscriptionsController.GetDiscountsAsync(
-        subscriptionId,
-        page,
-        size
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Subscription Due Days
-
-Updates the boleto due days from a subscription
-
-```csharp
-UpdateSubscriptionDueDaysAsync(
-    string subscriptionId,
-    Models.UpdateSubscriptionDueDaysRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `request` | [`UpdateSubscriptionDueDaysRequest`](../../doc/models/update-subscription-due-days-request.md) | Body, Required | - |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-UpdateSubscriptionDueDaysRequest request = new UpdateSubscriptionDueDaysRequest
-{
-    BoletoDueDays = 226,
-};
-
-try
-{
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionDueDaysAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Create Subscription Item
-
-Creates a new Subscription item
-
-```csharp
-CreateSubscriptionItemAsync(
-    string subscriptionId,
-    Models.CreateSubscriptionItemRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`CreateSubscriptionItemRequest`](../../doc/models/create-subscription-item-request.md) | Body, Required | Request for creating a subscription item |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-CreateSubscriptionItemRequest request = new CreateSubscriptionItemRequest
-{
-    Description = "description6",
-    PricingScheme = new CreatePricingSchemeRequest
-    {
-        SchemeType = "scheme_type8",
-    },
-    Id = "id6",
-    PlanItemId = "plan_item_id6",
-    Discounts = new List<CreateDiscountRequest>
-    {
-        new CreateDiscountRequest
-        {
-            MValue = 90.66,
-            DiscountType = "discount_type2",
-            ItemId = "item_id4",
-        },
-    },
-    Name = "name6",
-};
-
-try
-{
-    GetSubscriptionItemResponse result = await subscriptionsController.CreateSubscriptionItemAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
 # Update Split Subscription
 
 ```csharp
@@ -1329,494 +1817,6 @@ try
     GetSubscriptionResponse result = await subscriptionsController.UpdateSplitSubscriptionAsync(
         id,
         request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Subscription Items
-
-Get Subscription Items
-
-```csharp
-GetSubscriptionItemsAsync(
-    string subscriptionId,
-    int? page = null,
-    int? size = null,
-    string name = null,
-    string code = null,
-    string status = null,
-    string description = null,
-    string createdSince = null,
-    string createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `name` | `string` | Query, Optional | The item name |
-| `code` | `string` | Query, Optional | Identification code in the client system |
-| `status` | `string` | Query, Optional | The item statis |
-| `description` | `string` | Query, Optional | The item description |
-| `createdSince` | `string` | Query, Optional | Filter for item's creation date start range |
-| `createdUntil` | `string` | Query, Optional | Filter for item's creation date end range |
-
-## Response Type
-
-[`Task<Models.ListSubscriptionItemsResponse>`](../../doc/models/list-subscription-items-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-try
-{
-    ListSubscriptionItemsResponse result = await subscriptionsController.GetSubscriptionItemsAsync(subscriptionId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Subscriptions
-
-Gets all subscriptions
-
-```csharp
-GetSubscriptionsAsync(
-    int? page = null,
-    int? size = null,
-    string code = null,
-    string billingType = null,
-    string customerId = null,
-    string planId = null,
-    string cardId = null,
-    string status = null,
-    DateTime? nextBillingSince = null,
-    DateTime? nextBillingUntil = null,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `code` | `string` | Query, Optional | Filter for subscription's code |
-| `billingType` | `string` | Query, Optional | Filter for subscription's billing type |
-| `customerId` | `string` | Query, Optional | Filter for subscription's customer id |
-| `planId` | `string` | Query, Optional | Filter for subscription's plan id |
-| `cardId` | `string` | Query, Optional | Filter for subscription's card id |
-| `status` | `string` | Query, Optional | Filter for subscription's status |
-| `nextBillingSince` | `DateTime?` | Query, Optional | Filter for subscription's next billing date start range |
-| `nextBillingUntil` | `DateTime?` | Query, Optional | Filter for subscription's next billing date end range |
-| `createdSince` | `DateTime?` | Query, Optional | Filter for subscription's creation date start range |
-| `createdUntil` | `DateTime?` | Query, Optional | Filter for subscriptions creation date end range |
-
-## Response Type
-
-[`Task<Models.ListSubscriptionsResponse>`](../../doc/models/list-subscriptions-response.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListSubscriptionsResponse result = await subscriptionsController.GetSubscriptionsAsync();
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Create Increment
-
-Creates a increment
-
-```csharp
-CreateIncrementAsync(
-    string subscriptionId,
-    Models.CreateIncrementRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription id |
-| `request` | [`CreateIncrementRequest`](../../doc/models/create-increment-request.md) | Body, Required | Request for creating a increment |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetIncrementResponse>`](../../doc/models/get-increment-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-CreateIncrementRequest request = new CreateIncrementRequest
-{
-    MValue = 185.28,
-    IncrementType = "increment_type8",
-    ItemId = "item_id6",
-};
-
-try
-{
-    GetIncrementResponse result = await subscriptionsController.CreateIncrementAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Create Usage
-
-Creates a usage
-
-```csharp
-CreateUsageAsync(
-    string subscriptionId,
-    string itemId,
-    Models.CreateUsageRequest body,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `itemId` | `string` | Template, Required | Item id |
-| `body` | [`CreateUsageRequest`](../../doc/models/create-usage-request.md) | Body, Required | Request for creating a usage |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetUsageResponse>`](../../doc/models/get-usage-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string itemId = "item_id0";
-CreateUsageRequest body = new CreateUsageRequest
-{
-    Quantity = 156,
-    Description = "description4",
-    UsedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
-        provider: CultureInfo.InvariantCulture,
-        DateTimeStyles.RoundtripKind),
-};
-
-try
-{
-    GetUsageResponse result = await subscriptionsController.CreateUsageAsync(
-        subscriptionId,
-        itemId,
-        body
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Discount by Id
-
-```csharp
-GetDiscountByIdAsync(
-    string subscriptionId,
-    string discountId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `discountId` | `string` | Template, Required | - |
-
-## Response Type
-
-[`Task<Models.GetDiscountResponse>`](../../doc/models/get-discount-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string discountId = "discountId0";
-try
-{
-    GetDiscountResponse result = await subscriptionsController.GetDiscountByIdAsync(
-        subscriptionId,
-        discountId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Subscription Metadata
-
-Updates the metadata from a subscription
-
-```csharp
-UpdateSubscriptionMetadataAsync(
-    string subscriptionId,
-    Models.UpdateMetadataRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the subscrption metadata |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionResponse>`](../../doc/models/get-subscription-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-UpdateMetadataRequest request = new UpdateMetadataRequest
-{
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
-};
-
-try
-{
-    GetSubscriptionResponse result = await subscriptionsController.UpdateSubscriptionMetadataAsync(
-        subscriptionId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Subscription Cycles
-
-```csharp
-GetSubscriptionCyclesAsync(
-    string subscriptionId,
-    string page,
-    string size)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `page` | `string` | Query, Required | Page number |
-| `size` | `string` | Query, Required | Page size |
-
-## Response Type
-
-[`Task<Models.ListCyclesResponse>`](../../doc/models/list-cycles-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string page = "page8";
-string size = "size0";
-try
-{
-    ListCyclesResponse result = await subscriptionsController.GetSubscriptionCyclesAsync(
-        subscriptionId,
-        page,
-        size
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Subscription Item
-
-Deletes a subscription item
-
-```csharp
-DeleteSubscriptionItemAsync(
-    string subscriptionId,
-    string subscriptionItemId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription id |
-| `subscriptionItemId` | `string` | Template, Required | Subscription item id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string subscriptionItemId = "subscription_item_id4";
-try
-{
-    GetSubscriptionItemResponse result = await subscriptionsController.DeleteSubscriptionItemAsync(
-        subscriptionId,
-        subscriptionItemId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Increments
-
-```csharp
-GetIncrementsAsync(
-    string subscriptionId,
-    int? page = null,
-    int? size = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | The subscription id |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-
-## Response Type
-
-[`Task<Models.ListIncrementsResponse>`](../../doc/models/list-increments-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-try
-{
-    ListIncrementsResponse result = await subscriptionsController.GetIncrementsAsync(subscriptionId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Subscription Item
-
-Updates a subscription item
-
-```csharp
-UpdateSubscriptionItemAsync(
-    string subscriptionId,
-    string itemId,
-    Models.UpdateSubscriptionItemRequest body,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `itemId` | `string` | Template, Required | Item id |
-| `body` | [`UpdateSubscriptionItemRequest`](../../doc/models/update-subscription-item-request.md) | Body, Required | Request for updating a subscription item |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetSubscriptionItemResponse>`](../../doc/models/get-subscription-item-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string itemId = "item_id0";
-UpdateSubscriptionItemRequest body = new UpdateSubscriptionItemRequest
-{
-    Description = "description4",
-    Status = "status2",
-    PricingScheme = new UpdatePricingSchemeRequest
-    {
-        SchemeType = "scheme_type8",
-        PriceBrackets = new List<UpdatePriceBracketRequest>
-        {
-            new UpdatePriceBracketRequest
-            {
-                StartQuantity = 144,
-                Price = 174,
-            },
-        },
-    },
-    Name = "name6",
-};
-
-try
-{
-    GetSubscriptionItemResponse result = await subscriptionsController.UpdateSubscriptionItemAsync(
-        subscriptionId,
-        itemId,
-        body
     );
 }
 catch (ApiException e)

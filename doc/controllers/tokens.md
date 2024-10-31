@@ -10,51 +10,8 @@ ITokensController tokensController = client.TokensController;
 
 ## Methods
 
-* [Get Token](../../doc/controllers/tokens.md#get-token)
 * [Create Token](../../doc/controllers/tokens.md#create-token)
-
-
-# Get Token
-
-Gets a token from its id
-
-:information_source: **Note** This endpoint does not require authentication.
-
-```csharp
-GetTokenAsync(
-    string id,
-    string publicKey)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `string` | Template, Required | Token id |
-| `publicKey` | `string` | Template, Required | Public key |
-
-## Response Type
-
-[`Task<Models.GetTokenResponse>`](../../doc/models/get-token-response.md)
-
-## Example Usage
-
-```csharp
-string id = "id0";
-string publicKey = "public_key6";
-try
-{
-    GetTokenResponse result = await tokensController.GetTokenAsync(
-        id,
-        publicKey
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
+* [Get Token](../../doc/controllers/tokens.md#get-token)
 
 
 # Create Token
@@ -104,6 +61,49 @@ try
     GetTokenResponse result = await tokensController.CreateTokenAsync(
         publicKey,
         request
+    );
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Get Token
+
+Gets a token from its id
+
+:information_source: **Note** This endpoint does not require authentication.
+
+```csharp
+GetTokenAsync(
+    string id,
+    string publicKey)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `string` | Template, Required | Token id |
+| `publicKey` | `string` | Template, Required | Public key |
+
+## Response Type
+
+[`Task<Models.GetTokenResponse>`](../../doc/models/get-token-response.md)
+
+## Example Usage
+
+```csharp
+string id = "id0";
+string publicKey = "public_key6";
+try
+{
+    GetTokenResponse result = await tokensController.GetTokenAsync(
+        id,
+        publicKey
     );
 }
 catch (ApiException e)

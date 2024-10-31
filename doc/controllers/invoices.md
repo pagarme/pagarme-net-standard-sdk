@@ -10,151 +10,13 @@ IInvoicesController invoicesController = client.InvoicesController;
 
 ## Methods
 
-* [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
-* [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
-* [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
 * [Update Invoice Metadata](../../doc/controllers/invoices.md#update-invoice-metadata)
 * [Get Partial Invoice](../../doc/controllers/invoices.md#get-partial-invoice)
+* [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
 * [Create Invoice](../../doc/controllers/invoices.md#create-invoice)
+* [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
 * [Get Invoice](../../doc/controllers/invoices.md#get-invoice)
-
-
-# Get Invoices
-
-Gets all invoices
-
-```csharp
-GetInvoicesAsync(
-    int? page = null,
-    int? size = null,
-    string code = null,
-    string customerId = null,
-    string subscriptionId = null,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null,
-    string status = null,
-    DateTime? dueSince = null,
-    DateTime? dueUntil = null,
-    string customerDocument = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `code` | `string` | Query, Optional | Filter for Invoice's code |
-| `customerId` | `string` | Query, Optional | Filter for Invoice's customer id |
-| `subscriptionId` | `string` | Query, Optional | Filter for Invoice's subscription id |
-| `createdSince` | `DateTime?` | Query, Optional | Filter for Invoice's creation date start range |
-| `createdUntil` | `DateTime?` | Query, Optional | Filter for Invoices creation date end range |
-| `status` | `string` | Query, Optional | Filter for Invoice's status |
-| `dueSince` | `DateTime?` | Query, Optional | Filter for Invoice's due date start range |
-| `dueUntil` | `DateTime?` | Query, Optional | Filter for Invoice's due date end range |
-| `customerDocument` | `string` | Query, Optional | - |
-
-## Response Type
-
-[`Task<Models.ListInvoicesResponse>`](../../doc/models/list-invoices-response.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListInvoicesResponse result = await invoicesController.GetInvoicesAsync();
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Cancel Invoice
-
-Cancels an invoice
-
-```csharp
-CancelInvoiceAsync(
-    string invoiceId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | Invoice id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string invoiceId = "invoice_id0";
-try
-{
-    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Invoice Status
-
-Updates the status from an invoice
-
-```csharp
-UpdateInvoiceStatusAsync(
-    string invoiceId,
-    Models.UpdateInvoiceStatusRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | Invoice Id |
-| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string invoiceId = "invoice_id0";
-UpdateInvoiceStatusRequest request = new UpdateInvoiceStatusRequest
-{
-    Status = "status8",
-};
-
-try
-{
-    GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(
-        invoiceId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
+* [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
 
 
 # Update Invoice Metadata
@@ -240,6 +102,43 @@ catch (ApiException e)
 ```
 
 
+# Cancel Invoice
+
+Cancels an invoice
+
+```csharp
+CancelInvoiceAsync(
+    string invoiceId,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoiceId` | `string` | Template, Required | Invoice id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string invoiceId = "invoice_id0";
+try
+{
+    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
 # Create Invoice
 
 Create an Invoice
@@ -285,6 +184,60 @@ catch (ApiException e)
 ```
 
 
+# Get Invoices
+
+Gets all invoices
+
+```csharp
+GetInvoicesAsync(
+    int? page = null,
+    int? size = null,
+    string code = null,
+    string customerId = null,
+    string subscriptionId = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null,
+    string status = null,
+    DateTime? dueSince = null,
+    DateTime? dueUntil = null,
+    string customerDocument = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `code` | `string` | Query, Optional | Filter for Invoice's code |
+| `customerId` | `string` | Query, Optional | Filter for Invoice's customer id |
+| `subscriptionId` | `string` | Query, Optional | Filter for Invoice's subscription id |
+| `createdSince` | `DateTime?` | Query, Optional | Filter for Invoice's creation date start range |
+| `createdUntil` | `DateTime?` | Query, Optional | Filter for Invoices creation date end range |
+| `status` | `string` | Query, Optional | Filter for Invoice's status |
+| `dueSince` | `DateTime?` | Query, Optional | Filter for Invoice's due date start range |
+| `dueUntil` | `DateTime?` | Query, Optional | Filter for Invoice's due date end range |
+| `customerDocument` | `string` | Query, Optional | - |
+
+## Response Type
+
+[`Task<Models.ListInvoicesResponse>`](../../doc/models/list-invoices-response.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListInvoicesResponse result = await invoicesController.GetInvoicesAsync();
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
 # Get Invoice
 
 Gets an invoice
@@ -311,6 +264,53 @@ string invoiceId = "invoice_id0";
 try
 {
     GetInvoiceResponse result = await invoicesController.GetInvoiceAsync(invoiceId);
+}
+catch (ApiException e)
+{
+    // TODO: Handle exception here
+    Console.WriteLine(e.Message);
+}
+```
+
+
+# Update Invoice Status
+
+Updates the status from an invoice
+
+```csharp
+UpdateInvoiceStatusAsync(
+    string invoiceId,
+    Models.UpdateInvoiceStatusRequest request,
+    string idempotencyKey = null)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoiceId` | `string` | Template, Required | Invoice Id |
+| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string invoiceId = "invoice_id0";
+UpdateInvoiceStatusRequest request = new UpdateInvoiceStatusRequest
+{
+    Status = "status8",
+};
+
+try
+{
+    GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(
+        invoiceId,
+        request
+    );
 }
 catch (ApiException e)
 {
