@@ -33,6 +33,32 @@ namespace PagarmeApiSDK.Standard.Controllers
         internal BalanceOperationsController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
+        /// GetBalanceOperationById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        public Models.GetBalanceOperationResponse GetBalanceOperationById(
+                long id)
+            => CoreHelper.RunTask(GetBalanceOperationByIdAsync(id));
+
+        /// <summary>
+        /// GetBalanceOperationById EndPoint.
+        /// </summary>
+        /// <param name="id">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
+        public async Task<Models.GetBalanceOperationResponse> GetBalanceOperationByIdAsync(
+                long id,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetBalanceOperationResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/balance/operations/{id}")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("id", id))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
         /// GetBalanceOperations EndPoint.
         /// </summary>
         /// <param name="status">Optional parameter: Example: .</param>
@@ -71,32 +97,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("recipient_id", recipientId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// GetBalanceOperationById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
-        public Models.GetBalanceOperationResponse GetBalanceOperationById(
-                long id)
-            => CoreHelper.RunTask(GetBalanceOperationByIdAsync(id));
-
-        /// <summary>
-        /// GetBalanceOperationById EndPoint.
-        /// </summary>
-        /// <param name="id">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetBalanceOperationResponse response from the API call.</returns>
-        public async Task<Models.GetBalanceOperationResponse> GetBalanceOperationByIdAsync(
-                long id,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetBalanceOperationResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/balance/operations/{id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("id", id))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }
