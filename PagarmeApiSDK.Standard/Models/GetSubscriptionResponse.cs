@@ -162,6 +162,7 @@ namespace PagarmeApiSDK.Standard.Models
             bool? manualBilling = null,
             string indirectAcceptor = null)
         {
+
             if (id != null)
             {
                 this.Id = id;
@@ -316,7 +317,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.IndirectAcceptor = indirectAcceptor;
             }
-
         }
 
         /// <summary>
@@ -886,14 +886,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetSubscriptionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -901,7 +899,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCode()
         {
@@ -909,7 +907,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStartAt()
         {
@@ -917,7 +915,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInterval()
         {
@@ -925,7 +923,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetIntervalCount()
         {
@@ -933,7 +931,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingType()
         {
@@ -941,7 +939,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCurrentCycle()
         {
@@ -949,7 +947,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaymentMethod()
         {
@@ -957,7 +955,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCurrency()
         {
@@ -965,7 +963,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInstallments()
         {
@@ -973,7 +971,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -981,7 +979,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -989,7 +987,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -997,7 +995,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomer()
         {
@@ -1005,7 +1003,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCard()
         {
@@ -1013,7 +1011,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetItems()
         {
@@ -1021,7 +1019,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatementDescriptor()
         {
@@ -1029,7 +1027,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMetadata()
         {
@@ -1037,7 +1035,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSetup()
         {
@@ -1045,7 +1043,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetGatewayAffiliationId()
         {
@@ -1053,7 +1051,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNextBillingAt()
         {
@@ -1061,7 +1059,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingDay()
         {
@@ -1069,7 +1067,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMinimumPrice()
         {
@@ -1077,7 +1075,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCanceledAt()
         {
@@ -1085,7 +1083,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDiscounts()
         {
@@ -1093,7 +1091,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetIncrements()
         {
@@ -1101,7 +1099,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBoletoDueDays()
         {
@@ -1109,7 +1107,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSplit()
         {
@@ -1117,7 +1115,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBoleto()
         {
@@ -1125,7 +1123,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetManualBilling()
         {
@@ -1133,7 +1131,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetIndirectAcceptor()
         {
@@ -1422,85 +1420,111 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetSubscriptionResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.StartAt == null && other.StartAt == null) || (this.StartAt?.Equals(other.StartAt) == true)) &&
-                ((this.Interval == null && other.Interval == null) || (this.Interval?.Equals(other.Interval) == true)) &&
-                ((this.IntervalCount == null && other.IntervalCount == null) || (this.IntervalCount?.Equals(other.IntervalCount) == true)) &&
-                ((this.BillingType == null && other.BillingType == null) || (this.BillingType?.Equals(other.BillingType) == true)) &&
-                ((this.CurrentCycle == null && other.CurrentCycle == null) || (this.CurrentCycle?.Equals(other.CurrentCycle) == true)) &&
-                ((this.PaymentMethod == null && other.PaymentMethod == null) || (this.PaymentMethod?.Equals(other.PaymentMethod) == true)) &&
-                ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
-                ((this.Installments == null && other.Installments == null) || (this.Installments?.Equals(other.Installments) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.Items == null && other.Items == null) || (this.Items?.Equals(other.Items) == true)) &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Setup == null && other.Setup == null) || (this.Setup?.Equals(other.Setup) == true)) &&
-                ((this.GatewayAffiliationId == null && other.GatewayAffiliationId == null) || (this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true)) &&
-                ((this.NextBillingAt == null && other.NextBillingAt == null) || (this.NextBillingAt?.Equals(other.NextBillingAt) == true)) &&
-                ((this.BillingDay == null && other.BillingDay == null) || (this.BillingDay?.Equals(other.BillingDay) == true)) &&
-                ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true)) &&
-                ((this.CanceledAt == null && other.CanceledAt == null) || (this.CanceledAt?.Equals(other.CanceledAt) == true)) &&
-                ((this.Discounts == null && other.Discounts == null) || (this.Discounts?.Equals(other.Discounts) == true)) &&
-                ((this.Increments == null && other.Increments == null) || (this.Increments?.Equals(other.Increments) == true)) &&
-                ((this.BoletoDueDays == null && other.BoletoDueDays == null) || (this.BoletoDueDays?.Equals(other.BoletoDueDays) == true)) &&
-                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                ((this.ManualBilling == null && other.ManualBilling == null) || (this.ManualBilling?.Equals(other.ManualBilling) == true)) &&
-                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
+            return obj is GetSubscriptionResponse other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.Code == null && other.Code == null ||
+                 this.Code?.Equals(other.Code) == true) &&
+                (this.StartAt == null && other.StartAt == null ||
+                 this.StartAt?.Equals(other.StartAt) == true) &&
+                (this.Interval == null && other.Interval == null ||
+                 this.Interval?.Equals(other.Interval) == true) &&
+                (this.IntervalCount == null && other.IntervalCount == null ||
+                 this.IntervalCount?.Equals(other.IntervalCount) == true) &&
+                (this.BillingType == null && other.BillingType == null ||
+                 this.BillingType?.Equals(other.BillingType) == true) &&
+                (this.CurrentCycle == null && other.CurrentCycle == null ||
+                 this.CurrentCycle?.Equals(other.CurrentCycle) == true) &&
+                (this.PaymentMethod == null && other.PaymentMethod == null ||
+                 this.PaymentMethod?.Equals(other.PaymentMethod) == true) &&
+                (this.Currency == null && other.Currency == null ||
+                 this.Currency?.Equals(other.Currency) == true) &&
+                (this.Installments == null && other.Installments == null ||
+                 this.Installments?.Equals(other.Installments) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
+                (this.Customer == null && other.Customer == null ||
+                 this.Customer?.Equals(other.Customer) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.Items == null && other.Items == null ||
+                 this.Items?.Equals(other.Items) == true) &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Setup == null && other.Setup == null ||
+                 this.Setup?.Equals(other.Setup) == true) &&
+                (this.GatewayAffiliationId == null && other.GatewayAffiliationId == null ||
+                 this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true) &&
+                (this.NextBillingAt == null && other.NextBillingAt == null ||
+                 this.NextBillingAt?.Equals(other.NextBillingAt) == true) &&
+                (this.BillingDay == null && other.BillingDay == null ||
+                 this.BillingDay?.Equals(other.BillingDay) == true) &&
+                (this.MinimumPrice == null && other.MinimumPrice == null ||
+                 this.MinimumPrice?.Equals(other.MinimumPrice) == true) &&
+                (this.CanceledAt == null && other.CanceledAt == null ||
+                 this.CanceledAt?.Equals(other.CanceledAt) == true) &&
+                (this.Discounts == null && other.Discounts == null ||
+                 this.Discounts?.Equals(other.Discounts) == true) &&
+                (this.Increments == null && other.Increments == null ||
+                 this.Increments?.Equals(other.Increments) == true) &&
+                (this.BoletoDueDays == null && other.BoletoDueDays == null ||
+                 this.BoletoDueDays?.Equals(other.BoletoDueDays) == true) &&
+                (this.Split == null && other.Split == null ||
+                 this.Split?.Equals(other.Split) == true) &&
+                (this.Boleto == null && other.Boleto == null ||
+                 this.Boleto?.Equals(other.Boleto) == true) &&
+                (this.ManualBilling == null && other.ManualBilling == null ||
+                 this.ManualBilling?.Equals(other.ManualBilling) == true) &&
+                (this.IndirectAcceptor == null && other.IndirectAcceptor == null ||
+                 this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
-            toStringOutput.Add($"this.StartAt = {(this.StartAt == null ? "null" : this.StartAt.ToString())}");
-            toStringOutput.Add($"this.Interval = {(this.Interval == null ? "null" : this.Interval)}");
-            toStringOutput.Add($"this.IntervalCount = {(this.IntervalCount == null ? "null" : this.IntervalCount.ToString())}");
-            toStringOutput.Add($"this.BillingType = {(this.BillingType == null ? "null" : this.BillingType)}");
-            toStringOutput.Add($"this.CurrentCycle = {(this.CurrentCycle == null ? "null" : this.CurrentCycle.ToString())}");
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
-            toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency)}");
-            toStringOutput.Add($"this.Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.Items = {(this.Items == null ? "null" : $"[{string.Join(", ", this.Items)} ]")}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"Code = {this.Code ?? "null"}");
+            toStringOutput.Add($"StartAt = {(this.StartAt == null ? "null" : this.StartAt.ToString())}");
+            toStringOutput.Add($"Interval = {this.Interval ?? "null"}");
+            toStringOutput.Add($"IntervalCount = {(this.IntervalCount == null ? "null" : this.IntervalCount.ToString())}");
+            toStringOutput.Add($"BillingType = {this.BillingType ?? "null"}");
+            toStringOutput.Add($"CurrentCycle = {(this.CurrentCycle == null ? "null" : this.CurrentCycle.ToString())}");
+            toStringOutput.Add($"PaymentMethod = {this.PaymentMethod ?? "null"}");
+            toStringOutput.Add($"Currency = {this.Currency ?? "null"}");
+            toStringOutput.Add($"Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"Items = {(this.Items == null ? "null" : $"[{string.Join(", ", this.Items)} ]")}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Setup = {(this.Setup == null ? "null" : this.Setup.ToString())}");
-            toStringOutput.Add($"this.GatewayAffiliationId = {(this.GatewayAffiliationId == null ? "null" : this.GatewayAffiliationId)}");
-            toStringOutput.Add($"this.NextBillingAt = {(this.NextBillingAt == null ? "null" : this.NextBillingAt.ToString())}");
-            toStringOutput.Add($"this.BillingDay = {(this.BillingDay == null ? "null" : this.BillingDay.ToString())}");
-            toStringOutput.Add($"this.MinimumPrice = {(this.MinimumPrice == null ? "null" : this.MinimumPrice.ToString())}");
-            toStringOutput.Add($"this.CanceledAt = {(this.CanceledAt == null ? "null" : this.CanceledAt.ToString())}");
-            toStringOutput.Add($"this.Discounts = {(this.Discounts == null ? "null" : $"[{string.Join(", ", this.Discounts)} ]")}");
-            toStringOutput.Add($"this.Increments = {(this.Increments == null ? "null" : $"[{string.Join(", ", this.Increments)} ]")}");
-            toStringOutput.Add($"this.BoletoDueDays = {(this.BoletoDueDays == null ? "null" : this.BoletoDueDays.ToString())}");
-            toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : this.Split.ToString())}");
-            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
-            toStringOutput.Add($"this.ManualBilling = {(this.ManualBilling == null ? "null" : this.ManualBilling.ToString())}");
-            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
+            toStringOutput.Add($"Setup = {(this.Setup == null ? "null" : this.Setup.ToString())}");
+            toStringOutput.Add($"GatewayAffiliationId = {this.GatewayAffiliationId ?? "null"}");
+            toStringOutput.Add($"NextBillingAt = {(this.NextBillingAt == null ? "null" : this.NextBillingAt.ToString())}");
+            toStringOutput.Add($"BillingDay = {(this.BillingDay == null ? "null" : this.BillingDay.ToString())}");
+            toStringOutput.Add($"MinimumPrice = {(this.MinimumPrice == null ? "null" : this.MinimumPrice.ToString())}");
+            toStringOutput.Add($"CanceledAt = {(this.CanceledAt == null ? "null" : this.CanceledAt.ToString())}");
+            toStringOutput.Add($"Discounts = {(this.Discounts == null ? "null" : $"[{string.Join(", ", this.Discounts)} ]")}");
+            toStringOutput.Add($"Increments = {(this.Increments == null ? "null" : $"[{string.Join(", ", this.Increments)} ]")}");
+            toStringOutput.Add($"BoletoDueDays = {(this.BoletoDueDays == null ? "null" : this.BoletoDueDays.ToString())}");
+            toStringOutput.Add($"Split = {(this.Split == null ? "null" : this.Split.ToString())}");
+            toStringOutput.Add($"Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"ManualBilling = {(this.ManualBilling == null ? "null" : this.ManualBilling.ToString())}");
+            toStringOutput.Add($"IndirectAcceptor = {this.IndirectAcceptor ?? "null"}");
         }
     }
 }

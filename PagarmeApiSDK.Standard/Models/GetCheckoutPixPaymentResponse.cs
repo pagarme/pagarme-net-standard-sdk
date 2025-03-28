@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? expiresAt = null,
             List<Models.PixAdditionalInformation> additionalInformation = null)
         {
+
             if (expiresAt != null)
             {
                 this.ExpiresAt = expiresAt;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.AdditionalInformation = additionalInformation;
             }
-
         }
 
         /// <summary>
@@ -99,14 +99,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCheckoutPixPaymentResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpiresAt()
         {
@@ -114,7 +112,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAdditionalInformation()
         {
@@ -142,27 +140,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCheckoutPixPaymentResponse other &&                ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
-                ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true));
+            return obj is GetCheckoutPixPaymentResponse other &&
+                (this.ExpiresAt == null && other.ExpiresAt == null ||
+                 this.ExpiresAt?.Equals(other.ExpiresAt) == true) &&
+                (this.AdditionalInformation == null && other.AdditionalInformation == null ||
+                 this.AdditionalInformation?.Equals(other.AdditionalInformation) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
-            toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
+            toStringOutput.Add($"ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
+            toStringOutput.Add($"AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
         }
     }
 }

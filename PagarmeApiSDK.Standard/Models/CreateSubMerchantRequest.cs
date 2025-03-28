@@ -40,6 +40,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="type">type.</param>
         /// <param name="phone">phone.</param>
         /// <param name="address">address.</param>
+        /// <param name="legalName">legal_name.</param>
         public CreateSubMerchantRequest(
             string paymentFacilitatorCode,
             string code,
@@ -48,7 +49,8 @@ namespace PagarmeApiSDK.Standard.Models
             string document,
             string type,
             Models.CreatePhoneRequest phone,
-            Models.CreateAddressRequest address)
+            Models.CreateAddressRequest address,
+            string legalName)
         {
             this.PaymentFacilitatorCode = paymentFacilitatorCode;
             this.Code = code;
@@ -58,6 +60,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Type = type;
             this.Phone = phone;
             this.Address = address;
+            this.LegalName = legalName;
         }
 
         /// <summary>
@@ -108,52 +111,62 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("address")]
         public Models.CreateAddressRequest Address { get; set; }
 
+        /// <summary>
+        /// Legal name
+        /// </summary>
+        [JsonProperty("legal_name")]
+        public string LegalName { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateSubMerchantRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateSubMerchantRequest other &&                ((this.PaymentFacilitatorCode == null && other.PaymentFacilitatorCode == null) || (this.PaymentFacilitatorCode?.Equals(other.PaymentFacilitatorCode) == true)) &&
-                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                ((this.MerchantCategoryCode == null && other.MerchantCategoryCode == null) || (this.MerchantCategoryCode?.Equals(other.MerchantCategoryCode) == true)) &&
-                ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.Phone == null && other.Phone == null) || (this.Phone?.Equals(other.Phone) == true)) &&
-                ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true));
+            return obj is CreateSubMerchantRequest other &&
+                (this.PaymentFacilitatorCode == null && other.PaymentFacilitatorCode == null ||
+                 this.PaymentFacilitatorCode?.Equals(other.PaymentFacilitatorCode) == true) &&
+                (this.Code == null && other.Code == null ||
+                 this.Code?.Equals(other.Code) == true) &&
+                (this.Name == null && other.Name == null ||
+                 this.Name?.Equals(other.Name) == true) &&
+                (this.MerchantCategoryCode == null && other.MerchantCategoryCode == null ||
+                 this.MerchantCategoryCode?.Equals(other.MerchantCategoryCode) == true) &&
+                (this.Document == null && other.Document == null ||
+                 this.Document?.Equals(other.Document) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Phone == null && other.Phone == null ||
+                 this.Phone?.Equals(other.Phone) == true) &&
+                (this.Address == null && other.Address == null ||
+                 this.Address?.Equals(other.Address) == true) &&
+                (this.LegalName == null && other.LegalName == null ||
+                 this.LegalName?.Equals(other.LegalName) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.PaymentFacilitatorCode = {(this.PaymentFacilitatorCode == null ? "null" : this.PaymentFacilitatorCode)}");
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
-            toStringOutput.Add($"this.MerchantCategoryCode = {(this.MerchantCategoryCode == null ? "null" : this.MerchantCategoryCode)}");
-            toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Phone = {(this.Phone == null ? "null" : this.Phone.ToString())}");
-            toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"PaymentFacilitatorCode = {this.PaymentFacilitatorCode ?? "null"}");
+            toStringOutput.Add($"Code = {this.Code ?? "null"}");
+            toStringOutput.Add($"Name = {this.Name ?? "null"}");
+            toStringOutput.Add($"MerchantCategoryCode = {this.MerchantCategoryCode ?? "null"}");
+            toStringOutput.Add($"Document = {this.Document ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Phone = {(this.Phone == null ? "null" : this.Phone.ToString())}");
+            toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"LegalName = {this.LegalName ?? "null"}");
         }
     }
 }

@@ -54,6 +54,7 @@ namespace PagarmeApiSDK.Standard.Models
             string branchCode = null,
             string accountNumber = null)
         {
+
             if (bankName != null)
             {
                 this.BankName = bankName;
@@ -73,7 +74,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.AccountNumber = accountNumber;
             }
-
         }
 
         /// <summary>
@@ -152,14 +152,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPixBankAccountResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBankName()
         {
@@ -167,7 +165,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetIspb()
         {
@@ -175,7 +173,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBranchCode()
         {
@@ -183,7 +181,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAccountNumber()
         {
@@ -229,31 +227,30 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPixBankAccountResponse other &&                ((this.BankName == null && other.BankName == null) || (this.BankName?.Equals(other.BankName) == true)) &&
-                ((this.Ispb == null && other.Ispb == null) || (this.Ispb?.Equals(other.Ispb) == true)) &&
-                ((this.BranchCode == null && other.BranchCode == null) || (this.BranchCode?.Equals(other.BranchCode) == true)) &&
-                ((this.AccountNumber == null && other.AccountNumber == null) || (this.AccountNumber?.Equals(other.AccountNumber) == true));
+            return obj is GetPixBankAccountResponse other &&
+                (this.BankName == null && other.BankName == null ||
+                 this.BankName?.Equals(other.BankName) == true) &&
+                (this.Ispb == null && other.Ispb == null ||
+                 this.Ispb?.Equals(other.Ispb) == true) &&
+                (this.BranchCode == null && other.BranchCode == null ||
+                 this.BranchCode?.Equals(other.BranchCode) == true) &&
+                (this.AccountNumber == null && other.AccountNumber == null ||
+                 this.AccountNumber?.Equals(other.AccountNumber) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.BankName = {(this.BankName == null ? "null" : this.BankName)}");
-            toStringOutput.Add($"this.Ispb = {(this.Ispb == null ? "null" : this.Ispb)}");
-            toStringOutput.Add($"this.BranchCode = {(this.BranchCode == null ? "null" : this.BranchCode)}");
-            toStringOutput.Add($"this.AccountNumber = {(this.AccountNumber == null ? "null" : this.AccountNumber)}");
+            toStringOutput.Add($"BankName = {this.BankName ?? "null"}");
+            toStringOutput.Add($"Ispb = {this.Ispb ?? "null"}");
+            toStringOutput.Add($"BranchCode = {this.BranchCode ?? "null"}");
+            toStringOutput.Add($"AccountNumber = {this.AccountNumber ?? "null"}");
         }
     }
 }

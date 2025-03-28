@@ -79,6 +79,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.CompanyName = companyName;
             this.TradingName = tradingName;
             this.AnnualRevenue = annualRevenue;
+
             if (corporationType != null)
             {
                 this.CorporationType = corporationType;
@@ -93,7 +94,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Cnae = cnae;
             }
-
             this.ManagingPartners = managingPartners;
             this.MainAddress = mainAddress;
         }
@@ -186,14 +186,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateRegisterInformationCorporationRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCorporationType()
         {
@@ -201,7 +199,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFoundingDate()
         {
@@ -209,7 +207,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCnae()
         {
@@ -246,40 +244,42 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateRegisterInformationCorporationRequest other &&                ((this.CompanyName == null && other.CompanyName == null) || (this.CompanyName?.Equals(other.CompanyName) == true)) &&
-                ((this.TradingName == null && other.TradingName == null) || (this.TradingName?.Equals(other.TradingName) == true)) &&
-                this.AnnualRevenue.Equals(other.AnnualRevenue) &&
-                ((this.CorporationType == null && other.CorporationType == null) || (this.CorporationType?.Equals(other.CorporationType) == true)) &&
-                ((this.FoundingDate == null && other.FoundingDate == null) || (this.FoundingDate?.Equals(other.FoundingDate) == true)) &&
-                ((this.Cnae == null && other.Cnae == null) || (this.Cnae?.Equals(other.Cnae) == true)) &&
-                ((this.ManagingPartners == null && other.ManagingPartners == null) || (this.ManagingPartners?.Equals(other.ManagingPartners) == true)) &&
-                ((this.MainAddress == null && other.MainAddress == null) || (this.MainAddress?.Equals(other.MainAddress) == true)) &&
+            return obj is CreateRegisterInformationCorporationRequest other &&
+                (this.CompanyName == null && other.CompanyName == null ||
+                 this.CompanyName?.Equals(other.CompanyName) == true) &&
+                (this.TradingName == null && other.TradingName == null ||
+                 this.TradingName?.Equals(other.TradingName) == true) &&
+                (this.AnnualRevenue.Equals(other.AnnualRevenue)) &&
+                (this.CorporationType == null && other.CorporationType == null ||
+                 this.CorporationType?.Equals(other.CorporationType) == true) &&
+                (this.FoundingDate == null && other.FoundingDate == null ||
+                 this.FoundingDate?.Equals(other.FoundingDate) == true) &&
+                (this.Cnae == null && other.Cnae == null ||
+                 this.Cnae?.Equals(other.Cnae) == true) &&
+                (this.ManagingPartners == null && other.ManagingPartners == null ||
+                 this.ManagingPartners?.Equals(other.ManagingPartners) == true) &&
+                (this.MainAddress == null && other.MainAddress == null ||
+                 this.MainAddress?.Equals(other.MainAddress) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.CompanyName = {(this.CompanyName == null ? "null" : this.CompanyName)}");
-            toStringOutput.Add($"this.TradingName = {(this.TradingName == null ? "null" : this.TradingName)}");
-            toStringOutput.Add($"this.AnnualRevenue = {this.AnnualRevenue}");
-            toStringOutput.Add($"this.CorporationType = {(this.CorporationType == null ? "null" : this.CorporationType)}");
-            toStringOutput.Add($"this.FoundingDate = {(this.FoundingDate == null ? "null" : this.FoundingDate)}");
-            toStringOutput.Add($"this.Cnae = {(this.Cnae == null ? "null" : this.Cnae)}");
-            toStringOutput.Add($"this.ManagingPartners = {(this.ManagingPartners == null ? "null" : $"[{string.Join(", ", this.ManagingPartners)} ]")}");
-            toStringOutput.Add($"this.MainAddress = {(this.MainAddress == null ? "null" : this.MainAddress.ToString())}");
+            toStringOutput.Add($"CompanyName = {this.CompanyName ?? "null"}");
+            toStringOutput.Add($"TradingName = {this.TradingName ?? "null"}");
+            toStringOutput.Add($"AnnualRevenue = {this.AnnualRevenue}");
+            toStringOutput.Add($"CorporationType = {this.CorporationType ?? "null"}");
+            toStringOutput.Add($"FoundingDate = {this.FoundingDate ?? "null"}");
+            toStringOutput.Add($"Cnae = {this.Cnae ?? "null"}");
+            toStringOutput.Add($"ManagingPartners = {(this.ManagingPartners == null ? "null" : $"[{string.Join(", ", this.ManagingPartners)} ]")}");
+            toStringOutput.Add($"MainAddress = {(this.MainAddress == null ? "null" : this.MainAddress.ToString())}");
 
             base.ToString(toStringOutput);
         }

@@ -94,43 +94,42 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateRecipientRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateRecipientRequest other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                ((this.Email == null && other.Email == null) || (this.Email?.Equals(other.Email) == true)) &&
-                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true));
+            return obj is UpdateRecipientRequest other &&
+                (this.Name == null && other.Name == null ||
+                 this.Name?.Equals(other.Name) == true) &&
+                (this.Email == null && other.Email == null ||
+                 this.Email?.Equals(other.Email) == true) &&
+                (this.Description == null && other.Description == null ||
+                 this.Description?.Equals(other.Description) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
-            toStringOutput.Add($"this.Email = {(this.Email == null ? "null" : this.Email)}");
-            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
+            toStringOutput.Add($"Name = {this.Name ?? "null"}");
+            toStringOutput.Add($"Email = {this.Email ?? "null"}");
+            toStringOutput.Add($"Description = {this.Description ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
         }
     }

@@ -85,42 +85,39 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateSplitRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateSplitRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                this.Amount.Equals(other.Amount) &&
-                ((this.RecipientId == null && other.RecipientId == null) || (this.RecipientId?.Equals(other.RecipientId) == true)) &&
-                ((this.Options == null && other.Options == null) || (this.Options?.Equals(other.Options) == true)) &&
-                ((this.SplitRuleId == null && other.SplitRuleId == null) || (this.SplitRuleId?.Equals(other.SplitRuleId) == true));
+            return obj is CreateSplitRequest other &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Amount.Equals(other.Amount)) &&
+                (this.RecipientId == null && other.RecipientId == null ||
+                 this.RecipientId?.Equals(other.RecipientId) == true) &&
+                (this.Options == null && other.Options == null ||
+                 this.Options?.Equals(other.Options) == true) &&
+                (this.SplitRuleId == null && other.SplitRuleId == null ||
+                 this.SplitRuleId?.Equals(other.SplitRuleId) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId)}");
-            toStringOutput.Add($"this.Options = {(this.Options == null ? "null" : this.Options.ToString())}");
-            toStringOutput.Add($"this.SplitRuleId = {(this.SplitRuleId == null ? "null" : this.SplitRuleId)}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Amount = {this.Amount}");
+            toStringOutput.Add($"RecipientId = {this.RecipientId ?? "null"}");
+            toStringOutput.Add($"Options = {(this.Options == null ? "null" : this.Options.ToString())}");
+            toStringOutput.Add($"SplitRuleId = {this.SplitRuleId ?? "null"}");
         }
     }
 }

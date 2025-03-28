@@ -103,46 +103,46 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateThreeDSecureRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateThreeDSecureRequest other &&                ((this.Mpi == null && other.Mpi == null) || (this.Mpi?.Equals(other.Mpi) == true)) &&
-                ((this.Cavv == null && other.Cavv == null) || (this.Cavv?.Equals(other.Cavv) == true)) &&
-                ((this.Eci == null && other.Eci == null) || (this.Eci?.Equals(other.Eci) == true)) &&
-                ((this.TransactionId == null && other.TransactionId == null) || (this.TransactionId?.Equals(other.TransactionId) == true)) &&
-                ((this.SuccessUrl == null && other.SuccessUrl == null) || (this.SuccessUrl?.Equals(other.SuccessUrl) == true)) &&
-                ((this.DsTransactionId == null && other.DsTransactionId == null) || (this.DsTransactionId?.Equals(other.DsTransactionId) == true)) &&
-                ((this.Version == null && other.Version == null) || (this.Version?.Equals(other.Version) == true));
+            return obj is CreateThreeDSecureRequest other &&
+                (this.Mpi == null && other.Mpi == null ||
+                 this.Mpi?.Equals(other.Mpi) == true) &&
+                (this.Cavv == null && other.Cavv == null ||
+                 this.Cavv?.Equals(other.Cavv) == true) &&
+                (this.Eci == null && other.Eci == null ||
+                 this.Eci?.Equals(other.Eci) == true) &&
+                (this.TransactionId == null && other.TransactionId == null ||
+                 this.TransactionId?.Equals(other.TransactionId) == true) &&
+                (this.SuccessUrl == null && other.SuccessUrl == null ||
+                 this.SuccessUrl?.Equals(other.SuccessUrl) == true) &&
+                (this.DsTransactionId == null && other.DsTransactionId == null ||
+                 this.DsTransactionId?.Equals(other.DsTransactionId) == true) &&
+                (this.Version == null && other.Version == null ||
+                 this.Version?.Equals(other.Version) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Mpi = {(this.Mpi == null ? "null" : this.Mpi)}");
-            toStringOutput.Add($"this.Cavv = {(this.Cavv == null ? "null" : this.Cavv)}");
-            toStringOutput.Add($"this.Eci = {(this.Eci == null ? "null" : this.Eci)}");
-            toStringOutput.Add($"this.TransactionId = {(this.TransactionId == null ? "null" : this.TransactionId)}");
-            toStringOutput.Add($"this.SuccessUrl = {(this.SuccessUrl == null ? "null" : this.SuccessUrl)}");
-            toStringOutput.Add($"this.DsTransactionId = {(this.DsTransactionId == null ? "null" : this.DsTransactionId)}");
-            toStringOutput.Add($"this.Version = {(this.Version == null ? "null" : this.Version)}");
+            toStringOutput.Add($"Mpi = {this.Mpi ?? "null"}");
+            toStringOutput.Add($"Cavv = {this.Cavv ?? "null"}");
+            toStringOutput.Add($"Eci = {this.Eci ?? "null"}");
+            toStringOutput.Add($"TransactionId = {this.TransactionId ?? "null"}");
+            toStringOutput.Add($"SuccessUrl = {this.SuccessUrl ?? "null"}");
+            toStringOutput.Add($"DsTransactionId = {this.DsTransactionId ?? "null"}");
+            toStringOutput.Add($"Version = {this.Version ?? "null"}");
         }
     }
 }

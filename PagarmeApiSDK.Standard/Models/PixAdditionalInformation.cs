@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             string name = null,
             string mValue = null)
         {
+
             if (name != null)
             {
                 this.Name = name;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.MValue = mValue;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"PixAdditionalInformation : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetName()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMValue()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is PixAdditionalInformation other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                ((this.MValue == null && other.MValue == null) || (this.MValue?.Equals(other.MValue) == true));
+            return obj is PixAdditionalInformation other &&
+                (this.Name == null && other.Name == null ||
+                 this.Name?.Equals(other.Name) == true) &&
+                (this.MValue == null && other.MValue == null ||
+                 this.MValue?.Equals(other.MValue) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
-            toStringOutput.Add($"this.MValue = {(this.MValue == null ? "null" : this.MValue)}");
+            toStringOutput.Add($"Name = {this.Name ?? "null"}");
+            toStringOutput.Add($"MValue = {this.MValue ?? "null"}");
         }
     }
 }

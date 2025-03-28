@@ -54,6 +54,7 @@ namespace PagarmeApiSDK.Standard.Models
             string documentType = null,
             Models.GetPixBankAccountResponse bankAccount = null)
         {
+
             if (name != null)
             {
                 this.Name = name;
@@ -73,7 +74,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.BankAccount = bankAccount;
             }
-
         }
 
         /// <summary>
@@ -152,14 +152,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPixPayerResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetName()
         {
@@ -167,7 +165,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDocument()
         {
@@ -175,7 +173,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDocumentType()
         {
@@ -183,7 +181,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBankAccount()
         {
@@ -229,31 +227,30 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPixPayerResponse other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
-                ((this.DocumentType == null && other.DocumentType == null) || (this.DocumentType?.Equals(other.DocumentType) == true)) &&
-                ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true));
+            return obj is GetPixPayerResponse other &&
+                (this.Name == null && other.Name == null ||
+                 this.Name?.Equals(other.Name) == true) &&
+                (this.Document == null && other.Document == null ||
+                 this.Document?.Equals(other.Document) == true) &&
+                (this.DocumentType == null && other.DocumentType == null ||
+                 this.DocumentType?.Equals(other.DocumentType) == true) &&
+                (this.BankAccount == null && other.BankAccount == null ||
+                 this.BankAccount?.Equals(other.BankAccount) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
-            toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document)}");
-            toStringOutput.Add($"this.DocumentType = {(this.DocumentType == null ? "null" : this.DocumentType)}");
-            toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
+            toStringOutput.Add($"Name = {this.Name ?? "null"}");
+            toStringOutput.Add($"Document = {this.Document ?? "null"}");
+            toStringOutput.Add($"DocumentType = {this.DocumentType ?? "null"}");
+            toStringOutput.Add($"BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
         }
     }
 }

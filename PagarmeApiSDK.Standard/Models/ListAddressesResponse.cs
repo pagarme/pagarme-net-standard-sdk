@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.GetAddressResponse> data = null,
             Models.PagingResponse paging = null)
         {
+
             if (data != null)
             {
                 this.Data = data;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Paging = paging;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"ListAddressesResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetData()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaging()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is ListAddressesResponse other &&                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
-                ((this.Paging == null && other.Paging == null) || (this.Paging?.Equals(other.Paging) == true));
+            return obj is ListAddressesResponse other &&
+                (this.Data == null && other.Data == null ||
+                 this.Data?.Equals(other.Data) == true) &&
+                (this.Paging == null && other.Paging == null ||
+                 this.Paging?.Equals(other.Paging) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : $"[{string.Join(", ", this.Data)} ]")}");
-            toStringOutput.Add($"this.Paging = {(this.Paging == null ? "null" : this.Paging.ToString())}");
+            toStringOutput.Add($"Data = {(this.Data == null ? "null" : $"[{string.Join(", ", this.Data)} ]")}");
+            toStringOutput.Add($"Paging = {(this.Paging == null ? "null" : this.Paging.ToString())}");
         }
     }
 }

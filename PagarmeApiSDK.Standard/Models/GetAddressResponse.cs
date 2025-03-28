@@ -106,6 +106,7 @@ namespace PagarmeApiSDK.Standard.Models
             string line2 = null,
             DateTime? deletedAt = null)
         {
+
             if (id != null)
             {
                 this.Id = id;
@@ -190,7 +191,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.DeletedAt = deletedAt;
             }
-
         }
 
         /// <summary>
@@ -506,14 +506,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetAddressResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -521,7 +519,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStreet()
         {
@@ -529,7 +527,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNumber()
         {
@@ -537,7 +535,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetComplement()
         {
@@ -545,7 +543,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetZipCode()
         {
@@ -553,7 +551,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNeighborhood()
         {
@@ -561,7 +559,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCity()
         {
@@ -569,7 +567,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetState()
         {
@@ -577,7 +575,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCountry()
         {
@@ -585,7 +583,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -593,7 +591,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -601,7 +599,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -609,7 +607,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomer()
         {
@@ -617,7 +615,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMetadata()
         {
@@ -625,7 +623,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLine1()
         {
@@ -633,7 +631,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLine2()
         {
@@ -641,7 +639,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDeletedAt()
         {
@@ -804,57 +802,69 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetAddressResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Street == null && other.Street == null) || (this.Street?.Equals(other.Street) == true)) &&
-                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
-                ((this.Complement == null && other.Complement == null) || (this.Complement?.Equals(other.Complement) == true)) &&
-                ((this.ZipCode == null && other.ZipCode == null) || (this.ZipCode?.Equals(other.ZipCode) == true)) &&
-                ((this.Neighborhood == null && other.Neighborhood == null) || (this.Neighborhood?.Equals(other.Neighborhood) == true)) &&
-                ((this.City == null && other.City == null) || (this.City?.Equals(other.City) == true)) &&
-                ((this.State == null && other.State == null) || (this.State?.Equals(other.State) == true)) &&
-                ((this.Country == null && other.Country == null) || (this.Country?.Equals(other.Country) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Line1 == null && other.Line1 == null) || (this.Line1?.Equals(other.Line1) == true)) &&
-                ((this.Line2 == null && other.Line2 == null) || (this.Line2?.Equals(other.Line2) == true)) &&
-                ((this.DeletedAt == null && other.DeletedAt == null) || (this.DeletedAt?.Equals(other.DeletedAt) == true));
+            return obj is GetAddressResponse other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.Street == null && other.Street == null ||
+                 this.Street?.Equals(other.Street) == true) &&
+                (this.Number == null && other.Number == null ||
+                 this.Number?.Equals(other.Number) == true) &&
+                (this.Complement == null && other.Complement == null ||
+                 this.Complement?.Equals(other.Complement) == true) &&
+                (this.ZipCode == null && other.ZipCode == null ||
+                 this.ZipCode?.Equals(other.ZipCode) == true) &&
+                (this.Neighborhood == null && other.Neighborhood == null ||
+                 this.Neighborhood?.Equals(other.Neighborhood) == true) &&
+                (this.City == null && other.City == null ||
+                 this.City?.Equals(other.City) == true) &&
+                (this.State == null && other.State == null ||
+                 this.State?.Equals(other.State) == true) &&
+                (this.Country == null && other.Country == null ||
+                 this.Country?.Equals(other.Country) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
+                (this.Customer == null && other.Customer == null ||
+                 this.Customer?.Equals(other.Customer) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Line1 == null && other.Line1 == null ||
+                 this.Line1?.Equals(other.Line1) == true) &&
+                (this.Line2 == null && other.Line2 == null ||
+                 this.Line2?.Equals(other.Line2) == true) &&
+                (this.DeletedAt == null && other.DeletedAt == null ||
+                 this.DeletedAt?.Equals(other.DeletedAt) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Street = {(this.Street == null ? "null" : this.Street)}");
-            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number)}");
-            toStringOutput.Add($"this.Complement = {(this.Complement == null ? "null" : this.Complement)}");
-            toStringOutput.Add($"this.ZipCode = {(this.ZipCode == null ? "null" : this.ZipCode)}");
-            toStringOutput.Add($"this.Neighborhood = {(this.Neighborhood == null ? "null" : this.Neighborhood)}");
-            toStringOutput.Add($"this.City = {(this.City == null ? "null" : this.City)}");
-            toStringOutput.Add($"this.State = {(this.State == null ? "null" : this.State)}");
-            toStringOutput.Add($"this.Country = {(this.Country == null ? "null" : this.Country)}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"Street = {this.Street ?? "null"}");
+            toStringOutput.Add($"Number = {this.Number ?? "null"}");
+            toStringOutput.Add($"Complement = {this.Complement ?? "null"}");
+            toStringOutput.Add($"ZipCode = {this.ZipCode ?? "null"}");
+            toStringOutput.Add($"Neighborhood = {this.Neighborhood ?? "null"}");
+            toStringOutput.Add($"City = {this.City ?? "null"}");
+            toStringOutput.Add($"State = {this.State ?? "null"}");
+            toStringOutput.Add($"Country = {this.Country ?? "null"}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Line1 = {(this.Line1 == null ? "null" : this.Line1)}");
-            toStringOutput.Add($"this.Line2 = {(this.Line2 == null ? "null" : this.Line2)}");
-            toStringOutput.Add($"this.DeletedAt = {(this.DeletedAt == null ? "null" : this.DeletedAt.ToString())}");
+            toStringOutput.Add($"Line1 = {this.Line1 ?? "null"}");
+            toStringOutput.Add($"Line2 = {this.Line2 ?? "null"}");
+            toStringOutput.Add($"DeletedAt = {(this.DeletedAt == null ? "null" : this.DeletedAt.ToString())}");
         }
     }
 }

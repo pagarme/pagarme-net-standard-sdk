@@ -106,6 +106,7 @@ namespace PagarmeApiSDK.Standard.Models
             string firstSixDigits = null,
             string label = null)
         {
+
             if (id != null)
             {
                 this.Id = id;
@@ -190,7 +191,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Label = label;
             }
-
         }
 
         /// <summary>
@@ -506,14 +506,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCardResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -521,7 +519,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLastFourDigits()
         {
@@ -529,7 +527,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBrand()
         {
@@ -537,7 +535,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetHolderName()
         {
@@ -545,7 +543,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpMonth()
         {
@@ -553,7 +551,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpYear()
         {
@@ -561,7 +559,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -569,7 +567,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -577,7 +575,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -585,7 +583,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingAddress()
         {
@@ -593,7 +591,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomer()
         {
@@ -601,7 +599,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMetadata()
         {
@@ -609,7 +607,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -617,7 +615,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetHolderDocument()
         {
@@ -625,7 +623,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDeletedAt()
         {
@@ -633,7 +631,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFirstSixDigits()
         {
@@ -641,7 +639,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLabel()
         {
@@ -804,57 +802,69 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCardResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.LastFourDigits == null && other.LastFourDigits == null) || (this.LastFourDigits?.Equals(other.LastFourDigits) == true)) &&
-                ((this.Brand == null && other.Brand == null) || (this.Brand?.Equals(other.Brand) == true)) &&
-                ((this.HolderName == null && other.HolderName == null) || (this.HolderName?.Equals(other.HolderName) == true)) &&
-                ((this.ExpMonth == null && other.ExpMonth == null) || (this.ExpMonth?.Equals(other.ExpMonth) == true)) &&
-                ((this.ExpYear == null && other.ExpYear == null) || (this.ExpYear?.Equals(other.ExpYear) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.BillingAddress == null && other.BillingAddress == null) || (this.BillingAddress?.Equals(other.BillingAddress) == true)) &&
-                ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.HolderDocument == null && other.HolderDocument == null) || (this.HolderDocument?.Equals(other.HolderDocument) == true)) &&
-                ((this.DeletedAt == null && other.DeletedAt == null) || (this.DeletedAt?.Equals(other.DeletedAt) == true)) &&
-                ((this.FirstSixDigits == null && other.FirstSixDigits == null) || (this.FirstSixDigits?.Equals(other.FirstSixDigits) == true)) &&
-                ((this.Label == null && other.Label == null) || (this.Label?.Equals(other.Label) == true));
+            return obj is GetCardResponse other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.LastFourDigits == null && other.LastFourDigits == null ||
+                 this.LastFourDigits?.Equals(other.LastFourDigits) == true) &&
+                (this.Brand == null && other.Brand == null ||
+                 this.Brand?.Equals(other.Brand) == true) &&
+                (this.HolderName == null && other.HolderName == null ||
+                 this.HolderName?.Equals(other.HolderName) == true) &&
+                (this.ExpMonth == null && other.ExpMonth == null ||
+                 this.ExpMonth?.Equals(other.ExpMonth) == true) &&
+                (this.ExpYear == null && other.ExpYear == null ||
+                 this.ExpYear?.Equals(other.ExpYear) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
+                (this.BillingAddress == null && other.BillingAddress == null ||
+                 this.BillingAddress?.Equals(other.BillingAddress) == true) &&
+                (this.Customer == null && other.Customer == null ||
+                 this.Customer?.Equals(other.Customer) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.HolderDocument == null && other.HolderDocument == null ||
+                 this.HolderDocument?.Equals(other.HolderDocument) == true) &&
+                (this.DeletedAt == null && other.DeletedAt == null ||
+                 this.DeletedAt?.Equals(other.DeletedAt) == true) &&
+                (this.FirstSixDigits == null && other.FirstSixDigits == null ||
+                 this.FirstSixDigits?.Equals(other.FirstSixDigits) == true) &&
+                (this.Label == null && other.Label == null ||
+                 this.Label?.Equals(other.Label) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.LastFourDigits = {(this.LastFourDigits == null ? "null" : this.LastFourDigits)}");
-            toStringOutput.Add($"this.Brand = {(this.Brand == null ? "null" : this.Brand)}");
-            toStringOutput.Add($"this.HolderName = {(this.HolderName == null ? "null" : this.HolderName)}");
-            toStringOutput.Add($"this.ExpMonth = {(this.ExpMonth == null ? "null" : this.ExpMonth.ToString())}");
-            toStringOutput.Add($"this.ExpYear = {(this.ExpYear == null ? "null" : this.ExpYear.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
-            toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"LastFourDigits = {this.LastFourDigits ?? "null"}");
+            toStringOutput.Add($"Brand = {this.Brand ?? "null"}");
+            toStringOutput.Add($"HolderName = {this.HolderName ?? "null"}");
+            toStringOutput.Add($"ExpMonth = {(this.ExpMonth == null ? "null" : this.ExpMonth.ToString())}");
+            toStringOutput.Add($"ExpYear = {(this.ExpYear == null ? "null" : this.ExpYear.ToString())}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
+            toStringOutput.Add($"Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.HolderDocument = {(this.HolderDocument == null ? "null" : this.HolderDocument)}");
-            toStringOutput.Add($"this.DeletedAt = {(this.DeletedAt == null ? "null" : this.DeletedAt.ToString())}");
-            toStringOutput.Add($"this.FirstSixDigits = {(this.FirstSixDigits == null ? "null" : this.FirstSixDigits)}");
-            toStringOutput.Add($"this.Label = {(this.Label == null ? "null" : this.Label)}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"HolderDocument = {this.HolderDocument ?? "null"}");
+            toStringOutput.Add($"DeletedAt = {(this.DeletedAt == null ? "null" : this.DeletedAt.ToString())}");
+            toStringOutput.Add($"FirstSixDigits = {this.FirstSixDigits ?? "null"}");
+            toStringOutput.Add($"Label = {this.Label ?? "null"}");
         }
     }
 }

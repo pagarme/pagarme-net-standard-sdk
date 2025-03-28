@@ -49,34 +49,27 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateClearSaleRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateClearSaleRequest other &&                this.CustomSla.Equals(other.CustomSla);
+            return obj is CreateClearSaleRequest other &&
+                (this.CustomSla.Equals(other.CustomSla));
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.CustomSla = {this.CustomSla}");
+            toStringOutput.Add($"CustomSla = {this.CustomSla}");
         }
     }
 }

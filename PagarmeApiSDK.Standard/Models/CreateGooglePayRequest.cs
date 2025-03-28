@@ -62,6 +62,7 @@ namespace PagarmeApiSDK.Standard.Models
             string signedMessage = null,
             string merchantIdentifier = null)
         {
+
             if (version != null)
             {
                 this.Version = version;
@@ -91,7 +92,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.MerchantIdentifier = merchantIdentifier;
             }
-
         }
 
         /// <summary>
@@ -206,14 +206,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateGooglePayRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetVersion()
         {
@@ -221,7 +219,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetData()
         {
@@ -229,7 +227,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetIntermediateSigningKey()
         {
@@ -237,7 +235,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSignature()
         {
@@ -245,7 +243,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSignedMessage()
         {
@@ -253,7 +251,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMerchantIdentifier()
         {
@@ -317,35 +315,36 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateGooglePayRequest other &&                ((this.Version == null && other.Version == null) || (this.Version?.Equals(other.Version) == true)) &&
-                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
-                ((this.IntermediateSigningKey == null && other.IntermediateSigningKey == null) || (this.IntermediateSigningKey?.Equals(other.IntermediateSigningKey) == true)) &&
-                ((this.Signature == null && other.Signature == null) || (this.Signature?.Equals(other.Signature) == true)) &&
-                ((this.SignedMessage == null && other.SignedMessage == null) || (this.SignedMessage?.Equals(other.SignedMessage) == true)) &&
-                ((this.MerchantIdentifier == null && other.MerchantIdentifier == null) || (this.MerchantIdentifier?.Equals(other.MerchantIdentifier) == true));
+            return obj is CreateGooglePayRequest other &&
+                (this.Version == null && other.Version == null ||
+                 this.Version?.Equals(other.Version) == true) &&
+                (this.Data == null && other.Data == null ||
+                 this.Data?.Equals(other.Data) == true) &&
+                (this.IntermediateSigningKey == null && other.IntermediateSigningKey == null ||
+                 this.IntermediateSigningKey?.Equals(other.IntermediateSigningKey) == true) &&
+                (this.Signature == null && other.Signature == null ||
+                 this.Signature?.Equals(other.Signature) == true) &&
+                (this.SignedMessage == null && other.SignedMessage == null ||
+                 this.SignedMessage?.Equals(other.SignedMessage) == true) &&
+                (this.MerchantIdentifier == null && other.MerchantIdentifier == null ||
+                 this.MerchantIdentifier?.Equals(other.MerchantIdentifier) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Version = {(this.Version == null ? "null" : this.Version)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data)}");
-            toStringOutput.Add($"this.IntermediateSigningKey = {(this.IntermediateSigningKey == null ? "null" : this.IntermediateSigningKey.ToString())}");
-            toStringOutput.Add($"this.Signature = {(this.Signature == null ? "null" : this.Signature)}");
-            toStringOutput.Add($"this.SignedMessage = {(this.SignedMessage == null ? "null" : this.SignedMessage)}");
-            toStringOutput.Add($"this.MerchantIdentifier = {(this.MerchantIdentifier == null ? "null" : this.MerchantIdentifier)}");
+            toStringOutput.Add($"Version = {this.Version ?? "null"}");
+            toStringOutput.Add($"Data = {this.Data ?? "null"}");
+            toStringOutput.Add($"IntermediateSigningKey = {(this.IntermediateSigningKey == null ? "null" : this.IntermediateSigningKey.ToString())}");
+            toStringOutput.Add($"Signature = {this.Signature ?? "null"}");
+            toStringOutput.Add($"SignedMessage = {this.SignedMessage ?? "null"}");
+            toStringOutput.Add($"MerchantIdentifier = {this.MerchantIdentifier ?? "null"}");
         }
     }
 }

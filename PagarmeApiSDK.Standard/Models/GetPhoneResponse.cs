@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
             string number = null,
             string areaCode = null)
         {
+
             if (countryCode != null)
             {
                 this.CountryCode = countryCode;
@@ -64,7 +65,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.AreaCode = areaCode;
             }
-
         }
 
         /// <summary>
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPhoneResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCountryCode()
         {
@@ -140,7 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNumber()
         {
@@ -148,7 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAreaCode()
         {
@@ -185,29 +183,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPhoneResponse other &&                ((this.CountryCode == null && other.CountryCode == null) || (this.CountryCode?.Equals(other.CountryCode) == true)) &&
-                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
-                ((this.AreaCode == null && other.AreaCode == null) || (this.AreaCode?.Equals(other.AreaCode) == true));
+            return obj is GetPhoneResponse other &&
+                (this.CountryCode == null && other.CountryCode == null ||
+                 this.CountryCode?.Equals(other.CountryCode) == true) &&
+                (this.Number == null && other.Number == null ||
+                 this.Number?.Equals(other.Number) == true) &&
+                (this.AreaCode == null && other.AreaCode == null ||
+                 this.AreaCode?.Equals(other.AreaCode) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.CountryCode = {(this.CountryCode == null ? "null" : this.CountryCode)}");
-            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number)}");
-            toStringOutput.Add($"this.AreaCode = {(this.AreaCode == null ? "null" : this.AreaCode)}");
+            toStringOutput.Add($"CountryCode = {this.CountryCode ?? "null"}");
+            toStringOutput.Add($"Number = {this.Number ?? "null"}");
+            toStringOutput.Add($"AreaCode = {this.AreaCode ?? "null"}");
         }
     }
 }

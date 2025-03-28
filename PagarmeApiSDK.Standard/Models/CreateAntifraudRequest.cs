@@ -58,36 +58,31 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateAntifraudRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateAntifraudRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.Clearsale == null && other.Clearsale == null) || (this.Clearsale?.Equals(other.Clearsale) == true));
+            return obj is CreateAntifraudRequest other &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Clearsale == null && other.Clearsale == null ||
+                 this.Clearsale?.Equals(other.Clearsale) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Clearsale = {(this.Clearsale == null ? "null" : this.Clearsale.ToString())}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Clearsale = {(this.Clearsale == null ? "null" : this.Clearsale.ToString())}");
         }
     }
 }

@@ -78,6 +78,7 @@ namespace PagarmeApiSDK.Standard.Models
             string line1 = null,
             string line2 = null)
         {
+
             if (street != null)
             {
                 this.Street = street;
@@ -127,7 +128,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Line2 = line2;
             }
-
         }
 
         /// <summary>
@@ -314,14 +314,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetBillingAddressResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStreet()
         {
@@ -329,7 +327,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNumber()
         {
@@ -337,7 +335,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetZipCode()
         {
@@ -345,7 +343,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNeighborhood()
         {
@@ -353,7 +351,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCity()
         {
@@ -361,7 +359,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetState()
         {
@@ -369,7 +367,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCountry()
         {
@@ -377,7 +375,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetComplement()
         {
@@ -385,7 +383,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLine1()
         {
@@ -393,7 +391,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLine2()
         {
@@ -493,43 +491,48 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetBillingAddressResponse other &&                ((this.Street == null && other.Street == null) || (this.Street?.Equals(other.Street) == true)) &&
-                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
-                ((this.ZipCode == null && other.ZipCode == null) || (this.ZipCode?.Equals(other.ZipCode) == true)) &&
-                ((this.Neighborhood == null && other.Neighborhood == null) || (this.Neighborhood?.Equals(other.Neighborhood) == true)) &&
-                ((this.City == null && other.City == null) || (this.City?.Equals(other.City) == true)) &&
-                ((this.State == null && other.State == null) || (this.State?.Equals(other.State) == true)) &&
-                ((this.Country == null && other.Country == null) || (this.Country?.Equals(other.Country) == true)) &&
-                ((this.Complement == null && other.Complement == null) || (this.Complement?.Equals(other.Complement) == true)) &&
-                ((this.Line1 == null && other.Line1 == null) || (this.Line1?.Equals(other.Line1) == true)) &&
-                ((this.Line2 == null && other.Line2 == null) || (this.Line2?.Equals(other.Line2) == true));
+            return obj is GetBillingAddressResponse other &&
+                (this.Street == null && other.Street == null ||
+                 this.Street?.Equals(other.Street) == true) &&
+                (this.Number == null && other.Number == null ||
+                 this.Number?.Equals(other.Number) == true) &&
+                (this.ZipCode == null && other.ZipCode == null ||
+                 this.ZipCode?.Equals(other.ZipCode) == true) &&
+                (this.Neighborhood == null && other.Neighborhood == null ||
+                 this.Neighborhood?.Equals(other.Neighborhood) == true) &&
+                (this.City == null && other.City == null ||
+                 this.City?.Equals(other.City) == true) &&
+                (this.State == null && other.State == null ||
+                 this.State?.Equals(other.State) == true) &&
+                (this.Country == null && other.Country == null ||
+                 this.Country?.Equals(other.Country) == true) &&
+                (this.Complement == null && other.Complement == null ||
+                 this.Complement?.Equals(other.Complement) == true) &&
+                (this.Line1 == null && other.Line1 == null ||
+                 this.Line1?.Equals(other.Line1) == true) &&
+                (this.Line2 == null && other.Line2 == null ||
+                 this.Line2?.Equals(other.Line2) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Street = {(this.Street == null ? "null" : this.Street)}");
-            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number)}");
-            toStringOutput.Add($"this.ZipCode = {(this.ZipCode == null ? "null" : this.ZipCode)}");
-            toStringOutput.Add($"this.Neighborhood = {(this.Neighborhood == null ? "null" : this.Neighborhood)}");
-            toStringOutput.Add($"this.City = {(this.City == null ? "null" : this.City)}");
-            toStringOutput.Add($"this.State = {(this.State == null ? "null" : this.State)}");
-            toStringOutput.Add($"this.Country = {(this.Country == null ? "null" : this.Country)}");
-            toStringOutput.Add($"this.Complement = {(this.Complement == null ? "null" : this.Complement)}");
-            toStringOutput.Add($"this.Line1 = {(this.Line1 == null ? "null" : this.Line1)}");
-            toStringOutput.Add($"this.Line2 = {(this.Line2 == null ? "null" : this.Line2)}");
+            toStringOutput.Add($"Street = {this.Street ?? "null"}");
+            toStringOutput.Add($"Number = {this.Number ?? "null"}");
+            toStringOutput.Add($"ZipCode = {this.ZipCode ?? "null"}");
+            toStringOutput.Add($"Neighborhood = {this.Neighborhood ?? "null"}");
+            toStringOutput.Add($"City = {this.City ?? "null"}");
+            toStringOutput.Add($"State = {this.State ?? "null"}");
+            toStringOutput.Add($"Country = {this.Country ?? "null"}");
+            toStringOutput.Add($"Complement = {this.Complement ?? "null"}");
+            toStringOutput.Add($"Line1 = {this.Line1 ?? "null"}");
+            toStringOutput.Add($"Line2 = {this.Line2 ?? "null"}");
         }
     }
 }

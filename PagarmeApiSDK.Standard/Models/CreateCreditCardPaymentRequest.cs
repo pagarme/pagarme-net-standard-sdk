@@ -220,72 +220,85 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCreditCardPaymentRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCreditCardPaymentRequest other &&                ((this.Installments == null && other.Installments == null) || (this.Installments?.Equals(other.Installments) == true)) &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
-                ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
-                ((this.Recurrence == null && other.Recurrence == null) || (this.Recurrence?.Equals(other.Recurrence) == true)) &&
-                ((this.Capture == null && other.Capture == null) || (this.Capture?.Equals(other.Capture) == true)) &&
-                ((this.ExtendedLimitEnabled == null && other.ExtendedLimitEnabled == null) || (this.ExtendedLimitEnabled?.Equals(other.ExtendedLimitEnabled) == true)) &&
-                ((this.ExtendedLimitCode == null && other.ExtendedLimitCode == null) || (this.ExtendedLimitCode?.Equals(other.ExtendedLimitCode) == true)) &&
-                ((this.MerchantCategoryCode == null && other.MerchantCategoryCode == null) || (this.MerchantCategoryCode?.Equals(other.MerchantCategoryCode) == true)) &&
-                ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true)) &&
-                ((this.Contactless == null && other.Contactless == null) || (this.Contactless?.Equals(other.Contactless) == true)) &&
-                ((this.AutoRecovery == null && other.AutoRecovery == null) || (this.AutoRecovery?.Equals(other.AutoRecovery) == true)) &&
-                ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true)) &&
-                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true)) &&
-                ((this.Payload == null && other.Payload == null) || (this.Payload?.Equals(other.Payload) == true)) &&
-                ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
-                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true)) &&
-                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true)) &&
-                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
+            return obj is CreateCreditCardPaymentRequest other &&
+                (this.Installments == null && other.Installments == null ||
+                 this.Installments?.Equals(other.Installments) == true) &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.CardId == null && other.CardId == null ||
+                 this.CardId?.Equals(other.CardId) == true) &&
+                (this.CardToken == null && other.CardToken == null ||
+                 this.CardToken?.Equals(other.CardToken) == true) &&
+                (this.Recurrence == null && other.Recurrence == null ||
+                 this.Recurrence?.Equals(other.Recurrence) == true) &&
+                (this.Capture == null && other.Capture == null ||
+                 this.Capture?.Equals(other.Capture) == true) &&
+                (this.ExtendedLimitEnabled == null && other.ExtendedLimitEnabled == null ||
+                 this.ExtendedLimitEnabled?.Equals(other.ExtendedLimitEnabled) == true) &&
+                (this.ExtendedLimitCode == null && other.ExtendedLimitCode == null ||
+                 this.ExtendedLimitCode?.Equals(other.ExtendedLimitCode) == true) &&
+                (this.MerchantCategoryCode == null && other.MerchantCategoryCode == null ||
+                 this.MerchantCategoryCode?.Equals(other.MerchantCategoryCode) == true) &&
+                (this.Authentication == null && other.Authentication == null ||
+                 this.Authentication?.Equals(other.Authentication) == true) &&
+                (this.Contactless == null && other.Contactless == null ||
+                 this.Contactless?.Equals(other.Contactless) == true) &&
+                (this.AutoRecovery == null && other.AutoRecovery == null ||
+                 this.AutoRecovery?.Equals(other.AutoRecovery) == true) &&
+                (this.OperationType == null && other.OperationType == null ||
+                 this.OperationType?.Equals(other.OperationType) == true) &&
+                (this.RecurrencyCycle == null && other.RecurrencyCycle == null ||
+                 this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true) &&
+                (this.Payload == null && other.Payload == null ||
+                 this.Payload?.Equals(other.Payload) == true) &&
+                (this.InitiatedType == null && other.InitiatedType == null ||
+                 this.InitiatedType?.Equals(other.InitiatedType) == true) &&
+                (this.RecurrenceModel == null && other.RecurrenceModel == null ||
+                 this.RecurrenceModel?.Equals(other.RecurrenceModel) == true) &&
+                (this.PaymentOrigin == null && other.PaymentOrigin == null ||
+                 this.PaymentOrigin?.Equals(other.PaymentOrigin) == true) &&
+                (this.IndirectAcceptor == null && other.IndirectAcceptor == null ||
+                 this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
-            toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken)}");
-            toStringOutput.Add($"this.Recurrence = {(this.Recurrence == null ? "null" : this.Recurrence.ToString())}");
-            toStringOutput.Add($"this.Capture = {(this.Capture == null ? "null" : this.Capture.ToString())}");
-            toStringOutput.Add($"this.ExtendedLimitEnabled = {(this.ExtendedLimitEnabled == null ? "null" : this.ExtendedLimitEnabled.ToString())}");
-            toStringOutput.Add($"this.ExtendedLimitCode = {(this.ExtendedLimitCode == null ? "null" : this.ExtendedLimitCode)}");
-            toStringOutput.Add($"this.MerchantCategoryCode = {(this.MerchantCategoryCode == null ? "null" : this.MerchantCategoryCode.ToString())}");
-            toStringOutput.Add($"this.Authentication = {(this.Authentication == null ? "null" : this.Authentication.ToString())}");
-            toStringOutput.Add($"this.Contactless = {(this.Contactless == null ? "null" : this.Contactless.ToString())}");
-            toStringOutput.Add($"this.AutoRecovery = {(this.AutoRecovery == null ? "null" : this.AutoRecovery.ToString())}");
-            toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType)}");
-            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle)}");
-            toStringOutput.Add($"this.Payload = {(this.Payload == null ? "null" : this.Payload.ToString())}");
-            toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
-            toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
-            toStringOutput.Add($"this.PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
-            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
+            toStringOutput.Add($"Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"CardId = {this.CardId ?? "null"}");
+            toStringOutput.Add($"CardToken = {this.CardToken ?? "null"}");
+            toStringOutput.Add($"Recurrence = {(this.Recurrence == null ? "null" : this.Recurrence.ToString())}");
+            toStringOutput.Add($"Capture = {(this.Capture == null ? "null" : this.Capture.ToString())}");
+            toStringOutput.Add($"ExtendedLimitEnabled = {(this.ExtendedLimitEnabled == null ? "null" : this.ExtendedLimitEnabled.ToString())}");
+            toStringOutput.Add($"ExtendedLimitCode = {this.ExtendedLimitCode ?? "null"}");
+            toStringOutput.Add($"MerchantCategoryCode = {(this.MerchantCategoryCode == null ? "null" : this.MerchantCategoryCode.ToString())}");
+            toStringOutput.Add($"Authentication = {(this.Authentication == null ? "null" : this.Authentication.ToString())}");
+            toStringOutput.Add($"Contactless = {(this.Contactless == null ? "null" : this.Contactless.ToString())}");
+            toStringOutput.Add($"AutoRecovery = {(this.AutoRecovery == null ? "null" : this.AutoRecovery.ToString())}");
+            toStringOutput.Add($"OperationType = {this.OperationType ?? "null"}");
+            toStringOutput.Add($"RecurrencyCycle = {this.RecurrencyCycle ?? "null"}");
+            toStringOutput.Add($"Payload = {(this.Payload == null ? "null" : this.Payload.ToString())}");
+            toStringOutput.Add($"InitiatedType = {this.InitiatedType ?? "null"}");
+            toStringOutput.Add($"RecurrenceModel = {this.RecurrenceModel ?? "null"}");
+            toStringOutput.Add($"PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
+            toStringOutput.Add($"IndirectAcceptor = {this.IndirectAcceptor ?? "null"}");
         }
     }
 }

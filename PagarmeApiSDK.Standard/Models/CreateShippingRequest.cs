@@ -123,50 +123,51 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateShippingRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateShippingRequest other &&                this.Amount.Equals(other.Amount) &&
-                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
-                ((this.RecipientName == null && other.RecipientName == null) || (this.RecipientName?.Equals(other.RecipientName) == true)) &&
-                ((this.RecipientPhone == null && other.RecipientPhone == null) || (this.RecipientPhone?.Equals(other.RecipientPhone) == true)) &&
-                ((this.AddressId == null && other.AddressId == null) || (this.AddressId?.Equals(other.AddressId) == true)) &&
-                ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true)) &&
-                ((this.MaxDeliveryDate == null && other.MaxDeliveryDate == null) || (this.MaxDeliveryDate?.Equals(other.MaxDeliveryDate) == true)) &&
-                ((this.EstimatedDeliveryDate == null && other.EstimatedDeliveryDate == null) || (this.EstimatedDeliveryDate?.Equals(other.EstimatedDeliveryDate) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
+            return obj is CreateShippingRequest other &&
+                (this.Amount.Equals(other.Amount)) &&
+                (this.Description == null && other.Description == null ||
+                 this.Description?.Equals(other.Description) == true) &&
+                (this.RecipientName == null && other.RecipientName == null ||
+                 this.RecipientName?.Equals(other.RecipientName) == true) &&
+                (this.RecipientPhone == null && other.RecipientPhone == null ||
+                 this.RecipientPhone?.Equals(other.RecipientPhone) == true) &&
+                (this.AddressId == null && other.AddressId == null ||
+                 this.AddressId?.Equals(other.AddressId) == true) &&
+                (this.Address == null && other.Address == null ||
+                 this.Address?.Equals(other.Address) == true) &&
+                (this.MaxDeliveryDate == null && other.MaxDeliveryDate == null ||
+                 this.MaxDeliveryDate?.Equals(other.MaxDeliveryDate) == true) &&
+                (this.EstimatedDeliveryDate == null && other.EstimatedDeliveryDate == null ||
+                 this.EstimatedDeliveryDate?.Equals(other.EstimatedDeliveryDate) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
-            toStringOutput.Add($"this.RecipientName = {(this.RecipientName == null ? "null" : this.RecipientName)}");
-            toStringOutput.Add($"this.RecipientPhone = {(this.RecipientPhone == null ? "null" : this.RecipientPhone)}");
-            toStringOutput.Add($"this.AddressId = {(this.AddressId == null ? "null" : this.AddressId)}");
-            toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
-            toStringOutput.Add($"this.MaxDeliveryDate = {(this.MaxDeliveryDate == null ? "null" : this.MaxDeliveryDate.ToString())}");
-            toStringOutput.Add($"this.EstimatedDeliveryDate = {(this.EstimatedDeliveryDate == null ? "null" : this.EstimatedDeliveryDate.ToString())}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"Amount = {this.Amount}");
+            toStringOutput.Add($"Description = {this.Description ?? "null"}");
+            toStringOutput.Add($"RecipientName = {this.RecipientName ?? "null"}");
+            toStringOutput.Add($"RecipientPhone = {this.RecipientPhone ?? "null"}");
+            toStringOutput.Add($"AddressId = {this.AddressId ?? "null"}");
+            toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"MaxDeliveryDate = {(this.MaxDeliveryDate == null ? "null" : this.MaxDeliveryDate.ToString())}");
+            toStringOutput.Add($"EstimatedDeliveryDate = {(this.EstimatedDeliveryDate == null ? "null" : this.EstimatedDeliveryDate.ToString())}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
         }
     }
 }

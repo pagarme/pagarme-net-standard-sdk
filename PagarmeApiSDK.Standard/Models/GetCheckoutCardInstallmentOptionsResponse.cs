@@ -58,36 +58,31 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCheckoutCardInstallmentOptionsResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCheckoutCardInstallmentOptionsResponse other &&                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
-                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true));
+            return obj is GetCheckoutCardInstallmentOptionsResponse other &&
+                (this.Number == null && other.Number == null ||
+                 this.Number?.Equals(other.Number) == true) &&
+                (this.Total == null && other.Total == null ||
+                 this.Total?.Equals(other.Total) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number.ToString())}");
-            toStringOutput.Add($"this.Total = {(this.Total == null ? "null" : this.Total.ToString())}");
+            toStringOutput.Add($"Number = {(this.Number == null ? "null" : this.Number.ToString())}");
+            toStringOutput.Add($"Total = {(this.Total == null ? "null" : this.Total.ToString())}");
         }
     }
 }

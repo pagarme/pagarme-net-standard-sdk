@@ -77,18 +77,19 @@ namespace PagarmeApiSDK.Standard.Models
             int? maxDaysToPayPastDue = null)
         {
             this.Retries = retries;
+
             if (bank != null)
             {
                 this.Bank = bank;
             }
-
             this.Instructions = instructions;
+
             if (dueAt != null)
             {
                 this.DueAt = dueAt;
             }
-
             this.BillingAddress = billingAddress;
+
             if (billingAddressId != null)
             {
                 this.BillingAddressId = billingAddressId;
@@ -98,9 +99,9 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.NossoNumero = nossoNumero;
             }
-
             this.DocumentNumber = documentNumber;
             this.StatementDescriptor = statementDescriptor;
+
             if (interest != null)
             {
                 this.Interest = interest;
@@ -115,7 +116,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
             }
-
         }
 
         /// <summary>
@@ -279,14 +279,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateBoletoPaymentRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBank()
         {
@@ -294,7 +292,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDueAt()
         {
@@ -302,7 +300,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingAddressId()
         {
@@ -310,7 +308,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNossoNumero()
         {
@@ -318,7 +316,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInterest()
         {
@@ -326,7 +324,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFine()
         {
@@ -334,7 +332,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMaxDaysToPayPastDue()
         {
@@ -407,47 +405,53 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateBoletoPaymentRequest other &&                this.Retries.Equals(other.Retries) &&
-                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
-                ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true)) &&
-                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true)) &&
-                ((this.BillingAddress == null && other.BillingAddress == null) || (this.BillingAddress?.Equals(other.BillingAddress) == true)) &&
-                ((this.BillingAddressId == null && other.BillingAddressId == null) || (this.BillingAddressId?.Equals(other.BillingAddressId) == true)) &&
-                ((this.NossoNumero == null && other.NossoNumero == null) || (this.NossoNumero?.Equals(other.NossoNumero) == true)) &&
-                ((this.DocumentNumber == null && other.DocumentNumber == null) || (this.DocumentNumber?.Equals(other.DocumentNumber) == true)) &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.Interest == null && other.Interest == null) || (this.Interest?.Equals(other.Interest) == true)) &&
-                ((this.Fine == null && other.Fine == null) || (this.Fine?.Equals(other.Fine) == true)) &&
-                ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
+            return obj is CreateBoletoPaymentRequest other &&
+                (this.Retries.Equals(other.Retries)) &&
+                (this.Bank == null && other.Bank == null ||
+                 this.Bank?.Equals(other.Bank) == true) &&
+                (this.Instructions == null && other.Instructions == null ||
+                 this.Instructions?.Equals(other.Instructions) == true) &&
+                (this.DueAt == null && other.DueAt == null ||
+                 this.DueAt?.Equals(other.DueAt) == true) &&
+                (this.BillingAddress == null && other.BillingAddress == null ||
+                 this.BillingAddress?.Equals(other.BillingAddress) == true) &&
+                (this.BillingAddressId == null && other.BillingAddressId == null ||
+                 this.BillingAddressId?.Equals(other.BillingAddressId) == true) &&
+                (this.NossoNumero == null && other.NossoNumero == null ||
+                 this.NossoNumero?.Equals(other.NossoNumero) == true) &&
+                (this.DocumentNumber == null && other.DocumentNumber == null ||
+                 this.DocumentNumber?.Equals(other.DocumentNumber) == true) &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.Interest == null && other.Interest == null ||
+                 this.Interest?.Equals(other.Interest) == true) &&
+                (this.Fine == null && other.Fine == null ||
+                 this.Fine?.Equals(other.Fine) == true) &&
+                (this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null ||
+                 this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Retries = {this.Retries}");
-            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : this.Bank)}");
-            toStringOutput.Add($"this.Instructions = {(this.Instructions == null ? "null" : this.Instructions)}");
-            toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
-            toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
-            toStringOutput.Add($"this.BillingAddressId = {(this.BillingAddressId == null ? "null" : this.BillingAddressId)}");
-            toStringOutput.Add($"this.NossoNumero = {(this.NossoNumero == null ? "null" : this.NossoNumero)}");
-            toStringOutput.Add($"this.DocumentNumber = {(this.DocumentNumber == null ? "null" : this.DocumentNumber)}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
-            toStringOutput.Add($"this.Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
-            toStringOutput.Add($"this.Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
-            toStringOutput.Add($"this.MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
+            toStringOutput.Add($"Retries = {this.Retries}");
+            toStringOutput.Add($"Bank = {this.Bank ?? "null"}");
+            toStringOutput.Add($"Instructions = {this.Instructions ?? "null"}");
+            toStringOutput.Add($"DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
+            toStringOutput.Add($"BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
+            toStringOutput.Add($"BillingAddressId = {this.BillingAddressId ?? "null"}");
+            toStringOutput.Add($"NossoNumero = {this.NossoNumero ?? "null"}");
+            toStringOutput.Add($"DocumentNumber = {this.DocumentNumber ?? "null"}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
+            toStringOutput.Add($"Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
+            toStringOutput.Add($"Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
+            toStringOutput.Add($"MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
         }
     }
 }

@@ -103,46 +103,44 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCardTokenRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCardTokenRequest other &&                ((this.Number == null && other.Number == null) || (this.Number?.Equals(other.Number) == true)) &&
-                ((this.HolderName == null && other.HolderName == null) || (this.HolderName?.Equals(other.HolderName) == true)) &&
-                this.ExpMonth.Equals(other.ExpMonth) &&
-                this.ExpYear.Equals(other.ExpYear) &&
-                ((this.Cvv == null && other.Cvv == null) || (this.Cvv?.Equals(other.Cvv) == true)) &&
-                ((this.Brand == null && other.Brand == null) || (this.Brand?.Equals(other.Brand) == true)) &&
-                ((this.Label == null && other.Label == null) || (this.Label?.Equals(other.Label) == true));
+            return obj is CreateCardTokenRequest other &&
+                (this.Number == null && other.Number == null ||
+                 this.Number?.Equals(other.Number) == true) &&
+                (this.HolderName == null && other.HolderName == null ||
+                 this.HolderName?.Equals(other.HolderName) == true) &&
+                (this.ExpMonth.Equals(other.ExpMonth)) &&
+                (this.ExpYear.Equals(other.ExpYear)) &&
+                (this.Cvv == null && other.Cvv == null ||
+                 this.Cvv?.Equals(other.Cvv) == true) &&
+                (this.Brand == null && other.Brand == null ||
+                 this.Brand?.Equals(other.Brand) == true) &&
+                (this.Label == null && other.Label == null ||
+                 this.Label?.Equals(other.Label) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Number = {(this.Number == null ? "null" : this.Number)}");
-            toStringOutput.Add($"this.HolderName = {(this.HolderName == null ? "null" : this.HolderName)}");
-            toStringOutput.Add($"this.ExpMonth = {this.ExpMonth}");
-            toStringOutput.Add($"this.ExpYear = {this.ExpYear}");
-            toStringOutput.Add($"this.Cvv = {(this.Cvv == null ? "null" : this.Cvv)}");
-            toStringOutput.Add($"this.Brand = {(this.Brand == null ? "null" : this.Brand)}");
-            toStringOutput.Add($"this.Label = {(this.Label == null ? "null" : this.Label)}");
+            toStringOutput.Add($"Number = {this.Number ?? "null"}");
+            toStringOutput.Add($"HolderName = {this.HolderName ?? "null"}");
+            toStringOutput.Add($"ExpMonth = {this.ExpMonth}");
+            toStringOutput.Add($"ExpYear = {this.ExpYear}");
+            toStringOutput.Add($"Cvv = {this.Cvv ?? "null"}");
+            toStringOutput.Add($"Brand = {this.Brand ?? "null"}");
+            toStringOutput.Add($"Label = {this.Label ?? "null"}");
         }
     }
 }

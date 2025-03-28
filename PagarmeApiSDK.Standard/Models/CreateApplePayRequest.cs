@@ -85,42 +85,40 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateApplePayRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateApplePayRequest other &&                ((this.Version == null && other.Version == null) || (this.Version?.Equals(other.Version) == true)) &&
-                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
-                ((this.Header == null && other.Header == null) || (this.Header?.Equals(other.Header) == true)) &&
-                ((this.Signature == null && other.Signature == null) || (this.Signature?.Equals(other.Signature) == true)) &&
-                ((this.MerchantIdentifier == null && other.MerchantIdentifier == null) || (this.MerchantIdentifier?.Equals(other.MerchantIdentifier) == true));
+            return obj is CreateApplePayRequest other &&
+                (this.Version == null && other.Version == null ||
+                 this.Version?.Equals(other.Version) == true) &&
+                (this.Data == null && other.Data == null ||
+                 this.Data?.Equals(other.Data) == true) &&
+                (this.Header == null && other.Header == null ||
+                 this.Header?.Equals(other.Header) == true) &&
+                (this.Signature == null && other.Signature == null ||
+                 this.Signature?.Equals(other.Signature) == true) &&
+                (this.MerchantIdentifier == null && other.MerchantIdentifier == null ||
+                 this.MerchantIdentifier?.Equals(other.MerchantIdentifier) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Version = {(this.Version == null ? "null" : this.Version)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data)}");
-            toStringOutput.Add($"this.Header = {(this.Header == null ? "null" : this.Header.ToString())}");
-            toStringOutput.Add($"this.Signature = {(this.Signature == null ? "null" : this.Signature)}");
-            toStringOutput.Add($"this.MerchantIdentifier = {(this.MerchantIdentifier == null ? "null" : this.MerchantIdentifier)}");
+            toStringOutput.Add($"Version = {this.Version ?? "null"}");
+            toStringOutput.Add($"Data = {this.Data ?? "null"}");
+            toStringOutput.Add($"Header = {(this.Header == null ? "null" : this.Header.ToString())}");
+            toStringOutput.Add($"Signature = {this.Signature ?? "null"}");
+            toStringOutput.Add($"MerchantIdentifier = {this.MerchantIdentifier ?? "null"}");
         }
     }
 }

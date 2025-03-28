@@ -68,38 +68,34 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetRetryTransactionInformationResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetRetryTransactionInformationResponse other &&                ((this.BrandFailureReturnCode == null && other.BrandFailureReturnCode == null) || (this.BrandFailureReturnCode?.Equals(other.BrandFailureReturnCode) == true)) &&
-                ((this.TransactionLimit == null && other.TransactionLimit == null) || (this.TransactionLimit?.Equals(other.TransactionLimit) == true)) &&
-                ((this.TransactionDateLimit == null && other.TransactionDateLimit == null) || (this.TransactionDateLimit?.Equals(other.TransactionDateLimit) == true));
+            return obj is GetRetryTransactionInformationResponse other &&
+                (this.BrandFailureReturnCode == null && other.BrandFailureReturnCode == null ||
+                 this.BrandFailureReturnCode?.Equals(other.BrandFailureReturnCode) == true) &&
+                (this.TransactionLimit == null && other.TransactionLimit == null ||
+                 this.TransactionLimit?.Equals(other.TransactionLimit) == true) &&
+                (this.TransactionDateLimit == null && other.TransactionDateLimit == null ||
+                 this.TransactionDateLimit?.Equals(other.TransactionDateLimit) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.BrandFailureReturnCode = {(this.BrandFailureReturnCode == null ? "null" : this.BrandFailureReturnCode)}");
-            toStringOutput.Add($"this.TransactionLimit = {(this.TransactionLimit == null ? "null" : this.TransactionLimit.ToString())}");
-            toStringOutput.Add($"this.TransactionDateLimit = {(this.TransactionDateLimit == null ? "null" : this.TransactionDateLimit.ToString())}");
+            toStringOutput.Add($"BrandFailureReturnCode = {this.BrandFailureReturnCode ?? "null"}");
+            toStringOutput.Add($"TransactionLimit = {(this.TransactionLimit == null ? "null" : this.TransactionLimit.ToString())}");
+            toStringOutput.Add($"TransactionDateLimit = {(this.TransactionDateLimit == null ? "null" : this.TransactionDateLimit.ToString())}");
         }
     }
 }

@@ -58,36 +58,31 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreatePhonesRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreatePhonesRequest other &&                ((this.HomePhone == null && other.HomePhone == null) || (this.HomePhone?.Equals(other.HomePhone) == true)) &&
-                ((this.MobilePhone == null && other.MobilePhone == null) || (this.MobilePhone?.Equals(other.MobilePhone) == true));
+            return obj is CreatePhonesRequest other &&
+                (this.HomePhone == null && other.HomePhone == null ||
+                 this.HomePhone?.Equals(other.HomePhone) == true) &&
+                (this.MobilePhone == null && other.MobilePhone == null ||
+                 this.MobilePhone?.Equals(other.MobilePhone) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.HomePhone = {(this.HomePhone == null ? "null" : this.HomePhone.ToString())}");
-            toStringOutput.Add($"this.MobilePhone = {(this.MobilePhone == null ? "null" : this.MobilePhone.ToString())}");
+            toStringOutput.Add($"HomePhone = {(this.HomePhone == null ? "null" : this.HomePhone.ToString())}");
+            toStringOutput.Add($"MobilePhone = {(this.MobilePhone == null ? "null" : this.MobilePhone.ToString())}");
         }
     }
 }

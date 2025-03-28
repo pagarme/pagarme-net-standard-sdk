@@ -78,17 +78,17 @@ namespace PagarmeApiSDK.Standard.Models
             this.Customer = customer;
             this.Payments = payments;
             this.Code = code;
+
             if (customerId != null)
             {
                 this.CustomerId = customerId;
             }
-
             this.Shipping = shipping;
+
             if (metadata != null)
             {
                 this.Metadata = metadata;
             }
-
             this.AntifraudEnabled = antifraudEnabled;
             this.Ip = ip;
             this.SessionId = sessionId;
@@ -224,14 +224,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateOrderRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomerId()
         {
@@ -239,7 +237,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMetadata()
         {
@@ -267,55 +265,65 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateOrderRequest other &&                ((this.Items == null && other.Items == null) || (this.Items?.Equals(other.Items) == true)) &&
-                ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
-                ((this.Payments == null && other.Payments == null) || (this.Payments?.Equals(other.Payments) == true)) &&
-                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.CustomerId == null && other.CustomerId == null) || (this.CustomerId?.Equals(other.CustomerId) == true)) &&
-                ((this.Shipping == null && other.Shipping == null) || (this.Shipping?.Equals(other.Shipping) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.AntifraudEnabled == null && other.AntifraudEnabled == null) || (this.AntifraudEnabled?.Equals(other.AntifraudEnabled) == true)) &&
-                ((this.Ip == null && other.Ip == null) || (this.Ip?.Equals(other.Ip) == true)) &&
-                ((this.SessionId == null && other.SessionId == null) || (this.SessionId?.Equals(other.SessionId) == true)) &&
-                ((this.Location == null && other.Location == null) || (this.Location?.Equals(other.Location) == true)) &&
-                ((this.Device == null && other.Device == null) || (this.Device?.Equals(other.Device) == true)) &&
-                this.Closed.Equals(other.Closed) &&
-                ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
-                ((this.Antifraud == null && other.Antifraud == null) || (this.Antifraud?.Equals(other.Antifraud) == true)) &&
-                ((this.Submerchant == null && other.Submerchant == null) || (this.Submerchant?.Equals(other.Submerchant) == true));
+            return obj is CreateOrderRequest other &&
+                (this.Items == null && other.Items == null ||
+                 this.Items?.Equals(other.Items) == true) &&
+                (this.Customer == null && other.Customer == null ||
+                 this.Customer?.Equals(other.Customer) == true) &&
+                (this.Payments == null && other.Payments == null ||
+                 this.Payments?.Equals(other.Payments) == true) &&
+                (this.Code == null && other.Code == null ||
+                 this.Code?.Equals(other.Code) == true) &&
+                (this.CustomerId == null && other.CustomerId == null ||
+                 this.CustomerId?.Equals(other.CustomerId) == true) &&
+                (this.Shipping == null && other.Shipping == null ||
+                 this.Shipping?.Equals(other.Shipping) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.AntifraudEnabled == null && other.AntifraudEnabled == null ||
+                 this.AntifraudEnabled?.Equals(other.AntifraudEnabled) == true) &&
+                (this.Ip == null && other.Ip == null ||
+                 this.Ip?.Equals(other.Ip) == true) &&
+                (this.SessionId == null && other.SessionId == null ||
+                 this.SessionId?.Equals(other.SessionId) == true) &&
+                (this.Location == null && other.Location == null ||
+                 this.Location?.Equals(other.Location) == true) &&
+                (this.Device == null && other.Device == null ||
+                 this.Device?.Equals(other.Device) == true) &&
+                (this.Closed.Equals(other.Closed)) &&
+                (this.Currency == null && other.Currency == null ||
+                 this.Currency?.Equals(other.Currency) == true) &&
+                (this.Antifraud == null && other.Antifraud == null ||
+                 this.Antifraud?.Equals(other.Antifraud) == true) &&
+                (this.Submerchant == null && other.Submerchant == null ||
+                 this.Submerchant?.Equals(other.Submerchant) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Items = {(this.Items == null ? "null" : $"[{string.Join(", ", this.Items)} ]")}");
-            toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
-            toStringOutput.Add($"this.Payments = {(this.Payments == null ? "null" : $"[{string.Join(", ", this.Payments)} ]")}");
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
-            toStringOutput.Add($"this.CustomerId = {(this.CustomerId == null ? "null" : this.CustomerId)}");
-            toStringOutput.Add($"this.Shipping = {(this.Shipping == null ? "null" : this.Shipping.ToString())}");
+            toStringOutput.Add($"Items = {(this.Items == null ? "null" : $"[{string.Join(", ", this.Items)} ]")}");
+            toStringOutput.Add($"Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
+            toStringOutput.Add($"Payments = {(this.Payments == null ? "null" : $"[{string.Join(", ", this.Payments)} ]")}");
+            toStringOutput.Add($"Code = {this.Code ?? "null"}");
+            toStringOutput.Add($"CustomerId = {this.CustomerId ?? "null"}");
+            toStringOutput.Add($"Shipping = {(this.Shipping == null ? "null" : this.Shipping.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.AntifraudEnabled = {(this.AntifraudEnabled == null ? "null" : this.AntifraudEnabled.ToString())}");
-            toStringOutput.Add($"this.Ip = {(this.Ip == null ? "null" : this.Ip)}");
-            toStringOutput.Add($"this.SessionId = {(this.SessionId == null ? "null" : this.SessionId)}");
-            toStringOutput.Add($"this.Location = {(this.Location == null ? "null" : this.Location.ToString())}");
-            toStringOutput.Add($"this.Device = {(this.Device == null ? "null" : this.Device.ToString())}");
-            toStringOutput.Add($"this.Closed = {this.Closed}");
-            toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency)}");
-            toStringOutput.Add($"this.Antifraud = {(this.Antifraud == null ? "null" : this.Antifraud.ToString())}");
-            toStringOutput.Add($"this.Submerchant = {(this.Submerchant == null ? "null" : this.Submerchant.ToString())}");
+            toStringOutput.Add($"AntifraudEnabled = {(this.AntifraudEnabled == null ? "null" : this.AntifraudEnabled.ToString())}");
+            toStringOutput.Add($"Ip = {this.Ip ?? "null"}");
+            toStringOutput.Add($"SessionId = {this.SessionId ?? "null"}");
+            toStringOutput.Add($"Location = {(this.Location == null ? "null" : this.Location.ToString())}");
+            toStringOutput.Add($"Device = {(this.Device == null ? "null" : this.Device.ToString())}");
+            toStringOutput.Add($"Closed = {this.Closed}");
+            toStringOutput.Add($"Currency = {this.Currency ?? "null"}");
+            toStringOutput.Add($"Antifraud = {(this.Antifraud == null ? "null" : this.Antifraud.ToString())}");
+            toStringOutput.Add($"Submerchant = {(this.Submerchant == null ? "null" : this.Submerchant.ToString())}");
         }
     }
 }

@@ -76,40 +76,37 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCardPaymentContactlessRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCardPaymentContactlessRequest other &&                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.ApplePay == null && other.ApplePay == null) || (this.ApplePay?.Equals(other.ApplePay) == true)) &&
-                ((this.GooglePay == null && other.GooglePay == null) || (this.GooglePay?.Equals(other.GooglePay) == true)) &&
-                ((this.Emv == null && other.Emv == null) || (this.Emv?.Equals(other.Emv) == true));
+            return obj is CreateCardPaymentContactlessRequest other &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.ApplePay == null && other.ApplePay == null ||
+                 this.ApplePay?.Equals(other.ApplePay) == true) &&
+                (this.GooglePay == null && other.GooglePay == null ||
+                 this.GooglePay?.Equals(other.GooglePay) == true) &&
+                (this.Emv == null && other.Emv == null ||
+                 this.Emv?.Equals(other.Emv) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.ApplePay = {(this.ApplePay == null ? "null" : this.ApplePay.ToString())}");
-            toStringOutput.Add($"this.GooglePay = {(this.GooglePay == null ? "null" : this.GooglePay.ToString())}");
-            toStringOutput.Add($"this.Emv = {(this.Emv == null ? "null" : this.Emv.ToString())}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"ApplePay = {(this.ApplePay == null ? "null" : this.ApplePay.ToString())}");
+            toStringOutput.Add($"GooglePay = {(this.GooglePay == null ? "null" : this.GooglePay.ToString())}");
+            toStringOutput.Add($"Emv = {(this.Emv == null ? "null" : this.Emv.ToString())}");
         }
     }
 }

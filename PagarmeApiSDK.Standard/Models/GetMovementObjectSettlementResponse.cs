@@ -100,6 +100,7 @@ namespace PagarmeApiSDK.Standard.Models
                 chargeId,
                 gatewayId)
         {
+
             if (product != null)
             {
                 this.Product = product;
@@ -144,7 +145,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.ExternalEnginePaymentId = externalEnginePaymentId;
             }
-
         }
 
         /// <summary>
@@ -313,14 +313,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetMovementObjectSettlementResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetProduct()
         {
@@ -328,7 +326,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBrand()
         {
@@ -336,7 +334,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaymentDate()
         {
@@ -344,7 +342,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRecipientId()
         {
@@ -352,7 +350,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDocumentType()
         {
@@ -360,7 +358,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDocument()
         {
@@ -368,7 +366,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetContractObligationId()
         {
@@ -376,7 +374,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLiquidationArrangementId()
         {
@@ -384,7 +382,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExternalEnginePaymentId()
         {
@@ -475,42 +473,46 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetMovementObjectSettlementResponse other &&                ((this.Product == null && other.Product == null) || (this.Product?.Equals(other.Product) == true)) &&
-                ((this.Brand == null && other.Brand == null) || (this.Brand?.Equals(other.Brand) == true)) &&
-                ((this.PaymentDate == null && other.PaymentDate == null) || (this.PaymentDate?.Equals(other.PaymentDate) == true)) &&
-                ((this.RecipientId == null && other.RecipientId == null) || (this.RecipientId?.Equals(other.RecipientId) == true)) &&
-                ((this.DocumentType == null && other.DocumentType == null) || (this.DocumentType?.Equals(other.DocumentType) == true)) &&
-                ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
-                ((this.ContractObligationId == null && other.ContractObligationId == null) || (this.ContractObligationId?.Equals(other.ContractObligationId) == true)) &&
-                ((this.LiquidationArrangementId == null && other.LiquidationArrangementId == null) || (this.LiquidationArrangementId?.Equals(other.LiquidationArrangementId) == true)) &&
-                ((this.ExternalEnginePaymentId == null && other.ExternalEnginePaymentId == null) || (this.ExternalEnginePaymentId?.Equals(other.ExternalEnginePaymentId) == true)) &&
+            return obj is GetMovementObjectSettlementResponse other &&
+                (this.Product == null && other.Product == null ||
+                 this.Product?.Equals(other.Product) == true) &&
+                (this.Brand == null && other.Brand == null ||
+                 this.Brand?.Equals(other.Brand) == true) &&
+                (this.PaymentDate == null && other.PaymentDate == null ||
+                 this.PaymentDate?.Equals(other.PaymentDate) == true) &&
+                (this.RecipientId == null && other.RecipientId == null ||
+                 this.RecipientId?.Equals(other.RecipientId) == true) &&
+                (this.DocumentType == null && other.DocumentType == null ||
+                 this.DocumentType?.Equals(other.DocumentType) == true) &&
+                (this.Document == null && other.Document == null ||
+                 this.Document?.Equals(other.Document) == true) &&
+                (this.ContractObligationId == null && other.ContractObligationId == null ||
+                 this.ContractObligationId?.Equals(other.ContractObligationId) == true) &&
+                (this.LiquidationArrangementId == null && other.LiquidationArrangementId == null ||
+                 this.LiquidationArrangementId?.Equals(other.LiquidationArrangementId) == true) &&
+                (this.ExternalEnginePaymentId == null && other.ExternalEnginePaymentId == null ||
+                 this.ExternalEnginePaymentId?.Equals(other.ExternalEnginePaymentId) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Product = {(this.Product == null ? "null" : this.Product)}");
-            toStringOutput.Add($"this.Brand = {(this.Brand == null ? "null" : this.Brand)}");
-            toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate)}");
-            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId)}");
-            toStringOutput.Add($"this.DocumentType = {(this.DocumentType == null ? "null" : this.DocumentType)}");
-            toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document)}");
-            toStringOutput.Add($"this.ContractObligationId = {(this.ContractObligationId == null ? "null" : this.ContractObligationId)}");
-            toStringOutput.Add($"this.LiquidationArrangementId = {(this.LiquidationArrangementId == null ? "null" : this.LiquidationArrangementId)}");
-            toStringOutput.Add($"this.ExternalEnginePaymentId = {(this.ExternalEnginePaymentId == null ? "null" : this.ExternalEnginePaymentId)}");
+            toStringOutput.Add($"Product = {this.Product ?? "null"}");
+            toStringOutput.Add($"Brand = {this.Brand ?? "null"}");
+            toStringOutput.Add($"PaymentDate = {this.PaymentDate ?? "null"}");
+            toStringOutput.Add($"RecipientId = {this.RecipientId ?? "null"}");
+            toStringOutput.Add($"DocumentType = {this.DocumentType ?? "null"}");
+            toStringOutput.Add($"Document = {this.Document ?? "null"}");
+            toStringOutput.Add($"ContractObligationId = {this.ContractObligationId ?? "null"}");
+            toStringOutput.Add($"LiquidationArrangementId = {this.LiquidationArrangementId ?? "null"}");
+            toStringOutput.Add($"ExternalEnginePaymentId = {this.ExternalEnginePaymentId ?? "null"}");
 
             base.ToString(toStringOutput);
         }

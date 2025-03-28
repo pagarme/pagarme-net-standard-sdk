@@ -48,11 +48,11 @@ namespace PagarmeApiSDK.Standard.Models
         {
             this.Interest = interest;
             this.Fine = fine;
+
             if (maxDaysToPayPastDue != null)
             {
                 this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
             }
-
         }
 
         /// <summary>
@@ -89,14 +89,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateSubscriptionBoletoRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMaxDaysToPayPastDue()
         {
@@ -115,29 +113,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateSubscriptionBoletoRequest other &&                ((this.Interest == null && other.Interest == null) || (this.Interest?.Equals(other.Interest) == true)) &&
-                ((this.Fine == null && other.Fine == null) || (this.Fine?.Equals(other.Fine) == true)) &&
-                ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
+            return obj is CreateSubscriptionBoletoRequest other &&
+                (this.Interest == null && other.Interest == null ||
+                 this.Interest?.Equals(other.Interest) == true) &&
+                (this.Fine == null && other.Fine == null ||
+                 this.Fine?.Equals(other.Fine) == true) &&
+                (this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null ||
+                 this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
-            toStringOutput.Add($"this.Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
-            toStringOutput.Add($"this.MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
+            toStringOutput.Add($"Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
+            toStringOutput.Add($"Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
+            toStringOutput.Add($"MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
         }
     }
 }

@@ -114,6 +114,7 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetRegisterInformationAddressResponse mainAddress = null,
             List<Models.GetManagingPartnerResponse> managingPartners = null)
         {
+
             if (email != null)
             {
                 this.Email = email;
@@ -208,7 +209,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.ManagingPartners = managingPartners;
             }
-
         }
 
         /// <summary>
@@ -557,14 +557,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetRegisterInformationResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetEmail()
         {
@@ -572,7 +570,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDocument()
         {
@@ -580,7 +578,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -588,7 +586,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSiteUrl()
         {
@@ -596,7 +594,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPhoneNumbers()
         {
@@ -604,7 +602,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetName()
         {
@@ -612,7 +610,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMotherName()
         {
@@ -620,7 +618,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBirthdate()
         {
@@ -628,7 +626,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMonthlyIncome()
         {
@@ -636,7 +634,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetProfessionalOccupation()
         {
@@ -644,7 +642,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAddress()
         {
@@ -652,7 +650,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCompanyName()
         {
@@ -660,7 +658,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetTradingName()
         {
@@ -668,7 +666,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAnnualRevenue()
         {
@@ -676,7 +674,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCorporationType()
         {
@@ -684,7 +682,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFoundingDate()
         {
@@ -692,7 +690,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCnae()
         {
@@ -700,7 +698,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMainAddress()
         {
@@ -708,7 +706,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetManagingPartners()
         {
@@ -889,61 +887,75 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetRegisterInformationResponse other &&                ((this.Email == null && other.Email == null) || (this.Email?.Equals(other.Email) == true)) &&
-                ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.SiteUrl == null && other.SiteUrl == null) || (this.SiteUrl?.Equals(other.SiteUrl) == true)) &&
-                ((this.PhoneNumbers == null && other.PhoneNumbers == null) || (this.PhoneNumbers?.Equals(other.PhoneNumbers) == true)) &&
-                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                ((this.MotherName == null && other.MotherName == null) || (this.MotherName?.Equals(other.MotherName) == true)) &&
-                ((this.Birthdate == null && other.Birthdate == null) || (this.Birthdate?.Equals(other.Birthdate) == true)) &&
-                ((this.MonthlyIncome == null && other.MonthlyIncome == null) || (this.MonthlyIncome?.Equals(other.MonthlyIncome) == true)) &&
-                ((this.ProfessionalOccupation == null && other.ProfessionalOccupation == null) || (this.ProfessionalOccupation?.Equals(other.ProfessionalOccupation) == true)) &&
-                ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true)) &&
-                ((this.CompanyName == null && other.CompanyName == null) || (this.CompanyName?.Equals(other.CompanyName) == true)) &&
-                ((this.TradingName == null && other.TradingName == null) || (this.TradingName?.Equals(other.TradingName) == true)) &&
-                ((this.AnnualRevenue == null && other.AnnualRevenue == null) || (this.AnnualRevenue?.Equals(other.AnnualRevenue) == true)) &&
-                ((this.CorporationType == null && other.CorporationType == null) || (this.CorporationType?.Equals(other.CorporationType) == true)) &&
-                ((this.FoundingDate == null && other.FoundingDate == null) || (this.FoundingDate?.Equals(other.FoundingDate) == true)) &&
-                ((this.Cnae == null && other.Cnae == null) || (this.Cnae?.Equals(other.Cnae) == true)) &&
-                ((this.MainAddress == null && other.MainAddress == null) || (this.MainAddress?.Equals(other.MainAddress) == true)) &&
-                ((this.ManagingPartners == null && other.ManagingPartners == null) || (this.ManagingPartners?.Equals(other.ManagingPartners) == true));
+            return obj is GetRegisterInformationResponse other &&
+                (this.Email == null && other.Email == null ||
+                 this.Email?.Equals(other.Email) == true) &&
+                (this.Document == null && other.Document == null ||
+                 this.Document?.Equals(other.Document) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.SiteUrl == null && other.SiteUrl == null ||
+                 this.SiteUrl?.Equals(other.SiteUrl) == true) &&
+                (this.PhoneNumbers == null && other.PhoneNumbers == null ||
+                 this.PhoneNumbers?.Equals(other.PhoneNumbers) == true) &&
+                (this.Name == null && other.Name == null ||
+                 this.Name?.Equals(other.Name) == true) &&
+                (this.MotherName == null && other.MotherName == null ||
+                 this.MotherName?.Equals(other.MotherName) == true) &&
+                (this.Birthdate == null && other.Birthdate == null ||
+                 this.Birthdate?.Equals(other.Birthdate) == true) &&
+                (this.MonthlyIncome == null && other.MonthlyIncome == null ||
+                 this.MonthlyIncome?.Equals(other.MonthlyIncome) == true) &&
+                (this.ProfessionalOccupation == null && other.ProfessionalOccupation == null ||
+                 this.ProfessionalOccupation?.Equals(other.ProfessionalOccupation) == true) &&
+                (this.Address == null && other.Address == null ||
+                 this.Address?.Equals(other.Address) == true) &&
+                (this.CompanyName == null && other.CompanyName == null ||
+                 this.CompanyName?.Equals(other.CompanyName) == true) &&
+                (this.TradingName == null && other.TradingName == null ||
+                 this.TradingName?.Equals(other.TradingName) == true) &&
+                (this.AnnualRevenue == null && other.AnnualRevenue == null ||
+                 this.AnnualRevenue?.Equals(other.AnnualRevenue) == true) &&
+                (this.CorporationType == null && other.CorporationType == null ||
+                 this.CorporationType?.Equals(other.CorporationType) == true) &&
+                (this.FoundingDate == null && other.FoundingDate == null ||
+                 this.FoundingDate?.Equals(other.FoundingDate) == true) &&
+                (this.Cnae == null && other.Cnae == null ||
+                 this.Cnae?.Equals(other.Cnae) == true) &&
+                (this.MainAddress == null && other.MainAddress == null ||
+                 this.MainAddress?.Equals(other.MainAddress) == true) &&
+                (this.ManagingPartners == null && other.ManagingPartners == null ||
+                 this.ManagingPartners?.Equals(other.ManagingPartners) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Email = {(this.Email == null ? "null" : this.Email)}");
-            toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.SiteUrl = {(this.SiteUrl == null ? "null" : this.SiteUrl)}");
-            toStringOutput.Add($"this.PhoneNumbers = {(this.PhoneNumbers == null ? "null" : $"[{string.Join(", ", this.PhoneNumbers)} ]")}");
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
-            toStringOutput.Add($"this.MotherName = {(this.MotherName == null ? "null" : this.MotherName)}");
-            toStringOutput.Add($"this.Birthdate = {(this.Birthdate == null ? "null" : this.Birthdate)}");
-            toStringOutput.Add($"this.MonthlyIncome = {(this.MonthlyIncome == null ? "null" : this.MonthlyIncome)}");
-            toStringOutput.Add($"this.ProfessionalOccupation = {(this.ProfessionalOccupation == null ? "null" : this.ProfessionalOccupation)}");
-            toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
-            toStringOutput.Add($"this.CompanyName = {(this.CompanyName == null ? "null" : this.CompanyName)}");
-            toStringOutput.Add($"this.TradingName = {(this.TradingName == null ? "null" : this.TradingName)}");
-            toStringOutput.Add($"this.AnnualRevenue = {(this.AnnualRevenue == null ? "null" : this.AnnualRevenue)}");
-            toStringOutput.Add($"this.CorporationType = {(this.CorporationType == null ? "null" : this.CorporationType)}");
-            toStringOutput.Add($"this.FoundingDate = {(this.FoundingDate == null ? "null" : this.FoundingDate)}");
-            toStringOutput.Add($"this.Cnae = {(this.Cnae == null ? "null" : this.Cnae)}");
-            toStringOutput.Add($"this.MainAddress = {(this.MainAddress == null ? "null" : this.MainAddress.ToString())}");
-            toStringOutput.Add($"this.ManagingPartners = {(this.ManagingPartners == null ? "null" : $"[{string.Join(", ", this.ManagingPartners)} ]")}");
+            toStringOutput.Add($"Email = {this.Email ?? "null"}");
+            toStringOutput.Add($"Document = {this.Document ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"SiteUrl = {this.SiteUrl ?? "null"}");
+            toStringOutput.Add($"PhoneNumbers = {(this.PhoneNumbers == null ? "null" : $"[{string.Join(", ", this.PhoneNumbers)} ]")}");
+            toStringOutput.Add($"Name = {this.Name ?? "null"}");
+            toStringOutput.Add($"MotherName = {this.MotherName ?? "null"}");
+            toStringOutput.Add($"Birthdate = {this.Birthdate ?? "null"}");
+            toStringOutput.Add($"MonthlyIncome = {this.MonthlyIncome ?? "null"}");
+            toStringOutput.Add($"ProfessionalOccupation = {this.ProfessionalOccupation ?? "null"}");
+            toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"CompanyName = {this.CompanyName ?? "null"}");
+            toStringOutput.Add($"TradingName = {this.TradingName ?? "null"}");
+            toStringOutput.Add($"AnnualRevenue = {this.AnnualRevenue ?? "null"}");
+            toStringOutput.Add($"CorporationType = {this.CorporationType ?? "null"}");
+            toStringOutput.Add($"FoundingDate = {this.FoundingDate ?? "null"}");
+            toStringOutput.Add($"Cnae = {this.Cnae ?? "null"}");
+            toStringOutput.Add($"MainAddress = {(this.MainAddress == null ? "null" : this.MainAddress.ToString())}");
+            toStringOutput.Add($"ManagingPartners = {(this.ManagingPartners == null ? "null" : $"[{string.Join(", ", this.ManagingPartners)} ]")}");
         }
     }
 }

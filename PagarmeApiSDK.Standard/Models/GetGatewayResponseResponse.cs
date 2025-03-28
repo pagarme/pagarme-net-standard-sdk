@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             string code = null,
             List<Models.GetGatewayErrorResponse> errors = null)
         {
+
             if (code != null)
             {
                 this.Code = code;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Errors = errors;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetGatewayResponseResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCode()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetErrors()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetGatewayResponseResponse other &&                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.Errors == null && other.Errors == null) || (this.Errors?.Equals(other.Errors) == true));
+            return obj is GetGatewayResponseResponse other &&
+                (this.Code == null && other.Code == null ||
+                 this.Code?.Equals(other.Code) == true) &&
+                (this.Errors == null && other.Errors == null ||
+                 this.Errors?.Equals(other.Errors) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
-            toStringOutput.Add($"this.Errors = {(this.Errors == null ? "null" : $"[{string.Join(", ", this.Errors)} ]")}");
+            toStringOutput.Add($"Code = {this.Code ?? "null"}");
+            toStringOutput.Add($"Errors = {(this.Errors == null ? "null" : $"[{string.Join(", ", this.Errors)} ]")}");
         }
     }
 }

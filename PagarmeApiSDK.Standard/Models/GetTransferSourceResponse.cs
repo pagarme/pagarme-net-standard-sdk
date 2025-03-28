@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             string sourceId = null,
             string type = null)
         {
+
             if (sourceId != null)
             {
                 this.SourceId = sourceId;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Type = type;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetTransferSourceResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSourceId()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetTransferSourceResponse other &&                ((this.SourceId == null && other.SourceId == null) || (this.SourceId?.Equals(other.SourceId) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
+            return obj is GetTransferSourceResponse other &&
+                (this.SourceId == null && other.SourceId == null ||
+                 this.SourceId?.Equals(other.SourceId) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SourceId = {(this.SourceId == null ? "null" : this.SourceId)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"SourceId = {this.SourceId ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
         }
     }
 }

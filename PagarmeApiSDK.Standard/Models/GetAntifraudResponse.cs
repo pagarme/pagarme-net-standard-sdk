@@ -58,6 +58,7 @@ namespace PagarmeApiSDK.Standard.Models
             string providerName = null,
             string score = null)
         {
+
             if (status != null)
             {
                 this.Status = status;
@@ -82,7 +83,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Score = score;
             }
-
         }
 
         /// <summary>
@@ -179,14 +179,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetAntifraudResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -194,7 +192,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetReturnCode()
         {
@@ -202,7 +200,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetReturnMessage()
         {
@@ -210,7 +208,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetProviderName()
         {
@@ -218,7 +216,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetScore()
         {
@@ -273,33 +271,33 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetAntifraudResponse other &&                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.ReturnCode == null && other.ReturnCode == null) || (this.ReturnCode?.Equals(other.ReturnCode) == true)) &&
-                ((this.ReturnMessage == null && other.ReturnMessage == null) || (this.ReturnMessage?.Equals(other.ReturnMessage) == true)) &&
-                ((this.ProviderName == null && other.ProviderName == null) || (this.ProviderName?.Equals(other.ProviderName) == true)) &&
-                ((this.Score == null && other.Score == null) || (this.Score?.Equals(other.Score) == true));
+            return obj is GetAntifraudResponse other &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.ReturnCode == null && other.ReturnCode == null ||
+                 this.ReturnCode?.Equals(other.ReturnCode) == true) &&
+                (this.ReturnMessage == null && other.ReturnMessage == null ||
+                 this.ReturnMessage?.Equals(other.ReturnMessage) == true) &&
+                (this.ProviderName == null && other.ProviderName == null ||
+                 this.ProviderName?.Equals(other.ProviderName) == true) &&
+                (this.Score == null && other.Score == null ||
+                 this.Score?.Equals(other.Score) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.ReturnCode = {(this.ReturnCode == null ? "null" : this.ReturnCode)}");
-            toStringOutput.Add($"this.ReturnMessage = {(this.ReturnMessage == null ? "null" : this.ReturnMessage)}");
-            toStringOutput.Add($"this.ProviderName = {(this.ProviderName == null ? "null" : this.ProviderName)}");
-            toStringOutput.Add($"this.Score = {(this.Score == null ? "null" : this.Score)}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"ReturnCode = {this.ReturnCode ?? "null"}");
+            toStringOutput.Add($"ReturnMessage = {this.ReturnMessage ?? "null"}");
+            toStringOutput.Add($"ProviderName = {this.ProviderName ?? "null"}");
+            toStringOutput.Add($"Score = {this.Score ?? "null"}");
         }
     }
 }

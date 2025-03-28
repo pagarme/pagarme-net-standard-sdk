@@ -54,6 +54,7 @@ namespace PagarmeApiSDK.Standard.Models
             int? endQuantity = null,
             int? overagePrice = null)
         {
+
             if (startQuantity != null)
             {
                 this.StartQuantity = startQuantity;
@@ -73,7 +74,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.OveragePrice = overagePrice;
             }
-
         }
 
         /// <summary>
@@ -152,14 +152,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPriceBracketResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStartQuantity()
         {
@@ -167,7 +165,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPrice()
         {
@@ -175,7 +173,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetEndQuantity()
         {
@@ -183,7 +181,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetOveragePrice()
         {
@@ -229,31 +227,30 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPriceBracketResponse other &&                ((this.StartQuantity == null && other.StartQuantity == null) || (this.StartQuantity?.Equals(other.StartQuantity) == true)) &&
-                ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
-                ((this.EndQuantity == null && other.EndQuantity == null) || (this.EndQuantity?.Equals(other.EndQuantity) == true)) &&
-                ((this.OveragePrice == null && other.OveragePrice == null) || (this.OveragePrice?.Equals(other.OveragePrice) == true));
+            return obj is GetPriceBracketResponse other &&
+                (this.StartQuantity == null && other.StartQuantity == null ||
+                 this.StartQuantity?.Equals(other.StartQuantity) == true) &&
+                (this.Price == null && other.Price == null ||
+                 this.Price?.Equals(other.Price) == true) &&
+                (this.EndQuantity == null && other.EndQuantity == null ||
+                 this.EndQuantity?.Equals(other.EndQuantity) == true) &&
+                (this.OveragePrice == null && other.OveragePrice == null ||
+                 this.OveragePrice?.Equals(other.OveragePrice) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StartQuantity = {(this.StartQuantity == null ? "null" : this.StartQuantity.ToString())}");
-            toStringOutput.Add($"this.Price = {(this.Price == null ? "null" : this.Price.ToString())}");
-            toStringOutput.Add($"this.EndQuantity = {(this.EndQuantity == null ? "null" : this.EndQuantity.ToString())}");
-            toStringOutput.Add($"this.OveragePrice = {(this.OveragePrice == null ? "null" : this.OveragePrice.ToString())}");
+            toStringOutput.Add($"StartQuantity = {(this.StartQuantity == null ? "null" : this.StartQuantity.ToString())}");
+            toStringOutput.Add($"Price = {(this.Price == null ? "null" : this.Price.ToString())}");
+            toStringOutput.Add($"EndQuantity = {(this.EndQuantity == null ? "null" : this.EndQuantity.ToString())}");
+            toStringOutput.Add($"OveragePrice = {(this.OveragePrice == null ? "null" : this.OveragePrice.ToString())}");
         }
     }
 }

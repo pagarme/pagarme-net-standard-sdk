@@ -42,11 +42,11 @@ namespace PagarmeApiSDK.Standard.Models
         public GetCheckoutBankTransferPaymentResponse(
             List<string> bank = null)
         {
+
             if (bank != null)
             {
                 this.Bank = bank;
             }
-
         }
 
         /// <summary>
@@ -71,14 +71,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCheckoutBankTransferPaymentResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBank()
         {
@@ -97,25 +95,21 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCheckoutBankTransferPaymentResponse other &&                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true));
+            return obj is GetCheckoutBankTransferPaymentResponse other &&
+                (this.Bank == null && other.Bank == null ||
+                 this.Bank?.Equals(other.Bank) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : $"[{string.Join(", ", this.Bank)} ]")}");
+            toStringOutput.Add($"Bank = {(this.Bank == null ? "null" : $"[{string.Join(", ", this.Bank)} ]")}");
         }
     }
 }

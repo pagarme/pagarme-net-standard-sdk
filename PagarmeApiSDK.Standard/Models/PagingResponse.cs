@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
             string previous = null,
             string next = null)
         {
+
             if (total != null)
             {
                 this.Total = total;
@@ -64,7 +65,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Next = next;
             }
-
         }
 
         /// <summary>
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"PagingResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetTotal()
         {
@@ -140,7 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPrevious()
         {
@@ -148,7 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNext()
         {
@@ -185,29 +183,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is PagingResponse other &&                ((this.Total == null && other.Total == null) || (this.Total?.Equals(other.Total) == true)) &&
-                ((this.Previous == null && other.Previous == null) || (this.Previous?.Equals(other.Previous) == true)) &&
-                ((this.Next == null && other.Next == null) || (this.Next?.Equals(other.Next) == true));
+            return obj is PagingResponse other &&
+                (this.Total == null && other.Total == null ||
+                 this.Total?.Equals(other.Total) == true) &&
+                (this.Previous == null && other.Previous == null ||
+                 this.Previous?.Equals(other.Previous) == true) &&
+                (this.Next == null && other.Next == null ||
+                 this.Next?.Equals(other.Next) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Total = {(this.Total == null ? "null" : this.Total.ToString())}");
-            toStringOutput.Add($"this.Previous = {(this.Previous == null ? "null" : this.Previous)}");
-            toStringOutput.Add($"this.Next = {(this.Next == null ? "null" : this.Next)}");
+            toStringOutput.Add($"Total = {(this.Total == null ? "null" : this.Total.ToString())}");
+            toStringOutput.Add($"Previous = {this.Previous ?? "null"}");
+            toStringOutput.Add($"Next = {this.Next ?? "null"}");
         }
     }
 }

@@ -42,11 +42,11 @@ namespace PagarmeApiSDK.Standard.Models
         public GetGatewayErrorResponse(
             string message = null)
         {
+
             if (message != null)
             {
                 this.Message = message;
             }
-
         }
 
         /// <summary>
@@ -71,14 +71,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetGatewayErrorResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMessage()
         {
@@ -97,25 +95,21 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetGatewayErrorResponse other &&                ((this.Message == null && other.Message == null) || (this.Message?.Equals(other.Message) == true));
+            return obj is GetGatewayErrorResponse other &&
+                (this.Message == null && other.Message == null ||
+                 this.Message?.Equals(other.Message) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message)}");
+            toStringOutput.Add($"Message = {this.Message ?? "null"}");
         }
     }
 }

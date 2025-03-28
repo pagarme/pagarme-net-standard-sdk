@@ -96,6 +96,7 @@ namespace PagarmeApiSDK.Standard.Models
                 chargeId,
                 gatewayId)
         {
+
             if (sourceType != null)
             {
                 this.SourceType = sourceType;
@@ -135,7 +136,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.BankAccount = bankAccount;
             }
-
         }
 
         /// <summary>
@@ -286,14 +286,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetMovementObjectTransferResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSourceType()
         {
@@ -301,7 +299,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSourceId()
         {
@@ -309,7 +307,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetTargetType()
         {
@@ -317,7 +315,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetTargetId()
         {
@@ -325,7 +323,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFee()
         {
@@ -333,7 +331,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFundingDate()
         {
@@ -341,7 +339,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFundingEstimatedDate()
         {
@@ -349,7 +347,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBankAccount()
         {
@@ -431,40 +429,43 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetMovementObjectTransferResponse other &&                ((this.SourceType == null && other.SourceType == null) || (this.SourceType?.Equals(other.SourceType) == true)) &&
-                ((this.SourceId == null && other.SourceId == null) || (this.SourceId?.Equals(other.SourceId) == true)) &&
-                ((this.TargetType == null && other.TargetType == null) || (this.TargetType?.Equals(other.TargetType) == true)) &&
-                ((this.TargetId == null && other.TargetId == null) || (this.TargetId?.Equals(other.TargetId) == true)) &&
-                ((this.Fee == null && other.Fee == null) || (this.Fee?.Equals(other.Fee) == true)) &&
-                ((this.FundingDate == null && other.FundingDate == null) || (this.FundingDate?.Equals(other.FundingDate) == true)) &&
-                ((this.FundingEstimatedDate == null && other.FundingEstimatedDate == null) || (this.FundingEstimatedDate?.Equals(other.FundingEstimatedDate) == true)) &&
-                ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true)) &&
+            return obj is GetMovementObjectTransferResponse other &&
+                (this.SourceType == null && other.SourceType == null ||
+                 this.SourceType?.Equals(other.SourceType) == true) &&
+                (this.SourceId == null && other.SourceId == null ||
+                 this.SourceId?.Equals(other.SourceId) == true) &&
+                (this.TargetType == null && other.TargetType == null ||
+                 this.TargetType?.Equals(other.TargetType) == true) &&
+                (this.TargetId == null && other.TargetId == null ||
+                 this.TargetId?.Equals(other.TargetId) == true) &&
+                (this.Fee == null && other.Fee == null ||
+                 this.Fee?.Equals(other.Fee) == true) &&
+                (this.FundingDate == null && other.FundingDate == null ||
+                 this.FundingDate?.Equals(other.FundingDate) == true) &&
+                (this.FundingEstimatedDate == null && other.FundingEstimatedDate == null ||
+                 this.FundingEstimatedDate?.Equals(other.FundingEstimatedDate) == true) &&
+                (this.BankAccount == null && other.BankAccount == null ||
+                 this.BankAccount?.Equals(other.BankAccount) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SourceType = {(this.SourceType == null ? "null" : this.SourceType)}");
-            toStringOutput.Add($"this.SourceId = {(this.SourceId == null ? "null" : this.SourceId)}");
-            toStringOutput.Add($"this.TargetType = {(this.TargetType == null ? "null" : this.TargetType)}");
-            toStringOutput.Add($"this.TargetId = {(this.TargetId == null ? "null" : this.TargetId)}");
-            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee)}");
-            toStringOutput.Add($"this.FundingDate = {(this.FundingDate == null ? "null" : this.FundingDate)}");
-            toStringOutput.Add($"this.FundingEstimatedDate = {(this.FundingEstimatedDate == null ? "null" : this.FundingEstimatedDate)}");
-            toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount)}");
+            toStringOutput.Add($"SourceType = {this.SourceType ?? "null"}");
+            toStringOutput.Add($"SourceId = {this.SourceId ?? "null"}");
+            toStringOutput.Add($"TargetType = {this.TargetType ?? "null"}");
+            toStringOutput.Add($"TargetId = {this.TargetId ?? "null"}");
+            toStringOutput.Add($"Fee = {this.Fee ?? "null"}");
+            toStringOutput.Add($"FundingDate = {this.FundingDate ?? "null"}");
+            toStringOutput.Add($"FundingEstimatedDate = {this.FundingEstimatedDate ?? "null"}");
+            toStringOutput.Add($"BankAccount = {this.BankAccount ?? "null"}");
 
             base.ToString(toStringOutput);
         }

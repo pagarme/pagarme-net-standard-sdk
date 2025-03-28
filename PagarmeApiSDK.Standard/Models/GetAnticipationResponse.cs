@@ -78,6 +78,7 @@ namespace PagarmeApiSDK.Standard.Models
             string status = null,
             string timeframe = null)
         {
+
             if (id != null)
             {
                 this.Id = id;
@@ -127,7 +128,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Timeframe = timeframe;
             }
-
         }
 
         /// <summary>
@@ -317,14 +317,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetAnticipationResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -332,7 +330,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRequestedAmount()
         {
@@ -340,7 +338,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetApprovedAmount()
         {
@@ -348,7 +346,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRecipient()
         {
@@ -356,7 +354,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPgid()
         {
@@ -364,7 +362,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -372,7 +370,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -380,7 +378,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaymentDate()
         {
@@ -388,7 +386,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -396,7 +394,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetTimeframe()
         {
@@ -496,43 +494,48 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetAnticipationResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.RequestedAmount == null && other.RequestedAmount == null) || (this.RequestedAmount?.Equals(other.RequestedAmount) == true)) &&
-                ((this.ApprovedAmount == null && other.ApprovedAmount == null) || (this.ApprovedAmount?.Equals(other.ApprovedAmount) == true)) &&
-                ((this.Recipient == null && other.Recipient == null) || (this.Recipient?.Equals(other.Recipient) == true)) &&
-                ((this.Pgid == null && other.Pgid == null) || (this.Pgid?.Equals(other.Pgid) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.PaymentDate == null && other.PaymentDate == null) || (this.PaymentDate?.Equals(other.PaymentDate) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Timeframe == null && other.Timeframe == null) || (this.Timeframe?.Equals(other.Timeframe) == true));
+            return obj is GetAnticipationResponse other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.RequestedAmount == null && other.RequestedAmount == null ||
+                 this.RequestedAmount?.Equals(other.RequestedAmount) == true) &&
+                (this.ApprovedAmount == null && other.ApprovedAmount == null ||
+                 this.ApprovedAmount?.Equals(other.ApprovedAmount) == true) &&
+                (this.Recipient == null && other.Recipient == null ||
+                 this.Recipient?.Equals(other.Recipient) == true) &&
+                (this.Pgid == null && other.Pgid == null ||
+                 this.Pgid?.Equals(other.Pgid) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
+                (this.PaymentDate == null && other.PaymentDate == null ||
+                 this.PaymentDate?.Equals(other.PaymentDate) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.Timeframe == null && other.Timeframe == null ||
+                 this.Timeframe?.Equals(other.Timeframe) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.RequestedAmount = {(this.RequestedAmount == null ? "null" : this.RequestedAmount.ToString())}");
-            toStringOutput.Add($"this.ApprovedAmount = {(this.ApprovedAmount == null ? "null" : this.ApprovedAmount.ToString())}");
-            toStringOutput.Add($"this.Recipient = {(this.Recipient == null ? "null" : this.Recipient.ToString())}");
-            toStringOutput.Add($"this.Pgid = {(this.Pgid == null ? "null" : this.Pgid)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.Timeframe = {(this.Timeframe == null ? "null" : this.Timeframe)}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"RequestedAmount = {(this.RequestedAmount == null ? "null" : this.RequestedAmount.ToString())}");
+            toStringOutput.Add($"ApprovedAmount = {(this.ApprovedAmount == null ? "null" : this.ApprovedAmount.ToString())}");
+            toStringOutput.Add($"Recipient = {(this.Recipient == null ? "null" : this.Recipient.ToString())}");
+            toStringOutput.Add($"Pgid = {this.Pgid ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate.ToString())}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"Timeframe = {this.Timeframe ?? "null"}");
         }
     }
 }

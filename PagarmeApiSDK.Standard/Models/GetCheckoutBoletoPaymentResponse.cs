@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? dueAt = null,
             string instructions = null)
         {
+
             if (dueAt != null)
             {
                 this.DueAt = dueAt;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Instructions = instructions;
             }
-
         }
 
         /// <summary>
@@ -99,14 +99,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCheckoutBoletoPaymentResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDueAt()
         {
@@ -114,7 +112,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInstructions()
         {
@@ -142,27 +140,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCheckoutBoletoPaymentResponse other &&                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true)) &&
-                ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true));
+            return obj is GetCheckoutBoletoPaymentResponse other &&
+                (this.DueAt == null && other.DueAt == null ||
+                 this.DueAt?.Equals(other.DueAt) == true) &&
+                (this.Instructions == null && other.Instructions == null ||
+                 this.Instructions?.Equals(other.Instructions) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
-            toStringOutput.Add($"this.Instructions = {(this.Instructions == null ? "null" : this.Instructions)}");
+            toStringOutput.Add($"DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
+            toStringOutput.Add($"Instructions = {this.Instructions ?? "null"}");
         }
     }
 }

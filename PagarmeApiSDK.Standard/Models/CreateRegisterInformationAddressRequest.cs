@@ -112,48 +112,49 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateRegisterInformationAddressRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateRegisterInformationAddressRequest other &&                ((this.Street == null && other.Street == null) || (this.Street?.Equals(other.Street) == true)) &&
-                ((this.Complementary == null && other.Complementary == null) || (this.Complementary?.Equals(other.Complementary) == true)) &&
-                ((this.StreetNumber == null && other.StreetNumber == null) || (this.StreetNumber?.Equals(other.StreetNumber) == true)) &&
-                ((this.Neighborhood == null && other.Neighborhood == null) || (this.Neighborhood?.Equals(other.Neighborhood) == true)) &&
-                ((this.City == null && other.City == null) || (this.City?.Equals(other.City) == true)) &&
-                ((this.State == null && other.State == null) || (this.State?.Equals(other.State) == true)) &&
-                ((this.ZipCode == null && other.ZipCode == null) || (this.ZipCode?.Equals(other.ZipCode) == true)) &&
-                ((this.ReferencePoint == null && other.ReferencePoint == null) || (this.ReferencePoint?.Equals(other.ReferencePoint) == true));
+            return obj is CreateRegisterInformationAddressRequest other &&
+                (this.Street == null && other.Street == null ||
+                 this.Street?.Equals(other.Street) == true) &&
+                (this.Complementary == null && other.Complementary == null ||
+                 this.Complementary?.Equals(other.Complementary) == true) &&
+                (this.StreetNumber == null && other.StreetNumber == null ||
+                 this.StreetNumber?.Equals(other.StreetNumber) == true) &&
+                (this.Neighborhood == null && other.Neighborhood == null ||
+                 this.Neighborhood?.Equals(other.Neighborhood) == true) &&
+                (this.City == null && other.City == null ||
+                 this.City?.Equals(other.City) == true) &&
+                (this.State == null && other.State == null ||
+                 this.State?.Equals(other.State) == true) &&
+                (this.ZipCode == null && other.ZipCode == null ||
+                 this.ZipCode?.Equals(other.ZipCode) == true) &&
+                (this.ReferencePoint == null && other.ReferencePoint == null ||
+                 this.ReferencePoint?.Equals(other.ReferencePoint) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Street = {(this.Street == null ? "null" : this.Street)}");
-            toStringOutput.Add($"this.Complementary = {(this.Complementary == null ? "null" : this.Complementary)}");
-            toStringOutput.Add($"this.StreetNumber = {(this.StreetNumber == null ? "null" : this.StreetNumber)}");
-            toStringOutput.Add($"this.Neighborhood = {(this.Neighborhood == null ? "null" : this.Neighborhood)}");
-            toStringOutput.Add($"this.City = {(this.City == null ? "null" : this.City)}");
-            toStringOutput.Add($"this.State = {(this.State == null ? "null" : this.State)}");
-            toStringOutput.Add($"this.ZipCode = {(this.ZipCode == null ? "null" : this.ZipCode)}");
-            toStringOutput.Add($"this.ReferencePoint = {(this.ReferencePoint == null ? "null" : this.ReferencePoint)}");
+            toStringOutput.Add($"Street = {this.Street ?? "null"}");
+            toStringOutput.Add($"Complementary = {this.Complementary ?? "null"}");
+            toStringOutput.Add($"StreetNumber = {this.StreetNumber ?? "null"}");
+            toStringOutput.Add($"Neighborhood = {this.Neighborhood ?? "null"}");
+            toStringOutput.Add($"City = {this.City ?? "null"}");
+            toStringOutput.Add($"State = {this.State ?? "null"}");
+            toStringOutput.Add($"ZipCode = {this.ZipCode ?? "null"}");
+            toStringOutput.Add($"ReferencePoint = {this.ReferencePoint ?? "null"}");
         }
     }
 }

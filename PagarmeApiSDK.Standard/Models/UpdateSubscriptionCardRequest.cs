@@ -67,38 +67,34 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateSubscriptionCardRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateSubscriptionCardRequest other &&                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
-                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
+            return obj is UpdateSubscriptionCardRequest other &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.CardId == null && other.CardId == null ||
+                 this.CardId?.Equals(other.CardId) == true) &&
+                (this.IndirectAcceptor == null && other.IndirectAcceptor == null ||
+                 this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
-            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"CardId = {this.CardId ?? "null"}");
+            toStringOutput.Add($"IndirectAcceptor = {this.IndirectAcceptor ?? "null"}");
         }
     }
 }

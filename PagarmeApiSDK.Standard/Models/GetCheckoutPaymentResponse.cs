@@ -146,6 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
             List<string> acceptedBrands = null,
             Models.GetCheckoutPixPaymentResponse pix = null)
         {
+
             if (id != null)
             {
                 this.Id = id;
@@ -280,7 +281,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Pix = pix;
             }
-
         }
 
         /// <summary>
@@ -778,14 +778,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCheckoutPaymentResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -793,7 +791,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAmount()
         {
@@ -801,7 +799,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDefaultPaymentMethod()
         {
@@ -809,7 +807,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSuccessUrl()
         {
@@ -817,7 +815,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaymentUrl()
         {
@@ -825,7 +823,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetGatewayAffiliationId()
         {
@@ -833,7 +831,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcceptedPaymentMethods()
         {
@@ -841,7 +839,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -849,7 +847,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSkipCheckoutSuccessPage()
         {
@@ -857,7 +855,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -865,7 +863,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -873,7 +871,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCanceledAt()
         {
@@ -881,7 +879,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomerEditable()
         {
@@ -889,7 +887,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomer()
         {
@@ -897,7 +895,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingaddress()
         {
@@ -905,7 +903,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreditCard()
         {
@@ -913,7 +911,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBoleto()
         {
@@ -921,7 +919,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingAddressEditable()
         {
@@ -929,7 +927,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetShipping()
         {
@@ -937,7 +935,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetShippable()
         {
@@ -945,7 +943,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetClosedAt()
         {
@@ -953,7 +951,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpiresAt()
         {
@@ -961,7 +959,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCurrency()
         {
@@ -969,7 +967,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDebitCard()
         {
@@ -977,7 +975,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBankTransfer()
         {
@@ -985,7 +983,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcceptedBrands()
         {
@@ -993,7 +991,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPix()
         {
@@ -1246,77 +1244,99 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCheckoutPaymentResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
-                ((this.DefaultPaymentMethod == null && other.DefaultPaymentMethod == null) || (this.DefaultPaymentMethod?.Equals(other.DefaultPaymentMethod) == true)) &&
-                ((this.SuccessUrl == null && other.SuccessUrl == null) || (this.SuccessUrl?.Equals(other.SuccessUrl) == true)) &&
-                ((this.PaymentUrl == null && other.PaymentUrl == null) || (this.PaymentUrl?.Equals(other.PaymentUrl) == true)) &&
-                ((this.GatewayAffiliationId == null && other.GatewayAffiliationId == null) || (this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true)) &&
-                ((this.AcceptedPaymentMethods == null && other.AcceptedPaymentMethods == null) || (this.AcceptedPaymentMethods?.Equals(other.AcceptedPaymentMethods) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.SkipCheckoutSuccessPage == null && other.SkipCheckoutSuccessPage == null) || (this.SkipCheckoutSuccessPage?.Equals(other.SkipCheckoutSuccessPage) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.CanceledAt == null && other.CanceledAt == null) || (this.CanceledAt?.Equals(other.CanceledAt) == true)) &&
-                ((this.CustomerEditable == null && other.CustomerEditable == null) || (this.CustomerEditable?.Equals(other.CustomerEditable) == true)) &&
-                ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
-                ((this.Billingaddress == null && other.Billingaddress == null) || (this.Billingaddress?.Equals(other.Billingaddress) == true)) &&
-                ((this.CreditCard == null && other.CreditCard == null) || (this.CreditCard?.Equals(other.CreditCard) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                ((this.BillingAddressEditable == null && other.BillingAddressEditable == null) || (this.BillingAddressEditable?.Equals(other.BillingAddressEditable) == true)) &&
-                ((this.Shipping == null && other.Shipping == null) || (this.Shipping?.Equals(other.Shipping) == true)) &&
-                ((this.Shippable == null && other.Shippable == null) || (this.Shippable?.Equals(other.Shippable) == true)) &&
-                ((this.ClosedAt == null && other.ClosedAt == null) || (this.ClosedAt?.Equals(other.ClosedAt) == true)) &&
-                ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
-                ((this.Currency == null && other.Currency == null) || (this.Currency?.Equals(other.Currency) == true)) &&
-                ((this.DebitCard == null && other.DebitCard == null) || (this.DebitCard?.Equals(other.DebitCard) == true)) &&
-                ((this.BankTransfer == null && other.BankTransfer == null) || (this.BankTransfer?.Equals(other.BankTransfer) == true)) &&
-                ((this.AcceptedBrands == null && other.AcceptedBrands == null) || (this.AcceptedBrands?.Equals(other.AcceptedBrands) == true)) &&
-                ((this.Pix == null && other.Pix == null) || (this.Pix?.Equals(other.Pix) == true));
+            return obj is GetCheckoutPaymentResponse other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.Amount == null && other.Amount == null ||
+                 this.Amount?.Equals(other.Amount) == true) &&
+                (this.DefaultPaymentMethod == null && other.DefaultPaymentMethod == null ||
+                 this.DefaultPaymentMethod?.Equals(other.DefaultPaymentMethod) == true) &&
+                (this.SuccessUrl == null && other.SuccessUrl == null ||
+                 this.SuccessUrl?.Equals(other.SuccessUrl) == true) &&
+                (this.PaymentUrl == null && other.PaymentUrl == null ||
+                 this.PaymentUrl?.Equals(other.PaymentUrl) == true) &&
+                (this.GatewayAffiliationId == null && other.GatewayAffiliationId == null ||
+                 this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true) &&
+                (this.AcceptedPaymentMethods == null && other.AcceptedPaymentMethods == null ||
+                 this.AcceptedPaymentMethods?.Equals(other.AcceptedPaymentMethods) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.SkipCheckoutSuccessPage == null && other.SkipCheckoutSuccessPage == null ||
+                 this.SkipCheckoutSuccessPage?.Equals(other.SkipCheckoutSuccessPage) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
+                (this.CanceledAt == null && other.CanceledAt == null ||
+                 this.CanceledAt?.Equals(other.CanceledAt) == true) &&
+                (this.CustomerEditable == null && other.CustomerEditable == null ||
+                 this.CustomerEditable?.Equals(other.CustomerEditable) == true) &&
+                (this.Customer == null && other.Customer == null ||
+                 this.Customer?.Equals(other.Customer) == true) &&
+                (this.Billingaddress == null && other.Billingaddress == null ||
+                 this.Billingaddress?.Equals(other.Billingaddress) == true) &&
+                (this.CreditCard == null && other.CreditCard == null ||
+                 this.CreditCard?.Equals(other.CreditCard) == true) &&
+                (this.Boleto == null && other.Boleto == null ||
+                 this.Boleto?.Equals(other.Boleto) == true) &&
+                (this.BillingAddressEditable == null && other.BillingAddressEditable == null ||
+                 this.BillingAddressEditable?.Equals(other.BillingAddressEditable) == true) &&
+                (this.Shipping == null && other.Shipping == null ||
+                 this.Shipping?.Equals(other.Shipping) == true) &&
+                (this.Shippable == null && other.Shippable == null ||
+                 this.Shippable?.Equals(other.Shippable) == true) &&
+                (this.ClosedAt == null && other.ClosedAt == null ||
+                 this.ClosedAt?.Equals(other.ClosedAt) == true) &&
+                (this.ExpiresAt == null && other.ExpiresAt == null ||
+                 this.ExpiresAt?.Equals(other.ExpiresAt) == true) &&
+                (this.Currency == null && other.Currency == null ||
+                 this.Currency?.Equals(other.Currency) == true) &&
+                (this.DebitCard == null && other.DebitCard == null ||
+                 this.DebitCard?.Equals(other.DebitCard) == true) &&
+                (this.BankTransfer == null && other.BankTransfer == null ||
+                 this.BankTransfer?.Equals(other.BankTransfer) == true) &&
+                (this.AcceptedBrands == null && other.AcceptedBrands == null ||
+                 this.AcceptedBrands?.Equals(other.AcceptedBrands) == true) &&
+                (this.Pix == null && other.Pix == null ||
+                 this.Pix?.Equals(other.Pix) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
-            toStringOutput.Add($"this.DefaultPaymentMethod = {(this.DefaultPaymentMethod == null ? "null" : this.DefaultPaymentMethod)}");
-            toStringOutput.Add($"this.SuccessUrl = {(this.SuccessUrl == null ? "null" : this.SuccessUrl)}");
-            toStringOutput.Add($"this.PaymentUrl = {(this.PaymentUrl == null ? "null" : this.PaymentUrl)}");
-            toStringOutput.Add($"this.GatewayAffiliationId = {(this.GatewayAffiliationId == null ? "null" : this.GatewayAffiliationId)}");
-            toStringOutput.Add($"this.AcceptedPaymentMethods = {(this.AcceptedPaymentMethods == null ? "null" : $"[{string.Join(", ", this.AcceptedPaymentMethods)} ]")}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.SkipCheckoutSuccessPage = {(this.SkipCheckoutSuccessPage == null ? "null" : this.SkipCheckoutSuccessPage.ToString())}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.CanceledAt = {(this.CanceledAt == null ? "null" : this.CanceledAt.ToString())}");
-            toStringOutput.Add($"this.CustomerEditable = {(this.CustomerEditable == null ? "null" : this.CustomerEditable.ToString())}");
-            toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
-            toStringOutput.Add($"this.Billingaddress = {(this.Billingaddress == null ? "null" : this.Billingaddress.ToString())}");
-            toStringOutput.Add($"this.CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
-            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
-            toStringOutput.Add($"this.BillingAddressEditable = {(this.BillingAddressEditable == null ? "null" : this.BillingAddressEditable.ToString())}");
-            toStringOutput.Add($"this.Shipping = {(this.Shipping == null ? "null" : this.Shipping.ToString())}");
-            toStringOutput.Add($"this.Shippable = {(this.Shippable == null ? "null" : this.Shippable.ToString())}");
-            toStringOutput.Add($"this.ClosedAt = {(this.ClosedAt == null ? "null" : this.ClosedAt.ToString())}");
-            toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
-            toStringOutput.Add($"this.Currency = {(this.Currency == null ? "null" : this.Currency)}");
-            toStringOutput.Add($"this.DebitCard = {(this.DebitCard == null ? "null" : this.DebitCard.ToString())}");
-            toStringOutput.Add($"this.BankTransfer = {(this.BankTransfer == null ? "null" : this.BankTransfer.ToString())}");
-            toStringOutput.Add($"this.AcceptedBrands = {(this.AcceptedBrands == null ? "null" : $"[{string.Join(", ", this.AcceptedBrands)} ]")}");
-            toStringOutput.Add($"this.Pix = {(this.Pix == null ? "null" : this.Pix.ToString())}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
+            toStringOutput.Add($"DefaultPaymentMethod = {this.DefaultPaymentMethod ?? "null"}");
+            toStringOutput.Add($"SuccessUrl = {this.SuccessUrl ?? "null"}");
+            toStringOutput.Add($"PaymentUrl = {this.PaymentUrl ?? "null"}");
+            toStringOutput.Add($"GatewayAffiliationId = {this.GatewayAffiliationId ?? "null"}");
+            toStringOutput.Add($"AcceptedPaymentMethods = {(this.AcceptedPaymentMethods == null ? "null" : $"[{string.Join(", ", this.AcceptedPaymentMethods)} ]")}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"SkipCheckoutSuccessPage = {(this.SkipCheckoutSuccessPage == null ? "null" : this.SkipCheckoutSuccessPage.ToString())}");
+            toStringOutput.Add($"CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"CanceledAt = {(this.CanceledAt == null ? "null" : this.CanceledAt.ToString())}");
+            toStringOutput.Add($"CustomerEditable = {(this.CustomerEditable == null ? "null" : this.CustomerEditable.ToString())}");
+            toStringOutput.Add($"Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
+            toStringOutput.Add($"Billingaddress = {(this.Billingaddress == null ? "null" : this.Billingaddress.ToString())}");
+            toStringOutput.Add($"CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
+            toStringOutput.Add($"Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"BillingAddressEditable = {(this.BillingAddressEditable == null ? "null" : this.BillingAddressEditable.ToString())}");
+            toStringOutput.Add($"Shipping = {(this.Shipping == null ? "null" : this.Shipping.ToString())}");
+            toStringOutput.Add($"Shippable = {(this.Shippable == null ? "null" : this.Shippable.ToString())}");
+            toStringOutput.Add($"ClosedAt = {(this.ClosedAt == null ? "null" : this.ClosedAt.ToString())}");
+            toStringOutput.Add($"ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
+            toStringOutput.Add($"Currency = {this.Currency ?? "null"}");
+            toStringOutput.Add($"DebitCard = {(this.DebitCard == null ? "null" : this.DebitCard.ToString())}");
+            toStringOutput.Add($"BankTransfer = {(this.BankTransfer == null ? "null" : this.BankTransfer.ToString())}");
+            toStringOutput.Add($"AcceptedBrands = {(this.AcceptedBrands == null ? "null" : $"[{string.Join(", ", this.AcceptedBrands)} ]")}");
+            toStringOutput.Add($"Pix = {(this.Pix == null ? "null" : this.Pix.ToString())}");
         }
     }
 }

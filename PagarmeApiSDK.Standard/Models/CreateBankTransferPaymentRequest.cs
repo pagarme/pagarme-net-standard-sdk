@@ -58,36 +58,30 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateBankTransferPaymentRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateBankTransferPaymentRequest other &&                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
-                this.Retries.Equals(other.Retries);
+            return obj is CreateBankTransferPaymentRequest other &&
+                (this.Bank == null && other.Bank == null ||
+                 this.Bank?.Equals(other.Bank) == true) &&
+                (this.Retries.Equals(other.Retries));
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : this.Bank)}");
-            toStringOutput.Add($"this.Retries = {this.Retries}");
+            toStringOutput.Add($"Bank = {this.Bank ?? "null"}");
+            toStringOutput.Add($"Retries = {this.Retries}");
         }
     }
 }

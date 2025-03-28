@@ -68,12 +68,13 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? dueAt = null,
             Models.CreateAntifraudRequest antifraud = null)
         {
+
             if (code != null)
             {
                 this.Code = code;
             }
-
             this.Amount = amount;
+
             if (customerId != null)
             {
                 this.CustomerId = customerId;
@@ -83,8 +84,8 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Customer = customer;
             }
-
             this.Payment = payment;
+
             if (metadata != null)
             {
                 this.Metadata = metadata;
@@ -99,7 +100,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Antifraud = antifraud;
             }
-
             this.OrderId = orderId;
         }
 
@@ -234,14 +234,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateChargeRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCode()
         {
@@ -249,7 +247,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomerId()
         {
@@ -257,7 +255,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCustomer()
         {
@@ -265,7 +263,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMetadata()
         {
@@ -273,7 +271,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDueAt()
         {
@@ -281,7 +279,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAntifraud()
         {
@@ -345,41 +343,44 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateChargeRequest other &&                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                this.Amount.Equals(other.Amount) &&
-                ((this.CustomerId == null && other.CustomerId == null) || (this.CustomerId?.Equals(other.CustomerId) == true)) &&
-                ((this.Customer == null && other.Customer == null) || (this.Customer?.Equals(other.Customer) == true)) &&
-                ((this.Payment == null && other.Payment == null) || (this.Payment?.Equals(other.Payment) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true)) &&
-                ((this.Antifraud == null && other.Antifraud == null) || (this.Antifraud?.Equals(other.Antifraud) == true)) &&
-                ((this.OrderId == null && other.OrderId == null) || (this.OrderId?.Equals(other.OrderId) == true));
+            return obj is CreateChargeRequest other &&
+                (this.Code == null && other.Code == null ||
+                 this.Code?.Equals(other.Code) == true) &&
+                (this.Amount.Equals(other.Amount)) &&
+                (this.CustomerId == null && other.CustomerId == null ||
+                 this.CustomerId?.Equals(other.CustomerId) == true) &&
+                (this.Customer == null && other.Customer == null ||
+                 this.Customer?.Equals(other.Customer) == true) &&
+                (this.Payment == null && other.Payment == null ||
+                 this.Payment?.Equals(other.Payment) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.DueAt == null && other.DueAt == null ||
+                 this.DueAt?.Equals(other.DueAt) == true) &&
+                (this.Antifraud == null && other.Antifraud == null ||
+                 this.Antifraud?.Equals(other.Antifraud) == true) &&
+                (this.OrderId == null && other.OrderId == null ||
+                 this.OrderId?.Equals(other.OrderId) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.CustomerId = {(this.CustomerId == null ? "null" : this.CustomerId)}");
-            toStringOutput.Add($"this.Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
-            toStringOutput.Add($"this.Payment = {(this.Payment == null ? "null" : this.Payment.ToString())}");
+            toStringOutput.Add($"Code = {this.Code ?? "null"}");
+            toStringOutput.Add($"Amount = {this.Amount}");
+            toStringOutput.Add($"CustomerId = {this.CustomerId ?? "null"}");
+            toStringOutput.Add($"Customer = {(this.Customer == null ? "null" : this.Customer.ToString())}");
+            toStringOutput.Add($"Payment = {(this.Payment == null ? "null" : this.Payment.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
-            toStringOutput.Add($"this.Antifraud = {(this.Antifraud == null ? "null" : this.Antifraud.ToString())}");
-            toStringOutput.Add($"this.OrderId = {(this.OrderId == null ? "null" : this.OrderId)}");
+            toStringOutput.Add($"DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
+            toStringOutput.Add($"Antifraud = {(this.Antifraud == null ? "null" : this.Antifraud.ToString())}");
+            toStringOutput.Add($"OrderId = {this.OrderId ?? "null"}");
         }
     }
 }

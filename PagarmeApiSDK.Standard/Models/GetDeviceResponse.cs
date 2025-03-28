@@ -42,11 +42,11 @@ namespace PagarmeApiSDK.Standard.Models
         public GetDeviceResponse(
             string platform = null)
         {
+
             if (platform != null)
             {
                 this.Platform = platform;
             }
-
         }
 
         /// <summary>
@@ -71,14 +71,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetDeviceResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPlatform()
         {
@@ -97,25 +95,21 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetDeviceResponse other &&                ((this.Platform == null && other.Platform == null) || (this.Platform?.Equals(other.Platform) == true));
+            return obj is GetDeviceResponse other &&
+                (this.Platform == null && other.Platform == null ||
+                 this.Platform?.Equals(other.Platform) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Platform = {(this.Platform == null ? "null" : this.Platform)}");
+            toStringOutput.Add($"Platform = {this.Platform ?? "null"}");
         }
     }
 }

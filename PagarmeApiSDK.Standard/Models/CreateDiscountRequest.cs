@@ -85,42 +85,39 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateDiscountRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateDiscountRequest other &&                this.MValue.Equals(other.MValue) &&
-                ((this.DiscountType == null && other.DiscountType == null) || (this.DiscountType?.Equals(other.DiscountType) == true)) &&
-                ((this.ItemId == null && other.ItemId == null) || (this.ItemId?.Equals(other.ItemId) == true)) &&
-                ((this.Cycles == null && other.Cycles == null) || (this.Cycles?.Equals(other.Cycles) == true)) &&
-                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true));
+            return obj is CreateDiscountRequest other &&
+                (this.MValue.Equals(other.MValue)) &&
+                (this.DiscountType == null && other.DiscountType == null ||
+                 this.DiscountType?.Equals(other.DiscountType) == true) &&
+                (this.ItemId == null && other.ItemId == null ||
+                 this.ItemId?.Equals(other.ItemId) == true) &&
+                (this.Cycles == null && other.Cycles == null ||
+                 this.Cycles?.Equals(other.Cycles) == true) &&
+                (this.Description == null && other.Description == null ||
+                 this.Description?.Equals(other.Description) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.MValue = {this.MValue}");
-            toStringOutput.Add($"this.DiscountType = {(this.DiscountType == null ? "null" : this.DiscountType)}");
-            toStringOutput.Add($"this.ItemId = {(this.ItemId == null ? "null" : this.ItemId)}");
-            toStringOutput.Add($"this.Cycles = {(this.Cycles == null ? "null" : this.Cycles.ToString())}");
-            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
+            toStringOutput.Add($"MValue = {this.MValue}");
+            toStringOutput.Add($"DiscountType = {this.DiscountType ?? "null"}");
+            toStringOutput.Add($"ItemId = {this.ItemId ?? "null"}");
+            toStringOutput.Add($"Cycles = {(this.Cycles == null ? "null" : this.Cycles.ToString())}");
+            toStringOutput.Add($"Description = {this.Description ?? "null"}");
         }
     }
 }

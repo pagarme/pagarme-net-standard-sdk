@@ -21,9 +21,9 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetMovementObjectBaseResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "object")]
+    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectFeeCollectionResponse), "feeCollection")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectPayableResponse), "payable")]
-    [JsonSubtypes.KnownSubType(typeof(GetMovementObjectRefundResponse), "refund")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectTransferResponse), "transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetMovementObjectSettlementResponse), "settlement")]
     public class GetMovementObjectBaseResponse
@@ -76,6 +76,7 @@ namespace PagarmeApiSDK.Standard.Models
             string gatewayId = null)
         {
             this.MObject = mObject;
+
             if (id != null)
             {
                 this.Id = id;
@@ -110,7 +111,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.GatewayId = gatewayId;
             }
-
         }
 
         /// <summary>
@@ -249,14 +249,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetMovementObjectBaseResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -264,7 +262,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -272,7 +270,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAmount()
         {
@@ -280,7 +278,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -288,7 +286,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -296,7 +294,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetChargeId()
         {
@@ -304,7 +302,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetGatewayId()
         {
@@ -377,39 +375,42 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetMovementObjectBaseResponse other &&                ((this.MObject == null && other.MObject == null) || (this.MObject?.Equals(other.MObject) == true)) &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.ChargeId == null && other.ChargeId == null) || (this.ChargeId?.Equals(other.ChargeId) == true)) &&
-                ((this.GatewayId == null && other.GatewayId == null) || (this.GatewayId?.Equals(other.GatewayId) == true));
+            return obj is GetMovementObjectBaseResponse other &&
+                (this.MObject == null && other.MObject == null ||
+                 this.MObject?.Equals(other.MObject) == true) &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.Amount == null && other.Amount == null ||
+                 this.Amount?.Equals(other.Amount) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.ChargeId == null && other.ChargeId == null ||
+                 this.ChargeId?.Equals(other.ChargeId) == true) &&
+                (this.GatewayId == null && other.GatewayId == null ||
+                 this.GatewayId?.Equals(other.GatewayId) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.MObject = {(this.MObject == null ? "null" : this.MObject)}");
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId)}");
-            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId)}");
+            toStringOutput.Add($"MObject = {this.MObject ?? "null"}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"Amount = {this.Amount ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {this.CreatedAt ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"ChargeId = {this.ChargeId ?? "null"}");
+            toStringOutput.Add($"GatewayId = {this.GatewayId ?? "null"}");
         }
     }
 }

@@ -130,52 +130,55 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCustomerRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCustomerRequest other &&                ((this.Name == null && other.Name == null) || (this.Name?.Equals(other.Name) == true)) &&
-                ((this.Email == null && other.Email == null) || (this.Email?.Equals(other.Email) == true)) &&
-                ((this.Document == null && other.Document == null) || (this.Document?.Equals(other.Document) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Phones == null && other.Phones == null) || (this.Phones?.Equals(other.Phones) == true)) &&
-                ((this.Code == null && other.Code == null) || (this.Code?.Equals(other.Code) == true)) &&
-                ((this.Gender == null && other.Gender == null) || (this.Gender?.Equals(other.Gender) == true)) &&
-                ((this.DocumentType == null && other.DocumentType == null) || (this.DocumentType?.Equals(other.DocumentType) == true));
+            return obj is CreateCustomerRequest other &&
+                (this.Name == null && other.Name == null ||
+                 this.Name?.Equals(other.Name) == true) &&
+                (this.Email == null && other.Email == null ||
+                 this.Email?.Equals(other.Email) == true) &&
+                (this.Document == null && other.Document == null ||
+                 this.Document?.Equals(other.Document) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Address == null && other.Address == null ||
+                 this.Address?.Equals(other.Address) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Phones == null && other.Phones == null ||
+                 this.Phones?.Equals(other.Phones) == true) &&
+                (this.Code == null && other.Code == null ||
+                 this.Code?.Equals(other.Code) == true) &&
+                (this.Gender == null && other.Gender == null ||
+                 this.Gender?.Equals(other.Gender) == true) &&
+                (this.DocumentType == null && other.DocumentType == null ||
+                 this.DocumentType?.Equals(other.DocumentType) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Name = {(this.Name == null ? "null" : this.Name)}");
-            toStringOutput.Add($"this.Email = {(this.Email == null ? "null" : this.Email)}");
-            toStringOutput.Add($"this.Document = {(this.Document == null ? "null" : this.Document)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"Name = {this.Name ?? "null"}");
+            toStringOutput.Add($"Email = {this.Email ?? "null"}");
+            toStringOutput.Add($"Document = {this.Document ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Phones = {(this.Phones == null ? "null" : this.Phones.ToString())}");
-            toStringOutput.Add($"this.Code = {(this.Code == null ? "null" : this.Code)}");
-            toStringOutput.Add($"this.Gender = {(this.Gender == null ? "null" : this.Gender)}");
-            toStringOutput.Add($"this.DocumentType = {(this.DocumentType == null ? "null" : this.DocumentType)}");
+            toStringOutput.Add($"Phones = {(this.Phones == null ? "null" : this.Phones.ToString())}");
+            toStringOutput.Add($"Code = {this.Code ?? "null"}");
+            toStringOutput.Add($"Gender = {this.Gender ?? "null"}");
+            toStringOutput.Add($"DocumentType = {this.DocumentType ?? "null"}");
         }
     }
 }

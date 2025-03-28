@@ -68,38 +68,32 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateAnticipationRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateAnticipationRequest other &&                this.Amount.Equals(other.Amount) &&
-                ((this.Timeframe == null && other.Timeframe == null) || (this.Timeframe?.Equals(other.Timeframe) == true)) &&
-                this.PaymentDate.Equals(other.PaymentDate);
+            return obj is CreateAnticipationRequest other &&
+                (this.Amount.Equals(other.Amount)) &&
+                (this.Timeframe == null && other.Timeframe == null ||
+                 this.Timeframe?.Equals(other.Timeframe) == true) &&
+                (this.PaymentDate.Equals(other.PaymentDate));
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.Timeframe = {(this.Timeframe == null ? "null" : this.Timeframe)}");
-            toStringOutput.Add($"this.PaymentDate = {this.PaymentDate}");
+            toStringOutput.Add($"Amount = {this.Amount}");
+            toStringOutput.Add($"Timeframe = {this.Timeframe ?? "null"}");
+            toStringOutput.Add($"PaymentDate = {this.PaymentDate}");
         }
     }
 }

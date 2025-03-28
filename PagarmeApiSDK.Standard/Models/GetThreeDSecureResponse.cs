@@ -58,6 +58,7 @@ namespace PagarmeApiSDK.Standard.Models
             string transactionId = null,
             string successUrl = null)
         {
+
             if (mpi != null)
             {
                 this.Mpi = mpi;
@@ -82,7 +83,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.SuccessUrl = successUrl;
             }
-
         }
 
         /// <summary>
@@ -179,14 +179,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetThreeDSecureResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMpi()
         {
@@ -194,7 +192,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetEci()
         {
@@ -202,7 +200,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCavv()
         {
@@ -210,7 +208,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetTransactionId()
         {
@@ -218,7 +216,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSuccessUrl()
         {
@@ -273,33 +271,33 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetThreeDSecureResponse other &&                ((this.Mpi == null && other.Mpi == null) || (this.Mpi?.Equals(other.Mpi) == true)) &&
-                ((this.Eci == null && other.Eci == null) || (this.Eci?.Equals(other.Eci) == true)) &&
-                ((this.Cavv == null && other.Cavv == null) || (this.Cavv?.Equals(other.Cavv) == true)) &&
-                ((this.TransactionId == null && other.TransactionId == null) || (this.TransactionId?.Equals(other.TransactionId) == true)) &&
-                ((this.SuccessUrl == null && other.SuccessUrl == null) || (this.SuccessUrl?.Equals(other.SuccessUrl) == true));
+            return obj is GetThreeDSecureResponse other &&
+                (this.Mpi == null && other.Mpi == null ||
+                 this.Mpi?.Equals(other.Mpi) == true) &&
+                (this.Eci == null && other.Eci == null ||
+                 this.Eci?.Equals(other.Eci) == true) &&
+                (this.Cavv == null && other.Cavv == null ||
+                 this.Cavv?.Equals(other.Cavv) == true) &&
+                (this.TransactionId == null && other.TransactionId == null ||
+                 this.TransactionId?.Equals(other.TransactionId) == true) &&
+                (this.SuccessUrl == null && other.SuccessUrl == null ||
+                 this.SuccessUrl?.Equals(other.SuccessUrl) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Mpi = {(this.Mpi == null ? "null" : this.Mpi)}");
-            toStringOutput.Add($"this.Eci = {(this.Eci == null ? "null" : this.Eci)}");
-            toStringOutput.Add($"this.Cavv = {(this.Cavv == null ? "null" : this.Cavv)}");
-            toStringOutput.Add($"this.TransactionId = {(this.TransactionId == null ? "null" : this.TransactionId)}");
-            toStringOutput.Add($"this.SuccessUrl = {(this.SuccessUrl == null ? "null" : this.SuccessUrl)}");
+            toStringOutput.Add($"Mpi = {this.Mpi ?? "null"}");
+            toStringOutput.Add($"Eci = {this.Eci ?? "null"}");
+            toStringOutput.Add($"Cavv = {this.Cavv ?? "null"}");
+            toStringOutput.Add($"TransactionId = {this.TransactionId ?? "null"}");
+            toStringOutput.Add($"SuccessUrl = {this.SuccessUrl ?? "null"}");
         }
     }
 }

@@ -85,42 +85,40 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateAutomaticAnticipationSettingsRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateAutomaticAnticipationSettingsRequest other &&                ((this.Enabled == null && other.Enabled == null) || (this.Enabled?.Equals(other.Enabled) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.VolumePercentage == null && other.VolumePercentage == null) || (this.VolumePercentage?.Equals(other.VolumePercentage) == true)) &&
-                ((this.Delay == null && other.Delay == null) || (this.Delay?.Equals(other.Delay) == true)) &&
-                ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true));
+            return obj is UpdateAutomaticAnticipationSettingsRequest other &&
+                (this.Enabled == null && other.Enabled == null ||
+                 this.Enabled?.Equals(other.Enabled) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.VolumePercentage == null && other.VolumePercentage == null ||
+                 this.VolumePercentage?.Equals(other.VolumePercentage) == true) &&
+                (this.Delay == null && other.Delay == null ||
+                 this.Delay?.Equals(other.Delay) == true) &&
+                (this.Days == null && other.Days == null ||
+                 this.Days?.Equals(other.Days) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Enabled = {(this.Enabled == null ? "null" : this.Enabled.ToString())}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.VolumePercentage = {(this.VolumePercentage == null ? "null" : this.VolumePercentage.ToString())}");
-            toStringOutput.Add($"this.Delay = {(this.Delay == null ? "null" : this.Delay.ToString())}");
-            toStringOutput.Add($"this.Days = {(this.Days == null ? "null" : this.Days.ToString())}");
+            toStringOutput.Add($"Enabled = {(this.Enabled == null ? "null" : this.Enabled.ToString())}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"VolumePercentage = {(this.VolumePercentage == null ? "null" : this.VolumePercentage.ToString())}");
+            toStringOutput.Add($"Delay = {(this.Delay == null ? "null" : this.Delay.ToString())}");
+            toStringOutput.Add($"Days = {(this.Days == null ? "null" : this.Days.ToString())}");
         }
     }
 }

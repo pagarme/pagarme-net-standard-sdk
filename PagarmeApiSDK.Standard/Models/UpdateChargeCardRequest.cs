@@ -112,48 +112,47 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateChargeCardRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateChargeCardRequest other &&                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
-                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                this.Recurrence.Equals(other.Recurrence) &&
-                ((this.InitiatedType == null && other.InitiatedType == null) || (this.InitiatedType?.Equals(other.InitiatedType) == true)) &&
-                ((this.RecurrenceModel == null && other.RecurrenceModel == null) || (this.RecurrenceModel?.Equals(other.RecurrenceModel) == true)) &&
-                ((this.PaymentOrigin == null && other.PaymentOrigin == null) || (this.PaymentOrigin?.Equals(other.PaymentOrigin) == true)) &&
-                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
+            return obj is UpdateChargeCardRequest other &&
+                (this.UpdateSubscription.Equals(other.UpdateSubscription)) &&
+                (this.CardId == null && other.CardId == null ||
+                 this.CardId?.Equals(other.CardId) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.Recurrence.Equals(other.Recurrence)) &&
+                (this.InitiatedType == null && other.InitiatedType == null ||
+                 this.InitiatedType?.Equals(other.InitiatedType) == true) &&
+                (this.RecurrenceModel == null && other.RecurrenceModel == null ||
+                 this.RecurrenceModel?.Equals(other.RecurrenceModel) == true) &&
+                (this.PaymentOrigin == null && other.PaymentOrigin == null ||
+                 this.PaymentOrigin?.Equals(other.PaymentOrigin) == true) &&
+                (this.IndirectAcceptor == null && other.IndirectAcceptor == null ||
+                 this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.UpdateSubscription = {this.UpdateSubscription}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.Recurrence = {this.Recurrence}");
-            toStringOutput.Add($"this.InitiatedType = {(this.InitiatedType == null ? "null" : this.InitiatedType)}");
-            toStringOutput.Add($"this.RecurrenceModel = {(this.RecurrenceModel == null ? "null" : this.RecurrenceModel)}");
-            toStringOutput.Add($"this.PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
-            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
+            toStringOutput.Add($"UpdateSubscription = {this.UpdateSubscription}");
+            toStringOutput.Add($"CardId = {this.CardId ?? "null"}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"Recurrence = {this.Recurrence}");
+            toStringOutput.Add($"InitiatedType = {this.InitiatedType ?? "null"}");
+            toStringOutput.Add($"RecurrenceModel = {this.RecurrenceModel ?? "null"}");
+            toStringOutput.Add($"PaymentOrigin = {(this.PaymentOrigin == null ? "null" : this.PaymentOrigin.ToString())}");
+            toStringOutput.Add($"IndirectAcceptor = {this.IndirectAcceptor ?? "null"}");
         }
     }
 }

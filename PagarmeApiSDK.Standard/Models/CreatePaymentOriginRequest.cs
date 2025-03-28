@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             string brandId = null,
             string chargeId = null)
         {
+
             if (brandId != null)
             {
                 this.BrandId = brandId;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.ChargeId = chargeId;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreatePaymentOriginRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBrandId()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetChargeId()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreatePaymentOriginRequest other &&                ((this.BrandId == null && other.BrandId == null) || (this.BrandId?.Equals(other.BrandId) == true)) &&
-                ((this.ChargeId == null && other.ChargeId == null) || (this.ChargeId?.Equals(other.ChargeId) == true));
+            return obj is CreatePaymentOriginRequest other &&
+                (this.BrandId == null && other.BrandId == null ||
+                 this.BrandId?.Equals(other.BrandId) == true) &&
+                (this.ChargeId == null && other.ChargeId == null ||
+                 this.ChargeId?.Equals(other.ChargeId) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.BrandId = {(this.BrandId == null ? "null" : this.BrandId)}");
-            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId)}");
+            toStringOutput.Add($"BrandId = {this.BrandId ?? "null"}");
+            toStringOutput.Add($"ChargeId = {this.ChargeId ?? "null"}");
         }
     }
 }

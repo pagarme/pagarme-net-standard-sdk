@@ -85,42 +85,40 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdatePricingSchemeRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdatePricingSchemeRequest other &&                ((this.SchemeType == null && other.SchemeType == null) || (this.SchemeType?.Equals(other.SchemeType) == true)) &&
-                ((this.PriceBrackets == null && other.PriceBrackets == null) || (this.PriceBrackets?.Equals(other.PriceBrackets) == true)) &&
-                ((this.Price == null && other.Price == null) || (this.Price?.Equals(other.Price) == true)) &&
-                ((this.MinimumPrice == null && other.MinimumPrice == null) || (this.MinimumPrice?.Equals(other.MinimumPrice) == true)) &&
-                ((this.Percentage == null && other.Percentage == null) || (this.Percentage?.Equals(other.Percentage) == true));
+            return obj is UpdatePricingSchemeRequest other &&
+                (this.SchemeType == null && other.SchemeType == null ||
+                 this.SchemeType?.Equals(other.SchemeType) == true) &&
+                (this.PriceBrackets == null && other.PriceBrackets == null ||
+                 this.PriceBrackets?.Equals(other.PriceBrackets) == true) &&
+                (this.Price == null && other.Price == null ||
+                 this.Price?.Equals(other.Price) == true) &&
+                (this.MinimumPrice == null && other.MinimumPrice == null ||
+                 this.MinimumPrice?.Equals(other.MinimumPrice) == true) &&
+                (this.Percentage == null && other.Percentage == null ||
+                 this.Percentage?.Equals(other.Percentage) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SchemeType = {(this.SchemeType == null ? "null" : this.SchemeType)}");
-            toStringOutput.Add($"this.PriceBrackets = {(this.PriceBrackets == null ? "null" : $"[{string.Join(", ", this.PriceBrackets)} ]")}");
-            toStringOutput.Add($"this.Price = {(this.Price == null ? "null" : this.Price.ToString())}");
-            toStringOutput.Add($"this.MinimumPrice = {(this.MinimumPrice == null ? "null" : this.MinimumPrice.ToString())}");
-            toStringOutput.Add($"this.Percentage = {(this.Percentage == null ? "null" : this.Percentage.ToString())}");
+            toStringOutput.Add($"SchemeType = {this.SchemeType ?? "null"}");
+            toStringOutput.Add($"PriceBrackets = {(this.PriceBrackets == null ? "null" : $"[{string.Join(", ", this.PriceBrackets)} ]")}");
+            toStringOutput.Add($"Price = {(this.Price == null ? "null" : this.Price.ToString())}");
+            toStringOutput.Add($"MinimumPrice = {(this.MinimumPrice == null ? "null" : this.MinimumPrice.ToString())}");
+            toStringOutput.Add($"Percentage = {(this.Percentage == null ? "null" : this.Percentage.ToString())}");
         }
     }
 }

@@ -19,6 +19,7 @@ SubMerchant
 | `Type` | `string` | Required | Document type. Can be either 'individual' or 'company' |
 | `Phone` | [`CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Required | Phone |
 | `Address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Address |
+| `LegalName` | `string` | Required | Legal name |
 
 ## Example (as JSON)
 
@@ -52,7 +53,8 @@ SubMerchant
     },
     "line_1": "line_10",
     "line_2": "line_24"
-  }
+  },
+  "legal_name": "legal_name2"
 }
 ```
 

@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
             List<Models.GetCheckoutCardInstallmentOptionsResponse> installments = null,
             Models.GetPaymentAuthenticationResponse authentication = null)
         {
+
             if (statementDescriptor != null)
             {
                 this.StatementDescriptor = statementDescriptor;
@@ -64,7 +65,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Authentication = authentication;
             }
-
         }
 
         /// <summary>
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetCheckoutCreditCardPaymentResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatementDescriptor()
         {
@@ -140,7 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInstallments()
         {
@@ -148,7 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAuthentication()
         {
@@ -185,29 +183,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetCheckoutCreditCardPaymentResponse other &&                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.Installments == null && other.Installments == null) || (this.Installments?.Equals(other.Installments) == true)) &&
-                ((this.Authentication == null && other.Authentication == null) || (this.Authentication?.Equals(other.Authentication) == true));
+            return obj is GetCheckoutCreditCardPaymentResponse other &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.Installments == null && other.Installments == null ||
+                 this.Installments?.Equals(other.Installments) == true) &&
+                (this.Authentication == null && other.Authentication == null ||
+                 this.Authentication?.Equals(other.Authentication) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
-            toStringOutput.Add($"this.Installments = {(this.Installments == null ? "null" : $"[{string.Join(", ", this.Installments)} ]")}");
-            toStringOutput.Add($"this.Authentication = {(this.Authentication == null ? "null" : this.Authentication.ToString())}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
+            toStringOutput.Add($"Installments = {(this.Installments == null ? "null" : $"[{string.Join(", ", this.Installments)} ]")}");
+            toStringOutput.Add($"Authentication = {(this.Authentication == null ? "null" : this.Authentication.ToString())}");
         }
     }
 }

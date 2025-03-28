@@ -76,6 +76,7 @@ namespace PagarmeApiSDK.Standard.Models
                 chargeId,
                 gatewayId)
         {
+
             if (description != null)
             {
                 this.Description = description;
@@ -90,7 +91,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.RecipientId = recipientId;
             }
-
         }
 
         /// <summary>
@@ -151,14 +151,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetMovementObjectFeeCollectionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDescription()
         {
@@ -166,7 +164,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaymentDate()
         {
@@ -174,7 +172,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRecipientId()
         {
@@ -211,30 +209,28 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetMovementObjectFeeCollectionResponse other &&                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
-                ((this.PaymentDate == null && other.PaymentDate == null) || (this.PaymentDate?.Equals(other.PaymentDate) == true)) &&
-                ((this.RecipientId == null && other.RecipientId == null) || (this.RecipientId?.Equals(other.RecipientId) == true)) &&
+            return obj is GetMovementObjectFeeCollectionResponse other &&
+                (this.Description == null && other.Description == null ||
+                 this.Description?.Equals(other.Description) == true) &&
+                (this.PaymentDate == null && other.PaymentDate == null ||
+                 this.PaymentDate?.Equals(other.PaymentDate) == true) &&
+                (this.RecipientId == null && other.RecipientId == null ||
+                 this.RecipientId?.Equals(other.RecipientId) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
-            toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate)}");
-            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId)}");
+            toStringOutput.Add($"Description = {this.Description ?? "null"}");
+            toStringOutput.Add($"PaymentDate = {this.PaymentDate ?? "null"}");
+            toStringOutput.Add($"RecipientId = {this.RecipientId ?? "null"}");
 
             base.ToString(toStringOutput);
         }

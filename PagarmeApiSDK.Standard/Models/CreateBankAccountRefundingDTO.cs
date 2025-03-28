@@ -121,50 +121,52 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateBankAccountRefundingDTO : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateBankAccountRefundingDTO other &&                ((this.HolderName == null && other.HolderName == null) || (this.HolderName?.Equals(other.HolderName) == true)) &&
-                ((this.HolderType == null && other.HolderType == null) || (this.HolderType?.Equals(other.HolderType) == true)) &&
-                ((this.HolderDocument == null && other.HolderDocument == null) || (this.HolderDocument?.Equals(other.HolderDocument) == true)) &&
-                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
-                ((this.BranchNumber == null && other.BranchNumber == null) || (this.BranchNumber?.Equals(other.BranchNumber) == true)) &&
-                ((this.BranchCheckDigit == null && other.BranchCheckDigit == null) || (this.BranchCheckDigit?.Equals(other.BranchCheckDigit) == true)) &&
-                ((this.AccountNumber == null && other.AccountNumber == null) || (this.AccountNumber?.Equals(other.AccountNumber) == true)) &&
-                ((this.AccountCheckDigit == null && other.AccountCheckDigit == null) || (this.AccountCheckDigit?.Equals(other.AccountCheckDigit) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
+            return obj is CreateBankAccountRefundingDTO other &&
+                (this.HolderName == null && other.HolderName == null ||
+                 this.HolderName?.Equals(other.HolderName) == true) &&
+                (this.HolderType == null && other.HolderType == null ||
+                 this.HolderType?.Equals(other.HolderType) == true) &&
+                (this.HolderDocument == null && other.HolderDocument == null ||
+                 this.HolderDocument?.Equals(other.HolderDocument) == true) &&
+                (this.Bank == null && other.Bank == null ||
+                 this.Bank?.Equals(other.Bank) == true) &&
+                (this.BranchNumber == null && other.BranchNumber == null ||
+                 this.BranchNumber?.Equals(other.BranchNumber) == true) &&
+                (this.BranchCheckDigit == null && other.BranchCheckDigit == null ||
+                 this.BranchCheckDigit?.Equals(other.BranchCheckDigit) == true) &&
+                (this.AccountNumber == null && other.AccountNumber == null ||
+                 this.AccountNumber?.Equals(other.AccountNumber) == true) &&
+                (this.AccountCheckDigit == null && other.AccountCheckDigit == null ||
+                 this.AccountCheckDigit?.Equals(other.AccountCheckDigit) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.HolderName = {(this.HolderName == null ? "null" : this.HolderName)}");
-            toStringOutput.Add($"this.HolderType = {(this.HolderType == null ? "null" : this.HolderType)}");
-            toStringOutput.Add($"this.HolderDocument = {(this.HolderDocument == null ? "null" : this.HolderDocument)}");
-            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : this.Bank)}");
-            toStringOutput.Add($"this.BranchNumber = {(this.BranchNumber == null ? "null" : this.BranchNumber)}");
-            toStringOutput.Add($"this.BranchCheckDigit = {(this.BranchCheckDigit == null ? "null" : this.BranchCheckDigit)}");
-            toStringOutput.Add($"this.AccountNumber = {(this.AccountNumber == null ? "null" : this.AccountNumber)}");
-            toStringOutput.Add($"this.AccountCheckDigit = {(this.AccountCheckDigit == null ? "null" : this.AccountCheckDigit)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"HolderName = {this.HolderName ?? "null"}");
+            toStringOutput.Add($"HolderType = {this.HolderType ?? "null"}");
+            toStringOutput.Add($"HolderDocument = {this.HolderDocument ?? "null"}");
+            toStringOutput.Add($"Bank = {this.Bank ?? "null"}");
+            toStringOutput.Add($"BranchNumber = {this.BranchNumber ?? "null"}");
+            toStringOutput.Add($"BranchCheckDigit = {this.BranchCheckDigit ?? "null"}");
+            toStringOutput.Add($"AccountNumber = {this.AccountNumber ?? "null"}");
+            toStringOutput.Add($"AccountCheckDigit = {this.AccountCheckDigit ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
         }
     }
 }

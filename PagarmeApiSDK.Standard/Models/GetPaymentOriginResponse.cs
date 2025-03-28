@@ -58,36 +58,31 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPaymentOriginResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPaymentOriginResponse other &&                ((this.ChargeId == null && other.ChargeId == null) || (this.ChargeId?.Equals(other.ChargeId) == true)) &&
-                ((this.BrandId == null && other.BrandId == null) || (this.BrandId?.Equals(other.BrandId) == true));
+            return obj is GetPaymentOriginResponse other &&
+                (this.ChargeId == null && other.ChargeId == null ||
+                 this.ChargeId?.Equals(other.ChargeId) == true) &&
+                (this.BrandId == null && other.BrandId == null ||
+                 this.BrandId?.Equals(other.BrandId) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.ChargeId = {(this.ChargeId == null ? "null" : this.ChargeId)}");
-            toStringOutput.Add($"this.BrandId = {(this.BrandId == null ? "null" : this.BrandId)}");
+            toStringOutput.Add($"ChargeId = {this.ChargeId ?? "null"}");
+            toStringOutput.Add($"BrandId = {this.BrandId ?? "null"}");
         }
     }
 }

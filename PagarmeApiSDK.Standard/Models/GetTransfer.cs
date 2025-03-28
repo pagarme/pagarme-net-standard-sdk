@@ -161,58 +161,61 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetTransfer : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetTransfer other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.GatewayId == null && other.GatewayId == null) || (this.GatewayId?.Equals(other.GatewayId) == true)) &&
-                this.Amount.Equals(other.Amount) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                this.CreatedAt.Equals(other.CreatedAt) &&
-                this.UpdatedAt.Equals(other.UpdatedAt) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Fee == null && other.Fee == null) || (this.Fee?.Equals(other.Fee) == true)) &&
-                ((this.FundingDate == null && other.FundingDate == null) || (this.FundingDate?.Equals(other.FundingDate) == true)) &&
-                ((this.FundingEstimatedDate == null && other.FundingEstimatedDate == null) || (this.FundingEstimatedDate?.Equals(other.FundingEstimatedDate) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.Source == null && other.Source == null) || (this.Source?.Equals(other.Source) == true)) &&
-                ((this.Target == null && other.Target == null) || (this.Target?.Equals(other.Target) == true));
+            return obj is GetTransfer other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.GatewayId == null && other.GatewayId == null ||
+                 this.GatewayId?.Equals(other.GatewayId) == true) &&
+                (this.Amount.Equals(other.Amount)) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.CreatedAt.Equals(other.CreatedAt)) &&
+                (this.UpdatedAt.Equals(other.UpdatedAt)) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Fee == null && other.Fee == null ||
+                 this.Fee?.Equals(other.Fee) == true) &&
+                (this.FundingDate == null && other.FundingDate == null ||
+                 this.FundingDate?.Equals(other.FundingDate) == true) &&
+                (this.FundingEstimatedDate == null && other.FundingEstimatedDate == null ||
+                 this.FundingEstimatedDate?.Equals(other.FundingEstimatedDate) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Source == null && other.Source == null ||
+                 this.Source?.Equals(other.Source) == true) &&
+                (this.Target == null && other.Target == null ||
+                 this.Target?.Equals(other.Target) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId)}");
-            toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.CreatedAt = {this.CreatedAt}");
-            toStringOutput.Add($"this.UpdatedAt = {this.UpdatedAt}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"GatewayId = {this.GatewayId ?? "null"}");
+            toStringOutput.Add($"Amount = {this.Amount}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {this.CreatedAt}");
+            toStringOutput.Add($"UpdatedAt = {this.UpdatedAt}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee.ToString())}");
-            toStringOutput.Add($"this.FundingDate = {(this.FundingDate == null ? "null" : this.FundingDate.ToString())}");
-            toStringOutput.Add($"this.FundingEstimatedDate = {(this.FundingEstimatedDate == null ? "null" : this.FundingEstimatedDate.ToString())}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Source = {(this.Source == null ? "null" : this.Source.ToString())}");
-            toStringOutput.Add($"this.Target = {(this.Target == null ? "null" : this.Target.ToString())}");
+            toStringOutput.Add($"Fee = {(this.Fee == null ? "null" : this.Fee.ToString())}");
+            toStringOutput.Add($"FundingDate = {(this.FundingDate == null ? "null" : this.FundingDate.ToString())}");
+            toStringOutput.Add($"FundingEstimatedDate = {(this.FundingEstimatedDate == null ? "null" : this.FundingEstimatedDate.ToString())}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Source = {(this.Source == null ? "null" : this.Source.ToString())}");
+            toStringOutput.Add($"Target = {(this.Target == null ? "null" : this.Target.ToString())}");
         }
     }
 }

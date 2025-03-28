@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
             bool? chargeProcessingFee = null,
             string chargeRemainderFee = null)
         {
+
             if (liable != null)
             {
                 this.Liable = liable;
@@ -64,7 +65,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.ChargeRemainderFee = chargeRemainderFee;
             }
-
         }
 
         /// <summary>
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetSplitOptionsResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLiable()
         {
@@ -140,7 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetChargeProcessingFee()
         {
@@ -148,7 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetChargeRemainderFee()
         {
@@ -185,29 +183,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetSplitOptionsResponse other &&                ((this.Liable == null && other.Liable == null) || (this.Liable?.Equals(other.Liable) == true)) &&
-                ((this.ChargeProcessingFee == null && other.ChargeProcessingFee == null) || (this.ChargeProcessingFee?.Equals(other.ChargeProcessingFee) == true)) &&
-                ((this.ChargeRemainderFee == null && other.ChargeRemainderFee == null) || (this.ChargeRemainderFee?.Equals(other.ChargeRemainderFee) == true));
+            return obj is GetSplitOptionsResponse other &&
+                (this.Liable == null && other.Liable == null ||
+                 this.Liable?.Equals(other.Liable) == true) &&
+                (this.ChargeProcessingFee == null && other.ChargeProcessingFee == null ||
+                 this.ChargeProcessingFee?.Equals(other.ChargeProcessingFee) == true) &&
+                (this.ChargeRemainderFee == null && other.ChargeRemainderFee == null ||
+                 this.ChargeRemainderFee?.Equals(other.ChargeRemainderFee) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Liable = {(this.Liable == null ? "null" : this.Liable.ToString())}");
-            toStringOutput.Add($"this.ChargeProcessingFee = {(this.ChargeProcessingFee == null ? "null" : this.ChargeProcessingFee.ToString())}");
-            toStringOutput.Add($"this.ChargeRemainderFee = {(this.ChargeRemainderFee == null ? "null" : this.ChargeRemainderFee)}");
+            toStringOutput.Add($"Liable = {(this.Liable == null ? "null" : this.Liable.ToString())}");
+            toStringOutput.Add($"ChargeProcessingFee = {(this.ChargeProcessingFee == null ? "null" : this.ChargeProcessingFee.ToString())}");
+            toStringOutput.Add($"ChargeRemainderFee = {this.ChargeRemainderFee ?? "null"}");
         }
     }
 }

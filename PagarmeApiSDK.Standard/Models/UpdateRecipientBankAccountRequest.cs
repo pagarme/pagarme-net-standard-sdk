@@ -58,36 +58,31 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateRecipientBankAccountRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateRecipientBankAccountRequest other &&                ((this.BankAccount == null && other.BankAccount == null) || (this.BankAccount?.Equals(other.BankAccount) == true)) &&
-                ((this.PaymentMode == null && other.PaymentMode == null) || (this.PaymentMode?.Equals(other.PaymentMode) == true));
+            return obj is UpdateRecipientBankAccountRequest other &&
+                (this.BankAccount == null && other.BankAccount == null ||
+                 this.BankAccount?.Equals(other.BankAccount) == true) &&
+                (this.PaymentMode == null && other.PaymentMode == null ||
+                 this.PaymentMode?.Equals(other.PaymentMode) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
-            toStringOutput.Add($"this.PaymentMode = {(this.PaymentMode == null ? "null" : this.PaymentMode)}");
+            toStringOutput.Add($"BankAccount = {(this.BankAccount == null ? "null" : this.BankAccount.ToString())}");
+            toStringOutput.Add($"PaymentMode = {this.PaymentMode ?? "null"}");
         }
     }
 }
