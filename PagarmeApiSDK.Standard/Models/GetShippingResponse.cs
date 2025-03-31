@@ -70,6 +70,7 @@ namespace PagarmeApiSDK.Standard.Models
             DateTime? estimatedDeliveryDate = null,
             string type = null)
         {
+
             if (amount != null)
             {
                 this.Amount = amount;
@@ -109,7 +110,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Type = type;
             }
-
         }
 
         /// <summary>
@@ -262,14 +262,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetShippingResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAmount()
         {
@@ -277,7 +275,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDescription()
         {
@@ -285,7 +283,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRecipientName()
         {
@@ -293,7 +291,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRecipientPhone()
         {
@@ -301,7 +299,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAddress()
         {
@@ -309,7 +307,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMaxDeliveryDate()
         {
@@ -317,7 +315,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetEstimatedDeliveryDate()
         {
@@ -325,7 +323,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -407,39 +405,42 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetShippingResponse other &&                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
-                ((this.Description == null && other.Description == null) || (this.Description?.Equals(other.Description) == true)) &&
-                ((this.RecipientName == null && other.RecipientName == null) || (this.RecipientName?.Equals(other.RecipientName) == true)) &&
-                ((this.RecipientPhone == null && other.RecipientPhone == null) || (this.RecipientPhone?.Equals(other.RecipientPhone) == true)) &&
-                ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true)) &&
-                ((this.MaxDeliveryDate == null && other.MaxDeliveryDate == null) || (this.MaxDeliveryDate?.Equals(other.MaxDeliveryDate) == true)) &&
-                ((this.EstimatedDeliveryDate == null && other.EstimatedDeliveryDate == null) || (this.EstimatedDeliveryDate?.Equals(other.EstimatedDeliveryDate) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true));
+            return obj is GetShippingResponse other &&
+                (this.Amount == null && other.Amount == null ||
+                 this.Amount?.Equals(other.Amount) == true) &&
+                (this.Description == null && other.Description == null ||
+                 this.Description?.Equals(other.Description) == true) &&
+                (this.RecipientName == null && other.RecipientName == null ||
+                 this.RecipientName?.Equals(other.RecipientName) == true) &&
+                (this.RecipientPhone == null && other.RecipientPhone == null ||
+                 this.RecipientPhone?.Equals(other.RecipientPhone) == true) &&
+                (this.Address == null && other.Address == null ||
+                 this.Address?.Equals(other.Address) == true) &&
+                (this.MaxDeliveryDate == null && other.MaxDeliveryDate == null ||
+                 this.MaxDeliveryDate?.Equals(other.MaxDeliveryDate) == true) &&
+                (this.EstimatedDeliveryDate == null && other.EstimatedDeliveryDate == null ||
+                 this.EstimatedDeliveryDate?.Equals(other.EstimatedDeliveryDate) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
-            toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description)}");
-            toStringOutput.Add($"this.RecipientName = {(this.RecipientName == null ? "null" : this.RecipientName)}");
-            toStringOutput.Add($"this.RecipientPhone = {(this.RecipientPhone == null ? "null" : this.RecipientPhone)}");
-            toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
-            toStringOutput.Add($"this.MaxDeliveryDate = {(this.MaxDeliveryDate == null ? "null" : this.MaxDeliveryDate.ToString())}");
-            toStringOutput.Add($"this.EstimatedDeliveryDate = {(this.EstimatedDeliveryDate == null ? "null" : this.EstimatedDeliveryDate.ToString())}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
+            toStringOutput.Add($"Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
+            toStringOutput.Add($"Description = {this.Description ?? "null"}");
+            toStringOutput.Add($"RecipientName = {this.RecipientName ?? "null"}");
+            toStringOutput.Add($"RecipientPhone = {this.RecipientPhone ?? "null"}");
+            toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"MaxDeliveryDate = {(this.MaxDeliveryDate == null ? "null" : this.MaxDeliveryDate.ToString())}");
+            toStringOutput.Add($"EstimatedDeliveryDate = {(this.EstimatedDeliveryDate == null ? "null" : this.EstimatedDeliveryDate.ToString())}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
         }
     }
 }

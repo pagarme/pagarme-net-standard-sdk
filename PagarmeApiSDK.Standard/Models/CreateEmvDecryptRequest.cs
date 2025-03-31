@@ -76,40 +76,37 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateEmvDecryptRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateEmvDecryptRequest other &&                ((this.IccData == null && other.IccData == null) || (this.IccData?.Equals(other.IccData) == true)) &&
-                ((this.CardSequenceNumber == null && other.CardSequenceNumber == null) || (this.CardSequenceNumber?.Equals(other.CardSequenceNumber) == true)) &&
-                ((this.Data == null && other.Data == null) || (this.Data?.Equals(other.Data) == true)) &&
-                ((this.Poi == null && other.Poi == null) || (this.Poi?.Equals(other.Poi) == true));
+            return obj is CreateEmvDecryptRequest other &&
+                (this.IccData == null && other.IccData == null ||
+                 this.IccData?.Equals(other.IccData) == true) &&
+                (this.CardSequenceNumber == null && other.CardSequenceNumber == null ||
+                 this.CardSequenceNumber?.Equals(other.CardSequenceNumber) == true) &&
+                (this.Data == null && other.Data == null ||
+                 this.Data?.Equals(other.Data) == true) &&
+                (this.Poi == null && other.Poi == null ||
+                 this.Poi?.Equals(other.Poi) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.IccData = {(this.IccData == null ? "null" : this.IccData)}");
-            toStringOutput.Add($"this.CardSequenceNumber = {(this.CardSequenceNumber == null ? "null" : this.CardSequenceNumber)}");
-            toStringOutput.Add($"this.Data = {(this.Data == null ? "null" : this.Data.ToString())}");
-            toStringOutput.Add($"this.Poi = {(this.Poi == null ? "null" : this.Poi.ToString())}");
+            toStringOutput.Add($"IccData = {this.IccData ?? "null"}");
+            toStringOutput.Add($"CardSequenceNumber = {this.CardSequenceNumber ?? "null"}");
+            toStringOutput.Add($"Data = {(this.Data == null ? "null" : this.Data.ToString())}");
+            toStringOutput.Add($"Poi = {(this.Poi == null ? "null" : this.Poi.ToString())}");
         }
     }
 }

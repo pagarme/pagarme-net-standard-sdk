@@ -21,13 +21,13 @@ namespace PagarmeApiSDK.Standard.Models
     /// GetTransactionResponse.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "transaction_type")]
+    [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetSafetyPayTransactionResponse), "safetypay")]
     [JsonSubtypes.KnownSubType(typeof(GetVoucherTransactionResponse), "voucher")]
-    [JsonSubtypes.KnownSubType(typeof(GetBankTransferTransactionResponse), "bank_transfer")]
     [JsonSubtypes.KnownSubType(typeof(GetBoletoTransactionResponse), "boleto")]
     [JsonSubtypes.KnownSubType(typeof(GetDebitCardTransactionResponse), "debit_card")]
-    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetPrivateLabelTransactionResponse), "private_label")]
+    [JsonSubtypes.KnownSubType(typeof(GetCashTransactionResponse), "cash")]
     [JsonSubtypes.KnownSubType(typeof(GetCreditCardTransactionResponse), "credit_card")]
     [JsonSubtypes.KnownSubType(typeof(GetPixTransactionResponse), "pix")]
     public class GetTransactionResponse
@@ -123,6 +123,7 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetFineResponse fine = null,
             int? maxDaysToPayPastDue = null)
         {
+
             if (gatewayId != null)
             {
                 this.GatewayId = gatewayId;
@@ -172,8 +173,8 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.NextAttempt = nextAttempt;
             }
-
             this.TransactionType = transactionType;
+
             if (id != null)
             {
                 this.Id = id;
@@ -213,7 +214,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.MaxDaysToPayPastDue = maxDaysToPayPastDue;
             }
-
         }
 
         /// <summary>
@@ -553,14 +553,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetTransactionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetGatewayId()
         {
@@ -568,7 +566,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAmount()
         {
@@ -576,7 +574,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -584,7 +582,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSuccess()
         {
@@ -592,7 +590,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -600,7 +598,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -608,7 +606,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAttemptCount()
         {
@@ -616,7 +614,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMaxAttempts()
         {
@@ -624,7 +622,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSplits()
         {
@@ -632,7 +630,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNextAttempt()
         {
@@ -640,7 +638,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -648,7 +646,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetGatewayResponse()
         {
@@ -656,7 +654,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAntifraudResponse()
         {
@@ -664,7 +662,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMetadata()
         {
@@ -672,7 +670,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSplit()
         {
@@ -680,7 +678,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInterest()
         {
@@ -688,7 +686,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFine()
         {
@@ -696,7 +694,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMaxDaysToPayPastDue()
         {
@@ -868,61 +866,75 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetTransactionResponse other &&                ((this.GatewayId == null && other.GatewayId == null) || (this.GatewayId?.Equals(other.GatewayId) == true)) &&
-                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Success == null && other.Success == null) || (this.Success?.Equals(other.Success) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
-                ((this.AttemptCount == null && other.AttemptCount == null) || (this.AttemptCount?.Equals(other.AttemptCount) == true)) &&
-                ((this.MaxAttempts == null && other.MaxAttempts == null) || (this.MaxAttempts?.Equals(other.MaxAttempts) == true)) &&
-                ((this.Splits == null && other.Splits == null) || (this.Splits?.Equals(other.Splits) == true)) &&
-                ((this.NextAttempt == null && other.NextAttempt == null) || (this.NextAttempt?.Equals(other.NextAttempt) == true)) &&
-                ((this.TransactionType == null && other.TransactionType == null) || (this.TransactionType?.Equals(other.TransactionType) == true)) &&
-                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.GatewayResponse == null && other.GatewayResponse == null) || (this.GatewayResponse?.Equals(other.GatewayResponse) == true)) &&
-                ((this.AntifraudResponse == null && other.AntifraudResponse == null) || (this.AntifraudResponse?.Equals(other.AntifraudResponse) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Split == null && other.Split == null) || (this.Split?.Equals(other.Split) == true)) &&
-                ((this.Interest == null && other.Interest == null) || (this.Interest?.Equals(other.Interest) == true)) &&
-                ((this.Fine == null && other.Fine == null) || (this.Fine?.Equals(other.Fine) == true)) &&
-                ((this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null) || (this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true));
+            return obj is GetTransactionResponse other &&
+                (this.GatewayId == null && other.GatewayId == null ||
+                 this.GatewayId?.Equals(other.GatewayId) == true) &&
+                (this.Amount == null && other.Amount == null ||
+                 this.Amount?.Equals(other.Amount) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.Success == null && other.Success == null ||
+                 this.Success?.Equals(other.Success) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
+                (this.AttemptCount == null && other.AttemptCount == null ||
+                 this.AttemptCount?.Equals(other.AttemptCount) == true) &&
+                (this.MaxAttempts == null && other.MaxAttempts == null ||
+                 this.MaxAttempts?.Equals(other.MaxAttempts) == true) &&
+                (this.Splits == null && other.Splits == null ||
+                 this.Splits?.Equals(other.Splits) == true) &&
+                (this.NextAttempt == null && other.NextAttempt == null ||
+                 this.NextAttempt?.Equals(other.NextAttempt) == true) &&
+                (this.TransactionType == null && other.TransactionType == null ||
+                 this.TransactionType?.Equals(other.TransactionType) == true) &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.GatewayResponse == null && other.GatewayResponse == null ||
+                 this.GatewayResponse?.Equals(other.GatewayResponse) == true) &&
+                (this.AntifraudResponse == null && other.AntifraudResponse == null ||
+                 this.AntifraudResponse?.Equals(other.AntifraudResponse) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Split == null && other.Split == null ||
+                 this.Split?.Equals(other.Split) == true) &&
+                (this.Interest == null && other.Interest == null ||
+                 this.Interest?.Equals(other.Interest) == true) &&
+                (this.Fine == null && other.Fine == null ||
+                 this.Fine?.Equals(other.Fine) == true) &&
+                (this.MaxDaysToPayPastDue == null && other.MaxDaysToPayPastDue == null ||
+                 this.MaxDaysToPayPastDue?.Equals(other.MaxDaysToPayPastDue) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.GatewayId = {(this.GatewayId == null ? "null" : this.GatewayId)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.Success = {(this.Success == null ? "null" : this.Success.ToString())}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
-            toStringOutput.Add($"this.AttemptCount = {(this.AttemptCount == null ? "null" : this.AttemptCount.ToString())}");
-            toStringOutput.Add($"this.MaxAttempts = {(this.MaxAttempts == null ? "null" : this.MaxAttempts.ToString())}");
-            toStringOutput.Add($"this.Splits = {(this.Splits == null ? "null" : $"[{string.Join(", ", this.Splits)} ]")}");
-            toStringOutput.Add($"this.NextAttempt = {(this.NextAttempt == null ? "null" : this.NextAttempt.ToString())}");
-            toStringOutput.Add($"this.TransactionType = {(this.TransactionType == null ? "null" : this.TransactionType)}");
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.GatewayResponse = {(this.GatewayResponse == null ? "null" : this.GatewayResponse.ToString())}");
-            toStringOutput.Add($"this.AntifraudResponse = {(this.AntifraudResponse == null ? "null" : this.AntifraudResponse.ToString())}");
+            toStringOutput.Add($"GatewayId = {this.GatewayId ?? "null"}");
+            toStringOutput.Add($"Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"Success = {(this.Success == null ? "null" : this.Success.ToString())}");
+            toStringOutput.Add($"CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt.ToString())}");
+            toStringOutput.Add($"UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt.ToString())}");
+            toStringOutput.Add($"AttemptCount = {(this.AttemptCount == null ? "null" : this.AttemptCount.ToString())}");
+            toStringOutput.Add($"MaxAttempts = {(this.MaxAttempts == null ? "null" : this.MaxAttempts.ToString())}");
+            toStringOutput.Add($"Splits = {(this.Splits == null ? "null" : $"[{string.Join(", ", this.Splits)} ]")}");
+            toStringOutput.Add($"NextAttempt = {(this.NextAttempt == null ? "null" : this.NextAttempt.ToString())}");
+            toStringOutput.Add($"TransactionType = {this.TransactionType ?? "null"}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"GatewayResponse = {(this.GatewayResponse == null ? "null" : this.GatewayResponse.ToString())}");
+            toStringOutput.Add($"AntifraudResponse = {(this.AntifraudResponse == null ? "null" : this.AntifraudResponse.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Split = {(this.Split == null ? "null" : $"[{string.Join(", ", this.Split)} ]")}");
-            toStringOutput.Add($"this.Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
-            toStringOutput.Add($"this.Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
-            toStringOutput.Add($"this.MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
+            toStringOutput.Add($"Split = {(this.Split == null ? "null" : $"[{string.Join(", ", this.Split)} ]")}");
+            toStringOutput.Add($"Interest = {(this.Interest == null ? "null" : this.Interest.ToString())}");
+            toStringOutput.Add($"Fine = {(this.Fine == null ? "null" : this.Fine.ToString())}");
+            toStringOutput.Add($"MaxDaysToPayPastDue = {(this.MaxDaysToPayPastDue == null ? "null" : this.MaxDaysToPayPastDue.ToString())}");
         }
     }
 }

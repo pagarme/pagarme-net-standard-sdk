@@ -165,6 +165,7 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
+
             if (statementDescriptor != null)
             {
                 this.StatementDescriptor = statementDescriptor;
@@ -249,7 +250,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.BrandId = brandId;
             }
-
         }
 
         /// <summary>
@@ -562,14 +562,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetDebitCardTransactionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatementDescriptor()
         {
@@ -577,7 +575,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerName()
         {
@@ -585,7 +583,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerAffiliationCode()
         {
@@ -593,7 +591,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerTid()
         {
@@ -601,7 +599,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerNsu()
         {
@@ -609,7 +607,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerAuthCode()
         {
@@ -617,7 +615,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetOperationType()
         {
@@ -625,7 +623,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCard()
         {
@@ -633,7 +631,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerMessage()
         {
@@ -641,7 +639,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerReturnCode()
         {
@@ -649,7 +647,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetMpi()
         {
@@ -657,7 +655,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetEci()
         {
@@ -665,7 +663,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAuthenticationType()
         {
@@ -673,7 +671,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetThreedAuthenticationUrl()
         {
@@ -681,7 +679,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFundingSource()
         {
@@ -689,7 +687,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetRetryInfo()
         {
@@ -697,7 +695,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBrandId()
         {
@@ -860,58 +858,70 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetDebitCardTransactionResponse other &&                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.AcquirerName == null && other.AcquirerName == null) || (this.AcquirerName?.Equals(other.AcquirerName) == true)) &&
-                ((this.AcquirerAffiliationCode == null && other.AcquirerAffiliationCode == null) || (this.AcquirerAffiliationCode?.Equals(other.AcquirerAffiliationCode) == true)) &&
-                ((this.AcquirerTid == null && other.AcquirerTid == null) || (this.AcquirerTid?.Equals(other.AcquirerTid) == true)) &&
-                ((this.AcquirerNsu == null && other.AcquirerNsu == null) || (this.AcquirerNsu?.Equals(other.AcquirerNsu) == true)) &&
-                ((this.AcquirerAuthCode == null && other.AcquirerAuthCode == null) || (this.AcquirerAuthCode?.Equals(other.AcquirerAuthCode) == true)) &&
-                ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.AcquirerMessage == null && other.AcquirerMessage == null) || (this.AcquirerMessage?.Equals(other.AcquirerMessage) == true)) &&
-                ((this.AcquirerReturnCode == null && other.AcquirerReturnCode == null) || (this.AcquirerReturnCode?.Equals(other.AcquirerReturnCode) == true)) &&
-                ((this.Mpi == null && other.Mpi == null) || (this.Mpi?.Equals(other.Mpi) == true)) &&
-                ((this.Eci == null && other.Eci == null) || (this.Eci?.Equals(other.Eci) == true)) &&
-                ((this.AuthenticationType == null && other.AuthenticationType == null) || (this.AuthenticationType?.Equals(other.AuthenticationType) == true)) &&
-                ((this.ThreedAuthenticationUrl == null && other.ThreedAuthenticationUrl == null) || (this.ThreedAuthenticationUrl?.Equals(other.ThreedAuthenticationUrl) == true)) &&
-                ((this.FundingSource == null && other.FundingSource == null) || (this.FundingSource?.Equals(other.FundingSource) == true)) &&
-                ((this.RetryInfo == null && other.RetryInfo == null) || (this.RetryInfo?.Equals(other.RetryInfo) == true)) &&
-                ((this.BrandId == null && other.BrandId == null) || (this.BrandId?.Equals(other.BrandId) == true)) &&
+            return obj is GetDebitCardTransactionResponse other &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.AcquirerName == null && other.AcquirerName == null ||
+                 this.AcquirerName?.Equals(other.AcquirerName) == true) &&
+                (this.AcquirerAffiliationCode == null && other.AcquirerAffiliationCode == null ||
+                 this.AcquirerAffiliationCode?.Equals(other.AcquirerAffiliationCode) == true) &&
+                (this.AcquirerTid == null && other.AcquirerTid == null ||
+                 this.AcquirerTid?.Equals(other.AcquirerTid) == true) &&
+                (this.AcquirerNsu == null && other.AcquirerNsu == null ||
+                 this.AcquirerNsu?.Equals(other.AcquirerNsu) == true) &&
+                (this.AcquirerAuthCode == null && other.AcquirerAuthCode == null ||
+                 this.AcquirerAuthCode?.Equals(other.AcquirerAuthCode) == true) &&
+                (this.OperationType == null && other.OperationType == null ||
+                 this.OperationType?.Equals(other.OperationType) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.AcquirerMessage == null && other.AcquirerMessage == null ||
+                 this.AcquirerMessage?.Equals(other.AcquirerMessage) == true) &&
+                (this.AcquirerReturnCode == null && other.AcquirerReturnCode == null ||
+                 this.AcquirerReturnCode?.Equals(other.AcquirerReturnCode) == true) &&
+                (this.Mpi == null && other.Mpi == null ||
+                 this.Mpi?.Equals(other.Mpi) == true) &&
+                (this.Eci == null && other.Eci == null ||
+                 this.Eci?.Equals(other.Eci) == true) &&
+                (this.AuthenticationType == null && other.AuthenticationType == null ||
+                 this.AuthenticationType?.Equals(other.AuthenticationType) == true) &&
+                (this.ThreedAuthenticationUrl == null && other.ThreedAuthenticationUrl == null ||
+                 this.ThreedAuthenticationUrl?.Equals(other.ThreedAuthenticationUrl) == true) &&
+                (this.FundingSource == null && other.FundingSource == null ||
+                 this.FundingSource?.Equals(other.FundingSource) == true) &&
+                (this.RetryInfo == null && other.RetryInfo == null ||
+                 this.RetryInfo?.Equals(other.RetryInfo) == true) &&
+                (this.BrandId == null && other.BrandId == null ||
+                 this.BrandId?.Equals(other.BrandId) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
-            toStringOutput.Add($"this.AcquirerName = {(this.AcquirerName == null ? "null" : this.AcquirerName)}");
-            toStringOutput.Add($"this.AcquirerAffiliationCode = {(this.AcquirerAffiliationCode == null ? "null" : this.AcquirerAffiliationCode)}");
-            toStringOutput.Add($"this.AcquirerTid = {(this.AcquirerTid == null ? "null" : this.AcquirerTid)}");
-            toStringOutput.Add($"this.AcquirerNsu = {(this.AcquirerNsu == null ? "null" : this.AcquirerNsu)}");
-            toStringOutput.Add($"this.AcquirerAuthCode = {(this.AcquirerAuthCode == null ? "null" : this.AcquirerAuthCode)}");
-            toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType)}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.AcquirerMessage = {(this.AcquirerMessage == null ? "null" : this.AcquirerMessage)}");
-            toStringOutput.Add($"this.AcquirerReturnCode = {(this.AcquirerReturnCode == null ? "null" : this.AcquirerReturnCode)}");
-            toStringOutput.Add($"this.Mpi = {(this.Mpi == null ? "null" : this.Mpi)}");
-            toStringOutput.Add($"this.Eci = {(this.Eci == null ? "null" : this.Eci)}");
-            toStringOutput.Add($"this.AuthenticationType = {(this.AuthenticationType == null ? "null" : this.AuthenticationType)}");
-            toStringOutput.Add($"this.ThreedAuthenticationUrl = {(this.ThreedAuthenticationUrl == null ? "null" : this.ThreedAuthenticationUrl)}");
-            toStringOutput.Add($"this.FundingSource = {(this.FundingSource == null ? "null" : this.FundingSource)}");
-            toStringOutput.Add($"this.RetryInfo = {(this.RetryInfo == null ? "null" : this.RetryInfo.ToString())}");
-            toStringOutput.Add($"this.BrandId = {(this.BrandId == null ? "null" : this.BrandId)}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
+            toStringOutput.Add($"AcquirerName = {this.AcquirerName ?? "null"}");
+            toStringOutput.Add($"AcquirerAffiliationCode = {this.AcquirerAffiliationCode ?? "null"}");
+            toStringOutput.Add($"AcquirerTid = {this.AcquirerTid ?? "null"}");
+            toStringOutput.Add($"AcquirerNsu = {this.AcquirerNsu ?? "null"}");
+            toStringOutput.Add($"AcquirerAuthCode = {this.AcquirerAuthCode ?? "null"}");
+            toStringOutput.Add($"OperationType = {this.OperationType ?? "null"}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"AcquirerMessage = {this.AcquirerMessage ?? "null"}");
+            toStringOutput.Add($"AcquirerReturnCode = {this.AcquirerReturnCode ?? "null"}");
+            toStringOutput.Add($"Mpi = {this.Mpi ?? "null"}");
+            toStringOutput.Add($"Eci = {this.Eci ?? "null"}");
+            toStringOutput.Add($"AuthenticationType = {this.AuthenticationType ?? "null"}");
+            toStringOutput.Add($"ThreedAuthenticationUrl = {this.ThreedAuthenticationUrl ?? "null"}");
+            toStringOutput.Add($"FundingSource = {this.FundingSource ?? "null"}");
+            toStringOutput.Add($"RetryInfo = {(this.RetryInfo == null ? "null" : this.RetryInfo.ToString())}");
+            toStringOutput.Add($"BrandId = {this.BrandId ?? "null"}");
 
             base.ToString(toStringOutput);
         }

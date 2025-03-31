@@ -57,11 +57,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.HolderName = holderName;
             this.ExpMonth = expMonth;
             this.ExpYear = expYear;
+
             if (billingAddressId != null)
             {
                 this.BillingAddressId = billingAddressId;
             }
-
             this.BillingAddress = billingAddress;
             this.Metadata = metadata;
             this.Label = label;
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateCardRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingAddressId()
         {
@@ -151,37 +149,37 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateCardRequest other &&                ((this.HolderName == null && other.HolderName == null) || (this.HolderName?.Equals(other.HolderName) == true)) &&
-                this.ExpMonth.Equals(other.ExpMonth) &&
-                this.ExpYear.Equals(other.ExpYear) &&
-                ((this.BillingAddressId == null && other.BillingAddressId == null) || (this.BillingAddressId?.Equals(other.BillingAddressId) == true)) &&
-                ((this.BillingAddress == null && other.BillingAddress == null) || (this.BillingAddress?.Equals(other.BillingAddress) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true)) &&
-                ((this.Label == null && other.Label == null) || (this.Label?.Equals(other.Label) == true));
+            return obj is UpdateCardRequest other &&
+                (this.HolderName == null && other.HolderName == null ||
+                 this.HolderName?.Equals(other.HolderName) == true) &&
+                (this.ExpMonth.Equals(other.ExpMonth)) &&
+                (this.ExpYear.Equals(other.ExpYear)) &&
+                (this.BillingAddressId == null && other.BillingAddressId == null ||
+                 this.BillingAddressId?.Equals(other.BillingAddressId) == true) &&
+                (this.BillingAddress == null && other.BillingAddress == null ||
+                 this.BillingAddress?.Equals(other.BillingAddress) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true) &&
+                (this.Label == null && other.Label == null ||
+                 this.Label?.Equals(other.Label) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.HolderName = {(this.HolderName == null ? "null" : this.HolderName)}");
-            toStringOutput.Add($"this.ExpMonth = {this.ExpMonth}");
-            toStringOutput.Add($"this.ExpYear = {this.ExpYear}");
-            toStringOutput.Add($"this.BillingAddressId = {(this.BillingAddressId == null ? "null" : this.BillingAddressId)}");
-            toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
+            toStringOutput.Add($"HolderName = {this.HolderName ?? "null"}");
+            toStringOutput.Add($"ExpMonth = {this.ExpMonth}");
+            toStringOutput.Add($"ExpYear = {this.ExpYear}");
+            toStringOutput.Add($"BillingAddressId = {this.BillingAddressId ?? "null"}");
+            toStringOutput.Add($"BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
             toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : this.Metadata.ToString())}");
-            toStringOutput.Add($"this.Label = {(this.Label == null ? "null" : this.Label)}");
+            toStringOutput.Add($"Label = {this.Label ?? "null"}");
         }
     }
 }

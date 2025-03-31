@@ -57,11 +57,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.Card = card;
             this.CardToken = cardToken;
             this.Boleto = boleto;
+
             if (indirectAcceptor != null)
             {
                 this.IndirectAcceptor = indirectAcceptor;
             }
-
         }
 
         /// <summary>
@@ -116,14 +116,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateSubscriptionPaymentMethodRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetIndirectAcceptor()
         {
@@ -142,35 +140,36 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateSubscriptionPaymentMethodRequest other &&                ((this.PaymentMethod == null && other.PaymentMethod == null) || (this.PaymentMethod?.Equals(other.PaymentMethod) == true)) &&
-                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                ((this.IndirectAcceptor == null && other.IndirectAcceptor == null) || (this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true));
+            return obj is UpdateSubscriptionPaymentMethodRequest other &&
+                (this.PaymentMethod == null && other.PaymentMethod == null ||
+                 this.PaymentMethod?.Equals(other.PaymentMethod) == true) &&
+                (this.CardId == null && other.CardId == null ||
+                 this.CardId?.Equals(other.CardId) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.CardToken == null && other.CardToken == null ||
+                 this.CardToken?.Equals(other.CardToken) == true) &&
+                (this.Boleto == null && other.Boleto == null ||
+                 this.Boleto?.Equals(other.Boleto) == true) &&
+                (this.IndirectAcceptor == null && other.IndirectAcceptor == null ||
+                 this.IndirectAcceptor?.Equals(other.IndirectAcceptor) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken)}");
-            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
-            toStringOutput.Add($"this.IndirectAcceptor = {(this.IndirectAcceptor == null ? "null" : this.IndirectAcceptor)}");
+            toStringOutput.Add($"PaymentMethod = {this.PaymentMethod ?? "null"}");
+            toStringOutput.Add($"CardId = {this.CardId ?? "null"}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"CardToken = {this.CardToken ?? "null"}");
+            toStringOutput.Add($"Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"IndirectAcceptor = {this.IndirectAcceptor ?? "null"}");
         }
     }
 }

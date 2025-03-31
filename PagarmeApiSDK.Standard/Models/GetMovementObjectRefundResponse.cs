@@ -84,6 +84,7 @@ namespace PagarmeApiSDK.Standard.Models
                 chargeId,
                 gatewayId)
         {
+
             if (fraudCoverageFee != null)
             {
                 this.FraudCoverageFee = fraudCoverageFee;
@@ -108,7 +109,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.UpdatedAt = updatedAt;
             }
-
         }
 
         /// <summary>
@@ -205,14 +205,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetMovementObjectRefundResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFraudCoverageFee()
         {
@@ -220,7 +218,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetChargeFeeRecipientId()
         {
@@ -228,7 +226,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBankAccountId()
         {
@@ -236,7 +234,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLocalTransactionId()
         {
@@ -244,7 +242,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUpdatedAt()
         {
@@ -299,34 +297,34 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetMovementObjectRefundResponse other &&                ((this.FraudCoverageFee == null && other.FraudCoverageFee == null) || (this.FraudCoverageFee?.Equals(other.FraudCoverageFee) == true)) &&
-                ((this.ChargeFeeRecipientId == null && other.ChargeFeeRecipientId == null) || (this.ChargeFeeRecipientId?.Equals(other.ChargeFeeRecipientId) == true)) &&
-                ((this.BankAccountId == null && other.BankAccountId == null) || (this.BankAccountId?.Equals(other.BankAccountId) == true)) &&
-                ((this.LocalTransactionId == null && other.LocalTransactionId == null) || (this.LocalTransactionId?.Equals(other.LocalTransactionId) == true)) &&
-                ((this.UpdatedAt == null && other.UpdatedAt == null) || (this.UpdatedAt?.Equals(other.UpdatedAt) == true)) &&
+            return obj is GetMovementObjectRefundResponse other &&
+                (this.FraudCoverageFee == null && other.FraudCoverageFee == null ||
+                 this.FraudCoverageFee?.Equals(other.FraudCoverageFee) == true) &&
+                (this.ChargeFeeRecipientId == null && other.ChargeFeeRecipientId == null ||
+                 this.ChargeFeeRecipientId?.Equals(other.ChargeFeeRecipientId) == true) &&
+                (this.BankAccountId == null && other.BankAccountId == null ||
+                 this.BankAccountId?.Equals(other.BankAccountId) == true) &&
+                (this.LocalTransactionId == null && other.LocalTransactionId == null ||
+                 this.LocalTransactionId?.Equals(other.LocalTransactionId) == true) &&
+                (this.UpdatedAt == null && other.UpdatedAt == null ||
+                 this.UpdatedAt?.Equals(other.UpdatedAt) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee)}");
-            toStringOutput.Add($"this.ChargeFeeRecipientId = {(this.ChargeFeeRecipientId == null ? "null" : this.ChargeFeeRecipientId)}");
-            toStringOutput.Add($"this.BankAccountId = {(this.BankAccountId == null ? "null" : this.BankAccountId)}");
-            toStringOutput.Add($"this.LocalTransactionId = {(this.LocalTransactionId == null ? "null" : this.LocalTransactionId)}");
-            toStringOutput.Add($"this.UpdatedAt = {(this.UpdatedAt == null ? "null" : this.UpdatedAt)}");
+            toStringOutput.Add($"FraudCoverageFee = {this.FraudCoverageFee ?? "null"}");
+            toStringOutput.Add($"ChargeFeeRecipientId = {this.ChargeFeeRecipientId ?? "null"}");
+            toStringOutput.Add($"BankAccountId = {this.BankAccountId ?? "null"}");
+            toStringOutput.Add($"LocalTransactionId = {this.LocalTransactionId ?? "null"}");
+            toStringOutput.Add($"UpdatedAt = {this.UpdatedAt ?? "null"}");
 
             base.ToString(toStringOutput);
         }

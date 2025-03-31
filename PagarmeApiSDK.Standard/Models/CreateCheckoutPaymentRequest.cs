@@ -184,64 +184,71 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCheckoutPaymentRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCheckoutPaymentRequest other &&                ((this.AcceptedPaymentMethods == null && other.AcceptedPaymentMethods == null) || (this.AcceptedPaymentMethods?.Equals(other.AcceptedPaymentMethods) == true)) &&
-                ((this.AcceptedMultiPaymentMethods == null && other.AcceptedMultiPaymentMethods == null) || (this.AcceptedMultiPaymentMethods?.Equals(other.AcceptedMultiPaymentMethods) == true)) &&
-                ((this.SuccessUrl == null && other.SuccessUrl == null) || (this.SuccessUrl?.Equals(other.SuccessUrl) == true)) &&
-                ((this.DefaultPaymentMethod == null && other.DefaultPaymentMethod == null) || (this.DefaultPaymentMethod?.Equals(other.DefaultPaymentMethod) == true)) &&
-                ((this.GatewayAffiliationId == null && other.GatewayAffiliationId == null) || (this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true)) &&
-                ((this.CreditCard == null && other.CreditCard == null) || (this.CreditCard?.Equals(other.CreditCard) == true)) &&
-                ((this.DebitCard == null && other.DebitCard == null) || (this.DebitCard?.Equals(other.DebitCard) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                ((this.CustomerEditable == null && other.CustomerEditable == null) || (this.CustomerEditable?.Equals(other.CustomerEditable) == true)) &&
-                ((this.ExpiresIn == null && other.ExpiresIn == null) || (this.ExpiresIn?.Equals(other.ExpiresIn) == true)) &&
-                this.SkipCheckoutSuccessPage.Equals(other.SkipCheckoutSuccessPage) &&
-                this.BillingAddressEditable.Equals(other.BillingAddressEditable) &&
-                ((this.BillingAddress == null && other.BillingAddress == null) || (this.BillingAddress?.Equals(other.BillingAddress) == true)) &&
-                ((this.BankTransfer == null && other.BankTransfer == null) || (this.BankTransfer?.Equals(other.BankTransfer) == true)) &&
-                ((this.AcceptedBrands == null && other.AcceptedBrands == null) || (this.AcceptedBrands?.Equals(other.AcceptedBrands) == true)) &&
-                ((this.Pix == null && other.Pix == null) || (this.Pix?.Equals(other.Pix) == true));
+            return obj is CreateCheckoutPaymentRequest other &&
+                (this.AcceptedPaymentMethods == null && other.AcceptedPaymentMethods == null ||
+                 this.AcceptedPaymentMethods?.Equals(other.AcceptedPaymentMethods) == true) &&
+                (this.AcceptedMultiPaymentMethods == null && other.AcceptedMultiPaymentMethods == null ||
+                 this.AcceptedMultiPaymentMethods?.Equals(other.AcceptedMultiPaymentMethods) == true) &&
+                (this.SuccessUrl == null && other.SuccessUrl == null ||
+                 this.SuccessUrl?.Equals(other.SuccessUrl) == true) &&
+                (this.DefaultPaymentMethod == null && other.DefaultPaymentMethod == null ||
+                 this.DefaultPaymentMethod?.Equals(other.DefaultPaymentMethod) == true) &&
+                (this.GatewayAffiliationId == null && other.GatewayAffiliationId == null ||
+                 this.GatewayAffiliationId?.Equals(other.GatewayAffiliationId) == true) &&
+                (this.CreditCard == null && other.CreditCard == null ||
+                 this.CreditCard?.Equals(other.CreditCard) == true) &&
+                (this.DebitCard == null && other.DebitCard == null ||
+                 this.DebitCard?.Equals(other.DebitCard) == true) &&
+                (this.Boleto == null && other.Boleto == null ||
+                 this.Boleto?.Equals(other.Boleto) == true) &&
+                (this.CustomerEditable == null && other.CustomerEditable == null ||
+                 this.CustomerEditable?.Equals(other.CustomerEditable) == true) &&
+                (this.ExpiresIn == null && other.ExpiresIn == null ||
+                 this.ExpiresIn?.Equals(other.ExpiresIn) == true) &&
+                (this.SkipCheckoutSuccessPage.Equals(other.SkipCheckoutSuccessPage)) &&
+                (this.BillingAddressEditable.Equals(other.BillingAddressEditable)) &&
+                (this.BillingAddress == null && other.BillingAddress == null ||
+                 this.BillingAddress?.Equals(other.BillingAddress) == true) &&
+                (this.BankTransfer == null && other.BankTransfer == null ||
+                 this.BankTransfer?.Equals(other.BankTransfer) == true) &&
+                (this.AcceptedBrands == null && other.AcceptedBrands == null ||
+                 this.AcceptedBrands?.Equals(other.AcceptedBrands) == true) &&
+                (this.Pix == null && other.Pix == null ||
+                 this.Pix?.Equals(other.Pix) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.AcceptedPaymentMethods = {(this.AcceptedPaymentMethods == null ? "null" : $"[{string.Join(", ", this.AcceptedPaymentMethods)} ]")}");
+            toStringOutput.Add($"AcceptedPaymentMethods = {(this.AcceptedPaymentMethods == null ? "null" : $"[{string.Join(", ", this.AcceptedPaymentMethods)} ]")}");
             toStringOutput.Add($"AcceptedMultiPaymentMethods = {(this.AcceptedMultiPaymentMethods == null ? "null" : this.AcceptedMultiPaymentMethods.ToString())}");
-            toStringOutput.Add($"this.SuccessUrl = {(this.SuccessUrl == null ? "null" : this.SuccessUrl)}");
-            toStringOutput.Add($"this.DefaultPaymentMethod = {(this.DefaultPaymentMethod == null ? "null" : this.DefaultPaymentMethod)}");
-            toStringOutput.Add($"this.GatewayAffiliationId = {(this.GatewayAffiliationId == null ? "null" : this.GatewayAffiliationId)}");
-            toStringOutput.Add($"this.CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
-            toStringOutput.Add($"this.DebitCard = {(this.DebitCard == null ? "null" : this.DebitCard.ToString())}");
-            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
-            toStringOutput.Add($"this.CustomerEditable = {(this.CustomerEditable == null ? "null" : this.CustomerEditable.ToString())}");
-            toStringOutput.Add($"this.ExpiresIn = {(this.ExpiresIn == null ? "null" : this.ExpiresIn.ToString())}");
-            toStringOutput.Add($"this.SkipCheckoutSuccessPage = {this.SkipCheckoutSuccessPage}");
-            toStringOutput.Add($"this.BillingAddressEditable = {this.BillingAddressEditable}");
-            toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
-            toStringOutput.Add($"this.BankTransfer = {(this.BankTransfer == null ? "null" : this.BankTransfer.ToString())}");
-            toStringOutput.Add($"this.AcceptedBrands = {(this.AcceptedBrands == null ? "null" : $"[{string.Join(", ", this.AcceptedBrands)} ]")}");
-            toStringOutput.Add($"this.Pix = {(this.Pix == null ? "null" : this.Pix.ToString())}");
+            toStringOutput.Add($"SuccessUrl = {this.SuccessUrl ?? "null"}");
+            toStringOutput.Add($"DefaultPaymentMethod = {this.DefaultPaymentMethod ?? "null"}");
+            toStringOutput.Add($"GatewayAffiliationId = {this.GatewayAffiliationId ?? "null"}");
+            toStringOutput.Add($"CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
+            toStringOutput.Add($"DebitCard = {(this.DebitCard == null ? "null" : this.DebitCard.ToString())}");
+            toStringOutput.Add($"Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"CustomerEditable = {(this.CustomerEditable == null ? "null" : this.CustomerEditable.ToString())}");
+            toStringOutput.Add($"ExpiresIn = {(this.ExpiresIn == null ? "null" : this.ExpiresIn.ToString())}");
+            toStringOutput.Add($"SkipCheckoutSuccessPage = {this.SkipCheckoutSuccessPage}");
+            toStringOutput.Add($"BillingAddressEditable = {this.BillingAddressEditable}");
+            toStringOutput.Add($"BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
+            toStringOutput.Add($"BankTransfer = {(this.BankTransfer == null ? "null" : this.BankTransfer.ToString())}");
+            toStringOutput.Add($"AcceptedBrands = {(this.AcceptedBrands == null ? "null" : $"[{string.Join(", ", this.AcceptedBrands)} ]")}");
+            toStringOutput.Add($"Pix = {(this.Pix == null ? "null" : this.Pix.ToString())}");
         }
     }
 }

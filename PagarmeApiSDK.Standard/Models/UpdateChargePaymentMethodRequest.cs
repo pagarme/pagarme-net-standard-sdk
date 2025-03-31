@@ -121,50 +121,51 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateChargePaymentMethodRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateChargePaymentMethodRequest other &&                this.UpdateSubscription.Equals(other.UpdateSubscription) &&
-                ((this.PaymentMethod == null && other.PaymentMethod == null) || (this.PaymentMethod?.Equals(other.PaymentMethod) == true)) &&
-                ((this.CreditCard == null && other.CreditCard == null) || (this.CreditCard?.Equals(other.CreditCard) == true)) &&
-                ((this.DebitCard == null && other.DebitCard == null) || (this.DebitCard?.Equals(other.DebitCard) == true)) &&
-                ((this.Boleto == null && other.Boleto == null) || (this.Boleto?.Equals(other.Boleto) == true)) &&
-                ((this.Voucher == null && other.Voucher == null) || (this.Voucher?.Equals(other.Voucher) == true)) &&
-                ((this.Cash == null && other.Cash == null) || (this.Cash?.Equals(other.Cash) == true)) &&
-                ((this.BankTransfer == null && other.BankTransfer == null) || (this.BankTransfer?.Equals(other.BankTransfer) == true)) &&
-                ((this.PrivateLabel == null && other.PrivateLabel == null) || (this.PrivateLabel?.Equals(other.PrivateLabel) == true));
+            return obj is UpdateChargePaymentMethodRequest other &&
+                (this.UpdateSubscription.Equals(other.UpdateSubscription)) &&
+                (this.PaymentMethod == null && other.PaymentMethod == null ||
+                 this.PaymentMethod?.Equals(other.PaymentMethod) == true) &&
+                (this.CreditCard == null && other.CreditCard == null ||
+                 this.CreditCard?.Equals(other.CreditCard) == true) &&
+                (this.DebitCard == null && other.DebitCard == null ||
+                 this.DebitCard?.Equals(other.DebitCard) == true) &&
+                (this.Boleto == null && other.Boleto == null ||
+                 this.Boleto?.Equals(other.Boleto) == true) &&
+                (this.Voucher == null && other.Voucher == null ||
+                 this.Voucher?.Equals(other.Voucher) == true) &&
+                (this.Cash == null && other.Cash == null ||
+                 this.Cash?.Equals(other.Cash) == true) &&
+                (this.BankTransfer == null && other.BankTransfer == null ||
+                 this.BankTransfer?.Equals(other.BankTransfer) == true) &&
+                (this.PrivateLabel == null && other.PrivateLabel == null ||
+                 this.PrivateLabel?.Equals(other.PrivateLabel) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.UpdateSubscription = {this.UpdateSubscription}");
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
-            toStringOutput.Add($"this.CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
-            toStringOutput.Add($"this.DebitCard = {(this.DebitCard == null ? "null" : this.DebitCard.ToString())}");
-            toStringOutput.Add($"this.Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
-            toStringOutput.Add($"this.Voucher = {(this.Voucher == null ? "null" : this.Voucher.ToString())}");
-            toStringOutput.Add($"this.Cash = {(this.Cash == null ? "null" : this.Cash.ToString())}");
-            toStringOutput.Add($"this.BankTransfer = {(this.BankTransfer == null ? "null" : this.BankTransfer.ToString())}");
-            toStringOutput.Add($"this.PrivateLabel = {(this.PrivateLabel == null ? "null" : this.PrivateLabel.ToString())}");
+            toStringOutput.Add($"UpdateSubscription = {this.UpdateSubscription}");
+            toStringOutput.Add($"PaymentMethod = {this.PaymentMethod ?? "null"}");
+            toStringOutput.Add($"CreditCard = {(this.CreditCard == null ? "null" : this.CreditCard.ToString())}");
+            toStringOutput.Add($"DebitCard = {(this.DebitCard == null ? "null" : this.DebitCard.ToString())}");
+            toStringOutput.Add($"Boleto = {(this.Boleto == null ? "null" : this.Boleto.ToString())}");
+            toStringOutput.Add($"Voucher = {(this.Voucher == null ? "null" : this.Voucher.ToString())}");
+            toStringOutput.Add($"Cash = {(this.Cash == null ? "null" : this.Cash.ToString())}");
+            toStringOutput.Add($"BankTransfer = {(this.BankTransfer == null ? "null" : this.BankTransfer.ToString())}");
+            toStringOutput.Add($"PrivateLabel = {(this.PrivateLabel == null ? "null" : this.PrivateLabel.ToString())}");
         }
     }
 }

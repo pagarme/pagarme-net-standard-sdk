@@ -72,6 +72,7 @@ namespace PagarmeApiSDK.Standard.Models
             string createdAt = null,
             Models.GetMovementObjectBaseResponse movementObject = null)
         {
+
             if (id != null)
             {
                 this.Id = id;
@@ -111,7 +112,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.CreatedAt = createdAt;
             }
-
             this.MovementObject = movementObject;
         }
 
@@ -269,14 +269,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetBalanceOperationResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetId()
         {
@@ -284,7 +282,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatus()
         {
@@ -292,7 +290,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBalanceAmount()
         {
@@ -300,7 +298,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBalanceOldAmount()
         {
@@ -308,7 +306,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -316,7 +314,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAmount()
         {
@@ -324,7 +322,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFee()
         {
@@ -332,7 +330,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreatedAt()
         {
@@ -414,41 +412,45 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetBalanceOperationResponse other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.BalanceAmount == null && other.BalanceAmount == null) || (this.BalanceAmount?.Equals(other.BalanceAmount) == true)) &&
-                ((this.BalanceOldAmount == null && other.BalanceOldAmount == null) || (this.BalanceOldAmount?.Equals(other.BalanceOldAmount) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.Amount == null && other.Amount == null) || (this.Amount?.Equals(other.Amount) == true)) &&
-                ((this.Fee == null && other.Fee == null) || (this.Fee?.Equals(other.Fee) == true)) &&
-                ((this.CreatedAt == null && other.CreatedAt == null) || (this.CreatedAt?.Equals(other.CreatedAt) == true)) &&
-                ((this.MovementObject == null && other.MovementObject == null) || (this.MovementObject?.Equals(other.MovementObject) == true));
+            return obj is GetBalanceOperationResponse other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.BalanceAmount == null && other.BalanceAmount == null ||
+                 this.BalanceAmount?.Equals(other.BalanceAmount) == true) &&
+                (this.BalanceOldAmount == null && other.BalanceOldAmount == null ||
+                 this.BalanceOldAmount?.Equals(other.BalanceOldAmount) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.Amount == null && other.Amount == null ||
+                 this.Amount?.Equals(other.Amount) == true) &&
+                (this.Fee == null && other.Fee == null ||
+                 this.Fee?.Equals(other.Fee) == true) &&
+                (this.CreatedAt == null && other.CreatedAt == null ||
+                 this.CreatedAt?.Equals(other.CreatedAt) == true) &&
+                (this.MovementObject == null && other.MovementObject == null ||
+                 this.MovementObject?.Equals(other.MovementObject) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id)}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status)}");
-            toStringOutput.Add($"this.BalanceAmount = {(this.BalanceAmount == null ? "null" : this.BalanceAmount)}");
-            toStringOutput.Add($"this.BalanceOldAmount = {(this.BalanceOldAmount == null ? "null" : this.BalanceOldAmount)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
-            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee)}");
-            toStringOutput.Add($"this.CreatedAt = {(this.CreatedAt == null ? "null" : this.CreatedAt)}");
-            toStringOutput.Add($"this.MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");
+            toStringOutput.Add($"Id = {this.Id ?? "null"}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"BalanceAmount = {this.BalanceAmount ?? "null"}");
+            toStringOutput.Add($"BalanceOldAmount = {this.BalanceOldAmount ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"Amount = {(this.Amount == null ? "null" : this.Amount.ToString())}");
+            toStringOutput.Add($"Fee = {this.Fee ?? "null"}");
+            toStringOutput.Add($"CreatedAt = {this.CreatedAt ?? "null"}");
+            toStringOutput.Add($"MovementObject = {(this.MovementObject == null ? "null" : this.MovementObject.ToString())}");
         }
     }
 }

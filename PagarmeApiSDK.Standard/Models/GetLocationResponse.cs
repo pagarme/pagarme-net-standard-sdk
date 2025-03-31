@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             string latitude = null,
             string longitude = null)
         {
+
             if (latitude != null)
             {
                 this.Latitude = latitude;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Longitude = longitude;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetLocationResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLatitude()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLongitude()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetLocationResponse other &&                ((this.Latitude == null && other.Latitude == null) || (this.Latitude?.Equals(other.Latitude) == true)) &&
-                ((this.Longitude == null && other.Longitude == null) || (this.Longitude?.Equals(other.Longitude) == true));
+            return obj is GetLocationResponse other &&
+                (this.Latitude == null && other.Latitude == null ||
+                 this.Latitude?.Equals(other.Latitude) == true) &&
+                (this.Longitude == null && other.Longitude == null ||
+                 this.Longitude?.Equals(other.Longitude) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Latitude = {(this.Latitude == null ? "null" : this.Latitude)}");
-            toStringOutput.Add($"this.Longitude = {(this.Longitude == null ? "null" : this.Longitude)}");
+            toStringOutput.Add($"Latitude = {this.Latitude ?? "null"}");
+            toStringOutput.Add($"Longitude = {this.Longitude ?? "null"}");
         }
     }
 }

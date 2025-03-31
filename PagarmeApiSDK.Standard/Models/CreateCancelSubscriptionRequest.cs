@@ -49,34 +49,27 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCancelSubscriptionRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCancelSubscriptionRequest other &&                this.CancelPendingInvoices.Equals(other.CancelPendingInvoices);
+            return obj is CreateCancelSubscriptionRequest other &&
+                (this.CancelPendingInvoices.Equals(other.CancelPendingInvoices));
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.CancelPendingInvoices = {this.CancelPendingInvoices}");
+            toStringOutput.Add($"CancelPendingInvoices = {this.CancelPendingInvoices}");
         }
     }
 }

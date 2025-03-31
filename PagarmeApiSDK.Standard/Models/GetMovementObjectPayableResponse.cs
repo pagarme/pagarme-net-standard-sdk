@@ -96,11 +96,11 @@ namespace PagarmeApiSDK.Standard.Models
                 chargeId,
                 gatewayId)
         {
+
             if (fee != null)
             {
                 this.Fee = fee;
             }
-
             this.AnticipationFee = anticipationFee;
             this.FraudCoverageFee = fraudCoverageFee;
             this.Installment = installment;
@@ -223,14 +223,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetMovementObjectPayableResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFee()
         {
@@ -249,54 +247,64 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetMovementObjectPayableResponse other &&                ((this.Fee == null && other.Fee == null) || (this.Fee?.Equals(other.Fee) == true)) &&
-                ((this.AnticipationFee == null && other.AnticipationFee == null) || (this.AnticipationFee?.Equals(other.AnticipationFee) == true)) &&
-                ((this.FraudCoverageFee == null && other.FraudCoverageFee == null) || (this.FraudCoverageFee?.Equals(other.FraudCoverageFee) == true)) &&
-                ((this.Installment == null && other.Installment == null) || (this.Installment?.Equals(other.Installment) == true)) &&
-                ((this.SplitId == null && other.SplitId == null) || (this.SplitId?.Equals(other.SplitId) == true)) &&
-                ((this.BulkAnticipationId == null && other.BulkAnticipationId == null) || (this.BulkAnticipationId?.Equals(other.BulkAnticipationId) == true)) &&
-                ((this.AnticipationId == null && other.AnticipationId == null) || (this.AnticipationId?.Equals(other.AnticipationId) == true)) &&
-                ((this.RecipientId == null && other.RecipientId == null) || (this.RecipientId?.Equals(other.RecipientId) == true)) &&
-                ((this.OriginatorModel == null && other.OriginatorModel == null) || (this.OriginatorModel?.Equals(other.OriginatorModel) == true)) &&
-                ((this.OriginatorModelId == null && other.OriginatorModelId == null) || (this.OriginatorModelId?.Equals(other.OriginatorModelId) == true)) &&
-                ((this.PaymentDate == null && other.PaymentDate == null) || (this.PaymentDate?.Equals(other.PaymentDate) == true)) &&
-                ((this.OriginalPaymentDate == null && other.OriginalPaymentDate == null) || (this.OriginalPaymentDate?.Equals(other.OriginalPaymentDate) == true)) &&
-                ((this.PaymentMethod == null && other.PaymentMethod == null) || (this.PaymentMethod?.Equals(other.PaymentMethod) == true)) &&
-                ((this.AccrualAt == null && other.AccrualAt == null) || (this.AccrualAt?.Equals(other.AccrualAt) == true)) &&
-                ((this.LiquidationArrangementId == null && other.LiquidationArrangementId == null) || (this.LiquidationArrangementId?.Equals(other.LiquidationArrangementId) == true)) &&
+            return obj is GetMovementObjectPayableResponse other &&
+                (this.Fee == null && other.Fee == null ||
+                 this.Fee?.Equals(other.Fee) == true) &&
+                (this.AnticipationFee == null && other.AnticipationFee == null ||
+                 this.AnticipationFee?.Equals(other.AnticipationFee) == true) &&
+                (this.FraudCoverageFee == null && other.FraudCoverageFee == null ||
+                 this.FraudCoverageFee?.Equals(other.FraudCoverageFee) == true) &&
+                (this.Installment == null && other.Installment == null ||
+                 this.Installment?.Equals(other.Installment) == true) &&
+                (this.SplitId == null && other.SplitId == null ||
+                 this.SplitId?.Equals(other.SplitId) == true) &&
+                (this.BulkAnticipationId == null && other.BulkAnticipationId == null ||
+                 this.BulkAnticipationId?.Equals(other.BulkAnticipationId) == true) &&
+                (this.AnticipationId == null && other.AnticipationId == null ||
+                 this.AnticipationId?.Equals(other.AnticipationId) == true) &&
+                (this.RecipientId == null && other.RecipientId == null ||
+                 this.RecipientId?.Equals(other.RecipientId) == true) &&
+                (this.OriginatorModel == null && other.OriginatorModel == null ||
+                 this.OriginatorModel?.Equals(other.OriginatorModel) == true) &&
+                (this.OriginatorModelId == null && other.OriginatorModelId == null ||
+                 this.OriginatorModelId?.Equals(other.OriginatorModelId) == true) &&
+                (this.PaymentDate == null && other.PaymentDate == null ||
+                 this.PaymentDate?.Equals(other.PaymentDate) == true) &&
+                (this.OriginalPaymentDate == null && other.OriginalPaymentDate == null ||
+                 this.OriginalPaymentDate?.Equals(other.OriginalPaymentDate) == true) &&
+                (this.PaymentMethod == null && other.PaymentMethod == null ||
+                 this.PaymentMethod?.Equals(other.PaymentMethod) == true) &&
+                (this.AccrualAt == null && other.AccrualAt == null ||
+                 this.AccrualAt?.Equals(other.AccrualAt) == true) &&
+                (this.LiquidationArrangementId == null && other.LiquidationArrangementId == null ||
+                 this.LiquidationArrangementId?.Equals(other.LiquidationArrangementId) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Fee = {(this.Fee == null ? "null" : this.Fee)}");
-            toStringOutput.Add($"this.AnticipationFee = {(this.AnticipationFee == null ? "null" : this.AnticipationFee)}");
-            toStringOutput.Add($"this.FraudCoverageFee = {(this.FraudCoverageFee == null ? "null" : this.FraudCoverageFee)}");
-            toStringOutput.Add($"this.Installment = {(this.Installment == null ? "null" : this.Installment)}");
-            toStringOutput.Add($"this.SplitId = {(this.SplitId == null ? "null" : this.SplitId)}");
-            toStringOutput.Add($"this.BulkAnticipationId = {(this.BulkAnticipationId == null ? "null" : this.BulkAnticipationId)}");
-            toStringOutput.Add($"this.AnticipationId = {(this.AnticipationId == null ? "null" : this.AnticipationId)}");
-            toStringOutput.Add($"this.RecipientId = {(this.RecipientId == null ? "null" : this.RecipientId)}");
-            toStringOutput.Add($"this.OriginatorModel = {(this.OriginatorModel == null ? "null" : this.OriginatorModel)}");
-            toStringOutput.Add($"this.OriginatorModelId = {(this.OriginatorModelId == null ? "null" : this.OriginatorModelId)}");
-            toStringOutput.Add($"this.PaymentDate = {(this.PaymentDate == null ? "null" : this.PaymentDate)}");
-            toStringOutput.Add($"this.OriginalPaymentDate = {(this.OriginalPaymentDate == null ? "null" : this.OriginalPaymentDate)}");
-            toStringOutput.Add($"this.PaymentMethod = {(this.PaymentMethod == null ? "null" : this.PaymentMethod)}");
-            toStringOutput.Add($"this.AccrualAt = {(this.AccrualAt == null ? "null" : this.AccrualAt)}");
-            toStringOutput.Add($"this.LiquidationArrangementId = {(this.LiquidationArrangementId == null ? "null" : this.LiquidationArrangementId)}");
+            toStringOutput.Add($"Fee = {this.Fee ?? "null"}");
+            toStringOutput.Add($"AnticipationFee = {this.AnticipationFee ?? "null"}");
+            toStringOutput.Add($"FraudCoverageFee = {this.FraudCoverageFee ?? "null"}");
+            toStringOutput.Add($"Installment = {this.Installment ?? "null"}");
+            toStringOutput.Add($"SplitId = {this.SplitId ?? "null"}");
+            toStringOutput.Add($"BulkAnticipationId = {this.BulkAnticipationId ?? "null"}");
+            toStringOutput.Add($"AnticipationId = {this.AnticipationId ?? "null"}");
+            toStringOutput.Add($"RecipientId = {this.RecipientId ?? "null"}");
+            toStringOutput.Add($"OriginatorModel = {this.OriginatorModel ?? "null"}");
+            toStringOutput.Add($"OriginatorModelId = {this.OriginatorModelId ?? "null"}");
+            toStringOutput.Add($"PaymentDate = {this.PaymentDate ?? "null"}");
+            toStringOutput.Add($"OriginalPaymentDate = {this.OriginalPaymentDate ?? "null"}");
+            toStringOutput.Add($"PaymentMethod = {this.PaymentMethod ?? "null"}");
+            toStringOutput.Add($"AccrualAt = {this.AccrualAt ?? "null"}");
+            toStringOutput.Add($"LiquidationArrangementId = {this.LiquidationArrangementId ?? "null"}");
 
             base.ToString(toStringOutput);
         }

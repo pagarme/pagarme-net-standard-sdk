@@ -130,52 +130,55 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreatePrivateLabelPaymentRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreatePrivateLabelPaymentRequest other &&                ((this.Installments == null && other.Installments == null) || (this.Installments?.Equals(other.Installments) == true)) &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.CardId == null && other.CardId == null) || (this.CardId?.Equals(other.CardId) == true)) &&
-                ((this.CardToken == null && other.CardToken == null) || (this.CardToken?.Equals(other.CardToken) == true)) &&
-                ((this.Recurrence == null && other.Recurrence == null) || (this.Recurrence?.Equals(other.Recurrence) == true)) &&
-                ((this.Capture == null && other.Capture == null) || (this.Capture?.Equals(other.Capture) == true)) &&
-                ((this.ExtendedLimitEnabled == null && other.ExtendedLimitEnabled == null) || (this.ExtendedLimitEnabled?.Equals(other.ExtendedLimitEnabled) == true)) &&
-                ((this.ExtendedLimitCode == null && other.ExtendedLimitCode == null) || (this.ExtendedLimitCode?.Equals(other.ExtendedLimitCode) == true)) &&
-                ((this.RecurrencyCycle == null && other.RecurrencyCycle == null) || (this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true));
+            return obj is CreatePrivateLabelPaymentRequest other &&
+                (this.Installments == null && other.Installments == null ||
+                 this.Installments?.Equals(other.Installments) == true) &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.CardId == null && other.CardId == null ||
+                 this.CardId?.Equals(other.CardId) == true) &&
+                (this.CardToken == null && other.CardToken == null ||
+                 this.CardToken?.Equals(other.CardToken) == true) &&
+                (this.Recurrence == null && other.Recurrence == null ||
+                 this.Recurrence?.Equals(other.Recurrence) == true) &&
+                (this.Capture == null && other.Capture == null ||
+                 this.Capture?.Equals(other.Capture) == true) &&
+                (this.ExtendedLimitEnabled == null && other.ExtendedLimitEnabled == null ||
+                 this.ExtendedLimitEnabled?.Equals(other.ExtendedLimitEnabled) == true) &&
+                (this.ExtendedLimitCode == null && other.ExtendedLimitCode == null ||
+                 this.ExtendedLimitCode?.Equals(other.ExtendedLimitCode) == true) &&
+                (this.RecurrencyCycle == null && other.RecurrencyCycle == null ||
+                 this.RecurrencyCycle?.Equals(other.RecurrencyCycle) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.CardId = {(this.CardId == null ? "null" : this.CardId)}");
-            toStringOutput.Add($"this.CardToken = {(this.CardToken == null ? "null" : this.CardToken)}");
-            toStringOutput.Add($"this.Recurrence = {(this.Recurrence == null ? "null" : this.Recurrence.ToString())}");
-            toStringOutput.Add($"this.Capture = {(this.Capture == null ? "null" : this.Capture.ToString())}");
-            toStringOutput.Add($"this.ExtendedLimitEnabled = {(this.ExtendedLimitEnabled == null ? "null" : this.ExtendedLimitEnabled.ToString())}");
-            toStringOutput.Add($"this.ExtendedLimitCode = {(this.ExtendedLimitCode == null ? "null" : this.ExtendedLimitCode)}");
-            toStringOutput.Add($"this.RecurrencyCycle = {(this.RecurrencyCycle == null ? "null" : this.RecurrencyCycle)}");
+            toStringOutput.Add($"Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"CardId = {this.CardId ?? "null"}");
+            toStringOutput.Add($"CardToken = {this.CardToken ?? "null"}");
+            toStringOutput.Add($"Recurrence = {(this.Recurrence == null ? "null" : this.Recurrence.ToString())}");
+            toStringOutput.Add($"Capture = {(this.Capture == null ? "null" : this.Capture.ToString())}");
+            toStringOutput.Add($"ExtendedLimitEnabled = {(this.ExtendedLimitEnabled == null ? "null" : this.ExtendedLimitEnabled.ToString())}");
+            toStringOutput.Add($"ExtendedLimitCode = {this.ExtendedLimitCode ?? "null"}");
+            toStringOutput.Add($"RecurrencyCycle = {this.RecurrencyCycle ?? "null"}");
         }
     }
 }

@@ -125,6 +125,7 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
+
             if (qrCode != null)
             {
                 this.QrCode = qrCode;
@@ -159,7 +160,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.PixProviderTid = pixProviderTid;
             }
-
         }
 
         /// <summary>
@@ -293,14 +293,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPixTransactionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetQrCode()
         {
@@ -308,7 +306,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetQrCodeUrl()
         {
@@ -316,7 +314,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpiresAt()
         {
@@ -324,7 +322,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAdditionalInformation()
         {
@@ -332,7 +330,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetEndToEndId()
         {
@@ -340,7 +338,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPayer()
         {
@@ -348,7 +346,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPixProviderTid()
         {
@@ -421,38 +419,40 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPixTransactionResponse other &&                ((this.QrCode == null && other.QrCode == null) || (this.QrCode?.Equals(other.QrCode) == true)) &&
-                ((this.QrCodeUrl == null && other.QrCodeUrl == null) || (this.QrCodeUrl?.Equals(other.QrCodeUrl) == true)) &&
-                ((this.ExpiresAt == null && other.ExpiresAt == null) || (this.ExpiresAt?.Equals(other.ExpiresAt) == true)) &&
-                ((this.AdditionalInformation == null && other.AdditionalInformation == null) || (this.AdditionalInformation?.Equals(other.AdditionalInformation) == true)) &&
-                ((this.EndToEndId == null && other.EndToEndId == null) || (this.EndToEndId?.Equals(other.EndToEndId) == true)) &&
-                ((this.Payer == null && other.Payer == null) || (this.Payer?.Equals(other.Payer) == true)) &&
-                ((this.PixProviderTid == null && other.PixProviderTid == null) || (this.PixProviderTid?.Equals(other.PixProviderTid) == true)) &&
+            return obj is GetPixTransactionResponse other &&
+                (this.QrCode == null && other.QrCode == null ||
+                 this.QrCode?.Equals(other.QrCode) == true) &&
+                (this.QrCodeUrl == null && other.QrCodeUrl == null ||
+                 this.QrCodeUrl?.Equals(other.QrCodeUrl) == true) &&
+                (this.ExpiresAt == null && other.ExpiresAt == null ||
+                 this.ExpiresAt?.Equals(other.ExpiresAt) == true) &&
+                (this.AdditionalInformation == null && other.AdditionalInformation == null ||
+                 this.AdditionalInformation?.Equals(other.AdditionalInformation) == true) &&
+                (this.EndToEndId == null && other.EndToEndId == null ||
+                 this.EndToEndId?.Equals(other.EndToEndId) == true) &&
+                (this.Payer == null && other.Payer == null ||
+                 this.Payer?.Equals(other.Payer) == true) &&
+                (this.PixProviderTid == null && other.PixProviderTid == null ||
+                 this.PixProviderTid?.Equals(other.PixProviderTid) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode)}");
-            toStringOutput.Add($"this.QrCodeUrl = {(this.QrCodeUrl == null ? "null" : this.QrCodeUrl)}");
-            toStringOutput.Add($"this.ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
-            toStringOutput.Add($"this.AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
-            toStringOutput.Add($"this.EndToEndId = {(this.EndToEndId == null ? "null" : this.EndToEndId)}");
-            toStringOutput.Add($"this.Payer = {(this.Payer == null ? "null" : this.Payer.ToString())}");
-            toStringOutput.Add($"this.PixProviderTid = {(this.PixProviderTid == null ? "null" : this.PixProviderTid)}");
+            toStringOutput.Add($"QrCode = {this.QrCode ?? "null"}");
+            toStringOutput.Add($"QrCodeUrl = {this.QrCodeUrl ?? "null"}");
+            toStringOutput.Add($"ExpiresAt = {(this.ExpiresAt == null ? "null" : this.ExpiresAt.ToString())}");
+            toStringOutput.Add($"AdditionalInformation = {(this.AdditionalInformation == null ? "null" : $"[{string.Join(", ", this.AdditionalInformation)} ]")}");
+            toStringOutput.Add($"EndToEndId = {this.EndToEndId ?? "null"}");
+            toStringOutput.Add($"Payer = {(this.Payer == null ? "null" : this.Payer.ToString())}");
+            toStringOutput.Add($"PixProviderTid = {this.PixProviderTid ?? "null"}");
 
             base.ToString(toStringOutput);
         }

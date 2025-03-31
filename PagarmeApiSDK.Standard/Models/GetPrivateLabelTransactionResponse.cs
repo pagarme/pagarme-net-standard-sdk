@@ -141,6 +141,7 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
+
             if (statementDescriptor != null)
             {
                 this.StatementDescriptor = statementDescriptor;
@@ -195,7 +196,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Installments = installments;
             }
-
         }
 
         /// <summary>
@@ -400,14 +400,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetPrivateLabelTransactionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatementDescriptor()
         {
@@ -415,7 +413,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerName()
         {
@@ -423,7 +421,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerAffiliationCode()
         {
@@ -431,7 +429,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerTid()
         {
@@ -439,7 +437,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerNsu()
         {
@@ -447,7 +445,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerAuthCode()
         {
@@ -455,7 +453,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetOperationType()
         {
@@ -463,7 +461,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCard()
         {
@@ -471,7 +469,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerMessage()
         {
@@ -479,7 +477,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetAcquirerReturnCode()
         {
@@ -487,7 +485,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInstallments()
         {
@@ -596,46 +594,52 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetPrivateLabelTransactionResponse other &&                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
-                ((this.AcquirerName == null && other.AcquirerName == null) || (this.AcquirerName?.Equals(other.AcquirerName) == true)) &&
-                ((this.AcquirerAffiliationCode == null && other.AcquirerAffiliationCode == null) || (this.AcquirerAffiliationCode?.Equals(other.AcquirerAffiliationCode) == true)) &&
-                ((this.AcquirerTid == null && other.AcquirerTid == null) || (this.AcquirerTid?.Equals(other.AcquirerTid) == true)) &&
-                ((this.AcquirerNsu == null && other.AcquirerNsu == null) || (this.AcquirerNsu?.Equals(other.AcquirerNsu) == true)) &&
-                ((this.AcquirerAuthCode == null && other.AcquirerAuthCode == null) || (this.AcquirerAuthCode?.Equals(other.AcquirerAuthCode) == true)) &&
-                ((this.OperationType == null && other.OperationType == null) || (this.OperationType?.Equals(other.OperationType) == true)) &&
-                ((this.Card == null && other.Card == null) || (this.Card?.Equals(other.Card) == true)) &&
-                ((this.AcquirerMessage == null && other.AcquirerMessage == null) || (this.AcquirerMessage?.Equals(other.AcquirerMessage) == true)) &&
-                ((this.AcquirerReturnCode == null && other.AcquirerReturnCode == null) || (this.AcquirerReturnCode?.Equals(other.AcquirerReturnCode) == true)) &&
-                ((this.Installments == null && other.Installments == null) || (this.Installments?.Equals(other.Installments) == true)) &&
+            return obj is GetPrivateLabelTransactionResponse other &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
+                (this.AcquirerName == null && other.AcquirerName == null ||
+                 this.AcquirerName?.Equals(other.AcquirerName) == true) &&
+                (this.AcquirerAffiliationCode == null && other.AcquirerAffiliationCode == null ||
+                 this.AcquirerAffiliationCode?.Equals(other.AcquirerAffiliationCode) == true) &&
+                (this.AcquirerTid == null && other.AcquirerTid == null ||
+                 this.AcquirerTid?.Equals(other.AcquirerTid) == true) &&
+                (this.AcquirerNsu == null && other.AcquirerNsu == null ||
+                 this.AcquirerNsu?.Equals(other.AcquirerNsu) == true) &&
+                (this.AcquirerAuthCode == null && other.AcquirerAuthCode == null ||
+                 this.AcquirerAuthCode?.Equals(other.AcquirerAuthCode) == true) &&
+                (this.OperationType == null && other.OperationType == null ||
+                 this.OperationType?.Equals(other.OperationType) == true) &&
+                (this.Card == null && other.Card == null ||
+                 this.Card?.Equals(other.Card) == true) &&
+                (this.AcquirerMessage == null && other.AcquirerMessage == null ||
+                 this.AcquirerMessage?.Equals(other.AcquirerMessage) == true) &&
+                (this.AcquirerReturnCode == null && other.AcquirerReturnCode == null ||
+                 this.AcquirerReturnCode?.Equals(other.AcquirerReturnCode) == true) &&
+                (this.Installments == null && other.Installments == null ||
+                 this.Installments?.Equals(other.Installments) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
-            toStringOutput.Add($"this.AcquirerName = {(this.AcquirerName == null ? "null" : this.AcquirerName)}");
-            toStringOutput.Add($"this.AcquirerAffiliationCode = {(this.AcquirerAffiliationCode == null ? "null" : this.AcquirerAffiliationCode)}");
-            toStringOutput.Add($"this.AcquirerTid = {(this.AcquirerTid == null ? "null" : this.AcquirerTid)}");
-            toStringOutput.Add($"this.AcquirerNsu = {(this.AcquirerNsu == null ? "null" : this.AcquirerNsu)}");
-            toStringOutput.Add($"this.AcquirerAuthCode = {(this.AcquirerAuthCode == null ? "null" : this.AcquirerAuthCode)}");
-            toStringOutput.Add($"this.OperationType = {(this.OperationType == null ? "null" : this.OperationType)}");
-            toStringOutput.Add($"this.Card = {(this.Card == null ? "null" : this.Card.ToString())}");
-            toStringOutput.Add($"this.AcquirerMessage = {(this.AcquirerMessage == null ? "null" : this.AcquirerMessage)}");
-            toStringOutput.Add($"this.AcquirerReturnCode = {(this.AcquirerReturnCode == null ? "null" : this.AcquirerReturnCode)}");
-            toStringOutput.Add($"this.Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
+            toStringOutput.Add($"AcquirerName = {this.AcquirerName ?? "null"}");
+            toStringOutput.Add($"AcquirerAffiliationCode = {this.AcquirerAffiliationCode ?? "null"}");
+            toStringOutput.Add($"AcquirerTid = {this.AcquirerTid ?? "null"}");
+            toStringOutput.Add($"AcquirerNsu = {this.AcquirerNsu ?? "null"}");
+            toStringOutput.Add($"AcquirerAuthCode = {this.AcquirerAuthCode ?? "null"}");
+            toStringOutput.Add($"OperationType = {this.OperationType ?? "null"}");
+            toStringOutput.Add($"Card = {(this.Card == null ? "null" : this.Card.ToString())}");
+            toStringOutput.Add($"AcquirerMessage = {this.AcquirerMessage ?? "null"}");
+            toStringOutput.Add($"AcquirerReturnCode = {this.AcquirerReturnCode ?? "null"}");
+            toStringOutput.Add($"Installments = {(this.Installments == null ? "null" : this.Installments.ToString())}");
 
             base.ToString(toStringOutput);
         }

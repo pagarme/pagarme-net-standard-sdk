@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
             string usageReportUrl = null,
             string groupedReportUrl = null)
         {
+
             if (url != null)
             {
                 this.Url = url;
@@ -64,7 +65,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.GroupedReportUrl = groupedReportUrl;
             }
-
         }
 
         /// <summary>
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetUsageReportResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUrl()
         {
@@ -140,7 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUsageReportUrl()
         {
@@ -148,7 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetGroupedReportUrl()
         {
@@ -185,29 +183,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetUsageReportResponse other &&                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
-                ((this.UsageReportUrl == null && other.UsageReportUrl == null) || (this.UsageReportUrl?.Equals(other.UsageReportUrl) == true)) &&
-                ((this.GroupedReportUrl == null && other.GroupedReportUrl == null) || (this.GroupedReportUrl?.Equals(other.GroupedReportUrl) == true));
+            return obj is GetUsageReportResponse other &&
+                (this.Url == null && other.Url == null ||
+                 this.Url?.Equals(other.Url) == true) &&
+                (this.UsageReportUrl == null && other.UsageReportUrl == null ||
+                 this.UsageReportUrl?.Equals(other.UsageReportUrl) == true) &&
+                (this.GroupedReportUrl == null && other.GroupedReportUrl == null ||
+                 this.GroupedReportUrl?.Equals(other.GroupedReportUrl) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url)}");
-            toStringOutput.Add($"this.UsageReportUrl = {(this.UsageReportUrl == null ? "null" : this.UsageReportUrl)}");
-            toStringOutput.Add($"this.GroupedReportUrl = {(this.GroupedReportUrl == null ? "null" : this.GroupedReportUrl)}");
+            toStringOutput.Add($"Url = {this.Url ?? "null"}");
+            toStringOutput.Add($"UsageReportUrl = {this.UsageReportUrl ?? "null"}");
+            toStringOutput.Add($"GroupedReportUrl = {this.GroupedReportUrl ?? "null"}");
         }
     }
 }

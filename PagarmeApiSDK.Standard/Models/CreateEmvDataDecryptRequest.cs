@@ -67,38 +67,34 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateEmvDataDecryptRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateEmvDataDecryptRequest other &&                ((this.Cipher == null && other.Cipher == null) || (this.Cipher?.Equals(other.Cipher) == true)) &&
-                ((this.Dukpt == null && other.Dukpt == null) || (this.Dukpt?.Equals(other.Dukpt) == true)) &&
-                ((this.Tags == null && other.Tags == null) || (this.Tags?.Equals(other.Tags) == true));
+            return obj is CreateEmvDataDecryptRequest other &&
+                (this.Cipher == null && other.Cipher == null ||
+                 this.Cipher?.Equals(other.Cipher) == true) &&
+                (this.Dukpt == null && other.Dukpt == null ||
+                 this.Dukpt?.Equals(other.Dukpt) == true) &&
+                (this.Tags == null && other.Tags == null ||
+                 this.Tags?.Equals(other.Tags) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Cipher = {(this.Cipher == null ? "null" : this.Cipher)}");
-            toStringOutput.Add($"this.Dukpt = {(this.Dukpt == null ? "null" : this.Dukpt.ToString())}");
-            toStringOutput.Add($"this.Tags = {(this.Tags == null ? "null" : $"[{string.Join(", ", this.Tags)} ]")}");
+            toStringOutput.Add($"Cipher = {this.Cipher ?? "null"}");
+            toStringOutput.Add($"Dukpt = {(this.Dukpt == null ? "null" : this.Dukpt.ToString())}");
+            toStringOutput.Add($"Tags = {(this.Tags == null ? "null" : $"[{string.Join(", ", this.Tags)} ]")}");
         }
     }
 }

@@ -85,42 +85,37 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateAutomaticAnticipationSettingsRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateAutomaticAnticipationSettingsRequest other &&                this.Enabled.Equals(other.Enabled) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                this.VolumePercentage.Equals(other.VolumePercentage) &&
-                this.Delay.Equals(other.Delay) &&
-                ((this.Days == null && other.Days == null) || (this.Days?.Equals(other.Days) == true));
+            return obj is CreateAutomaticAnticipationSettingsRequest other &&
+                (this.Enabled.Equals(other.Enabled)) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.VolumePercentage.Equals(other.VolumePercentage)) &&
+                (this.Delay.Equals(other.Delay)) &&
+                (this.Days == null && other.Days == null ||
+                 this.Days?.Equals(other.Days) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Enabled = {this.Enabled}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.VolumePercentage = {this.VolumePercentage}");
-            toStringOutput.Add($"this.Delay = {this.Delay}");
-            toStringOutput.Add($"this.Days = {(this.Days == null ? "null" : $"[{string.Join(", ", this.Days)} ]")}");
+            toStringOutput.Add($"Enabled = {this.Enabled}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"VolumePercentage = {this.VolumePercentage}");
+            toStringOutput.Add($"Delay = {this.Delay}");
+            toStringOutput.Add($"Days = {(this.Days == null ? "null" : $"[{string.Join(", ", this.Days)} ]")}");
         }
     }
 }

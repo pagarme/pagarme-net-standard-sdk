@@ -50,6 +50,7 @@ namespace PagarmeApiSDK.Standard.Models
             string url = null,
             string expirationDate = null)
         {
+
             if (base64 != null)
             {
                 this.Base64 = base64;
@@ -64,7 +65,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.ExpirationDate = expirationDate;
             }
-
         }
 
         /// <summary>
@@ -125,14 +125,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateKYCLinkResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBase64()
         {
@@ -140,7 +138,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUrl()
         {
@@ -148,7 +146,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpirationDate()
         {
@@ -185,29 +183,27 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateKYCLinkResponse other &&                ((this.Base64 == null && other.Base64 == null) || (this.Base64?.Equals(other.Base64) == true)) &&
-                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
-                ((this.ExpirationDate == null && other.ExpirationDate == null) || (this.ExpirationDate?.Equals(other.ExpirationDate) == true));
+            return obj is CreateKYCLinkResponse other &&
+                (this.Base64 == null && other.Base64 == null ||
+                 this.Base64?.Equals(other.Base64) == true) &&
+                (this.Url == null && other.Url == null ||
+                 this.Url?.Equals(other.Url) == true) &&
+                (this.ExpirationDate == null && other.ExpirationDate == null ||
+                 this.ExpirationDate?.Equals(other.ExpirationDate) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Base64 = {(this.Base64 == null ? "null" : this.Base64)}");
-            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url)}");
-            toStringOutput.Add($"this.ExpirationDate = {(this.ExpirationDate == null ? "null" : this.ExpirationDate)}");
+            toStringOutput.Add($"Base64 = {this.Base64 ?? "null"}");
+            toStringOutput.Add($"Url = {this.Url ?? "null"}");
+            toStringOutput.Add($"ExpirationDate = {this.ExpirationDate ?? "null"}");
         }
     }
 }

@@ -165,6 +165,7 @@ namespace PagarmeApiSDK.Standard.Models
                 fine,
                 maxDaysToPayPastDue)
         {
+
             if (url != null)
             {
                 this.Url = url;
@@ -249,7 +250,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.StatementDescriptor = statementDescriptor;
             }
-
         }
 
         /// <summary>
@@ -565,14 +565,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"GetBoletoTransactionResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUrl()
         {
@@ -580,7 +578,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBarcode()
         {
@@ -588,7 +586,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetNossoNumero()
         {
@@ -596,7 +594,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBank()
         {
@@ -604,7 +602,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDocumentNumber()
         {
@@ -612,7 +610,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetInstructions()
         {
@@ -620,7 +618,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBillingAddress()
         {
@@ -628,7 +626,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetDueAt()
         {
@@ -636,7 +634,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetQrCode()
         {
@@ -644,7 +642,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetLine()
         {
@@ -652,7 +650,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPdfPassword()
         {
@@ -660,7 +658,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPdf()
         {
@@ -668,7 +666,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaidAt()
         {
@@ -676,7 +674,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPaidAmount()
         {
@@ -684,7 +682,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetType()
         {
@@ -692,7 +690,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCreditAt()
         {
@@ -700,7 +698,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStatementDescriptor()
         {
@@ -863,58 +861,70 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is GetBoletoTransactionResponse other &&                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
-                ((this.Barcode == null && other.Barcode == null) || (this.Barcode?.Equals(other.Barcode) == true)) &&
-                ((this.NossoNumero == null && other.NossoNumero == null) || (this.NossoNumero?.Equals(other.NossoNumero) == true)) &&
-                ((this.Bank == null && other.Bank == null) || (this.Bank?.Equals(other.Bank) == true)) &&
-                ((this.DocumentNumber == null && other.DocumentNumber == null) || (this.DocumentNumber?.Equals(other.DocumentNumber) == true)) &&
-                ((this.Instructions == null && other.Instructions == null) || (this.Instructions?.Equals(other.Instructions) == true)) &&
-                ((this.BillingAddress == null && other.BillingAddress == null) || (this.BillingAddress?.Equals(other.BillingAddress) == true)) &&
-                ((this.DueAt == null && other.DueAt == null) || (this.DueAt?.Equals(other.DueAt) == true)) &&
-                ((this.QrCode == null && other.QrCode == null) || (this.QrCode?.Equals(other.QrCode) == true)) &&
-                ((this.Line == null && other.Line == null) || (this.Line?.Equals(other.Line) == true)) &&
-                ((this.PdfPassword == null && other.PdfPassword == null) || (this.PdfPassword?.Equals(other.PdfPassword) == true)) &&
-                ((this.Pdf == null && other.Pdf == null) || (this.Pdf?.Equals(other.Pdf) == true)) &&
-                ((this.PaidAt == null && other.PaidAt == null) || (this.PaidAt?.Equals(other.PaidAt) == true)) &&
-                ((this.PaidAmount == null && other.PaidAmount == null) || (this.PaidAmount?.Equals(other.PaidAmount) == true)) &&
-                ((this.Type == null && other.Type == null) || (this.Type?.Equals(other.Type) == true)) &&
-                ((this.CreditAt == null && other.CreditAt == null) || (this.CreditAt?.Equals(other.CreditAt) == true)) &&
-                ((this.StatementDescriptor == null && other.StatementDescriptor == null) || (this.StatementDescriptor?.Equals(other.StatementDescriptor) == true)) &&
+            return obj is GetBoletoTransactionResponse other &&
+                (this.Url == null && other.Url == null ||
+                 this.Url?.Equals(other.Url) == true) &&
+                (this.Barcode == null && other.Barcode == null ||
+                 this.Barcode?.Equals(other.Barcode) == true) &&
+                (this.NossoNumero == null && other.NossoNumero == null ||
+                 this.NossoNumero?.Equals(other.NossoNumero) == true) &&
+                (this.Bank == null && other.Bank == null ||
+                 this.Bank?.Equals(other.Bank) == true) &&
+                (this.DocumentNumber == null && other.DocumentNumber == null ||
+                 this.DocumentNumber?.Equals(other.DocumentNumber) == true) &&
+                (this.Instructions == null && other.Instructions == null ||
+                 this.Instructions?.Equals(other.Instructions) == true) &&
+                (this.BillingAddress == null && other.BillingAddress == null ||
+                 this.BillingAddress?.Equals(other.BillingAddress) == true) &&
+                (this.DueAt == null && other.DueAt == null ||
+                 this.DueAt?.Equals(other.DueAt) == true) &&
+                (this.QrCode == null && other.QrCode == null ||
+                 this.QrCode?.Equals(other.QrCode) == true) &&
+                (this.Line == null && other.Line == null ||
+                 this.Line?.Equals(other.Line) == true) &&
+                (this.PdfPassword == null && other.PdfPassword == null ||
+                 this.PdfPassword?.Equals(other.PdfPassword) == true) &&
+                (this.Pdf == null && other.Pdf == null ||
+                 this.Pdf?.Equals(other.Pdf) == true) &&
+                (this.PaidAt == null && other.PaidAt == null ||
+                 this.PaidAt?.Equals(other.PaidAt) == true) &&
+                (this.PaidAmount == null && other.PaidAmount == null ||
+                 this.PaidAmount?.Equals(other.PaidAmount) == true) &&
+                (this.Type == null && other.Type == null ||
+                 this.Type?.Equals(other.Type) == true) &&
+                (this.CreditAt == null && other.CreditAt == null ||
+                 this.CreditAt?.Equals(other.CreditAt) == true) &&
+                (this.StatementDescriptor == null && other.StatementDescriptor == null ||
+                 this.StatementDescriptor?.Equals(other.StatementDescriptor) == true) &&
                 base.Equals(obj);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected new void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url)}");
-            toStringOutput.Add($"this.Barcode = {(this.Barcode == null ? "null" : this.Barcode)}");
-            toStringOutput.Add($"this.NossoNumero = {(this.NossoNumero == null ? "null" : this.NossoNumero)}");
-            toStringOutput.Add($"this.Bank = {(this.Bank == null ? "null" : this.Bank)}");
-            toStringOutput.Add($"this.DocumentNumber = {(this.DocumentNumber == null ? "null" : this.DocumentNumber)}");
-            toStringOutput.Add($"this.Instructions = {(this.Instructions == null ? "null" : this.Instructions)}");
-            toStringOutput.Add($"this.BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
-            toStringOutput.Add($"this.DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
-            toStringOutput.Add($"this.QrCode = {(this.QrCode == null ? "null" : this.QrCode)}");
-            toStringOutput.Add($"this.Line = {(this.Line == null ? "null" : this.Line)}");
-            toStringOutput.Add($"this.PdfPassword = {(this.PdfPassword == null ? "null" : this.PdfPassword)}");
-            toStringOutput.Add($"this.Pdf = {(this.Pdf == null ? "null" : this.Pdf)}");
-            toStringOutput.Add($"this.PaidAt = {(this.PaidAt == null ? "null" : this.PaidAt.ToString())}");
-            toStringOutput.Add($"this.PaidAmount = {(this.PaidAmount == null ? "null" : this.PaidAmount)}");
-            toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type)}");
-            toStringOutput.Add($"this.CreditAt = {(this.CreditAt == null ? "null" : this.CreditAt.ToString())}");
-            toStringOutput.Add($"this.StatementDescriptor = {(this.StatementDescriptor == null ? "null" : this.StatementDescriptor)}");
+            toStringOutput.Add($"Url = {this.Url ?? "null"}");
+            toStringOutput.Add($"Barcode = {this.Barcode ?? "null"}");
+            toStringOutput.Add($"NossoNumero = {this.NossoNumero ?? "null"}");
+            toStringOutput.Add($"Bank = {this.Bank ?? "null"}");
+            toStringOutput.Add($"DocumentNumber = {this.DocumentNumber ?? "null"}");
+            toStringOutput.Add($"Instructions = {this.Instructions ?? "null"}");
+            toStringOutput.Add($"BillingAddress = {(this.BillingAddress == null ? "null" : this.BillingAddress.ToString())}");
+            toStringOutput.Add($"DueAt = {(this.DueAt == null ? "null" : this.DueAt.ToString())}");
+            toStringOutput.Add($"QrCode = {this.QrCode ?? "null"}");
+            toStringOutput.Add($"Line = {this.Line ?? "null"}");
+            toStringOutput.Add($"PdfPassword = {this.PdfPassword ?? "null"}");
+            toStringOutput.Add($"Pdf = {this.Pdf ?? "null"}");
+            toStringOutput.Add($"PaidAt = {(this.PaidAt == null ? "null" : this.PaidAt.ToString())}");
+            toStringOutput.Add($"PaidAmount = {this.PaidAmount ?? "null"}");
+            toStringOutput.Add($"Type = {this.Type ?? "null"}");
+            toStringOutput.Add($"CreditAt = {(this.CreditAt == null ? "null" : this.CreditAt.ToString())}");
+            toStringOutput.Add($"StatementDescriptor = {this.StatementDescriptor ?? "null"}");
 
             base.ToString(toStringOutput);
         }

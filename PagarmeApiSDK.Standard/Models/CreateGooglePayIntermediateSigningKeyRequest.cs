@@ -46,6 +46,7 @@ namespace PagarmeApiSDK.Standard.Models
             string signedKey = null,
             List<string> signatures = null)
         {
+
             if (signedKey != null)
             {
                 this.SignedKey = signedKey;
@@ -55,7 +56,6 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.Signatures = signatures;
             }
-
         }
 
         /// <summary>
@@ -98,14 +98,12 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateGooglePayIntermediateSigningKeyRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSignedKey()
         {
@@ -113,7 +111,7 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetSignatures()
         {
@@ -141,27 +139,24 @@ namespace PagarmeApiSDK.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateGooglePayIntermediateSigningKeyRequest other &&                ((this.SignedKey == null && other.SignedKey == null) || (this.SignedKey?.Equals(other.SignedKey) == true)) &&
-                ((this.Signatures == null && other.Signatures == null) || (this.Signatures?.Equals(other.Signatures) == true));
+            return obj is CreateGooglePayIntermediateSigningKeyRequest other &&
+                (this.SignedKey == null && other.SignedKey == null ||
+                 this.SignedKey?.Equals(other.SignedKey) == true) &&
+                (this.Signatures == null && other.Signatures == null ||
+                 this.Signatures?.Equals(other.Signatures) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SignedKey = {(this.SignedKey == null ? "null" : this.SignedKey)}");
-            toStringOutput.Add($"this.Signatures = {(this.Signatures == null ? "null" : $"[{string.Join(", ", this.Signatures)} ]")}");
+            toStringOutput.Add($"SignedKey = {this.SignedKey ?? "null"}");
+            toStringOutput.Add($"Signatures = {(this.Signatures == null ? "null" : $"[{string.Join(", ", this.Signatures)} ]")}");
         }
     }
 }

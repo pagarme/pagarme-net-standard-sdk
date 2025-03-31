@@ -76,40 +76,36 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateTransfer : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateTransfer other &&                this.Amount.Equals(other.Amount) &&
-                ((this.SourceId == null && other.SourceId == null) || (this.SourceId?.Equals(other.SourceId) == true)) &&
-                ((this.TargetId == null && other.TargetId == null) || (this.TargetId?.Equals(other.TargetId) == true)) &&
-                ((this.Metadata == null && other.Metadata == null) || (this.Metadata?.Equals(other.Metadata) == true));
+            return obj is CreateTransfer other &&
+                (this.Amount.Equals(other.Amount)) &&
+                (this.SourceId == null && other.SourceId == null ||
+                 this.SourceId?.Equals(other.SourceId) == true) &&
+                (this.TargetId == null && other.TargetId == null ||
+                 this.TargetId?.Equals(other.TargetId) == true) &&
+                (this.Metadata == null && other.Metadata == null ||
+                 this.Metadata?.Equals(other.Metadata) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Amount = {this.Amount}");
-            toStringOutput.Add($"this.SourceId = {(this.SourceId == null ? "null" : this.SourceId)}");
-            toStringOutput.Add($"this.TargetId = {(this.TargetId == null ? "null" : this.TargetId)}");
-            toStringOutput.Add($"this.Metadata = {(this.Metadata == null ? "null" : $"[{string.Join(", ", this.Metadata)} ]")}");
+            toStringOutput.Add($"Amount = {this.Amount}");
+            toStringOutput.Add($"SourceId = {this.SourceId ?? "null"}");
+            toStringOutput.Add($"TargetId = {this.TargetId ?? "null"}");
+            toStringOutput.Add($"Metadata = {(this.Metadata == null ? "null" : $"[{string.Join(", ", this.Metadata)} ]")}");
         }
     }
 }

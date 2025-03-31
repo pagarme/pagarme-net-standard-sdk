@@ -85,42 +85,40 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCardPaymentContactlessPOIRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCardPaymentContactlessPOIRequest other &&                ((this.SystemName == null && other.SystemName == null) || (this.SystemName?.Equals(other.SystemName) == true)) &&
-                ((this.Model == null && other.Model == null) || (this.Model?.Equals(other.Model) == true)) &&
-                ((this.Provider == null && other.Provider == null) || (this.Provider?.Equals(other.Provider) == true)) &&
-                ((this.SerialNumber == null && other.SerialNumber == null) || (this.SerialNumber?.Equals(other.SerialNumber) == true)) &&
-                ((this.VersionNumber == null && other.VersionNumber == null) || (this.VersionNumber?.Equals(other.VersionNumber) == true));
+            return obj is CreateCardPaymentContactlessPOIRequest other &&
+                (this.SystemName == null && other.SystemName == null ||
+                 this.SystemName?.Equals(other.SystemName) == true) &&
+                (this.Model == null && other.Model == null ||
+                 this.Model?.Equals(other.Model) == true) &&
+                (this.Provider == null && other.Provider == null ||
+                 this.Provider?.Equals(other.Provider) == true) &&
+                (this.SerialNumber == null && other.SerialNumber == null ||
+                 this.SerialNumber?.Equals(other.SerialNumber) == true) &&
+                (this.VersionNumber == null && other.VersionNumber == null ||
+                 this.VersionNumber?.Equals(other.VersionNumber) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SystemName = {(this.SystemName == null ? "null" : this.SystemName)}");
-            toStringOutput.Add($"this.Model = {(this.Model == null ? "null" : this.Model)}");
-            toStringOutput.Add($"this.Provider = {(this.Provider == null ? "null" : this.Provider)}");
-            toStringOutput.Add($"this.SerialNumber = {(this.SerialNumber == null ? "null" : this.SerialNumber)}");
-            toStringOutput.Add($"this.VersionNumber = {(this.VersionNumber == null ? "null" : this.VersionNumber)}");
+            toStringOutput.Add($"SystemName = {this.SystemName ?? "null"}");
+            toStringOutput.Add($"Model = {this.Model ?? "null"}");
+            toStringOutput.Add($"Provider = {this.Provider ?? "null"}");
+            toStringOutput.Add($"SerialNumber = {this.SerialNumber ?? "null"}");
+            toStringOutput.Add($"VersionNumber = {this.VersionNumber ?? "null"}");
         }
     }
 }

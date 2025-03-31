@@ -58,36 +58,29 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"CreateCheckoutCardInstallmentOptionRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is CreateCheckoutCardInstallmentOptionRequest other &&                this.Number.Equals(other.Number) &&
-                this.Total.Equals(other.Total);
+            return obj is CreateCheckoutCardInstallmentOptionRequest other &&
+                (this.Number.Equals(other.Number)) &&
+                (this.Total.Equals(other.Total));
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Number = {this.Number}");
-            toStringOutput.Add($"this.Total = {this.Total}");
+            toStringOutput.Add($"Number = {this.Number}");
+            toStringOutput.Add($"Total = {this.Total}");
         }
     }
 }

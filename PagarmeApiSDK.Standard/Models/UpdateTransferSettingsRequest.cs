@@ -67,38 +67,34 @@ namespace PagarmeApiSDK.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"UpdateTransferSettingsRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is UpdateTransferSettingsRequest other &&                ((this.TransferEnabled == null && other.TransferEnabled == null) || (this.TransferEnabled?.Equals(other.TransferEnabled) == true)) &&
-                ((this.TransferInterval == null && other.TransferInterval == null) || (this.TransferInterval?.Equals(other.TransferInterval) == true)) &&
-                ((this.TransferDay == null && other.TransferDay == null) || (this.TransferDay?.Equals(other.TransferDay) == true));
+            return obj is UpdateTransferSettingsRequest other &&
+                (this.TransferEnabled == null && other.TransferEnabled == null ||
+                 this.TransferEnabled?.Equals(other.TransferEnabled) == true) &&
+                (this.TransferInterval == null && other.TransferInterval == null ||
+                 this.TransferInterval?.Equals(other.TransferInterval) == true) &&
+                (this.TransferDay == null && other.TransferDay == null ||
+                 this.TransferDay?.Equals(other.TransferDay) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.TransferEnabled = {(this.TransferEnabled == null ? "null" : this.TransferEnabled)}");
-            toStringOutput.Add($"this.TransferInterval = {(this.TransferInterval == null ? "null" : this.TransferInterval)}");
-            toStringOutput.Add($"this.TransferDay = {(this.TransferDay == null ? "null" : this.TransferDay)}");
+            toStringOutput.Add($"TransferEnabled = {this.TransferEnabled ?? "null"}");
+            toStringOutput.Add($"TransferInterval = {this.TransferInterval ?? "null"}");
+            toStringOutput.Add($"TransferDay = {this.TransferDay ?? "null"}");
         }
     }
 }

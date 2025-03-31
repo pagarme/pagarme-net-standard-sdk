@@ -55,7 +55,7 @@ Once the `TestConsoleProject` is created, a file named `Program.cs` will be visi
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -63,7 +63,7 @@ The following parameters are configurable for the API Client:
 |  --- | --- | --- |
 | `ServiceRefererName` | `string` |  |
 | `Timeout` | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
-| `BasicAuthCredentials` | [`BasicAuthCredentials`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| `BasicAuthCredentials` | [`BasicAuthCredentials`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
 
 The API client can be initialized as follows:
 
@@ -83,7 +83,7 @@ PagarmeApiSDKClient client = new PagarmeApiSDKClient.Builder()
 
 This API uses the following authentication schemes.
 
-* [`httpBasic (Basic Authentication)`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/auth/basic-authentication.md)
+* [`httpBasic (Basic Authentication)`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/auth/basic-authentication.md)
 
 ## API Errors
 
@@ -91,37 +91,36 @@ Here is the list of errors that the API might throw.
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/models/error-exception.md) |
-| 401 | Invalid API key | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/models/error-exception.md) |
-| 404 | An informed resource was not found | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/models/error-exception.md) |
-| 412 | Business validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/models/error-exception.md) |
-| 422 | Contract validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/models/error-exception.md) |
-| 500 | Internal server error | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/models/error-exception.md) |
+| 400 | Invalid request | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/models/error-exception.md) |
+| 401 | Invalid API key | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/models/error-exception.md) |
+| 404 | An informed resource was not found | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/models/error-exception.md) |
+| 412 | Business validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/models/error-exception.md) |
+| 422 | Contract validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/models/error-exception.md) |
+| 500 | Internal server error | [`ErrorException`](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/models/error-exception.md) |
 
 ## List of APIs
 
-* [Subscriptions](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/subscriptions.md)
-* [Orders](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/orders.md)
-* [Plans](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/plans.md)
-* [Invoices](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/invoices.md)
-* [Customers](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/customers.md)
-* [Charges](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/charges.md)
-* [Recipients](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/recipients.md)
-* [Tokens](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/tokens.md)
-* [Transactions](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/transactions.md)
-* [Transfers](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/transfers.md)
-* [Payables](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/payables.md)
-* [Balance Operations](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/controllers/balance-operations.md)
+* [Subscriptions](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/subscriptions.md)
+* [Orders](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/orders.md)
+* [Plans](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/plans.md)
+* [Invoices](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/invoices.md)
+* [Customers](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/customers.md)
+* [Charges](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/charges.md)
+* [Recipients](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/recipients.md)
+* [Tokens](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/tokens.md)
+* [Transactions](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/transactions.md)
+* [Transfers](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/transfers.md)
+* [Payables](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/payables.md)
+* [Balance Operations](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/controllers/balance-operations.md)
 
 ## Classes Documentation
 
-* [Utility Classes](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/utility-classes.md)
-* [HttpRequest](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/http-request.md)
-* [HttpResponse](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/http-response.md)
-* [HttpStringResponse](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/http-string-response.md)
-* [HttpContext](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/http-context.md)
-* [HttpClientConfiguration](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/http-client-configuration.md)
-* [HttpClientConfiguration Builder](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/http-client-configuration-builder.md)
-* [IAuthManager](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/i-auth-manager.md)
-* [ApiException](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.15/doc/api-exception.md)
+* [Utility Classes](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/utility-classes.md)
+* [HttpRequest](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/http-request.md)
+* [HttpResponse](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/http-response.md)
+* [HttpStringResponse](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/http-string-response.md)
+* [HttpContext](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/http-context.md)
+* [HttpClientConfiguration](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/http-client-configuration.md)
+* [HttpClientConfiguration Builder](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/http-client-configuration-builder.md)
+* [ApiException](https://www.github.com/pagarme/pagarme-net-standard-sdk/tree/6.8.16/doc/api-exception.md)
 
