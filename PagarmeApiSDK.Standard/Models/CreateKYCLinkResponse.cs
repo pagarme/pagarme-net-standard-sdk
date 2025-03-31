@@ -1,19 +1,8 @@
 // <copyright file="CreateKYCLinkResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using APIMatic.Core.Utilities.Converters;
-using JsonSubTypes;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using PagarmeApiSDK.Standard;
-using PagarmeApiSDK.Standard.Utilities;
 
 namespace PagarmeApiSDK.Standard.Models
 {
@@ -27,17 +16,15 @@ namespace PagarmeApiSDK.Standard.Models
         private string expirationDate;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
-            { "base64", false },
+            { "base64_qrcode", false },
             { "url", false },
-            { "expiration_date", false },
+            { "expires_at", false },
         };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateKYCLinkResponse"/> class.
         /// </summary>
-        public CreateKYCLinkResponse()
-        {
-        }
+        public CreateKYCLinkResponse() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateKYCLinkResponse"/> class.
@@ -48,7 +35,8 @@ namespace PagarmeApiSDK.Standard.Models
         public CreateKYCLinkResponse(
             string base64 = null,
             string url = null,
-            string expirationDate = null)
+            string expirationDate = null
+        )
         {
             if (base64 != null)
             {
@@ -64,23 +52,18 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 this.ExpirationDate = expirationDate;
             }
-
         }
 
         /// <summary>
         /// Base64
         /// </summary>
-        [JsonProperty("base64")]
+        [JsonProperty("base64_qrcode")]
         public string Base64
         {
-            get
-            {
-                return this.base64;
-            }
-
+            get { return this.base64; }
             set
             {
-                this.shouldSerialize["base64"] = true;
+                this.shouldSerialize["base64_qrcode"] = true;
                 this.base64 = value;
             }
         }
@@ -91,11 +74,7 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("url")]
         public string Url
         {
-            get
-            {
-                return this.url;
-            }
-
+            get { return this.url; }
             set
             {
                 this.shouldSerialize["url"] = true;
@@ -106,17 +85,13 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Expiration Date
         /// </summary>
-        [JsonProperty("expiration_date")]
+        [JsonProperty("expires_at")]
         public string ExpirationDate
         {
-            get
-            {
-                return this.expirationDate;
-            }
-
+            get { return this.expirationDate; }
             set
             {
-                this.shouldSerialize["expiration_date"] = true;
+                this.shouldSerialize["expires_at"] = true;
                 this.expirationDate = value;
             }
         }
@@ -132,15 +107,15 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetBase64()
         {
-            this.shouldSerialize["base64"] = false;
+            this.shouldSerialize["base64_qrcode"] = false;
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUrl()
         {
@@ -148,11 +123,11 @@ namespace PagarmeApiSDK.Standard.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetExpirationDate()
         {
-            this.shouldSerialize["expiration_date"] = false;
+            this.shouldSerialize["expires_at"] = false;
         }
 
         /// <summary>
@@ -161,7 +136,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeBase64()
         {
-            return this.shouldSerialize["base64"];
+            return this.shouldSerialize["base64_qrcode"];
         }
 
         /// <summary>
@@ -179,7 +154,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeExpirationDate()
         {
-            return this.shouldSerialize["expiration_date"];
+            return this.shouldSerialize["expires_at"];
         }
 
         /// <inheritdoc/>
@@ -194,11 +169,20 @@ namespace PagarmeApiSDK.Standard.Models
             {
                 return true;
             }
-            return obj is CreateKYCLinkResponse other &&                ((this.Base64 == null && other.Base64 == null) || (this.Base64?.Equals(other.Base64) == true)) &&
-                ((this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)) &&
-                ((this.ExpirationDate == null && other.ExpirationDate == null) || (this.ExpirationDate?.Equals(other.ExpirationDate) == true));
+            return obj is CreateKYCLinkResponse other
+                && (
+                    (this.Base64 == null && other.Base64 == null)
+                    || (this.Base64?.Equals(other.Base64) == true)
+                )
+                && (
+                    (this.Url == null && other.Url == null) || (this.Url?.Equals(other.Url) == true)
+                )
+                && (
+                    (this.ExpirationDate == null && other.ExpirationDate == null)
+                    || (this.ExpirationDate?.Equals(other.ExpirationDate) == true)
+                );
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
@@ -207,7 +191,9 @@ namespace PagarmeApiSDK.Standard.Models
         {
             toStringOutput.Add($"this.Base64 = {(this.Base64 == null ? "null" : this.Base64)}");
             toStringOutput.Add($"this.Url = {(this.Url == null ? "null" : this.Url)}");
-            toStringOutput.Add($"this.ExpirationDate = {(this.ExpirationDate == null ? "null" : this.ExpirationDate)}");
+            toStringOutput.Add(
+                $"this.ExpirationDate = {(this.ExpirationDate == null ? "null" : this.ExpirationDate)}"
+            );
         }
     }
 }
