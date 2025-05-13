@@ -41,6 +41,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="phone">phone.</param>
         /// <param name="address">address.</param>
         /// <param name="legalName">legal_name.</param>
+        /// <param name="siteUrl">site_url.</param>
         public CreateSubMerchantRequest(
             string paymentFacilitatorCode,
             string code,
@@ -50,7 +51,8 @@ namespace PagarmeApiSDK.Standard.Models
             string type,
             Models.CreatePhoneRequest phone,
             Models.CreateAddressRequest address,
-            string legalName)
+            string legalName,
+            string siteUrl)
         {
             this.PaymentFacilitatorCode = paymentFacilitatorCode;
             this.Code = code;
@@ -61,6 +63,7 @@ namespace PagarmeApiSDK.Standard.Models
             this.Phone = phone;
             this.Address = address;
             this.LegalName = legalName;
+            this.SiteUrl = siteUrl;
         }
 
         /// <summary>
@@ -117,6 +120,12 @@ namespace PagarmeApiSDK.Standard.Models
         [JsonProperty("legal_name")]
         public string LegalName { get; set; }
 
+        /// <summary>
+        /// Site Url
+        /// </summary>
+        [JsonProperty("site_url")]
+        public string SiteUrl { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -149,7 +158,9 @@ namespace PagarmeApiSDK.Standard.Models
                 (this.Address == null && other.Address == null ||
                  this.Address?.Equals(other.Address) == true) &&
                 (this.LegalName == null && other.LegalName == null ||
-                 this.LegalName?.Equals(other.LegalName) == true);
+                 this.LegalName?.Equals(other.LegalName) == true) &&
+                (this.SiteUrl == null && other.SiteUrl == null ||
+                 this.SiteUrl?.Equals(other.SiteUrl) == true);
         }
 
         /// <summary>
@@ -167,6 +178,7 @@ namespace PagarmeApiSDK.Standard.Models
             toStringOutput.Add($"Phone = {(this.Phone == null ? "null" : this.Phone.ToString())}");
             toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
             toStringOutput.Add($"LegalName = {this.LegalName ?? "null"}");
+            toStringOutput.Add($"SiteUrl = {this.SiteUrl ?? "null"}");
         }
     }
 }
