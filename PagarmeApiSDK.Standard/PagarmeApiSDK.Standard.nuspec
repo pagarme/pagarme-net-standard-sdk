@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>PagarmeApiSDK.Standard</id>
+    <version>6.8.17</version>
+    <title>PagarmeApiSDK.Standard</title>
+    <authors>APIMATIC SDK Generator</authors>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Pagarme API</description>
+    <summary />
+    <releaseNotes />
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+        <dependencies>
+        </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\PagarmeApiSDK.Standard.dll" target="lib\PagarmeApiSDK.Standard.dll" />
+  </files>
+</package>
