@@ -11,13 +11,13 @@ The settings for creating a credit card payment
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Installments` | `int?` | Optional | Number of installments<br>**Default**: `1` |
+| `Installments` | `int?` | Optional | Number of installments<br><br>**Default**: `1` |
 | `StatementDescriptor` | `string` | Optional | The text that will be shown on the credit card's statement |
 | `Card` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Optional | Credit card data |
 | `CardId` | `string` | Optional | The credit card id |
 | `CardToken` | `string` | Optional | - |
 | `Recurrence` | `bool?` | Optional | Indicates a recurrence |
-| `Capture` | `bool?` | Optional | Indicates if the operation should be only authorization or auth and capture.<br>**Default**: `true` |
+| `Capture` | `bool?` | Optional | Indicates if the operation should be only authorization or auth and capture.<br><br>**Default**: `true` |
 | `ExtendedLimitEnabled` | `bool?` | Optional | Indicates whether the extended label (private label) is enabled |
 | `ExtendedLimitCode` | `string` | Optional | Extended Limit Code |
 | `MerchantCategoryCode` | `long?` | Optional | Customer business segment code |

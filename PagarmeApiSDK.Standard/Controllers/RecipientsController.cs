@@ -69,75 +69,86 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Creates an anticipation.
+        /// GetWithdrawById EndPoint.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Anticipation data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
-        public Models.GetAnticipationResponse CreateAnticipation(
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public Models.GetWithdrawResponse GetWithdrawById(
                 string recipientId,
-                Models.CreateAnticipationRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateAnticipationAsync(recipientId, request, idempotencyKey));
+                string withdrawalId)
+            => CoreHelper.RunTask(GetWithdrawByIdAsync(recipientId, withdrawalId));
 
         /// <summary>
-        /// Creates an anticipation.
+        /// GetWithdrawById EndPoint.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Anticipation data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="recipientId">Required parameter: Example: .</param>
+        /// <param name="withdrawalId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
-        public async Task<Models.GetAnticipationResponse> CreateAnticipationAsync(
+        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
+        public async Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
                 string recipientId,
-                Models.CreateAnticipationRequest request,
-                string idempotencyKey = null,
+                string withdrawalId,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetAnticipationResponse>()
+            => await CreateApiCall<Models.GetWithdrawResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/anticipations")
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/withdrawals/{withdrawal_id}")
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
                       .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+                      .Template(_template => _template.Setup("withdrawal_id", withdrawalId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Gets the anticipation limits for a recipient.
+        /// Retrieves recipient information.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="timeframe">Required parameter: Timeframe.</param>
-        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
-        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
-        public Models.GetAnticipationLimitResponse GetAnticipationLimits(
-                string recipientId,
-                string timeframe,
-                DateTime paymentDate)
-            => CoreHelper.RunTask(GetAnticipationLimitsAsync(recipientId, timeframe, paymentDate));
+        /// <param name="recipientId">Required parameter: Recipiend id.</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse GetRecipient(
+                string recipientId)
+            => CoreHelper.RunTask(GetRecipientAsync(recipientId));
 
         /// <summary>
-        /// Gets the anticipation limits for a recipient.
+        /// Retrieves recipient information.
         /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="timeframe">Required parameter: Timeframe.</param>
-        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
+        /// <param name="recipientId">Required parameter: Recipiend id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
-        public async Task<Models.GetAnticipationLimitResponse> GetAnticipationLimitsAsync(
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> GetRecipientAsync(
                 string recipientId,
-                string timeframe,
-                DateTime paymentDate,
                 CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetAnticipationLimitResponse>()
+            => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/anticipation_limits")
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}")
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Query(_query => _query.Setup("timeframe", timeframe))
-                      .Query(_query => _query.Setup("payment_date", paymentDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Get balance information for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
+        public Models.GetBalanceResponse GetBalance(
+                string recipientId)
+            => CoreHelper.RunTask(GetBalanceAsync(recipientId));
+
+        /// <summary>
+        /// Get balance information for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
+        public async Task<Models.GetBalanceResponse> GetBalanceAsync(
+                string recipientId,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetBalanceResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/balance")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("recipient_id", recipientId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -172,37 +183,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// GetWithdrawById EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public Models.GetWithdrawResponse GetWithdrawById(
-                string recipientId,
-                string withdrawalId)
-            => CoreHelper.RunTask(GetWithdrawByIdAsync(recipientId, withdrawalId));
-
-        /// <summary>
-        /// GetWithdrawById EndPoint.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Example: .</param>
-        /// <param name="withdrawalId">Required parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetWithdrawResponse response from the API call.</returns>
-        public async Task<Models.GetWithdrawResponse> GetWithdrawByIdAsync(
-                string recipientId,
-                string withdrawalId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetWithdrawResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/withdrawals/{withdrawal_id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Template(_template => _template.Setup("withdrawal_id", withdrawalId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Updates the default bank account from a recipient.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -231,42 +211,6 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/default-bank-account")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse UpdateRecipientMetadata(
-                string recipientId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateRecipientMetadataAsync(recipientId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> UpdateRecipientMetadataAsync(
-                string recipientId,
-                Models.UpdateMetadataRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/metadata")
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
@@ -388,42 +332,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(UpdateAutomaticAnticipationSettingsAsync(recipientId, request, idempotencyKey));
-
-        /// <summary>
-        /// Updates recipient metadata.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="request">Required parameter: Metadata.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
-                string recipientId,
-                Models.UpdateAutomaticAnticipationSettingsRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/automatic-anticipation-settings")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Gets an anticipation.
         /// </summary>
         /// <param name="recipientId">Required parameter: Recipient id.</param>
@@ -483,6 +391,262 @@ namespace PagarmeApiSDK.Standard.Controllers
             => await CreateApiCall<Models.GetRecipientResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/transfer-settings")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Retrieves recipient information.
+        /// </summary>
+        /// <param name="code">Required parameter: Recipient code.</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse GetRecipientByCode(
+                string code)
+            => CoreHelper.RunTask(GetRecipientByCodeAsync(code));
+
+        /// <summary>
+        /// Retrieves recipient information.
+        /// </summary>
+        /// <param name="code">Required parameter: Recipient code.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> GetRecipientByCodeAsync(
+                string code,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/{code}")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("code", code))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse UpdateAutomaticAnticipationSettings(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateAutomaticAnticipationSettingsAsync(recipientId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> UpdateAutomaticAnticipationSettingsAsync(
+                string recipientId,
+                Models.UpdateAutomaticAnticipationSettingsRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/automatic-anticipation-settings")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Creates a transfer for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient Id.</param>
+        /// <param name="request">Required parameter: Transfer data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
+        public Models.GetTransferResponse CreateTransfer(
+                string recipientId,
+                Models.CreateTransferRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateTransferAsync(recipientId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a transfer for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient Id.</param>
+        /// <param name="request">Required parameter: Transfer data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
+        public async Task<Models.GetTransferResponse> CreateTransferAsync(
+                string recipientId,
+                Models.CreateTransferRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetTransferResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/transfers")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Creates a new recipient.
+        /// </summary>
+        /// <param name="request">Required parameter: Recipient data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse CreateRecipient(
+                Models.CreateRecipientRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateRecipientAsync(request, idempotencyKey));
+
+        /// <summary>
+        /// Creates a new recipient.
+        /// </summary>
+        /// <param name="request">Required parameter: Recipient data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> CreateRecipientAsync(
+                Models.CreateRecipientRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/recipients")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// GetDefaultRecipient EndPoint.
+        /// </summary>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse GetDefaultRecipient()
+            => CoreHelper.RunTask(GetDefaultRecipientAsync());
+
+        /// <summary>
+        /// GetDefaultRecipient EndPoint.
+        /// </summary>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> GetDefaultRecipientAsync(CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/default")
+                  .WithAuth("httpBasic"))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Creates an anticipation.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Anticipation data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
+        public Models.GetAnticipationResponse CreateAnticipation(
+                string recipientId,
+                Models.CreateAnticipationRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(CreateAnticipationAsync(recipientId, request, idempotencyKey));
+
+        /// <summary>
+        /// Creates an anticipation.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Anticipation data.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAnticipationResponse response from the API call.</returns>
+        public async Task<Models.GetAnticipationResponse> CreateAnticipationAsync(
+                string recipientId,
+                Models.CreateAnticipationRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetAnticipationResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/anticipations")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Body(_bodyParameter => _bodyParameter.Setup(request))
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Gets the anticipation limits for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="timeframe">Required parameter: Timeframe.</param>
+        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
+        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
+        public Models.GetAnticipationLimitResponse GetAnticipationLimits(
+                string recipientId,
+                string timeframe,
+                DateTime paymentDate)
+            => CoreHelper.RunTask(GetAnticipationLimitsAsync(recipientId, timeframe, paymentDate));
+
+        /// <summary>
+        /// Gets the anticipation limits for a recipient.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="timeframe">Required parameter: Timeframe.</param>
+        /// <param name="paymentDate">Required parameter: Anticipation payment date.</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetAnticipationLimitResponse response from the API call.</returns>
+        public async Task<Models.GetAnticipationLimitResponse> GetAnticipationLimitsAsync(
+                string recipientId,
+                string timeframe,
+                DateTime paymentDate,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetAnticipationLimitResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/anticipation_limits")
+                  .WithAuth("httpBasic")
+                  .Parameters(_parameters => _parameters
+                      .Template(_template => _template.Setup("recipient_id", recipientId))
+                      .Query(_query => _query.Setup("timeframe", timeframe))
+                      .Query(_query => _query.Setup("payment_date", paymentDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK")))))
+              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public Models.GetRecipientResponse UpdateRecipientMetadata(
+                string recipientId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null)
+            => CoreHelper.RunTask(UpdateRecipientMetadataAsync(recipientId, request, idempotencyKey));
+
+        /// <summary>
+        /// Updates recipient metadata.
+        /// </summary>
+        /// <param name="recipientId">Required parameter: Recipient id.</param>
+        /// <param name="request">Required parameter: Metadata.</param>
+        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
+        public async Task<Models.GetRecipientResponse> UpdateRecipientMetadataAsync(
+                string recipientId,
+                Models.UpdateMetadataRequest request,
+                string idempotencyKey = null,
+                CancellationToken cancellationToken = default)
+            => await CreateApiCall<Models.GetRecipientResponse>()
+              .RequestBuilder(_requestBuilder => _requestBuilder
+                  .Setup(new HttpMethod("PATCH"), "/recipients/{recipient_id}/metadata")
                   .WithAuth("httpBasic")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(request))
@@ -557,58 +721,6 @@ namespace PagarmeApiSDK.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipiend id.</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse GetRecipient(
-                string recipientId)
-            => CoreHelper.RunTask(GetRecipientAsync(recipientId));
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipiend id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> GetRecipientAsync(
-                string recipientId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Get balance information for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
-        public Models.GetBalanceResponse GetBalance(
-                string recipientId)
-            => CoreHelper.RunTask(GetBalanceAsync(recipientId));
-
-        /// <summary>
-        /// Get balance information for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient id.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetBalanceResponse response from the API call.</returns>
-        public async Task<Models.GetBalanceResponse> GetBalanceAsync(
-                string recipientId,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetBalanceResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{recipient_id}/balance")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("recipient_id", recipientId))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
         /// Gets a paginated list of transfers for the recipient.
         /// </summary>
         /// <param name="recipientId">Required parameter: Example: .</param>
@@ -657,118 +769,6 @@ namespace PagarmeApiSDK.Standard.Controllers
                       .Query(_query => _query.Setup("status", status))
                       .Query(_query => _query.Setup("created_since", createdSince.HasValue ? createdSince.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))
                       .Query(_query => _query.Setup("created_until", createdUntil.HasValue ? createdUntil.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK") : null))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Creates a transfer for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient Id.</param>
-        /// <param name="request">Required parameter: Transfer data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
-        public Models.GetTransferResponse CreateTransfer(
-                string recipientId,
-                Models.CreateTransferRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateTransferAsync(recipientId, request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a transfer for a recipient.
-        /// </summary>
-        /// <param name="recipientId">Required parameter: Recipient Id.</param>
-        /// <param name="request">Required parameter: Transfer data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetTransferResponse response from the API call.</returns>
-        public async Task<Models.GetTransferResponse> CreateTransferAsync(
-                string recipientId,
-                Models.CreateTransferRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetTransferResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/recipients/{recipient_id}/transfers")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Template(_template => _template.Setup("recipient_id", recipientId))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Creates a new recipient.
-        /// </summary>
-        /// <param name="request">Required parameter: Recipient data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse CreateRecipient(
-                Models.CreateRecipientRequest request,
-                string idempotencyKey = null)
-            => CoreHelper.RunTask(CreateRecipientAsync(request, idempotencyKey));
-
-        /// <summary>
-        /// Creates a new recipient.
-        /// </summary>
-        /// <param name="request">Required parameter: Recipient data.</param>
-        /// <param name="idempotencyKey">Optional parameter: Example: .</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> CreateRecipientAsync(
-                Models.CreateRecipientRequest request,
-                string idempotencyKey = null,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/recipients")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(request))
-                      .Header(_header => _header.Setup("idempotency-key", idempotencyKey))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="code">Required parameter: Recipient code.</param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse GetRecipientByCode(
-                string code)
-            => CoreHelper.RunTask(GetRecipientByCodeAsync(code));
-
-        /// <summary>
-        /// Retrieves recipient information.
-        /// </summary>
-        /// <param name="code">Required parameter: Recipient code.</param>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> GetRecipientByCodeAsync(
-                string code,
-                CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/{code}")
-                  .WithAuth("httpBasic")
-                  .Parameters(_parameters => _parameters
-                      .Template(_template => _template.Setup("code", code))))
-              .ExecuteAsync(cancellationToken).ConfigureAwait(false);
-
-        /// <summary>
-        /// GetDefaultRecipient EndPoint.
-        /// </summary>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public Models.GetRecipientResponse GetDefaultRecipient()
-            => CoreHelper.RunTask(GetDefaultRecipientAsync());
-
-        /// <summary>
-        /// GetDefaultRecipient EndPoint.
-        /// </summary>
-        /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the Models.GetRecipientResponse response from the API call.</returns>
-        public async Task<Models.GetRecipientResponse> GetDefaultRecipientAsync(CancellationToken cancellationToken = default)
-            => await CreateApiCall<Models.GetRecipientResponse>()
-              .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/recipients/default")
-                  .WithAuth("httpBasic"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>

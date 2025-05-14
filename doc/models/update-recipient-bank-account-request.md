@@ -12,7 +12,7 @@ Updates the default bank account for a recipient
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `BankAccount` | [`CreateBankAccountRequest`](../../doc/models/create-bank-account-request.md) | Required | Bank account |
-| `PaymentMode` | `string` | Required | Payment mode<br>**Default**: `"bank_transfer"` |
+| `PaymentMode` | `string` | Required | Payment mode<br><br>**Default**: `"bank_transfer"` |
 
 ## Example (as JSON)
 

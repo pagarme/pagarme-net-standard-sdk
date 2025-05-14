@@ -20,7 +20,7 @@ Card data
 | `Brand` | `string` | Optional | Card brand |
 | `BillingAddressId` | `string` | Optional | The address id for the billing address |
 | `Metadata` | `Dictionary<string, string>` | Optional | Metadata |
-| `Type` | `string` | Optional | Card type<br>**Default**: `"credit"` |
+| `Type` | `string` | Optional | Card type<br><br>**Default**: `"credit"` |
 | `Options` | [`CreateCardOptionsRequest`](../../doc/models/create-card-options-request.md) | Optional | Options for creating the card |
 | `HolderDocument` | `string` | Optional | Document number for the card's holder |
 | `PrivateLabel` | `bool?` | Optional | Indicates whether it is a private label card |
