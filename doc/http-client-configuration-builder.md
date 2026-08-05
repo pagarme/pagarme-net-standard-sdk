@@ -7,13 +7,14 @@ Class to build instances of HttpClientConfiguration.
 
 | Name | Description | Return Type |
 |  --- | --- | --- |
-| `Timeout(TimeSpan timeout)` | Http client timeout. | `Builder` |
-| `NumberOfRetries(int numberOfRetries)` | Number of times the request is retried. | `Builder` |
-| `BackoffFactor(int backoffFactor)` | Exponential backoff factor for duration between retry calls. | `Builder` |
-| `RetryInterval(double retryInterval)` | The time interval between the endpoint calls. | `Builder` |
-| `MaximumRetryWaitTime(TimeSpan maximumRetryWaitTime)` | The maximum retry wait time. | `Builder` |
-| `StatusCodesToRetry(IList<int> statusCodesToRetry)` | List of Http status codes to invoke retry. | `Builder` |
-| `RequestMethodsToRetry(IList<HttpMethod> requestMethodsToRetry)` | List of Http request methods to invoke retry. | `Builder` |
-| `HttpClientInstance(HttpClient httpClientInstance)` | HttpClient instance used to make the HTTP calls | `Builder` |
+| <code>Timeout(TimeSpan timeout)</code> | Http client timeout. | `Builder` |
+| <code>NumberOfRetries(int numberOfRetries)</code> | Number of times the request is retried. | `Builder` |
+| <code>BackoffFactor(int backoffFactor)</code> | Exponential backoff factor for duration between retry calls. | `Builder` |
+| <code>RetryInterval(double retryInterval)</code> | The time interval between the endpoint calls. | `Builder` |
+| <code>MaximumRetryWaitTime(TimeSpan maximumRetryWaitTime)</code> | The maximum retry wait time. | `Builder` |
+| <code>StatusCodesToRetry(IList<int> statusCodesToRetry)</code> | List of Http status codes to invoke retry. | `Builder` |
+| <code>RequestMethodsToRetry(IList<HttpMethod> requestMethodsToRetry)</code> | List of Http request methods to invoke retry. | `Builder` |
+| <code>ProxyConfiguration([ProxyConfigurationBuilder](../doc/proxy-configuration-builder.md) proxyConfiguration)</code> | Configures the proxy server settings used for outbound API calls. | `Builder` |
+| <code>HttpClientInstance(HttpClient httpClientInstance)</code> | HttpClient instance used to make the HTTP calls | `Builder` |
 | `Build()` | Builds a new HttpClientConfiguration object using the set fields. | [`HttpClientConfiguration`](../doc/http-client-configuration.md) |
 

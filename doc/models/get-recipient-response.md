@@ -30,16 +30,19 @@ Recipient response
 | `PaymentMode` | `string` | Optional | Payment mode<br><br>**Default**: `"bank_transfer"` |
 | `RegisterInformation` | [`GetRegisterInformationResponse`](../../doc/models/get-register-information-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetRecipientResponse getRecipientResponse = new GetRecipientResponse
 {
-  "payment_mode": "bank_transfer",
-  "id": "id4",
-  "name": "name4",
-  "email": "email2",
-  "document": "document2",
-  "description": "description6"
-}
+    Id = "id0",
+    Name = "name0",
+    Email = "email6",
+    Document = "document6",
+    Description = "description0",
+    PaymentMode = "bank_transfer",
+};
 ```
 

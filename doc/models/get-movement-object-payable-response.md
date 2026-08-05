@@ -29,29 +29,32 @@
 | `AccrualAt` | `string` | Required | - |
 | `LiquidationArrangementId` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetMovementObjectPayableResponse getMovementObjectPayableResponse = new GetMovementObjectPayableResponse
 {
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "fee": "fee2",
-  "anticipation_fee": "anticipation_fee2",
-  "fraud_coverage_fee": "fraud_coverage_fee8",
-  "installment": "installment8",
-  "split_id": "split_id2",
-  "bulk_anticipation_id": "bulk_anticipation_id6",
-  "anticipation_id": "anticipation_id0",
-  "recipient_id": "recipient_id0",
-  "originator_model": "originator_model6",
-  "originator_model_id": "originator_model_id6",
-  "payment_date": "payment_date2",
-  "original_payment_date": "original_payment_date2",
-  "payment_method": "payment_method0",
-  "accrual_at": "accrual_at2",
-  "liquidation_arrangement_id": "liquidation_arrangement_id4"
-}
+    AnticipationFee = "anticipation_fee4",
+    FraudCoverageFee = "fraud_coverage_fee2",
+    Installment = "installment2",
+    SplitId = "split_id6",
+    BulkAnticipationId = "bulk_anticipation_id0",
+    AnticipationId = "anticipation_id6",
+    RecipientId = "recipient_id6",
+    OriginatorModel = "originator_model0",
+    OriginatorModelId = "originator_model_id0",
+    PaymentDate = "payment_date6",
+    OriginalPaymentDate = "original_payment_date6",
+    PaymentMethod = "payment_method4",
+    AccrualAt = "accrual_at6",
+    LiquidationArrangementId = "liquidation_arrangement_id8",
+    Fee = "fee6",
+    Id = "id2",
+    Status = "status4",
+    Amount = "amount4",
+    CreatedAt = "created_at0",
+};
 ```
 

@@ -16,14 +16,17 @@ Response object for getting the setup from a subscription
 | `Amount` | `int?` | Optional | - |
 | `Status` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetSetupResponse getSetupResponse = new GetSetupResponse
 {
-  "id": "id6",
-  "description": "description4",
-  "amount": 152,
-  "status": "status2"
-}
+    Id = "id6",
+    Description = "description6",
+    Amount = 108,
+    Status = "status8",
+};
 ```
 

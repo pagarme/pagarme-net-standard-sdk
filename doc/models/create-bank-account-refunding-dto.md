@@ -21,19 +21,22 @@ Bank Account
 | `AccountCheckDigit` | `string` | Required | Dígito verificador da conta |
 | `Type` | `string` | Required | Tipo de conta |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateBankAccountRefundingDTO createBankAccountRefundingDTO = new CreateBankAccountRefundingDTO
 {
-  "holder_name": "holder_name2",
-  "holder_type": "holder_type8",
-  "holder_document": "holder_document0",
-  "bank": "bank4",
-  "branch_number": "branch_number2",
-  "branch_check_digit": "branch_check_digit2",
-  "account_number": "account_number6",
-  "account_check_digit": "account_check_digit2",
-  "type": "type4"
-}
+    HolderName = "holder_name4",
+    HolderType = "holder_type0",
+    HolderDocument = "holder_document8",
+    Bank = "bank6",
+    BranchNumber = "branch_number4",
+    BranchCheckDigit = "branch_check_digit4",
+    AccountNumber = "account_number2",
+    AccountCheckDigit = "account_check_digit4",
+    Type = "type2",
+};
 ```
 

@@ -15,13 +15,16 @@ Response object for getting an PhoneNumberResponse
 | `Number` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPhoneNumberResponse getPhoneNumberResponse = new GetPhoneNumberResponse
 {
-  "ddd": "ddd2",
-  "number": "number0",
-  "type": "type8"
-}
+    Ddd = "ddd4",
+    Number = "number8",
+    Type = "type0",
+};
 ```
 

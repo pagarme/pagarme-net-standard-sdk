@@ -22,15 +22,21 @@ Response object for getting a discount
 | `Subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `SubscriptionItem` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The subscription item |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetDiscountResponse getDiscountResponse = new GetDiscountResponse
 {
-  "id": "id4",
-  "value": 139.66,
-  "discount_type": "discount_type2",
-  "status": "status6",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+    Id = "id0",
+    MValue = 135.12,
+    DiscountType = "discount_type8",
+    Status = "status2",
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

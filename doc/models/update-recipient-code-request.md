@@ -13,11 +13,14 @@ Update code for a recipient
 |  --- | --- | --- | --- |
 | `Code` | `string` | Required | Code |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateRecipientCodeRequest updateRecipientCodeRequest = new UpdateRecipientCodeRequest
 {
-  "code": "code6"
-}
+    Code = "code8",
+};
 ```
 

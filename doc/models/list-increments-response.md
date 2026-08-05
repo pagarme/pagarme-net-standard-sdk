@@ -12,24 +12,22 @@
 | `Data` | [`List<GetIncrementResponse>`](../../doc/models/get-increment-response.md) | Optional | The Increments response |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListIncrementsResponse listIncrementsResponse = new ListIncrementsResponse
 {
-  "data": [
+    Data = new List<GetIncrementResponse>
     {
-      "id": "id0",
-      "value": 95.62,
-      "increment_type": "increment_type2",
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+        null,
+        new GetIncrementResponse
+        {
+        },
+    },
+    Paging = null,
+};
 ```
 

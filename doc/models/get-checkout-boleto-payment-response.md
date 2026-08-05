@@ -12,12 +12,18 @@
 | `DueAt` | `DateTime?` | Optional | Data de vencimento do boleto |
 | `Instructions` | `string` | Optional | Instruções do boleto |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetCheckoutBoletoPaymentResponse getCheckoutBoletoPaymentResponse = new GetCheckoutBoletoPaymentResponse
 {
-  "due_at": "2016-03-13T12:52:32.123Z",
-  "instructions": "instructions8"
-}
+    DueAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Instructions = "instructions6",
+};
 ```
 

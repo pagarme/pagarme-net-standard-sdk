@@ -13,13 +13,16 @@
 | `TransferInterval` | `string` | Required | - |
 | `TransferDay` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateTransferSettingsRequest updateTransferSettingsRequest = new UpdateTransferSettingsRequest
 {
-  "transfer_enabled": "transfer_enabled4",
-  "transfer_interval": "transfer_interval0",
-  "transfer_day": "transfer_day0"
-}
+    TransferEnabled = "transfer_enabled8",
+    TransferInterval = "transfer_interval2",
+    TransferDay = "transfer_day2",
+};
 ```
 

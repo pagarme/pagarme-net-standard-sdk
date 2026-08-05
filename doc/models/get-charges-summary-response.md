@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `Total` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetChargesSummaryResponse getChargesSummaryResponse = new GetChargesSummaryResponse
 {
-  "total": 150
-}
+    Total = 134,
+};
 ```
 

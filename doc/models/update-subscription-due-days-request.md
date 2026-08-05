@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `BoletoDueDays` | `int` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateSubscriptionDueDaysRequest updateSubscriptionDueDaysRequest = new UpdateSubscriptionDueDaysRequest
 {
-  "boleto_due_days": 56
-}
+    BoletoDueDays = 78,
+};
 ```
 

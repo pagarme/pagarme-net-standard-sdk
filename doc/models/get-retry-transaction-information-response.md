@@ -15,13 +15,19 @@ Response object for getting an RetryTransactionInformation
 | `TransactionLimit` | `int?` | Required | - |
 | `TransactionDateLimit` | `DateTime?` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetRetryTransactionInformationResponse getRetryTransactionInformationResponse = new GetRetryTransactionInformationResponse
 {
-  "brand_failure_return_code": "brand_failure_return_code2",
-  "transaction_limit": 44,
-  "transaction_date_limit": "2016-03-13T12:52:32.123Z"
-}
+    BrandFailureReturnCode = "brand_failure_return_code0",
+    TransactionLimit = 158,
+    TransactionDateLimit = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

@@ -13,13 +13,16 @@
 | `ChargeProcessingFee` | `bool?` | Optional | - |
 | `ChargeRemainderFee` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetSplitOptionsResponse getSplitOptionsResponse = new GetSplitOptionsResponse
 {
-  "liable": false,
-  "charge_processing_fee": false,
-  "charge_remainder_fee": "charge_remainder_fee6"
-}
+    Liable = false,
+    ChargeProcessingFee = false,
+    ChargeRemainderFee = "charge_remainder_fee6",
+};
 ```
 

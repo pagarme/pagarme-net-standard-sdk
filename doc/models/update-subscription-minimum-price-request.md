@@ -13,11 +13,14 @@ Atualização do valor mínimo da assinatura
 |  --- | --- | --- | --- |
 | `MinimumPrice` | `int?` | Optional | Valor mínimo da assinatura |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateSubscriptionMinimumPriceRequest updateSubscriptionMinimumPriceRequest = new UpdateSubscriptionMinimumPriceRequest
 {
-  "minimum_price": 212
-}
+    MinimumPrice = 134,
+};
 ```
 

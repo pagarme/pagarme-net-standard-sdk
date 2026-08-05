@@ -13,13 +13,16 @@
 | `TransferInterval` | `string` | Optional | - |
 | `TransferDay` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetTransferSettingsResponse getTransferSettingsResponse = new GetTransferSettingsResponse
 {
-  "transfer_enabled": false,
-  "transfer_interval": "transfer_interval0",
-  "transfer_day": 52
-}
+    TransferEnabled = false,
+    TransferInterval = "transfer_interval4",
+    TransferDay = 156,
+};
 ```
 

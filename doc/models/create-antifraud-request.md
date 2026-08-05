@@ -12,14 +12,15 @@
 | `Type` | `string` | Required | - |
 | `Clearsale` | [`CreateClearSaleRequest`](../../doc/models/create-clear-sale-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateAntifraudRequest createAntifraudRequest = new CreateAntifraudRequest
 {
-  "type": "type0",
-  "clearsale": {
-    "custom_sla": 178
-  }
-}
+    Type = "type0",
+    Clearsale = null,
+};
 ```
 

@@ -13,11 +13,14 @@ Request for updating a Subscription Affiliation Id
 |  --- | --- | --- | --- |
 | `GatewayAffiliationId` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateSubscriptionAffiliationIdRequest updateSubscriptionAffiliationIdRequest = new UpdateSubscriptionAffiliationIdRequest
 {
-  "gateway_affiliation_id": "gateway_affiliation_id8"
-}
+    GatewayAffiliationId = "gateway_affiliation_id6",
+};
 ```
 

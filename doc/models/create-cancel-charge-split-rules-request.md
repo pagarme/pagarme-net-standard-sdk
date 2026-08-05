@@ -15,13 +15,16 @@ Creates a refund with split rules
 | `Amount` | `int` | Required | The split rule amount |
 | `Type` | `string` | Required | The amount type (flat ou percentage) |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCancelChargeSplitRulesRequest createCancelChargeSplitRulesRequest = new CreateCancelChargeSplitRulesRequest
 {
-  "id": "id6",
-  "Amount": 222,
-  "type": "type6"
-}
+    Id = "id0",
+    Amount = 140,
+    Type = "type0",
+};
 ```
 

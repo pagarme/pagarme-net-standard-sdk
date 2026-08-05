@@ -13,11 +13,14 @@ Request for creating a new Access Token
 |  --- | --- | --- | --- |
 | `ExpiresIn` | `int?` | Optional | Minutes to expire the token |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateAccessTokenRequest createAccessTokenRequest = new CreateAccessTokenRequest
 {
-  "expires_in": 86
-}
+    ExpiresIn = 204,
+};
 ```
 

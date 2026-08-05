@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | Order status |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateOrderStatusRequest updateOrderStatusRequest = new UpdateOrderStatusRequest
 {
-  "status": "status6"
-}
+    Status = "status8",
+};
 ```
 

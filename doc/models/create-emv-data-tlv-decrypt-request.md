@@ -13,13 +13,16 @@
 | `Lenght` | `string` | Required | Emv lenght |
 | `MValue` | `string` | Required | Emv value |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateEmvDataTlvDecryptRequest createEmvDataTlvDecryptRequest = new CreateEmvDataTlvDecryptRequest
 {
-  "tag": "tag6",
-  "lenght": "lenght6",
-  "value": "value4"
-}
+    Tag = "tag8",
+    Lenght = "lenght4",
+    MValue = "value6",
+};
 ```
 

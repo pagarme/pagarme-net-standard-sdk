@@ -17,28 +17,27 @@ Request for creating a pricing scheme
 | `MinimumPrice` | `int?` | Optional | Minimum price |
 | `Percentage` | `double?` | Optional | percentual value used in pricing_scheme Percent |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreatePricingSchemeRequest createPricingSchemeRequest = new CreatePricingSchemeRequest
 {
-  "scheme_type": "scheme_type2",
-  "price_brackets": [
+    SchemeType = "scheme_type8",
+    PriceBrackets = new List<CreatePriceBracketRequest>
     {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
+        null,
+        new CreatePriceBracketRequest
+        {
+            StartQuantity = 0,
+            Price = 0,
+        },
     },
-    {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    }
-  ],
-  "price": 84,
-  "minimum_price": 12,
-  "percentage": 157.1
-}
+    Price = 124,
+    MinimumPrice = 28,
+    Percentage = 5.66,
+};
 ```
 

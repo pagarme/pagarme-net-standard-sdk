@@ -17,15 +17,18 @@ Request for creating an order item
 | `Category` | `string` | Required | Category |
 | `Code` | `string` | Optional | The item code passed by the client |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateOrderItemRequest createOrderItemRequest = new CreateOrderItemRequest
 {
-  "amount": 102,
-  "description": "description4",
-  "quantity": 216,
-  "category": "category4",
-  "code": "code4"
-}
+    Amount = 154,
+    Description = "description6",
+    Quantity = 12,
+    Category = "category4",
+    Code = "code4",
+};
 ```
 

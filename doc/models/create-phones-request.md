@@ -12,22 +12,15 @@
 | `HomePhone` | [`CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Optional | - |
 | `MobilePhone` | [`CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreatePhonesRequest createPhonesRequest = new CreatePhonesRequest
 {
-  "home_phone": {
-    "country_code": "country_code0",
-    "number": "number2",
-    "area_code": "area_code0",
-    "Type": "Type0"
-  },
-  "mobile_phone": {
-    "country_code": "country_code0",
-    "number": "number8",
-    "area_code": "area_code0",
-    "Type": "Type0"
-  }
-}
+    HomePhone = null,
+    MobilePhone = null,
+};
 ```
 

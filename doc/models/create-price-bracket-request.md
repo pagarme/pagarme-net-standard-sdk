@@ -16,14 +16,17 @@ Request for creating a price bracket
 | `EndQuantity` | `int?` | Optional | End quantity |
 | `OveragePrice` | `int?` | Optional | Overage price |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreatePriceBracketRequest createPriceBracketRequest = new CreatePriceBracketRequest
 {
-  "start_quantity": 154,
-  "price": 164,
-  "end_quantity": 162,
-  "overage_price": 176
-}
+    StartQuantity = 230,
+    Price = 88,
+    EndQuantity = 238,
+    OveragePrice = 252,
+};
 ```
 

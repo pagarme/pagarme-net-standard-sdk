@@ -15,13 +15,16 @@ Fine Request
 | `Type` | `string` | Required | Type |
 | `Amount` | `int` | Required | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateFineRequest createFineRequest = new CreateFineRequest
 {
-  "days": 218,
-  "type": "\"percentage\" or \"flat\"",
-  "amount": 220
-}
+    Days = 0,
+    Type = "\"percentage\" or \"flat\"",
+    Amount = 0,
+};
 ```
 

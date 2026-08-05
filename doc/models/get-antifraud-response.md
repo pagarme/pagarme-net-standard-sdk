@@ -15,15 +15,18 @@
 | `ProviderName` | `string` | Optional | - |
 | `Score` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetAntifraudResponse getAntifraudResponse = new GetAntifraudResponse
 {
-  "status": "status0",
-  "return_code": "return_code8",
-  "return_message": "return_message6",
-  "provider_name": "provider_name6",
-  "score": "score8"
-}
+    Status = "status0",
+    ReturnCode = "return_code8",
+    ReturnMessage = "return_message4",
+    ProviderName = "provider_name4",
+    Score = "score8",
+};
 ```
 

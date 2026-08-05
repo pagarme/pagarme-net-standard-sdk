@@ -14,38 +14,25 @@ Response object for listing order objects
 | `Data` | [`List<GetOrderResponse>`](../../doc/models/get-order-response.md) | Optional | The order object |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListOrderResponse listOrderResponse = new ListOrderResponse
 {
-  "data": [
+    Data = new List<GetOrderResponse>
     {
-      "id": "id0",
-      "code": "code8",
-      "amount": 236,
-      "currency": "currency0",
-      "closed": false
+        null,
+        new GetOrderResponse
+        {
+        },
+        new GetOrderResponse
+        {
+        },
     },
-    {
-      "id": "id0",
-      "code": "code8",
-      "amount": 236,
-      "currency": "currency0",
-      "closed": false
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "amount": 236,
-      "currency": "currency0",
-      "closed": false
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

@@ -15,13 +15,16 @@ KYC Link
 | `Url` | `string` | Optional | URL |
 | `ExpirationDate` | `string` | Optional | Expiration Date |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateKYCLinkResponse createKYCLinkResponse = new CreateKYCLinkResponse
 {
-  "base64": "base644",
-  "url": "url0",
-  "expiration_date": "expiration_date0"
-}
+    Base64 = "base648",
+    Url = "url4",
+    ExpirationDate = "expiration_date4",
+};
 ```
 

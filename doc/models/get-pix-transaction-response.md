@@ -23,29 +23,35 @@ Response object when getting a pix transaction
 | `Payer` | [`GetPixPayerResponse`](../../doc/models/get-pix-payer-response.md) | Optional | - |
 | `PixProviderTid` | `string` | Optional | Pix provider TID |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+using System.Globalization;
+
+GetPixTransactionResponse getPixTransactionResponse = new GetPixTransactionResponse
 {
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "qr_code": "qr_code0",
-  "qr_code_url": "qr_code_url6",
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "additional_information": [
+    QrCode = "qr_code6",
+    QrCodeUrl = "qr_code_url2",
+    ExpiresAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    AdditionalInformation = new List<PixAdditionalInformation>
     {
-      "Name": "Name0",
-      "Value": "Value2"
+        null,
+        new PixAdditionalInformation
+        {
+        },
     },
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    }
-  ],
-  "end_to_end_id": "end_to_end_id6"
-}
+    EndToEndId = "end_to_end_id0",
+    GatewayId = "gateway_id8",
+    Amount = 40,
+    Status = "status6",
+    Success = false,
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

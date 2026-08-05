@@ -12,12 +12,15 @@
 | `TargetId` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetTransferTargetResponse getTransferTargetResponse = new GetTransferTargetResponse
 {
-  "target_id": "target_id0",
-  "type": "type0"
-}
+    TargetId = "target_id4",
+    Type = "type6",
+};
 ```
 

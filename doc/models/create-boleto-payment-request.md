@@ -24,39 +24,26 @@ Contains the settings for creating a boleto payment
 | `Fine` | [`CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
 | `MaxDaysToPayPastDue` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+CreateBoletoPaymentRequest createBoletoPaymentRequest = new CreateBoletoPaymentRequest
 {
-  "retries": 14,
-  "bank": "bank8",
-  "instructions": "instructions8",
-  "due_at": "2016-03-13T12:52:32.123Z",
-  "billing_address": {
-    "street": "street8",
-    "number": "number4",
-    "zip_code": "zip_code2",
-    "neighborhood": "neighborhood4",
-    "city": "city2",
-    "state": "state6",
-    "country": "country2",
-    "complement": "complement6",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata6"
-    },
-    "line_1": "line_18",
-    "line_2": "line_26"
-  },
-  "billing_address_id": "billing_address_id6",
-  "nosso_numero": "nosso_numero0",
-  "document_number": "document_number4",
-  "statement_descriptor": "statement_descriptor0",
-  "interest": {
-    "days": 156,
-    "type": "type0",
-    "amount": 230
-  }
-}
+    Retries = 192,
+    Instructions = "instructions6",
+    BillingAddress = null,
+    DocumentNumber = "document_number2",
+    StatementDescriptor = "statement_descriptor8",
+    Bank = "bank6",
+    DueAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    BillingAddressId = "billing_address_id4",
+    NossoNumero = "nosso_numero8",
+    Interest = null,
+};
 ```
 

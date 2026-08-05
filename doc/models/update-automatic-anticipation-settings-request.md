@@ -15,15 +15,18 @@
 | `Delay` | `int?` | Optional | - |
 | `Days` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateAutomaticAnticipationSettingsRequest updateAutomaticAnticipationSettingsRequest = new UpdateAutomaticAnticipationSettingsRequest
 {
-  "enabled": false,
-  "type": "type8",
-  "volume_percentage": 132,
-  "delay": 158,
-  "days": 66
-}
+    Enabled = false,
+    Type = "type4",
+    VolumePercentage = 178,
+    Delay = 112,
+    Days = 20,
+};
 ```
 

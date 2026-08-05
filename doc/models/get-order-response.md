@@ -33,15 +33,18 @@ Response object for getting an Order
 | `Device` | [`GetDeviceResponse`](../../doc/models/get-device-response.md) | Optional | Device's informations |
 | `Integration` | [`GetIntegrationResponse`](../../doc/models/get-integration-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetOrderResponse getOrderResponse = new GetOrderResponse
 {
-  "id": "id6",
-  "code": "code4",
-  "amount": 64,
-  "currency": "currency6",
-  "closed": false
-}
+    Id = "id4",
+    Code = "code2",
+    Amount = 212,
+    Currency = "currency4",
+    Closed = false,
+};
 ```
 

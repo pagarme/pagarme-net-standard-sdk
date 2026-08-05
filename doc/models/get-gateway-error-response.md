@@ -13,11 +13,14 @@ Gateway Response
 |  --- | --- | --- | --- |
 | `Message` | `string` | Optional | The message error |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetGatewayErrorResponse getGatewayErrorResponse = new GetGatewayErrorResponse
 {
-  "message": "message4"
-}
+    Message = "message2",
+};
 ```
 

@@ -14,38 +14,19 @@ Response object for listing plans
 | `Data` | [`List<GetPlanResponse>`](../../doc/models/get-plan-response.md) | Optional | The plan objects |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListPlansResponse listPlansResponse = new ListPlansResponse
 {
-  "data": [
+    Data = new List<GetPlanResponse>
     {
-      "id": "id0",
-      "name": "name0",
-      "description": "description0",
-      "url": "url4",
-      "statement_descriptor": "statement_descriptor0"
+        null,
     },
-    {
-      "id": "id0",
-      "name": "name0",
-      "description": "description0",
-      "url": "url4",
-      "statement_descriptor": "statement_descriptor0"
-    },
-    {
-      "id": "id0",
-      "name": "name0",
-      "description": "description0",
-      "url": "url4",
-      "statement_descriptor": "statement_descriptor0"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

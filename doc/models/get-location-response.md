@@ -14,12 +14,15 @@ Response object for geetting an order location request
 | `Latitude` | `string` | Optional | Latitude |
 | `Longitude` | `string` | Optional | Longitude |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetLocationResponse getLocationResponse = new GetLocationResponse
 {
-  "latitude": "latitude6",
-  "longitude": "longitude4"
-}
+    Latitude = "latitude2",
+    Longitude = "longitude8",
+};
 ```
 

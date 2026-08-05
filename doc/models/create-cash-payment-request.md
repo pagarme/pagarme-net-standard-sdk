@@ -12,12 +12,15 @@
 | `Description` | `string` | Required | Description |
 | `Confirm` | `bool` | Required | Indicates whether cash collection will be confirmed in the act of creation |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCashPaymentRequest createCashPaymentRequest = new CreateCashPaymentRequest
 {
-  "description": "description8",
-  "confirm": false
-}
+    Description = "description4",
+    Confirm = false,
+};
 ```
 

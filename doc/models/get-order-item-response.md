@@ -22,15 +22,18 @@ Response object for getting an order item
 | `CreatedAt` | `DateTime?` | Optional | - |
 | `UpdatedAt` | `DateTime?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetOrderItemResponse getOrderItemResponse = new GetOrderItemResponse
 {
-  "id": "id8",
-  "type": "type8",
-  "description": "description8",
-  "amount": 224,
-  "quantity": 82
-}
+    Id = "id4",
+    Type = "type6",
+    Description = "description6",
+    Amount = 212,
+    Quantity = 70,
+};
 ```
 

@@ -13,13 +13,16 @@
 | `UsageReportUrl` | `string` | Optional | - |
 | `GroupedReportUrl` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetUsageReportResponse getUsageReportResponse = new GetUsageReportResponse
 {
-  "url": "url2",
-  "usage_report_url": "usage_report_url0",
-  "grouped_report_url": "grouped_report_url0"
-}
+    Url = "url2",
+    UsageReportUrl = "usage_report_url0",
+    GroupedReportUrl = "grouped_report_url0",
+};
 ```
 

@@ -12,12 +12,15 @@
 | `Number` | `long?` | Required | Número de parcelas |
 | `Total` | `int?` | Required | Valor total da compra |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetCheckoutCardInstallmentOptionsResponse getCheckoutCardInstallmentOptionsResponse = new GetCheckoutCardInstallmentOptionsResponse
 {
-  "number": 40,
-  "total": 188
-}
+    Number = 40L,
+    Total = 188,
+};
 ```
 

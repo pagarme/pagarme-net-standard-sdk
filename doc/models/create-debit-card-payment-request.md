@@ -22,21 +22,18 @@ The settings for creating a debit card payment
 | `RecurrenceModel` | `string` | Optional | - |
 | `PaymentOrigin` | [`CreatePaymentOriginRequest`](../../doc/models/create-payment-origin-request.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateDebitCardPaymentRequest createDebitCardPaymentRequest = new CreateDebitCardPaymentRequest
 {
-  "statement_descriptor": "statement_descriptor8",
-  "card": {
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "card_id": "card_id4",
-  "card_token": "card_token2",
-  "recurrence": false
-}
+    StatementDescriptor = "statement_descriptor0",
+    Card = null,
+    CardId = "card_id6",
+    CardToken = "card_token0",
+    Recurrence = false,
+};
 ```
 

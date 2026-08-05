@@ -17,15 +17,18 @@ Request for creating a new increment
 | `Cycles` | `int?` | Optional | Number of cycles that the increment will be applied |
 | `Description` | `string` | Optional | Description |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateIncrementRequest createIncrementRequest = new CreateIncrementRequest
 {
-  "value": 72.04,
-  "increment_type": "increment_type4",
-  "item_id": "item_id8",
-  "cycles": 196,
-  "description": "description8"
-}
+    MValue = 84.78,
+    IncrementType = "increment_type8",
+    ItemId = "item_id4",
+    Cycles = 202,
+    Description = "description4",
+};
 ```
 

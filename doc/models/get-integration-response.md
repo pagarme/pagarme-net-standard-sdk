@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `Code` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetIntegrationResponse getIntegrationResponse = new GetIntegrationResponse
 {
-  "code": "code2"
-}
+    Code = "code2",
+};
 ```
 

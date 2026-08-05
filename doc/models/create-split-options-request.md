@@ -15,13 +15,16 @@ The Split Options Request
 | `ChargeProcessingFee` | `bool?` | Optional | Charge processing fee |
 | `ChargeRemainderFee` | `bool?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateSplitOptionsRequest createSplitOptionsRequest = new CreateSplitOptionsRequest
 {
-  "liable": false,
-  "charge_processing_fee": false,
-  "charge_remainder_fee": false
-}
+    Liable = false,
+    ChargeProcessingFee = false,
+    ChargeRemainderFee = false,
+};
 ```
 

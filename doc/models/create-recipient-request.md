@@ -23,37 +23,23 @@ Request for creating a recipient
 | `PaymentMode` | `string` | Required | Payment mode<br><br>**Default**: `"bank_transfer"` |
 | `RegisterInformation` | [`CreateRegisterInformationBaseRequest`](../../doc/models/create-register-information-base-request.md) | Optional | Register Information |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateRecipientRequest createRecipientRequest = new CreateRecipientRequest
 {
-  "default_bank_account": {
-    "holder_name": "holder_name4",
-    "holder_type": "holder_type0",
-    "holder_document": "holder_document2",
-    "bank": "bank6",
-    "branch_number": "branch_number4",
-    "branch_check_digit": "branch_check_digit4",
-    "account_number": "account_number8",
-    "account_check_digit": "account_check_digit4",
-    "type": "type2",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata4",
-      "key2": "metadata3"
-    },
-    "pix_key": "pix_key8"
-  },
-  "metadata": {
-    "key0": "metadata3"
-  },
-  "code": "code4",
-  "payment_mode": "bank_transfer",
-  "name": "name6",
-  "email": "email0",
-  "description": "description6",
-  "document": "document0",
-  "type": "type4"
-}
+    DefaultBankAccount = null,
+    Metadata = null,
+    Code = null,
+    PaymentMode = "bank_transfer",
+    Name = "name2",
+    Email = "email4",
+    Description = "description2",
+    Document = "document4",
+    Type = "type8",
+};
 ```
 

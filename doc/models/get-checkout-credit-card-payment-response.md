@@ -13,27 +13,30 @@
 | `Installments` | [`List<GetCheckoutCardInstallmentOptionsResponse>`](../../doc/models/get-checkout-card-installment-options-response.md) | Optional | Parcelas |
 | `Authentication` | [`GetPaymentAuthenticationResponse`](../../doc/models/get-payment-authentication-response.md) | Optional | Payment Authentication response |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetCheckoutCreditCardPaymentResponse getCheckoutCreditCardPaymentResponse = new GetCheckoutCreditCardPaymentResponse
 {
-  "statementDescriptor": "statementDescriptor8",
-  "installments": [
+    StatementDescriptor = "statementDescriptor2",
+    Installments = new List<GetCheckoutCardInstallmentOptionsResponse>
     {
-      "number": 164,
-      "total": 16
-    }
-  ],
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "eci": "eci2",
-      "cavv": "cavv8",
-      "transaction_Id": "transaction_Id2",
-      "success_url": "success_url4"
-    }
-  }
-}
+        null,
+        new GetCheckoutCardInstallmentOptionsResponse
+        {
+            Number = null,
+            Total = null,
+        },
+        new GetCheckoutCardInstallmentOptionsResponse
+        {
+            Number = null,
+            Total = null,
+        },
+    },
+    Authentication = null,
+};
 ```
 

@@ -17,15 +17,18 @@
 | `TransactionId` | `string` | Optional | Identificador da transação (XID) |
 | `SuccessUrl` | `string` | Optional | Url de redirecionamento de sucessso |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetThreeDSecureResponse getThreeDSecureResponse = new GetThreeDSecureResponse
 {
-  "mpi": "mpi2",
-  "eci": "eci4",
-  "cavv": "cavv0",
-  "transaction_Id": "transaction_Id0",
-  "success_url": "success_url6"
-}
+    Mpi = "mpi4",
+    Eci = "eci6",
+    Cavv = "cavv2",
+    TransactionId = "transaction_Id2",
+    SuccessUrl = "success_url8",
+};
 ```
 

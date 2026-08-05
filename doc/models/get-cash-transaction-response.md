@@ -17,16 +17,22 @@ Response object for getting a cash transaction
 |  --- | --- | --- | --- |
 | `Description` | `string` | Optional | Description |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetCashTransactionResponse getCashTransactionResponse = new GetCashTransactionResponse
 {
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "description": "description0"
-}
+    Description = "description6",
+    GatewayId = "gateway_id8",
+    Amount = 40,
+    Status = "status6",
+    Success = false,
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

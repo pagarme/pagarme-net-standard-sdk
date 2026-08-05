@@ -17,22 +17,22 @@ Response object for getting a pricing scheme
 | `MinimumPrice` | `int?` | Optional | - |
 | `Percentage` | `double?` | Optional | percentual value used in pricing_scheme Percent |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetPricingSchemeResponse getPricingSchemeResponse = new GetPricingSchemeResponse
 {
-  "price": 182,
-  "scheme_type": "scheme_type8",
-  "price_brackets": [
+    Price = 34,
+    SchemeType = "scheme_type2",
+    PriceBrackets = new List<GetPriceBracketResponse>
     {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    }
-  ],
-  "minimum_price": 170,
-  "percentage": 166.36
-}
+        null,
+    },
+    MinimumPrice = 130,
+    Percentage = 35.4,
+};
 ```
 

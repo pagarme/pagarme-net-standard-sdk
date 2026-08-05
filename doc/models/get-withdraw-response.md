@@ -23,15 +23,21 @@
 | `Source` | [`GetWithdrawSourceResponse`](../../doc/models/get-withdraw-source-response.md) | Optional | - |
 | `Target` | [`GetWithdrawTargetResponse`](../../doc/models/get-withdraw-target-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetWithdrawResponse getWithdrawResponse = new GetWithdrawResponse
 {
-  "id": "id6",
-  "gateway_id": "gateway_id4",
-  "amount": 78,
-  "status": "status8",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+    Id = "id0",
+    GatewayId = "gateway_id0",
+    Amount = 166,
+    Status = "status2",
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

@@ -20,24 +20,24 @@ Checkout Payment Settings Response
 | `DefaultPaymentMethod` | `string` | Optional | Default Payment Method |
 | `GatewayAffiliationId` | `string` | Optional | Gateway Affiliation Id |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetCheckoutPaymentSettingsResponse getCheckoutPaymentSettingsResponse = new GetCheckoutPaymentSettingsResponse
 {
-  "success_url": "success_url0",
-  "payment_url": "payment_url8",
-  "accepted_payment_methods": [
-    "accepted_payment_methods1",
-    "accepted_payment_methods2"
-  ],
-  "status": "status0",
-  "customer": {
-    "id": "id0",
-    "name": "name0",
-    "email": "email6",
-    "delinquent": false,
-    "created_at": "2016-03-13T12:52:32.123Z"
-  }
-}
+    SuccessUrl = "success_url8",
+    PaymentUrl = "payment_url0",
+    AcceptedPaymentMethods = new List<string>
+    {
+        "accepted_payment_methods9",
+        "accepted_payment_methods0",
+        "accepted_payment_methods1",
+    },
+    Status = "status8",
+    Customer = null,
+};
 ```
 

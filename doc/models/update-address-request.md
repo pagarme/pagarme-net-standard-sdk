@@ -16,17 +16,21 @@ Request for updating an address
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `Line2` | `string` | Required | Line 2 for address |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdateAddressRequest updateAddressRequest = new UpdateAddressRequest
 {
-  "number": "number6",
-  "complement": "complement8",
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata8"
-  },
-  "line_2": "line_24"
-}
+    Number = "number8",
+    Complement = "complement0",
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata9",
+    },
+    Line2 = "line_22",
+};
 ```
 

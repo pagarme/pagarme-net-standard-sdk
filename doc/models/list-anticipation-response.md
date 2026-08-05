@@ -14,30 +14,25 @@ Anticipations
 | `Data` | [`List<GetAnticipationResponse>`](../../doc/models/get-anticipation-response.md) | Optional | Anticipations |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListAnticipationResponse listAnticipationResponse = new ListAnticipationResponse
 {
-  "data": [
+    Data = new List<GetAnticipationResponse>
     {
-      "id": "id0",
-      "requested_amount": 16,
-      "approved_amount": 70,
-      "recipient": {
-        "id": "id8",
-        "name": "name8",
-        "email": "email8",
-        "document": "document8",
-        "description": "description2"
-      },
-      "pgid": "pgid6"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+        null,
+        new GetAnticipationResponse
+        {
+        },
+        new GetAnticipationResponse
+        {
+        },
+    },
+    Paging = null,
+};
 ```
 

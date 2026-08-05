@@ -18,29 +18,30 @@ Request for updating a plan item
 | `Quantity` | `int?` | Optional | Quantity |
 | `Cycles` | `int?` | Optional | Number of cycles that the item will be charged |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdatePlanItemRequest updatePlanItemRequest = new UpdatePlanItemRequest
 {
-  "name": "name6",
-  "description": "description6",
-  "status": "status8",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
-    ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "quantity": 200,
-  "cycles": 36
-}
+    Name = null,
+    Description = null,
+    Status = null,
+    PricingScheme = new UpdatePricingSchemeRequest
+    {
+        SchemeType = null,
+        PriceBrackets = new List<UpdatePriceBracketRequest>
+        {
+            null,
+        },
+        Price = 166,
+        MinimumPrice = 6,
+        Percentage = 251.76,
+    },
+    Quantity = 174,
+    Cycles = 194,
+};
 ```
 

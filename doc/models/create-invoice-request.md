@@ -13,13 +13,20 @@ Request for creating a new Invoice
 |  --- | --- | --- | --- |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateInvoiceRequest createInvoiceRequest = new CreateInvoiceRequest
 {
-  "metadata": {
-    "key0": "metadata9"
-  }
-}
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata9",
+        ["key1"] = "metadata8",
+        ["key2"] = "metadata7",
+    },
+};
 ```
 

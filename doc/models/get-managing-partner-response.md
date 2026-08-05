@@ -23,15 +23,18 @@ Response object for getting an ManagingPartnerResponse
 | `Address` | [`GetRegisterInformationAddressResponse`](../../doc/models/get-register-information-address-response.md) | Optional | - |
 | `PhoneNumbers` | [`List<GetPhoneNumberResponse>`](../../doc/models/get-phone-number-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetManagingPartnerResponse getManagingPartnerResponse = new GetManagingPartnerResponse
 {
-  "name": "name0",
-  "email": "email6",
-  "document": "document6",
-  "type": "type0",
-  "mother_name": "mother_name6"
-}
+    Name = "name8",
+    Email = "email8",
+    Document = "document2",
+    Type = "type8",
+    MotherName = "mother_name4",
+};
 ```
 

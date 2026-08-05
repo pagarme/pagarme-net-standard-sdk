@@ -14,43 +14,25 @@ Response object for listing subscription cycles
 | `Data` | [`List<GetPeriodResponse>`](../../doc/models/get-period-response.md) | Optional | The subscription cycles objects |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListCyclesResponse listCyclesResponse = new ListCyclesResponse
 {
-  "data": [
+    Data = new List<GetPeriodResponse>
     {
-      "start_at": "2016-03-13T12:52:32.123Z",
-      "end_at": "2016-03-13T12:52:32.123Z",
-      "id": "id0",
-      "billing_at": "2016-03-13T12:52:32.123Z",
-      "subscription": {
-        "id": "id4",
-        "code": "code2",
-        "start_at": "2016-03-13T12:52:32.123Z",
-        "interval": "interval2",
-        "interval_count": 234
-      }
+        null,
+        new GetPeriodResponse
+        {
+        },
+        new GetPeriodResponse
+        {
+        },
     },
-    {
-      "start_at": "2016-03-13T12:52:32.123Z",
-      "end_at": "2016-03-13T12:52:32.123Z",
-      "id": "id0",
-      "billing_at": "2016-03-13T12:52:32.123Z",
-      "subscription": {
-        "id": "id4",
-        "code": "code2",
-        "start_at": "2016-03-13T12:52:32.123Z",
-        "interval": "interval2",
-        "interval_count": 234
-      }
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 
