@@ -17,21 +17,21 @@ Response object for getting a access token
 | `CreatedAt` | `DateTime?` | Optional | - |
 | `Customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetAccessTokenResponse getAccessTokenResponse = new GetAccessTokenResponse
 {
-  "id": "id0",
-  "code": "code8",
-  "status": "status2",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "customer": {
-    "id": "id0",
-    "name": "name0",
-    "email": "email6",
-    "delinquent": false,
-    "created_at": "2016-03-13T12:52:32.123Z"
-  }
-}
+    Id = "id2",
+    Code = "code0",
+    Status = "status6",
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Customer = null,
+};
 ```
 

@@ -13,11 +13,17 @@ Request for updating the due date from a subscription
 |  --- | --- | --- | --- |
 | `NextBillingAt` | `DateTime` | Required | The date when the next subscription billing must occur |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+UpdateSubscriptionBillingDateRequest updateSubscriptionBillingDateRequest = new UpdateSubscriptionBillingDateRequest
 {
-  "next_billing_at": "2016-03-13T12:52:32.123Z"
-}
+    NextBillingAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

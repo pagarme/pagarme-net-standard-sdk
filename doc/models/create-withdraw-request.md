@@ -12,15 +12,20 @@
 | `Amount` | `int` | Required | - |
 | `Metadata` | `Dictionary<string, string>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateWithdrawRequest createWithdrawRequest = new CreateWithdrawRequest
 {
-  "amount": 204,
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata6"
-  }
-}
+    Amount = 46,
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata5",
+        ["key1"] = "metadata6",
+    },
+};
 ```
 

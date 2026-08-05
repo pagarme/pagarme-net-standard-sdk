@@ -13,13 +13,19 @@
 | `Instructions` | `string` | Required | Instructions |
 | `DueAt` | `DateTime` | Required | Due date |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+CreateCheckoutBoletoPaymentRequest createCheckoutBoletoPaymentRequest = new CreateCheckoutBoletoPaymentRequest
 {
-  "bank": "bank4",
-  "instructions": "instructions4",
-  "due_at": "2016-03-13T12:52:32.123Z"
-}
+    Bank = "bank6",
+    Instructions = "instructions6",
+    DueAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

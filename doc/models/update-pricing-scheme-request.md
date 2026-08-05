@@ -17,22 +17,22 @@ Request for updating a pricing scheme
 | `MinimumPrice` | `int?` | Optional | Minimum price |
 | `Percentage` | `double?` | Optional | percentual value used in pricing_scheme Percent |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdatePricingSchemeRequest updatePricingSchemeRequest = new UpdatePricingSchemeRequest
 {
-  "scheme_type": "scheme_type0",
-  "price_brackets": [
+    SchemeType = null,
+    PriceBrackets = new List<UpdatePriceBracketRequest>
     {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    }
-  ],
-  "price": 162,
-  "minimum_price": 2,
-  "percentage": 62.28
-}
+        null,
+    },
+    Price = 180,
+    MinimumPrice = 84,
+    Percentage = 238.06,
+};
 ```
 

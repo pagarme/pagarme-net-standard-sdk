@@ -14,12 +14,15 @@ Request object for PaymentOrigin
 | `BrandId` | `string` | Optional | - |
 | `ChargeId` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreatePaymentOriginRequest createPaymentOriginRequest = new CreatePaymentOriginRequest
 {
-  "brand_id": "brand_id0",
-  "charge_id": "charge_id4"
-}
+    BrandId = "brand_id8",
+    ChargeId = "charge_id2",
+};
 ```
 

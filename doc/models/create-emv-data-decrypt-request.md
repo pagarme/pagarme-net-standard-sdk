@@ -13,21 +13,20 @@
 | `Dukpt` | [`CreateEmvDataDukptDecryptRequest`](../../doc/models/create-emv-data-dukpt-decrypt-request.md) | Optional | Dukpt data request |
 | `Tags` | [`List<CreateEmvDataTlvDecryptRequest>`](../../doc/models/create-emv-data-tlv-decrypt-request.md) | Required | Encrypted tags list |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateEmvDataDecryptRequest createEmvDataDecryptRequest = new CreateEmvDataDecryptRequest
 {
-  "cipher": "cipher2",
-  "tags": [
+    Cipher = null,
+    Tags = new List<CreateEmvDataTlvDecryptRequest>
     {
-      "tag": "tag4",
-      "lenght": "lenght2",
-      "value": "value2"
-    }
-  ],
-  "dukpt": {
-    "ksn": "ksn0"
-  }
-}
+        null,
+    },
+    Dukpt = null,
+};
 ```
 

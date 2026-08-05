@@ -13,11 +13,17 @@ Request for updating the start date from a subscription
 |  --- | --- | --- | --- |
 | `StartAt` | `DateTime` | Required | The date when the subscription periods will start |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+UpdateSubscriptionStartAtRequest updateSubscriptionStartAtRequest = new UpdateSubscriptionStartAtRequest
 {
-  "start_at": "2016-03-13T12:52:32.123Z"
-}
+    StartAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

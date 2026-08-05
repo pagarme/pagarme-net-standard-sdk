@@ -13,14 +13,19 @@ Bank transfer checkout response
 |  --- | --- | --- | --- |
 | `Bank` | `List<string>` | Optional | bank list response |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetCheckoutBankTransferPaymentResponse getCheckoutBankTransferPaymentResponse = new GetCheckoutBankTransferPaymentResponse
 {
-  "bank": [
-    "bank3",
-    "bank4"
-  ]
-}
+    Bank = new List<string>
+    {
+        "bank3",
+        "bank4",
+    },
+};
 ```
 

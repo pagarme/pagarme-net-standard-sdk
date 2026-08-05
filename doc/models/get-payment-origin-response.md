@@ -12,12 +12,15 @@
 | `ChargeId` | `string` | Optional | - |
 | `BrandId` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPaymentOriginResponse getPaymentOriginResponse = new GetPaymentOriginResponse
 {
-  "charge_id": "charge_id8",
-  "brand_id": "brand_id4"
-}
+    ChargeId = "charge_id4",
+    BrandId = "brand_id0",
+};
 ```
 

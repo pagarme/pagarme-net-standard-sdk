@@ -23,15 +23,23 @@ Response object for getting a usage
 | `Group` | `string` | Optional | Identification group in the client system |
 | `Amount` | `int?` | Optional | Field used in item scheme type 'Percent' |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetUsageResponse getUsageResponse = new GetUsageResponse
 {
-  "id": "id2",
-  "quantity": 34,
-  "description": "description2",
-  "used_at": "2016-03-13T12:52:32.123Z",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+    Id = "id6",
+    Quantity = 226,
+    Description = "description6",
+    UsedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

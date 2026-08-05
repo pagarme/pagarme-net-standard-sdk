@@ -19,16 +19,19 @@ Creates a 3D-S authentication payment
 | `DsTransactionId` | `string` | Optional | Directory Service Transaction Identifier |
 | `Version` | `string` | Optional | ThreeDSecure Version |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateThreeDSecureRequest createThreeDSecureRequest = new CreateThreeDSecureRequest
 {
-  "mpi": "mpi4",
-  "cavv": "cavv2",
-  "eci": "eci6",
-  "transaction_id": "transaction_id4",
-  "success_url": "success_url8",
-  "ds_transaction_id": "ds_transaction_id4"
-}
+    Mpi = "mpi2",
+    Cavv = "cavv0",
+    Eci = "eci4",
+    TransactionId = "transaction_id2",
+    SuccessUrl = "success_url6",
+    DsTransactionId = "ds_transaction_id2",
+};
 ```
 

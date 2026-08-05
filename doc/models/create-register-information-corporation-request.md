@@ -22,66 +22,48 @@
 | `ManagingPartners` | [`List<CreateManagingPartnerRequest>`](../../doc/models/create-managing-partner-request.md) | Required | - |
 | `MainAddress` | [`CreateRegisterInformationAddressRequest`](../../doc/models/create-register-information-address-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateRegisterInformationCorporationRequest createRegisterInformationCorporationRequest = new CreateRegisterInformationCorporationRequest
 {
-  "email": "email4",
-  "document": "document6",
-  "type": "type8",
-  "phone_numbers": [
+    Email = null,
+    Document = null,
+    Type = null,
+    PhoneNumbers = new List<CreateRegisterInformationPhoneRequest>
     {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ],
-  "company_name": "company_name8",
-  "trading_name": "trading_name0",
-  "annual_revenue": 156,
-  "managing_partners": [
+        null,
+    },
+    CompanyName = null,
+    TradingName = null,
+    AnnualRevenue = 0L,
+    ManagingPartners = new List<CreateManagingPartnerRequest>
     {
-      "name": "name4",
-      "email": "email2",
-      "document": "document8",
-      "birthdate": "birthdate8",
-      "monthly_income": 202,
-      "professional_occupation": "professional_occupation8",
-      "self_declared_legal_representative": false,
-      "address": {
-        "street": "street6",
-        "complementary": "complementary8",
-        "street_number": "street_number6",
-        "neighborhood": "neighborhood2",
-        "city": "city6",
-        "state": "state2",
-        "zip_code": "zip_code0",
-        "reference_point": "reference_point0"
-      },
-      "phone_numbers": [
+        new CreateManagingPartnerRequest
         {
-          "ddd": "ddd4",
-          "number": "number2",
-          "type": "type0"
-        }
-      ],
-      "mother_name": "mother_name0"
-    }
-  ],
-  "main_address": {
-    "street": "street8",
-    "complementary": "complementary0",
-    "street_number": "street_number8",
-    "neighborhood": "neighborhood4",
-    "city": "city8",
-    "state": "state4",
-    "zip_code": "zip_code2",
-    "reference_point": "reference_point2"
-  },
-  "site_url": "site_url4",
-  "corporation_type": "corporation_type2",
-  "founding_date": "founding_date2",
-  "cnae": "cnae2"
-}
+            Name = null,
+            Email = null,
+            Document = null,
+            Birthdate = null,
+            MonthlyIncome = 0L,
+            ProfessionalOccupation = null,
+            SelfDeclaredLegalRepresentative = false,
+            Address = null,
+            PhoneNumbers = new List<CreateRegisterInformationPhoneRequest>
+            {
+                null,
+            },
+            MotherName = "mother_name0",
+        },
+    },
+    MainAddress = null,
+    CorporationType = "corporation_type0",
+    FoundingDate = "founding_date0",
+    Cnae = "cnae0",
+    SiteUrl = "site_url4",
+};
 ```
 

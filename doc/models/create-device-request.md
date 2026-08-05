@@ -13,11 +13,14 @@ Request for creating a device
 |  --- | --- | --- | --- |
 | `Platform` | `string` | Optional | Device's platform |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateDeviceRequest createDeviceRequest = new CreateDeviceRequest
 {
-  "platform": "platform8"
-}
+    Platform = "platform2",
+};
 ```
 

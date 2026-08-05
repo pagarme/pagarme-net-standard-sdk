@@ -13,11 +13,14 @@ Response object for geetting an order device
 |  --- | --- | --- | --- |
 | `Platform` | `string` | Optional | Device's platform name |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetDeviceResponse getDeviceResponse = new GetDeviceResponse
 {
-  "platform": "platform8"
-}
+    Platform = "platform0",
+};
 ```
 

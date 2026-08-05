@@ -27,15 +27,21 @@ Response object for getting a customer
 | `Code` | `string` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
 | `DocumentType` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetCustomerResponse getCustomerResponse = new GetCustomerResponse
 {
-  "id": "id4",
-  "name": "name4",
-  "email": "email2",
-  "delinquent": false,
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+    Id = "id6",
+    Name = "name6",
+    Email = "email0",
+    Delinquent = false,
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

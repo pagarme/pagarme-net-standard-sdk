@@ -16,19 +16,17 @@ Pix payer data.
 | `DocumentType` | `string` | Optional | - |
 | `BankAccount` | [`GetPixBankAccountResponse`](../../doc/models/get-pix-bank-account-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPixPayerResponse getPixPayerResponse = new GetPixPayerResponse
 {
-  "name": "name0",
-  "document": "document4",
-  "document_type": "document_type8",
-  "bank_account": {
-    "bank_name": "bank_name0",
-    "ispb": "ispb8",
-    "branch_code": "branch_code2",
-    "account_number": "account_number4"
-  }
-}
+    Name = "name0",
+    Document = "document6",
+    DocumentType = "document_type8",
+    BankAccount = null,
+};
 ```
 

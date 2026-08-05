@@ -16,6 +16,10 @@ GetTransactionAsync(
     string transactionId)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -23,6 +27,8 @@ GetTransactionAsync(
 | `transactionId` | `string` | Template, Required | - |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetTransactionResponse>`](../../doc/models/get-transaction-response.md)
 
@@ -36,8 +42,11 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 

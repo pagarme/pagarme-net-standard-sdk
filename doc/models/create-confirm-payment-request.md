@@ -13,13 +13,16 @@
 | `Amount` | `int?` | Optional | Amount |
 | `Code` | `string` | Required | Code reference |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateConfirmPaymentRequest createConfirmPaymentRequest = new CreateConfirmPaymentRequest
 {
-  "description": "description0",
-  "Amount": 178,
-  "Code": "Code0"
-}
+    Description = "description8",
+    Code = "Code8",
+    Amount = 222,
+};
 ```
 

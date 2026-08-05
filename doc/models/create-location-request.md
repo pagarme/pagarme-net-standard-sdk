@@ -14,12 +14,15 @@ Request for creating a location
 | `Latitude` | `string` | Required | Latitude |
 | `Longitude` | `string` | Required | Longitude |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateLocationRequest createLocationRequest = new CreateLocationRequest
 {
-  "latitude": "latitude0",
-  "longitude": "longitude0"
-}
+    Latitude = "latitude0",
+    Longitude = "longitude0",
+};
 ```
 

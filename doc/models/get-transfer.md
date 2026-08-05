@@ -23,31 +23,41 @@
 | `Source` | [`GetTransferSourceResponse`](../../doc/models/get-transfer-source-response.md) | Required | - |
 | `Target` | [`GetTransferTargetResponse`](../../doc/models/get-transfer-target-response.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+using System.Globalization;
+
+GetTransfer getTransfer = new GetTransfer
 {
-  "id": "id8",
-  "gateway_id": "gateway_id8",
-  "amount": 122,
-  "status": "status0",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "updated_at": "2016-03-13T12:52:32.123Z",
-  "metadata": {
-    "key0": "metadata5"
-  },
-  "fee": 80,
-  "funding_date": "2016-03-13T12:52:32.123Z",
-  "funding_estimated_date": "2016-03-13T12:52:32.123Z",
-  "type": "type8",
-  "source": {
-    "source_id": "source_id8",
-    "type": "type6"
-  },
-  "target": {
-    "target_id": "target_id2",
-    "type": "type8"
-  }
-}
+    Id = "id6",
+    GatewayId = "gateway_id4",
+    Amount = 0,
+    Status = "status2",
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    UpdatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Type = "type4",
+    Source = null,
+    Target = null,
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata7",
+        ["key1"] = "metadata8",
+        ["key2"] = "metadata9",
+    },
+    Fee = 214,
+    FundingDate = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    FundingEstimatedDate = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

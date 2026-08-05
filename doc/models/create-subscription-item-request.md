@@ -21,52 +21,26 @@ Request for creating a new subscription item
 | `Quantity` | `int?` | Optional | Quantity of items |
 | `MinimumPrice` | `int?` | Optional | Minimum price |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateSubscriptionItemRequest createSubscriptionItemRequest = new CreateSubscriptionItemRequest
 {
-  "description": "description0",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
-    ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "id": "id0",
-  "plan_item_id": "plan_item_id0",
-  "discounts": [
+    Description = null,
+    PricingScheme = null,
+    Id = null,
+    PlanItemId = null,
+    Discounts = new List<CreateDiscountRequest>
     {
-      "value": 90.66,
-      "discount_type": "discount_type2",
-      "item_id": "item_id4",
-      "cycles": 126,
-      "description": "description4"
-    }
-  ],
-  "name": "name0",
-  "cycles": 106,
-  "quantity": 130,
-  "minimum_price": 114
-}
+        null,
+    },
+    Name = null,
+    Cycles = 250,
+    Quantity = 242,
+    MinimumPrice = 2,
+};
 ```
 

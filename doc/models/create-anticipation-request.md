@@ -15,13 +15,19 @@ Request for creating an anticipation
 | `Timeframe` | `string` | Required | Timeframe |
 | `PaymentDate` | `DateTime` | Required | Payment date |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+CreateAnticipationRequest createAnticipationRequest = new CreateAnticipationRequest
 {
-  "amount": 68,
-  "timeframe": "timeframe2",
-  "payment_date": "2016-03-13T12:52:32.123Z"
-}
+    Amount = 84,
+    Timeframe = "timeframe2",
+    PaymentDate = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

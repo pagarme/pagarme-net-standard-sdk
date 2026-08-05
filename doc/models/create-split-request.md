@@ -17,19 +17,18 @@ Split
 | `Options` | [`CreateSplitOptionsRequest`](../../doc/models/create-split-options-request.md) | Optional | The split options request |
 | `SplitRuleId` | `string` | Optional | Rule code used in cancellation. |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateSplitRequest createSplitRequest = new CreateSplitRequest
 {
-  "type": "type6",
-  "amount": 100,
-  "recipient_id": "recipient_id6",
-  "options": {
-    "liable": false,
-    "charge_processing_fee": false,
-    "charge_remainder_fee": false
-  },
-  "split_rule_id": "split_rule_id8"
-}
+    Type = "type8",
+    Amount = 166,
+    RecipientId = "recipient_id8",
+    Options = null,
+    SplitRuleId = "split_rule_id4",
+};
 ```
 

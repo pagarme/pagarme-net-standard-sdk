@@ -14,16 +14,19 @@ The GooglePay Intermediate Signing Key Request
 | `SignedKey` | `string` | Optional | Uma mensagem codificada em Base64 com a descrição de pagamento da chave. |
 | `Signatures` | `List<string>` | Optional | Verifica se a origem da chave de assinatura intermediária é o Google. É codificada em Base64 e criada usando o ECDSA. |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateGooglePayIntermediateSigningKeyRequest createGooglePayIntermediateSigningKeyRequest = new CreateGooglePayIntermediateSigningKeyRequest
 {
-  "signed_key": "signed_key2",
-  "signatures": [
-    "signatures0",
-    "signatures1",
-    "signatures2"
-  ]
-}
+    SignedKey = "signed_key4",
+    Signatures = new List<string>
+    {
+        "signatures6",
+    },
+};
 ```
 

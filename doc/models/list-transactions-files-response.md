@@ -14,29 +14,19 @@ Response object for listing of transactions files
 | `Data` | [`List<GetTransactionReportFileResponse>`](../../doc/models/get-transaction-report-file-response.md) | Optional | - |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListTransactionsFilesResponse listTransactionsFilesResponse = new ListTransactionsFilesResponse
 {
-  "data": [
+    Data = new List<GetTransactionReportFileResponse>
     {
-      "name": "name0",
-      "date": "2016-03-13T12:52:32.123Z"
+        null,
     },
-    {
-      "name": "name0",
-      "date": "2016-03-13T12:52:32.123Z"
-    },
-    {
-      "name": "name0",
-      "date": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

@@ -22,21 +22,25 @@ Response object for getting a period
 | `UpdatedAt` | `string` | Optional | - |
 | `Cycle` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetPeriodResponse getPeriodResponse = new GetPeriodResponse
 {
-  "start_at": "2016-03-13T12:52:32.123Z",
-  "end_at": "2016-03-13T12:52:32.123Z",
-  "id": "id0",
-  "billing_at": "2016-03-13T12:52:32.123Z",
-  "subscription": {
-    "id": "id4",
-    "code": "code2",
-    "start_at": "2016-03-13T12:52:32.123Z",
-    "interval": "interval2",
-    "interval_count": 234
-  }
-}
+    StartAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    EndAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Id = "id4",
+    BillingAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Subscription = null,
+};
 ```
 

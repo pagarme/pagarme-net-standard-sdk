@@ -18,22 +18,18 @@ The GooglePay Token Payment Request
 | `SignedMessage` | `string` | Optional | - |
 | `MerchantIdentifier` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateGooglePayRequest createGooglePayRequest = new CreateGooglePayRequest
 {
-  "version": "version6",
-  "data": "data0",
-  "intermediate_signing_key": {
-    "signed_key": "signed_key0",
-    "signatures": [
-      "signatures2",
-      "signatures3",
-      "signatures4"
-    ]
-  },
-  "signature": "signature8",
-  "signed_message": "signed_message6"
-}
+    Version = "version2",
+    Data = "data6",
+    IntermediateSigningKey = null,
+    Signature = "signature4",
+    SignedMessage = "signed_message2",
+};
 ```
 

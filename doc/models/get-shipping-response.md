@@ -20,21 +20,18 @@ Response object for getting the shipping data
 | `EstimatedDeliveryDate` | `DateTime?` | Optional | Prazo estimado de entrega |
 | `Type` | `string` | Optional | Shipping Type |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetShippingResponse getShippingResponse = new GetShippingResponse
 {
-  "amount": 214,
-  "description": "description8",
-  "recipient_name": "recipient_name6",
-  "recipient_phone": "recipient_phone0",
-  "address": {
-    "id": "id6",
-    "street": "street6",
-    "number": "number4",
-    "complement": "complement2",
-    "zip_code": "zip_code0"
-  }
-}
+    Amount = 228,
+    Description = "description8",
+    RecipientName = "recipient_name0",
+    RecipientPhone = "recipient_phone4",
+    Address = null,
+};
 ```
 

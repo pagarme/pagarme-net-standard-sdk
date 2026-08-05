@@ -12,12 +12,18 @@
 | `Name` | `string` | Optional | - |
 | `Date` | `DateTime?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetTransactionReportFileResponse getTransactionReportFileResponse = new GetTransactionReportFileResponse
 {
-  "name": "name8",
-  "date": "2016-03-13T12:52:32.123Z"
-}
+    Name = "name0",
+    Date = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

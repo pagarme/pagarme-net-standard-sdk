@@ -15,13 +15,16 @@ Interest Request
 | `Type` | `string` | Required | Type |
 | `Amount` | `int` | Required | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateInterestRequest createInterestRequest = new CreateInterestRequest
 {
-  "days": 4,
-  "type": "\"percentage\" or \"flat\"",
-  "amount": 78
-}
+    Days = 0,
+    Type = "\"percentage\" or \"flat\"",
+    Amount = 0,
+};
 ```
 

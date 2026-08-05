@@ -15,21 +15,16 @@ Information about fines and interest on the "boleto" used from payment
 | `Fine` | [`CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
 | `MaxDaysToPayPastDue` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateSubscriptionBoletoRequest createSubscriptionBoletoRequest = new CreateSubscriptionBoletoRequest
 {
-  "interest": {
-    "days": 156,
-    "type": "type0",
-    "amount": 230
-  },
-  "fine": {
-    "days": 138,
-    "type": "type2",
-    "amount": 212
-  },
-  "max_days_to_pay_past_due": 22
-}
+    Interest = null,
+    Fine = null,
+    MaxDaysToPayPastDue = 250,
+};
 ```
 

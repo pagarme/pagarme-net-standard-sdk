@@ -12,24 +12,19 @@
 | `Enabled` | `bool` | Required | Defines if the split is enabled |
 | `Rules` | [`List<CreateSplitRequest>`](../../doc/models/create-split-request.md) | Required | Split |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdateSubscriptionSplitRequest updateSubscriptionSplitRequest = new UpdateSubscriptionSplitRequest
 {
-  "enabled": false,
-  "rules": [
+    Enabled = false,
+    Rules = new List<CreateSplitRequest>
     {
-      "type": "type2",
-      "amount": 118,
-      "recipient_id": "recipient_id2",
-      "options": {
-        "liable": false,
-        "charge_processing_fee": false,
-        "charge_remainder_fee": false
-      },
-      "split_rule_id": "split_rule_id0"
-    }
-  ]
-}
+        null,
+    },
+};
 ```
 

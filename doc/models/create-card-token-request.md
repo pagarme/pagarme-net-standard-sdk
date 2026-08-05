@@ -19,17 +19,20 @@ Card token data
 | `Brand` | `string` | Required | Card brand |
 | `Label` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCardTokenRequest createCardTokenRequest = new CreateCardTokenRequest
 {
-  "number": "number8",
-  "holder_name": "holder_name6",
-  "exp_month": 168,
-  "exp_year": 208,
-  "cvv": "cvv8",
-  "brand": "brand4",
-  "label": "label0"
-}
+    Number = "number8",
+    HolderName = "holder_name0",
+    ExpMonth = 182,
+    ExpYear = 114,
+    Cvv = "cvv2",
+    Brand = "brand8",
+    Label = "label4",
+};
 ```
 

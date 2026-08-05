@@ -12,20 +12,15 @@
 | `HomePhone` | [`GetPhoneResponse`](../../doc/models/get-phone-response.md) | Optional | - |
 | `MobilePhone` | [`GetPhoneResponse`](../../doc/models/get-phone-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPhonesResponse getPhonesResponse = new GetPhonesResponse
 {
-  "home_phone": {
-    "country_code": "country_code0",
-    "number": "number2",
-    "area_code": "area_code0"
-  },
-  "mobile_phone": {
-    "country_code": "country_code0",
-    "number": "number8",
-    "area_code": "area_code0"
-  }
-}
+    HomePhone = null,
+    MobilePhone = null,
+};
 ```
 

@@ -15,13 +15,16 @@ Object used for returning lists of objects with pagination
 | `Previous` | `string` | Optional | Previous page |
 | `Next` | `string` | Optional | Next page |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+PagingResponse pagingResponse = new PagingResponse
 {
-  "total": 80,
-  "previous": "previous2",
-  "next": "next2"
-}
+    Total = 66,
+    Previous = "previous0",
+    Next = "next0",
+};
 ```
 

@@ -20,28 +20,29 @@ Request for updating card data
 | `PaymentOrigin` | [`CreatePaymentOriginRequest`](../../doc/models/create-payment-origin-request.md) | Optional | - |
 | `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateChargeCardRequest updateChargeCardRequest = new UpdateChargeCardRequest
 {
-  "update_subscription": false,
-  "card_id": "card_id2",
-  "card": {
-    "type": "credit",
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "recurrence": false,
-  "initiated_type": "initiated_type8",
-  "recurrence_model": "recurrence_model6",
-  "payment_origin": {
-    "brand_id": "brand_id8",
-    "charge_id": "charge_id2"
-  },
-  "indirect_acceptor": "indirect_acceptor2"
-}
+    UpdateSubscription = false,
+    CardId = null,
+    Card = new CreateCardRequest
+    {
+        Number = "number6",
+        HolderName = "holder_name2",
+        ExpMonth = 228,
+        ExpYear = 68,
+        Cvv = "cvv4",
+        Type = "credit",
+    },
+    Recurrence = false,
+    InitiatedType = "initiated_type4",
+    RecurrenceModel = "recurrence_model2",
+    PaymentOrigin = null,
+    IndirectAcceptor = "indirect_acceptor8",
+};
 ```
 

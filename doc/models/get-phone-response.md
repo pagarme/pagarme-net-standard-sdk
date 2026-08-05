@@ -13,13 +13,16 @@
 | `Number` | `string` | Optional | - |
 | `AreaCode` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPhoneResponse getPhoneResponse = new GetPhoneResponse
 {
-  "country_code": "country_code6",
-  "number": "number4",
-  "area_code": "area_code6"
-}
+    CountryCode = "country_code2",
+    Number = "number0",
+    AreaCode = "area_code2",
+};
 ```
 

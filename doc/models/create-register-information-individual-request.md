@@ -20,41 +20,34 @@
 | `ProfessionalOccupation` | `string` | Required | - |
 | `Address` | [`CreateRegisterInformationAddressRequest`](../../doc/models/create-register-information-address-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateRegisterInformationIndividualRequest createRegisterInformationIndividualRequest = new CreateRegisterInformationIndividualRequest
 {
-  "email": "email4",
-  "document": "document6",
-  "type": "type8",
-  "site_url": "site_url4",
-  "phone_numbers": [
+    Email = "email4",
+    Document = "document6",
+    Type = "type8",
+    PhoneNumbers = new List<CreateRegisterInformationPhoneRequest>
     {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
+        null,
+        new CreateRegisterInformationPhoneRequest
+        {
+            Ddd = null,
+            Number = null,
+            Type = null,
+        },
     },
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ],
-  "name": "name6",
-  "mother_name": "mother_name2",
-  "birthdate": "birthdate0",
-  "monthly_income": 206,
-  "professional_occupation": "professional_occupation0",
-  "address": {
-    "street": "street6",
-    "complementary": "complementary8",
-    "street_number": "street_number6",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "zip_code": "zip_code0",
-    "reference_point": "reference_point0"
-  }
-}
+    Name = "name2",
+    Birthdate = "birthdate6",
+    MonthlyIncome = 20L,
+    ProfessionalOccupation = "professional_occupation6",
+    Address = null,
+    MotherName = "mother_name8",
+    SiteUrl = "site_url4",
+};
 ```
 

@@ -14,19 +14,19 @@ The Transaction Gateway Response
 | `Code` | `string` | Optional | The error code |
 | `Errors` | [`List<GetGatewayErrorResponse>`](../../doc/models/get-gateway-error-response.md) | Optional | The gateway response errors list |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetGatewayResponseResponse getGatewayResponseResponse = new GetGatewayResponseResponse
 {
-  "code": "code6",
-  "errors": [
+    Code = "code4",
+    Errors = new List<GetGatewayErrorResponse>
     {
-      "message": "message0"
+        null,
     },
-    {
-      "message": "message0"
-    }
-  ]
-}
+};
 ```
 

@@ -22,15 +22,21 @@ Response object for getting a increment
 | `Subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `SubscriptionItem` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The Subscription Item |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetIncrementResponse getIncrementResponse = new GetIncrementResponse
 {
-  "id": "id0",
-  "value": 167.72,
-  "increment_type": "increment_type2",
-  "status": "status2",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+    Id = "id4",
+    MValue = 191.36,
+    IncrementType = "increment_type6",
+    Status = "status6",
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

@@ -15,20 +15,24 @@ Request for updating the card from a subscription
 | `CardId` | `string` | Required | Credit card id |
 | `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateSubscriptionCardRequest updateSubscriptionCardRequest = new UpdateSubscriptionCardRequest
 {
-  "card": {
-    "type": "credit",
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "card_id": "card_id0",
-  "indirect_acceptor": "indirect_acceptor0"
-}
+    Card = new CreateCardRequest
+    {
+        Number = "number6",
+        HolderName = "holder_name2",
+        ExpMonth = 228,
+        ExpYear = 68,
+        Cvv = "cvv4",
+        Type = "credit",
+    },
+    CardId = null,
+    IndirectAcceptor = "indirect_acceptor6",
+};
 ```
 

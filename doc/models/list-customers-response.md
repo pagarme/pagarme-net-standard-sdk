@@ -14,31 +14,19 @@ Response for listing the customers
 | `Data` | [`List<GetCustomerResponse>`](../../doc/models/get-customer-response.md) | Optional | The customer object |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListCustomersResponse listCustomersResponse = new ListCustomersResponse
 {
-  "data": [
+    Data = new List<GetCustomerResponse>
     {
-      "id": "id0",
-      "name": "name0",
-      "email": "email6",
-      "delinquent": false,
-      "created_at": "2016-03-13T12:52:32.123Z"
+        null,
     },
-    {
-      "id": "id0",
-      "name": "name0",
-      "email": "email6",
-      "delinquent": false,
-      "created_at": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

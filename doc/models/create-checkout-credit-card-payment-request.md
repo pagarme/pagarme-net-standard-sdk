@@ -16,29 +16,26 @@ Checkout card payment request
 | `Authentication` | [`CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Optional | Creates payment authentication |
 | `Capture` | `bool?` | Optional | Authorize and capture? |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateCheckoutCreditCardPaymentRequest createCheckoutCreditCardPaymentRequest = new CreateCheckoutCreditCardPaymentRequest
 {
-  "statement_descriptor": "statement_descriptor0",
-  "installments": [
+    StatementDescriptor = "statement_descriptor8",
+    Installments = new List<CreateCheckoutCardInstallmentOptionRequest>
     {
-      "number": 164,
-      "total": 16
-    }
-  ],
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "cavv": "cavv8",
-      "eci": "eci2",
-      "transaction_id": "transaction_id0",
-      "success_url": "success_url4",
-      "ds_transaction_id": "ds_transaction_id0"
-    }
-  },
-  "capture": false
-}
+        null,
+        new CreateCheckoutCardInstallmentOptionRequest
+        {
+            Number = 0,
+            Total = 0,
+        },
+    },
+    Authentication = null,
+    Capture = false,
+};
 ```
 

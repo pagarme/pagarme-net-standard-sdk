@@ -14,38 +14,22 @@ Response for the listing recipient method
 | `Data` | [`List<GetRecipientResponse>`](../../doc/models/get-recipient-response.md) | Optional | Recipients |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListRecipientResponse listRecipientResponse = new ListRecipientResponse
 {
-  "data": [
+    Data = new List<GetRecipientResponse>
     {
-      "id": "id0",
-      "name": "name0",
-      "email": "email6",
-      "document": "document4",
-      "description": "description0"
+        null,
+        new GetRecipientResponse
+        {
+        },
     },
-    {
-      "id": "id0",
-      "name": "name0",
-      "email": "email6",
-      "document": "document4",
-      "description": "description0"
-    },
-    {
-      "id": "id0",
-      "name": "name0",
-      "email": "email6",
-      "document": "document4",
-      "description": "description0"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

@@ -14,12 +14,15 @@ Options for card installment
 | `Number` | `int` | Required | Installment quantity |
 | `Total` | `int` | Required | Total amount |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCheckoutCardInstallmentOptionRequest createCheckoutCardInstallmentOptionRequest = new CreateCheckoutCardInstallmentOptionRequest
 {
-  "number": 154,
-  "total": 46
-}
+    Number = 68,
+    Total = 176,
+};
 ```
 

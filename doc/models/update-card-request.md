@@ -19,36 +19,26 @@ Request for updating a card
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `Label` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdateCardRequest updateCardRequest = new UpdateCardRequest
 {
-  "holder_name": "holder_name6",
-  "exp_month": 236,
-  "exp_year": 60,
-  "billing_address_id": "billing_address_id6",
-  "billing_address": {
-    "street": "street8",
-    "number": "number4",
-    "zip_code": "zip_code2",
-    "neighborhood": "neighborhood4",
-    "city": "city2",
-    "state": "state6",
-    "country": "country2",
-    "complement": "complement6",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata6"
+    HolderName = "holder_name8",
+    ExpMonth = 80,
+    ExpYear = 216,
+    BillingAddress = null,
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata9",
+        ["key1"] = "metadata8",
+        ["key2"] = "metadata7",
     },
-    "line_1": "line_18",
-    "line_2": "line_26"
-  },
-  "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
-  },
-  "label": "label0"
-}
+    Label = "label2",
+    BillingAddressId = "billing_address_id8",
+};
 ```
 

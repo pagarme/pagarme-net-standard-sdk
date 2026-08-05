@@ -18,41 +18,19 @@ Request for creating a plan item
 | `Cycles` | `int?` | Optional | Number of cycles where the item will be charged |
 | `Quantity` | `int?` | Optional | Quantity |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreatePlanItemRequest createPlanItemRequest = new CreatePlanItemRequest
 {
-  "name": "name0",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
-    ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "id": "id0",
-  "description": "description0",
-  "cycles": 52,
-  "quantity": 184
-}
+    Name = "name8",
+    PricingScheme = null,
+    Id = "id8",
+    Description = "description8",
+    Cycles = 78,
+    Quantity = 158,
+};
 ```
 

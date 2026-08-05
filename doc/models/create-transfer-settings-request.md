@@ -15,13 +15,16 @@ Informações de transferência do recebedor
 | `TransferInterval` | `string` | Required | - |
 | `TransferDay` | `int` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateTransferSettingsRequest createTransferSettingsRequest = new CreateTransferSettingsRequest
 {
-  "transfer_enabled": false,
-  "transfer_interval": "transfer_interval4",
-  "transfer_day": 82
-}
+    TransferEnabled = false,
+    TransferInterval = "transfer_interval2",
+    TransferDay = 128,
+};
 ```
 

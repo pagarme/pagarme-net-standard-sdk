@@ -39,15 +39,18 @@ Resposta das configurações de pagamento do checkout
 | `AcceptedBrands` | `List<string>` | Optional | Accepted Brands |
 | `Pix` | [`GetCheckoutPixPaymentResponse`](../../doc/models/get-checkout-pix-payment-response.md) | Optional | Pix payment response |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetCheckoutPaymentResponse getCheckoutPaymentResponse = new GetCheckoutPaymentResponse
 {
-  "id": "id6",
-  "amount": 148,
-  "default_payment_method": "default_payment_method6",
-  "success_url": "success_url8",
-  "payment_url": "payment_url0"
-}
+    Id = "id8",
+    Amount = 8,
+    DefaultPaymentMethod = "default_payment_method8",
+    SuccessUrl = "success_url0",
+    PaymentUrl = "payment_url2",
+};
 ```
 

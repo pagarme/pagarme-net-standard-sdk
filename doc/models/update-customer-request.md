@@ -22,31 +22,18 @@ Request for updating a customer
 | `Gender` | `string` | Optional | Gênero do cliente |
 | `DocumentType` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest
 {
-  "name": "name8",
-  "email": "email8",
-  "document": "document2",
-  "type": "type2",
-  "address": {
-    "street": "street6",
-    "number": "number4",
-    "zip_code": "zip_code0",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "country": "country0",
-    "complement": "complement2",
-    "metadata": {
-      "key0": "metadata3",
-      "key1": "metadata2",
-      "key2": "metadata1"
-    },
-    "line_1": "line_10",
-    "line_2": "line_24"
-  }
-}
+    Name = "name4",
+    Email = "email2",
+    Document = "document8",
+    Type = "type4",
+    Address = null,
+};
 ```
 

@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | Status |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateCurrentCycleStatusRequest updateCurrentCycleStatusRequest = new UpdateCurrentCycleStatusRequest
 {
-  "status": "status8"
-}
+    Status = "status0",
+};
 ```
 

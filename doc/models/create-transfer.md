@@ -14,17 +14,21 @@
 | `TargetId` | `string` | Required | - |
 | `Metadata` | `List<string>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateTransfer createTransfer = new CreateTransfer
 {
-  "amount": 252,
-  "source_id": "source_id6",
-  "target_id": "target_id8",
-  "metadata": [
-    "metadata1",
-    "metadata2"
-  ]
-}
+    Amount = 130,
+    SourceId = "source_id6",
+    TargetId = "target_id8",
+    Metadata = new List<string>
+    {
+        "metadata1",
+    },
+};
 ```
 

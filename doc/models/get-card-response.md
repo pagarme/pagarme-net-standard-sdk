@@ -29,15 +29,18 @@ Response object for getting a credit card
 | `FirstSixDigits` | `string` | Optional | First six digits |
 | `Label` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetCardResponse getCardResponse = new GetCardResponse
 {
-  "id": "id4",
-  "last_four_digits": "last_four_digits0",
-  "brand": "brand8",
-  "holder_name": "holder_name0",
-  "exp_month": 52
-}
+    Id = "id6",
+    LastFourDigits = "last_four_digits2",
+    Brand = "brand0",
+    HolderName = "holder_name2",
+    ExpMonth = 2,
+};
 ```
 

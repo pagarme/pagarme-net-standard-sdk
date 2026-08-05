@@ -20,18 +20,21 @@ Register Information Address
 | `ZipCode` | `string` | Required | - |
 | `ReferencePoint` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateRegisterInformationAddressRequest createRegisterInformationAddressRequest = new CreateRegisterInformationAddressRequest
 {
-  "street": "street8",
-  "complementary": "complementary0",
-  "street_number": "street_number8",
-  "neighborhood": "neighborhood4",
-  "city": "city8",
-  "state": "state4",
-  "zip_code": "zip_code2",
-  "reference_point": "reference_point2"
-}
+    Street = "street8",
+    Complementary = "complementary0",
+    StreetNumber = "street_number8",
+    Neighborhood = "neighborhood4",
+    City = "city8",
+    State = "state4",
+    ZipCode = "zip_code2",
+    ReferencePoint = "reference_point2",
+};
 ```
 

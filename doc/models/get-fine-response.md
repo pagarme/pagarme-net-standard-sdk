@@ -15,13 +15,16 @@ Fine Response
 | `Type` | `string` | Optional | Type |
 | `Amount` | `int?` | Optional | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetFineResponse getFineResponse = new GetFineResponse
 {
-  "type": "\"percentage\" or \"flat\"",
-  "days": 112,
-  "amount": 186
-}
+    Days = 20,
+    Type = "\"percentage\" or \"flat\"",
+    Amount = 94,
+};
 ```
 

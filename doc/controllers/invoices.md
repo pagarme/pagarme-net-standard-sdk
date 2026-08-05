@@ -10,13 +10,157 @@ IInvoicesController invoicesController = client.InvoicesController;
 
 ## Methods
 
-* [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
 * [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
-* [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
-* [Update Invoice Metadata](../../doc/controllers/invoices.md#update-invoice-metadata)
-* [Get Partial Invoice](../../doc/controllers/invoices.md#get-partial-invoice)
 * [Create Invoice](../../doc/controllers/invoices.md#create-invoice)
 * [Get Invoice](../../doc/controllers/invoices.md#get-invoice)
+* [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
+* [Get Partial Invoice](../../doc/controllers/invoices.md#get-partial-invoice)
+* [Update Invoice Metadata](../../doc/controllers/invoices.md#update-invoice-metadata)
+* [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
+
+
+# Cancel Invoice
+
+Cancels an invoice
+
+```csharp
+CancelInvoiceAsync(
+    string invoiceId,
+    string idempotencyKey = null)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoiceId` | `string` | Template, Required | Invoice id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string invoiceId = "invoice_id0";
+try
+{
+    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId);
+}
+catch (ApiException e)
+{
+    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
+}
+```
+
+
+# Create Invoice
+
+Create an Invoice
+
+```csharp
+CreateInvoiceAsync(
+    string subscriptionId,
+    string cycleId,
+    Models.CreateInvoiceRequest request = null,
+    string idempotencyKey = null)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
+| `cycleId` | `string` | Template, Required | Cycle Id |
+| `request` | [`CreateInvoiceRequest`](../../doc/models/create-invoice-request.md) | Body, Optional | - |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string subscriptionId = "subscription_id0";
+string cycleId = "cycle_id6";
+try
+{
+    GetInvoiceResponse result = await invoicesController.CreateInvoiceAsync(
+        subscriptionId,
+        cycleId
+    );
+}
+catch (ApiException e)
+{
+    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
+}
+```
+
+
+# Get Invoice
+
+Gets an invoice
+
+```csharp
+GetInvoiceAsync(
+    string invoiceId)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoiceId` | `string` | Template, Required | Invoice Id |
+
+## Response Type
+
+**200**
+
+[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```csharp
+string invoiceId = "invoice_id0";
+try
+{
+    GetInvoiceResponse result = await invoicesController.GetInvoiceAsync(invoiceId);
+}
+catch (ApiException e)
+{
+    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
+}
+```
 
 
 # Get Invoices
@@ -38,6 +182,10 @@ GetInvoicesAsync(
     string customerDocument = null)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -56,6 +204,8 @@ GetInvoicesAsync(
 
 ## Response Type
 
+**200**
+
 [`Task<Models.ListInvoicesResponse>`](../../doc/models/list-invoices-response.md)
 
 ## Example Usage
@@ -67,92 +217,53 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
 
-# Cancel Invoice
-
-Cancels an invoice
+# Get Partial Invoice
 
 ```csharp
-CancelInvoiceAsync(
-    string invoiceId,
-    string idempotencyKey = null)
+GetPartialInvoiceAsync(
+    string subscriptionId)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | Invoice id |
-| `idempotencyKey` | `string` | Header, Optional | - |
+| `subscriptionId` | `string` | Template, Required | Subscription Id |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
 
 ## Example Usage
 
 ```csharp
-string invoiceId = "invoice_id0";
+string subscriptionId = "subscription_id0";
 try
 {
-    GetInvoiceResponse result = await invoicesController.CancelInvoiceAsync(invoiceId);
+    GetInvoiceResponse result = await invoicesController.GetPartialInvoiceAsync(subscriptionId);
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
-}
-```
-
-
-# Update Invoice Status
-
-Updates the status from an invoice
-
-```csharp
-UpdateInvoiceStatusAsync(
-    string invoiceId,
-    Models.UpdateInvoiceStatusRequest request,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoiceId` | `string` | Template, Required | Invoice Id |
-| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string invoiceId = "invoice_id0";
-UpdateInvoiceStatusRequest request = new UpdateInvoiceStatusRequest
-{
-    Status = "status8",
-};
-
-try
-{
-    GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(
-        invoiceId,
-        request
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
@@ -168,6 +279,10 @@ UpdateInvoiceMetadataAsync(
     string idempotencyKey = null)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -177,6 +292,8 @@ UpdateInvoiceMetadataAsync(
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
 
@@ -201,106 +318,41 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
 
-# Get Partial Invoice
+# Update Invoice Status
+
+Updates the status from an invoice
 
 ```csharp
-GetPartialInvoiceAsync(
-    string subscriptionId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-try
-{
-    GetInvoiceResponse result = await invoicesController.GetPartialInvoiceAsync(subscriptionId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Create Invoice
-
-Create an Invoice
-
-```csharp
-CreateInvoiceAsync(
-    string subscriptionId,
-    string cycleId,
-    Models.CreateInvoiceRequest request = null,
+UpdateInvoiceStatusAsync(
+    string invoiceId,
+    Models.UpdateInvoiceStatusRequest request,
     string idempotencyKey = null)
 ```
 
-## Parameters
+## Authentication
 
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscriptionId` | `string` | Template, Required | Subscription Id |
-| `cycleId` | `string` | Template, Required | Cycle Id |
-| `request` | [`CreateInvoiceRequest`](../../doc/models/create-invoice-request.md) | Body, Optional | - |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```csharp
-string subscriptionId = "subscription_id0";
-string cycleId = "cycle_id6";
-try
-{
-    GetInvoiceResponse result = await invoicesController.CreateInvoiceAsync(
-        subscriptionId,
-        cycleId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Invoice
-
-Gets an invoice
-
-```csharp
-GetInvoiceAsync(
-    string invoiceId)
-```
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `invoiceId` | `string` | Template, Required | Invoice Id |
+| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetInvoiceResponse>`](../../doc/models/get-invoice-response.md)
 
@@ -308,14 +360,25 @@ GetInvoiceAsync(
 
 ```csharp
 string invoiceId = "invoice_id0";
+UpdateInvoiceStatusRequest request = new UpdateInvoiceStatusRequest
+{
+    Status = "status8",
+};
+
 try
 {
-    GetInvoiceResponse result = await invoicesController.GetInvoiceAsync(invoiceId);
+    GetInvoiceResponse result = await invoicesController.UpdateInvoiceStatusAsync(
+        invoiceId,
+        request
+    );
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 

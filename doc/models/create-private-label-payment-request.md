@@ -22,23 +22,20 @@ The settings for creating a private label payment
 | `ExtendedLimitCode` | `string` | Optional | Extended Limit Code |
 | `RecurrencyCycle` | `string` | Optional | Defines whether the card has been used one or more times. |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreatePrivateLabelPaymentRequest createPrivateLabelPaymentRequest = new CreatePrivateLabelPaymentRequest
 {
-  "installments": 1,
-  "capture": true,
-  "recurrency_cycle": "\"first\" or \"subsequent\"",
-  "statement_descriptor": "statement_descriptor8",
-  "card": {
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "card_id": "card_id4",
-  "card_token": "card_token2"
-}
+    Installments = 1,
+    StatementDescriptor = "statement_descriptor2",
+    Card = null,
+    CardId = "card_id2",
+    CardToken = "card_token8",
+    Capture = true,
+    RecurrencyCycle = "\"first\" or \"subsequent\"",
+};
 ```
 

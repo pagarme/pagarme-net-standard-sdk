@@ -33,20 +33,26 @@ Response object for getting a boleto transaction
 | `CreditAt` | `DateTime?` | Optional | - |
 | `StatementDescriptor` | `string` | Optional | Soft Descriptor |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetBoletoTransactionResponse getBoletoTransactionResponse = new GetBoletoTransactionResponse
 {
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "url": "url0",
-  "barcode": "barcode4",
-  "nosso_numero": "nosso_numero6",
-  "bank": "bank4",
-  "document_number": "document_number0"
-}
+    Url = "url2",
+    Barcode = "barcode2",
+    NossoNumero = "nosso_numero8",
+    Bank = "bank6",
+    DocumentNumber = "document_number8",
+    GatewayId = "gateway_id8",
+    Amount = 40,
+    Status = "status6",
+    Success = false,
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

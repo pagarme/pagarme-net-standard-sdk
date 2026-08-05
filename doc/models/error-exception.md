@@ -15,19 +15,20 @@ Api Error Exception
 | `Errors` | `object` | Required | - |
 | `Request` | `object` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+try
 {
-  "message": "message4",
-  "errors": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "request": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+    // make the API call
+}
+catch (ApiException e)
+{
+    if (e is ErrorException)
+    {
+        // TODO: Handle ErrorException
+        Console.WriteLine(e.Message);
+    }
 }
 ```
 
