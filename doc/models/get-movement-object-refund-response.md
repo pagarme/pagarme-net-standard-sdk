@@ -21,19 +21,22 @@ Generic response object for getting a MovementObjectRefund.
 | `LocalTransactionId` | `string` | Optional | - |
 | `UpdatedAt` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetMovementObjectRefundResponse getMovementObjectRefundResponse = new GetMovementObjectRefundResponse
 {
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "fraud_coverage_fee": "fraud_coverage_fee0",
-  "charge_fee_recipient_id": "charge_fee_recipient_id2",
-  "bank_account_id": "bank_account_id2",
-  "local_transaction_id": "local_transaction_id8",
-  "updated_at": "updated_at8"
-}
+    FraudCoverageFee = "fraud_coverage_fee2",
+    ChargeFeeRecipientId = "charge_fee_recipient_id0",
+    BankAccountId = "bank_account_id4",
+    LocalTransactionId = "local_transaction_id0",
+    UpdatedAt = "updated_at0",
+    Id = "id2",
+    Status = "status4",
+    Amount = "amount4",
+    CreatedAt = "created_at0",
+};
 ```
 

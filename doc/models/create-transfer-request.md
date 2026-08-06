@@ -14,16 +14,20 @@ Request for creating a transfer
 | `Amount` | `int` | Required | Transfer amount |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateTransferRequest createTransferRequest = new CreateTransferRequest
 {
-  "amount": 148,
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata8",
-    "key2": "metadata9"
-  }
-}
+    Amount = 192,
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+        ["key1"] = "metadata2",
+    },
+};
 ```
 

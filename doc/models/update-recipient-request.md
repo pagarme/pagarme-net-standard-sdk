@@ -18,19 +18,24 @@ Request for updating a Recipient
 | `Status` | `string` | Required | Status |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdateRecipientRequest updateRecipientRequest = new UpdateRecipientRequest
 {
-  "name": "name0",
-  "email": "email6",
-  "description": "description0",
-  "type": "type0",
-  "status": "status8",
-  "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4"
-  }
-}
+    Name = "name4",
+    Email = "email2",
+    Description = "description4",
+    Type = "type4",
+    Status = "status6",
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata1",
+        ["key1"] = "metadata0",
+    },
+};
 ```
 

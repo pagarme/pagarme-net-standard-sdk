@@ -12,12 +12,15 @@
 | `SourceId` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetWithdrawSourceResponse getWithdrawSourceResponse = new GetWithdrawSourceResponse
 {
-  "source_id": "source_id2",
-  "type": "type8"
-}
+    SourceId = "source_id6",
+    Type = "type8",
+};
 ```
 

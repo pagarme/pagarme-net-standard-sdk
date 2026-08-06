@@ -14,38 +14,19 @@ Response object for listing invoices
 | `Data` | [`List<GetInvoiceResponse>`](../../doc/models/get-invoice-response.md) | Optional | The Invoice objects |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListInvoicesResponse listInvoicesResponse = new ListInvoicesResponse
 {
-  "data": [
+    Data = new List<GetInvoiceResponse>
     {
-      "id": "id0",
-      "code": "code8",
-      "url": "url4",
-      "amount": 236,
-      "status": "status2"
+        null,
     },
-    {
-      "id": "id0",
-      "code": "code8",
-      "url": "url4",
-      "amount": 236,
-      "status": "status2"
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "url": "url4",
-      "amount": 236,
-      "status": "status2"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

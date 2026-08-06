@@ -20,15 +20,18 @@ Response object for getting an RegisterInformationAddress
 | `ZipCode` | `string` | Optional | - |
 | `ReferencePoint` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetRegisterInformationAddressResponse getRegisterInformationAddressResponse = new GetRegisterInformationAddressResponse
 {
-  "street": "street2",
-  "complementary": "complementary4",
-  "street_number": "street_number2",
-  "neighborhood": "neighborhood8",
-  "city": "city2"
-}
+    Street = "street4",
+    Complementary = "complementary6",
+    StreetNumber = "street_number4",
+    Neighborhood = "neighborhood0",
+    City = "city4",
+};
 ```
 

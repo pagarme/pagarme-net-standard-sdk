@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `Ksn` | `string` | Required | Key serial number |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateEmvDataDukptDecryptRequest createEmvDataDukptDecryptRequest = new CreateEmvDataDukptDecryptRequest
 {
-  "ksn": "ksn8"
-}
+    Ksn = "ksn2",
+};
 ```
 

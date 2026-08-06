@@ -15,18 +15,26 @@ Checkout pix payment request
 | `ExpiresIn` | `int?` | Optional | Expires in |
 | `AdditionalInformation` | [`List<PixAdditionalInformation>`](../../doc/models/pix-additional-information.md) | Optional | Additional information |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+using System.Globalization;
+
+CreateCheckoutPixPaymentRequest createCheckoutPixPaymentRequest = new CreateCheckoutPixPaymentRequest
 {
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "expires_in": 4,
-  "additional_information": [
+    ExpiresAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    ExpiresIn = 68,
+    AdditionalInformation = new List<PixAdditionalInformation>
     {
-      "Name": "Name0",
-      "Value": "Value2"
-    }
-  ]
-}
+        null,
+        new PixAdditionalInformation
+        {
+        },
+    },
+};
 ```
 

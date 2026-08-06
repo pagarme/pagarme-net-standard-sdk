@@ -14,18 +14,15 @@ Anticipation limits
 | `Max` | [`GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md) | Optional | Max limit |
 | `Min` | [`GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md) | Optional | Min limit |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetAnticipationLimitsResponse getAnticipationLimitsResponse = new GetAnticipationLimitsResponse
 {
-  "max": {
-    "amount": 140,
-    "anticipation_fee": 234
-  },
-  "min": {
-    "amount": 34,
-    "anticipation_fee": 60
-  }
-}
+    Max = null,
+    Min = null,
+};
 ```
 

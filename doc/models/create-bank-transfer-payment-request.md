@@ -14,12 +14,15 @@ Request for creating a bank transfer payment
 | `Bank` | `string` | Required | Bank |
 | `Retries` | `int` | Required | Number of retries |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateBankTransferPaymentRequest createBankTransferPaymentRequest = new CreateBankTransferPaymentRequest
 {
-  "bank": "bank4",
-  "retries": 188
-}
+    Bank = "bank6",
+    Retries = 20,
+};
 ```
 

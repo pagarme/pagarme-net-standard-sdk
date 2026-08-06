@@ -22,19 +22,22 @@
 | `FundingEstimatedDate` | `string` | Optional | - |
 | `BankAccount` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetMovementObjectTransferResponse getMovementObjectTransferResponse = new GetMovementObjectTransferResponse
 {
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "source_type": "source_type6",
-  "source_id": "source_id0",
-  "target_type": "target_type8",
-  "target_id": "target_id4",
-  "fee": "fee8"
-}
+    SourceType = "source_type6",
+    SourceId = "source_id0",
+    TargetType = "target_type8",
+    TargetId = "target_id4",
+    Fee = "fee8",
+    Id = "id2",
+    Status = "status4",
+    Amount = "amount4",
+    CreatedAt = "created_at0",
+};
 ```
 

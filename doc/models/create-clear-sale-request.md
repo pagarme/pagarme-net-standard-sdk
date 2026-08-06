@@ -11,11 +11,14 @@
 |  --- | --- | --- | --- |
 | `CustomSla` | `int` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateClearSaleRequest createClearSaleRequest = new CreateClearSaleRequest
 {
-  "custom_sla": 150
-}
+    CustomSla = 156,
+};
 ```
 

@@ -16,14 +16,17 @@ Response object for getting a price bracket
 | `EndQuantity` | `int?` | Optional | - |
 | `OveragePrice` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPriceBracketResponse getPriceBracketResponse = new GetPriceBracketResponse
 {
-  "start_quantity": 186,
-  "price": 124,
-  "end_quantity": 194,
-  "overage_price": 208
-}
+    StartQuantity = 80,
+    Price = 18,
+    EndQuantity = 88,
+    OveragePrice = 102,
+};
 ```
 

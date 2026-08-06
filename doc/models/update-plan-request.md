@@ -27,39 +27,47 @@ Request for updating a plan
 | `MinimumPrice` | `int?` | Optional | Minimum price |
 | `TrialPeriodDays` | `int?` | Optional | Number of trial period in days, where the customer will not be charged |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdatePlanRequest updatePlanRequest = new UpdatePlanRequest
 {
-  "name": "name0",
-  "description": "description0",
-  "installments": [
-    121,
-    122,
-    123
-  ],
-  "statement_descriptor": "statement_descriptor0",
-  "currency": "currency0",
-  "interval": "interval8",
-  "interval_count": 84,
-  "payment_methods": [
-    "payment_methods5",
-    "payment_methods6"
-  ],
-  "billing_type": "billing_type6",
-  "status": "status8",
-  "shippable": false,
-  "billing_days": [
-    171,
-    170
-  ],
-  "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
-  },
-  "minimum_price": 174,
-  "trial_period_days": 56
-}
+    Name = "name8",
+    Description = "description8",
+    Installments = new List<int>
+    {
+        139,
+        140,
+        141,
+    },
+    StatementDescriptor = "statement_descriptor8",
+    Currency = "currency8",
+    Interval = "interval6",
+    IntervalCount = 102,
+    PaymentMethods = new List<string>
+    {
+        "payment_methods3",
+        "payment_methods2",
+    },
+    BillingType = "billing_type8",
+    Status = "status0",
+    Shippable = false,
+    BillingDays = new List<int>
+    {
+        103,
+        104,
+    },
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata5",
+        ["key1"] = "metadata6",
+        ["key2"] = "metadata7",
+    },
+    MinimumPrice = 156,
+    TrialPeriodDays = 74,
+};
 ```
 

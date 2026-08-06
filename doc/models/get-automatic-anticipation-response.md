@@ -15,17 +15,24 @@
 | `Delay` | `int?` | Optional | - |
 | `Days` | `List<int>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetAutomaticAnticipationResponse getAutomaticAnticipationResponse = new GetAutomaticAnticipationResponse
 {
-  "enabled": false,
-  "type": "type8",
-  "volume_percentage": 178,
-  "delay": 112,
-  "days": [
-    88
-  ]
-}
+    Enabled = false,
+    Type = "type4",
+    VolumePercentage = 86,
+    Delay = 204,
+    Days = new List<int>
+    {
+        180,
+        181,
+        182,
+    },
+};
 ```
 

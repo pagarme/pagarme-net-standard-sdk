@@ -14,18 +14,15 @@ Payment Authentication response
 | `Type` | `string` | Optional | - |
 | `ThreedSecure` | [`GetThreeDSecureResponse`](../../doc/models/get-three-d-secure-response.md) | Optional | 3D-S payment authentication response |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPaymentAuthenticationResponse getPaymentAuthenticationResponse = new GetPaymentAuthenticationResponse
 {
-  "type": "type2",
-  "threed_secure": {
-    "mpi": "mpi0",
-    "eci": "eci2",
-    "cavv": "cavv8",
-    "transaction_Id": "transaction_Id2",
-    "success_url": "success_url4"
-  }
-}
+    Type = "type0",
+    ThreedSecure = null,
+};
 ```
 

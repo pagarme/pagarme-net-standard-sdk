@@ -32,23 +32,20 @@ The settings for creating a credit card payment
 | `PaymentOrigin` | [`CreatePaymentOriginRequest`](../../doc/models/create-payment-origin-request.md) | Optional | - |
 | `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCreditCardPaymentRequest createCreditCardPaymentRequest = new CreateCreditCardPaymentRequest
 {
-  "installments": 1,
-  "capture": true,
-  "recurrency_cycle": "\"first\" or \"subsequent\"",
-  "statement_descriptor": "statement_descriptor0",
-  "card": {
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "card_id": "card_id6",
-  "card_token": "card_token0"
-}
+    Installments = 1,
+    StatementDescriptor = "statement_descriptor2",
+    Card = null,
+    CardId = "card_id2",
+    CardToken = "card_token8",
+    Capture = true,
+    RecurrencyCycle = "\"first\" or \"subsequent\"",
+};
 ```
 

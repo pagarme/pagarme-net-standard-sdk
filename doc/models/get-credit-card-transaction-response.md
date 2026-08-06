@@ -32,20 +32,26 @@ Response object for getting a credit card transaction
 | `BrandId` | `string` | Optional | - |
 | `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetCreditCardTransactionResponse getCreditCardTransactionResponse = new GetCreditCardTransactionResponse
 {
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "statement_descriptor": "statement_descriptor2",
-  "acquirer_name": "acquirer_name6",
-  "acquirer_affiliation_code": "acquirer_affiliation_code6",
-  "acquirer_tid": "acquirer_tid8",
-  "acquirer_nsu": "acquirer_nsu8"
-}
+    StatementDescriptor = "statement_descriptor6",
+    AcquirerName = "acquirer_name0",
+    AcquirerAffiliationCode = "acquirer_affiliation_code2",
+    AcquirerTid = "acquirer_tid4",
+    AcquirerNsu = "acquirer_nsu4",
+    GatewayId = "gateway_id8",
+    Amount = 40,
+    Status = "status6",
+    Success = false,
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

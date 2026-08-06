@@ -19,30 +19,31 @@ Request for updating a subscription item
 | `Quantity` | `int?` | Optional | Quantity |
 | `MinimumPrice` | `int?` | Optional | Minimum price |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdateSubscriptionItemRequest updateSubscriptionItemRequest = new UpdateSubscriptionItemRequest
 {
-  "description": "description2",
-  "status": "status4",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
-    ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "name": "name2",
-  "cycles": 108,
-  "quantity": 128,
-  "minimum_price": 140
-}
+    Description = null,
+    Status = null,
+    PricingScheme = new UpdatePricingSchemeRequest
+    {
+        SchemeType = null,
+        PriceBrackets = new List<UpdatePriceBracketRequest>
+        {
+            null,
+        },
+        Price = 166,
+        MinimumPrice = 6,
+        Percentage = 251.76,
+    },
+    Name = null,
+    Cycles = 64,
+    Quantity = 44,
+    MinimumPrice = 56,
+};
 ```
 

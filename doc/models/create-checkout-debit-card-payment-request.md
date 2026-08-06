@@ -14,22 +14,15 @@ Checkout credit card payment request
 | `StatementDescriptor` | `string` | Optional | Card invoice text descriptor |
 | `Authentication` | [`CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Required | Creates payment authentication |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCheckoutDebitCardPaymentRequest createCheckoutDebitCardPaymentRequest = new CreateCheckoutDebitCardPaymentRequest
 {
-  "statement_descriptor": "statement_descriptor4",
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "cavv": "cavv8",
-      "eci": "eci2",
-      "transaction_id": "transaction_id0",
-      "success_url": "success_url4",
-      "ds_transaction_id": "ds_transaction_id0"
-    }
-  }
-}
+    Authentication = null,
+    StatementDescriptor = "statement_descriptor8",
+};
 ```
 

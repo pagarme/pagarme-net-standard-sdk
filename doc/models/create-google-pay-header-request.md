@@ -13,11 +13,14 @@ The GooglePay header request
 |  --- | --- | --- | --- |
 | `EphemeralPublicKey` | `string` | Required | X.509 encoded key bytes, Base64 encoded as a string |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateGooglePayHeaderRequest createGooglePayHeaderRequest = new CreateGooglePayHeaderRequest
 {
-  "ephemeral_public_key": "ephemeral_public_key2"
-}
+    EphemeralPublicKey = "ephemeral_public_key2",
+};
 ```
 

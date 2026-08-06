@@ -12,21 +12,15 @@
 | `StatementDescriptor` | `string` | Optional | Descrição na fatura |
 | `Authentication` | [`GetPaymentAuthenticationResponse`](../../doc/models/get-payment-authentication-response.md) | Optional | Payment Authentication response object data |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetCheckoutDebitCardPaymentResponse getCheckoutDebitCardPaymentResponse = new GetCheckoutDebitCardPaymentResponse
 {
-  "statement_descriptor": "statement_descriptor6",
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "eci": "eci2",
-      "cavv": "cavv8",
-      "transaction_Id": "transaction_Id2",
-      "success_url": "success_url4"
-    }
-  }
-}
+    StatementDescriptor = "statement_descriptor6",
+    Authentication = null,
+};
 ```
 

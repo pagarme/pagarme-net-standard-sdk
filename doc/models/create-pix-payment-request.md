@@ -15,22 +15,29 @@ Contains information to create a pix payment
 | `ExpiresIn` | `int?` | Optional | Seconds until pix payment expires |
 | `AdditionalInformation` | [`List<PixAdditionalInformation>`](../../doc/models/pix-additional-information.md) | Optional | Pix additional information |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+using System.Globalization;
+
+CreatePixPaymentRequest createPixPaymentRequest = new CreatePixPaymentRequest
 {
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "expires_in": 216,
-  "additional_information": [
+    ExpiresAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    ExpiresIn = 54,
+    AdditionalInformation = new List<PixAdditionalInformation>
     {
-      "Name": "Name0",
-      "Value": "Value2"
+        null,
+        new PixAdditionalInformation
+        {
+        },
+        new PixAdditionalInformation
+        {
+        },
     },
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    }
-  ]
-}
+};
 ```
 

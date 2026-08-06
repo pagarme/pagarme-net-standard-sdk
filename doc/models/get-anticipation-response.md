@@ -22,21 +22,18 @@ Anticipation
 | `Status` | `string` | Optional | Status |
 | `Timeframe` | `string` | Optional | Timeframe |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetAnticipationResponse getAnticipationResponse = new GetAnticipationResponse
 {
-  "id": "id8",
-  "requested_amount": 130,
-  "approved_amount": 184,
-  "recipient": {
-    "id": "id8",
-    "name": "name8",
-    "email": "email8",
-    "document": "document8",
-    "description": "description2"
-  },
-  "pgid": "pgid4"
-}
+    Id = "id6",
+    RequestedAmount = 186,
+    ApprovedAmount = 240,
+    Recipient = null,
+    Pgid = "pgid2",
+};
 ```
 

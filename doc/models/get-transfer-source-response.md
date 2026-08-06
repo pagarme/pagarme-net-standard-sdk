@@ -12,12 +12,15 @@
 | `SourceId` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetTransferSourceResponse getTransferSourceResponse = new GetTransferSourceResponse
 {
-  "source_id": "source_id0",
-  "type": "type4"
-}
+    SourceId = "source_id8",
+    Type = "type4",
+};
 ```
 

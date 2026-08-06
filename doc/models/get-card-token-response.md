@@ -20,15 +20,18 @@ Card token data
 | `Type` | `string` | Optional | - |
 | `Label` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetCardTokenResponse getCardTokenResponse = new GetCardTokenResponse
 {
-  "last_four_digits": "last_four_digits8",
-  "holder_name": "holder_name8",
-  "holder_document": "holder_document6",
-  "exp_month": 168,
-  "exp_year": 128
-}
+    LastFourDigits = "last_four_digits8",
+    HolderName = "holder_name8",
+    HolderDocument = "holder_document6",
+    ExpMonth = 232,
+    ExpYear = 64,
+};
 ```
 

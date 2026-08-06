@@ -33,15 +33,18 @@ Response object for getting a plan
 | `MinimumPrice` | `int?` | Optional | - |
 | `DeletedAt` | `DateTime?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetPlanResponse getPlanResponse = new GetPlanResponse
 {
-  "id": "id0",
-  "name": "name0",
-  "description": "description0",
-  "url": "url4",
-  "statement_descriptor": "statement_descriptor0"
-}
+    Id = "id0",
+    Name = "name0",
+    Description = "description0",
+    Url = "url4",
+    StatementDescriptor = "statement_descriptor0",
+};
 ```
 

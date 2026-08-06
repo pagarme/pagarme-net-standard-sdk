@@ -17,15 +17,18 @@ Request for creating a new discount
 | `Cycles` | `int?` | Optional | Number of cycles that the discount will be applied |
 | `Description` | `string` | Optional | Description |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateDiscountRequest createDiscountRequest = new CreateDiscountRequest
 {
-  "value": 146.6,
-  "discount_type": "discount_type6",
-  "item_id": "item_id2",
-  "cycles": 164,
-  "description": "description2"
-}
+    MValue = 66.94,
+    DiscountType = "discount_type0",
+    ItemId = "item_id8",
+    Cycles = 194,
+    Description = "description8",
+};
 ```
 

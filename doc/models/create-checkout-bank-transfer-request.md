@@ -14,16 +14,21 @@ Checkout bank transfer payment request
 | `Bank` | `List<string>` | Required | Bank |
 | `Retries` | `int` | Required | Number of retries for processing |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateCheckoutBankTransferRequest createCheckoutBankTransferRequest = new CreateCheckoutBankTransferRequest
 {
-  "bank": [
-    "bank7",
-    "bank8",
-    "bank9"
-  ],
-  "retries": 56
-}
+    Bank = new List<string>
+    {
+        "bank1",
+        "bank2",
+        "bank3",
+    },
+    Retries = 56,
+};
 ```
 

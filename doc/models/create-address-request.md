@@ -23,23 +23,28 @@ Request for creating a new Address
 | `Line1` | `string` | Required | Line 1 for address |
 | `Line2` | `string` | Required | Line 2 for address |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateAddressRequest createAddressRequest = new CreateAddressRequest
 {
-  "street": "street6",
-  "number": "number6",
-  "zip_code": "zip_code0",
-  "neighborhood": "neighborhood2",
-  "city": "city6",
-  "state": "state8",
-  "country": "country0",
-  "complement": "complement8",
-  "metadata": {
-    "key0": "metadata7"
-  },
-  "line_1": "line_10",
-  "line_2": "line_24"
-}
+    Street = "street6",
+    Number = "number6",
+    ZipCode = "zip_code0",
+    Neighborhood = "neighborhood2",
+    City = "city6",
+    State = "state2",
+    Country = "country0",
+    Complement = "complement8",
+    Line1 = "line_10",
+    Line2 = "line_24",
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata7",
+    },
+};
 ```
 

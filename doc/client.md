@@ -12,7 +12,14 @@ The following parameters are configurable for the API Client:
 
 The API client can be initialized as follows:
 
+## Code-Based Initialization
+
 ```csharp
+using PagarmeApiSDK.Standard;
+using PagarmeApiSDK.Standard.Authentication;
+
+namespace ConsoleApp;
+
 PagarmeApiSDKClient client = new PagarmeApiSDKClient.Builder()
     .BasicAuthCredentials(
         new BasicAuthModel.Builder(
@@ -20,9 +27,32 @@ PagarmeApiSDKClient client = new PagarmeApiSDKClient.Builder()
             "BasicAuthPassword"
         )
         .Build())
+    .HttpClientConfig(httpClientConfig =>
+        httpClientConfig.Timeout(TimeSpan.FromSeconds(100)))
     .ServiceRefererName("ServiceRefererName")
     .Build();
 ```
+
+## Configuration-Based Initialization
+
+```csharp
+using PagarmeApiSDK.Standard;
+using Microsoft.Extensions.Configuration;
+
+namespace ConsoleApp;
+
+// Build the IConfiguration using .NET conventions (JSON, environment, etc.)
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("config.json")
+    .AddEnvironmentVariables() // [optional] read environment variables
+    .Build();
+
+// Instantiate your SDK and configure it from IConfiguration
+var client = PagarmeApiSDKClient
+    .FromConfiguration(configuration.GetSection("PagarmeApiSDK"));
+```
+
+See the [Configuration-Based Initialization](../doc/configuration-based-initialization.md) section for details.
 
 ## PagarmeApiSDKClient Class
 
@@ -43,7 +73,6 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | TransactionsController | Gets TransactionsController controller. |
 | TransfersController | Gets TransfersController controller. |
 | PayablesController | Gets PayablesController controller. |
-| BalanceOperationsController | Gets BalanceOperationsController controller. |
 
 ### Properties
 

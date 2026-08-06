@@ -20,19 +20,22 @@ Generic response object for getting a MovementObjectBase.
 | `ChargeId` | `string` | Optional | - |
 | `GatewayId` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetMovementObjectBaseResponse getMovementObjectBaseResponse = new GetMovementObjectSettlementResponse
 {
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "product": "product2",
-  "brand": "brand6",
-  "payment_date": "payment_date4",
-  "recipient_id": "recipient_id2",
-  "document_type": "document_type0"
-}
+    Product = "product2",
+    Brand = "brand6",
+    PaymentDate = "payment_date4",
+    RecipientId = "recipient_id2",
+    DocumentType = "document_type0",
+    Id = "id2",
+    Status = "status4",
+    Amount = "amount4",
+    CreatedAt = "created_at0",
+};
 ```
 

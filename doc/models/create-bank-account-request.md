@@ -23,25 +23,29 @@ Request for creating a bank account
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 | `PixKey` | `string` | Optional | Pix key |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateBankAccountRequest createBankAccountRequest = new CreateBankAccountRequest
 {
-  "holder_name": "holder_name4",
-  "holder_type": "holder_type0",
-  "holder_document": "holder_document8",
-  "bank": "bank6",
-  "branch_number": "branch_number4",
-  "branch_check_digit": "branch_check_digit4",
-  "account_number": "account_number8",
-  "account_check_digit": "account_check_digit4",
-  "type": "type2",
-  "metadata": {
-    "key0": "metadata5",
-    "key1": "metadata6",
-    "key2": "metadata7"
-  },
-  "pix_key": "pix_key8"
-}
+    HolderName = "holder_name6",
+    HolderType = "holder_type2",
+    HolderDocument = "holder_document6",
+    Bank = "bank8",
+    BranchNumber = "branch_number6",
+    AccountNumber = "account_number0",
+    AccountCheckDigit = "account_check_digit6",
+    Type = "type0",
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata3",
+        ["key1"] = "metadata4",
+    },
+    BranchCheckDigit = "branch_check_digit4",
+    PixKey = "pix_key6",
+};
 ```
 

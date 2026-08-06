@@ -12,31 +12,22 @@
 | `Data` | [`List<GetDiscountResponse>`](../../doc/models/get-discount-response.md) | Optional | The Discounts response |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListDiscountsResponse listDiscountsResponse = new ListDiscountsResponse
 {
-  "data": [
+    Data = new List<GetDiscountResponse>
     {
-      "id": "id0",
-      "value": 95.62,
-      "discount_type": "discount_type8",
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z"
+        null,
+        new GetDiscountResponse
+        {
+        },
     },
-    {
-      "id": "id0",
-      "value": 95.62,
-      "discount_type": "discount_type8",
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

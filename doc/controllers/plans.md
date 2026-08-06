@@ -10,34 +10,167 @@ IPlansController plansController = client.PlansController;
 
 ## Methods
 
-* [Get Plan](../../doc/controllers/plans.md#get-plan)
-* [Delete Plan Item](../../doc/controllers/plans.md#delete-plan-item)
-* [Update Plan Metadata](../../doc/controllers/plans.md#update-plan-metadata)
 * [Create Plan](../../doc/controllers/plans.md#create-plan)
-* [Update Plan](../../doc/controllers/plans.md#update-plan)
-* [Delete Plan](../../doc/controllers/plans.md#delete-plan)
-* [Get Plans](../../doc/controllers/plans.md#get-plans)
-* [Update Plan Item](../../doc/controllers/plans.md#update-plan-item)
 * [Create Plan Item](../../doc/controllers/plans.md#create-plan-item)
+* [Delete Plan](../../doc/controllers/plans.md#delete-plan)
+* [Delete Plan Item](../../doc/controllers/plans.md#delete-plan-item)
+* [Get Plan](../../doc/controllers/plans.md#get-plan)
 * [Get Plan Item](../../doc/controllers/plans.md#get-plan-item)
+* [Get Plans](../../doc/controllers/plans.md#get-plans)
+* [Update Plan](../../doc/controllers/plans.md#update-plan)
+* [Update Plan Item](../../doc/controllers/plans.md#update-plan-item)
+* [Update Plan Metadata](../../doc/controllers/plans.md#update-plan-metadata)
 
 
-# Get Plan
+# Create Plan
 
-Gets a plan
+Creates a new plan
 
 ```csharp
-GetPlanAsync(
-    string planId)
+CreatePlanAsync(
+    Models.CreatePlanRequest body,
+    string idempotencyKey = null)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`CreatePlanRequest`](../../doc/models/create-plan-request.md) | Body, Required | Request for creating a plan |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
+
+## Example Usage
+
+```csharp
+CreatePlanRequest body = new CreatePlanRequest
+{
+    Name = null,
+    Description = null,
+    StatementDescriptor = null,
+    Items = new List<CreatePlanItemRequest>
+    {
+        null,
+    },
+    Shippable = false,
+    PaymentMethods = null,
+    Installments = null,
+    Currency = null,
+    Interval = null,
+    IntervalCount = 0,
+    BillingDays = null,
+    BillingType = null,
+    PricingScheme = null,
+    Metadata = null,
+};
+
+try
+{
+    GetPlanResponse result = await plansController.CreatePlanAsync(body);
+}
+catch (ApiException e)
+{
+    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
+}
+```
+
+
+# Create Plan Item
+
+Adds a new item to a plan
+
+```csharp
+CreatePlanItemAsync(
+    string planId,
+    Models.CreatePlanItemRequest request,
+    string idempotencyKey = null)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `planId` | `string` | Template, Required | Plan id |
+| `request` | [`CreatePlanItemRequest`](../../doc/models/create-plan-item-request.md) | Body, Required | Request for creating a plan item |
+| `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
+
+**200**
+
+[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
+
+## Example Usage
+
+```csharp
+string planId = "plan_id8";
+CreatePlanItemRequest request = new CreatePlanItemRequest
+{
+    Name = "name6",
+    PricingScheme = null,
+    Id = "id6",
+    Description = "description6",
+};
+
+try
+{
+    GetPlanItemResponse result = await plansController.CreatePlanItemAsync(
+        planId,
+        request
+    );
+}
+catch (ApiException e)
+{
+    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
+}
+```
+
+
+# Delete Plan
+
+Deletes a plan
+
+```csharp
+DeletePlanAsync(
+    string planId,
+    string idempotencyKey = null)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `planId` | `string` | Template, Required | Plan id |
+| `idempotencyKey` | `string` | Header, Optional | - |
+
+## Response Type
+
+**200**
 
 [`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
 
@@ -47,12 +180,15 @@ GetPlanAsync(
 string planId = "plan_id8";
 try
 {
-    GetPlanResponse result = await plansController.GetPlanAsync(planId);
+    GetPlanResponse result = await plansController.DeletePlanAsync(planId);
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
@@ -68,6 +204,10 @@ DeletePlanItemAsync(
     string idempotencyKey = null)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -77,6 +217,8 @@ DeletePlanItemAsync(
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
 
@@ -94,32 +236,37 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
 
-# Update Plan Metadata
+# Get Plan
 
-Updates the metadata from a plan
+Gets a plan
 
 ```csharp
-UpdatePlanMetadataAsync(
-    string planId,
-    Models.UpdateMetadataRequest request,
-    string idempotencyKey = null)
+GetPlanAsync(
+    string planId)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | The plan id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the plan metadata |
-| `idempotencyKey` | `string` | Header, Optional | - |
+| `planId` | `string` | Template, Required | Plan id |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
 
@@ -127,108 +274,122 @@ UpdatePlanMetadataAsync(
 
 ```csharp
 string planId = "plan_id8";
-UpdateMetadataRequest request = new UpdateMetadataRequest
-{
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata3",
-    },
-};
-
 try
 {
-    GetPlanResponse result = await plansController.UpdatePlanMetadataAsync(
-        planId,
-        request
-    );
+    GetPlanResponse result = await plansController.GetPlanAsync(planId);
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
 
-# Create Plan
+# Get Plan Item
 
-Creates a new plan
+Gets a plan item
 
 ```csharp
-CreatePlanAsync(
-    Models.CreatePlanRequest body,
-    string idempotencyKey = null)
+GetPlanItemAsync(
+    string planId,
+    string planItemId)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`CreatePlanRequest`](../../doc/models/create-plan-request.md) | Body, Required | Request for creating a plan |
-| `idempotencyKey` | `string` | Header, Optional | - |
+| `planId` | `string` | Template, Required | Plan id |
+| `planItemId` | `string` | Template, Required | Plan item id |
 
 ## Response Type
 
-[`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
+**200**
+
+[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
 
 ## Example Usage
 
 ```csharp
-CreatePlanRequest body = new CreatePlanRequest
-{
-    Name = "name6",
-    Description = "description4",
-    StatementDescriptor = "statement_descriptor6",
-    Items = new List<CreatePlanItemRequest>
-    {
-        new CreatePlanItemRequest
-        {
-            Name = "name8",
-            PricingScheme = new CreatePricingSchemeRequest
-            {
-                SchemeType = "scheme_type8",
-            },
-            Id = "id8",
-            Description = "description2",
-        },
-    },
-    Shippable = false,
-    PaymentMethods = new List<string>
-    {
-        "payment_methods9",
-    },
-    Installments = new List<int>
-    {
-        207,
-    },
-    Currency = "currency6",
-    Interval = "interval6",
-    IntervalCount = 170,
-    BillingDays = new List<int>
-    {
-        201,
-        200,
-    },
-    BillingType = "billing_type0",
-    PricingScheme = new CreatePricingSchemeRequest
-    {
-        SchemeType = "scheme_type8",
-    },
-    Metadata = new Dictionary<string, string>
-    {
-        ["key0"] = "metadata7",
-        ["key1"] = "metadata8",
-    },
-};
-
+string planId = "plan_id8";
+string planItemId = "plan_item_id0";
 try
 {
-    GetPlanResponse result = await plansController.CreatePlanAsync(body);
+    GetPlanItemResponse result = await plansController.GetPlanItemAsync(
+        planId,
+        planItemId
+    );
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
+}
+```
+
+
+# Get Plans
+
+Gets all plans
+
+```csharp
+GetPlansAsync(
+    int? page = null,
+    int? size = null,
+    string name = null,
+    string status = null,
+    string billingType = null,
+    DateTime? createdSince = null,
+    DateTime? createdUntil = null)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int?` | Query, Optional | Page number |
+| `size` | `int?` | Query, Optional | Page size |
+| `name` | `string` | Query, Optional | Filter for Plan's name |
+| `status` | `string` | Query, Optional | Filter for Plan's status |
+| `billingType` | `string` | Query, Optional | Filter for plan's billing type |
+| `createdSince` | `DateTime?` | Query, Optional | Filter for plan's creation date start range |
+| `createdUntil` | `DateTime?` | Query, Optional | Filter for plan's creation date end range |
+
+## Response Type
+
+**200**
+
+[`Task<Models.ListPlansResponse>`](../../doc/models/list-plans-response.md)
+
+## Example Usage
+
+```csharp
+try
+{
+    ListPlansResponse result = await plansController.GetPlansAsync();
+}
+catch (ApiException e)
+{
+    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
@@ -244,6 +405,10 @@ UpdatePlanAsync(
     string idempotencyKey = null)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -253,6 +418,8 @@ UpdatePlanAsync(
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
 
@@ -301,91 +468,11 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
-}
-```
-
-
-# Delete Plan
-
-Deletes a plan
-
-```csharp
-DeletePlanAsync(
-    string planId,
-    string idempotencyKey = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | Plan id |
-| `idempotencyKey` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
-
-## Example Usage
-
-```csharp
-string planId = "plan_id8";
-try
-{
-    GetPlanResponse result = await plansController.DeletePlanAsync(planId);
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Plans
-
-Gets all plans
-
-```csharp
-GetPlansAsync(
-    int? page = null,
-    int? size = null,
-    string name = null,
-    string status = null,
-    string billingType = null,
-    DateTime? createdSince = null,
-    DateTime? createdUntil = null)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int?` | Query, Optional | Page number |
-| `size` | `int?` | Query, Optional | Page size |
-| `name` | `string` | Query, Optional | Filter for Plan's name |
-| `status` | `string` | Query, Optional | Filter for Plan's status |
-| `billingType` | `string` | Query, Optional | Filter for plan's billing type |
-| `createdSince` | `DateTime?` | Query, Optional | Filter for plan's creation date start range |
-| `createdUntil` | `DateTime?` | Query, Optional | Filter for plan's creation date end range |
-
-## Response Type
-
-[`Task<Models.ListPlansResponse>`](../../doc/models/list-plans-response.md)
-
-## Example Usage
-
-```csharp
-try
-{
-    ListPlansResponse result = await plansController.GetPlansAsync();
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
@@ -402,6 +489,10 @@ UpdatePlanItemAsync(
     string idempotencyKey = null)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -413,6 +504,8 @@ UpdatePlanItemAsync(
 
 ## Response Type
 
+**200**
+
 [`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
 
 ## Example Usage
@@ -422,19 +515,15 @@ string planId = "plan_id8";
 string planItemId = "plan_item_id0";
 UpdatePlanItemRequest body = new UpdatePlanItemRequest
 {
-    Name = "name6",
-    Description = "description4",
-    Status = "status2",
+    Name = null,
+    Description = null,
+    Status = null,
     PricingScheme = new UpdatePricingSchemeRequest
     {
-        SchemeType = "scheme_type8",
+        SchemeType = null,
         PriceBrackets = new List<UpdatePriceBracketRequest>
         {
-            new UpdatePriceBracketRequest
-            {
-                StartQuantity = 144,
-                Price = 174,
-            },
+            null,
         },
     },
 };
@@ -449,102 +538,70 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 
 
-# Create Plan Item
+# Update Plan Metadata
 
-Adds a new item to a plan
+Updates the metadata from a plan
 
 ```csharp
-CreatePlanItemAsync(
+UpdatePlanMetadataAsync(
     string planId,
-    Models.CreatePlanItemRequest request,
+    Models.UpdateMetadataRequest request,
     string idempotencyKey = null)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | Plan id |
-| `request` | [`CreatePlanItemRequest`](../../doc/models/create-plan-item-request.md) | Body, Required | Request for creating a plan item |
+| `planId` | `string` | Template, Required | The plan id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the plan metadata |
 | `idempotencyKey` | `string` | Header, Optional | - |
 
 ## Response Type
 
-[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
+**200**
+
+[`Task<Models.GetPlanResponse>`](../../doc/models/get-plan-response.md)
 
 ## Example Usage
 
 ```csharp
 string planId = "plan_id8";
-CreatePlanItemRequest request = new CreatePlanItemRequest
+UpdateMetadataRequest request = new UpdateMetadataRequest
 {
-    Name = "name6",
-    PricingScheme = new CreatePricingSchemeRequest
+    Metadata = new Dictionary<string, string>
     {
-        SchemeType = "scheme_type8",
+        ["key0"] = "metadata3",
     },
-    Id = "id6",
-    Description = "description6",
 };
 
 try
 {
-    GetPlanItemResponse result = await plansController.CreatePlanItemAsync(
+    GetPlanResponse result = await plansController.UpdatePlanMetadataAsync(
         planId,
         request
     );
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
-}
-```
-
-
-# Get Plan Item
-
-Gets a plan item
-
-```csharp
-GetPlanItemAsync(
-    string planId,
-    string planItemId)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `planId` | `string` | Template, Required | Plan id |
-| `planItemId` | `string` | Template, Required | Plan item id |
-
-## Response Type
-
-[`Task<Models.GetPlanItemResponse>`](../../doc/models/get-plan-item-response.md)
-
-## Example Usage
-
-```csharp
-string planId = "plan_id8";
-string planItemId = "plan_item_id0";
-try
-{
-    GetPlanItemResponse result = await plansController.GetPlanItemAsync(
-        planId,
-        planItemId
-    );
-}
-catch (ApiException e)
-{
-    // TODO: Handle exception here
-    Console.WriteLine(e.Message);
+    if (e is ErrorException)
+    {
+       // TODO: Handle ErrorException exception here
+    }
 }
 ```
 

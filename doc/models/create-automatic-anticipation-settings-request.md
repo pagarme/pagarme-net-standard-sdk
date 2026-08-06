@@ -15,18 +15,23 @@
 | `Delay` | `int` | Required | - |
 | `Days` | `List<int>` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateAutomaticAnticipationSettingsRequest createAutomaticAnticipationSettingsRequest = new CreateAutomaticAnticipationSettingsRequest
 {
-  "enabled": false,
-  "type": "type8",
-  "volume_percentage": 208,
-  "delay": 82,
-  "days": [
-    58,
-    59
-  ]
-}
+    Enabled = false,
+    Type = "type4",
+    VolumePercentage = 24,
+    Delay = 10,
+    Days = new List<int>
+    {
+        242,
+        243,
+    },
+};
 ```
 

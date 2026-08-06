@@ -14,12 +14,15 @@ Anticipation limit
 | `Amount` | `int?` | Optional | Amount |
 | `AnticipationFee` | `int?` | Optional | Anticipation fee |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetAnticipationLimitResponse getAnticipationLimitResponse = new GetAnticipationLimitResponse
 {
-  "amount": 6,
-  "anticipation_fee": 88
-}
+    Amount = 160,
+    AnticipationFee = 190,
+};
 ```
 

@@ -12,12 +12,15 @@
 | `TargetId` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetWithdrawTargetResponse getWithdrawTargetResponse = new GetWithdrawTargetResponse
 {
-  "target_id": "target_id4",
-  "type": "type6"
-}
+    TargetId = "target_id8",
+    Type = "type8",
+};
 ```
 

@@ -22,15 +22,18 @@ Response object for getting a billing address
 | `Line1` | `string` | Optional | Line 1 for address |
 | `Line2` | `string` | Optional | Line 2 for address |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetBillingAddressResponse getBillingAddressResponse = new GetBillingAddressResponse
 {
-  "street": "street4",
-  "number": "number2",
-  "zip_code": "zip_code8",
-  "neighborhood": "neighborhood0",
-  "city": "city4"
-}
+    Street = "street8",
+    Number = "number4",
+    ZipCode = "zip_code2",
+    Neighborhood = "neighborhood4",
+    City = "city8",
+};
 ```
 

@@ -18,35 +18,27 @@ Request for updating a subscription's payment method
 | `Boleto` | [`CreateSubscriptionBoletoRequest`](../../doc/models/create-subscription-boleto-request.md) | Optional | Information about fines and interest on the "boleto" used from payment |
 | `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateSubscriptionPaymentMethodRequest updateSubscriptionPaymentMethodRequest = new UpdateSubscriptionPaymentMethodRequest
 {
-  "payment_method": "payment_method4",
-  "card_id": "card_id2",
-  "card": {
-    "type": "credit",
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "card_token": "card_token4",
-  "boleto": {
-    "interest": {
-      "days": 156,
-      "type": "type0",
-      "amount": 230
+    PaymentMethod = null,
+    CardId = null,
+    Card = new CreateCardRequest
+    {
+        Number = "number6",
+        HolderName = "holder_name2",
+        ExpMonth = 228,
+        ExpYear = 68,
+        Cvv = "cvv4",
+        Type = "credit",
     },
-    "fine": {
-      "days": 138,
-      "type": "type2",
-      "amount": 212
-    },
-    "max_days_to_pay_past_due": 118
-  },
-  "indirect_acceptor": "indirect_acceptor2"
-}
+    CardToken = "card_token2",
+    Boleto = null,
+    IndirectAcceptor = "indirect_acceptor4",
+};
 ```
 

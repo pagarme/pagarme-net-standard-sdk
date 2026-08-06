@@ -17,21 +17,22 @@ Request object for RegisterInformation.
 | `SiteUrl` | `string` | Optional | - |
 | `PhoneNumbers` | [`List<CreateRegisterInformationPhoneRequest>`](../../doc/models/create-register-information-phone-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateRegisterInformationBaseRequest createRegisterInformationBaseRequest = new CreateRegisterInformationBaseRequest
 {
-  "email": "email4",
-  "document": "document6",
-  "type": "type8",
-  "phone_numbers": [
+    Email = null,
+    Document = null,
+    Type = null,
+    PhoneNumbers = new List<CreateRegisterInformationPhoneRequest>
     {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ],
-  "site_url": "site_url4"
-}
+        null,
+    },
+    SiteUrl = "site_url6",
+};
 ```
 

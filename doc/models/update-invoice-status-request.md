@@ -13,11 +13,14 @@ Invoice Update Status Request
 |  --- | --- | --- | --- |
 | `Status` | `string` | Required | Status |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateInvoiceStatusRequest updateInvoiceStatusRequest = new UpdateInvoiceStatusRequest
 {
-  "status": "status8"
-}
+    Status = "status2",
+};
 ```
 

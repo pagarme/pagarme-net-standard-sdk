@@ -21,20 +21,28 @@ Response object for getting a bank transfer transaction
 | `PaidAt` | `DateTime?` | Optional | Payment date |
 | `PaidAmount` | `int?` | Optional | Paid amount |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetBankTransferTransactionResponse getBankTransferTransactionResponse = new GetBankTransferTransactionResponse
 {
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "url": "url2",
-  "bank_tid": "bank_tid2",
-  "bank": "bank6",
-  "paid_at": "2016-03-13T12:52:32.123Z",
-  "paid_amount": 176
-}
+    Url = "url6",
+    BankTid = "bank_tid6",
+    Bank = "bank0",
+    PaidAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    PaidAmount = 62,
+    GatewayId = "gateway_id8",
+    Amount = 40,
+    Status = "status6",
+    Success = false,
+    CreatedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+};
 ```
 

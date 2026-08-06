@@ -31,26 +31,25 @@ Response object for getting an RegisterInformationResponse
 | `MainAddress` | [`GetRegisterInformationAddressResponse`](../../doc/models/get-register-information-address-response.md) | Optional | - |
 | `ManagingPartners` | [`List<GetManagingPartnerResponse>`](../../doc/models/get-managing-partner-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+GetRegisterInformationResponse getRegisterInformationResponse = new GetRegisterInformationResponse
 {
-  "email": "email2",
-  "document": "document2",
-  "type": "type6",
-  "site_url": "site_url6",
-  "phone_numbers": [
+    Email = "email4",
+    Document = "document6",
+    Type = "type2",
+    SiteUrl = "site_url4",
+    PhoneNumbers = new List<GetPhoneNumberResponse>
     {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
+        null,
+        new GetPhoneNumberResponse
+        {
+        },
     },
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ]
-}
+};
 ```
 

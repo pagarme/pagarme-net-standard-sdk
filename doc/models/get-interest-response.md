@@ -15,13 +15,16 @@ Interest Response
 | `Type` | `string` | Optional | Type |
 | `Amount` | `int?` | Optional | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetInterestResponse getInterestResponse = new GetInterestResponse
 {
-  "type": "\"percentage\" or \"flat\"",
-  "days": 114,
-  "amount": 188
-}
+    Days = 82,
+    Type = "\"percentage\" or \"flat\"",
+    Amount = 156,
+};
 ```
 

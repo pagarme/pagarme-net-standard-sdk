@@ -15,21 +15,26 @@ Response object for getting a boleto
 | `Fine` | [`GetFineResponse`](../../doc/models/get-fine-response.md) | Optional | Fine |
 | `MaxDaysToPayPastDue` | `int?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetSubscriptionBoletoResponse getSubscriptionBoletoResponse = new GetSubscriptionBoletoResponse
 {
-  "interest": {
-    "days": 2,
-    "type": "percentage",
-    "amount": 20
-  },
-  "fine": {
-    "days": 2,
-    "type": "flat",
-    "amount": 10
-  },
-  "max_days_to_pay_past_due": 2
-}
+    Interest = new GetInterestResponse
+    {
+        Days = 2,
+        Type = "percentage",
+        Amount = 20,
+    },
+    Fine = new GetFineResponse
+    {
+        Days = 2,
+        Type = "flat",
+        Amount = 10,
+    },
+    MaxDaysToPayPastDue = 2,
+};
 ```
 

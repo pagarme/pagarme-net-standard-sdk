@@ -29,15 +29,18 @@ Response object for getting an Address
 | `Line2` | `string` | Optional | Line 2 for address |
 | `DeletedAt` | `DateTime?` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetAddressResponse getAddressResponse = new GetAddressResponse
 {
-  "id": "id2",
-  "street": "street2",
-  "number": "number0",
-  "complement": "complement8",
-  "zip_code": "zip_code6"
-}
+    Id = "id8",
+    Street = "street8",
+    Number = "number4",
+    Complement = "complement6",
+    ZipCode = "zip_code2",
+};
 ```
 

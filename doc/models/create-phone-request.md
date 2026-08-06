@@ -14,14 +14,17 @@
 | `AreaCode` | `string` | Optional | - |
 | `Type` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreatePhoneRequest createPhoneRequest = new CreatePhoneRequest
 {
-  "country_code": "country_code0",
-  "number": "number2",
-  "area_code": "area_code0",
-  "Type": "Type0"
-}
+    CountryCode = "country_code2",
+    Number = "number4",
+    AreaCode = "area_code8",
+    Type = "Type8",
+};
 ```
 

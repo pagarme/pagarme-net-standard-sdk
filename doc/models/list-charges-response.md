@@ -14,38 +14,19 @@ Response object for listing charges
 | `Data` | [`List<GetChargeResponse>`](../../doc/models/get-charge-response.md) | Optional | The charge objects |
 | `Paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+ListChargesResponse listChargesResponse = new ListChargesResponse
 {
-  "data": [
+    Data = new List<GetChargeResponse>
     {
-      "id": "id0",
-      "code": "code8",
-      "gateway_id": "gateway_id0",
-      "amount": 236,
-      "status": "status2"
+        null,
     },
-    {
-      "id": "id0",
-      "code": "code8",
-      "gateway_id": "gateway_id0",
-      "amount": 236,
-      "status": "status2"
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "gateway_id": "gateway_id0",
-      "amount": 236,
-      "status": "status2"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+    Paging = null,
+};
 ```
 

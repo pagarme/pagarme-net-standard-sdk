@@ -35,15 +35,18 @@ Response object for getting an invoice
 | `TotalIncrement` | `int?` | Optional | Total discounted value |
 | `SubscriptionId` | `string` | Optional | Subscription Id |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetInvoiceResponse getInvoiceResponse = new GetInvoiceResponse
 {
-  "id": "id0",
-  "code": "code8",
-  "url": "url4",
-  "amount": 168,
-  "status": "status8"
-}
+    Id = "id8",
+    Code = "code6",
+    Url = "url2",
+    Amount = 132,
+    Status = "status0",
+};
 ```
 

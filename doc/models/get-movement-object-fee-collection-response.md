@@ -19,17 +19,20 @@ Generic response object for getting a MovementObjectFeeCollection.
 | `PaymentDate` | `string` | Optional | - |
 | `RecipientId` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetMovementObjectFeeCollectionResponse getMovementObjectFeeCollectionResponse = new GetMovementObjectFeeCollectionResponse
 {
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "description": "description4",
-  "payment_date": "payment_date4",
-  "recipient_id": "recipient_id6"
-}
+    Description = "description0",
+    PaymentDate = "payment_date8",
+    RecipientId = "recipient_id0",
+    Id = "id2",
+    Status = "status4",
+    Amount = "amount4",
+    CreatedAt = "created_at0",
+};
 ```
 

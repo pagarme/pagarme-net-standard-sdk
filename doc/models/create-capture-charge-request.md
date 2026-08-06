@@ -16,37 +16,21 @@ Request for capturing a charge
 | `Split` | [`List<CreateSplitRequest>`](../../doc/models/create-split-request.md) | Optional | Splits |
 | `OperationReference` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+CreateCaptureChargeRequest createCaptureChargeRequest = new CreateCaptureChargeRequest
 {
-  "code": "code8",
-  "amount": 96,
-  "split": [
+    Code = "code8",
+    OperationReference = "operation_reference0",
+    Amount = 236,
+    Split = new List<CreateSplitRequest>
     {
-      "type": "type2",
-      "amount": 10,
-      "recipient_id": "recipient_id2",
-      "options": {
-        "liable": false,
-        "charge_processing_fee": false,
-        "charge_remainder_fee": false
-      },
-      "split_rule_id": "split_rule_id0"
+        null,
     },
-    {
-      "type": "type2",
-      "amount": 10,
-      "recipient_id": "recipient_id2",
-      "options": {
-        "liable": false,
-        "charge_processing_fee": false,
-        "charge_remainder_fee": false
-      },
-      "split_rule_id": "split_rule_id0"
-    }
-  ],
-  "operation_reference": "operation_reference0"
-}
+};
 ```
 

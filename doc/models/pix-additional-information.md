@@ -14,12 +14,15 @@ Pix Additional Information
 | `Name` | `string` | Optional | - |
 | `MValue` | `string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+PixAdditionalInformation pixAdditionalInformation = new PixAdditionalInformation
 {
-  "Name": "Name6",
-  "Value": "Value6"
-}
+    Name = "Name2",
+    MValue = "Value0",
+};
 ```
 

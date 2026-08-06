@@ -41,28 +41,37 @@
 | `ManualBilling` | `bool?` | Optional | - |
 | `IndirectAcceptor` | `string` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+GetSubscriptionResponse getSubscriptionResponse = new GetSubscriptionResponse
 {
-  "boleto": {
-    "interest": {
-      "days": 2,
-      "type": "percentage",
-      "amount": 20
+    Id = "id0",
+    Code = "code8",
+    StartAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Interval = "interval8",
+    IntervalCount = 154,
+    Boleto = new GetSubscriptionBoletoResponse
+    {
+        Interest = new GetInterestResponse
+        {
+            Days = 2,
+            Type = "percentage",
+            Amount = 20,
+        },
+        Fine = new GetFineResponse
+        {
+            Days = 2,
+            Type = "flat",
+            Amount = 10,
+        },
+        MaxDaysToPayPastDue = 2,
     },
-    "fine": {
-      "days": 2,
-      "type": "flat",
-      "amount": 10
-    },
-    "max_days_to_pay_past_due": 2
-  },
-  "id": "id4",
-  "code": "code2",
-  "start_at": "2016-03-13T12:52:32.123Z",
-  "interval": "interval2",
-  "interval_count": 224
-}
+};
 ```
 

@@ -17,15 +17,18 @@ Information about the recipient on the gateway
 | `CreatedAt` | `string` | Optional | Creation date |
 | `UpdatedAt` | `string` | Optional | Last update date |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetGatewayRecipientResponse getGatewayRecipientResponse = new GetGatewayRecipientResponse
 {
-  "gateway": "gateway2",
-  "status": "status4",
-  "pgid": "pgid8",
-  "created_at": "created_at0",
-  "updated_at": "updated_at8"
-}
+    Gateway = "gateway0",
+    Status = "status2",
+    Pgid = "pgid6",
+    CreatedAt = "created_at8",
+    UpdatedAt = "updated_at6",
+};
 ```
 

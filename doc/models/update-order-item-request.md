@@ -16,14 +16,17 @@ Update Order item Request
 | `Quantity` | `int` | Required | - |
 | `Category` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+UpdateOrderItemRequest updateOrderItemRequest = new UpdateOrderItemRequest
 {
-  "amount": 130,
-  "description": "description4",
-  "quantity": 244,
-  "category": "category2"
-}
+    Amount = 202,
+    Description = "description0",
+    Quantity = 60,
+    Category = "category8",
+};
 ```
 

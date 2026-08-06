@@ -26,15 +26,18 @@
 | `Metadata` | `Dictionary<string, string>` | Optional | Metadata |
 | `PixKey` | `string` | Optional | Pix Key |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+GetBankAccountResponse getBankAccountResponse = new GetBankAccountResponse
 {
-  "id": "id6",
-  "holder_name": "holder_name2",
-  "holder_type": "holder_type8",
-  "bank": "bank4",
-  "branch_number": "branch_number2"
-}
+    Id = "id4",
+    HolderName = "holder_name0",
+    HolderType = "holder_type6",
+    Bank = "bank2",
+    BranchNumber = "branch_number0",
+};
 ```
 

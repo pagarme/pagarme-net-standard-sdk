@@ -13,11 +13,14 @@ Request for canceling a subscription
 |  --- | --- | --- | --- |
 | `CancelPendingInvoices` | `bool` | Required | Indicates if the pending invoices must also be canceled.<br><br>**Default**: `true` |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCancelSubscriptionRequest createCancelSubscriptionRequest = new CreateCancelSubscriptionRequest
 {
-  "cancel_pending_invoices": true
-}
+    CancelPendingInvoices = true,
+};
 ```
 

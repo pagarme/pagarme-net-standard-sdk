@@ -13,14 +13,20 @@ Request for updating an metadata
 |  --- | --- | --- | --- |
 | `Metadata` | `Dictionary<string, string>` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Collections.Generic;
+
+UpdateMetadataRequest updateMetadataRequest = new UpdateMetadataRequest
 {
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata6"
-  }
-}
+    Metadata = new Dictionary<string, string>
+    {
+        ["key0"] = "metadata5",
+        ["key1"] = "metadata6",
+        ["key2"] = "metadata7",
+    },
+};
 ```
 

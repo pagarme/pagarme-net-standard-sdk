@@ -15,13 +15,16 @@ Register Information Phone
 | `Number` | `string` | Required | - |
 | `Type` | `string` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateRegisterInformationPhoneRequest createRegisterInformationPhoneRequest = new CreateRegisterInformationPhoneRequest
 {
-  "ddd": "ddd4",
-  "number": "number6",
-  "type": "type8"
-}
+    Ddd = "ddd2",
+    Number = "number0",
+    Type = "type8",
+};
 ```
 

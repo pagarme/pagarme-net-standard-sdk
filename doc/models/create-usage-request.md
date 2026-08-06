@@ -18,16 +18,22 @@ Request for creating a usage
 | `Group` | `string` | Optional | identification group in the client system |
 | `Amount` | `int?` | Optional | Field used in item scheme type 'Percent' |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+using System.Globalization;
+
+CreateUsageRequest createUsageRequest = new CreateUsageRequest
 {
-  "quantity": 224,
-  "description": "description8",
-  "used_at": "2016-03-13T12:52:32.123Z",
-  "code": "code0",
-  "group": "group0",
-  "amount": 110
-}
+    Quantity = 254,
+    Description = "description6",
+    UsedAt = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    Code = "code4",
+    MGroup = "group4",
+    Amount = 140,
+};
 ```
 

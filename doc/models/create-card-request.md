@@ -28,16 +28,19 @@ Card data
 | `Id` | `string` | Optional | Identifier |
 | `Token` | `string` | Optional | token identifier |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using PagarmeApiSDK.Standard.Models;
+
+CreateCardRequest createCardRequest = new CreateCardRequest
 {
-  "type": "credit",
-  "number": "number0",
-  "holder_name": "holder_name8",
-  "exp_month": 92,
-  "exp_year": 204,
-  "cvv": "cvv0"
-}
+    Number = "number6",
+    HolderName = "holder_name4",
+    ExpMonth = 22,
+    ExpYear = 62,
+    Cvv = "cvv6",
+    Type = "credit",
+};
 ```
 
