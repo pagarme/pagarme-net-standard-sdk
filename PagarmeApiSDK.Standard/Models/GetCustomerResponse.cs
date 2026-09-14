@@ -87,7 +87,7 @@ namespace PagarmeApiSDK.Standard.Models
             Models.GetAddressResponse address = null,
             Dictionary<string, string> metadata = null,
             Models.GetPhonesResponse phones = null,
-            long? fbId = null,
+            long? fbId = L,
             string code = "",
             string documentType = "")
         {

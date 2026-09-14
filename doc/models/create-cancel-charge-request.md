@@ -16,6 +16,7 @@ Request for canceling a charge.
 | `Split` | [`List<CreateSplitRequest>`](../../doc/models/create-split-request.md) | Optional | Splits |
 | `OperationReference` | `string` | Required | - |
 | `BankAccount` | [`CreateBankAccountRefundingDTO`](../../doc/models/create-bank-account-refunding-dto.md) | Optional | - |
+| `Reason` | `string` | Optional | Cancellation reason |
 
 ## Example
 
@@ -60,6 +61,7 @@ CreateCancelChargeRequest createCancelChargeRequest = new CreateCancelChargeRequ
         },
     },
     BankAccount = null,
+    Reason = "reason4",
 };
 ```
 
