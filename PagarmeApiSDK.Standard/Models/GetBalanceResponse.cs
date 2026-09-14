@@ -45,10 +45,10 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="paymentProfileId">payment_profile_id.</param>
         public GetBalanceResponse(
             string currency = "",
-            long? availableAmount = null,
+            long? availableAmount = L,
             Models.GetRecipientResponse recipient = null,
-            long? transferredAmount = null,
-            long? waitingFundsAmount = null,
+            long? transferredAmount = L,
+            long? waitingFundsAmount = L,
             string paymentProfileId = "")
         {
 

@@ -26,7 +26,7 @@ namespace PagarmeApiSDK.Standard.Models
         /// <param name="number">number.</param>
         /// <param name="total">total.</param>
         public GetCheckoutCardInstallmentOptionsResponse(
-            long? number = null,
+            long? number = L,
             int? total = null)
         {
             this.Number = number;

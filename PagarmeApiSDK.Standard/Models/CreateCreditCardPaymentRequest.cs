@@ -13,6 +13,12 @@ namespace PagarmeApiSDK.Standard.Models
     /// </summary>
     public class CreateCreditCardPaymentRequest
     {
+        private long? merchantCategoryCode;
+        private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
+        {
+            { "merchant_category_code", false },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCreditCardPaymentRequest"/> class.
         /// </summary>
@@ -53,7 +59,7 @@ namespace PagarmeApiSDK.Standard.Models
             bool? capture = true,
             bool? extendedLimitEnabled = false,
             string extendedLimitCode = "",
-            long? merchantCategoryCode = null,
+            long? merchantCategoryCode = L,
             Models.CreatePaymentAuthenticationRequest authentication = null,
             Models.CreateCardPaymentContactlessRequest contactless = null,
             bool? autoRecovery = false,
@@ -74,7 +80,11 @@ namespace PagarmeApiSDK.Standard.Models
             this.Capture = capture;
             this.ExtendedLimitEnabled = extendedLimitEnabled;
             this.ExtendedLimitCode = extendedLimitCode;
-            this.MerchantCategoryCode = merchantCategoryCode;
+
+            if (merchantCategoryCode != null)
+            {
+                this.MerchantCategoryCode = merchantCategoryCode;
+            }
             this.Authentication = authentication;
             this.Contactless = contactless;
             this.AutoRecovery = autoRecovery;
@@ -144,8 +154,20 @@ namespace PagarmeApiSDK.Standard.Models
         /// <summary>
         /// Customer business segment code
         /// </summary>
-        [JsonProperty("merchant_category_code", NullValueHandling = NullValueHandling.Ignore)]
-        public long? MerchantCategoryCode { get; set; }
+        [JsonProperty("merchant_category_code")]
+        public long? MerchantCategoryCode
+        {
+            get
+            {
+                return this.merchantCategoryCode;
+            }
+
+            set
+            {
+                this.shouldSerialize["merchant_category_code"] = true;
+                this.merchantCategoryCode = value;
+            }
+        }
 
         /// <summary>
         /// The payment authentication request
@@ -213,6 +235,23 @@ namespace PagarmeApiSDK.Standard.Models
             var toStringOutput = new List<string>();
             this.ToString(toStringOutput);
             return $"CreateCreditCardPaymentRequest : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// Marks the field to not be serialized.
+        /// </summary>
+        public void UnsetMerchantCategoryCode()
+        {
+            this.shouldSerialize["merchant_category_code"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeMerchantCategoryCode()
+        {
+            return this.shouldSerialize["merchant_category_code"];
         }
 
         /// <inheritdoc/>

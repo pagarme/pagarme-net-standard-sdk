@@ -54,7 +54,6 @@ ListPayablesResponse listPayablesResponse = new ListPayablesResponse
             AnticipationFee = 0,
             FraudCoverageFee = 0,
             Installment = 44,
-            AnticipationId = "anticipation_id0",
             PaymentDate = DateTime.ParseExact("2025-08-18T03:00:00Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
                 provider: CultureInfo.InvariantCulture,
                 DateTimeStyles.RoundtripKind),
