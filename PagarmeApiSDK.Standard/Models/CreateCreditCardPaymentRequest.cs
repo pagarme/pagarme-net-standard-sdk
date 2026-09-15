@@ -59,7 +59,7 @@ namespace PagarmeApiSDK.Standard.Models
             bool? capture = true,
             bool? extendedLimitEnabled = false,
             string extendedLimitCode = "",
-            long? merchantCategoryCode = L,
+            long? merchantCategoryCode = null,
             Models.CreatePaymentAuthenticationRequest authentication = null,
             Models.CreateCardPaymentContactlessRequest contactless = null,
             bool? autoRecovery = false,
